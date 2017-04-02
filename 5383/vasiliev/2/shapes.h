@@ -101,8 +101,6 @@ public:
         }
     }
 
-    virtual ~Rectangle() {}
-
     double getLength()
     {
         return this->length;
@@ -160,8 +158,6 @@ public:
     {
     }
 
-    virtual ~Square() {}
-
     void stretchLength(double q)
     {
         this->stretch(q);
@@ -184,7 +180,6 @@ class Ellipse: public Rectangle
 {
 public:
     using Rectangle::Rectangle;
-    virtual ~Ellipse() {}
     double getArea() const override
     {
         return M_PI * width * length / 4;
