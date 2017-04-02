@@ -101,12 +101,12 @@ public:
         }
     }
 
-    double getLength()
+    double getLength() const
     {
         return this->length;
     }
 
-    double getWidth()
+    double getWidth() const
     {
         return this->width;
     }
