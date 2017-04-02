@@ -4,7 +4,8 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include <cassert>
+#include <exception>
+#include <string>
 
 
 class Shape
@@ -56,6 +57,13 @@ public:
     virtual double getArea() const = 0;
     virtual double getPerimeter() const = 0;
 
+    class ConstructError: public std::logic_error
+    {
+    public:
+        ConstructError(const std::string& what_arg) : std::logic_error(what_arg) {};
+        ConstructError(const char* what_arg) : std::logic_error(what_arg) {};
+    };
+
 protected:
     Shape(double x = 0, double y = 0,
           double angle = 0, unsigned int color = 0x000000FF)
@@ -85,6 +93,12 @@ public:
         : length(length), width(width),
           Shape(x, y, angle, color)
     {
+        if (!length) {
+            throw Shape::ConstructError("Incorrect length");
+        }
+        if (!width) {
+            throw Shape::ConstructError("Incorrect width");
+        }
     }
 
     virtual ~Rectangle() {}
@@ -177,9 +191,6 @@ public:
     }
     double getPerimeter() const override
     {
-        if (!(width || length)) { return 0; }
-        if (!width && length) { return length; }
-        if (width && !length) { return width; }
         return (2 * M_PI * width * length + 4 * fabs(width - length)) / (width + length);
     }
 

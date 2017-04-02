@@ -27,20 +27,21 @@ TEST(RectangleTest, Constructor)
     EXPECT_EQ(s.getColor(), 0xDEADB33F);
 }
 
+TEST(RectangleTest, ThrowConstructor)
+{
+    EXPECT_THROW(Rectangle(0,0,0,0,0,0), Shape::ConstructError);
+}
+
 TEST(RectangleTest, Area)
 {
     Rectangle a(3,5.2);
     EXPECT_DOUBLE_EQ(a.getArea(), 15.6);
-    Rectangle b(0, 999);
-    EXPECT_DOUBLE_EQ(b.getArea(), 0);
 }
 
 TEST(RectangleTest, Perimeter)
 {
     Rectangle a(3,5.2);
     EXPECT_DOUBLE_EQ(a.getPerimeter(), 16.4);
-    Rectangle b(0, 999);
-    EXPECT_DOUBLE_EQ(b.getPerimeter(), 1998);
 }
 
 TEST(RectangleTest, Stretch)
@@ -86,16 +87,10 @@ TEST(EllipseTest, Area)
 {
     Ellipse a(3,5.2);
     EXPECT_DOUBLE_EQ(a.getArea(), 12.252211349000193);
-    Ellipse b(0, 999);
-    EXPECT_DOUBLE_EQ(b.getArea(), 0);
 }
 
 TEST(EllipseTest, Perimeter)
 {
     Ellipse a(3,5.2);
     EXPECT_DOUBLE_EQ(a.getPerimeter(), 13.026547657561165);
-    Ellipse b(0, 999);
-    EXPECT_DOUBLE_EQ(b.getPerimeter(), 999);
-    Ellipse c(0, 0);
-    EXPECT_DOUBLE_EQ(c.getPerimeter(), 0);
 }
