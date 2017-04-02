@@ -69,7 +69,7 @@ public:
     public:
         IllegalMethod(const std::string& what_arg) : std::logic_error(what_arg) {};
         IllegalMethod(const char* what_arg) : std::logic_error(what_arg) {};
-    };    
+    };
 
 protected:
     Shape(double x = 0, double y = 0,
@@ -100,10 +100,10 @@ public:
         : length(length), width(width),
           Shape(x, y, angle, color)
     {
-        if (!length) {
+        if (length < 0) {
             throw Shape::ConstructError("Incorrect length");
         }
-        if (!width) {
+        if (width < 0) {
             throw Shape::ConstructError("Incorrect width");
         }
     }
@@ -120,17 +120,26 @@ public:
 
     void stretch(double q) override
     {
+        if (q <= 0) {
+            throw Shape::IllegalMethod("Stretch coeff must be non-negative");
+        }
         this->length *= q;
         this->width *= q;
     }
 
     virtual void stretchWidth(double q)
     {
+        if (q <= 0) {
+            throw Shape::IllegalMethod("Stretch coeff must be non-negative");
+        }
         this->width *= q;
     }
 
     virtual void stretchLength(double q)
     {
+        if (q <= 0) {
+            throw Shape::IllegalMethod("Stretch coeff must be non-negative");
+        }
         this->length *= q;
     }
 
