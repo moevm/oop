@@ -75,12 +75,8 @@ TEST(SquareTest, Stretch)
     a.stretch(4.8);
     EXPECT_DOUBLE_EQ(a.getLength(), 14.4);
     EXPECT_DOUBLE_EQ(a.getWidth(), 14.4);
-    a.stretchLength(2);
-    EXPECT_DOUBLE_EQ(a.getLength(), 28.8);
-    EXPECT_DOUBLE_EQ(a.getWidth(), 28.8);
-    a.stretchWidth(3);
-    EXPECT_DOUBLE_EQ(a.getLength(), 86.4);
-    EXPECT_DOUBLE_EQ(a.getWidth(), 86.4);
+    EXPECT_THROW(a.stretchLength(2),Shape::IllegalMethod);
+    EXPECT_THROW(a.stretchWidth(3),Shape::IllegalMethod);
 }
 
 TEST(EllipseTest, Area)

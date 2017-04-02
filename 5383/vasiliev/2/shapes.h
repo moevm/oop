@@ -64,6 +64,13 @@ public:
         ConstructError(const char* what_arg) : std::logic_error(what_arg) {};
     };
 
+    class IllegalMethod: public std::logic_error
+    {
+    public:
+        IllegalMethod(const std::string& what_arg) : std::logic_error(what_arg) {};
+        IllegalMethod(const char* what_arg) : std::logic_error(what_arg) {};
+    };    
+
 protected:
     Shape(double x = 0, double y = 0,
           double angle = 0, unsigned int color = 0x000000FF)
@@ -117,12 +124,12 @@ public:
         this->width *= q;
     }
 
-    void stretchWidth(double q)
+    virtual void stretchWidth(double q)
     {
         this->width *= q;
     }
 
-    void stretchLength(double q)
+    virtual void stretchLength(double q)
     {
         this->length *= q;
     }
@@ -158,14 +165,14 @@ public:
     {
     }
 
-    void stretchLength(double q)
+    void stretchLength(double q) override
     {
-        this->stretch(q);
+        throw Shape::IllegalMethod("Can't stretch only length of Square");
     }
 
-    void stretchWidth(double q)
+    void stretchWidth(double q) override
     {
-        this->stretch(q);
+        throw Shape::IllegalMethod("Can't stretch only width of Square");
     }
 
     std::ostream& print(std::ostream& stream) const override
