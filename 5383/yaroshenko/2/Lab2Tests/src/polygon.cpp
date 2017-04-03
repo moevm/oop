@@ -2,34 +2,22 @@
 
 void Polygon::translate2d(const Point2d dp)
 {
-    for (auto it = vertices.begin(); it != vertices.end(); it++)
-    {
-        it->x += dp.x;
-        it->y += dp.y;
-    }
+    for (Point2d p : vertices)
+        p.translate2d(dp);
 }
 
 
 void Polygon::rotate(double angle)
 {
-    for (auto it = vertices.begin(); it != vertices.end(); it++)
-    {
-        double x = it->x;
-        double y = it->y;
-
-        it->x = x * cos(angle) - y * sin(angle);
-        it->y = x * sin(angle) + y * cos(angle);
-    }
+    for (Point2d p : vertices)
+        p.rotate(angle);
 }
 
 
 void Polygon::scale(double scale)
 {
-    for (auto it = vertices.begin(); it != vertices.end(); it++)
-    {
-        it->x *= scale;
-        it->y *= scale;
-    }
+    for (Point2d p : vertices)
+        p.scale(scale);
 }
 
 
