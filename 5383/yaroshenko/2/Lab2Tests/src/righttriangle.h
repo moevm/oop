@@ -6,7 +6,7 @@
 class RightTriangle : public Triangle
 {
 public:
-    RightTriangle(Point2d vertex, double leftSide, double downSide, double angle = 0);
+    RightTriangle(const Point2d vertex, double leftSide, double downSide, double angle = 0);
 
     double area() const;
 };

@@ -6,7 +6,7 @@
 class IsoscelesTriangle : public Triangle
 {
 public:
-    IsoscelesTriangle(Point2d vertex, double side, double phi, double angle = 0);
+    IsoscelesTriangle(const Point2d vertex, double side, double phi, double angle = 0);
 
     void scale(double scale = 1);
 

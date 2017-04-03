@@ -18,6 +18,8 @@ public:
     void rotate(double angle = 0);
     void scale(double scale = 1);
 
+    Point2d getCenter() const;
+
 protected:
     // Вершины многоугольника
     std::vector<Point2d> vertices;
