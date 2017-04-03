@@ -9,7 +9,7 @@ Shape::Shape()
 }
 
 
-void Shape::setColor(Color color)
+void Shape::setColor(const Color color)
 {
     m_color = color;
 }

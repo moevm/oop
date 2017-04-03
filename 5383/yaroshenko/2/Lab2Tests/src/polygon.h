@@ -14,7 +14,7 @@ class Polygon : public Shape
 public:
     Polygon(std::vector<Point2d> v) : Shape(), vertices(v) {}
 
-    void translate2d(Point2d dp);
+    void translate2d(const Point2d dp);
     void rotate(double angle = 0);
     void scale(double scale = 1);
 

@@ -1,6 +1,6 @@
 #include "triangle.h"
 
-Triangle::Triangle(Point2d v1, Point2d v2, Point2d v3) :
+Triangle::Triangle(const Point2d v1, const Point2d v2, const Point2d v3) :
     Polygon(std::vector<Point2d>( { v1, v2, v3} ))
 {
     a = v1.distance(v2);

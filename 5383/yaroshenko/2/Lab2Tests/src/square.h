@@ -6,7 +6,7 @@
 class Square : public Rectangle
 {
 public:
-    Square(Point2d vertex, double side, double angle = 0) : Rectangle(vertex, side, side, angle) {}
+    Square(const Point2d vertex, double side, double angle = 0) : Rectangle(vertex, side, side, angle) {}
 
 };
 

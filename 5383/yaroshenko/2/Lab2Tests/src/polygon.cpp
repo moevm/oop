@@ -1,6 +1,6 @@
 #include "polygon.h"
 
-void Polygon::translate2d(Point2d dp)
+void Polygon::translate2d(const Point2d dp)
 {
     for (auto it = vertices.begin(); it != vertices.end(); it++)
     {
