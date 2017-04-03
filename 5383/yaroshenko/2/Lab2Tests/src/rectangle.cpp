@@ -66,6 +66,6 @@ void Rectangle::split(Rectangle* rect, Triangle* part1, Triangle* part2)
     }
     else
     {
-        throw ;
+        throw std::invalid_argument;
     }
 }
