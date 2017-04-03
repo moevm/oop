@@ -5,7 +5,6 @@ size_t Shape::count = 0;
 Shape::Shape()
 {
     m_id = count++;
-    m_color = CL_WHITE;
 }
 
 
@@ -15,7 +14,7 @@ void Shape::setColor(const Color color)
 }
 
 
-size_t Shape::getColor() const
+Color Shape::getColor() const
 {
     return m_color;
 }

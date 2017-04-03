@@ -8,8 +8,12 @@
 
 #include "point2d.h"
 
-enum Color { CL_RED, CL_ORANGE, CL_YELLOW, CL_GREEN, CL_LIGHT_BLUE, CL_BLUE, CL_PURPLE, CL_WHITE, CL_BLACK };
+struct Color
+{
+    unsigned char r, g, b;
 
+    Color(unsigned char _r = 0, unsigned char _g = 0, unsigned char _b = 0) : r(_r), g(_g), b(_b) {}
+};
 
 class Shape
 {
@@ -31,7 +35,7 @@ public:
 
     // Установить и получить цвет фигуры
     void setColor(const Color color);
-    size_t getColor() const;
+    Color getColor() const;
 
     // Возвращает уникальный id экземпляра фигуры
     size_t getId() const;

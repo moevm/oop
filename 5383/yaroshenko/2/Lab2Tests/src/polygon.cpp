@@ -1,6 +1,6 @@
 #include "polygon.h"
 
-void Polygon::getCenter() const
+Point2d Polygon::getCenter() const
 {
     Point2d center;
 
@@ -12,6 +12,8 @@ void Polygon::getCenter() const
 
     center.x /= vertices.size();
     center.y /= vertices.size();
+
+    return center;
 }
 
 
@@ -56,11 +58,8 @@ void Polygon::scale(double scale)
 
 void Polygon::print(std::ostream& os) const
 {
-    std::string ColorName[] = { "red", "orange", "yellow", "green", "light_blue", "blue", "purple", "white", "black" };
-
-
     os << "Id: " << m_id << std::endl;
-    os << "Color: " << ColorName[m_color] << std::endl;
+    os << "Color: { r=" << m_color.r << ", g=" << m_color.g << ", b=" << m_color.b << " }" << std::endl;
 
     os << "Area: " << area() << std::endl;
     os << "Perimeter: " << perimeter() << std::endl;
