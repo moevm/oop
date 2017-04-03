@@ -89,7 +89,7 @@ TEST(RectangleSplitTest, TurnedRectangle2)
 TEST(RectangleSplitTest, BadRectangles)
 {
     // Прямоугольник с отрицательными сторонами
-    ASSERT_DEATH( { Rectangle(Point2d(1, 2), -1, -2); }, "");
+    ASSERT_THROW( { Rectangle(Point2d(1, 2), -1, -2); }, std::invalid_argument);
     // Прямоугольник с нулевыми сторонами
-    ASSERT_DEATH( { Rectangle(Point2d(5, -1), 0, 0); }, "");
+    ASSERT_THROW( { Rectangle(Point2d(5, -1), 0, 0); }, std::invalid_argument);
 }

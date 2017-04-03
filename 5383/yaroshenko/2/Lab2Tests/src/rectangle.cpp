@@ -11,8 +11,10 @@ Rectangle::Rectangle(const Point2d vertex, double _upperSide, double _leftSide, 
     leftSide(_leftSide)
 
 {
-    assert(upperSide > 0);
-    assert(leftSide > 0);
+    if (upperSide <= 0)
+        throw std::invalid_argument("upperSide should be non-negative");
+    if (leftSide <= 0)
+        throw std::invalid_argument("leftSide should be non-negative");
 
     rotate(angle);
 }
@@ -66,6 +68,6 @@ void Rectangle::split(Rectangle* rect, Triangle* part1, Triangle* part2)
     }
     else
     {
-        throw std::invalid_argument;
+        throw std::invalid_argument("nullptr");
     }
 }
