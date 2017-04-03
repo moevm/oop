@@ -5,6 +5,7 @@ using namespace testing;
 
 #include "../../../src/triangle.h"
 #include "../../../src/rectangle.h"
+#include "../../../src/square.h"
 
 // Тесты прямоугольника без поворота
 TEST(RectangleSplitTest, UnturnedRectangle1)
@@ -67,15 +68,16 @@ TEST(RectangleSplitTest, TurnedRectangle1)
     delete t2;
 }
 
-TEST(RectangleSplitTest, TurnedRectangle2)
+TEST(RectangleSplitTest, TurnedSquare)
 {
     Triangle *t1 = new Triangle();
     Triangle *t2 = new Triangle();
 
-    Triangle res1(Point2d(0, 0), Point2d(-2, 0), Point2d(0, 1));
-    Triangle res2(Point2d(-2, 1), Point2d(-2, 0), Point2d(0, 1));
+    Triangle res1(Point2d(1, 2), Point2d(2, 2), Point2d(1, 1));
+    Triangle res2(Point2d(2, 2), Point2d(1, 1), Point2d(2, 1));
 
-    Rectangle *rect = new Rectangle(Point2d(0, 2), 1, 2, M_PI / 2);
+    // поворот квадрата на 90 градусов
+    Rectangle *rect = new Square(Point2d(1, 2), 1, M_PI / 2);
 
     Rectangle::split(rect, t1, t2);
 
