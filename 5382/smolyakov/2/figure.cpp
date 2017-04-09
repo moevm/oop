@@ -30,7 +30,7 @@ double Shape::intersect(Point const& A, Point const& B,
         && (rotateLineInfo(C, D, A)*rotateLineInfo(C, D, B) < 0);
 }
 
-double Shape::rotateLineInfo(Point point0, Point point1, Point c) {
+double Shape::rotateLineInfo(Point const& point0, Point const& point1, Point const& c) {
     return (point1.getX()-point0.getX())
           *(c.getY()-point1.getY())-
            (point1.getY()-point0.getY())
@@ -48,7 +48,7 @@ bool Shape::isInsideOfAnother(const Shape& other) {
   return 1;
 }
 
-bool Shape::pointLocal(Point a) {
+bool Shape::pointLocal(Point const&  a) {
     if (point.size() == 0)
       return 0;
     if ((rotateLineInfo(cord,point[0]+cord,a) < 0) || (rotateLineInfo(cord,point[point.size()-1]+cord,a) > 0))

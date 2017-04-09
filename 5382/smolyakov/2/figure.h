@@ -41,11 +41,11 @@ class Point {
 
   Point operator+(Point const& t) const;
   
-  double getX() {
+  double getX() const{
     return X;
   }
 
-  double getY() {
+  double getY() const{
     return Y;
   }
 
@@ -69,7 +69,7 @@ class Shape {
       : color(Color(0)) {
   }
 
-  void move(Point newcord) {
+  void move(Point const& newcord) {
     cord = newcord;
   }
 
@@ -82,11 +82,11 @@ class Shape {
     return color;
   }
   
-  bool pointLocal(Point a);
+  bool pointLocal(Point const& a);
 
   bool isInsideOfAnother(const Shape& other);
   
-  void setColor(Color newcolour) {
+  void setColor(Color const& newcolour) {
     color = newcolour;
   }
   
@@ -102,14 +102,14 @@ class Shape {
 
 
   double intersect(Point const& A, Point const& B, Point const& C, Point const& D);
-  double rotateLineInfo(Point point0, Point point1, Point c);
+  double rotateLineInfo(Point const& point0, Point const& point1, Point const& c);
 };
 
 
 //Triangle ----------------------------------------------------------------
 class Triangle: public Shape {
  public:
-  Triangle(double leng, Point topp) { 
+  Triangle(double leng, Point const& topp) { 
     cord = Point(0, 0);
     point.push_back(Point(leng, 0));
     point.push_back(topp);
