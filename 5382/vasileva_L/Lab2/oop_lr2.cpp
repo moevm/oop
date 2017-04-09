@@ -4,54 +4,74 @@
 #include <vector>
 #include <algorithm>
 #include <string>
-#include "gtest/gtest.h"
+#include <stdexcept>
 #include "oop_lr2.h"
 
 using namespace std;
 
-const string str[6] = { "transparent", "red", "yellow", "blue", "white", "black" };
+std::vector<std::string> colors {"transparent", "red", "yellow", "blue", "white", "black"};
+
+unsigned getNumberDigits(unsigned x) 
+{
+	unsigned count = 0;
+	while (x != 0) 
+	{
+		count++;
+		x /= 10;
+	}
+	return count;
+}
+
+Point::Point(float x_, float y_):
+		x(x_), y(y_) {};
+		
+void Point::move(float x_, float y_)
+{
+	x += x_;
+	y += y_;
+};
+
+void Point::rotate(float alpha)
+{
+	 float x_ = x * cos(alpha) - y * sin(alpha);
+	 float y_ = x * sin(alpha) + y * cos(alpha);
+	 x = x_; y = y_;		
+};
+
+void Point::scale(Point point0, float k)
+{
+	x = point0.x + abs(x - point0.x)*k;
+	y = point0.y + abs(y - point0.y)*k;		
+};
+
 
 Shape::Shape()
+	:color(0)
 {
-	color = 0;
 }
-
-int Shape::getId()
-{
-	return id;
-}
-
 
 void Shape::Move(float x_, float y_)  
 {
-	for (int i = 0; i < x.size(); i++)
-	{
-		x[i] += x_;
-		y[i] += y_;
-	}	
+	for (Point &point_ : point)
+		point_.move(x_, y_);
 }
 
 void Shape::Rotate(float alpha)        //поворот фигуры относительно начала координат
 {
-	for (int i = 0; i < x.size(); i++)
-	{
-		float x_ = x[i] * cos(alpha) - y[i] * sin(alpha);
-		float y_ = x[i] * sin(alpha) + y[i] * cos(alpha);
-		x[i] = x_;
-		y[i] = y_;
-	}
+	for (Point &point_ : point)
+		point_.rotate(alpha);
 }
 
 void Shape::setColor(unsigned color_)
 {
-	if (color_ > 5)
+	if (color_ > colors.size())
 		throw std::invalid_argument("It's not such color!");
 	color = color_;
 }
 
-void Shape::getColor()
+unsigned Shape::getColor() const
 {
-	cout << "Color of the figure is " << str[color] << "\n";
+	return color;
 }
 
 ostream& operator<< (ostream& s, const Shape& shape_)
@@ -59,15 +79,20 @@ ostream& operator<< (ostream& s, const Shape& shape_)
 	return shape_.put(s);
 }
 
-Ellipse::Ellipse(float xc, float yc, float r1_, float r2_)
+Ellipse::Ellipse(Point center, float r1_, float r2_):
+	r1(r1_), r2(r2_)
 {
 	if ((r1_ <= 0) || (r2_ <= 0))
 		throw std::invalid_argument("Radius must be positive");
-	id = 1;	
-	r1 = r1_;
-	r2 = r2_;
-	x.push_back(xc);
-	y.push_back(yc);
+	id_ellipse++;
+	point.push_back(center);	
+}
+
+unsigned Ellipse::id_ellipse = 0;
+
+unsigned Ellipse::getId() const
+{
+	return pow(10, getNumberDigits(id_ellipse)) + id_ellipse;
 }
 
 void Ellipse::Scale(float k) 
@@ -81,68 +106,91 @@ void Ellipse::Scale(float k)
 ostream& Ellipse::put(ostream& out) const
 {
 	out << "The figure is ellipse\nwith center in coordinates\n("
-		<< x[0] << "; " << y[0] << ")\n"
+		<< point[0].x << "; " << point[0].y << ")\n"
 		<< "and radius are r1 = " << r1 << "   r2 = " << r2 << "\n"
-		<< "color is " << str[color] << "\n\n";
+		<< "color is " << colors[getColor()] << "\n\n";
 	return out;
 }
 
-Trapezium::Trapezium(float topLeft_x, float topLeft_y, float bottomLeft_x, float bottomLeft_y, float topBase_, float bottomBase_)
+Trapezium::Trapezium(Point topLeftCoord, Point bottomLeftCoord, float topBase_, float bottomBase_):
+	topBase(topBase_), bottomBase(bottomBase_)
 {
-	if ((topLeft_x == bottomLeft_x) && (topLeft_y == bottomLeft_y))
+	if ((topLeftCoord.x == bottomLeftCoord.x) && (topLeftCoord.y == bottomLeftCoord.y))
 		throw std::invalid_argument("There is not distance between coordinates of left side of trapezium");
 	if ((topBase_ <= 0) || (bottomBase_ <= 0))
 		throw std::invalid_argument("Bases of trapezium must be positive");
-	id = 2;	
-	outputIsolated = " ";
-	topBase = topBase_; bottomBase = bottomBase_;
-	x.push_back(topLeft_x);
-	y.push_back(topLeft_y);
-	x.push_back(bottomLeft_x);
-	y.push_back(bottomLeft_y);
-	x.push_back(topLeft_x + topBase);
-	y.push_back(topLeft_y);
-	x.push_back(bottomLeft_x + bottomBase);
-	y.push_back(bottomLeft_y);
+	id_trapezium++;	
+	point.push_back(topLeftCoord);
+	point.push_back(bottomLeftCoord);
+	point.push_back(Point(topLeftCoord.x + topBase, topLeftCoord.y));
+	point.push_back(Point(bottomLeftCoord.x + bottomBase, bottomLeftCoord.y));
+}
+
+unsigned Trapezium::id_trapezium = 0;
+
+unsigned Trapezium::getId() const
+{
+	return pow(10, getNumberDigits(id_trapezium))*2 + id_trapezium;
 }
 
 void Trapezium::Scale(float k)   
 {
 	if (k <= 0)
 		throw std::invalid_argument("Coefficient of scale must be positive");
-	for (int i = 1; i < x.size(); i++)
+	for (int i = 1; i < point.size(); i++)
 	{
-		x[i] = x[0] + abs((x[i] - x[0]))*k;
-		y[i] = y[0] + abs((y[i] - y[0]))*k;
+		point[i].scale(point[0], k);
 	}
 	topBase *= k; bottomBase *= k;
 }
 
+std::string Trapezium::FriendlyName() const
+{
+	return " ";
+}
+
 ostream& Trapezium::put(ostream& out) const
 {
-	out << "The figure is" << outputIsolated << "trapezium\nwith coordinates\n";
-	for (int i = 0; i < x.size(); i++)
-		out << "(" << x[i] << "; " << y[i] << ")\n";
+	out << "The figure is" << FriendlyName() << "trapezium\nwith coordinates\n";
+	for (int i = 0; i < point.size(); i++)
+		out << "(" << point[i].x << "; " << point[i].y << ")\n";
 	out << "length of basis are top_base = " << topBase << "   bottom_base = " << bottomBase
-		<< "\ncolor is " << str[color] << "\n\n";
+		<< "\ncolor is " << colors[getColor()] << "\n\n";
 	return out;
 }
 
-IsoscelesTrapezium::IsoscelesTrapezium(float topLeft_x, float topLeft_y, float bottomLeft_x, float bottomLeft_y, float bottomBase) :
-		Trapezium(topLeft_x, topLeft_y, bottomLeft_x, bottomLeft_y, -2 * topLeft_x + bottomBase + 2 * bottomLeft_x, bottomBase)
+IsoscelesTrapezium::IsoscelesTrapezium(Point topLeftCoord, Point bottomLeftCoord, float bottomBase) :
+		Trapezium(topLeftCoord, bottomLeftCoord, -2 * topLeftCoord.x + bottomBase + 2 * bottomLeftCoord.x, bottomBase)
 {
-	id = 3;
-	outputIsolated = " isosceles ";
+	id_isosceles++;
+}
+
+unsigned IsoscelesTrapezium::id_isosceles = 0;
+
+unsigned IsoscelesTrapezium::getId() const
+{
+	return pow(10, getNumberDigits(id_isosceles))*3+id_isosceles;
+}
+
+std::string IsoscelesTrapezium::FriendlyName() const
+{
+	return " isolated ";
 }
 
 
 /*int main()
 {
-	//shape* shape = new trapezium(1,1,2,2,3,4);
-	//cout << *shape;
-	//delete shape;
-
-	IsoscelesTrapezium is(-2, 4, -1, 1, 5);
-	cout << is.getId();
+	Shape* Shape = new Trapezium(1,1,2,2,3,4);
+	cout << *Shape << (*Shape).getId();
+	delete Shape;
+	IsoscelesTrapezium tr(Point(2,2), Point(1,1), 6);
+	cout << tr;
+	tr.Scale(2);
+	cout << tr;
+	Ellipse el1(0, 0, -1, 1);
+	cout  << el1.getId() << "\n";
+	Ellipse el2(0, 0, 1, 1);
+	cout << el2.getId() << "\n";
+	
 	return 0;
 }*/
