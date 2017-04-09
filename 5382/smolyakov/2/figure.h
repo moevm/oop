@@ -78,17 +78,16 @@ class Point {
 class Shape {
  public:
   Shape()
-      : color(Color(0)) {
-    id = ++nextid;
+      : color(Color(0))
+      , id(++nextid) {
   }
 
-  ~Shape() {
-  }
+  virtual ~Shape() {}
   void move(Point const& newcord) {
     cord = newcord;
   }
 
-  int ID() {
+  int ID() const {
     return id;
   }
   
@@ -117,7 +116,7 @@ class Shape {
   std::vector<Point> point;
   Point cord;
   Color color;
-  unsigned int id;
+  const unsigned int id;
   static unsigned int nextid;
 
 
