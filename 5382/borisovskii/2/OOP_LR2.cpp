@@ -1,12 +1,12 @@
-// Р‘РѕСЂРёСЃРѕРІСЃРєРёР№ Р”.Р®. 
-// Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° в„–2 РћРћРџ
+// Борисовский Д.Ю. 
+// Лабораторная работа №2 ООП
 
-// РРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Р№ РІР°СЂРёР°РЅС‚: РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє, РєРІР°РґСЂР°С‚, СЌР»Р»РёРїСЃ
+// Индивидуальный вариант: Прямоугольник, квадрат, эллипс
 
-// РРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕРµ Р·Р°РґР°РЅРёРµ: 
-// "Р”РѕР±Р°РІРёС‚СЊ РІ РєР»Р°СЃСЃ Shape РјРµС‚РѕРґ bool isInsideOfAnother(const Shape& other), РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ true, РµСЃР»Рё С„РёРіСѓСЂР° 
-// РЅР°С…РѕРґРёС‚СЃСЏ РІРЅСѓС‚СЂРё РґСЂСѓРіРѕРіРѕ РѕР±СЉРµРєС‚Р° (other), РїРµСЂРµРґР°РЅРЅРѕРіРѕ РІ РґР°РЅРЅС‹Р№ РјРµС‚РѕРґ. РќСѓ Рё false РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ.  Р­С‚РѕС‚ РјРµС‚РѕРґ 
-// РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїРѕРєСЂС‹С‚ РјРѕРґСѓР»СЊРЅС‹РјРё С‚РµСЃС‚Р°РјРё google test."
+// Индивидуальное задание: 
+// "Добавить в класс Shape метод bool isInsideOfAnother(const Shape& other), который будет возвращать true, если фигура 
+// находится внутри другого объекта (other), переданного в данный метод. Ну и false в противном случае.  Этот метод 
+// должен быть покрыт модульными тестами google test."
 
 #include "stdafx.h"
 #include <iostream>
@@ -17,29 +17,29 @@
 
 using namespace std;
 
-//С†РІРµС‚ С„РёРіСѓСЂС‹
-enum color_type {red, orange, yellow, green, blue, violet, white, black}; 
+//цвет фигуры
+enum color_type { red, orange, yellow, green, blue, violet, white, black };
 
 map <color_type, char*> map_of_colour = {
-{red, "Red"},
-{orange, "Orange"},
-{yellow, "Yellow"},
-{green, "Green"},
-{blue, "Blue"},
-{violet, "Violet"},
-{white, "White"},
-{black, "Black"}
+	{ red, "Red" },
+	{ orange, "Orange" },
+	{ yellow, "Yellow" },
+	{ green, "Green" },
+	{ blue, "Blue" },
+	{ violet, "Violet" },
+	{ white, "White" },
+	{ black, "Black" }
 };
 
 struct Point
 {
-	Point () : x(0.0), y(0.0) {}
-	Point (double x, double y) : x(x), y(y) {}
-	friend Point operator- (const Point& left, const Point& right) 
+	Point() : x(0.0), y(0.0) {}
+	Point(double x, double y) : x(x), y(y) {}
+	friend Point operator- (const Point& left, const Point& right)
 	{
 		return Point(left.x - right.x, left.y - right.y);
 	}
-	friend Point operator+ (const Point& left, const Point& right) 
+	friend Point operator+ (const Point& left, const Point& right)
 	{
 		return Point(left.x + right.x, left.y + right.y);
 	}
@@ -51,12 +51,12 @@ struct Point
 	double y;
 };
 
-double length (const Point &left, const Point &right)
+double length(const Point &left, const Point &right)
 {
-	return sqrt( pow ( (left.x - right.x), 2) + pow ( (left.y - right.y), 2) );
+	return sqrt(pow((left.x - right.x), 2) + pow((left.y - right.y), 2));
 }
 
-Point rotate_point (const Point &point, const Point &relative, const double &angle)
+Point rotate_point(const Point &point, const Point &relative, const double &angle)
 {
 	Point result = point;
 	result = result - relative;
@@ -67,13 +67,18 @@ Point rotate_point (const Point &point, const Point &relative, const double &ang
 	return result;
 }
 
-float square_triangle (const Point& first, const Point& second, const Point& third)
+float square_triangle(const Point& first, const Point& second, const Point& third)
 {
 	float a = length(first, second);
 	float b = length(second, third);
 	float c = length(third, first);
 	float p = (a + b + c) / 2;
 	return sqrt(p*(p - a)*(p - b)*(p - c));
+}
+
+float my_round(float argument)
+{
+	return roundf(argument * 10000) / 10000;
 }
 
 class Shape
@@ -84,31 +89,27 @@ protected:
 	color_type color = white;
 	unsigned ID;
 public:
-	
 	void move(const Point &z)
 	{
 		Point reserv;
 		reserv = z - this->center;
 		this->center = z;
-		for (size_t i = 0; i < 4; ++i)
+		for (auto&& i : this->vertex)
 		{
-			this->vertex[i] = this->vertex[i] + reserv;
+			i = i + reserv;
 		}
 	}
 
 	void rotate(double angle)
 	{
-		for (size_t i = 0; i < 4; ++i)	vertex[i] = rotate_point(vertex[i], center, angle);
+		for (auto&& i : this->vertex)	i = rotate_point(i, this->center, angle);
 	}
 
 	void zoom(double arg = 1.0)
 	{
 		Point reserv = center;
 		this->move(Point(0, 0));
-		for (size_t i =0; i<4; ++i)
-		{
-			this->vertex[i] = this->vertex[i] * arg;
-		}
+		for (auto&& i : this->vertex)	i = i * arg;
 		this->move(reserv);
 	}
 
@@ -124,13 +125,13 @@ public:
 		out << "Point C - (" << obj.vertex[2].x << ',' << obj.vertex[2].y << ") \n";
 		out << "Point D - (" << obj.vertex[3].x << ',' << obj.vertex[3].y << ") \n";
 		out << "Center - (" << obj.center.x << ',' << obj.center.y << ") \n";
-		out << "Color - "<< map_of_colour[obj.color] << endl;
+		out << "Color - " << map_of_colour[obj.color] << endl;
 		out << "ID - " << obj.get_ID() << endl;
 		out << endl << endl;
 		return out;
 	}
 
-	void set_ID ()
+	void set_ID()
 	{
 		static unsigned counter = 0;
 		ID = ++counter;
@@ -144,7 +145,7 @@ public:
 
 	bool isInsideOfAnother(const Shape& other) const
 	{
-		for (size_t i = 0; i < 4; ++i)	if ( !other.isPointInside(this->vertex[i])) return false;
+		for (auto&& i : this->vertex) if (!other.isPointInside(i)) return false;
 		return true;
 	}
 
@@ -158,11 +159,12 @@ class Rectangle : public Shape
 public:
 	Rectangle(const Point &center, const Point &first_vertex, const Point &second_vertex)
 	{
-		//РµСЃР»Рё РґР»РёРЅС‹ РїРѕР»СѓРґРёР°РіРѕРЅР°Р»РµР№ РЅРµ СЂР°РІРЅС‹ РёР»Рё Р·Р°РґР°РЅРЅС‹Рµ РІРµСЂС€РёРЅС‹ РґРёРјР°РµС‚СЂР°Р»СЊРЅРѕ РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅС‹
+		//если длины полудиагоналей не равны или заданные вершины димаетрально противоположны
 		if (((second_vertex.x == first_vertex.x + 2 * abs(first_vertex.x - center.x)) &&
 			(second_vertex.y == first_vertex.y + 2 * abs(first_vertex.y - center.y))) ||
 			(length(first_vertex, center) != length(second_vertex, center)))
-			throw invalid_argument("Error");
+			throw invalid_argument("The lengths of the half-diagonals are not equal" 
+									"or the given vertices are dimaetrically opposite");
 		this->center = center;
 		this->vertex[0] = first_vertex;
 		this->vertex[1] = second_vertex;
@@ -171,12 +173,14 @@ public:
 		set_ID();
 	}
 
-	Rectangle(const Point &center, const Point &first_vertex, const Point &second_vertex, color_type color) 
-		:Rectangle(center, first_vertex, second_vertex) { this->color = color; }
+	Rectangle(const Point &center, const Point &first_vertex, const Point &second_vertex, color_type color)
+		:Rectangle(center, first_vertex, second_vertex) {
+		this->color = color;
+	}
 
 	float square() const override
 	{
- 		return length(vertex[0], vertex[1]) * length(vertex[1], vertex[2]);
+		return length(vertex[0], vertex[1]) * length(vertex[1], vertex[2]);
 	}
 
 	void show() const override
@@ -184,15 +188,15 @@ public:
 		cout << "Rectangle\n";
 	}
 
-	bool isPointInside(const Point& point) const override 
-	{ 
-		//РµСЃР»Рё СЃСѓРјРјР° РїР»РѕС‰Р°РґРµР№ С‡РµС‚СЂС‹РµС… С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ, РѕР±СЂР°Р·РѕРІР°РЅРЅС‹С… СЃ РїРѕРјРѕС‰СЊСЋ РІСЃРµС… РІРµСЂС€РёРЅ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
-		//Рё Р·Р°РґР°РЅРЅРѕР№ С‚РѕС‡РєРё СЂР°РІРЅР° РїР»РѕС‰Р°РґРё РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°, С‚Рѕ С‚РѕС‡РєР° РЅР°С…РѕРґРёС‚СЃСЏ РІРЅСѓС‚СЂРё С„РёРіСѓСЂС‹
-		if (roundf(square_triangle(vertex[0], vertex[1], point) * 10000) / 10000
-			+ roundf(square_triangle(vertex[1], vertex[2], point) * 10000) / 10000
-			+ roundf(square_triangle(vertex[2], vertex[3], point) * 10000) / 10000
-			+ roundf(square_triangle(vertex[3], vertex[0], point) * 10000) / 10000
-			!= roundf(square() * 1000) / 1000 ) return false;
+	bool isPointInside(const Point& point) const override
+	{
+		//если сумма площадей четрыех треугольников, образованных с помощью всех вершин прямоугольника
+		//и заданной точки равна площади прямоугольника, то точка находится внутри фигуры
+		if (my_round(square_triangle(vertex[0], vertex[1], point) )
+			+ my_round(square_triangle(vertex[1], vertex[2], point)) 
+			+ my_round(square_triangle(vertex[2], vertex[3], point)) 
+			+ my_round(square_triangle(vertex[3], vertex[0], point)) 
+			!= my_round(square() ) )   return false;
 		else return true;
 	}
 };
@@ -200,11 +204,11 @@ public:
 class Ellipse : public Shape
 {
 public:
-	Ellipse (const Point &center, const Point &first_vertex, const Point &second_vertex)
+	Ellipse(const Point &center, const Point &first_vertex, const Point &second_vertex)
 	{
-		//Р•СЃР»Рё СѓРіРѕР» РјРµР¶РґСѓ РїРѕР»СѓРѕСЃСЏРјРё РЅРµ СЂР°РІРµРЅ 90 РіСЂР°РґСѓСЃРѕРІ
-		if (( (float)pow(length(first_vertex, center), 2) + (float)pow(length(second_vertex, center), 2)) != (float)pow(length(first_vertex, second_vertex), 2))
-			throw invalid_argument("Error");
+		//Если угол между полуосями не равен 90 градусов
+		if (((float)pow(length(first_vertex, center), 2) + (float)pow(length(second_vertex, center), 2)) != (float)pow(length(first_vertex, second_vertex), 2))
+			throw invalid_argument("The angle between the semiaxes is not equal to 90 degrees");
 
 		this->center = center;
 		this->vertex[0] = first_vertex;
@@ -213,8 +217,11 @@ public:
 		this->vertex[3] = rotate_point(second_vertex, center, M_PI);
 		set_ID();
 	}
-	Ellipse (const Point &center, const Point &first_vertex, const Point &second_vertex, color_type color)
-		:Ellipse(center, first_vertex, second_vertex) { this->color = color; }
+	Ellipse(const Point &center, const Point &first_vertex, const Point &second_vertex, color_type color)
+		:Ellipse(center, first_vertex, second_vertex)
+	{
+		this->color = color;
+	}
 
 	void show() const override
 	{
@@ -226,73 +233,64 @@ public:
 		return length(center, vertex[0]) * length(center, vertex[1]) * M_PI;
 	}
 
-	bool isPointInside (const Point& point) const override
+	bool isPointInside(const Point& point) const override
 	{
-		//СЃРѕС…СЂР°РЅРµРЅРёРµ С‚РµРєСѓС‰РёС… РєРѕРѕСЂРґРёРЅР°С‚ С†РµРЅС‚СЂР° Рё РїРµСЂРµРјРµС‰РµРЅРёРµ РІ РЅР°С‡Р°Р»Рѕ РєРѕРѕСЂРґРёРЅР°С‚ РґР»СЏ РїРѕРІРѕСЂРѕС‚Р°
+		//сохранение текущих координат центра и перемещение в начало координат для поворота
 		Ellipse help_ellipse = *this;
 
 		Point reserv = help_ellipse.center;
 		help_ellipse.move(Point(0, 0));
 
-		//РїРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµРєСЃР° РѕРґРЅРѕР№ РёР· С‚РѕС‡РµРє РїРµСЂРµСЃРµС‡РµРЅРёСЏ Р±РѕР»СЊС€РµР№ РѕСЃРё СЃ СЌР»Р»РёРїСЃРѕРј
+		//получение индекса одной из точек пересечения большей оси с эллипсом
 		int index = length(help_ellipse.center, help_ellipse.vertex[0]) > length(help_ellipse.center, help_ellipse.vertex[1]) ? 0 : 1;
 
-		//РІС‹С‡РёСЃР»РµРЅРёРµ СѓРіР»Р° РјРµР¶РґСѓ РіР»Р°РІРЅРѕР№ РїРѕР»СѓРѕСЃСЊСЋ Рё РѕСЃСЊСЋ РћРҐ
+		//вычисление угла между главной полуосью и осью ОХ
 		float a = length(help_ellipse.center, help_ellipse.vertex[index]);
 		Point help(abs(help_ellipse.vertex[index].x), 0);
 		float b = length(help_ellipse.center, help);
 		float angle = acos(b / a);
 
-		//РїРѕРІРѕСЂРѕС‚ СЌР»Р»РёРїСЃР° С‚Р°Рє, С‡С‚РѕР±С‹ РіР»Р°РІРЅР°СЏ РѕСЃСЊ СЃРѕРІРїР°РґР°Р»Р° СЃ РѕСЃСЊСЋ РћРҐ
-		bool q;
-		if ( ((help_ellipse.vertex[index].y > help.y) && (help_ellipse.vertex[index].x > help.x))
-			|| ((help_ellipse.vertex[index].y < help.y) && (help_ellipse.vertex[index].x < help.x)) )
+		//поворот эллипса так, чтобы главная ось совпадала с осью ОХ
+		if (((help_ellipse.vertex[index].y > help.y) && (help_ellipse.vertex[index].x > help.x))
+			|| ((help_ellipse.vertex[index].y < help.y) && (help_ellipse.vertex[index].x < help.x)))
 		{
 			help_ellipse.rotate(-angle);
-			q = true;
-		} 
+		}
 		else
 		{
 			help_ellipse.rotate(angle);
-			q = false;
+			angle = -angle;
 		}
 
-		//РІС‹С‡РёСЃР»РµРЅРёРµ РґР»РёРЅС‹ Р±РѕР»С€РµР№ РѕСЃРё СЌР»Р»РёРїСЃР° (СЃСѓРјРјС‹ СЂР°СЃСЃС‚РѕСЏРЅРёР№ РѕС‚ С„РѕРєСѓСЃРѕРІ РґРѕ СЌР»Р»РёРїСЃР°)
+		//вычисление длины болшей оси эллипса (суммы расстояний от фокусов до эллипса)
 		double distance = length(help_ellipse.vertex[index], help_ellipse.vertex[index + 2]);
 
-		//РІС‹С‡РёСЃР»РµРЅРёРµ РєРІР°РґСЂР°С‚РѕРІ РґР»РёРЅ РіР»Р°РІРЅРѕР№ Рё РїРѕР±РѕС‡РЅРѕР№ РїРѕР»СѓРѕСЃРµР№ СЌР»Р»РёРїСЃР° a^2 Рё b^2
-		//(РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РЅР°Р№С‚Рё СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ С„РѕРєСѓСЃРѕРІ РїРѕ С„РѕСЂРјСѓР»Рµ c = sqrt(a^2-b^2) )
+		//вычисление квадратов длин главной и побочной полуосей эллипса a^2 и b^2
+		//(для того, чтобы найти расстояние до фокусов по формуле c = sqrt(a^2-b^2) )
 
 		double maximum = pow(length(help_ellipse.center, help_ellipse.vertex[index]), 2);
-		double minimum = pow(length(help_ellipse.center, help_ellipse.vertex[index+1]), 2);
+		double minimum = pow(length(help_ellipse.center, help_ellipse.vertex[index + 1]), 2);
 		double focus_length = sqrt(maximum - minimum);
 
-		//РІС‹С‡РёСЃР»РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚ С„РѕРєСѓСЃРѕРІ
+		//вычисление координат фокусов
 		Point first_focus(focus_length, 0);
 		Point second_focus(-focus_length, 0);
 
 
-		//РІРѕР·РІСЂР°С‰РµРЅРёРµ РІС‹С‡РёСЃР»РµРЅРЅС‹С… С„РѕРєСѓСЃРѕРІ РЅР° РїСЂРµР¶РЅРµРµ СЃРѕСЃС‚РѕСЏРЅРёРµ 
+		//возвращение вычисленных фокусов на прежнее состояние 
 
-		//РїРѕРІРѕСЂРѕС‚
-		if (q)
-		{
-			first_focus = rotate_point(first_focus, help_ellipse.center, angle);
-			second_focus = rotate_point(second_focus, help_ellipse.center, angle);
-		}
-		else
-		{
-			first_focus = rotate_point(first_focus, help_ellipse.center, -angle);
-			second_focus = rotate_point(second_focus, help_ellipse.center, -angle);
-		}
-		
-		//РїРµСЂРµРјРµС‰РµРЅРёРµ
+		//поворот
+		first_focus = rotate_point(first_focus, help_ellipse.center, angle);
+		second_focus = rotate_point(second_focus, help_ellipse.center, angle);
+
+
+		//перемещение
 		first_focus = first_focus + reserv;
 		second_focus = second_focus + reserv;
 
-		//РїСЂРѕРІРµСЂРєР° РЅР°С…РѕР¶РґРµРЅРёСЏ С‚РѕС‡РєРё РІРЅСѓС‚СЂРё СЌР»Р»РёРїСЃР° 
-		if (round(length(first_focus, point) * 1000) / 1000 + round(length(second_focus, point) * 1000) /1000 
-			> round(distance * 1000) / 1000 ) return false;
+		//проверка нахождения точки внутри эллипса 
+		if (my_round(length(first_focus, point))  + my_round(length(second_focus, point)) 
+			> my_round (distance) ) return false;
 		else return true;
 	}
 };
@@ -320,14 +318,14 @@ public:
 	}
 
 	bool isPointInside(const Point& point) const override
-	{ 
-		//РµСЃР»Рё СЂР°СЃСЃС‚РѕСЏРЅРёРµ РѕС‚ С†РµРЅС‚СЂР° РєРІР°РґСЂР°С‚Р° РґРѕ С‚РѕС‡РєРё Р±РѕР»СЊС€Рµ РїРѕР»РѕРІРёРЅС‹ РґР»РёРЅС‹ РїРѕР»СѓРґРёР°РіРѕРЅР°Р»Рё, С‚Рѕ С‚РѕС‡РєР° РЅРµ РїРѕРїР°Р»Р°
+	{
+		//если расстояние от центра квадрата до точки больше половины длины полудиагонали, то точка не попала
 		if (length(center, point) > length(center, vertex[0])) return false;
 		else return true;
 	}
 };
 
-TEST (Figure_Tests, Square_in_Ellipse_True)
+TEST(Figure_Tests, Square_in_Ellipse_True)
 {
 	Square square(Point(3, 3), Point(2, 2));
 	Ellipse ellipse(Point(3, 3), Point(3, 1), Point(1, 3));
@@ -459,6 +457,9 @@ GTEST_API_ int main(int argc, char **argv) {
 	testing::InitGoogleTest(&argc, argv);
 	RUN_ALL_TESTS();
 
+	Square q (Point(0, 0), Point(1, 1));
+	q.move(Point(3, 3));
 	system("pause");
 	return 0;
 }
+
