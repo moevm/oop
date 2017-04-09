@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iomanip>
 #include <vector>
+#include <algorithm>
 #include "figure.h"
 
 //Color ----------------------------------------------------------------
@@ -40,8 +41,8 @@ double Shape::rotateLineInfo(Point const& point0, Point const& point1, Point con
 bool Shape::isInsideOfAnother(const Shape& other) {
   if (!pointLocal(other.cord))
     return 0; 
-  for (int i = 0; i < other.point.size() ; i++) {
-    if (!pointLocal(other.point[i]+other.cord))
+  for (Point ipoint : other.point) {
+    if (!pointLocal(ipoint+other.cord))
       return 0;
   }
 
@@ -67,18 +68,14 @@ bool Shape::pointLocal(Point const&  a) {
 }
 
 void Shape::scale(double coef) {
-  for (int i = 0; i < point.size(); i++) {
-    point[i].setX(point[i].getX()*coef);
-    point[i].setY(point[i].getY()*coef);
+  for (Point &ipoint : point) {
+    ipoint.scale(coef);
   }
 }
 
 void Shape::rotate(double angle) {
-  for (int i = 0; i < point.size(); i++) {
-    point[i].setX(point[i].getX()*cos(angle)
-                  - point[i].getY()*sin(angle));
-    point[i].setY(point[i].getX()*sin(angle)
-                  + point[i].getY()*cos(angle));
+  for (Point &ipoint : point) {
+    ipoint.rotate(angle);
   }
 }
 

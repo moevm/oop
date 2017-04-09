@@ -39,6 +39,17 @@ class Point {
   {
   }
 
+  void scale(double coef) {
+    X *= coef;
+    Y *= coef;
+  }
+
+  void rotate(double angle) {
+    X = X*cos(angle) - Y*sin(angle);
+    Y = X*sin(angle) + Y*cos(angle);
+  }
+
+    
   Point operator+(Point const& t) const;
   
   double getX() const{
