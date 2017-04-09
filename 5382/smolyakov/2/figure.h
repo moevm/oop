@@ -79,12 +79,18 @@ class Shape {
  public:
   Shape()
       : color(Color(0)) {
+    id = ++nextid;
   }
 
+  ~Shape() {
+  }
   void move(Point const& newcord) {
     cord = newcord;
   }
 
+  int ID() {
+    return id;
+  }
   
   void rotate(double angle);
 
@@ -111,11 +117,14 @@ class Shape {
   std::vector<Point> point;
   Point cord;
   Color color;
+  unsigned int id;
+  static unsigned int nextid;
 
 
   double intersect(Point const& A, Point const& B, Point const& C, Point const& D);
   double rotateLineInfo(Point const& point0, Point const& point1, Point const& c);
 };
+
 
 
 //Triangle ----------------------------------------------------------------
