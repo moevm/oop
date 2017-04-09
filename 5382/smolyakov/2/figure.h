@@ -45,8 +45,9 @@ class Point {
   }
 
   void rotate(double angle) {
+    double oldX = X; 
     X = X*cos(angle) - Y*sin(angle);
-    Y = X*sin(angle) + Y*cos(angle);
+    Y = oldX*sin(angle) + Y*cos(angle);
   }
 
     
