@@ -45,8 +45,9 @@ class Point {
   }
 
   void rotate(double angle) {
+    double oldX = X; 
     X = X*cos(angle) - Y*sin(angle);
-    Y = X*sin(angle) + Y*cos(angle);
+    Y = oldX*sin(angle) + Y*cos(angle);
   }
 
     
@@ -77,13 +78,18 @@ class Point {
 class Shape {
  public:
   Shape()
-      : color(Color(0)) {
+      : color(Color(0))
+      , id(++nextid) {
   }
 
+  virtual ~Shape() {}
   void move(Point const& newcord) {
     cord = newcord;
   }
 
+  int ID() const {
+    return id;
+  }
   
   void rotate(double angle);
 
@@ -110,11 +116,14 @@ class Shape {
   std::vector<Point> point;
   Point cord;
   Color color;
+  const unsigned int id;
+  static unsigned int nextid;
 
 
   double intersect(Point const& A, Point const& B, Point const& C, Point const& D);
   double rotateLineInfo(Point const& point0, Point const& point1, Point const& c);
 };
+
 
 
 //Triangle ----------------------------------------------------------------

@@ -25,6 +25,8 @@ Point Point::operator+(Point const& t) const {
 }
 
 //Shape ----------------------------------------------------------------
+unsigned int Shape::nextid = 0;
+
 double Shape::intersect(Point const& A, Point const& B,
                         Point const& C, Point const& D) {
     return (rotateLineInfo(A, B, C)*rotateLineInfo(A, B, D) <= 0)
@@ -83,14 +85,14 @@ void Shape::rotate(double angle) {
 //Triangle ----------------------------------------------------------------
 std::ostream& Triangle::print(std::ostream& os) const{
     os << "Triangle(" << cord << ";" << cord+point[0] << ";" << cord+point[1]
-       << "):" << color;
+       << ");" << color << ";id:" << id;
     return os;
 }
 
 //Rhombus ----------------------------------------------------------------
 std::ostream& Rhombus::print(std::ostream& os) const{
     os << "Rhombus(" << cord << ";" << cord+point[0] << ";" << cord+point[1]
-       << ";" << cord+point[2] << "):" << color;
+       << ";" << cord+point[2] << ");" << color<< ";id:" << id;
     return os;
 }
 
@@ -105,7 +107,7 @@ Rhombus::Rhombus(double leng, double angle) {
 //Parallelogram ----------------------------------------------------------------
 std::ostream& Parallelogram::print(std::ostream& os) const {
     os << "Parallelogram(" << cord << ";" << cord+point[0] << ";" << cord+point[1]
-       << ";" << cord+point[2] << "):" << color;
+       << ";" << cord+point[2] << ");" << color << ";id:" << id;
     return os;
 }
 
