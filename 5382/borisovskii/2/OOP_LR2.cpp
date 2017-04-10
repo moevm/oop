@@ -207,7 +207,8 @@ public:
 	Ellipse(const Point &center, const Point &first_vertex, const Point &second_vertex)
 	{
 		//Если угол между полуосями не равен 90 градусов
-		if (((float)pow(length(first_vertex, center), 2) + (float)pow(length(second_vertex, center), 2)) != (float)pow(length(first_vertex, second_vertex), 2))
+		if ((static_cast <float> (pow(length(first_vertex, center), 2)) + static_cast <float> (pow(length(second_vertex, center), 2))) 
+			!= static_cast <float> (pow(length(first_vertex, second_vertex), 2)))
 			throw invalid_argument("The angle between the semiaxes is not equal to 90 degrees");
 
 		this->center = center;
