@@ -11,7 +11,7 @@ Pentangle::Pentangle(const Point &p1, const Point &p2,
     double centerY = (p1.y + p2.y + p3.y + p4.y + p5.y) / ANGLE_QUANITY;
     center = Point(centerX, centerY);
 
-    std::unique(pointArray.begin(), pointArray.end());
+    pointArray.erase(std::unique(pointArray.begin(), pointArray.end()), pointArray.end());
 
     if (pointArray.size() != ANGLE_QUANITY) {
         throw std::invalid_argument("В пятиугольнике точки должны быть разными");

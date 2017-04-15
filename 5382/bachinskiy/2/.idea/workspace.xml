@@ -14,18 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16473950-25b1-4544-8584-76a2b7f50286" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../3/.idea/3.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../3/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../3/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../3/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../3/CMakeLists.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../3/list.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../3/main.cpp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pentangle.cpp" afterPath="$PROJECT_DIR$/src/Pentangle.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Shape.cpp" afterPath="$PROJECT_DIR$/src/Shape.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Shape.h" afterPath="$PROJECT_DIR$/src/Shape.h" />
     </list>
     <ignored path="2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,8 +69,8 @@
       <file leaf-file-name="Pentangle.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Pentangle.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="84" column="33" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+            <state relative-caret-position="195">
+              <caret line="13" column="90" selection-start-line="13" selection-start-column="90" selection-end-line="13" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -250,7 +239,7 @@
       <workItem from="1491574519617" duration="131000" />
       <workItem from="1491814386531" duration="968000" />
       <workItem from="1491891521057" duration="1300000" />
-      <workItem from="1492193648403" duration="2900000" />
+      <workItem from="1492193648403" duration="3349000" />
     </task>
     <servers />
   </component>
@@ -287,7 +276,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9701000" />
+    <option name="totallyTimeSpent" value="10150000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="809" extended-state="6" />
@@ -528,8 +517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Pentangle.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="84" column="33" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+        <state relative-caret-position="195">
+          <caret line="13" column="90" selection-start-line="13" selection-start-column="90" selection-end-line="13" selection-end-column="90" />
           <folding />
         </state>
       </provider>
