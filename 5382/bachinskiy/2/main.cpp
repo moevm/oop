@@ -14,39 +14,39 @@ Point point(5, 5);
 
 // Правильный ятиугольник внутри круга
 TEST(figures_test, test1) {
-    EXPECT_EQ(true, rp.isPointInside(point));
-    EXPECT_EQ(true, c.isUnionOf(c, rp));
+    EXPECT_TRUE(rp.isPointInside(point));
+    EXPECT_TRUE(c.isUnionOf(c, rp));
 }
 
 TEST(figures_test, test1_5) {
-    EXPECT_EQ(false, rp.isUnionOf(c, rp));
+    EXPECT_FALSE(rp.isUnionOf(c, rp));
 }
 
 
 // Круг внутри пятиугольника
 TEST(figures_test, test2) {
-    EXPECT_EQ(true, p.isPointInside(point));
-    EXPECT_EQ(true, p.isUnionOf(p, c));
+    EXPECT_TRUE(p.isPointInside(point));
+    EXPECT_TRUE(p.isUnionOf(p, c));
 }
 
 TEST(figures_test, test2_5) {
-    EXPECT_EQ(false, c.isUnionOf(p, c));
+    EXPECT_FALSE(c.isUnionOf(p, c));
 }
 
 // Круг внутри круга
 TEST(figures_test, test3) {
-    EXPECT_EQ(true, c.isUnionOf(c, c2));
+    EXPECT_TRUE(c.isUnionOf(c, c2));
 }
 
 TEST(figures_test, test3_5) {
-    EXPECT_EQ(false, c2.isUnionOf(c2, c));
+    EXPECT_FALSE(c2.isUnionOf(c2, c));
 }
 
 // Пятиугольник внутри правильного пятиугольника
 TEST(figures_test, test4) {
-    EXPECT_EQ(true, p.isUnionOf(rp, p));
+    EXPECT_TRUE(p.isUnionOf(rp, p));
 }
 
 TEST(figures_test, test4_5) {
-    EXPECT_EQ(false, rp.isUnionOf(rp, p));
+    EXPECT_FALSE(rp.isUnionOf(rp, p));
 }

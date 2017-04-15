@@ -28,6 +28,26 @@ struct Point {
     bool operator!=(const Point &rhs) const {
         return !(rhs == *this);
     }
+
+    bool operator<(const Point &rhs) const {
+        if (x < rhs.x)
+            return true;
+        if (rhs.x < x)
+            return false;
+        return y < rhs.y;
+    }
+
+    bool operator>(const Point &rhs) const {
+        return rhs < *this;
+    }
+
+    bool operator<=(const Point &rhs) const {
+        return !(rhs < *this);
+    }
+
+    bool operator>=(const Point &rhs) const {
+        return !(*this < rhs);
+    }
 };
 
 struct Color {

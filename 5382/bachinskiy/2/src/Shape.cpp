@@ -7,11 +7,6 @@
 
 #include "Shape.h"
 
-
-Shape::Shape() : center(0, 0), color(0, 0, 0) {}
-
-Shape::Shape(const Color &color) : center(0, 0), color(color) {}
-
 Shape::Shape(const Point &center, const Color &color) : center(center), color(color) {}
 
 Shape::~Shape() {}

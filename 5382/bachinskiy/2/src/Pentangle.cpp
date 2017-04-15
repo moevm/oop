@@ -10,19 +10,18 @@ Pentangle::Pentangle(const Point &p1, const Point &p2,
     double centerX = (p1.x + p2.x + p3.x + p4.x + p5.x) / ANGLE_QUANITY;
     double centerY = (p1.y + p2.y + p3.y + p4.y + p5.y) / ANGLE_QUANITY;
     center = Point(centerX, centerY);
-    for (int i = 0; i < pointArray.size(); ++i) {
-        for (int j = i + 1; j < pointArray.size(); ++j) {
-            if (pointArray[i] == pointArray[j]) {
-                throw std::invalid_argument("В пятиугольнике точки должны быть разными");
-            }
-        }
+
+    std::unique(pointArray.begin(), pointArray.end());
+
+    if (pointArray.size() != ANGLE_QUANITY) {
+        throw std::invalid_argument("В пятиугольнике точки должны быть разными");
     }
     this->points = pointArray;
 }
 
 void Pentangle::rotate(double angle) {
     double angleInRadius = toRadians(angle);
-    for (int i = 0; i < ANGLE_QUANITY; i++) {
+    for (int i = 0; i < points.size(); i++) {
         double a = points[i].x;
         double b = points[i].y;
         points[i].x = a * cos(angleInRadius) - b * sin(angleInRadius);
@@ -43,7 +42,7 @@ void Pentangle::scale(double k) {
 
 
 Pentangle::Pentangle(const Color &color) :
-        Shape(color), points{Point(0, 0), Point(1, 0), Point(2, 1), Point(2, 2), Point(1, 1)} {
+        Shape(Point(0, 0), color), points{Point(0, 0), Point(1, 0), Point(2, 1), Point(2, 2), Point(1, 1)} {
 }
 
 ostream &operator<<(ostream &os, const Pentangle &pentangle) {
@@ -72,7 +71,7 @@ bool Pentangle::isPointInside(const Point &p) const {
 }
 
 bool Pentangle::isShapeInside(const Shape &f) const {
-    for (int i = 0; i < ANGLE_QUANITY; ++i) {
+    for (int i = 0; i < points.size(); ++i) {
         if (!f.isPointInside(points[i])) {
             return false;
         }
@@ -83,20 +82,11 @@ bool Pentangle::isShapeInside(const Shape &f) const {
 bool Pentangle::isEqualTo(const Shape &f) {
     const Pentangle* p = dynamic_cast<const Pentangle*>(&f);
     if (p) {
-
-
-        for (int i = 0; i < ANGLE_QUANITY; ++i) {
-            for (int j = 0; j < ANGLE_QUANITY; ++j) {
-                if (p->points[i] == points[j]) {
-                    break;
-                }
-                if (j == ANGLE_QUANITY - 1) {
-                    return false;
-                }
-            }
-
-        }
-        return true;
+        vector<Point> p1(points);
+        vector<Point> p2(p->points);
+        std::sort(p1.begin(), p1.end());
+        std::sort(p2.begin(), p2.end());
+        return std::equal(p1.begin(), p1.end(), p2.begin());
     } else {
         return false;
     }
