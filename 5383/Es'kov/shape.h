@@ -59,6 +59,9 @@ protected:
 public:
 	shape(paint_area_info paint_info);
 	virtual ~shape(){}
+	float PI;
+
+	int angle_mod(float n);
 
 	void set_color(rgb_color new_color);
 	rgb_color get_color();
@@ -67,6 +70,6 @@ public:
 	virtual void rotate(int angle) = 0;
 	virtual void scale(float ratio) = 0;
 
-	virtual float perimetr() = 0;
+	virtual double perimetr() = 0;
 	//virtual int comparePerimeter(shape& first, shape& second) = 0;
 };

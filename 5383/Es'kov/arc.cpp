@@ -3,9 +3,9 @@
 
 arc::arc(int r, int angle_start, int angle_stop, paint_area_info paint_info) : shape(paint_info)
 {
-	arc_radius = r;
-	arc_angle_start = angle_start - 90;
-	arc_angle_stop = angle_stop - 90;
+	arc_radius = float(r);
+	arc_angle_start = angle_mod(angle_start) - 90;
+	arc_angle_stop = angle_mod(angle_stop) - 90;
 
 	cur_angle = 0;
 	cur_ratio = 0.0f;
@@ -17,8 +17,8 @@ void arc::redraw()
 	p_info.x_center+=X;
 	p_info.y_center-=Y;
 	
-	int v_x = p_info.x_center + arc_radius * cos(arc_angle_start * 3.1415 / 180);
-	int v_y = p_info.y_center + arc_radius * sin(arc_angle_start * 3.1415 / 180);
+	int v_x = int(p_info.x_center + arc_radius * cos(arc_angle_start * PI / 180));
+	int v_y = int(p_info.y_center + arc_radius * sin(arc_angle_start * PI / 180));
 
 	int new_x, new_y;
 
@@ -27,13 +27,13 @@ void arc::redraw()
 		             p_info.color.b));
 	SelectObject(p_info.area_ptr, hPen);
 
-	for(int theta = arc_angle_start + 1; theta <= arc_angle_stop; theta++)
+	for(int theta = int(arc_angle_start + 1); theta <= int(arc_angle_stop); theta++)
 	{
 		math_rotate(p_info.x_center, p_info.y_center, v_x, v_y, cur_angle, new_x, new_y); 
 		MoveToEx(p_info.area_ptr, new_x, new_y, NULL);
 
-		v_x = p_info.x_center + arc_radius * cos(theta * 3.1415 / 180);
-		v_y = p_info.y_center + arc_radius * sin(theta * 3.1415 / 180);
+		v_x = int(p_info.x_center + arc_radius * cos(theta * PI / 180));
+		v_y = int(p_info.y_center + arc_radius * sin(theta * PI / 180));
 
 		math_rotate(p_info.x_center, p_info.y_center, v_x, v_y, cur_angle, new_x, new_y);
 		LineTo(p_info.area_ptr, new_x, new_y);
@@ -65,7 +65,7 @@ void arc::draw(int x1, int y1)
 
 void arc::rotate(int angle)
 {
-	cur_angle = angle;
+	cur_angle = angle_mod(angle);
 }
 
 void arc::scale(float ratio)
@@ -75,33 +75,33 @@ void arc::scale(float ratio)
 
 int arc::get_radius()
 {
-	return this->arc_radius;
+	return int(this->arc_radius);
 }
 int arc::get_start_angle()
 {
-	return this->arc_angle_start;
+	return int(this->arc_angle_start);
 }
 int arc::get_stop_angle()
 {
-	return this->arc_angle_stop;
+	return int(this->arc_angle_stop);
 }
 
 void arc::set_radius(int r)
 {
-	arc_radius = r;
+	arc_radius = float(r);
 }
 void arc::set_start_angle(int sa)
 {
-	arc_angle_start = sa - 90;
+	arc_angle_start = angle_mod(sa) - 90;
 }
 void arc::set_stop_angle(int sa)
 {
-	arc_angle_stop = sa - 90;
+	arc_angle_stop = angle_mod(sa) - 90;
 }
 
-float arc::perimetr()
+double arc::perimetr()
 {
-	return (abs(this->arc_angle_start-this->arc_angle_stop))*((this->arc_radius*3.1415)/180);
+	return double((abs(this->arc_angle_start-this->arc_angle_stop))*((this->arc_radius*PI)/180));
 }
 
 std::ostream& operator<<(std::ostream& os, arc& a1)

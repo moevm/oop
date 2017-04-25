@@ -78,7 +78,7 @@ void ellipse::draw(int x1, int y1)
 
 void ellipse::rotate(int angle)
 {
-	cur_angle = angle;
+	cur_angle = angle_mod(angle);
 }
 
 void ellipse::scale(float ratio)
@@ -106,9 +106,9 @@ int ellipse::get_small_axle()
 	return int(this->small_axle);
 }
 
-float ellipse::perimetr()
+double ellipse::perimetr()
 {
-	return float(3.1415*(this->small_axle + this->big_axle));
+	return double(PI*(this->small_axle + this->big_axle));
 }
 
 std::ostream& operator<<(std::ostream& os, ellipse& el1)

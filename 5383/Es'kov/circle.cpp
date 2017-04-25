@@ -63,7 +63,7 @@ void circle::draw(int x1, int y1)
 
 void circle::rotate(int angle)
 {
-	cur_angle = angle;
+	cur_angle = angle_mod(angle);
 }
 
 void circle::scale(float ratio)
@@ -73,16 +73,16 @@ void circle::scale(float ratio)
 
 int circle::get_radius()
 {
-	return this->radius;
+	return radius;
 }
 void circle::set_radius(int r)
 {
 	radius = r;
 }
 
-float circle::perimetr()
+double circle::perimetr()
 {
-	return float(2*3.1415*this->radius);
+	return double(2*PI*this->radius);
 }
 
 std::ostream& operator<<(std::ostream& os, circle& c1)
