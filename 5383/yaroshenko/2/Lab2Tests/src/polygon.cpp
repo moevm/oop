@@ -11,7 +11,7 @@ Point2d Polygon::getCenter() const
 
 void Polygon::translate2d(const Point2d &dp)
 {
-    for (Point2d p : vertices)
+    for (auto& p : vertices)
         p.translate2d(dp);
 }
 
@@ -24,7 +24,7 @@ void Polygon::rotate(double angle)
     translate2d(-center);
 
     // поворачиваем
-    for (Point2d p : vertices)
+    for (auto& p : vertices)
         p.rotate(angle);
 
     // возвращаем назад
@@ -40,7 +40,7 @@ void Polygon::scale(double scale)
     translate2d(-center);
 
     // масштабируем
-    for (Point2d p : vertices)
+    for (auto& p : vertices)
         p.scale(scale);
 
     // возвращаем

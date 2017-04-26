@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include <cmath>
+#include <numeric>
 #include <vector>
 
 #include "shape.h"
