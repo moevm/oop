@@ -2,16 +2,8 @@
 
 Point2d Polygon::getCenter() const
 {
-    Point2d center;
-
-    for (Point2d p : vertices)
-    {
-        center.x += p.x;
-        center.y += p.y;
-    }
-
-    center.x /= vertices.size();
-    center.y /= vertices.size();
+    Point2d center = std::accumulate(vertices.begin(), vertices.end(), Point2d());
+    center.scale(1 / (double) vertices.size());
 
     return center;
 }

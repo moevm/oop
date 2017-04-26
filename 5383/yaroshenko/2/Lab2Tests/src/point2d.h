@@ -16,6 +16,7 @@ struct Point2d
     void scale(double scale = 1);
 
     Point2d operator-() const { return Point2d(-x, -y); }
+    Point2d operator+(const Point2d& p);
 };
 
 #endif // POINT2D_H

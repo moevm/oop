@@ -30,3 +30,9 @@ void Point2d::scale(double scale)
     x *= scale;
     y *= scale;
 }
+
+
+Point2d Point2d::operator+(const Point2d& p)
+{
+    return Point2d(x + p.x, y + p.y);
+}
