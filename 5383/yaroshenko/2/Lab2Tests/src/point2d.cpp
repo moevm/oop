@@ -1,6 +1,6 @@
 #include "point2d.h"
 
-double Point2d::distance(const Point2d p) const
+double Point2d::distance(const Point2d &p) const
 {
     double dx = p.x - x;
     double dy = p.y - y;
@@ -18,7 +18,7 @@ void Point2d::rotate(double angle)
 }
 
 
-void Point2d::translate2d(const Point2d dp)
+void Point2d::translate2d(const Point2d &dp)
 {
     x += dp.x;
     y += dp.y;

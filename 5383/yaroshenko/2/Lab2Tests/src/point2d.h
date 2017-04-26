@@ -10,9 +10,9 @@ struct Point2d
 
     Point2d(double _x = 0, double _y = 0) : x(_x), y(_y) {}
 
-    double distance(const Point2d p) const;
+    double distance(const Point2d& p) const;
     void rotate(double angle = 0);
-    void translate2d(const Point2d dp);
+    void translate2d(const Point2d& dp);
     void scale(double scale = 1);
 
     Point2d operator-() const { return Point2d(-x, -y); }

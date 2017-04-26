@@ -1,6 +1,6 @@
 #include "rectangle.h"
 
-Rectangle::Rectangle(const Point2d vertex, double _upperSide, double _leftSide, double angle) :
+Rectangle::Rectangle(const Point2d &vertex, double _upperSide, double _leftSide, double angle) :
 
     Polygon({ vertex,
               Point2d(vertex.x + _upperSide, vertex.y),

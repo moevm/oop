@@ -27,7 +27,7 @@ public:
     virtual double perimeter() const = 0;
 
     // Сдвигает фигуру по x координате на dp.x, по y координате на dp.y
-    virtual void translate2d(const Point2d dp) = 0;
+    virtual void translate2d(const Point2d& dp) = 0;
     // Вращает фигуру на угол angle (в радианах)
     virtual void rotate(double angle = 0) = 0;
     // Масштабирует фигуру

@@ -1,6 +1,6 @@
 #include "righttriangle.h"
 
-RightTriangle::RightTriangle(const Point2d vertex, double leftSide, double downSide, double angle) :
+RightTriangle::RightTriangle(const Point2d &vertex, double leftSide, double downSide, double angle) :
 
     Triangle(vertex,
              Point2d(vertex.x + leftSide, vertex.y),

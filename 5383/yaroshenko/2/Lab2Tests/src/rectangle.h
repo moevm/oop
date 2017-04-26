@@ -8,7 +8,7 @@ class Rectangle : public Polygon
 {
 public:
     // center - координаты верхней левой вершины
-    Rectangle(const Point2d vertex, double _upperSide, double _leftSide, double angle = 0);
+    Rectangle(const Point2d& vertex, double _upperSide, double _leftSide, double angle = 0);
 
     double area() const;
     double perimeter() const;

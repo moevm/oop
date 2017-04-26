@@ -8,7 +8,7 @@
 class Triangle : public Polygon
 {
 public:
-    Triangle(const Point2d v1 = Point2d(), const Point2d v2 = Point2d(), const Point2d v3 = Point2d());
+    Triangle(const Point2d& v1 = Point2d(), const Point2d& v2 = Point2d(), const Point2d& v3 = Point2d());
 
     double area() const;
     double perimeter() const;

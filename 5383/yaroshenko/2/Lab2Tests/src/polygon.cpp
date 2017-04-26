@@ -17,7 +17,7 @@ Point2d Polygon::getCenter() const
 }
 
 
-void Polygon::translate2d(const Point2d dp)
+void Polygon::translate2d(const Point2d &dp)
 {
     for (Point2d p : vertices)
         p.translate2d(dp);
