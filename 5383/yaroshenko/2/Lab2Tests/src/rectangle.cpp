@@ -37,11 +37,7 @@ void Rectangle::scale(double scale)
     upperSide *= scale;
     leftSide *= scale;
 
-    for (auto it = vertices.begin(); it != vertices.end(); it++)
-    {
-        it->x *= scale;
-        it->y *= scale;
-    }
+    Polygon::scale(scale);
 }
 
 

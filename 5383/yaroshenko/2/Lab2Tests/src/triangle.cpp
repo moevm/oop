@@ -15,11 +15,7 @@ void Triangle::scale(double scale)
     b *= scale;
     c *= scale;
 
-    for (auto it = vertices.begin(); it != vertices.end(); it++)
-    {
-        it->x *= scale;
-        it->y *= scale;
-    }
+    Polygon::scale(scale);
 }
 
 
