@@ -672,7 +672,7 @@ bool Shape:: insidePoint (float ix, float iy,  const Shape &shape) const
 
                 S=S+triangle.area_;
                 test=false;
-                triangle.~Shape();
+                //Triangle.~Shape();
                 for (int i=buffer.size;i!=1;--i) {
                     buffer.xs.pop_back();
                     buffer.ys.pop_back();
@@ -767,7 +767,7 @@ bool Shape::sameShape(Point &array, const Shape &sh1, const Shape &sh2) const
                 count++;
 
 
-        for (int q=0 ;q<sh1.pointCount_;q++)
+        for (int q=0 ;q<sh2.pointCount_;q++)
             if ((TroublePoint.xs[i]==sh2.point_.xs[q]) &&(TroublePoint.ys[i]==sh2.point_.ys[q]))
                 count++;
         if (count==0)
