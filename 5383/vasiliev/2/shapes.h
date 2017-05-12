@@ -5,12 +5,20 @@
 #include <iostream>
 #include <iomanip>
 #include <exception>
-#include <string>
 
+
+struct Point {
+    double x;
+    double y;
+    Point(double x = 0, double y = 0):
+        x(x), y(y)
+    {}
+};
 
 class Shape
 {
 public:
+    virtual Shape* clone() const = 0;
     virtual ~Shape() {}
     void setColor(unsigned int color)
     {
@@ -20,15 +28,13 @@ public:
     {
         return this->color;
     }
-    void setPosition(double x, double y)
+    void setPosition(Point pos)
     {
-        this->x = x;
-        this->y = y;
+        this->pos = pos;
     }
-    void getPosition(double &x, double &y) const
+    Point getPosition() const
     {
-        x = this->x;
-        y = this->y;
+        return this->pos;
     }
     void setAngle(double angle)
     {
@@ -45,8 +51,9 @@ public:
     }
     virtual std::ostream& print(std::ostream& stream) const
     {
-        stream << "at [" << x << ";" << y << "], angle [" << angle << "], "
-               << "color [" << std::setw(8) << std::setfill('0') << std::hex << color << "]";
+        stream << "at [" << pos.x << ";" << pos.y << "], angle [" << angle << "], "
+               << "color [" << std::setw(8) << std::setfill('0') << std::hex << color << "], "
+               << "id [" << std::dec << id << "]";
         return stream;
     }
     friend std::ostream& operator<<(std::ostream& stream, const Shape& shape)
@@ -60,33 +67,37 @@ public:
     class ConstructError: public std::logic_error
     {
     public:
-        ConstructError(const std::string& what_arg) : std::logic_error(what_arg) {};
-        ConstructError(const char* what_arg) : std::logic_error(what_arg) {};
+        using std::logic_error::logic_error;
     };
 
     class IllegalMethod: public std::logic_error
     {
     public:
-        IllegalMethod(const std::string& what_arg) : std::logic_error(what_arg) {};
-        IllegalMethod(const char* what_arg) : std::logic_error(what_arg) {};
+        using std::logic_error::logic_error;
     };
 
 protected:
-    Shape(double x = 0, double y = 0,
+    Shape(Point pos = Point(),
           double angle = 0, unsigned int color = 0x000000FF)
-        : x(x), y(y),
+        : pos(pos),
           color(color),
           id(++counter)
     {
         setAngle(angle);
+    }
+    Shape(const Shape& other):
+        pos(other.pos), 
+        angle(other.angle), 
+        color(other.color), 
+        id(++counter)
+    {
     }
 
 private:
     static unsigned int counter;
     const unsigned int id;
 protected:
-    double x;
-    double y;
+    Point pos;
     double angle;
     unsigned int color;
 };
@@ -95,17 +106,22 @@ class Rectangle: public Shape
 {
 public:
     Rectangle(double length, double width,
-              double x = 0, double y = 0,
+              Point pos = Point(),
               double angle = 0, unsigned int color = 0x000000FF)
         : length(length), width(width),
-          Shape(x, y, angle, color)
+          Shape(pos, angle, color)
     {
-        if (length < 0) {
+        if (length <= 0) {
             throw Shape::ConstructError("Incorrect length");
         }
-        if (width < 0) {
+        if (width <= 0) {
             throw Shape::ConstructError("Incorrect width");
         }
+    }
+
+    virtual Rectangle* clone() const
+    {
+        return new Rectangle(*this);
     }
 
     double getLength() const
@@ -168,10 +184,15 @@ class Square: public Rectangle
 {
 public:
     Square(double side,
-           double x = 0, double y = 0,
+           Point pos = Point(),
            double angle = 0, unsigned int color = 0x000000FF)
-        : Rectangle(side, side, x, y, angle, color)
+        : Rectangle(side, side, pos, angle, color)
     {
+    }
+
+    virtual Square* clone() const
+    {
+        return new Square(*this);
     }
 
     void stretchLength(double q) override
@@ -196,6 +217,12 @@ class Ellipse: public Rectangle
 {
 public:
     using Rectangle::Rectangle;
+
+    virtual Ellipse* clone() const
+    {
+        return new Ellipse(*this);
+    }
+
     double getArea() const override
     {
         return M_PI * width * length / 4;

@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <gmock/gmock-matchers.h>
 #include <shapes.h>
 
 using namespace testing;
@@ -16,20 +15,19 @@ TEST(ShapeTest, id)
 
 TEST(RectangleTest, Constructor)
 {
-    Rectangle s(1,2,3,4,5,0xDEADB33F);
+    Rectangle s(1,2,Point(3,4),5,0xDEADB33F);
     EXPECT_DOUBLE_EQ(s.getLength(), 1);
     EXPECT_DOUBLE_EQ(s.getWidth(), 2);
-    double x, y;
-    s.getPosition(x,y);
-    EXPECT_DOUBLE_EQ(x, 3);
-    EXPECT_DOUBLE_EQ(y, 4);
+    Point p = s.getPosition();
+    EXPECT_DOUBLE_EQ(p.x, 3);
+    EXPECT_DOUBLE_EQ(p.y, 4);
     EXPECT_DOUBLE_EQ(s.getAngle(), fmod(5, 2 * M_PI));
     EXPECT_EQ(s.getColor(), 0xDEADB33F);
 }
 
 TEST(RectangleTest, ThrowConstructor)
 {
-    EXPECT_THROW(Rectangle(0,0,0,0,0,0), Shape::ConstructError);
+    EXPECT_THROW(Rectangle(0,0,Point(0,0),0,0), Shape::ConstructError);
 }
 
 TEST(RectangleTest, Area)
@@ -58,13 +56,12 @@ TEST(RectangleTest, Stretch)
 
 TEST(SquareTest, Constructor)
 {
-    Square s(15,3,4,5,0xDEADB33F);
+    Square s(15,Point(3,4),5,0xDEADB33F);
     EXPECT_DOUBLE_EQ(s.getLength(), 15);
     EXPECT_DOUBLE_EQ(s.getWidth(), 15);
-    double x, y;
-    s.getPosition(x,y);
-    EXPECT_DOUBLE_EQ(x, 3);
-    EXPECT_DOUBLE_EQ(y, 4);
+    Point p = s.getPosition();
+    EXPECT_DOUBLE_EQ(p.x, 3);
+    EXPECT_DOUBLE_EQ(p.y, 4);
     EXPECT_DOUBLE_EQ(s.getAngle(), fmod(5, 2 * M_PI));
     EXPECT_EQ(s.getColor(), 0xDEADB33F);
 }
