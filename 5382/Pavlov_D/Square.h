@@ -43,9 +43,6 @@ public:
 		buffer.push_back(p3);
 		buffer.push_back(p4);
 		Square bufferSquare(buffer);
-		//TO DO:
-		//we need copy operator here...
-		//and done 
 		*this = bufferSquare;
 		
 

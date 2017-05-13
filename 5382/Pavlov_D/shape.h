@@ -199,9 +199,9 @@ public:
 	void expand(int size); //
 	void replaceShape(double mx, double my);//
 	virtual void showShape(std::ostream& os) const = 0;  //
-	int getPointCount() const;  //количество точек
-	int getID() const; //take ID F
-	int setNextID();//st ne ID
+	int getPointCount() const;  //
+	int getID() const; //
+	int setNextID();//
 	friend std::ostream& operator<< (std::ostream& os, Shape& p); //
 	
 	virtual void countSides(std::vector<double> & side, std::vector<Point> array) = 0;
