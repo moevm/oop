@@ -1,6 +1,6 @@
 #pragma once
-#include "stdafx.h"
-#include <iostream>
+//#include "stdafx.h"
+//#include <iostream>
 //#include <memory>
 
 template <typename T>
@@ -34,17 +34,10 @@ public:
 	}
 
 	shared_ptr(const shared_ptr & other)
+		:ptr_(other.get()), count(other.get_count())
 	{
 		// implement this
-		if (other.get()) {
-			ptr_ = other.get();
-			count = other.get_count();
-			++(*count);
-		}
-		else {
-			ptr_ = nullptr;
-			count = nullptr;
-		}
+		if (ptr_) ++(*count);
 	}
 
 	shared_ptr& operator=(const shared_ptr & other)
@@ -52,32 +45,19 @@ public:
 		// implement this
 		if (this != &other) {
 			this->~shared_ptr();
-			if (other.get()) {
-				ptr_ = other.get();
-				count = other.get_count();
-				++(*count);
-			}
-			else {
-				ptr_ = nullptr;
-				count = nullptr;
-			}
+			ptr_ = other.get();
+			count = other.get_count();
+			if (ptr_) ++(*count);
 		}
 		return *this;
 	}
 
 	template <class Y>
 	shared_ptr(const shared_ptr<Y> & other)
+		:ptr_(other.get()), count(other.get_count())
 	{
 		// implement this
-		if (other.get()) {
-			ptr_ = other.get();
-			count = other.get_count();
-			++(*count);
-		}
-		else {
-			ptr_ = nullptr;
-			count = nullptr;
-		}
+		if (ptr_) ++(*count);
 	}
 
 	template <class Y>
@@ -85,15 +65,9 @@ public:
 	{
 		// implement this
 		this->~shared_ptr();
-		if (other.get()) {
-			ptr_ = other.get();
-			count = other.get_count();
-			++(*count);
-		}
-		else {
-			ptr_ = nullptr;
-			count = nullptr;
-		}
+		ptr_ = other.get();
+		count = other.get_count();
+		if (ptr_) ++(*count);
 		return *this;
 	}
 
