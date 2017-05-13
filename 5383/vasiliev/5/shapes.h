@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <exception>
+#include <functional>
 
 namespace etuoop
 {
@@ -22,6 +23,7 @@ class Shape
 public:
     virtual Shape* clone() const = 0;
     virtual ~Shape() {}
+    static Shape* createRandom();
     void setColor(unsigned int color)
     {
         this->color = color;
@@ -88,9 +90,9 @@ protected:
         setAngle(angle);
     }
     Shape(const Shape& other):
-        pos(other.pos), 
-        angle(other.angle), 
-        color(other.color), 
+        pos(other.pos),
+        angle(other.angle),
+        color(other.color),
         id(++counter)
     {
     }
@@ -107,6 +109,7 @@ protected:
 class Rectangle: public Shape
 {
 public:
+    static Rectangle* createRandom();
     Rectangle(double length, double width,
               Point pos = Point(),
               double angle = 0, unsigned int color = 0x000000FF)
@@ -192,6 +195,8 @@ public:
     {
     }
 
+    static Square* createRandom();
+
     virtual Square* clone() const
     {
         return new Square(*this);
@@ -225,6 +230,8 @@ public:
         return new Ellipse(*this);
     }
 
+    static Ellipse* createRandom();
+
     double getArea() const override
     {
         return M_PI * width * length / 4;
@@ -243,6 +250,60 @@ public:
 };
 
 unsigned int Shape::counter = 0;
+
+const auto seed = std::chrono::system_clock::now().time_since_epoch().count();
+std::default_random_engine rng(seed);
+static const double magicborder = 1 << 8;
+
+Shape* Shape::createRandom()
+{
+    static std::function<Shape*()> childCreators[] = {Rectangle::createRandom, Square::createRandom, Ellipse::createRandom};
+    // общий способ регистрации потомков?
+    static const size_t childN = sizeof(childCreators) / sizeof(childCreators[0]);
+    int s = std::uniform_int_distribution<int>(0, childN-1)(rng);
+    return childCreators[s]();
+}
+
+Rectangle* Rectangle::createRandom()
+{
+    return new Rectangle(
+               std::uniform_real_distribution<double>(1, magicborder)(rng), // length
+               std::uniform_real_distribution<double>(1, magicborder)(rng), // width
+               etuoop::Point(
+                   std::uniform_real_distribution<double>(-magicborder, magicborder)(rng), // x
+                   std::uniform_real_distribution<double>(-magicborder, magicborder)(rng) // y
+               ),
+               std::uniform_real_distribution<double>(0, 2 * M_PI)(rng), // angle
+               std::uniform_int_distribution<unsigned int>(0, 0xFFFFFFFF)(rng) // color
+           );
+}
+
+Square* Square::createRandom()
+{
+    return new etuoop::Square(
+               std::uniform_real_distribution<double>(1, magicborder)(rng), // side
+               etuoop::Point(
+                   std::uniform_real_distribution<double>(-magicborder, magicborder)(rng), // x
+                   std::uniform_real_distribution<double>(-magicborder, magicborder)(rng) // y
+               ),
+               std::uniform_real_distribution<double>(0, 2 * M_PI)(rng), // angle
+               std::uniform_int_distribution<unsigned int>(0, 0xFFFFFFFF)(rng) // color
+           );
+}
+
+Ellipse* Ellipse::createRandom()
+{
+    return new etuoop::Ellipse(
+               std::uniform_real_distribution<double>(1, magicborder)(rng), // length
+               std::uniform_real_distribution<double>(1, magicborder)(rng), // width
+               etuoop::Point(
+                   std::uniform_real_distribution<double>(-magicborder, magicborder)(rng), // x
+                   std::uniform_real_distribution<double>(-magicborder, magicborder)(rng) // y
+               ),
+               std::uniform_real_distribution<double>(0, 2 * M_PI)(rng), // angle
+               std::uniform_int_distribution<unsigned int>(0, 0xFFFFFFFF)(rng) // color
+           );
+}
 
 } //namespace etuoop
 

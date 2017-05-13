@@ -8,46 +8,11 @@
 #include "vector.h"
 #include "shared_ptr.h"
 
-etuoop::shared_ptr<etuoop::Shape> createRandomShape()
-{
-    static const double magicborder = 1 << 8;
-    static const auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    static std::default_random_engine rng(seed);
-    switch (std::uniform_int_distribution<int>(0, 2)(rng)) {
-    case 0:
-        return etuoop::shared_ptr<etuoop::Rectangle> ( new etuoop::Rectangle(
-                    std::uniform_real_distribution<double>(1, magicborder)(rng), // length
-                    std::uniform_real_distribution<double>(1, magicborder)(rng), // width
-                    etuoop::Point(
-                        std::uniform_real_distribution<double>(-magicborder, magicborder)(rng), // x
-                        std::uniform_real_distribution<double>(-magicborder, magicborder)(rng) // y
-                    ),
-                    std::uniform_real_distribution<double>(0, 2 * M_PI)(rng), // angle
-                    std::uniform_int_distribution<unsigned int>(0, 0xFFFFFFFF)(rng) // color
-                ));
-    case 1:
-        return etuoop::shared_ptr<etuoop::Square> ( new etuoop::Square(
-                    std::uniform_real_distribution<double>(1, magicborder)(rng), // side
-                    etuoop::Point(
-                        std::uniform_real_distribution<double>(-magicborder, magicborder)(rng), // x
-                        std::uniform_real_distribution<double>(-magicborder, magicborder)(rng) // y
-                    ),
-                    std::uniform_real_distribution<double>(0, 2 * M_PI)(rng), // angle
-                    std::uniform_int_distribution<unsigned int>(0, 0xFFFFFFFF)(rng) // color
-                ));
-    default:
-        return etuoop::shared_ptr<etuoop::Ellipse> ( new etuoop::Ellipse(
-                    std::uniform_real_distribution<double>(1, magicborder)(rng), // length
-                    std::uniform_real_distribution<double>(1, magicborder)(rng), // width
-                    etuoop::Point(
-                        std::uniform_real_distribution<double>(-magicborder, magicborder)(rng), // x
-                        std::uniform_real_distribution<double>(-magicborder, magicborder)(rng) // y
-                    ),
-                    std::uniform_real_distribution<double>(0, 2 * M_PI)(rng), // angle
-                    std::uniform_int_distribution<unsigned int>(0, 0xFFFFFFFF)(rng) // color
-                ));
-    }
-};
+#ifdef _MANUAL_TEST
+#define SHAPECOUNT 10
+#else
+#define SHAPECOUNT 1000
+#endif
 
 etuoop::vector< etuoop::shared_ptr< etuoop::Shape> >
 findShapes(etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > source,
@@ -57,7 +22,7 @@ findShapes(etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > source,
     etuoop::vector< etuoop::shared_ptr< etuoop::Shape> > r;
     size_t found = 0;
     for (auto& it : source) {
-        if (found == count) break;
+        if (found == count) { break; }
         if (cond(it.get())) {
             r.push_back(it);
             ++found;
@@ -81,9 +46,9 @@ copyShapes(etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > source,
 
 int main(int argc, char const *argv[])
 {
-    etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > shapes(1000);
+    etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > shapes(SHAPECOUNT);
     for (auto& it : shapes) {
-        it = createRandomShape();
+        it = etuoop::shared_ptr< etuoop::Shape >(etuoop::Shape::createRandom());
     }
 
     etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > foundShapes = findShapes(
@@ -99,6 +64,21 @@ int main(int argc, char const *argv[])
         return (shape->getColor() > 0x7FFFFFFF);
     }
             );
+
+#ifdef _MANUAL_TEST
+    std::cout << "shapes:" << std::endl;
+    for (auto& it : shapes) {
+        std::cout << *it << std::endl;
+    }
+    std::cout << "foundShapes:" << std::endl;
+    for (auto& it : foundShapes) {
+        std::cout << *it << std::endl;
+    }
+    std::cout << "copiedShapes:" << std::endl;
+    for (auto& it : copiedShapes) {
+        std::cout << *it << std::endl;
+    }
+#endif
 
     return 0;
 }
