@@ -32,3 +32,20 @@ stepik::vector< stepik::shared_ptr<Shape> > generateShapes(size_t n)
 
     return shapes;
 }
+
+stepik::shared_ptr<Shape> multipleSearch(
+        stepik::vector<stepik::shared_ptr<Shape> > source,
+        stepik::vector<stepik::shared_ptr<Shape> > possibleElements,
+        std::function<bool (Shape*, Shape*)> condition)
+{
+    for (auto& shape_elem : source)
+    {
+        for (auto& cmp_elem : possibleElements)
+        {
+            if (condition(shape_elem.get(), cmp_elem.get()))
+                return shape_elem;
+        }
+    }
+
+    return stepik::shared_ptr<Shape>();
+}
