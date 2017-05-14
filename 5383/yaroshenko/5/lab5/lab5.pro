@@ -4,6 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
+    lab2.cpp \
     ../../2/Lab2Tests/src/isoscelestriangle.cpp \
     ../../2/Lab2Tests/src/point2d.cpp \
     ../../2/Lab2Tests/src/polygon.cpp \
@@ -14,6 +15,7 @@ SOURCES += main.cpp \
     ../../2/Lab2Tests/src/triangle.cpp
 
 HEADERS += \
+    lab2.h \
     ../../2/Lab2Tests/src/isoscelestriangle.h \
     ../../2/Lab2Tests/src/point2d.h \
     ../../2/Lab2Tests/src/polygon.h \
