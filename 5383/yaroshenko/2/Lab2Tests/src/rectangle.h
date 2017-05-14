@@ -21,9 +21,11 @@ public:
 
     static void split(Rectangle* rect, Triangle* part1, Triangle* part2);
 
-private:
+protected:
     // Стороны прямоугольника
     double upperSide, leftSide;
+
+    void print(std::ostream &os) const override;
 };
 
 #endif // RECTANGLE_H

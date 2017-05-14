@@ -11,8 +11,10 @@ public:
 
     void scale(double scale = 1);
 
-private:
+protected:
     double h;
+
+    void print(std::ostream &os) const override;
 };
 
 #endif // ISOSCELESTRIANGLE_H

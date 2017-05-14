@@ -32,3 +32,12 @@ void IsoscelesTriangle::scale(double scale)
 
     Triangle::scale(scale);
 }
+
+void IsoscelesTriangle::print(std::ostream &os) const
+{
+    os << "[IsoscelesTriangle]" << std::endl;
+    os << "a = " << a << ", b = " << b << ", c = " << c << std::endl;
+    os << "height = " << h << std::endl;
+
+    Polygon::print(os);
+}

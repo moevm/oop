@@ -11,6 +11,9 @@ public:
     RightTriangle(double random_range = 100);
 
     double area() const;
+
+protected:
+    void print(std::ostream &os) const override;
 };
 
 #endif // RIGHTTRIANGLE_H

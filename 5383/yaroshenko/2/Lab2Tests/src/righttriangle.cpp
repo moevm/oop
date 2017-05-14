@@ -30,3 +30,11 @@ double RightTriangle::area() const
 {
     return (0.5 * a * b);
 }
+
+void RightTriangle::print(std::ostream &os) const
+{
+    os << "[RightTriangle]" << std::endl;
+    os << "a = " << a << ", b = " << b << ", c = " << c << std::endl;
+
+    Polygon::print(os);
+}

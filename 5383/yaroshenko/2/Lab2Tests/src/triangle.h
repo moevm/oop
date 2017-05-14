@@ -23,6 +23,8 @@ public:
 
 protected:
     double a, b, c;
+
+    void print(std::ostream &os) const override;
 };
 
 #endif // TRIANGLE_H

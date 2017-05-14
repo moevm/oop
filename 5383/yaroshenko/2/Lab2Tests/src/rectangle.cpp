@@ -83,3 +83,11 @@ void Rectangle::split(Rectangle* rect, Triangle* part1, Triangle* part2)
         throw std::invalid_argument("nullptr");
     }
 }
+
+void Rectangle::print(std::ostream &os) const
+{
+    os << "[Rectangle]" << std::endl;
+    os << "upperSide = " << upperSide << ", " << "leftSide = " << leftSide << std::endl;
+
+    Polygon::print(os);
+}

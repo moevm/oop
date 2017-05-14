@@ -26,7 +26,7 @@ protected:
     // Вершины многоугольника
     std::vector<Point2d> vertices;
 
-    void print(std::ostream &os) const;
+    void print(std::ostream &os) const override;
 };
 
 #endif // POLYGON_H

@@ -15,3 +15,11 @@ Square::Square(double random_range)
     *this = Square(p, side(gen), angle(gen));
     setColor(c);
 }
+
+void Square::print(std::ostream &os) const
+{
+    os << "[Square]" << std::endl;
+    os << "side = " << leftSide << std::endl;
+
+    Polygon::print(os);
+}
