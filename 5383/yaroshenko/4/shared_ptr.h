@@ -37,8 +37,25 @@ namespace stepik
             (*m_count)++;
     }
 
+    shared_ptr(const shared_ptr & other) :
+        m_ptr(other.m_ptr),
+        m_count(other.m_count)
+    {
+        // implement this
+        if (m_count)
+            (*m_count)++;
+    }
+
     template <typename U>
     shared_ptr& operator=(const shared_ptr<U> & other)
+    {
+        // implement this
+        shared_ptr p(other);
+        swap(p);
+        return *this;
+    }
+
+    shared_ptr& operator=(const shared_ptr & other)
     {
         // implement this
         shared_ptr p(other);
