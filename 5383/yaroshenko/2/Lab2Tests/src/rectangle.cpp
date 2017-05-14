@@ -19,6 +19,22 @@ Rectangle::Rectangle(const Point2d &vertex, double _upperSide, double _leftSide,
     rotate(angle);
 }
 
+Rectangle::Rectangle(double random_range)
+{
+    unsigned long seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine gen(seed);
+    std::uniform_real_distribution<double> vertex(-random_range, random_range);
+    std::uniform_real_distribution<double> side(0, random_range);
+    std::uniform_real_distribution<double> angle(0, 2*M_PI);
+    std::uniform_int_distribution<unsigned int> color(0, 255);
+
+    Point2d p(vertex(gen), vertex(gen));
+    Color c(color(gen), color(gen), color(gen));
+
+    *this = Rectangle(p, side(gen), side(gen), angle(gen));
+    setColor(c);
+}
+
 
 double Rectangle::area() const
 {

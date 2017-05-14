@@ -7,6 +7,7 @@ class Square : public Rectangle
 {
 public:
     Square(const Point2d& vertex, double side, double angle = 0) : Rectangle(vertex, side, side, angle) {}
+    Square(double random_range = 100);
 
 };
 
