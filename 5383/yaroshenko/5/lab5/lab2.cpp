@@ -34,8 +34,8 @@ stepik::vector< stepik::shared_ptr<Shape> > generateShapes(size_t n)
 }
 
 stepik::shared_ptr<Shape> multipleSearch(
-        stepik::vector<stepik::shared_ptr<Shape> > source,
-        stepik::vector<stepik::shared_ptr<Shape> > possibleElements,
+        const stepik::vector<stepik::shared_ptr<Shape> > &source,
+        const stepik::vector<stepik::shared_ptr<Shape> > &possibleElements,
         std::function<bool (Shape*, Shape*)> condition)
 {
     for (auto& shape_elem : source)
@@ -48,4 +48,19 @@ stepik::shared_ptr<Shape> multipleSearch(
     }
 
     return stepik::shared_ptr<Shape>();
+}
+
+void divideVector(
+        const stepik::vector<stepik::shared_ptr<Shape> > &source,
+        stepik::vector<stepik::shared_ptr<Shape> > &part1,
+        stepik::vector<stepik::shared_ptr<Shape> > &part2,
+        std::function<bool (Shape*)> condition)
+{
+    for (auto& shape : source)
+    {
+        if (condition(shape.get()))
+            part1.push_back(shape);
+        else
+            part2.push_back(shape);
+    }
 }
