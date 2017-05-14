@@ -21,8 +21,8 @@ Rectangle::Rectangle(const Point2d &vertex, double _upperSide, double _leftSide,
 
 Rectangle::Rectangle(double random_range)
 {
-    unsigned long seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine gen(seed);
+    std::random_device rd;
+    std::default_random_engine gen(rd());
     std::uniform_real_distribution<double> vertex(-random_range, random_range);
     std::uniform_real_distribution<double> side(0, random_range);
     std::uniform_real_distribution<double> angle(0, 2*M_PI);
