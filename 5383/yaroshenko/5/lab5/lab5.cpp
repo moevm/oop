@@ -1,4 +1,4 @@
-#include "lab2.h"
+#include "lab5.h"
 
 Shape* generateRandomShape()
 {
