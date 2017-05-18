@@ -1,10 +1,3 @@
-//
-//  Rectangle.cpp
-//  WORKPLEASE
-//
-//  Created by user on 30.03.17.
-//  Copyright © 2017 user. All rights reserved.
-//
 
 #include <iostream>
 #include <cmath>
@@ -47,11 +40,20 @@ void Rectangle::print(std::ostream& os) const
 
 std::vector<Point> Rectangle::getVertices() const
 {
+    
     std::vector<Point> v;
     v.reserve(4);
+    
+    
     v.push_back(upperLeft);
     v.push_back(Point(v[0].X + width, v[0].Y));
     v.push_back(Point(v[0].X + width, v[0].Y - height));
     v.push_back(Point(v[0].X, v[0].Y - height));
+    
+    for(auto &vertices : v)
+    {
+        vertices.rotate(angle);
+    }
+    
     return v;
 }

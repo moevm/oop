@@ -1,10 +1,3 @@
-//
-//  Ellipse.cpp
-//  WORKPLEASE
-//
-//  Created by user on 30.03.17.
-//  Copyright © 2017 user. All rights reserved.
-//
 
 #include "ellipse.h"
 #include "math.h"
@@ -25,8 +18,15 @@ void Ellipse::move_to(const Point &p)
 
 void Ellipse::scale(double scale)
 {
-    a *= scale;
-    b *= scale;
+    if(scale >= 0)
+    {
+        a *= scale;
+        b *= scale;
+    }
+    else
+    {
+        throw std::invalid_argument("Scale must be positive");
+    }
 }
 void Ellipse :: rotate (double angle)
 {

@@ -1,10 +1,3 @@
-//
-//  Square.h
-//  WORKPLEASE
-//
-//  Created by user on 30.03.17.
-//  Copyright © 2017 user. All rights reserved.
-//
 
 #ifndef Square_h
 #define Square_h
