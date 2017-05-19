@@ -1,24 +1,18 @@
-// Борисовский Д.Ю. 
-// Лабораторная работа №2 ООП
-
-// Индивидуальный вариант: Прямоугольник, квадрат, эллипс
-
-// Индивидуальное задание: 
-// "Добавить в класс Shape метод bool isInsideOfAnother(const Shape& other), который будет возвращать true, если фигура 
-// находится внутри другого объекта (other), переданного в данный метод. Ну и false в противном случае.  Этот метод 
-// должен быть покрыт модульными тестами google test."
-
+#pragma once
 #include "stdafx.h"
 #include <iostream>
 #define _USE_MATH_DEFINES 
 #include <math.h>
 #include <map>
-#include "gtest/gtest.h"
+#include <ctime>
 
 using namespace std;
 
 //цвет фигуры
 enum color_type { red, orange, yellow, green, blue, violet, white, black };
+
+const double range = 5;
+
 
 map <color_type, char*> map_of_colour = {
 	{ red, "Red" },
@@ -31,10 +25,18 @@ map <color_type, char*> map_of_colour = {
 	{ black, "Black" }
 };
 
+double fRand(double fMin = -range, double fMax = range)
+{
+	double f = (double)rand() / RAND_MAX;
+	return fMin + f * (fMax - fMin);
+}
+
 struct Point
 {
-	Point() : x(0.0), y(0.0) {}
+	Point() :x(0.0), y(0.0) {}
 	Point(double x, double y) : x(x), y(y) {}
+	Point(bool rand) :x(fRand()), y(fRand()) {}
+
 	friend Point operator- (const Point& left, const Point& right)
 	{
 		return Point(left.x - right.x, left.y - right.y);
@@ -157,14 +159,25 @@ public:
 class Rectangle : public Shape
 {
 public:
+	Rectangle() {
+		this->center = Point(true);
+		this->vertex[0] = Point(true);
+		double angle = 0.0;
+		for (; ((angle == M_PI) || (angle == 0.0)); angle = fRand(-M_PI, M_PI));
+		this->vertex[1] = rotate_point(this->vertex[0], this->center, angle);
+		this->vertex[2] = rotate_point(this->vertex[0], this->center, M_PI);
+		this->vertex[3] = rotate_point(this->vertex[1], this->center, M_PI);
+		set_color(static_cast<color_type>(rand() % 8));
+		set_ID();
+	}
 	Rectangle(const Point &center, const Point &first_vertex, const Point &second_vertex)
 	{
 		//если длины полудиагоналей не равны или заданные вершины димаетрально противоположны
 		if (((second_vertex.x == first_vertex.x + 2 * abs(first_vertex.x - center.x)) &&
 			(second_vertex.y == first_vertex.y + 2 * abs(first_vertex.y - center.y))) ||
 			(length(first_vertex, center) != length(second_vertex, center)))
-			throw invalid_argument("The lengths of the half-diagonals are not equal" 
-									"or the given vertices are dimaetrically opposite");
+			throw invalid_argument("The lengths of the half-diagonals are not equal"
+				"or the given vertices are dimaetrically opposite");
 		this->center = center;
 		this->vertex[0] = first_vertex;
 		this->vertex[1] = second_vertex;
@@ -192,11 +205,11 @@ public:
 	{
 		//если сумма площадей четрыех треугольников, образованных с помощью всех вершин прямоугольника
 		//и заданной точки равна площади прямоугольника, то точка находится внутри фигуры
-		if (my_round(square_triangle(vertex[0], vertex[1], point) )
-			+ my_round(square_triangle(vertex[1], vertex[2], point)) 
-			+ my_round(square_triangle(vertex[2], vertex[3], point)) 
-			+ my_round(square_triangle(vertex[3], vertex[0], point)) 
-			!= my_round(square() ) )   return false;
+		if (my_round(square_triangle(vertex[0], vertex[1], point))
+			+ my_round(square_triangle(vertex[1], vertex[2], point))
+			+ my_round(square_triangle(vertex[2], vertex[3], point))
+			+ my_round(square_triangle(vertex[3], vertex[0], point))
+			!= my_round(square()))   return false;
 		else return true;
 	}
 };
@@ -204,10 +217,22 @@ public:
 class Ellipse : public Shape
 {
 public:
+	Ellipse() {
+		this->center = Point(true);
+		this->vertex[0] = Point(true);
+		this->vertex[1] = rotate_point(this->vertex[0], this->center, M_PI / 2);
+		this->vertex[1] = this->vertex[1] - this->center;
+		this->vertex[1] = this->vertex[1] * fRand(-1,1);
+		this->vertex[1] = this->vertex[1] + this->center;
+		this->vertex[2] = rotate_point(this->vertex[0], center, M_PI);
+		this->vertex[3] = rotate_point(this->vertex[1], center, M_PI);
+		set_ID();
+		set_color(static_cast<color_type>(rand() % 8));
+	}
 	Ellipse(const Point &center, const Point &first_vertex, const Point &second_vertex)
 	{
 		//Если угол между полуосями не равен 90 градусов
-		if ((static_cast <float> (pow(length(first_vertex, center), 2)) + static_cast <float> (pow(length(second_vertex, center), 2))) 
+		if ((static_cast <float> (pow(length(first_vertex, center), 2)) + static_cast <float> (pow(length(second_vertex, center), 2)))
 			!= static_cast <float> (pow(length(first_vertex, second_vertex), 2)))
 			throw invalid_argument("The angle between the semiaxes is not equal to 90 degrees");
 
@@ -290,8 +315,8 @@ public:
 		second_focus = second_focus + reserv;
 
 		//проверка нахождения точки внутри эллипса 
-		if (my_round(length(first_focus, point))  + my_round(length(second_focus, point)) 
-			> my_round (distance) ) return false;
+		if (my_round(length(first_focus, point)) + my_round(length(second_focus, point))
+			> my_round(distance)) return false;
 		else return true;
 	}
 };
@@ -299,6 +324,14 @@ public:
 class Square : public Shape
 {
 public:
+	Square() {
+		this->center = Point(true);
+		this->vertex[0] = Point(true);
+		for (size_t i = 1; i<4; ++i)	this->vertex[i] = rotate_point(this->vertex[i - 1], center, M_PI / 2);
+		set_ID();
+		set_color(static_cast<color_type>(rand() % 8));
+	}
+
 	Square(const Point &center, const Point &vertex)
 	{
 		this->center = center;
@@ -320,144 +353,13 @@ public:
 
 	bool isPointInside(const Point& point) const override
 	{
-		//если расстояние от центра квадрата до точки больше половины длины полудиагонали, то точка не попала
-		if (length(center, point) > length(center, vertex[0])) return false;
+		//если сумма площадей четрыех треугольников, образованных с помощью всех вершин квадрата
+		//и заданной точки равна площади квадрата, то точка находится внутри фигуры
+		if (my_round(square_triangle(vertex[0], vertex[1], point))
+			+ my_round(square_triangle(vertex[1], vertex[2], point))
+			+ my_round(square_triangle(vertex[2], vertex[3], point))
+			+ my_round(square_triangle(vertex[3], vertex[0], point))
+			!= my_round(square()))   return false;
 		else return true;
 	}
 };
-
-TEST(Figure_Tests, Square_in_Ellipse_True)
-{
-	Square square(Point(3, 3), Point(2, 2));
-	Ellipse ellipse(Point(3, 3), Point(3, 1), Point(1, 3));
-	EXPECT_EQ(true, square.isInsideOfAnother(ellipse));
-}
-
-TEST(Figure_Tests, Square_in_Ellipse_False)
-{
-	Square square(Point(3, 3), Point(1, 1));
-	Ellipse ellipse(Point(3, 3), Point(3, 1), Point(1, 3));
-	EXPECT_EQ(false, square.isInsideOfAnother(ellipse));
-}
-
-TEST(Figure_Tests, Square_in_Rectangle_True)
-{
-	Square square(Point(3, 3), Point(2, 2));
-	Rectangle rectangle(Point(2, 3), Point(0, 0), Point(0, 6));
-	EXPECT_EQ(true, square.isInsideOfAnother(rectangle));
-}
-
-TEST(Figure_Tests, Square_in_Rectangle_False)
-{
-	Square square(Point(3, 3), Point(2, 2));
-	Rectangle rectangle(Point(1.5, 3), Point(0, 0), Point(0, 6));
-	EXPECT_EQ(false, square.isInsideOfAnother(rectangle));
-}
-
-TEST(Figure_Tests, Square_in_Square_True)
-{
-	Square square(Point(3, 3), Point(2, 2));
-	Square square_other(Point(3, 3), Point(3, 1));
-	EXPECT_EQ(true, square.isInsideOfAnother(square_other));
-}
-
-TEST(Figure_Tests, Square_in_Square_False)
-{
-	Square square(Point(3, 3), Point(2, 2));
-	Square square_other(Point(3, 3), Point(3, 2));
-	EXPECT_EQ(false, square.isInsideOfAnother(square_other));
-}
-
-TEST(Figure_Tests, Ellipse_in_Square_True)
-{
-	Ellipse ellipse(Point(3, 3), Point(1, 1), Point(2, 4));
-	Square square(Point(3, 3), Point(1, 1));
-	EXPECT_EQ(true, ellipse.isInsideOfAnother(square));
-}
-
-TEST(Figure_Tests, Ellipse_in_Square_False)
-{
-	Ellipse ellipse(Point(3, 3), Point(1, 1), Point(2, 4));
-	Square square(Point(3, 3), Point(2, 2));
-	EXPECT_EQ(false, ellipse.isInsideOfAnother(square));
-}
-
-TEST(Figure_Tests, Ellipse_in_Rectangle_True)
-{
-	Ellipse ellipse(Point(3, 3), Point(1, 1), Point(2, 4));
-	Rectangle rectangle(Point(3, 3.5), Point(1, 0), Point(1, 7));
-	EXPECT_EQ(true, ellipse.isInsideOfAnother(rectangle));
-}
-
-TEST(Figure_Tests, Ellipse_in_Rectangle_False)
-{
-	Ellipse ellipse(Point(3, 3), Point(1, 1), Point(2, 4));
-	Rectangle rectangle(Point(3, 3), Point(3, 1), Point(1, 3));
-	EXPECT_EQ(false, ellipse.isInsideOfAnother(rectangle));
-}
-
-TEST(Figure_Tests, Ellipse_in_Ellipse_True)
-{
-	Ellipse ellipse(Point(3, 3), Point(1, 1), Point(2, 4));
-	Ellipse ellipse_other(Point(3, 3), Point(0, 0), Point(1, 5));
-	EXPECT_EQ(true, ellipse.isInsideOfAnother(ellipse_other));
-}
-
-TEST(Figure_Tests, Ellipse_in_Ellipse_False)
-{
-	Ellipse ellipse(Point(3, 3), Point(1, 1), Point(2, 4));
-	Ellipse ellipse_other(Point(3, 3), Point(5, 1), Point(2, 2));
-	EXPECT_EQ(false, ellipse.isInsideOfAnother(ellipse_other));
-}
-
-TEST(Figure_Tests, Rectangle_in_Ellipse_True)
-{
-	Rectangle rectangle(Point(3, 3), Point(2, 1), Point(4, 1));
-	Ellipse ellipse(Point(3, 3), Point(0, 6), Point(1, 1));
-	EXPECT_EQ(true, rectangle.isInsideOfAnother(ellipse));
-}
-
-TEST(Figure_Tests, Rectangle_in_Ellipse_False)
-{
-	Rectangle rectangle(Point(3, 3), Point(2, 1), Point(4, 1));
-	Ellipse ellipse(Point(3, 3), Point(4, 4), Point(5, 1));
-	EXPECT_EQ(false, rectangle.isInsideOfAnother(ellipse));
-}
-
-TEST(Figure_Tests, Rectangle_in_Square_True)
-{
-	Rectangle rectangle(Point(3, 3), Point(2, 1), Point(4, 1));
-	Square square(Point(3, 3), Point(1, 1));
-	EXPECT_EQ(true, rectangle.isInsideOfAnother(square));
-}
-
-TEST(Figure_Tests, Rectangle_in_Square_False)
-{
-	Rectangle rectangle(Point(3, 3), Point(2, 1), Point(4, 1));
-	Square square(Point(3, 3), Point(3, 1));
-	EXPECT_EQ(false, rectangle.isInsideOfAnother(square));
-}
-
-TEST(Figure_Tests, Rectangle_in_Rectangle_True)
-{
-	Rectangle rectangle(Point(3, 3), Point(2, 1), Point(4, 1));
-	Rectangle rectangle_other(Point(3, 3), Point(2, 1), Point(4, 1));
-	EXPECT_EQ(true, rectangle.isInsideOfAnother(rectangle_other));
-}
-
-TEST(Figure_Tests, Rectangle_in_Rectangle_False)
-{
-	Rectangle rectangle(Point(3, 3), Point(2, 1), Point(4, 1));
-	Rectangle rectangle_other(Point(3, 3), Point(2, 2), Point(2, 4));
-	EXPECT_EQ(false, rectangle.isInsideOfAnother(rectangle_other));
-}
-
-GTEST_API_ int main(int argc, char **argv) {
-
-	setlocale(0, "Rus");
-	testing::InitGoogleTest(&argc, argv);
-	RUN_ALL_TESTS();
-
-	system("pause");
-	return 0;
-}
