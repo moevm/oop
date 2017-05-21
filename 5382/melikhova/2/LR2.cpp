@@ -1,4 +1,6 @@
+
 #include "stdafx.h"
+#include <algorithm>
 #include <iostream>
 #include <assert.h>
 #include <math.h>
@@ -21,7 +23,8 @@ map <Colour, char*> colours_map = {
 };
 
 struct Point {
-	Point() {};
+
+	Point() : x(0), y(0) {};
 	Point(float x, float y) : x(x), y(y) {}
 	float x;
 	float y;
@@ -38,7 +41,6 @@ struct Point {
 			return true;
 		else return false;
 	}
-
 };
 
 class Shape {
@@ -165,14 +167,10 @@ public:
 		center = (point_1 + point_2 + point_3 + point_4 + point_5);
 		center.x /= count;
 		center.y /= count;
-		for (int i = 0; i < count; ++i)
-		{
-			for (int j = i + 1; j < count; ++j)
-			{
-				if (point_i[i] == point_i[j])
-					throw invalid_argument("Wrong input data in Wrong_Pentagone!");
-			}
-		}
+
+		vector<Point>::iterator help = adjacent_find(point_i.begin(), point_i.end());
+		if (help != point_i.end())
+			throw invalid_argument("Wrong input data in Wrong_Pentagone!");
 		set_id();
 	}
 
@@ -203,24 +201,15 @@ public:
 		Point help(0, 0);
 		help = this->center - point;
 
-		if (point.x >= this->center.x)
-		{
+		if (point.x >= this->center.x) 
 			point.x = this->center.x - help.x*k;
-			if (point.y >= this->center.y)
-				point.y = this->center.y - help.y*k;
-			else
-				point.y = this->center.y + help.y*k;
-		}
 		else
-		{
 			point.x = this->center.x + help.x*k;
-			if (point.y >= this->center.y)
-			{
-				point.y = this->center.y - help.y*k;
-			}
-			else
-				point.y = this->center.y + help.y*k;
-		}
+
+		if (point.y >= this->center.y)
+			point.y = this->center.y - help.y*k;
+		else
+			point.y = this->center.y + help.y*k;
 	}
 
 	// масштабирует неправильный пятиугольник
