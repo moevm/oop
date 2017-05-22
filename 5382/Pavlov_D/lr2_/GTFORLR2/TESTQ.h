@@ -6,7 +6,7 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
-
+#include <numeric>
 ///////////////////////
 /// ‘игуры
 ///  вадрат
@@ -18,36 +18,60 @@
 /////////////////
 class Point {
 public:
-	Point() :xs(0), ys(0)
+	Point() :x(0.), y(0.)
 	{}
 
-	Point(double xx, double yy) :xs(xx), ys(yy)
+	Point(double x, double y) :x(x), y(y)
 	{}
-	~Point()
-	{}
+	
 	double getX() const
 	{
-		return xs;
+		return x;
 	}
 	double getY() const
 	{
-		return ys;
+		return y;
 	}
 	void show() const
 	{
-		std::cout << xs << " " << ys << std::endl;
+		std::cout << x << " " << y << std::endl;
 	}
 	void change(double cx, double cy)
 	{
-		xs = cx;
-		ys = cy;
+		x = cx;
+		y = cy;
 	}
+	
 private:
-	double xs;
-	double ys;
+	double x;
+	double y;
 };
 
+Point operator+ (const Point& left, const Point& right)
+{
+	return Point(left.getX() + right.getX(), left.getY() + right.getY());
+}
+Point operator- (const Point& left, const Point& right)
+{
+	return Point(left.getX() - right.getX(), left.getY() - right.getY());
+}
 
+ Point operator* (const Point& left, double parametr)
+{
+	return Point(left.getX() * parametr, left.getY() * parametr);
+}
+ Point operator / (const Point& left, double parametr)
+ {
+	 return Point(left.getX() / parametr, left.getY() / parametr);
+ }
+ bool operator ==  (const Point& left, const Point& right)
+ {
+	 return ((left.getX() == right.getX()) && (left.getY() == right.getY()));
+ }
+ bool operator !=  (const Point& left, const Point& right)
+ {
+	 return !(left == right);
+ }
 struct line {
 	std::vector<double  > xl1;
 	std::vector<double  > yl1;
@@ -191,7 +215,7 @@ public:
 
 
 	}
-	//Shape (Point p1,Point p2,Point )
+	
 	virtual  ~Shape() {
 
 	}
@@ -212,14 +236,8 @@ public:
 	bool sameShape(const Shape &sh1) const;
 	bool sameShape(std::vector<Point> &array) const;
 	bool sameShape(std::vector<Point> &array, const Shape &sh1, const Shape &sh2) const;
-	bool sameShape(double sx, double sy) const
-	{
-		for (size_t i = 0; i < pointCount_; i++) {
-			if ((Point_[i].getX() == sx) && (Point_[i].getY() == sy))
-				return true;
-		}
-		return false;
-
+	bool sameShape(Point point) const  {
+		return std::find(Point_.begin(), Point_.end(), point) != Point_.end();
 	}
 	virtual  double area() const = 0;
 	bool itSide(double tside)
@@ -233,6 +251,14 @@ public:
 
 	Point findCenter()
 	{
+		
+		Point center;
+		for (size_t i = 0; i<pointCount_; ++i) {
+			center = center + Point_[i];
+		}
+		center = center / pointCount_;
+		return center;
+		/*
 		double 	centerBufferX = 0;
 		double	centerBufferY = 0;
 		for (size_t i = 0; i<pointCount_; ++i) {
@@ -243,6 +269,7 @@ public:
 		centerBufferY /= pointCount_;
 		Point center(centerBufferX, centerBufferY);
 		return center;
+		*/
 	}
 protected:
 	int  colour_;
@@ -459,10 +486,8 @@ bool Shape::similar(const Shape &sh1, const Shape &sh2)
 	}
 
 
-	if (sameShape(NewPoint))
-		return true;
-	else
-		return false;
+	return (sameShape(NewPoint));
+	
 }
 bool Shape::insidePoint(double ix, double iy, const Shape &shape) const
 {
@@ -587,7 +612,7 @@ bool Shape::sameShape(std::vector<Point> &array, const Shape &sh1, const Shape &
 	for (size_t i = 0; i < TroublePoint.size(); i++)
 	{
 
-		if ((insidePoint(TroublePoint[i].getX(), TroublePoint[i].getY(), *this)) && (!sameShape(TroublePoint[i].getX(), TroublePoint[i].getY()))) {
+		if ((insidePoint(TroublePoint[i].getX(), TroublePoint[i].getY(), *this)) && (!sameShape(TroublePoint[i]))) {   //!sameShape(TroublePoint[i].getX(), TroublePoint[i].getY())
 
 			return false;
 		}
@@ -622,6 +647,7 @@ void Shape::cross(line lin1, int pos1, line lin2, int pos2, std::vector<Point> &
 {
 	if ((lin1.d[pos1] == lin2.d[pos2]) && (lin1.b[pos1] != lin2.b[pos2]) && (lin1.k[pos1] == lin2.k[pos2]))
 		// | | -no cross
+		
 		return;
 
 
@@ -692,20 +718,8 @@ public:
 		Point_ = array;
 		ID_ = setNextID();
 	}
-	~IsoscelesTriangle() {
-
-
-	}
-	IsoscelesTriangle(Point p1, Point p2, Point p3)
-	{
-		std::vector<Point> buffer;
-		buffer.push_back(p1);
-		buffer.push_back(p2);
-		buffer.push_back(p3);
-
-		IsoscelesTriangle bufferTriangle(buffer);
-		*this = bufferTriangle;
-	}
+	
+	
 
 
 	void showShape(std::ostream &os) const override
@@ -763,16 +777,7 @@ public:
 		ID_ = setNextID();
 
 	}
-	RightTriangle(Point p1, Point p2, Point p3)
-	{
-		std::vector<Point> buffer;
-		buffer.push_back(p1);
-		buffer.push_back(p2);
-		buffer.push_back(p3);
-
-		RightTriangle bufferTriangle(buffer);
-		*this = bufferTriangle;
-	}
+	
 
 	void showShape(std::ostream &os) const  override
 	{
@@ -817,22 +822,7 @@ public:
 		ID_ = setNextID();
 	}
 
-	~Square() {
-
-	}
-	Square(Point p1, Point p2, Point p3, Point p4)
-	{
-		std::vector<Point> buffer;
-		buffer.push_back(p1);
-		buffer.push_back(p2);
-		buffer.push_back(p3);
-		buffer.push_back(p4);
-		Square bufferSquare(buffer);
-		*this = bufferSquare;
-
-
-
-	}
+	
 
 	void showShape(std::ostream &os) const override
 	{
