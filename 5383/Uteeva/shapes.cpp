@@ -14,11 +14,6 @@ Color Shape::getColor() const {
 }
 
 
-/*std::ostream &operator<<(std::ostream &os, const Shape &shape) {
-	os << "center: " << shape.center << " color: " << shape.color << "Id: " << shape.ID;
-	return os;
-}*/
-
 void Shape::SetColor(const Color &color) {
 
 	this->color = color;
