@@ -1,12 +1,12 @@
 #pragma once
-#ifndef SHAPE_H
-#define SHAPE_H
+
 #include "stdafx.h"
 #include <iostream>
 #include <cmath>
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <functional>
 ///////////////////////
 /// Фигуры
 /// Квадрат
@@ -23,7 +23,7 @@ public:
 
 	Point(double x, double y) :x(x), y(y)
 	{}
-	
+
 	double getX() const
 	{
 		return x;
@@ -41,7 +41,7 @@ public:
 		x = cx;
 		y = cy;
 	}
-	
+
 private:
 	double x;
 	double y;
@@ -56,22 +56,22 @@ Point operator- (const Point& left, const Point& right)
 	return Point(left.getX() - right.getX(), left.getY() - right.getY());
 }
 
- Point operator* (const Point& left, double parametr)
+Point operator* (const Point& left, double parametr)
 {
 	return Point(left.getX() * parametr, left.getY() * parametr);
 }
- Point operator / (const Point& left, double parametr)
- {
-	 return Point(left.getX() / parametr, left.getY() / parametr);
- }
- bool operator ==  (const Point& left, const Point& right)
- {
-	 return ((left.getX() == right.getX()) && (left.getY() == right.getY()));
- }
- bool operator !=  (const Point& left, const Point& right)
- {
-	 return !(left == right);
- }
+Point operator / (const Point& left, double parametr)
+{
+	return Point(left.getX() / parametr, left.getY() / parametr);
+}
+bool operator ==  (const Point& left, const Point& right)
+{
+	return ((left.getX() == right.getX()) && (left.getY() == right.getY()));
+}
+bool operator !=  (const Point& left, const Point& right)
+{
+	return !(left == right);
+}
 struct line {
 	std::vector<double  > xl1;
 	std::vector<double  > yl1;
@@ -215,7 +215,7 @@ public:
 
 
 	}
-	
+
 	virtual  ~Shape() {
 
 	}
@@ -236,7 +236,7 @@ public:
 	bool sameShape(const Shape &sh1) const;
 	bool sameShape(std::vector<Point> &array) const;
 	bool sameShape(std::vector<Point> &array, const Shape &sh1, const Shape &sh2) const;
-	bool sameShape(Point point) const  {
+	bool sameShape(Point point) const {
 		return std::find(Point_.begin(), Point_.end(), point) != Point_.end();
 	}
 	virtual  double area() const = 0;
@@ -251,25 +251,14 @@ public:
 
 	Point findCenter()
 	{
-		
+
 		Point center;
 		for (size_t i = 0; i<pointCount_; ++i) {
 			center = center + Point_[i];
 		}
 		center = center / pointCount_;
 		return center;
-		/*
-		double 	centerBufferX = 0;
-		double	centerBufferY = 0;
-		for (size_t i = 0; i<pointCount_; ++i) {
-			centerBufferX += Point_[i].getX();
-			centerBufferY += Point_[i].getY();
-		}
-		centerBufferX /= pointCount_;
-		centerBufferY /= pointCount_;
-		Point center(centerBufferX, centerBufferY);
-		return center;
-		*/
+		
 	}
 protected:
 	int  colour_;
@@ -309,17 +298,7 @@ public:
 
 		Point_ = array;
 	}
-	Triangle(Point p1, Point p2, Point p3)
-	{
-		std::vector<Point> buffer;
-		buffer.push_back(p1);
-		buffer.push_back(p2);
-		buffer.push_back(p3);
-
-		Triangle bufferTriangle(buffer);
-		*this = bufferTriangle;
-	}
-
+	
 	void showShape(std::ostream &os) const override
 	{
 		os << "I'm Triangle" << std::endl;
@@ -487,7 +466,7 @@ bool Shape::similar(const Shape &sh1, const Shape &sh2)
 
 
 	return (sameShape(NewPoint));
-	
+
 }
 bool Shape::insidePoint(double ix, double iy, const Shape &shape) const
 {
@@ -647,7 +626,7 @@ void Shape::cross(line lin1, int pos1, line lin2, int pos2, std::vector<Point> &
 {
 	if ((lin1.d[pos1] == lin2.d[pos2]) && (lin1.b[pos1] != lin2.b[pos2]) && (lin1.k[pos1] == lin2.k[pos2]))
 		// | | -no cross
-		
+
 		return;
 
 
@@ -702,168 +681,3 @@ void Shape::cross(line lin1, int pos1, line lin2, int pos2, std::vector<Point> &
 	return;
 
 }
-class IsoscelesTriangle :public Triangle
-{
-public:
-	IsoscelesTriangle() :Triangle()
-	{
-	}
-
-	IsoscelesTriangle(std::vector<Point> array) : Triangle(array) {
-		if ((side[0] != side[1]) && (side[1] != side[2]) && (side[0] != side[2]))
-			throw std::invalid_argument("Not Isoscellence");
-
-		colour_ = 0;
-		//makePoint(array);
-		Point_ = array;
-		ID_ = setNextID();
-	}
-	
-	
-
-
-	void showShape(std::ostream &os) const override
-	{
-		os << "I'm IsoscelesTriangle" << std::endl;
-		for (size_t i = 0; i<pointCount_; ++i) {
-
-			os << "POINT " << i + 1 << "(" << Point_[i].getX() << ";" << Point_[i].getY() << ")" << std::endl;
-		}
-	}
-
-
-};
-class RightTriangle : public Triangle
-{
-public:
-
-	RightTriangle() :Triangle()
-	{
-
-	}
-
-
-	RightTriangle(std::vector<Point> array) :Triangle(array) {
-
-		double  maxSide = side[0];
-		//проверка на свойства прямоугольного треугольника
-		//Поиск гипотинузы .Далее проверка Т Пифагора
-
-		if ((side[0] == side[1]) && (side[0] == side[2]) && (side[2] == side[1]))
-			throw std::invalid_argument("sides are same");
-		for (size_t i = 1; i<pointCount_; ++i)
-		{
-			maxSide = std::max(maxSide, side[i]);
-
-		}
-
-
-		if (maxSide != side[0])
-		{
-			if (maxSide != side[2])
-				std::swap(side[0], side[1]);
-			else
-				std::swap(side[0], side[2]);
-
-		}
-
-		double  hyp = sqrt(pow(side[1], 2.0) + pow(side[2], 2.0));
-		if (side[0] != hyp)
-			throw std::invalid_argument("T.Pifagor wrong");
-
-		colour_ = 0;
-
-		Point_ = array;
-		ID_ = setNextID();
-
-	}
-	
-
-	void showShape(std::ostream &os) const  override
-	{
-		os << "I'm Right Triangle" << std::endl;
-		for (size_t i = 0; i<pointCount_; ++i) {
-
-			os << "POINT " << i + 1 << "(" << Point_[i].getX() << ";" << Point_[i].getY() << ")" << std::endl;
-		}
-
-	}
-
-};
-class Square :public Shape
-{
-public:
-	Square() :Shape()
-	{
-
-		pointCount_ = 4;
-
-	}
-
-
-	Square(std::vector<Point> array) :Shape(array) {
-
-
-		pointCount_ = 4;
-
-		if (array.size() != pointCount_)
-			throw std::invalid_argument("Not enought/Too much points ");
-		countSides(side, array);
-
-		for (size_t i = 0; i<pointCount_; i++) {
-
-			if (side[0] != side[i])
-				throw std::invalid_argument("Sides not equal ");
-		}
-
-		colour_ = 0;
-		Point_ = array;
-
-		ID_ = setNextID();
-	}
-
-	
-
-	void showShape(std::ostream &os) const override
-	{
-		os << "I'm Square" << std::endl;
-		for (size_t i = 0; i<pointCount_; ++i) {
-
-			os << "POINT " << i + 1 << "(" << Point_[i].getX() << ";" << Point_[i].getY() << ")" << std::endl;
-		}
-	}
-	double  area() const override
-	{
-		return side[0] * side[0];
-	}
-
-	virtual void countSides(std::vector<double  > &side, std::vector<Point> array) override
-	{
-		side.push_back(sqrt(pow(array[0].getX() - array[1].getX(), 2.0) + pow(array[0].getY() - array[1].getY(), 2.0)));//
-		side.push_back(sqrt(pow(array[0].getX() - array[2].getX(), 2.0) + pow(array[0].getY() - array[2].getY(), 2.0)));//
-		side.push_back(sqrt(pow(array[0].getX() - array[3].getX(), 2.0) + pow(array[0].getY() - array[3].getY(), 2.0)));//
-		side.push_back(sqrt(pow(array[2].getX() - array[3].getX(), 2.0) + pow(array[2].getY() - array[3].getY(), 2.0)));//
-		side.push_back(sqrt(pow(array[1].getX() - array[3].getX(), 2.0) + pow(array[1].getY() - array[3].getY(), 2.0)));//
-		side.push_back(sqrt(pow(array[1].getX() - array[2].getX(), 2.0) + pow(array[1].getY() - array[2].getY(), 2.0)));//
-		double  maxSide = side[0];
-		int count = 2;
-		while (count != 0) {
-			for (size_t i = 0; i<array.size(); i++) {
-				maxSide = std::max(maxSide, side[i]);
-			}
-
-			for (size_t i = 0; i<array.size(); i++) {
-				if (maxSide == side[i])
-					std::swap(side[i], side[side.size() - 1]);
-
-			}
-			side.pop_back();
-			count--;
-		}
-
-
-	}
-
-};
-#endif // SHAPE_H
-

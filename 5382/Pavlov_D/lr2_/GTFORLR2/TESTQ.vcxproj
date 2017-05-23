@@ -138,6 +138,10 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IsoscelesTriangle.h" />
+    <ClInclude Include="RightTriangle.h" />
+    <ClInclude Include="Shape.h" />
+    <ClInclude Include="Square.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TESTQ.h" />
