@@ -58,14 +58,14 @@ int main(int argc, char const *argv[])
     etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > foundShapes = findShapes(
                 shapes, 250,
     [](etuoop::Shape * shape)->bool {
-        return (shape->getColor() > 0x7FFFFFFF);
+        return (shape->getArea() > (1 << 14));
     }
             );
 
     etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > copiedShapes = copyShapes(
                 shapes,
     [](etuoop::Shape * shape)->bool {
-        return (shape->getColor() > 0x7FFFFFFF);
+        return (shape->getPerimeter() > (1 << 9));
     }
             );
 
