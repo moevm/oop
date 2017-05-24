@@ -5,6 +5,8 @@
 #include <cstddef>
 #include <iostream>
 #include <vector>
+#include <random>
+#include <chrono>
 
 #include "point2d.h"
 

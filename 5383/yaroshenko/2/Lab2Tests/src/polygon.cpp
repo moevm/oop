@@ -51,7 +51,7 @@ void Polygon::scale(double scale)
 void Polygon::print(std::ostream& os) const
 {
     os << "Id: " << m_id << std::endl;
-    os << "Color: { r=" << m_color.r << ", g=" << m_color.g << ", b=" << m_color.b << " }" << std::endl;
+    os << "Color: { r=" << (int) m_color.r << ", g=" << (int) m_color.g << ", b=" << (int) m_color.b << " }" << std::endl;
 
     os << "Area: " << area() << std::endl;
     os << "Perimeter: " << perimeter() << std::endl;

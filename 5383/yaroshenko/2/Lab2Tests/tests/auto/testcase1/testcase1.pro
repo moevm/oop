@@ -16,4 +16,5 @@ SOURCES +=     main.cpp \
         ../../../src/polygon.cpp \
         ../../../src/rectangle.cpp \
         ../../../src/triangle.cpp \
+        ../../../src/square.cpp \
         ../../../src/point2d.cpp
