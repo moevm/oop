@@ -23,7 +23,7 @@ class Shape
 public:
     virtual Shape* clone() const = 0;
     virtual ~Shape() {}
-    static Shape* createRandom();
+    static Shape* createRandom(std::initializer_list< std::function<Shape*()> > childCreators);
     void setColor(unsigned int color)
     {
         this->color = color;
@@ -255,13 +255,11 @@ const auto seed = std::chrono::system_clock::now().time_since_epoch().count();
 std::default_random_engine rng(seed);
 static const double magicborder = 1 << 8;
 
-Shape* Shape::createRandom()
+Shape* Shape::createRandom(std::initializer_list< std::function<Shape*()> > childCreators)
 {
-    static std::function<Shape*()> childCreators[] = {Rectangle::createRandom, Square::createRandom, Ellipse::createRandom};
-    // общий способ регистрации потомков?
-    static const size_t childN = sizeof(childCreators) / sizeof(childCreators[0]);
+    static const size_t childN = childCreators.size();
     int s = std::uniform_int_distribution<int>(0, childN-1)(rng);
-    return childCreators[s]();
+    return (*(childCreators.begin()+s))();
 }
 
 Rectangle* Rectangle::createRandom()

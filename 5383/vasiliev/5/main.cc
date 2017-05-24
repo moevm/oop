@@ -48,7 +48,11 @@ int main(int argc, char const *argv[])
 {
     etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > shapes(SHAPECOUNT);
     for (auto& it : shapes) {
-        it = etuoop::shared_ptr< etuoop::Shape >(etuoop::Shape::createRandom());
+        it = etuoop::shared_ptr< etuoop::Shape >(etuoop::Shape::createRandom({
+            etuoop::Square::createRandom,
+            etuoop::Rectangle::createRandom,
+            etuoop::Ellipse::createRandom
+        }));
     }
 
     etuoop::vector< etuoop::shared_ptr< etuoop::Shape > > foundShapes = findShapes(
