@@ -2,18 +2,18 @@
 #include "Dot.h"
 
 
-Dot::Dot() :x(0), y(0) {} // конструктор по-умолчанию
+Dot::Dot() :x(0), y(0) {} // ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г° ГЇГ®-ГіГ¬Г®Г«Г·Г Г­ГЁГѕ
 
-Dot::Dot(double _x, double _y) : x(_x), y(_y) {} //конструктор
+Dot::Dot(double _x, double _y) : x(_x), y(_y) {} //ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
 
-double Dot::distance(const Dot &smth) const // вычисление расстояния
+double Dot::distance(const Dot &smth) const // ГўГ»Г·ГЁГ±Г«ГҐГ­ГЁГҐ Г°Г Г±Г±ГІГ®ГїГ­ГЁГї
 {
 	double dx = smth.x - x;
 	double dy = smth.y - y;
 	return sqrt(dx*dx + dy*dy);
 }
 
-void Dot::rotate(double angle) // матрица поворота
+void Dot::rotate(double angle) // Г¬Г ГІГ°ГЁГ¶Г  ГЇГ®ГўГ®Г°Г®ГІГ 
 {
 	double old_x = x;
 	double old_y = y;
