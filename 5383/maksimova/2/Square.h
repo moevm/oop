@@ -5,9 +5,9 @@
 
 class Square :public Rhombus {
 public:
-	static bool is_square(const std::vector<Dot>& corners); // проверка на ромб
+	static bool is_square(const std::vector<Dot>& corners); // ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г°Г®Г¬ГЎ
 
-																  //конструктор
+																  //ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
 	Square(std::vector<Dot> points, Color color=Color(), double angle = 0) :Rhombus(points, color, angle) {
 		if (!is_square(points)) {
 			throw std::invalid_argument("It is not square");
@@ -16,6 +16,6 @@ public:
 			corners = points;
 		}
 	}
-	void print(std::ostream& OS) const override; // Вывод
+	void print(std::ostream& OS) const override; // Г‚Г»ГўГ®Г¤
 };
 #endif Square_h

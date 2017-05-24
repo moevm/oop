@@ -10,36 +10,36 @@ struct Color {
 
 class Shape {
 protected:
-	std::vector<Dot> corners; //т.к все фигуры четырехугольники
-	double angle;// угол
+	std::vector<Dot> corners; //ГІ.ГЄ ГўГ±ГҐ ГґГЁГЈГіГ°Г» Г·ГҐГІГ»Г°ГҐГµГіГЈГ®Г«ГјГ­ГЁГЄГЁ
+	double angle;// ГіГЈГ®Г«
 
-	static size_t counter;// кол-во фигур
-	size_t id;//айди каждой фиугры
+	static size_t counter;// ГЄГ®Г«-ГўГ® ГґГЁГЈГіГ°
+	size_t id;//Г Г©Г¤ГЁ ГЄГ Г¦Г¤Г®Г© ГґГЁГіГЈГ°Г»
 
-	Color color;//цвет
+	Color color;//Г¶ГўГҐГІ
 	
 
-	virtual void print(std::ostream& OS) const = 0; // Вывод
+	virtual void print(std::ostream& OS) const = 0; // Г‚Г»ГўГ®Г¤
 
 public:
 	Shape(std::vector<Dot> points, Color color, double angle) :
-		id(counter++), angle(angle), color(color), corners(points) {} //консткруктор
+		id(counter++), angle(angle), color(color), corners(points) {} //ГЄГ®Г­Г±ГІГЄГ°ГіГЄГІГ®Г°
 
-	virtual ~Shape() {}//деструктор
+	virtual ~Shape() {}//Г¤ГҐГ±ГІГ°ГіГЄГІГ®Г°
 
-	void move(Dot &new_center);//передвинуть
-	void scale(double scale );//расстянуть
-	void rotate(double new_angle);//повернуть
+	void move(Dot &new_center);//ГЇГҐГ°ГҐГ¤ГўГЁГ­ГіГІГј
+	void scale(double scale );//Г°Г Г±Г±ГІГїГ­ГіГІГј
+	void rotate(double new_angle);//ГЇГ®ГўГҐГ°Г­ГіГІГј
 
-	Color get_color() const; //получить цвет
-	void set_color(Color color);//установить цвет
-	Dot get_center();//получить цвет
-	size_t getId() const;//получить айди
+	Color get_color() const; //ГЇГ®Г«ГіГ·ГЁГІГј Г¶ГўГҐГІ
+	void set_color(Color color);//ГіГ±ГІГ Г­Г®ГўГЁГІГј Г¶ГўГҐГІ
+	Dot get_center();//ГЇГ®Г«ГіГ·ГЁГІГј Г¶ГўГҐГІ
+	size_t getId() const;//ГЇГ®Г«ГіГ·ГЁГІГј Г Г©Г¤ГЁ
 	Dot& min_y(Dot& a, Dot& b) const;
 	Dot& max_y(Dot& a, Dot& b) const;
-	friend std::ostream& operator << (std::ostream& OS, const Shape& smth); // оператор вывода
+	friend std::ostream& operator << (std::ostream& OS, const Shape& smth); // Г®ГЇГҐГ°Г ГІГ®Г° ГўГ»ГўГ®Г¤Г 
 
-	//Задание
+	//Г‡Г Г¤Г Г­ГЁГҐ
 	bool common_side( Shape* other);
 
 };

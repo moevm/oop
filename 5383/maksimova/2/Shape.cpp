@@ -2,34 +2,34 @@
 #include <utility>
 
 
-size_t Shape::counter = 0; // инициализация статического поля
+size_t Shape::counter = 0; // ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї Г±ГІГ ГІГЁГ·ГҐГ±ГЄГ®ГЈГ® ГЇГ®Г«Гї
 
-//оператор вывода
-std::ostream& operator <<(std::ostream& OS, const Shape& smth)//оператор вывода
+//Г®ГЇГҐГ°Г ГІГ®Г° ГўГ»ГўГ®Г¤Г 
+std::ostream& operator <<(std::ostream& OS, const Shape& smth)//Г®ГЇГҐГ°Г ГІГ®Г° ГўГ»ГўГ®Г¤Г 
 {
 	smth.print(OS);
 	return OS;
 }
-//установить цвет
-void Shape::set_color(Color color) {//установить цвет
+//ГіГ±ГІГ Г­Г®ГўГЁГІГј Г¶ГўГҐГІ
+void Shape::set_color(Color color) {//ГіГ±ГІГ Г­Г®ГўГЁГІГј Г¶ГўГҐГІ
 
 	this->color = color;
 
 }
 
-//получить цвет фигуры
-Color Shape::get_color() const { //получить цвет
+//ГЇГ®Г«ГіГ·ГЁГІГј Г¶ГўГҐГІ ГґГЁГЈГіГ°Г»
+Color Shape::get_color() const { //ГЇГ®Г«ГіГ·ГЁГІГј Г¶ГўГҐГІ
 
 	return color;
 
 }
-//получить айди
+//ГЇГ®Г«ГіГ·ГЁГІГј Г Г©Г¤ГЁ
 size_t Shape::getId() const
 {
 	return id;
 }
 
-//передвинуть
+//ГЇГҐГ°ГҐГ¤ГўГЁГ­ГіГІГј
 void Shape::move(Dot &new_v0) {
 	double dx = corners[0].x - new_v0.x;
 	double dy = corners[0].y - new_v0.y;
@@ -38,17 +38,17 @@ void Shape::move(Dot &new_v0) {
 		corners[i].y -= dy;
 	}
 }
-//расстянуть
+//Г°Г Г±Г±ГІГїГ­ГіГІГј
 void  Shape::scale(double scale) {
 	if (scale < 0) {
-		throw std::invalid_argument("Масштаб не может быть отрицательным");
+		throw std::invalid_argument("ГЊГ Г±ГёГІГ ГЎ Г­ГҐ Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј Г®ГІГ°ГЁГ¶Г ГІГҐГ«ГјГ­Г»Г¬");
 	}
 	for (int i = 0; i < corners.size(); i++) {
 		corners[i].x *= scale;
 		corners[i].y *= scale;
 	}
 }
-//повернуть фигуру
+//ГЇГ®ГўГҐГ°Г­ГіГІГј ГґГЁГЈГіГ°Гі
 void Shape::rotate(double new_angle) {
 	Dot old_v0 = corners[0];
 	move(Dot(0, 0));
@@ -59,15 +59,15 @@ void Shape::rotate(double new_angle) {
 	move(old_v0);
 }
 
-//Изумительное задание 
-//Работает на чёрной магии
+//Г€Г§ГіГ¬ГЁГІГҐГ«ГјГ­Г®ГҐ Г§Г Г¤Г Г­ГЁГҐ 
+//ГђГ ГЎГ®ГІГ ГҐГІ Г­Г  Г·ВёГ°Г­Г®Г© Г¬Г ГЈГЁГЁ
 bool Shape::common_side(Shape* other) {
 
-	//std::vector<Dot>common_dots; // общие точки
+	//std::vector<Dot>common_dots; // Г®ГЎГ№ГЁГҐ ГІГ®Г·ГЄГЁ
 	Dot cdot1;
 	Dot cdot2;
 	int dots = 0;
-	//std::vector<Dot>old_this_corners = this->corners; // старые вершины
+	//std::vector<Dot>old_this_corners = this->corners; // Г±ГІГ Г°Г»ГҐ ГўГҐГ°ГёГЁГ­Г»
 	//std::vector<Dot>old_other_corners = other->corners;
 
 	bool flag1 = false;
@@ -76,7 +76,7 @@ bool Shape::common_side(Shape* other) {
 	for (int i = 0; i < this->corners.size(); i++) {
 		for (int j = 0; j < other->corners.size(); j++)
 		{
-			//находим общие точки
+			//Г­Г ГµГ®Г¤ГЁГ¬ Г®ГЎГ№ГЁГҐ ГІГ®Г·ГЄГЁ
 			if (this->corners[i] == other->corners[j]) {
 				if (dots == 0) {
 					cdot1 = corners[i];
@@ -90,7 +90,7 @@ bool Shape::common_side(Shape* other) {
 		}
 	}
 	if (dots != 2) {
-		return false; // если не нашли, то стороны не пересекаются
+		return false; // ГҐГ±Г«ГЁ Г­ГҐ Г­Г ГёГ«ГЁ, ГІГ® Г±ГІГ®Г°Г®Г­Г» Г­ГҐ ГЇГҐГ°ГҐГ±ГҐГЄГ ГѕГІГ±Гї
 	}
 
 	for (int i = 0; i < other->corners.size(); i++) {
@@ -109,51 +109,7 @@ bool Shape::common_side(Shape* other) {
 
 	return (flag1 && flag2);
 
-	//Dot base = min_y(common_dots[0], common_dots[1]) = Dot(0, 0); // нижняя точка
-	//double dx = 0 - base.x; // переставляем её в начало координат
-	//double dy = 0 - base.y;
-	//for (int i = 0; i < this->corners.size(); i++) {
-	//	this->corners[i].x += dx; // вслед за ней сдвигаем текущую фигуру
-	//	this->corners[i].y += dy;
-	//}
-	//for (int i = 0; i < other->corners.size(); i++) {
-	//	other->corners[i].x += dx;// и фигуру с которой сравниваем
-	//	other->corners[i].y += dy;
-	//}
-	//base = max_y(common_dots[0], common_dots[1]);
-	//base.x += dx;
-	//base.y += dy;
-	//rotate(atan(base.x / base.y)); // получаем угол для верхней точки и поворачиваем плоскость
-
-	////сравниваем положение относительно оси игрек
-	//for (int i = 0; i < this->corners.size(); i++) { // наша фигура
-	//	if (this->corners[i].x > 0) {
-	//		flag1 = true;
-	//	}
-	//	else {
-	//		flag1 = false;
-	//		break;
-	//	}
-	//}
-	//for (int i = 0; i < other->corners.size(); i++) { // та с которой сравниваем
-	//	if (other->corners[i].x > 0) {
-	//		flag2 = true;
-	//	}
-	//	else {
-	//		flag2 = false;
-	//		break;
-	//	}
-	//}
-
-	//this->corners = old_this_corners;
-	//other->corners = old_other_corners;
-
-	//if (flag1 != flag2) {
-	//	return true;
-	//}
-	//else {
-	//	return false;
-	//}
+	
 }
 Dot& Shape::min_y(Dot& a, Dot& b) const {
 	if (a.y < b.y) {

@@ -7,9 +7,9 @@
 
 class Rhombus:public Shape {
 public:
-	static bool is_rhombus(const std::vector<Dot>& corners); // проверка на ромб
+	static bool is_rhombus(const std::vector<Dot>& corners); // ГЇГ°Г®ГўГҐГ°ГЄГ  Г­Г  Г°Г®Г¬ГЎ
 
-	//конструктор
+	//ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°
 	Rhombus(std::vector<Dot> points, Color color = Color(), double angle = 0) :Shape(points, color, angle) {
 		if (!is_rhombus(points)) {
 			throw std::invalid_argument("It is not Rhombus");
@@ -18,6 +18,6 @@ public:
 			corners = points;
 		}
 	} 
-	void print(std::ostream& OS) const override; // Вывод
+	void print(std::ostream& OS) const override; // Г‚Г»ГўГ®Г¤
 };
 #endif Rhombus_h

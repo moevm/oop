@@ -7,10 +7,7 @@
  bool Rhombus::is_rhombus(const std::vector<Dot>& v) {
 	bool flag = false;
 	for (int i = 0; i < v.size(); i++) {
-		//if (fabs(
-		//	v[i].distance(v[(i + 1) % v.size()]) - 
-		//	v[(i + 1) % v.size()].distance(v[(i + 2) % v.size()])
-		//) > std::numeric_limits<double>::epsilon()) 
+
 		if (!float_comparison(
 			v[i].distance(v[(i + 1) % v.size()]), 
 			v[(i + 1) % v.size()].distance(v[(i + 2) % v.size()])))
