@@ -15,7 +15,7 @@ SOURCES += main.cpp \
         triangle.cpp \
         righttriangle.cpp \
         isoscelestriangle.cpp \
-        point2d.cpp
+        point2d.cpp \
 
 HEADERS += shape.h \
         polygon.h \

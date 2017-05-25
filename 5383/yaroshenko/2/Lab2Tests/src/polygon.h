@@ -13,6 +13,7 @@
 class Polygon : public Shape
 {
 public:
+    Polygon() : Shape(), vertices() {}
     Polygon(const std::vector<Point2d>& v) : Shape(), vertices(v) {}
 
     void translate2d(const Point2d& dp);
@@ -25,7 +26,7 @@ protected:
     // Вершины многоугольника
     std::vector<Point2d> vertices;
 
-    void print(std::ostream &os) const;
+    void print(std::ostream &os) const override;
 };
 
 #endif // POLYGON_H

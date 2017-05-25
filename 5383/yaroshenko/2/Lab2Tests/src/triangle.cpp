@@ -68,3 +68,11 @@ bool Triangle::operator==(const Triangle& other) const
 
     return true;
 }
+
+void Triangle::print(std::ostream &os) const
+{
+    os << "[Triangle]" << std::endl;
+    os << "a = " << a << ", b = " << b << ", c = " << c << std::endl;
+
+    Polygon::print(os);
+}
