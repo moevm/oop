@@ -1,7 +1,3 @@
-//
-// Created by Максим Софронов on 24/05/2017.
-//
-
 #pragma once
 
 #include <iostream>
@@ -11,15 +7,25 @@ enum Color {red, green, blue};
 
 struct Point
 {
-    Point () : x(0.0), y(0.0) {}
+    Point () {}
     Point (double x, double y) : x(x), y(y) {}
     double x;
     double y;
+
+    Point(const Point& from) {
+        x=from.x;
+        y=from.y;
+    }
 };
 
 
 class Shape {
 public:
+    Shape(Color c):_id(_last_id++) {
+        _color=c;
+    }
+
+
     virtual void move (Point) = 0;
     virtual void rotate (double) = 0 ;
     virtual void zoom (double) = 0;
@@ -56,9 +62,6 @@ public:
         }
     }
     virtual ~Shape() {}
-    void setcolor(Color c) {
-        _color = c;
-    }
 
 protected:
     static int _last_id;
@@ -70,21 +73,15 @@ int Shape::_last_id = 1;
 
 class Arc: public Shape {
 public:
-    Arc(Point center, Point start, double angle, Color c): _angle(angle)
+    Arc(Point center, Point start, double angle, Color c): Shape(c), _angle(angle), _start(start)
     {
-        _id=_last_id;
-        _last_id++;
-        _start.x= start.x;
-        _start.y= start.y;
         _center = Point(center.x, center.y);
-        _color = c;
     }
 
-    void move(Point new_coordinates) {
+    void move(Point new_coordinates)  {
+        _center=new_coordinates;
         _start.x+=new_coordinates.x-_center.x;
         _start.y+=new_coordinates.y-_center.y;
-        _center.x=new_coordinates.x;
-        _center.y=new_coordinates.y;
     }
 
     void rotate(double rotate_angle) {
@@ -134,16 +131,12 @@ private:
 
 class Circle: public Shape {
 public:
-    Circle(Point center, double radius, Color c):_radius(radius) {
-        _id=_last_id;
-        _last_id++;
+    Circle(Point center, double radius, Color c):Shape(c), _radius(radius) {
         _center=Point(center.x, center.y);
-        _color = c;
     }
 
     void move(Point new_coordinates) {
-        _center.x=new_coordinates.x;
-        _center.y=new_coordinates.y;
+        _center=new_coordinates;
     }
 
     void rotate(double rotate_angle) {
@@ -182,14 +175,11 @@ private:
 
 class Ellipse: public Shape {
 public:
-    Ellipse(Point left_focus, Point right_focus, Color c) {
-        _id=_last_id;
-        _last_id++;
+    Ellipse(Point left_focus, Point right_focus, Color c): Shape(c) {
         if (left_focus.x > right_focus.x)
             std::swap(left_focus,right_focus);
         _left_focus=Point(left_focus.x, left_focus.y);
         _right_focus=Point(right_focus.x, right_focus.y);
-        _color = c;
     }
 
     void move(Point new_center) {
