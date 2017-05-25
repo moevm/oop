@@ -67,10 +67,10 @@ namespace stepik
 		}
 		*/
 		template <typename U>
-		shared_ptr(const shared_ptr<U> & other) :ptr(other.ptr)
+		shared_ptr(const shared_ptr<U> & other) :ptr(other.get()),link(other.getLink())
 		{
 			//link=new long(other.use_count());
-			link = other.link;
+			//link = other.getLink();
 			if (link)
 				++(*link);
 			// implement this
@@ -81,9 +81,9 @@ namespace stepik
 			//  if (this!=&other)
 			// {
 			decrease();
-			ptr = other.ptr;
+			ptr = other.get();
 			//link=new long(other.use_count());
-			link = other.link;
+			link = other.getLink();
 			if (link)
 				++(*link);
 			// *link=*link+1;

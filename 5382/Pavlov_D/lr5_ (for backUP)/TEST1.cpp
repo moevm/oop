@@ -16,16 +16,12 @@
 using namespace std;
 
 int main(int argc,char* argv[])
-{
-	stepik::vector<int> v(2);
-	v[0] = 1;
-	v[1] = 2;
-	int value = 10;
-	v.push_back(value);
-	std::cout << v[2] << std::endl;
-	std::cout << v.size() << std::endl;
-	v.erase(v.end());
-	std::cout << v.size() << std::endl;
+{ 
+	//RightTriangle testShape({ Point(0, 0), Point(4, 0), Point(0, 4) });
+	//Square sh1({ Point(0, 0), Point(4, 0), Point(0, 4), Point(4, 4) });
+	//RightTriangle sh2({ Point(0, 4), Point(4, 0), Point(4, 4) });
+	//std::cout << testShape.similar(sh1, sh2);
+	
 	system("pause");
 
     return 0;
