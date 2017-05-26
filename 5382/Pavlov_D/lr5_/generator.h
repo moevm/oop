@@ -3,7 +3,7 @@
 #include "IsoscelesTriangle.h"
 #include "RightTriangle.h"
 #include <ctime>
-//Simple random generator
+//Simple random generator.Need More....
 Point generate_Point(long int limit)
 {
 	srand(time(0));
@@ -24,7 +24,10 @@ IsoscelesTriangle generate_IsoscelesTriangle(long int limit)
 {
 	srand(time(0));
 	Point generatePoint1 = generate_Point(limit);
-	IsoscelesTriangle shape({ generatePoint1,Point(generatePoint1.getX(),rand() % limit),Point(rand() % limit,generatePoint1.getY()) });
+	double distance = rand() % (limit / 2) + 1;
+	double height = rand() % (limit / 2) + 4;
+	IsoscelesTriangle shape({ generatePoint1,Point(generatePoint1.getX()+height,generatePoint1.getY()+distance),
+		Point(generatePoint1.getX() + height,generatePoint1.getY() - distance) });
 	return shape;
 }
 RightTriangle generat_RightTriangle(long int limit)

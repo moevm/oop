@@ -272,6 +272,7 @@ public:
 
 	}
 	bool insidePoint(double ix, double iy, const  Shape &shape) const;
+	bool insidePoint(const Point &ip ) const;
 protected:
 	int  colour_;
 	size_t pointCount_;
@@ -446,7 +447,7 @@ bool Shape::similar(const Shape &sh1, const Shape &sh2)
 
 	for (size_t count = 0; count<sh1.pointCount_; count++) {
 
-		if (!insidePoint(sh1.Point_[count].getX(), sh1.Point_[count].getY(), sh2)) {
+		if (!sh2.insidePoint({sh1.Point_[count].getX(), sh1.Point_[count].getY()})) {
 
 			Point buffer(sh1.Point_[count].getX(), sh1.Point_[count].getY());
 			NewPoint.push_back(buffer);
@@ -530,7 +531,58 @@ bool Shape::insidePoint(double ix, double iy, const Shape &shape) const
 		
 
 }
+bool Shape::insidePoint(const Point &ip) const
+{
 
+
+	for (size_t i = 0; i<pointCount_; ++i) {
+		//if ((shape.Point_[i].getX() == ix) && (shape.Point_[i].getY() == iy))
+		if (Point_[i]==ip)
+			return true;
+	}
+	std::vector<Point> vbuffer = Point_;
+	line lin(vbuffer, side);
+	if (lin.checkPoint(ip.getX(),ip.getY()))
+		return true;
+	double S = 0;
+
+	std::vector<Point> vectorBuffer;
+	Point buffer = ip;
+	vectorBuffer.push_back(buffer);
+	bool test = false;
+	for (size_t count1 = 0; count1<pointCount_; ++count1) {
+		for (size_t count2 = 1; count2 + count1<pointCount_; ++count2) {
+			double tside = (sqrt(pow(Point_[count1].getX() - Point_[count1 + count2].getX(), 2.0) + pow(Point_[count1].getY() -Point_[count2 + count1].getY(), 2.0)));
+
+			for (size_t count = 0; count<pointCount_; ++count) {
+				if (tside == side[count])
+					test = true;
+			}
+
+			if (test) {
+				buffer.change(Point_[count1].getX(), Point_[count1].getY());
+				vectorBuffer.push_back(buffer);
+				buffer.change(Point_[count1 + count2].getX(), Point_[count1 + count2].getY());
+				vectorBuffer.push_back(buffer);
+
+				Triangle triangle(vectorBuffer);
+
+				S = S + triangle.area();
+				test = false;
+
+				for (int i = vectorBuffer.size(); i != 1; --i) {
+					vectorBuffer.pop_back();
+
+				}
+
+			}
+		}
+
+	}
+	return  (S == area());
+
+
+}
 bool Shape::sameShape(const Shape &sh1) const
 {
 	if (pointCount_ != sh1.pointCount_)
@@ -564,11 +616,11 @@ bool Shape::sameShape(std::vector<Point> &array) const
 					++count;
 			}
 		}
-		if (count == pointCount_)
-			return true;
-		else
-			return false;
-
+		//if (count == pointCount_)
+			//return true;
+		//else
+			//return false;
+		return (count == pointCount_);
 	}
 }
 
@@ -601,12 +653,12 @@ bool Shape::sameShape(std::vector<Point> &array, const Shape &sh1, const Shape &
 	for (size_t i = 0; i < TroublePoint.size(); i++)
 	{
 
-		if ((insidePoint(TroublePoint[i].getX(), TroublePoint[i].getY(), *this)) && (!sameShape(TroublePoint[i]))) {   //!sameShape(TroublePoint[i].getX(), TroublePoint[i].getY())
-
+		if ((insidePoint(TroublePoint[i])) && (!sameShape(TroublePoint[i]))) {   //!sameShape(TroublePoint[i].getX(), TroublePoint[i].getY())
+			
 			return false;
 		}
 
-		if (((insidePoint(TroublePoint[i].getX(), TroublePoint[i].getY(), sh1)) || ((insidePoint(TroublePoint[i].getX(), TroublePoint[i].getY(), sh2))))) {
+		if (((sh1.insidePoint(TroublePoint[i])) || ((sh2.insidePoint(TroublePoint[i]))))) {
 			count++;
 
 		}

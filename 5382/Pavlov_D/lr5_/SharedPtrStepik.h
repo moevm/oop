@@ -37,40 +37,11 @@ namespace stepik
 			decrease();
 			// implement this
 		}
-		/*
-		shared_ptr(const shared_ptr & other):ptr(other.ptr)
-		{
-		//link=new long(other.use_count());
-		link=other.link;
-		if (link)
-		++(*link);
-		// implement this
-		}
-
-		shared_ptr& operator=(const shared_ptr & other)
-		{
-		if (this!=&other)
-		{
-		decrease();
-		ptr=other.ptr;
-		//link=new long(other.use_count());
-		link=other.link;
-		if (link)
-		++(*link);
-		// *link=*link+1;
-		//TO DO проверить на декр.
-
-
-		}
-		return *this;
-		// implement this
-		}
-		*/
+		
 		template <typename U>
 		shared_ptr(const shared_ptr<U> & other) :ptr(other.get()),link(other.getLink())
 		{
-			//link=new long(other.use_count());
-			//link = other.getLink();
+			
 			if (link)
 				++(*link);
 			// implement this
