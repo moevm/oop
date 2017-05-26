@@ -3,32 +3,37 @@
 #include "IsoscelesTriangle.h"
 #include "RightTriangle.h"
 #include <ctime>
-//TO DO .....................TO DO
-Point generate_Point()
+//Simple random generator
+Point generate_Point(long int limit)
 {
 	srand(time(0));
-	Point point;
+	Point point(rand() % limit, rand() % limit);
 	return point;
 }
-Square generate_Square()
+Square generate_Square(long int limit)
 {
 	
 	srand(time(0));
-	//double g1 = rand();
-	//double g2
-	Square shape;
+	Point generatePoint1 = generate_Point(50);
+	double sideSize = rand() % limit + 1;
+	Square shape({generatePoint1,Point(generatePoint1.getX(),generatePoint1.getY()+sideSize),
+		Point(generatePoint1.getX()+sideSize,generatePoint1.getY()),Point(generatePoint1.getX() + sideSize,generatePoint1.getY()+sideSize) });
 	return shape;
 }
-IsoscelesTriangle generate_IsoscelesTriangle()
+IsoscelesTriangle generate_IsoscelesTriangle(long int limit)
 {
 	srand(time(0));
-	IsoscelesTriangle shape;
+	Point generatePoint1 = generate_Point(limit);
+	IsoscelesTriangle shape({ generatePoint1,Point(generatePoint1.getX(),rand() % limit),Point(rand() % limit,generatePoint1.getY()) });
 	return shape;
 }
-RightTriangle generat_RightTriangle()
+RightTriangle generat_RightTriangle(long int limit)
 {
-	RightTriangle shape;
+	Point generatePoint1 = generate_Point(limit);
+	RightTriangle shape({generatePoint1,Point(generatePoint1.getX(),rand()%limit),Point(rand()%limit,generatePoint1.getY())});
 	return shape;
 }
  void generateRandom(Shape &someFigure)
-{}
+{
+
+}

@@ -114,7 +114,7 @@ struct line {
 
 	line() :size(0) {}
 
-	line(std::vector<Point> Array, std::vector<double > inputsize) :size(Array.size())
+	line(const std::vector<Point> &Array,const  std::vector<double > &inputsize) :size(Array.size())
 	{
 
 		bool notSide = false;
@@ -191,7 +191,7 @@ struct line {
 	}
 private:
 
-	double SizeSide(std::vector<Point> array, int pos1, int pos2)
+	double SizeSide(const std::vector<Point> &array, int pos1, int pos2)
 	{
 		return sqrt(pow(array[pos1].getX() - array[pos2].getX(), 2.0) + pow(array[pos1].getY() - array[pos2].getY(), 2.0));
 
