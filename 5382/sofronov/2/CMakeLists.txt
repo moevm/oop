@@ -8,7 +8,7 @@ enable_testing()
 
 include_directories(${GTEST_INCLUDE_DIRS})
 
-set(SOURCE_FILES test.cpp)
+set(SOURCE_FILES test.cpp Shapes.cpp)
 
 add_executable(2supernew ${SOURCE_FILES})
 

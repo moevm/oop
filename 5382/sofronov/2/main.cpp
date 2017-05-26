@@ -1,8 +1,5 @@
 #include "Shapes.h"
 
-//set(SOURCE_FILES main.cpp Shapes.h Shapes.cpp test.cpp)
-//
-//
 
 int main() {
     Point point1(1.0,1.0);
