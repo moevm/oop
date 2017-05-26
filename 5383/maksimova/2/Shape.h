@@ -10,36 +10,36 @@ struct Color {
 
 class Shape {
 protected:
-	std::vector<Dot> corners; //ò.ê âñå ôèãóðû ÷åòûðåõóãîëüíèêè
-	double angle;// óãîë
+	std::vector<Dot> corners; //т.к все фигуры четырехугольники
+	double angle;// угол
 
-	static size_t counter;// êîë-âî ôèãóð
-	size_t id;//àéäè êàæäîé ôèóãðû
+	static size_t counter;// кол-во фигур
+	size_t id;//айди каждой фиугры
 
-	Color color;//öâåò
+	Color color;//цвет
 	
 
-	virtual void print(std::ostream& OS) const = 0; // Âûâîä
+	virtual void print(std::ostream& OS) const = 0; // Вывод
 
 public:
 	Shape(std::vector<Dot> points, Color color, double angle) :
-		id(counter++), angle(angle), color(color), corners(points) {} //êîíñòêðóêòîð
+		id(counter++), angle(angle), color(color), corners(points) {} //консткруктор
 
-	virtual ~Shape() {}//äåñòðóêòîð
+	virtual ~Shape() {}//деструктор
 
-	void move(Dot &new_center);//ïåðåäâèíóòü
-	void scale(double scale );//ðàññòÿíóòü
-	void rotate(double new_angle);//ïîâåðíóòü
+	void move(Dot &new_center);//передвинуть
+	void scale(double scale );//расстянуть
+	void rotate(double new_angle);//повернуть
 
-	Color get_color() const; //ïîëó÷èòü öâåò
-	void set_color(Color color);//óñòàíîâèòü öâåò
-	Dot get_center();//ïîëó÷èòü öâåò
-	size_t getId() const;//ïîëó÷èòü àéäè
+	Color get_color() const; //получить цвет
+	void set_color(Color color);//установить цвет
+	Dot get_center();//получить цвет
+	size_t getId() const;//получить айди
 	Dot& min_y(Dot& a, Dot& b) const;
 	Dot& max_y(Dot& a, Dot& b) const;
-	friend std::ostream& operator << (std::ostream& OS, const Shape& smth); // îïåðàòîð âûâîäà
+	friend std::ostream& operator << (std::ostream& OS, const Shape& smth); // оператор вывода
 
-	//Çàäàíèå
+	//Задание
 	bool common_side( Shape* other);
 
 };
