@@ -41,6 +41,17 @@ struct Point {
 			return true;
 		else return false;
 	}
+
+	friend bool operator< (Point const &left, Point const &right) {
+		if (left.x < right.x)
+			return true;
+		else
+			if (left.x == right.x)
+				if (left.y < right.y)
+					return true;
+				else return false;
+			else return false;
+	}
 };
 
 class Shape {
@@ -168,7 +179,9 @@ public:
 		center.x /= count;
 		center.y /= count;
 
+		sort(point_i.begin(), point_i.end());
 		vector<Point>::iterator help = adjacent_find(point_i.begin(), point_i.end());
+	//	help = adjacent_find(point_i.begin(), point_i.end());
 		if (help != point_i.end())
 			throw invalid_argument("Wrong input data in Wrong_Pentagone!");
 		set_id();
@@ -296,6 +309,15 @@ TEST(Figure_test, Wrong_pentagon_perimeter_is_bigger_than_pentagon_perimeter) {
 	EXPECT_TRUE(wrong_pentagon.is_perimeter_bigger(pentagon));
 }
 
+TEST(Figure_test, Wrong_pentagon_constructor_fail) {
+	ASSERT_THROW(Wrong_Pentagon wrong_pentagon(white, Point(5, 0), Point(6, 1), Point(5, 0), Point(8, 1), Point(5, 4)),
+				 std::invalid_argument);
+}
+
+TEST(Figure_test, Wrong_pentagon_constructor) {
+	ASSERT_NO_THROW(Wrong_Pentagon wrong_pentagon(white, Point(5, 0), Point(6, 1), Point(5, 1), Point(8, 1), Point(5, 4)));
+}
+
 GTEST_API_ int main(int argc, char **argv) {
 
 	setlocale(0, "Rus");
@@ -304,3 +326,5 @@ GTEST_API_ int main(int argc, char **argv) {
 	system("pause");
 	return 0;
 }
+
+
