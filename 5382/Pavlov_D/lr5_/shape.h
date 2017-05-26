@@ -271,7 +271,7 @@ public:
 		return center;
 
 	}
-	bool insidePoint(double ix, double iy, const  Shape &shape) const;
+	//bool insidePoint(double ix, double iy, const  Shape &shape) const;
 	bool insidePoint(const Point &ip ) const;
 protected:
 	int  colour_;
@@ -481,56 +481,7 @@ bool Shape::similar(const Shape &sh1, const Shape &sh2)
 	return (sameShape(NewPoint));
 
 }
-bool Shape::insidePoint(double ix, double iy, const Shape &shape) const
-{
 
-	for (size_t i = 0; i<shape.pointCount_; ++i) {
-		if ((shape.Point_[i].getX() == ix) && (shape.Point_[i].getY() == iy))
-			return true;
-	}
-	std::vector<Point> vbuffer = shape.Point_;
-	line lin(vbuffer, shape.side);
-	if (lin.checkPoint(ix, iy))
-		return true;
-	double S = 0;
-
-	std::vector<Point> vectorBuffer;
-	Point buffer(ix, iy);
-	vectorBuffer.push_back(buffer);
-	bool test = false;
-	for (size_t count1 = 0; count1<shape.pointCount_; ++count1) {
-		for (size_t count2 = 1; count2 + count1<shape.pointCount_; ++count2) {
-			double tside = (sqrt(pow(shape.Point_[count1].getX() - shape.Point_[count1 + count2].getX(), 2.0) + pow(shape.Point_[count1].getY() - shape.Point_[count2 + count1].getY(), 2.0)));
-
-			for (size_t count = 0; count<shape.pointCount_; ++count) {
-				if (tside == shape.side[count])
-					test = true;
-			}
-
-			if (test) {
-				buffer.change(shape.Point_[count1].getX(), shape.Point_[count1].getY());
-				vectorBuffer.push_back(buffer);
-				buffer.change(shape.Point_[count1 + count2].getX(), shape.Point_[count1 + count2].getY());
-				vectorBuffer.push_back(buffer);
-
-				Triangle triangle(vectorBuffer);
-
-				S = S + triangle.area();
-				test = false;
-
-				for (int i = vectorBuffer.size(); i != 1; --i) {
-					vectorBuffer.pop_back();
-
-				}
-
-			}
-		}
-
-	}
-	return  (S == shape.area());
-		
-
-}
 bool Shape::insidePoint(const Point &ip) const
 {
 

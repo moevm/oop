@@ -28,8 +28,6 @@ namespace stepik
 
 			}
 
-			// *link=0;//смена long (0) на птр
-			// implement this
 		}
 
 		~shared_ptr()
@@ -131,15 +129,15 @@ namespace stepik
 		long *link;
 		void decrease()
 		{
-			//--(*link); //!-тут была жалоба => Прверяют контр с decr;
-			if ((ptr) && (link) && (!--(*link))) { //got it
+			
+			if ((ptr) && (link) && (!--(*link))) { 
 				delete ptr;
 				delete link;
 				link = 0;
 
 			}
 		}
-		// data members
+	
 	};
 
 	template <typename Z, typename  U> //1
