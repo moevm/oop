@@ -6,16 +6,11 @@ class RightTriangle : public Triangle
 public:
 
 	RightTriangle() :Triangle()
-	{
-
-	}
-
-
+	{}
+	
 	RightTriangle(std::vector<Point> array) :Triangle(array) {
 
 		double  maxSide = side[0];
-		//проверка на свойства прямоугольного треугольника
-		//Поиск гипотинузы .Далее проверка Т Пифагора
 
 		std::nth_element(side.begin(), side.begin(), side.end(), std::greater<double>());
 		double  hyp = sqrt(pow(side[1], 2.0) + pow(side[2], 2.0));
@@ -28,7 +23,6 @@ public:
 		ID_ = setNextID();
 
 	}
-
 
 	void showShape(std::ostream &os) const  override
 	{

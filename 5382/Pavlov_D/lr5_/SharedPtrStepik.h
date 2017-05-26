@@ -15,7 +15,6 @@ namespace stepik
 
 		template <typename U>
 		friend class shared_ptr;
-		//я видел тесты еще в 1 части
 		explicit shared_ptr(T *otherptr = 0)
 		{
 			ptr = otherptr;
@@ -33,47 +32,39 @@ namespace stepik
 		~shared_ptr()
 		{
 			decrease();
-			// implement this
 		}
-		
+
 		template <typename U>
-		shared_ptr(const shared_ptr<U> & other) :ptr(other.get()),link(other.getLink())
+		shared_ptr(const shared_ptr<U> & other) :ptr(other.get()), link(other.getLink())
 		{
-			
+
 			if (link)
-				++(*link);
-			// implement this
+				++(*link);	
 		}
 		template <typename U>
 		shared_ptr& operator=(const shared_ptr<U> & other)
 		{
-			//  if (this!=&other)
-			// {
+			
+		
 			decrease();
 			ptr = other.get();
-			//link=new long(other.use_count());
 			link = other.getLink();
 			if (link)
 				++(*link);
-			// *link=*link+1;
-			//TO DO проверить на декр.
-
-
-			// }
-			return *this;
-			// implement this
+			
+			return *this;	
 		}
 
 		explicit operator bool() const
 		{
 			return (ptr != nullptr);
-			// implement this
+			
 		}
 
 		T* get() const
 		{
 			return ptr;
-			// implement this
+		
 		}
 
 		long use_count() const
@@ -83,27 +74,23 @@ namespace stepik
 			else
 				return 0;
 
-
-			// implement this
 		}
 
 		T& operator*() const
 		{
 			return *ptr;
-			// implement this
+			
 		}
 
 		T* operator->() const
 		{
 			return ptr;
-			// implement this
 		}
 
 		void swap(shared_ptr& x) noexcept
 		{
 			std::swap(ptr, x.ptr);
 			std::swap(link, x.link);
-			// implement this
 		}
 
 		void reset(T *otherptr = 0)
@@ -129,15 +116,15 @@ namespace stepik
 		long *link;
 		void decrease()
 		{
-			
-			if ((ptr) && (link) && (!--(*link))) { 
+
+			if ((ptr) && (link) && (!--(*link))) {
 				delete ptr;
 				delete link;
 				link = 0;
 
 			}
 		}
-	
+
 	};
 
 	template <typename Z, typename  U> //1

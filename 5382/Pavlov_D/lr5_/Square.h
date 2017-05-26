@@ -6,17 +6,12 @@ class Square :public Shape
 public:
 	Square() :Shape()
 	{
-
 		pointCount_ = 4;
-
 	}
-
 
 	Square(std::vector<Point> array) :Shape(array) {
 
-
 		pointCount_ = 4;
-
 		if (array.size() != pointCount_)
 			throw std::invalid_argument("Not enought/Too much points ");
 		countSides(side, array);
@@ -29,17 +24,13 @@ public:
 
 		colour_ = 0;
 		Point_ = array;
-
 		ID_ = setNextID();
 	}
-
-
 
 	void showShape(std::ostream &os) const override
 	{
 		os << "I'm Square" << std::endl;
 		for (size_t i = 0; i<pointCount_; ++i) {
-
 			os << "POINT " << i + 1 << "(" << Point_[i].getX() << ";" << Point_[i].getY() << ")" << std::endl;
 		}
 	}
@@ -71,8 +62,6 @@ public:
 			side.pop_back();
 			count--;
 		}
-
-
 	}
 
 };
