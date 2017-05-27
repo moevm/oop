@@ -12,8 +12,8 @@ int main () {
   generateShapes(a,5000);
   generateShapes(a,5000);
 
-  std::cout << alg1(a) << "\n";
-  std::cout << (alg2(a, b)).size();
+  std::cout << isPartitioned(a) << "\n";
+  std::cout << (intersection(a, b)).size();
   
   return 0;
 }

@@ -34,13 +34,11 @@ namespace stepik
     }
 
     vector(std::initializer_list<Type> init)
-        : vector(init.size()) {
-      std::copy(init.begin(), init.end(), m_first);
+        : vector(init.begin(),init.end()) {
     }
 
     vector(const vector& other)
-        : vector(other.size()) {
-      std::copy(other.begin(), other.end(), m_first);
+        : vector(other.begin(), other.end()) {
     }
 
     vector(vector&& other)

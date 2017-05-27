@@ -7,7 +7,7 @@ set(SOURCE_FIGURE_LIB figure.cpp )
 set(SOURCE_VECTOR_LIB vector.cpp )	
 set(SOURCE_SHARED_PTR_LIB shared_ptr.cpp )	
 
-add_definitions(-g)
+add_definitions()
 
 add_library(figure STATIC ${SOURCE_FIGURE_LIB})
 add_library(vector STATIC ${SOURCE_VECTOR_LIB})
