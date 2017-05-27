@@ -2,34 +2,34 @@
 #include <utility>
 
 
-size_t Shape::counter = 0; // èíèöèàëèçàöèÿ ñòàòè÷åñêîãî ïîëÿ
+size_t Shape::counter = 0; // инициализация статического поля
 
-//îïåðàòîð âûâîäà
-std::ostream& operator <<(std::ostream& OS, const Shape& smth)//îïåðàòîð âûâîäà
+//оператор вывода
+std::ostream& operator <<(std::ostream& OS, const Shape& smth)//оператор вывода
 {
 	smth.print(OS);
 	return OS;
 }
-//óñòàíîâèòü öâåò
-void Shape::set_color(Color color) {//óñòàíîâèòü öâåò
+//установить цвет
+void Shape::set_color(Color color) {//установить цвет
 
 	this->color = color;
 
 }
 
-//ïîëó÷èòü öâåò ôèãóðû
-Color Shape::get_color() const { //ïîëó÷èòü öâåò
+//получить цвет фигуры
+Color Shape::get_color() const { //получить цвет
 
 	return color;
 
 }
-//ïîëó÷èòü àéäè
+//получить айди
 size_t Shape::getId() const
 {
 	return id;
 }
 
-//ïåðåäâèíóòü
+//передвинуть
 void Shape::move(Dot &new_v0) {
 	double dx = corners[0].x - new_v0.x;
 	double dy = corners[0].y - new_v0.y;
@@ -38,17 +38,17 @@ void Shape::move(Dot &new_v0) {
 		corners[i].y -= dy;
 	}
 }
-//ðàññòÿíóòü
+//расстянуть
 void  Shape::scale(double scale) {
 	if (scale < 0) {
-		throw std::invalid_argument("Ìàñøòàá íå ìîæåò áûòü îòðèöàòåëüíûì");
+		throw std::invalid_argument("Масштаб не может быть отрицательным");
 	}
 	for (int i = 0; i < corners.size(); i++) {
 		corners[i].x *= scale;
 		corners[i].y *= scale;
 	}
 }
-//ïîâåðíóòü ôèãóðó
+//повернуть фигуру
 void Shape::rotate(double new_angle) {
 	Dot old_v0 = corners[0];
 	move(Dot(0, 0));
@@ -59,15 +59,15 @@ void Shape::rotate(double new_angle) {
 	move(old_v0);
 }
 
-//Èçóìèòåëüíîå çàäàíèå 
-//Ðàáîòàåò íà ÷¸ðíîé ìàãèè
+//Изумительное задание 
+//Работает на чёрной магии
 bool Shape::common_side(Shape* other) {
 
-	//std::vector<Dot>common_dots; // îáùèå òî÷êè
+	//std::vector<Dot>common_dots; // общие точки
 	Dot cdot1;
 	Dot cdot2;
 	int dots = 0;
-	//std::vector<Dot>old_this_corners = this->corners; // ñòàðûå âåðøèíû
+	//std::vector<Dot>old_this_corners = this->corners; // старые вершины
 	//std::vector<Dot>old_other_corners = other->corners;
 
 	bool flag1 = false;
@@ -76,7 +76,7 @@ bool Shape::common_side(Shape* other) {
 	for (int i = 0; i < this->corners.size(); i++) {
 		for (int j = 0; j < other->corners.size(); j++)
 		{
-			//íàõîäèì îáùèå òî÷êè
+			//находим общие точки
 			if (this->corners[i] == other->corners[j]) {
 				if (dots == 0) {
 					cdot1 = corners[i];
@@ -90,7 +90,7 @@ bool Shape::common_side(Shape* other) {
 		}
 	}
 	if (dots != 2) {
-		return false; // åñëè íå íàøëè, òî ñòîðîíû íå ïåðåñåêàþòñÿ
+		return false; // если не нашли, то стороны не пересекаются
 	}
 
 	for (int i = 0; i < other->corners.size(); i++) {
