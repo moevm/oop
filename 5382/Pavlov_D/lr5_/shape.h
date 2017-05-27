@@ -50,7 +50,7 @@ private:
 	double y;
 };
 
-Point  operator+ (const Point& left, const Point& right) 
+Point  operator+ (const Point& left, const Point& right)
 {
 	return Point(left.getX() + right.getX(), left.getY() + right.getY());
 }

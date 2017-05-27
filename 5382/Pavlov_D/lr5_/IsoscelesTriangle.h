@@ -13,9 +13,13 @@ public:
 			throw std::invalid_argument("Not Isoscellence");
 
 		colour_ = 0;
+		
 		Point_ = array;
 		ID_ = setNextID();
 	}
+
+
+
 
 	void showShape(std::ostream &os) const override
 	{
