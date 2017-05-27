@@ -50,30 +50,30 @@ TEST(Shared_Test, result)
 	EXPECT_EQ(777,*test );
 	
 }
-TEST(alg_Test, FindFirst)
+
+TEST(alg_Test, random_non_mod)
 {
-	stepik::shared_ptr<Shape> result( new RightTriangle({ Point(0, 0), Point(4, 0), Point(0, 4) }));
-	stepik::shared_ptr<Shape> field(new  Square({ Point(0, 0), Point(4, 0), Point(0, 4), Point(4, 4) }));
-	stepik::vector<stepik::shared_ptr<Shape>> testVector;
-	stepik::shared_ptr<Shape> test (new RightTriangle({ Point(4, 4), Point(4, 0), Point(0, 4) }));
-	testVector.push_back(stepik::shared_ptr<Shape> (new Square({ Point(5,5),Point(1,1),Point(5,1),Point(1,5) })));
-	testVector.push_back(stepik::shared_ptr<Shape>(new RightTriangle({ Point(4, 4), Point(4, 0), Point(0, 4) })));
-	EXPECT_EQ(*test,*find_first_shape_inside_point(result, field, testVector) ); 
-	
-}
-TEST(alg_Test, split)
-{
-	stepik::shared_ptr<Point> testP(new Point(4, 4));
-	stepik::vector<stepik::shared_ptr<Shape>> trueReuslt;
-	stepik::vector<stepik::shared_ptr<Shape>> falseResult;
-	stepik::vector<stepik::shared_ptr<Shape>> testVector;
-	testVector.push_back(stepik::shared_ptr<Shape>(new Square({ Point(5,5),Point(1,1),Point(5,1),Point(1,5) })));
-	testVector.push_back(stepik::shared_ptr<Shape>(new RightTriangle({ Point(4, 4), Point(4, 0), Point(0, 4) })));
-	split_shapes(testVector, testP, trueReuslt, falseResult);
-	EXPECT_EQ(true, !trueReuslt.empty()); 
+	stepik::vector<stepik::shared_ptr<Shape>> ShapeArray = generate_shape_array(1000,80);
+	stepik::shared_ptr<Point> testP(new Point(30, 30));
+	size_t count = 1;
+	auto result=std::search_n(ShapeArray.begin(), ShapeArray.end(),1, *testP,pred_two);
+	for (int q=0;q<result->use_count();++q)
+	EXPECT_TRUE (result->get()->insidePoint(*testP));
 }
 
-//*/
+TEST(alg_Test, random_mod)
+{
+	stepik::vector<stepik::shared_ptr<Shape>>ShapeArray = generate_shape_array(1000, 80);
+	stepik::shared_ptr<Point> testP(new Point(30, 30));
+	stepik::vector<stepik::shared_ptr<Shape>> trueReuslt;
+	stepik::vector<stepik::shared_ptr<Shape>> falseResult;
+	size_t count = 1;
+	std::copy_if(ShapeArray.begin(), ShapeArray.end(), trueReuslt.begin(), pred_one_true);
+	std::copy_if(ShapeArray.begin(), ShapeArray.end(), falseResult.begin(), pred_one_false);
+
+	
+}
+
 GTEST_API_ int main(int argc, char* argv[])
 {
 	testing::InitGoogleTest(&argc, argv);

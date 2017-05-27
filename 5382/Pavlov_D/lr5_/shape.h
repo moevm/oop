@@ -69,9 +69,11 @@ Point operator / (const Point& left, double parametr)
 }
 bool operator ==  (const Point& left, const Point& right)
 {
-	return ((left.getX() == right.getX()) && (left.getY() == right.getY()));
-	//Does not work//
+	//return ((left.getX() == right.getX()) && (left.getY() == right.getY()));
+	//Now it's work//
 	//return (std::fabs(left - right) < std::numeric_limits<double>::epsilon());
+	return ((std::fabs(left.getX() - right.getX()) < std::numeric_limits<double>::epsilon()*10000) &&
+		(std::fabs(left.getY() - right.getY()) < std::numeric_limits<double>::epsilon())*10000);
 }
 bool operator !=  (const Point& left, const Point& right)
 {
@@ -481,7 +483,8 @@ bool Shape::insidePoint(const Point &ip) const
 			}
 		}
 	}
-	return  (S == area());
+	//return  (S == area());
+	return (abs(S-area()) < std::numeric_limits<double>::epsilon() * 10000);
 }
 bool Shape::sameShape(const Shape &sh1) const
 {

@@ -1,38 +1,18 @@
 #pragma once
-
 #include "RightTriangle.h"
 #include "Square.h"
 #include "IsoscelesTriangle.h"
 #include "SharedPtrStepik.h"
 #include "vectorStepik.h"
-
-stepik::shared_ptr<Shape>  find_first_shape_inside_point(const stepik::shared_ptr<Shape> &testShape,
-	const stepik::shared_ptr<Shape> &fieldShape, const stepik::vector<stepik::shared_ptr<Shape>> &cutShape)
+bool pred_one_true(const stepik::shared_ptr<Shape> &test)
 {
-	for (size_t i = 0; i < cutShape.size(); ++i)
-	{
-		if (testShape->similar(*fieldShape, *cutShape[i])) {
-			
-			return cutShape[i];
-		}
-	}
-	std::cout << "No figure" << std::endl;
+	return test->area() >= 3200.0;
 }
-
-void split_shapes(const stepik::vector<stepik::shared_ptr<Shape>> &randomShape, const stepik::shared_ptr< Point> &testPoint,
-	stepik::vector<stepik::shared_ptr<Shape>> &trueReuslt, stepik::vector<stepik::shared_ptr<Shape>> &falseResult)
+bool pred_one_false(const stepik::shared_ptr<Shape> &test)
 {
-	for (size_t i = 0; i < randomShape.size(); ++i)
-	{
-
-		if (randomShape[i]->insidePoint(*testPoint)) {
-			trueReuslt.push_back(randomShape[i]);
-		}
-
-		else {
-			falseResult.push_back(randomShape[i]);
-		}
-	}
-
-
+	return !(test->area() >= 3200.0);
+}
+bool pred_two(const stepik::shared_ptr<Shape> &test, const Point &testp)
+{
+	return test->insidePoint(testp);
 }
