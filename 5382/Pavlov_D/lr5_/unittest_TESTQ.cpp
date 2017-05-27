@@ -58,7 +58,8 @@ TEST(alg_Test, FindFirst)
 	stepik::shared_ptr<Shape> test (new RightTriangle({ Point(4, 4), Point(4, 0), Point(0, 4) }));
 	testVector.push_back(stepik::shared_ptr<Shape> (new Square({ Point(5,5),Point(1,1),Point(5,1),Point(1,5) })));
 	testVector.push_back(stepik::shared_ptr<Shape>(new RightTriangle({ Point(4, 4), Point(4, 0), Point(0, 4) })));
-	EXPECT_EQ(test, find_first_shape_inside_point(result, field, testVector)); //TO DO ==;
+	EXPECT_EQ(*test,*find_first_shape_inside_point(result, field, testVector) ); 
+	
 }
 TEST(alg_Test, split)
 {
@@ -69,7 +70,7 @@ TEST(alg_Test, split)
 	testVector.push_back(stepik::shared_ptr<Shape>(new Square({ Point(5,5),Point(1,1),Point(5,1),Point(1,5) })));
 	testVector.push_back(stepik::shared_ptr<Shape>(new RightTriangle({ Point(4, 4), Point(4, 0), Point(0, 4) })));
 	split_shapes(testVector, testP, trueReuslt, falseResult);
-	EXPECT_EQ(true, !trueReuslt.empty()); //TO DO ==
+	EXPECT_EQ(true, !trueReuslt.empty()); 
 }
 
 //*/

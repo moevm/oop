@@ -40,8 +40,16 @@ stepik::shared_ptr<Shape> generate_RightTriangle(long int limit)
 {
 
 	Point generatePoint1 = generate_Point(limit);
+	//Same Points defence Forces//
+	double otherCoordinate1 = rand() % limit;
+	double otherCoordinate2 = rand() % limit;
+	if ((otherCoordinate1 == otherCoordinate2) || (otherCoordinate1 == generatePoint1.getY()))
+		otherCoordinate1++;
+	if ((otherCoordinate1 == otherCoordinate2) || (otherCoordinate2 == generatePoint1.getX()))
+		otherCoordinate2++;
+
 	stepik::shared_ptr<Shape> buffer(new RightTriangle({ generatePoint1,
-		Point(generatePoint1.getX(),rand() % limit),Point(rand() % limit,generatePoint1.getY()) }));
+		Point(generatePoint1.getX(),otherCoordinate1),Point(otherCoordinate2,generatePoint1.getY()) }));
 
 	return buffer;
 }
@@ -49,7 +57,7 @@ stepik::vector<stepik::shared_ptr<Shape>> generate_shape_array(long size, long l
 {
 
 	stepik::vector<stepik::shared_ptr<Shape>> array;
-	for (int count = 0; count < size; ++count)
+	for (int count = 0; count <size; ++count)
 	{
 		stepik::shared_ptr<Shape> buffer;
 		size_t switch_on = rand() % 3 + 1;
@@ -78,5 +86,4 @@ stepik::vector<stepik::shared_ptr<Shape>> generate_shape_array(long size, long l
 		array.push_back(buffer);
 	}
 	return array;
-
 }
