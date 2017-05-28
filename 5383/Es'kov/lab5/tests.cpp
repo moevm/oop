@@ -24,7 +24,7 @@ stepik::vector< stepik::shared_ptr<shape> > kappa3 =
 	stepik::shared_ptr<shape>(new ellipse(130, 240, paint_area_info(500, 500, 750, 250, _hdc, rgb_color(0, 255, 0))))
 };
 
-stepik::vector< stepik::shared_ptr<shape> > kappa2 =
+stepik::vector< stepik::shared_ptr<shape> > kappa4 =
 {
 	stepik::shared_ptr<shape>(new circle(50, paint_area_info(500, 500, 250, 250, _hdc, rgb_color(255, 0, 0)))),
 	stepik::shared_ptr<shape>(new circle(100, paint_area_info(500, 500, 250, 250, _hdc, rgb_color(255, 0, 0)))),
