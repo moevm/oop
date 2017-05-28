@@ -2,6 +2,7 @@
 #include "lab5.h"
 
 HDC _hdc = NULL;
+stepik::vector< stepik::shared_ptr<shape> > res;
 
 stepik::vector< stepik::shared_ptr<shape> > kappa1 =
 {
@@ -37,7 +38,10 @@ TEST(lab5_test, my_func1){
 }
 
 TEST(lab5_test, my_func2){
-	stepik::vector< stepik::shared_ptr<shape> > res = intersection(kappa1, kappa2);
+	res = intersection(kappa1, kappa2);
 	EXPECT_EQ(res.size(), 1);
 	EXPECT_EQ(res[0]->shape_type(), "ellipse");
+
+	res = intersection(kappa3, kappa4);
+	EXPECT_EQ(res.size(), 0);
 }
