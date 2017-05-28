@@ -44,8 +44,41 @@ int same_search(const stepik::vector<stepik::shared_ptr<shape> > &first, const s
 stepik::vector< stepik::shared_ptr<shape> > intersection(const stepik::vector<stepik::shared_ptr<shape> > &first, const stepik::vector<stepik::shared_ptr<shape> > &second){
 	stepik::vector< stepik::shared_ptr<shape> > result;
 
+	//Пересечение по предикату
 	for (int i = 0; i < min(first.size(), second.size()); i++)
 		if (type_predikat(first[i].get(), second[i].get())) result.push_back(first[i]);
 
+	//Сортируем
+	perimeter_sort(result, 0, result.size());
+
 	return result;
+}
+
+void perimeter_sort(stepik::vector<stepik::shared_ptr<shape> > arr, int left, int right){
+	int i = left, j = right;
+	stepik::shared_ptr<shape> tmp;
+	stepik::shared_ptr<shape> pivot = arr[(left + right) / 2];
+
+	/* partition */
+	while (i <= j) {
+		while (arr[i]->perimetr() < pivot->perimetr())
+			i++;
+		while (arr[j]->perimetr() > pivot->perimetr())
+			j--;
+		if (i <= j) {
+			tmp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = tmp;
+			i++;
+			j--;
+		}
+	};
+
+	/* recursion */
+	if (left < j){
+		perimeter_sort(arr, left, j);
+	}
+	if (i < right){
+		perimeter_sort(arr, i, right);
+	}
 }
