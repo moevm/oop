@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include <vector>
 
 class Color {
 private:
@@ -30,7 +32,17 @@ private:
 public:
 	Point(double Xn = 0, double Yn = 0): X(Xn), Y(Yn){}
 
-    Point operator+(Point const& t) const;
+	Point Point::operator+(Point const& t) const
+	{
+		Point a(X + t.X, Y + t.Y);
+		return a;
+	};
+
+	bool Point::operator==(Point const &t) const
+	{
+		return (X == t.X && Y == t.Y);
+	};
+
     double getX()
     {
         return X;
@@ -53,11 +65,7 @@ public:
         return os;
     }
 };
-Point Point::operator+(Point const& t) const
-{
-    Point a(X + t.X, Y + t.Y);
-    return a;
-}
+
 class Shape {
 public:
 	Shape(): color(Color(0)){}
@@ -76,6 +84,16 @@ public:
     {
         color = newcolour;
     }
+	
+	bool hasCommonVertex(const Shape& first, const Shape& second){
+		for(int i = 0; i < first.point.size(); i++){
+			for(int j = 0; j < second.point.size(); j++){
+				if(first.point[i] == second.point[j]) return true;
+			}
+		}
+		
+		return false;
+	}
 
 protected:
     std::vector<Point> point;
