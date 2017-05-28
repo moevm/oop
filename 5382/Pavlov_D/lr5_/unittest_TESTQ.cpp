@@ -70,9 +70,12 @@ TEST(alg_Test, random_mod)
 	stepik::vector<stepik::shared_ptr<Shape>>ShapeArray = generate_shape_array(MAX, diapazoneLimit);
 	stepik::vector<stepik::shared_ptr<Shape>> trueReuslt(MAX);
 	stepik::vector<stepik::shared_ptr<Shape>> falseResult(MAX);
-	std::copy_if(ShapeArray.begin(), ShapeArray.end(), trueReuslt.begin(), pred_one_true);
-	std::copy_if(ShapeArray.begin(), ShapeArray.end(), falseResult.begin(), pred_one_false);
-
+	std::copy_if(ShapeArray.begin(), ShapeArray.end(), trueReuslt.begin(), pred_one);
+	std::remove_copy_if(ShapeArray.begin(), ShapeArray.end(), falseResult.begin(), pred_one);
+	for (int q = 0; (trueReuslt[q]); ++q)
+		EXPECT_TRUE(trueReuslt[q]->area() >= 3200);
+	for (int q = 0; (falseResult[q]); ++q)
+		EXPECT_TRUE(falseResult[q]->area() < 3200);
 }
 
 GTEST_API_ int main(int argc, char* argv[])
