@@ -53,25 +53,26 @@ TEST(Shared_Test, result)
 
 TEST(alg_Test, random_non_mod)
 {
-	stepik::vector<stepik::shared_ptr<Shape>> ShapeArray = generate_shape_array(1000,80);
+	long int MAX = 1000;//max count Shape.
+	long int diapazoneLimit = 80;//for odds insrease.
+	stepik::vector<stepik::shared_ptr<Shape>> ShapeArray = generate_shape_array(MAX,diapazoneLimit);
 	stepik::shared_ptr<Point> testP(new Point(30, 30));
 	size_t count = 1;
-	auto result=std::search_n(ShapeArray.begin(), ShapeArray.end(),1, *testP,pred_two);
+	auto result=std::search_n(ShapeArray.begin(), ShapeArray.end(),count, *testP,pred_two);
 	for (int q=0;q<result->use_count();++q)
 	EXPECT_TRUE (result->get()->insidePoint(*testP));
 }
 
 TEST(alg_Test, random_mod)
 {
-	stepik::vector<stepik::shared_ptr<Shape>>ShapeArray = generate_shape_array(1000, 80);
-	stepik::shared_ptr<Point> testP(new Point(30, 30));
-	stepik::vector<stepik::shared_ptr<Shape>> trueReuslt;
-	stepik::vector<stepik::shared_ptr<Shape>> falseResult;
-	size_t count = 1;
+	long int MAX = 1000;//max count Shape.
+	long int diapazoneLimit = 80;//for odds insrease.
+	stepik::vector<stepik::shared_ptr<Shape>>ShapeArray = generate_shape_array(MAX, diapazoneLimit);
+	stepik::vector<stepik::shared_ptr<Shape>> trueReuslt(MAX);
+	stepik::vector<stepik::shared_ptr<Shape>> falseResult(MAX);
 	std::copy_if(ShapeArray.begin(), ShapeArray.end(), trueReuslt.begin(), pred_one_true);
 	std::copy_if(ShapeArray.begin(), ShapeArray.end(), falseResult.begin(), pred_one_false);
 
-	
 }
 
 GTEST_API_ int main(int argc, char* argv[])
