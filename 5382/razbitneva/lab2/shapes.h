@@ -40,7 +40,7 @@ public:
 
 	bool Point::operator==(Point const &t) const
 	{
-		return (X == t.X && Y == t.Y);
+		return (abs(X - t.X) < DBL_EPSILON  && abs(Y - t.Y) < DBL_EPSILON);
 	};
 
     double getX()
@@ -85,15 +85,7 @@ public:
         color = newcolour;
     }
 	
-	bool hasCommonVertex(const Shape& first, const Shape& second){
-		for(int i = 0; i < first.point.size(); i++){
-			for(int j = 0; j < second.point.size(); j++){
-				if(first.point[i] == second.point[j]) return true;
-			}
-		}
-		
-		return false;
-	}
+	static bool hasCommonVertex(const Shape& first, const Shape& second);
 
 protected:
     std::vector<Point> point;
@@ -115,6 +107,16 @@ void Shape::rotate(double angle)
         point[i].setY(point[i].getX() * sin(angle)
             + point[i].getY() * cos(angle));
     }
+}
+
+bool Shape::hasCommonVertex(const Shape& first, const Shape& second){
+	for (int i = 0; i < first.point.size(); i++){
+		for (int j = 0; j < second.point.size(); j++){
+			if (first.point[i] == second.point[j]) return true;
+		}
+	}
+
+	return false;
 }
 
 //===Треугольник===
