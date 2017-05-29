@@ -73,8 +73,8 @@ public:
 		this->colour = colour;
 	}
 
-	// Определяет периметр какой фигуры больше
-	// Если периметр у текущего объекта >= возвращаем true, иначе - false
+	// РћРїСЂРµРґРµР»СЏРµС‚ РїРµСЂРёРјРµС‚СЂ РєР°РєРѕР№ С„РёРіСѓСЂС‹ Р±РѕР»СЊС€Рµ
+	// Р•СЃР»Рё РїРµСЂРёРјРµС‚СЂ Сѓ С‚РµРєСѓС‰РµРіРѕ РѕР±СЉРµРєС‚Р° >= РІРѕР·РІСЂР°С‰Р°РµРј true, РёРЅР°С‡Рµ - false
 	bool is_perimeter_bigger(Shape const& shape)
 	{
 		return this->perimeter() >= shape.perimeter();
@@ -88,11 +88,11 @@ public:
 		return this->perimeter() <= other.perimeter();
 	}
 
-	virtual void rotate(float angle) = 0; // поворот фигуры относительно начала координат
-	virtual void scale(float k) = 0; // масштабирование
-	virtual void move(Point const &new_center) = 0; // перемещение
-	virtual void show() const = 0; // вывод на экран всех полей фигуры
-	virtual float perimeter() const = 0; // подсчет периметра фигуры
+	virtual void rotate(float angle) = 0; // РїРѕРІРѕСЂРѕС‚ С„РёРіСѓСЂС‹ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РЅР°С‡Р°Р»Р° РєРѕРѕСЂРґРёРЅР°С‚
+	virtual void scale(float k) = 0; // РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ
+	virtual void move(Point const &new_center) = 0; // РїРµСЂРµРјРµС‰РµРЅРёРµ
+	virtual void show() const = 0; // РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ РІСЃРµС… РїРѕР»РµР№ С„РёРіСѓСЂС‹
+	virtual float perimeter() const = 0; // РїРѕРґСЃС‡РµС‚ РїРµСЂРёРјРµС‚СЂР° С„РёРіСѓСЂС‹
 	friend ostream& operator<< (ostream &out, Shape const& obj) {
 		obj.show();
 		out << "Colour - " << colours_map[obj.colour] << endl;
@@ -111,29 +111,29 @@ public:
 		set_id();
 	}
 
-	// поворот фигуры относительно начала координат
+	// РїРѕРІРѕСЂРѕС‚ С„РёРіСѓСЂС‹ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РЅР°С‡Р°Р»Р° РєРѕРѕСЂРґРёРЅР°С‚
 	void rotate(float angle) override {
 		float help_x = this->center.x;
 		this->center.x = this->center.x * cos(angle) - this->center.y * sin(angle);
 		this->center.y = help_x * sin(angle) + this->center.y * cos(angle);
 	}
 
-	// масштабирование фигуры относительно ее центра
+	// РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ С„РёРіСѓСЂС‹ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РµРµ С†РµРЅС‚СЂР°
 	void scale(float k) override {
 		radius *= k;
 	}
 
-	// перемещение центра фигуры в заданные координаты
+	// РїРµСЂРµРјРµС‰РµРЅРёРµ С†РµРЅС‚СЂР° С„РёРіСѓСЂС‹ РІ Р·Р°РґР°РЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹
 	void move(Point const &new_center) override {
 		center = new_center;
 	}
 
-	// подсчет периметра круга
+	// РїРѕРґСЃС‡РµС‚ РїРµСЂРёРјРµС‚СЂР° РєСЂСѓРіР°
 	float perimeter() const override {
 		return ((this->radius) * 2 * PI);
 	}
 
-	// вывод на экран информации о фигуре 
+	// РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ РёРЅС„РѕСЂРјР°С†РёРё Рѕ С„РёРіСѓСЂРµ 
 	void show() const override {
 		cout << "Circle: \n";
 		cout << "Center - (" << center.x << " , " << center.y << ") \n";
@@ -152,7 +152,7 @@ public:
 		set_id();
 	}
 
-	// подсчет периметра правильного пятиугольника
+	// РїРѕРґСЃС‡РµС‚ РїРµСЂРёРјРµС‚СЂР° РїСЂР°РІРёР»СЊРЅРѕРіРѕ РїСЏС‚РёСѓРіРѕР»СЊРЅРёРєР°
 	float perimeter() const override {
 		return (10 * this->radius*sin(PI / 5));
 	}
@@ -168,7 +168,7 @@ public:
 class Wrong_Pentagon : public Shape {
 protected:
 	vector <Point> point_i;
-	const int count = 5; // количество углов многоугольника
+	const int count = 5; // РєРѕР»РёС‡РµСЃС‚РІРѕ СѓРіР»РѕРІ РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРєР°
 
 public:
 	Wrong_Pentagon(Colour colour, Point const &point_1,
@@ -189,7 +189,7 @@ public:
 		set_id();
 	}
 
-	// перемещение фигуры в заданные координаты
+	// РїРµСЂРµРјРµС‰РµРЅРёРµ С„РёРіСѓСЂС‹ РІ Р·Р°РґР°РЅРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹
 	void move(Point const &new_center) override {
 		Point help(0, 0);
 		help = this->center - new_center;
@@ -197,7 +197,7 @@ public:
 		this->center = new_center;
 	}
 
-	//поворот точки относительно начала координат
+	//РїРѕРІРѕСЂРѕС‚ С‚РѕС‡РєРё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РЅР°С‡Р°Р»Р° РєРѕРѕСЂРґРёРЅР°С‚
 	void rotate_point(float angle, Point point)
 	{
 		float help_x = this->center.x;
@@ -205,12 +205,12 @@ public:
 		this->center.y = help_x * sin(angle) + this->center.y * cos(angle);
 	}
 
-	// поворот фигуры относительно начала координат
+	// РїРѕРІРѕСЂРѕС‚ С„РёРіСѓСЂС‹ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РЅР°С‡Р°Р»Р° РєРѕРѕСЂРґРёРЅР°С‚
 	void rotate(float angle) override {
 		for (auto&& i : this->point_i) rotate_point(angle, i);
 	}
 
-	// увеличивает/уменьшает расстояние между центром фигуры и точкой в k раз
+	// СѓРІРµР»РёС‡РёРІР°РµС‚/СѓРјРµРЅСЊС€Р°РµС‚ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ С†РµРЅС‚СЂРѕРј С„РёРіСѓСЂС‹ Рё С‚РѕС‡РєРѕР№ РІ k СЂР°Р·
 	void scale_point(float k, Point &point)
 	{
 		Point help(0, 0);
@@ -227,14 +227,14 @@ public:
 			point.y = this->center.y + help.y*k;
 	}
 
-	// масштабирует неправильный пятиугольник
+	// РјР°СЃС€С‚Р°Р±РёСЂСѓРµС‚ РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ РїСЏС‚РёСѓРіРѕР»СЊРЅРёРє
 	void scale(float k) {
 		for (auto&& i : this->point_i) scale_point(k, i);
 	}
 
 	float perimeter() const override {
 		Point help_point;
-		float p = 0; // периметр
+		float p = 0; // РїРµСЂРёРјРµС‚СЂ
 		for (int i = 0; i < count - 1; i++)
 		{
 			help_point = point_i[i] - point_i[i + 1];
@@ -246,7 +246,7 @@ public:
 		return p;
 	}
 
-	// вывод на экран информации о фигуре 
+	// РІС‹РІРѕРґ РЅР° СЌРєСЂР°РЅ РёРЅС„РѕСЂРјР°С†РёРё Рѕ С„РёРіСѓСЂРµ 
 	void show() const override {
 		cout << "Wrong_Pentagon: \n";
 		int j = 1;
