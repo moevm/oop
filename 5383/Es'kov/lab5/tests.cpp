@@ -32,7 +32,7 @@ stepik::vector< stepik::shared_ptr<shape> > kappa4 =
 	stepik::shared_ptr<shape>(new circle(150, paint_area_info(500, 500, 250, 250, _hdc, rgb_color(255, 0, 0))))
 };
 
-TEST(lab5_test, my_func1){
+/*TEST(lab5_test, my_func1){
 	EXPECT_EQ(same_search(kappa1, kappa2), 1);
 	EXPECT_EQ(same_search(kappa3, kappa4), INT_MIN);
 }
@@ -44,4 +44,21 @@ TEST(lab5_test, my_func2){
 
 	res = intersection(kappa3, kappa4);
 	EXPECT_EQ(res.size(), 0);
+}*/
+
+void main(){
+	setlocale(LC_ALL, "rus");
+
+	//Генерируем
+	stepik::vector< stepik::shared_ptr<shape> > shapes1 = generateshapes(1337);
+	stepik::vector< stepik::shared_ptr<shape> > shapes2 = generateshapes(1337);
+
+	//Ищем пересечения и сортируем
+	stepik::vector< stepik::shared_ptr<shape> > result = intersection(shapes1, shapes2);
+
+	for (unsigned int i = 0; i < result.size(); i++)
+		cout << result[i]->shape_type() << ", perimeter: " << result[i]->perimetr() << endl;
+	cout << "\nРазмер вектора пересечений: " << result.size() << ", первое пересечение на позиции " << same_search(shapes1, shapes2) << endl;
+
+	system("pause");
 }
