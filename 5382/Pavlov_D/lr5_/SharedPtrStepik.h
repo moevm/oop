@@ -47,27 +47,15 @@ namespace stepik
 		template <typename U>
 		shared_ptr& operator=(const shared_ptr<U> & other)
 		{
-
-
-			decrease();
-			ptr = other.get();
-			link = other.getLink();
-			if (link)
-				++(*link);
-
+			shared_ptr buffer(other);
+			swap(buffer);
 			return *this;
 		}
 
 		shared_ptr& operator=(const shared_ptr<T> & other)
 		{
-
-
-			decrease();
-			ptr = other.get();
-			link = other.getLink();
-			if (link)
-				++(*link);
-
+			shared_ptr buffer(other);
+			swap(buffer);		
 			return *this;
 		}
 
@@ -80,7 +68,6 @@ namespace stepik
 		T* get() const
 		{
 			return ptr;
-
 		}
 
 		long use_count() const
