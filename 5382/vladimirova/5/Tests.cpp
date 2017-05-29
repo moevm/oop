@@ -86,9 +86,7 @@ bool unary_predicate(const shared_ptr<Shape> &a) {
 TEST(Algorithm_tests, not_equal) {
 	list<shared_ptr<Shape>> first = create_figures();
 	list<shared_ptr<Shape>> second = create_figures();
-	std::pair<list<shared_ptr<Shape>>::iterator, list<shared_ptr<Shape>>::iterator> tmp;
-	tmp = std::mismatch(first.begin(), first.end(), second.begin(), binary_predicate);
-	EXPECT_FALSE((tmp.first == first.end()) && (tmp.second == second.end()));
+	EXPECT_FALSE(std::is_permutation(first.begin(), first.end(), second.begin(), binary_predicate));
 }
 
 TEST(Algorithm_tests, equal) {
@@ -96,9 +94,7 @@ TEST(Algorithm_tests, equal) {
 	list<shared_ptr<Shape>> second;
 	for (size_t i = 0; i < 1000; ++i)
 		second.push_back(shared_ptr<Shape>(new Parallelogram(0, 0, "white", 10, 10, 90)));
-	std::pair<list<shared_ptr<Shape>>::iterator, list<shared_ptr<Shape>>::iterator> tmp;
-	tmp = std::mismatch(first.begin(), first.end(), second.begin(), binary_predicate);
-	EXPECT_TRUE((tmp.first == first.end()) && (tmp.second == second.end()) );
+	EXPECT_TRUE(std::is_permutation(first.begin(), first.end(), second.begin(), binary_predicate));
 }
 
 TEST(Algorithm_tests, remove) { 
