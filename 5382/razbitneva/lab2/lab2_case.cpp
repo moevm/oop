@@ -17,3 +17,13 @@ TEST(lab2, parallelogram){
 	EXPECT_EQ(p.get_width(), 300);
 	EXPECT_EQ(p.get_heigth(), 100);
 }
+
+TEST(lab2, vertex){
+	Triangle t(40, 8);
+	Rhombus r(10, 30);
+	Parallelogram p(90, 150);
+
+	EXPECT_FALSE(Shape::hasCommonVertex(t, p));
+	EXPECT_FALSE(Shape::hasCommonVertex(t, r));
+	EXPECT_FALSE(Shape::hasCommonVertex(p, r));
+}
