@@ -24,7 +24,7 @@ map <color_type, char*> map_of_colour = {
 	{ black, "Black" }
 };
 
-double fRand(double fMin = -range, double fMax = range)
+double value_random(double fMin = -range, double fMax = range)
 {
 	double f = (double)rand() / RAND_MAX;
 	return fMin + f * (fMax - fMin);
@@ -34,7 +34,7 @@ struct Point
 {
 	Point() :x(0.0), y(0.0) {}
 	Point(double x, double y) : x(x), y(y) {}
-	Point(bool rand) :x(fRand()), y(fRand()) {}
+	Point(bool rand) :x(value_random()), y(value_random()) {}
 
 	friend Point operator- (const Point& left, const Point& right)
 	{
@@ -52,7 +52,7 @@ struct Point
 	double y;
 };
 
-double length(const Point &left, const Point &right)
+double distance_between_points(const Point &left, const Point &right)
 {
 	return sqrt(pow((left.x - right.x), 2) + pow((left.y - right.y), 2));
 }
@@ -70,9 +70,9 @@ Point rotate_point(const Point &point, const Point &relative, const double &angl
 
 float square_triangle(const Point& first, const Point& second, const Point& third)
 {
-	float a = length(first, second);
-	float b = length(second, third);
-	float c = length(third, first);
+	float a = distance_between_points(first, second);
+	float b = distance_between_points(second, third);
+	float c = distance_between_points(third, first);
 	float p = (a + b + c) / 2;
 	return sqrt(p*(p - a)*(p - b)*(p - c));
 }
@@ -162,7 +162,7 @@ public:
 		this->center = Point(true);
 		this->vertex[0] = Point(true);
 		double angle = 0.0;
-		for (; ((angle == M_PI) || (angle == 0.0)); angle = fRand(-M_PI, M_PI));
+		for (; ((angle == M_PI) || (angle == 0.0)); angle = value_random(-M_PI, M_PI));
 		this->vertex[1] = rotate_point(this->vertex[0], this->center, angle);
 		this->vertex[2] = rotate_point(this->vertex[0], this->center, M_PI);
 		this->vertex[3] = rotate_point(this->vertex[1], this->center, M_PI);
@@ -174,7 +174,7 @@ public:
 		//если длины полудиагоналей не равны или заданные вершины димаетрально противоположны
 		if (((second_vertex.x == first_vertex.x + 2 * abs(first_vertex.x - center.x)) &&
 			(second_vertex.y == first_vertex.y + 2 * abs(first_vertex.y - center.y))) ||
-			(length(first_vertex, center) != length(second_vertex, center)))
+			(distance_between_points(first_vertex, center) != distance_between_points(second_vertex, center)))
 			throw invalid_argument("The lengths of the half-diagonals are not equal"
 				"or the given vertices are dimaetrically opposite");
 		this->center = center;
@@ -192,7 +192,7 @@ public:
 
 	float square() const override
 	{
-		return length(vertex[0], vertex[1]) * length(vertex[1], vertex[2]);
+		return distance_between_points(vertex[0], vertex[1]) * distance_between_points(vertex[1], vertex[2]);
 	}
 
 	void show() const override
@@ -221,7 +221,7 @@ public:
 		this->vertex[0] = Point(true);
 		this->vertex[1] = rotate_point(this->vertex[0], this->center, M_PI / 2);
 		this->vertex[1] = this->vertex[1] - this->center;
-		this->vertex[1] = this->vertex[1] * fRand(-1, 1);
+		this->vertex[1] = this->vertex[1] * value_random(-1, 1);
 		this->vertex[1] = this->vertex[1] + this->center;
 		this->vertex[2] = rotate_point(this->vertex[0], center, M_PI);
 		this->vertex[3] = rotate_point(this->vertex[1], center, M_PI);
@@ -231,8 +231,8 @@ public:
 	Ellipse(const Point &center, const Point &first_vertex, const Point &second_vertex)
 	{
 		//Если угол между полуосями не равен 90 градусов
-		if ((static_cast <float> (pow(length(first_vertex, center), 2)) + static_cast <float> (pow(length(second_vertex, center), 2)))
-			!= static_cast <float> (pow(length(first_vertex, second_vertex), 2)))
+		if ((static_cast <float> (pow(distance_between_points(first_vertex, center), 2)) + static_cast <float> (pow(distance_between_points(second_vertex, center), 2)))
+			!= static_cast <float> (pow(distance_between_points(first_vertex, second_vertex), 2)))
 			throw invalid_argument("The angle between the semiaxes is not equal to 90 degrees");
 
 		this->center = center;
@@ -255,7 +255,7 @@ public:
 
 	float square() const override
 	{
-		return length(center, vertex[0]) * length(center, vertex[1]) * M_PI;
+		return distance_between_points(center, vertex[0]) * distance_between_points(center, vertex[1]) * M_PI;
 	}
 
 	bool isPointInside(const Point& point) const override
@@ -267,12 +267,12 @@ public:
 		help_ellipse.move(Point(0, 0));
 
 		//получение индекса одной из точек пересечения большей оси с эллипсом
-		int index = length(help_ellipse.center, help_ellipse.vertex[0]) > length(help_ellipse.center, help_ellipse.vertex[1]) ? 0 : 1;
+		int index = distance_between_points(help_ellipse.center, help_ellipse.vertex[0]) > distance_between_points(help_ellipse.center, help_ellipse.vertex[1]) ? 0 : 1;
 
 		//вычисление угла между главной полуосью и осью ОХ
-		float a = length(help_ellipse.center, help_ellipse.vertex[index]);
+		float a = distance_between_points(help_ellipse.center, help_ellipse.vertex[index]);
 		Point help(abs(help_ellipse.vertex[index].x), 0);
-		float b = length(help_ellipse.center, help);
+		float b = distance_between_points(help_ellipse.center, help);
 		float angle = acos(b / a);
 
 		//поворот эллипса так, чтобы главная ось совпадала с осью ОХ
@@ -288,13 +288,13 @@ public:
 		}
 
 		//вычисление длины болшей оси эллипса (суммы расстояний от фокусов до эллипса)
-		double distance = length(help_ellipse.vertex[index], help_ellipse.vertex[index + 2]);
+		double distance = distance_between_points(help_ellipse.vertex[index], help_ellipse.vertex[index + 2]);
 
 		//вычисление квадратов длин главной и побочной полуосей эллипса a^2 и b^2
 		//(для того, чтобы найти расстояние до фокусов по формуле c = sqrt(a^2-b^2) )
 
-		double maximum = pow(length(help_ellipse.center, help_ellipse.vertex[index]), 2);
-		double minimum = pow(length(help_ellipse.center, help_ellipse.vertex[index + 1]), 2);
+		double maximum = pow(distance_between_points(help_ellipse.center, help_ellipse.vertex[index]), 2);
+		double minimum = pow(distance_between_points(help_ellipse.center, help_ellipse.vertex[index + 1]), 2);
 		double focus_length = sqrt(maximum - minimum);
 
 		//вычисление координат фокусов
@@ -314,7 +314,7 @@ public:
 		second_focus = second_focus + reserv;
 
 		//проверка нахождения точки внутри эллипса 
-		if (my_round(length(first_focus, point)) + my_round(length(second_focus, point))
+		if (my_round(distance_between_points(first_focus, point)) + my_round(distance_between_points(second_focus, point))
 			> my_round(distance)) return false;
 		else return true;
 	}
@@ -347,7 +347,7 @@ public:
 
 	float square() const override
 	{
-		return length(vertex[0], vertex[1]) * length(vertex[1], vertex[2]);
+		return distance_between_points(vertex[0], vertex[1]) * distance_between_points(vertex[1], vertex[2]);
 	}
 
 	bool isPointInside(const Point& point) const override

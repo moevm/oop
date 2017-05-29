@@ -33,7 +33,6 @@ my_vector<shared_ptr<Shape>> generate_objects() {
 		case 1: {
 			array.push_back(shared_ptr<Shape>(new Rectangle));
 			break;
-
 		}
 		case 2: {
 			array.push_back(shared_ptr<Shape>(new Ellipse));
@@ -49,13 +48,8 @@ TEST(Algorithm_tests, Non_modifying)
 	my_vector<shared_ptr<Shape>> array = generate_objects();
 
 	shared_ptr<Shape> check(new Ellipse(Point(0, 0), Point(1, 0), Point(0, 1)));
-
-	size_t count = 2;
-	auto it = search_n(array.begin(), array.end(), count, check, binary_pred);
-	if (it != array.end())
-		for (size_t i = 0; i != count; ++i, ++it) {
-			EXPECT_TRUE(check.get()->isInsideOfAnother(*(it->get())));
-		}
+		
+	EXPECT_FALSE(none_of(array.begin(), array.end(), unary_pred)); //пороговые значения definite_square
 }
 
 TEST(Algorithm_tests, Modifying)
@@ -63,14 +57,17 @@ TEST(Algorithm_tests, Modifying)
 	my_vector<shared_ptr<Shape>> array = generate_objects();
 
 	my_vector<shared_ptr<Shape>> result(array.size());
-	copy_if(array.begin(), array.end(), stdext::make_unchecked_array_iterator(result.begin()), unary_pred);
+
+	remove_copy_if(array.begin(), array.end(), 
+		stdext::make_unchecked_array_iterator(result.begin()), 
+		unary_pred);
 
 	auto it = result.begin();
 	for (; ((it->get() != nullptr) && (it != result.end())); ++it);
 	result.resize(it - result.begin());
 
 	for (it = result.begin(); it != result.end(); ++it) {
-		EXPECT_TRUE(it->get()->square() > definite_square);
+		EXPECT_FALSE(it->get()->square() > definite_square);
 	}
 }
 
