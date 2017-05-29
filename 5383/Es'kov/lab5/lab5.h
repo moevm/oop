@@ -82,11 +82,11 @@ void perimeter_sort(stepik::vector<stepik::shared_ptr<shape> > &arr, int left, i
 stepik::vector< stepik::shared_ptr<shape> > intersection(const stepik::vector<stepik::shared_ptr<shape> > &first, const stepik::vector<stepik::shared_ptr<shape> > &second){
 	stepik::vector< stepik::shared_ptr<shape> > result;
 
-	//Пересечение по предикату
+	//РЎРѕР·РґР°РЅРёРµ РјРЅРѕР¶РµСЃС‚РІР° РїРµСЂРµСЃРµС‡РµРЅРёР№
 	for (unsigned int i = 0; i < min(first.size(), second.size()); i++)
 		if (type_predikat(first[i].get(), second[i].get())) result.push_back(first[i]);
 
-	//Сортируем
+	//РЎРѕСЂС‚РёСЂРѕРІРєР° (qucksort)
 	perimeter_sort(result, 0, result.size()-1);
 
 	return result;
