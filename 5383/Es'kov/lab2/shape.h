@@ -28,8 +28,7 @@ struct paint_area_info
 	HDC area_ptr;
 	rgb_color color;
 
-	paint_area_info(int ah, int aw, int x_c, int y_c,
-				    HDC & ap, rgb_color col)
+	paint_area_info(int ah, int aw, int x_c, int y_c, HDC & ap, rgb_color col)
 	{
 		area_height = ah;
 		area_width = aw;
@@ -50,6 +49,8 @@ class shape
 {
 protected:
 	paint_area_info p_info;
+	
+	std::string type;
 
 	int cur_angle;
 	float cur_ratio;
@@ -59,6 +60,10 @@ protected:
 public:
 	shape(paint_area_info paint_info);
 	virtual ~shape(){}
+	float PI;
+
+	int angle_mod(float n);
+	std::string shape_type();
 
 	void set_color(rgb_color new_color);
 	rgb_color get_color();
@@ -67,6 +72,5 @@ public:
 	virtual void rotate(int angle) = 0;
 	virtual void scale(float ratio) = 0;
 
-	virtual float perimetr() = 0;
-	//virtual int comparePerimeter(shape& first, shape& second) = 0;
+	virtual double perimetr() = 0;
 };

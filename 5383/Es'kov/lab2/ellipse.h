@@ -31,7 +31,7 @@ public:
 	void rotate(int angle);
 	void scale(float ratio);
 
-	float perimetr();
+	double perimetr();
 
 	friend std::ostream& operator<<(std::ostream& os, ellipse& el1);
 };
