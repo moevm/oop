@@ -1,3 +1,6 @@
+// OOP_LR5_Olya.cpp: определяет точку входа для консольного приложения.
+//
+
 #include "stdafx.h"
 #include "iostream"
 #include "Shape.h"
@@ -15,10 +18,10 @@ float fRand(float fMin = -diapazon, float fMax = diapazon)
 	return fMin + f * (fMax - fMin);
 }
 
-list<shared_ptr<Shape>> create_figures(bool param = false) {
+list<shared_ptr<Shape>> create_figures(bool make_container_of_figures_from_small_diapazon = false) {
 
 	list<shared_ptr<Shape>> tmp;
-	if (param) {
+	if (make_container_of_figures_from_small_diapazon) {
 		for (size_t i = 0; i < 1000; ++i) {
 			static size_t x;
 			x = rand() % 3;
@@ -83,7 +86,9 @@ bool unary_predicate(const shared_ptr<Shape> &a) {
 TEST(Algorithm_tests, not_equal) {
 	list<shared_ptr<Shape>> first = create_figures();
 	list<shared_ptr<Shape>> second = create_figures();
-	EXPECT_FALSE(std::equal(first.begin(), first.end(), second.begin(), binary_predicate));
+	std::pair<list<shared_ptr<Shape>>::iterator, list<shared_ptr<Shape>>::iterator> tmp;
+	tmp = std::mismatch(first.begin(), first.end(), second.begin(), binary_predicate);
+	EXPECT_FALSE((tmp.first == first.end()) && (tmp.second == second.end()));
 }
 
 TEST(Algorithm_tests, equal) {
@@ -91,10 +96,12 @@ TEST(Algorithm_tests, equal) {
 	list<shared_ptr<Shape>> second;
 	for (size_t i = 0; i < 1000; ++i)
 		second.push_back(shared_ptr<Shape>(new Parallelogram(0, 0, "white", 10, 10, 90)));
-	EXPECT_TRUE(std::equal(first.begin(), first.end(), second.begin(), binary_predicate));
+	std::pair<list<shared_ptr<Shape>>::iterator, list<shared_ptr<Shape>>::iterator> tmp;
+	tmp = std::mismatch(first.begin(), first.end(), second.begin(), binary_predicate);
+	EXPECT_TRUE((tmp.first == first.end()) && (tmp.second == second.end()) );
 }
 
-TEST(Algorithm_tests, remove) {
+TEST(Algorithm_tests, remove) { 
 	list<shared_ptr<Shape>> collection = create_figures();
 	list<shared_ptr<Shape>>::iterator end = std::remove_if(collection.begin(), collection.end(), unary_predicate);
 	for (auto it = collection.begin(); it != end; ++it)
