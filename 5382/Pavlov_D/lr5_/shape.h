@@ -50,28 +50,25 @@ private:
 	double y;
 };
 
-Point  operator+ (const Point& left, const Point& right)
+ const Point   operator+ (const Point& left, const Point& right)
 {
-	return Point(left.getX() + right.getX(), left.getY() + right.getY());
+	return Point (left.getX() + right.getX(), left.getY() + right.getY());
 }
-const Point operator- (const Point& left, const Point& right)
+const  Point  &operator- (const Point& left, const Point& right)
 {
 	return Point(left.getX() - right.getX(), left.getY() - right.getY());
 }
 
-Point operator* (const Point& left, double parametr)
+const Point  operator* (const Point& left, double parametr)
 {
 	return Point(left.getX() * parametr, left.getY() * parametr);
 }
-Point operator / (const Point& left, double parametr)
+const Point operator / (const Point& left, double parametr)
 {
 	return Point(left.getX() / parametr, left.getY() / parametr);
 }
 bool operator ==  (const Point& left, const Point& right)
 {
-	//return ((left.getX() == right.getX()) && (left.getY() == right.getY()));
-	//Now it's work//
-	//return (std::fabs(left - right) < std::numeric_limits<double>::epsilon());
 	return ((std::fabs(left.getX() - right.getX()) < std::numeric_limits<double>::epsilon()*10000) &&
 		(std::fabs(left.getY() - right.getY()) < std::numeric_limits<double>::epsilon())*10000);
 }
@@ -346,7 +343,7 @@ bool Shape::checkSame(std::vector<Point> array) {
 	for (size_t q = 0; q<array.size() - 1; ++q) {
 		for (size_t k = 1; k<array.size() - q; ++k) {
 
-			if (array[q] == array[q + k]) { //&& (array[q].getY() == array[q + k].getY())) {
+			if (array[q] == array[q + k]) { 
 				return false;
 			}
 
@@ -483,7 +480,7 @@ bool Shape::insidePoint(const Point &ip) const
 			}
 		}
 	}
-	//return  (S == area());
+
 	return (abs(S-area()) < std::numeric_limits<double>::epsilon() * 10000);
 }
 bool Shape::sameShape(const Shape &sh1) const
@@ -570,7 +567,6 @@ bool Shape::sameShape(std::vector<Point> &array, const Shape &sh1, const Shape &
 
 	}
 	return true;
-
 }
 ////////////////////////
 void Shape::cross(line lin1, int pos1, line lin2, int pos2, std::vector<Point> &pointer, const Shape &sh)
@@ -619,10 +615,8 @@ void Shape::cross(line lin1, int pos1, line lin2, int pos2, std::vector<Point> &
 	}
 	if (!check)
 	{
-
 		Point buffer(crossX, crossY);
 		pointer.push_back(buffer);
-
 	}
 	return;
 }

@@ -36,6 +36,15 @@ TEST(Figure_Tests, RTriangle_RTriangle_SquareRightOutsideP)
 
 	EXPECT_EQ(true, testShape.similar(sh1, sh2));
 }
+TEST(SquareCenter, center)
+{
+	Square sh1({ Point(0, 0), Point(4, 0), Point(0, 4), Point(4, 4) });
+	Point testp(sh1.findCenter());
+
+	EXPECT_TRUE(testp == Point(2, 2));
+
+
+}
 TEST(Vector_Tests, input)
 {
 	stepik::vector<int> test;
@@ -43,6 +52,12 @@ TEST(Vector_Tests, input)
 	test.push_back(777);
 
 	EXPECT_EQ(5, test[0]);
+}
+TEST(Vector_Tests, deleteT)
+{
+	stepik::vector<int> test{5,777};
+	test.erase(test.begin());
+	EXPECT_EQ(777,test[0]);
 }
 TEST(Shared_Test, result)
 {
@@ -80,6 +95,7 @@ TEST(alg_Test, random_mod)
 
 GTEST_API_ int main(int argc, char* argv[])
 {
+	srand(time(0));
 	testing::InitGoogleTest(&argc, argv);
 	RUN_ALL_TESTS();
 
