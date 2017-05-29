@@ -10,14 +10,22 @@
 
 using namespace std;
 
-void change(rabid::vector < rabid::shared_ptr< Shape > > sourcev,
-	Shape &rep,
+void change(rabid::vector < rabid::shared_ptr< Shape > > &sourcev,
+	const rabid::shared_ptr< Shape > &rep,
 	std::function< bool(const Shape&)> pred)
 {
-	for (auto& i : sourcev)
+	for (int n = 0; n < sourcev.size(); n++)
 	{
-		if (pred(*i)) i.reset(&rep);
-	};
+		if (pred(*sourcev[n])) sourcev[n] = rep;
+	}
+	
+	/*for (auto& i : sourcev)
+	{
+		i;
+		if (pred(*i)) 
+		i;
+	};*/
+
 	return;
 };
 
@@ -71,12 +79,13 @@ int main()
 
 	rabid::shared_ptr< Shape > ref = (rabid::shared_ptr< Shape >)new Circle( { 0, 0 }, 4, "red" );
 	rabid::shared_ptr< Shape > bald = (rabid::shared_ptr< Shape >)new Circle({ 0, 0 }, 30, "RED");
+	//rabid::shared_ptr< Shape > ref = ofShapes[3];
 	
 
 	const auto lamda = [ref](const Shape& s) { return ref.get()->equalÎxProjectionLength(s); };
 
 	Circle* circle = new Circle({ 0, 0 }, 30, "RED");
-	change(ofShapes, *circle, lamda);
+	change(ofShapes, bald, lamda);
 
 	/*rabid::shared_ptr< Shape > res = findShape(ofShapes, lamda);
 	if (res) cout << *res;
