@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cassert>
 #include <cstdlib>
-#include <ctime>
+
 
 
 const double PI = 3.1415926535897932384626433832795;
@@ -100,11 +100,6 @@ Point dif(Point initial, Point terminal)
     return p;
 };
 
-
-double randNumber(double lborder, double rborder)
-{
-	return (int)((double)(rand()) / RAND_MAX*(rborder - lborder) + lborder);
-};
 
 const std::string Shape::ofColours[] = { "red", "green", "blue", "yellow", "black", "purple", "orange", "white", "gray" }; // 0 : 8
 
