@@ -1,4 +1,4 @@
-#include "gtest\gtest.h"
+п»ї#include "gtest\gtest.h"
 #include "lab5.h"
 
 /*HDC _hdc = NULL;
@@ -49,16 +49,16 @@ TEST(lab5_test, my_func2){
 void main(){
 	setlocale(LC_ALL, "rus");
 
-	//Генерируем
+	//Р“РµРЅРµСЂРёСЂСѓРµРј
 	stepik::vector< stepik::shared_ptr<shape> > shapes1 = generateshapes(1337);
 	stepik::vector< stepik::shared_ptr<shape> > shapes2 = generateshapes(1337);
 
-	//Ищем пересечения и сортируем
+	//РС‰РµРј РїРµСЂРµСЃРµС‡РµРЅРёСЏ Рё СЃРѕСЂС‚РёСЂСѓРµРј
 	stepik::vector< stepik::shared_ptr<shape> > result = intersection(shapes1, shapes2);
 
 	for (unsigned int i = 0; i < result.size(); i++)
 		cout << result[i]->shape_type() << ", perimeter: " << result[i]->perimetr() << endl;
-	cout << "\nРазмер вектора пересечений: " << result.size() << ", первое пересечение на позиции " << same_search(shapes1, shapes2) << endl;
+	cout << "\nР Р°Р·РјРµСЂ РІРµРєС‚РѕСЂР° РїРµСЂРµСЃРµС‡РµРЅРёР№: " << result.size() << ", РїРµСЂРІРѕРµ РїРµСЂРµСЃРµС‡РµРЅРёРµ РЅР° РїРѕР·РёС†РёРё " << same_search(shapes1, shapes2) << endl;
 
 	system("pause");
 }
