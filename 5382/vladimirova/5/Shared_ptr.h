@@ -44,20 +44,8 @@ public:
 
 	shared_ptr& operator=(const shared_ptr & other)
 	{
-		if (this != &other)
-		{
-			this->~shared_ptr();
-			if (other.get() != nullptr)
-			{
-				smart = other.get();
-				count = other.c_get();
-				(*count)++;
-			}
-			else {
-				smart = nullptr;
-				count = nullptr;
-			}
-		}
+		shared_ptr tmp(other);
+		this->swap(tmp);
 		return *this;
 	}
 
@@ -111,12 +99,8 @@ public:
 
 	void swap(shared_ptr& x) noexcept
 	{
-		if (this != &x)
-		{
-			shared_ptr<T> help(*this);
-			*this = x;
-			x = help;
-		}
+		std::swap(smart, x.smart);
+		std::swap(count, x.count);
 	}
 
 	void reset(T *ptr = 0)
