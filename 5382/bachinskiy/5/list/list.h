@@ -103,11 +103,11 @@ namespace stepik {
             delete_all();
         }
 
-        list::iterator begin() {
+        list::iterator begin() const{
             return iterator(m_head);
         }
 
-        list::iterator end() {
+        list::iterator end() const{
             return iterator();
         }
 

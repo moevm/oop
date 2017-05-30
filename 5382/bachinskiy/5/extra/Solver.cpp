@@ -5,14 +5,13 @@
 #include "Solver.h"
 
 shared_ptr<Shape>
-Solver::findFirstElement(list<shared_ptr<Shape>>& listOfShapes, shared_ptr<Shape>& shape1, shared_ptr<Shape>& shape2) {
+Solver::findFirstElement(const list<shared_ptr<Shape>>& listOfShapes, shared_ptr<Shape>& shape1, shared_ptr<Shape>& shape2) {
     list_iterator<shared_ptr<Shape>> it = listOfShapes.begin();
-    for (int i = 0; i < listOfShapes.size(); ++i) {
+    for (; it != listOfShapes.end(); it++) {
         Shape& s = *(*it);
         if (s.isUnionOf(*shape1, *shape2)) {
             return *it;
         }
-        it++;
     }
     return shared_ptr<Shape>();
 }
