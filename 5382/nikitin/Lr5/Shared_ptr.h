@@ -42,26 +42,8 @@ public:
 
 	shared_ptr& operator=(const shared_ptr & other)
 	{
-		if (this != &other){
-			if (pointer != nullptr){
-				(*counter)--;
-				if ((*counter) == 0){
-					delete pointer;
-					delete counter;
-					pointer = nullptr;
-					counter = nullptr;
-				}
-			}
-			if (other.get() != nullptr){
-				pointer = other.get();
-				counter = other.c_get();
-				(*counter)++;
-			}
-			else{
-				pointer = nullptr;
-				counter = nullptr;
-			}
-		}
+		shared_ptr temp(other);
+		this->swap(temp);
 		return *this;
 	}
 
@@ -108,9 +90,8 @@ public:
 
 	void swap(shared_ptr& x)
 	{
-		shared_ptr<T>temp(*this);
-		*this = x;
-		x = temp;
+		std::swap(pointer, x.pointer);
+		std::swap(counter, x.counter);
 	}
 
 		void reset(T *ptr = 0)
