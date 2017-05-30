@@ -19,7 +19,7 @@ class Square:public Shape
         Square(const Point& centre,const Point& vertex1)
         {   
 			double angle=90;
-	        cout << "êâàäðàò\n";
+	        cout << "ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚\n";
 	        this->Centre = centre;
 	        this->Vertex[0] = vertex1;
 			for(int i =1;i<4 ;i++){
@@ -31,6 +31,6 @@ class Square:public Shape
         }
 
 
-		~Square(){cout << "êâàäðàò\n";}
+		~Square(){cout << "ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚\n";}
 };
 

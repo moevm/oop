@@ -17,21 +17,21 @@ class Shape
         static  int ID;
         int Id;
 	    Shape() 
-		{   cout << "Ñîçäàíà ôèãóðà ";
+		{   cout << "Ð¡Ð¾Ð·Ð´Ð°Ð½Ð° Ñ„Ð¸Ð³ÑƒÑ€Ð° ";
 		    Centre=(0,0);Vertex[0]=(1,1);Vertex[1]=(-1,1);Vertex[2]=(-1,-1);Vertex[3]=(1,-1);
-			Color="Áåëûé";
+			Color="Ð‘ÐµÐ»Ñ‹Ð¹";
 			Id = ID;
 	        ID++;
-		}//êîíñòðóêòîð ôèãóðû
-		void printShape();//âûâîä èíôîðìàöèè
-	    void move(const double& x,const double& y);//ïåðåìåùåíèå
-	    void Mahtab(const double& P);// ìàøòàáèðîâàíèå
-	    void Turn(const double& R);//ïîâîðîò 
-        void SetColorFigure(const string &color);//óñòàíîâêà öâåòà
-	    string  GetColorFigure();//âûâîä öâåòà
-	    bool CommonSide(const Shape& shape2);//ôóíêöèÿ. îïðåäåëÿþùàÿ, ñîäåðæàòñÿ ëè ñòîðîíû îäíîé ôèãóðû â äðóãîé
-		//âíà÷àëå ñðàâíèì óðàâíåíèÿ ïðÿìûõ,
-	    virtual ~Shape() { cout << "Óäàëåíà ôèãóðà ";}//äåñòðóêòîð ôèãóðû
+		}//ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹
+		void printShape();//Ð²Ñ‹Ð²Ð¾Ð´ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸
+	    void move(const double& x,const double& y);//Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ð¸Ðµ
+	    void Mahtab(const double& P);// Ð¼Ð°ÑˆÑ‚Ð°Ð±Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ
+	    void Turn(const double& R);//Ð¿Ð¾Ð²Ð¾Ñ€Ð¾Ñ‚ 
+        void SetColorFigure(const string &color);//ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ñ†Ð²ÐµÑ‚Ð°
+	    string  GetColorFigure();//Ð²Ñ‹Ð²Ð¾Ð´ Ñ†Ð²ÐµÑ‚Ð°
+	    bool CommonSide(const Shape& shape2);//Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ. Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÑÑŽÑ‰Ð°Ñ, ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‚ÑÑ Ð»Ð¸ ÑÑ‚Ð¾Ñ€Ð¾Ð½Ñ‹ Ð¾Ð´Ð½Ð¾Ð¹ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹ Ð² Ð´Ñ€ÑƒÐ³Ð¾Ð¹
+		//Ð²Ð½Ð°Ñ‡Ð°Ð»Ðµ ÑÑ€Ð°Ð²Ð½Ð¸Ð¼ ÑƒÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ñ Ð¿Ñ€ÑÐ¼Ñ‹Ñ…,
+	    virtual ~Shape() { cout << "Ð£Ð´Ð°Ð»ÐµÐ½Ð° Ñ„Ð¸Ð³ÑƒÑ€Ð° ";}//Ð´ÐµÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€ Ñ„Ð¸Ð³ÑƒÑ€Ñ‹
 };
 
 

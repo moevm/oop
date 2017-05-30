@@ -21,9 +21,9 @@ class Rombus:public Shape
 		};
 		Rombus(const Point& centre,const Point& vertex1,const Point& vertex2)
 		{   if(sqrt(pow(Distance(centre,vertex1),2)+pow(Distance(centre,vertex2),2))!=Distance(vertex1,vertex2))
-			throw invalid_argument("Диагонали ромба должны образовывать прямой угол");
+			throw invalid_argument("Р”РёР°РіРѕРЅР°Р»Рё СЂРѕРјР±Р° РґРѕР»Р¶РЅС‹ РѕР±СЂР°Р·РѕРІС‹РІР°С‚СЊ РїСЂСЏРјРѕР№ СѓРіРѕР»");
 			double angle=180;
-	        cout << "ромб\n";
+	        cout << "СЂРѕРјР±\n";
 	        this->Centre = centre;
 	        this->Vertex[0] = vertex1;
 	        this->Vertex[1] = vertex2;
@@ -32,7 +32,7 @@ class Rombus:public Shape
 	        
          }
 
-		~Rombus(){cout << "ромб\n";}
+		~Rombus(){cout << "СЂРѕРјР±\n";}
    
 };
 

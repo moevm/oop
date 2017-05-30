@@ -19,18 +19,18 @@ class Trapecia:public Shape
 		Trapecia(const Point& centre,const Point& vertex1,const Point& vertex2,const Point& vertex3,const Point& vertex4)
 		{   if((Distance(vertex2,vertex1))/(Distance(vertex3,vertex4))!=(Distance(centre,vertex1))/(Distance(vertex3,centre))!=
 		    (Distance(centre,vertex2))/(Distance(vertex4,centre)))
-			throw invalid_argument("Каждая диогональ в точке пересечения должна делиться на 2 части с таким соотношением длины, как соотношение между основаниями");
+			throw invalid_argument("РљР°Р¶РґР°СЏ РґРёРѕРіРѕРЅР°Р»СЊ РІ С‚РѕС‡РєРµ РїРµСЂРµСЃРµС‡РµРЅРёСЏ РґРѕР»Р¶РЅР° РґРµР»РёС‚СЊСЃСЏ РЅР° 2 С‡Р°СЃС‚Рё СЃ С‚Р°РєРёРј СЃРѕРѕС‚РЅРѕС€РµРЅРёРµРј РґР»РёРЅС‹, РєР°Рє СЃРѕРѕС‚РЅРѕС€РµРЅРёРµ РјРµР¶РґСѓ РѕСЃРЅРѕРІР°РЅРёСЏРјРё");
 			double angle=180;
-	        cout << "Трапеция\n";
+	        cout << "РўСЂР°РїРµС†РёСЏ\n";
 	        this->Centre = centre;
-	        this->Vertex[0] = vertex1;//верхняя правая вершина
-	        this->Vertex[1] = vertex2;//верхняя левая
-	        this->Vertex[0] = vertex3;//нижняя левая
-	        this->Vertex[1] = vertex4;//нижняя правая
+	        this->Vertex[0] = vertex1;//РІРµСЂС…РЅСЏСЏ РїСЂР°РІР°СЏ РІРµСЂС€РёРЅР°
+	        this->Vertex[1] = vertex2;//РІРµСЂС…РЅСЏСЏ Р»РµРІР°СЏ
+	        this->Vertex[0] = vertex3;//РЅРёР¶РЅСЏСЏ Р»РµРІР°СЏ
+	        this->Vertex[1] = vertex4;//РЅРёР¶РЅСЏСЏ РїСЂР°РІР°СЏ
 	       
          }
 
-		~Trapecia(){cout << "трапеция\n";}
+		~Trapecia(){cout << "С‚СЂР°РїРµС†РёСЏ\n";}
    
 };
 
