@@ -1,10 +1,5 @@
 #pragma once
-#pragma once
-#include <assert.h>
-#include <algorithm> // std::copy, std::rotate
-#include <cstddef> // size_t
-#include <initializer_list>
-#include <stdexcept>
+
 #include <iostream> 
 namespace stepik
 {
@@ -15,7 +10,6 @@ namespace stepik
 
 		template <typename U>
 		friend class shared_ptr;
-		//€ видел тесты еще в 1 части
 		explicit shared_ptr(T *otherptr = 0)
 		{
 			ptr = otherptr;
@@ -28,83 +22,52 @@ namespace stepik
 
 			}
 
-			// *link=0;//смена long (0) на птр
-			// implement this
 		}
 
 		~shared_ptr()
 		{
 			decrease();
-			// implement this
-		}
-		/*
-		shared_ptr(const shared_ptr & other):ptr(other.ptr)
-		{
-		//link=new long(other.use_count());
-		link=other.link;
-		if (link)
-		++(*link);
-		// implement this
 		}
 
-		shared_ptr& operator=(const shared_ptr & other)
-		{
-		if (this!=&other)
-		{
-		decrease();
-		ptr=other.ptr;
-		//link=new long(other.use_count());
-		link=other.link;
-		if (link)
-		++(*link);
-		// *link=*link+1;
-		//TO DO проверить на декр.
-
-
-		}
-		return *this;
-		// implement this
-		}
-		*/
 		template <typename U>
-		shared_ptr(const shared_ptr<U> & other) :ptr(other.ptr)
+		shared_ptr(const shared_ptr<U> & other) :ptr(other.get()), link(other.getLink())
 		{
-			//link=new long(other.use_count());
-			link = other.link;
+
 			if (link)
 				++(*link);
-			// implement this
 		}
+
+		shared_ptr(const shared_ptr<T> & other) :ptr(other.get()), link(other.getLink())
+		{
+
+			if (link)
+				++(*link);
+		}
+
 		template <typename U>
 		shared_ptr& operator=(const shared_ptr<U> & other)
 		{
-			//  if (this!=&other)
-			// {
-			decrease();
-			ptr = other.ptr;
-			//link=new long(other.use_count());
-			link = other.link;
-			if (link)
-				++(*link);
-			// *link=*link+1;
-			//TO DO проверить на декр.
-
-
-			// }
+			shared_ptr buffer(other);
+			swap(buffer);
 			return *this;
-			// implement this
+		}
+
+		shared_ptr& operator=(const shared_ptr<T> & other)
+		{
+			shared_ptr buffer(other);
+			swap(buffer);		
+			return *this;
 		}
 
 		explicit operator bool() const
 		{
 			return (ptr != nullptr);
-			// implement this
+
 		}
 
 		T* get() const
 		{
 			return ptr;
-			// implement this
 		}
 
 		long use_count() const
@@ -114,27 +77,23 @@ namespace stepik
 			else
 				return 0;
 
-
-			// implement this
 		}
 
 		T& operator*() const
 		{
 			return *ptr;
-			// implement this
+
 		}
 
 		T* operator->() const
 		{
 			return ptr;
-			// implement this
 		}
 
 		void swap(shared_ptr& x) noexcept
 		{
 			std::swap(ptr, x.ptr);
 			std::swap(link, x.link);
-			// implement this
 		}
 
 		void reset(T *otherptr = 0)
@@ -150,7 +109,7 @@ namespace stepik
 
 
 		}
-		long * getLink()
+		long * getLink() const
 		{
 			return link;
 		}
@@ -160,15 +119,15 @@ namespace stepik
 		long *link;
 		void decrease()
 		{
-			//--(*link); //!-тут была жалоба => ѕрвер€ют контр с decr;
-			if ((ptr) && (link) && (!--(*link))) { //got it
+
+			if ((ptr) && (link) && (!--(*link))) {
 				delete ptr;
 				delete link;
 				link = 0;
 
 			}
 		}
-		// data members
+
 	};
 
 	template <typename Z, typename  U> //1
@@ -275,3 +234,4 @@ namespace stepik
 
 
 } // namespace stepik
+
