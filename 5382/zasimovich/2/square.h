@@ -9,8 +9,8 @@ typedef unsigned int unInt;
 class Square:public Shape
 {   public:
          Square(){
-			 this->Centre = Point(true);
-			 this->Vertex[0] = Point(true);
+			 this->Centre = Point(0,0);
+			 this->Vertex[0] = Point(1,1);
 			 for(int i=1;i<4;i++){
 				 double R=90;
 				 Vertex[i] = Turnus(R,Vertex[i-1], Centre);}
@@ -19,18 +19,18 @@ class Square:public Shape
         Square(const Point& centre,const Point& vertex1)
         {   
 			double angle=90;
-	        cout << "ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚\n";
+	        cout << "êâàäðàò\n";
 	        this->Centre = centre;
 	        this->Vertex[0] = vertex1;
 			for(int i =1;i<4 ;i++){
 	           this-> Vertex[i]=Turnus(angle,this->Vertex[i-1],Centre);
-	        Id = ID;
-	        ID++;
+	       
 	        
 		      
 	        }
         }
 
 
-		~Square(){cout << "ÐºÐ²Ð°Ð´Ñ€Ð°Ñ‚\n";}
+		~Square(){cout << "êâàäðàò\n";}
 };
+

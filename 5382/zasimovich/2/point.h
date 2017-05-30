@@ -9,37 +9,37 @@ public:
 		Point(double x = 0, double y = 0)
 		{X = x; Y = y;};
 
-		double getX()
-		{ return X;}
-		double getY()
-		{ return Y;}
-		void setX(double x)
-		{ X = x;}
-		void setY(double y)
-		{ Y = y;}
-		friend Point Mahtabus(double& P, Point& point,Point& centre){//РјР°С€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ РІ P СЂР°Р· С‚РѕС‡РєРё point РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР°
+		//double getX()
+		//{ return X;}
+		//double getY()
+		//{ return Y;}
+		//void setX(double x)
+		//{ X = x;}
+		//void setY(double y)
+		//{ Y = y;}
+		friend Point Mahtabus(const double& P,const Point& point,const Point& centre){//маштабирование в P раз точки point относительно центра
 		     Point point1;
-			 point1.setX (centre.getX()+(point.getX()-centre.getX() )* P );
-             point1.setY (centre.getY()+(point.getY()-centre.getY() )* P );
+			 point1.X = centre.X+(point.X-centre.X )* P ;
+             point1.Y = centre.Y+(point.Y-centre.Y )* P ;
 		     return point1;
 		}
-		friend Point Movus(double& x,double& y, Point& point,Point& centre){//РїРµСЂРµРјРµС‰РµРЅРёРµ С‚РѕС‡РєРё, Р°РЅРѕР»РѕРіРёС‡РЅРѕРµ РїРµСЂРµРјРµС‰РµРЅРёСЋ С†РµРЅС‚СЂР°
+		friend Point Movus(const double& x,const double& y,const Point& point,const Point& centre){//перемещение точки, анологичное перемещению центра
 		    Point point1;
-			point1.setX (point.getX() + x-centre.getX() );
-	        point1.setY (point.getY()+ y-centre.getY());
+			point1.X =point.X + x-centre.X ;
+	        point1.Y =point.Y+ y-centre.Y;
 		    return point1;
 		
 		}
-		friend Point Turnus(double& angle, Point& point,Point& centre){//РїРѕРІРѕСЂРѕС‚ С‚РѕС‡РєРё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР°
+		friend Point Turnus(const double& angle,const Point& point,const Point& centre){//поворот точки относительно центра
 			Point point1;
-		    point1.setX (centre.getX()+(point.getX()-centre.getX())*cos((angle)*PI/180)-(point.getY()-centre.getY())*sin((angle)*PI/180));	
-	        point1.setY (centre.getY() + (point.getX()-centre.getX())*sin((angle)*PI/180)+(point.getY()-centre.getY())*cos((angle)*PI/180));
+		    point1.X =centre.X+(point.X-centre.X)*cos((angle)*PI/180)-(point.Y-centre.Y)*sin((angle)*PI/180);	
+	        point1.Y = centre.Y+ (point.X-centre.X)*sin((angle)*PI/180)+(point.Y-centre.Y)*cos((angle)*PI/180);
 		    return point1;
 		}
 
-		friend double Distance(Point& point,Point& centre){//РїРѕРІРѕСЂРѕС‚ С‚РѕС‡РєРё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР°
+		friend double Distance(const Point& point,const Point& centre){//поворот точки относительно центра
 			
-		    return sqrt(pow((point.getX()-centre.getX()),2)+pow((point.getY()-centre.getY() ),2));
+		    return sqrt(pow((point.X-centre.X),2)+pow((point.Y-centre.Y ),2));
 		}
 
 

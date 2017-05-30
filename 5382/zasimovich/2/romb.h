@@ -10,29 +10,29 @@ class Rombus:public Shape
 	public:
 		Rombus( ){
 			 double angle=180;
-		     this->Centre = Point(true);
-			 this->Vertex[0] = Point(true);
-			 this->Vertex[1] = Point(true);
+		     this->Centre = Point(0,0);
+			 this->Vertex[0] = Point(1,1);
+			 this->Vertex[1] = Point(-1,1);
 			 this-> Vertex[2]=Turnus(angle,Vertex[0],Centre);
 	         this-> Vertex[3]=Turnus(angle,Vertex[1],Centre);
 		
 		
 		
 		};
-		Rombus(Point& centre,Point& vertex1,Point& vertex2)
+		Rombus(const Point& centre,const Point& vertex1,const Point& vertex2)
 		{   if(sqrt(pow(Distance(centre,vertex1),2)+pow(Distance(centre,vertex2),2))!=Distance(vertex1,vertex2))
-			throw invalid_argument("Р”РёР°РіРѕРЅР°Р»Рё СЂРѕРјР±Р° РґРѕР»Р¶РЅС‹ РѕР±СЂР°Р·РѕРІС‹РІР°С‚СЊ РїСЂСЏРјРѕР№ СѓРіРѕР»");
+			throw invalid_argument("Диагонали ромба должны образовывать прямой угол");
 			double angle=180;
-	        cout << "СЂРѕРјР±\n";
+	        cout << "ромб\n";
 	        this->Centre = centre;
 	        this->Vertex[0] = vertex1;
 	        this->Vertex[1] = vertex2;
 	        this-> Vertex[2]=Turnus(angle,Vertex[0],Centre);
 	        this-> Vertex[3]=Turnus(angle,Vertex[1],Centre);
-	        Id = ID;
-	        ID++;
+	        
          }
 
-		~Rombus(){cout << "СЂРѕРјР±\n";}
+		~Rombus(){cout << "ромб\n";}
    
 };
+
