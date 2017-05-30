@@ -125,9 +125,6 @@ TEST(ParallelogramTest, TestParallelogram) {
   EXPECT_FALSE(a.isInsideOfAnother(b));
 
 }
-//  a.move(Point(-1,0));
-//  EXPECT_TRUE(b.isInsideOfAnother(a));
-//  std::cout << b << " " << a;
 
 int main(int argc, char *argv[])
 {
