@@ -50,7 +50,6 @@ public:
 	{
 		m_node = other.m_node;
 		return *this;
-		// use previous step implementation
 	}
 
 	bool operator == (const list_iterator& other) const
@@ -297,7 +296,6 @@ public:
 			temp = temp->next;
 		}
 		return count;
-
 	}
 
 private:

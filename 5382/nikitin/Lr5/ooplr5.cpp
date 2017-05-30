@@ -18,7 +18,6 @@ bool unary_pred(const shared_ptr<Shape> &a) {
 	return a->square() > definite_square;
 }
 
-
 my_list<shared_ptr<Shape>> generate_objects() {
 
 	my_list<shared_ptr<Shape>> list;
@@ -44,7 +43,6 @@ my_list<shared_ptr<Shape>> generate_objects() {
 	return list;
 }
 
-
 TEST(Algorithm_tests, Non_modifying)
 {
 	my_list<shared_ptr<Shape>> list = generate_objects();
@@ -55,19 +53,6 @@ TEST(Algorithm_tests, Non_modifying)
 		EXPECT_TRUE(temp->check(*temp, *(it->get())));
 	}
 }
-
-/*TEST(Algorithm_tests, Modifying1) // Выдает ошибку компиляции, которую я не могу самостоятельно решить, вместо этой функции тестировал другую, но вы сказали, чтобы и эту добавил посмотреть.
-{
-	my_list<shared_ptr<Shape>> list1 = generate_objects();
-	my_list<shared_ptr<Shape>> list2 = generate_objects();
-	copy_if(list1.begin(), list1.end(), stdext::make_unchecked_array_iterator(list2.begin()), unary_pred);
-	auto it = list2.begin();
-	for (; (( it->get() != nullptr) && (it != list2.end())); ++it);
-
-	for (it = list2.begin(); it != list2.end(); ++it) {
-	EXPECT_TRUE((*it)->square() > definite_square);
-	}
-}*/
 
 TEST(Algorithm_tests, Modifying){
 	my_list<shared_ptr<Shape>> list = generate_objects();
