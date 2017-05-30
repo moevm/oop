@@ -7,6 +7,7 @@
 #include <string>
 
 using namespace std;
+double delta = 0.0001;
 
 void rotatex(double &coord, const double tempx, const double centerx, const double radangle, const double tempy, const double centery){
 	coord = centerx + (tempx - centerx)*cos(radangle) - (tempy - centery)*sin(radangle);
@@ -17,15 +18,32 @@ void rotatey(double &coord, const double tempx, const double centerx, const doub
 }
 
 void lineqquation(double x1, double x2, double y1, double y2, double &k, double &b){
+	if (x2 == x1){ x1 = x1 + delta; x2 = x2 - delta; }
 	k = (y2 - y1) / (x2 - x1);
 	b = y2 - x1*k;
 }
 
 void intersectionpoint(double k1, double k2, double b1, double b2, double &x, double &y){
+	if (k1 == k2){ k1 = k1 + delta; k2 = k2 - delta; }
 	x = (b2 - b1) / (k1 - k2);
 	y = k1*x + b1;
 }
-
+double getlx(double a, double centerx, double side){
+	a = centerx - side / 2;
+	return a;
+}
+double getrx(double a, double centerx, double side){
+	a = centerx + side / 2;
+	return a;
+}
+double getty(double a, double centery, double side){
+	a = centery + side / 2;
+	return a;
+}
+double getdy(double a, double centery, double side){
+	a = centery - side / 2;
+	return a;
+}
 bool compare(double x11, double x12, double y11, double y12, double x21, double x22, double y21, double y22, double x23, double x24, double y23, double y24){
 	double k1 = 0, b1 = 0, k2 = 0, b2 = 0, x = 0, y = 0;
 	lineqquation(x11, x12, y11, y12, k1, b1); // 1 сторона
@@ -48,11 +66,10 @@ class Shape{
 protected:
 	double centerx, centery; // координаты центра
 	string color; // цвет 
-	int type;
 public:
 	double ltx, lty, ldx, ldy, rdx, rdy, rtx, rty; // координаты углов
 	int angle; // угол на который повернута фигура
-	Shape(double centerx, double centery, int angle, int type, string color = "white") : centerx(centerx), centery(centery), angle(angle), type(type), color(color) {}
+	Shape(double centerx, double centery, int angle, string color = "white") : centerx(centerx), centery(centery), angle(angle), color(color) {}
 	virtual ~Shape() {}
 	virtual void move(double newcenterx, double newcentery) = 0;
 	void rotate(int newangle){ // www.abakbot.ru/online-2/91-rotate
@@ -75,14 +92,22 @@ public:
 	string getcolor() const { // возвращает текущий цвет фигуры
 		return color;
 	}
-
-	virtual bool check(Shape& shape1, Shape& shape2) = 0;
-
+	virtual string gettype() const = 0;
+	virtual bool check(Shape& shape1, Shape& shape2){
+		bool answer = false;
+		answer = compare(shape1.ltx, shape1.ldx, shape1.lty, shape1.ldy, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
+		if (answer) return answer;
+		answer = compare(shape1.ldx, shape1.rdx, shape1.ldy, shape1.rdy, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
+		if (answer) return answer;
+		answer = compare(shape1.rdx, shape1.rtx, shape1.rdy, shape1.rty, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
+		if (answer) return answer;
+		answer = compare(shape1.rtx, shape1.ltx, shape1.rty, shape1.lty, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
+		if (answer) return answer;
+		return answer;
+	}
 	friend ostream& operator <<(ostream& os, const Shape& shape){ // оператор вывода
-		os << endl << "Current shape is ";
-		if (shape.type == 1)cout << "Rectangle" << endl;
-		if (shape.type == 2)cout << "Square" << endl;
-		if (shape.type == 3)cout << "Ellipse" << endl;
+		string type = shape.gettype();
+		os << endl << "Type: " << type << endl << endl;
 		os << endl << "Current coords: " << "(" << shape.ltx << ";" << shape.lty << ")	(" << shape.ldx << ";" << shape.ldy << ")	(" << shape.rdx << ";" << shape.rdy << ")	(" << shape.rtx << ";" << shape.rty << ")" << endl;
 		os << endl << "Current angle: " << shape.angle << endl;
 		string temp = shape.getcolor();
@@ -93,92 +118,58 @@ public:
 
 
 class Rectangle : public Shape{ // класс - прямоугольник
-protected:
+private:
 	double width, height; // начальная ширина и высота прямоугольника
 public:
-	Rectangle(double width, double height, double centerx, double centery, int angle = 0, int type = 1, string color = "white") : Shape(centerx, centery, angle, type, color), width(width), height(height){ // прямоугольник задается через центр, высоту и ширину, потом высчитываются координаты углов
-		ldx = ltx = centerx - width / 2; rdx = rtx = centerx + width / 2;
-		lty = rty = centery + height / 2; ldy = rdy = centery - height / 2;
+	Rectangle(double width, double height, double centerx, double centery, int angle = 0, string color = "white") : Shape(centerx, centery, angle, color), width(width), height(height){ // прямоугольник задается через центр, высоту и ширину, потом высчитываются координаты углов
+		ldx = ltx = getlx(ldx, centerx, width); rdx = rtx = getrx(rdx, centerx, width);
+		lty = rty = getty(lty, centery, height); ldy = rdy = getdy(ldy, centery, height);
 	}
 	void move(double newcenterx, double newcentery){ // смещается центр, далее высчитываются углы
 		centerx = newcenterx; centery = newcentery;
-		ldx = ltx = centerx - width / 2; rdx = rtx = centerx + width / 2;
-		lty = rty = centery + height / 2; ldy = rdy = centery - height / 2;
+		ldx = ltx = getlx(ldx, centerx, width); rdx = rtx = getrx(rdx, centerx, width);
+		lty = rty = getty(lty, centery, height); ldy = rdy = getdy(ldy, centery, height);
 	}
 	void scale(int n){ // увеличиваются стороны, далее высчитываются углы
 		width *= n; height *= n;
-		ldx = ltx = centerx - width / 2; rdx = rtx = centerx + width / 2;
-		lty = rty = centery + height / 2; ldy = rdy = centery - height / 2;
+		ldx = ltx = getlx(ldx, centerx, width); rdx = rtx = getrx(rdx, centerx, width);
+		lty = rty = getty(lty, centery, height); ldy = rdy = getdy(ldy, centery, height);
 	}
-
-	bool check(Shape& shape1, Shape& shape2){
-		bool answer = false;
-		if (shape1.angle == 0){
-			int angle = 360;
-			shape1.rotate(angle);
-		}
-		if (shape2.angle == 0){
-			int angle = 360;
-			shape2.rotate(angle);
-		}
-		answer = compare(shape1.ltx, shape1.ldx, shape1.lty, shape1.ldy, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.ldx, shape1.rdx, shape1.ldy, shape1.rdy, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.rdx, shape1.rtx, shape1.rdy, shape1.rty, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.rtx, shape1.ltx, shape1.rty, shape1.lty, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		return answer;
+	string gettype()const { // возвращает тип фигуры
+		string tmp = "Rectangle";
+		return tmp;
 	}
 };
 
 class Square : public Shape{ // класс - квадрат
-protected:
+private:
 	double side; // размер стороны
 public:
-	Square(double side, double centerx, double centery, int angle = 0, int type = 2, string color = "white") : Shape(centerx, centery, angle, type, color), side(side) {// квадрат задается через центр и сторону, потом высчитываются координаты углов
-		ldx = ltx = centerx - side / 2; rdx = rtx = centerx + side / 2;
-		lty = rty = centery + side / 2; ldy = rdy = centery - side / 2;
+	Square(double side, double centerx, double centery, int angle = 0, string color = "white") : Shape(centerx, centery, angle, color), side(side) {// квадрат задается через центр и сторону, потом высчитываются координаты углов
+		ldx = ltx = getlx(ldx, centerx, side); rdx = rtx = getrx(rdx, centerx, side);
+		lty = rty = getty(lty, centery, side); ldy = rdy = getdy(ldy, centery, side);
 	}
 	void move(double newcenterx, double newcentery){ //аналогично с прямоугольником
 		centerx = newcenterx; centery = newcentery;
-		ldx = ltx = centerx - side / 2; rdx = rtx = centerx + side / 2;
-		lty = rty = centery + side / 2; ldy = rdy = centery - side / 2;
+		ldx = ltx = getlx(ldx, centerx, side); rdx = rtx = getrx(rdx, centerx, side);
+		lty = rty = getty(lty, centery, side); ldy = rdy = getdy(ldy, centery, side);
 	}
 	void scale(int n){ //аналогично с прямоугольником
 		side *= n;
-		ldx = ltx = centerx - side / 2; rdx = rtx = centerx + side / 2;
-		lty = rty = centery + side / 2; ldy = rdy = centery - side / 2;
+		ldx = ltx = getlx(ldx, centerx, side); rdx = rtx = getrx(rdx, centerx, side);
+		lty = rty = getty(lty, centery, side); ldy = rdy = getdy(ldy, centery, side);
 	}
-	bool check(Shape& shape1, Shape& shape2){
-		bool answer = false;
-		if (shape1.angle == 0){
-			int angle = 360;
-			shape1.rotate(angle);
-		}
-		if (shape2.angle == 0){
-			int angle = 360;
-			shape2.rotate(angle);
-		}
-		answer = compare(shape1.ltx, shape1.ldx, shape1.lty, shape1.ldy, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.ldx, shape1.rdx, shape1.ldy, shape1.rdy, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.rdx, shape1.rtx, shape1.rdy, shape1.rty, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.rtx, shape1.ltx, shape1.rty, shape1.lty, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		return answer;
+	string gettype() const { // возвращает тип фигуры
+		string tmp = "Square";
+		return tmp;
 	}
-
 };
 
 class Ellipse : public Shape{ //класс - эллипс
-protected:
+private:
 	double wradius, hradius;
 public:
-	Ellipse(double wradius, double hradius, double centerx, double centery, int angle = 0, int type = 3, string color = "white") : Shape(centerx, centery, angle, type, color), wradius(wradius), hradius(hradius){// эллипс задается через два радиуса: "ширины" и "высоты", потом высчитываются координаты крайних точен этих радиусов (эллипс мысленно поворачивается ~45 град влево)
+	Ellipse(double wradius, double hradius, double centerx, double centery, int angle = 0, string color = "white") : Shape(centerx, centery, angle, color), wradius(wradius), hradius(hradius){// эллипс задается через два радиуса: "ширины" и "высоты", потом высчитываются координаты крайних точен этих радиусов (эллипс мысленно поворачивается ~45 град влево)
 		ltx = rdx = centerx; rtx = centerx + wradius; ldx = centerx - wradius;
 		ldy = rty = centery; lty = centery + hradius; rdy = centery - hradius;
 	}
@@ -192,25 +183,9 @@ public:
 		rtx = centerx + wradius; ldx = centerx - wradius;
 		lty = centery + hradius; rdy = centery - hradius;
 	}
-	bool check(Shape& shape1, Shape& shape2){
-		bool answer = false;
-		if (shape1.angle == 0){
-			int angle = 360;
-			shape1.rotate(angle);
-		}
-		if (shape2.angle == 0){
-			int angle = 360;
-			shape2.rotate(angle);
-		}
-		answer = compare(shape1.ltx, shape1.ldx, shape1.lty, shape1.ldy, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.ldx, shape1.rdx, shape1.ldy, shape1.rdy, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.rdx, shape1.rtx, shape1.rdy, shape1.rty, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		answer = compare(shape1.rtx, shape1.ltx, shape1.rty, shape1.lty, shape2.ltx, shape2.ldx, shape2.lty, shape2.ldy, shape2.rdx, shape2.rtx, shape2.rdy, shape2.rty);
-		if (answer) return answer;
-		return answer;
+	string gettype() const { // возвращает тип фигуры
+		string tmp = "Ellipse";
+		return tmp;
 	}
 };
 
@@ -221,7 +196,7 @@ TEST(Intersection_Tests, Rectangle_and_Rectangle_True){
 }
 TEST(Intersection_Tests, Rectangle_and_Rectangle_False){
 	Rectangle rec1(4, 2, 0, 0, 0);
-	Rectangle rec2(4, 2, 4, 4, 0);
+	Rectangle rec2(4, 2, 5, 5, 0);
 	EXPECT_EQ(false, rec1.check(rec1, rec2));
 }
 TEST(Intersection_Tests, Rectangle_and_Square_True){
@@ -266,7 +241,7 @@ TEST(Intersection_Tests, Square_and_Ellipse_False){
 }
 TEST(Intersection_Tests, Ellipse_and_Ellipse_True){
 	Ellipse ell1(4, 2, 0, 0, 0);
-	Ellipse ell2(4, 2, 0, 0, 90);
+	Ellipse ell2(4, 2, 1, 1, 90);
 	EXPECT_EQ(true, ell1.check(ell1, ell2));
 }
 TEST(Intersection_Tests, Ellipse_and_Ellipse_False){
