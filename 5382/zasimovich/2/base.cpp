@@ -3,17 +3,17 @@ int Shape::ID = 1;
 void Shape:: printShape()
 {  
 	int i =0;
-	cout<< "ID ôèãóğû: id=" << Id << "\n";
-	cout << "Öâåò: " << Color<< "\n";
-	cout << "Öåíòğ : X = " << Centre.X << " ,Y = " << Centre.Y<< endl;
+	cout<< "ID Ñ„Ğ¸Ğ³ÑƒÑ€Ñ‹: id=" << Id << "\n";
+	cout << "Ğ¦Ğ²ĞµÑ‚: " << Color<< "\n";
+	cout << "Ğ¦ĞµĞ½Ñ‚Ñ€ : X = " << Centre.X << " ,Y = " << Centre.Y<< endl;
 	while(i<4){
-	    cout <<"Êîîğäèíàòà  âåğøèíû : X"<<i+1<<" = "<< this->Vertex[i].X << " ,Y"<<i+1<<" = " <<this-> Vertex[i].Y << endl;
+	    cout <<"ĞšĞ¾Ğ¾Ñ€Ğ´Ğ¸Ğ½Ğ°Ñ‚Ğ°  Ğ²ĞµÑ€ÑˆĞ¸Ğ½Ñ‹ : X"<<i+1<<" = "<< this->Vertex[i].X << " ,Y"<<i+1<<" = " <<this-> Vertex[i].Y << endl;
 	    i++;
 	}
 }
 
 void Shape::Turn(const double& R)
-{   cout << "Óãîë ïîâîğîòà: À = " << R << endl;
+{   cout << "Ğ£Ğ³Ğ¾Ğ» Ğ¿Ğ¾Ğ²Ğ¾Ñ€Ğ¾Ñ‚Ğ°: Ğ = " << R << endl;
     for(int i=0;i<4;i++){
 		Vertex[i] = Turnus(R,Vertex[i], Centre);
 	}
@@ -43,26 +43,26 @@ bool Shape:: CommonSide(const Shape& shape2)
 {   double arr1[3];double arr2[3];
 	for(int i=0;i<4;i++)
 	{   int m=i+1;
-	    if(i==3) {m=0;}//÷òîáû ïîñòğîèòü ñòîğîíó èç ïåğâîé è ïîñëåäíåé âåğøèíû
-		//çàïîìèíàåì êîıôôèöèåíòû ïğÿìîé 0=Àx+By+C äëÿ ñòîğîíû ïåğâîé ôèãóğû
+	    if(i==3) {m=0;}//Ñ‡Ñ‚Ğ¾Ğ±Ñ‹ Ğ¿Ğ¾ÑÑ‚Ñ€Ğ¾Ğ¸Ñ‚ÑŒ ÑÑ‚Ğ¾Ñ€Ğ¾Ğ½Ñƒ Ğ¸Ğ· Ğ¿ĞµÑ€Ğ²Ğ¾Ğ¹ Ğ¸ Ğ¿Ğ¾ÑĞ»ĞµĞ´Ğ½ĞµĞ¹ Ğ²ĞµÑ€ÑˆĞ¸Ğ½Ñ‹
+		//Ğ·Ğ°Ğ¿Ğ¾Ğ¼Ğ¸Ğ½Ğ°ĞµĞ¼ ĞºĞ¾ÑÑ„Ñ„Ğ¸Ñ†Ğ¸ĞµĞ½Ñ‚Ñ‹ Ğ¿Ñ€ÑĞ¼Ğ¾Ğ¹ 0=Ğx+By+C Ğ´Ğ»Ñ ÑÑ‚Ğ¾Ñ€Ğ¾Ğ½Ñ‹ Ğ¿ĞµÑ€Ğ²Ğ¾Ğ¹ Ñ„Ğ¸Ğ³ÑƒÑ€Ñ‹
 		arr1[0]=Vertex[i].Y-Vertex[m].Y;
 	    arr1[1]=Vertex[m].X-Vertex[i].X;
 	    arr1[2]=(Vertex[i].X*Vertex[m].Y)-(Vertex[m].X*Vertex[i].Y);
 		for(int j=0;j<4;j++)
 		{   int r=i+1;
-	        if(i==3) {r=0;}//çàïîìèíàåì êîıôôèöèåíòû ïğÿìîé 0=Àx+By+C äëÿ ñòîğîíû âòîğîé ôèãóğû
+	        if(i==3) {r=0;}//Ğ·Ğ°Ğ¿Ğ¾Ğ¼Ğ¸Ğ½Ğ°ĞµĞ¼ ĞºĞ¾ÑÑ„Ñ„Ğ¸Ñ†Ğ¸ĞµĞ½Ñ‚Ñ‹ Ğ¿Ñ€ÑĞ¼Ğ¾Ğ¹ 0=Ğx+By+C Ğ´Ğ»Ñ ÑÑ‚Ğ¾Ñ€Ğ¾Ğ½Ñ‹ Ğ²Ñ‚Ğ¾Ñ€Ğ¾Ğ¹ Ñ„Ğ¸Ğ³ÑƒÑ€Ñ‹
 			arr2[0]=shape2.Vertex[j].Y-shape2.Vertex[r].Y;
 	        arr2[1]=shape2.Vertex[r].X-shape2.Vertex[j].X;
 	        arr2[2]=(shape2.Vertex[i].X*shape2.Vertex[r].Y)-(shape2.Vertex[r].X*shape2.Vertex[j].Y);
 			if((arr1[0]==arr2[0]&&arr1[1]==arr2[1]&&arr1[2]==arr2[2])||(-arr1[0]==arr2[0]&&-arr1[1]==arr2[1]&&-arr1[2]==arr2[2])){
-			//åñëè óğàâíåíèÿ ïğÿìûõ ñîâïàäàşò
-			    if(Vertex[i].X!=Vertex[m].X)//åñëè ïğÿìàÿ íå âåğòèêàëüíà
-				{    //åñëè ïåğâûé îòğåçîê áîëüøå âòîğîãî
+			//ĞµÑĞ»Ğ¸ ÑƒÑ€Ğ°Ğ²Ğ½ĞµĞ½Ğ¸Ñ Ğ¿Ñ€ÑĞ¼Ñ‹Ñ… ÑĞ¾Ğ²Ğ¿Ğ°Ğ´Ğ°ÑÑ‚
+			    if(Vertex[i].X!=Vertex[m].X)//ĞµÑĞ»Ğ¸ Ğ¿Ñ€ÑĞ¼Ğ°Ñ Ğ½Ğµ Ğ²ĞµÑ€Ñ‚Ğ¸ĞºĞ°Ğ»ÑŒĞ½Ğ°
+				{    //ĞµÑĞ»Ğ¸ Ğ¿ĞµÑ€Ğ²Ñ‹Ğ¹ Ğ¾Ñ‚Ñ€ĞµĞ·Ğ¾Ğº Ğ±Ğ¾Ğ»ÑŒÑˆĞµ Ğ²Ñ‚Ğ¾Ñ€Ğ¾Ğ³Ğ¾
 					if((Vertex[i].X>=shape2.Vertex[r].X&&Vertex[i].X>=shape2.Vertex[j].X&&
 					Vertex[m].X<=shape2.Vertex[r].X&&Vertex[m].X<=shape2.Vertex[j].X)||	
 					(Vertex[m].X>=shape2.Vertex[r].X&&Vertex[m].X>=shape2.Vertex[j].X&&
 					Vertex[i].X<=shape2.Vertex[r].X&&Vertex[i].X<=shape2.Vertex[j].X)||
-					//åñëè îòğåçîê âòîğîé ôèãóğû áîëüøå ÷åì ïåğâîé
+					//ĞµÑĞ»Ğ¸ Ğ¾Ñ‚Ñ€ĞµĞ·Ğ¾Ğº Ğ²Ñ‚Ğ¾Ñ€Ğ¾Ğ¹ Ñ„Ğ¸Ğ³ÑƒÑ€Ñ‹ Ğ±Ğ¾Ğ»ÑŒÑˆĞµ Ñ‡ĞµĞ¼ Ğ¿ĞµÑ€Ğ²Ğ¾Ğ¹
 				    (shape2.Vertex[j].X>=Vertex[m].X&&shape2.Vertex[j].X>=Vertex[i].X&&
 					shape2.Vertex[r].X<=Vertex[m].X&&shape2.Vertex[r].X<=Vertex[i].X)||	
 					(shape2.Vertex[r].X>=Vertex[m].X&&shape2.Vertex[r].X>=Vertex[i].X&&
@@ -72,13 +72,13 @@ bool Shape:: CommonSide(const Shape& shape2)
 					}
 				
 				}
-				else //ñğàâíèâàåì ïî  êîîğäèíàòå Ó
-				{    //åñëè ïåğâûé îòğåçîê áîëüøå âòîğîãî
+				else //ÑÑ€Ğ°Ğ²Ğ½Ğ¸Ğ²Ğ°ĞµĞ¼ Ğ¿Ğ¾  ĞºĞ¾Ğ¾Ñ€Ğ´Ğ¸Ğ½Ğ°Ñ‚Ğµ Ğ£
+				{    //ĞµÑĞ»Ğ¸ Ğ¿ĞµÑ€Ğ²Ñ‹Ğ¹ Ğ¾Ñ‚Ñ€ĞµĞ·Ğ¾Ğº Ğ±Ğ¾Ğ»ÑŒÑˆĞµ Ğ²Ñ‚Ğ¾Ñ€Ğ¾Ğ³Ğ¾
 					if((Vertex[i].Y>=shape2.Vertex[r].Y&&Vertex[i].Y>=shape2.Vertex[j].Y&&
 					Vertex[m].Y<=shape2.Vertex[r].Y&&Vertex[m].Y<=shape2.Vertex[j].Y)||	
 					(Vertex[m].Y>=shape2.Vertex[r].Y&&Vertex[m].Y>=shape2.Vertex[j].Y&&
 					Vertex[i].Y<=shape2.Vertex[r].Y&&Vertex[i].Y<=shape2.Vertex[j].Y)||
-					//åñëè îòğåçîê âòîğîé ôèãóğû áîëüøå ÷åì ïåğâîé
+					//ĞµÑĞ»Ğ¸ Ğ¾Ñ‚Ñ€ĞµĞ·Ğ¾Ğº Ğ²Ñ‚Ğ¾Ñ€Ğ¾Ğ¹ Ñ„Ğ¸Ğ³ÑƒÑ€Ñ‹ Ğ±Ğ¾Ğ»ÑŒÑˆĞµ Ñ‡ĞµĞ¼ Ğ¿ĞµÑ€Ğ²Ğ¾Ğ¹
 				    (shape2.Vertex[j].Y>Vertex[m].Y&&shape2.Vertex[j].Y>=Vertex[i].Y&&
 					shape2.Vertex[r].Y<=Vertex[m].Y&&shape2.Vertex[r].Y<=Vertex[i].Y)||	
 					(shape2.Vertex[r].Y>=Vertex[m].Y&&shape2.Vertex[r].Y>=Vertex[i].Y&&
