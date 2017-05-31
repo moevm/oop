@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "5.h"
+#include "lab5.h"
 
 using namespace stepik;
 

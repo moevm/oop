@@ -1,6 +1,9 @@
+#include <iostream>
+#include <gtest/gtest.h>
+#include "lab2.h"
 #include "tst_lab2test.h"
 
-#include <gtest/gtest.h>
+using namespace std;
 
 int main(int argc, char *argv[])
 {

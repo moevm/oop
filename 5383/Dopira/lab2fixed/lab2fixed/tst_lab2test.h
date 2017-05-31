@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
-#include "../../../src/2.h"
+#include "lab2.h"
 
 using namespace testing;
 

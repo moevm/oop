@@ -1,7 +1,3 @@
-//
-// Created by Xtail on 18.05.17.
-//
-
 #ifndef OOPLAB5VALERIA_4_H
 #define OOPLAB5VALERIA_4_H
 

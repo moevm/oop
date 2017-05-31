@@ -1,13 +1,9 @@
-//
-// Created by Xtail on 18.05.17.
-//
-
 #ifndef OOPLAB5VALERIA_5_H
 #define OOPLAB5VALERIA_5_H
 
-#include "2.h"
-#include "3.h"
-#include "4.h"
+#include "lab2.h"
+#include "lab3.h"
+#include "lab4.h"
 
 #include <functional>
 
@@ -66,6 +62,7 @@ bool checkLists(stepik::list< stepik::shared_ptr<Shape> > &first,
                 return false;
             }
             itFirst++;
+            itSecond++;
         }
         return true;
     }
@@ -87,7 +84,9 @@ void eraseElement(stepik::list< stepik::shared_ptr<Shape> > &container,
         {
             container.erase(itContainer);
         }
-        itContainer++;
+        else{
+            itContainer++;
+        }
     }
 }
 
