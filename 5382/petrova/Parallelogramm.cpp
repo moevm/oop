@@ -17,9 +17,9 @@ void Parallelogramm::move(Point newCenter)
 
 void Parallelogramm::turn(double angle)
 { 
-	cout << "Ââåäèòå óãîë ïîâîðîòà";
+	cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã³Ã£Ã®Ã« Ã¯Ã®Ã¢Ã®Ã°Ã®Ã²Ã ";
 	cin >> angle;
-	cout << "Âû ïîâåðíóëè ïàðàëëåëîãðàì íà" << angle;
+	cout << "Ã‚Ã» Ã¯Ã®Ã¢Ã¥Ã°Ã­Ã³Ã«Ã¨ Ã¯Ã Ã°Ã Ã«Ã«Ã¥Ã«Ã®Ã£Ã°Ã Ã¬ Ã­Ã " << angle;
 }
 
 void Parallelogramm::changesize(double k)
