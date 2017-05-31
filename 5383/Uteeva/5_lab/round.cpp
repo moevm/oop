@@ -11,30 +11,37 @@ Round::Round (double radius, const Point &center, const Color &color) : Shape(ce
 void Round::rotate(double angle) {}
 
 void Round::ScaleFigure(double scale) {
-	if (scale > 0) {
+	//if (scale > 0) {
 		radius = radius*scale;
-	}
-	else {
-		throw std::invalid_argument("Неправильный коэфициент! \n");
-	}
+	//}
+	//else {
+	//	throw std::invalid_argument("Неправильный коэфициент! \n");
+	//}
 }
 
 
 
 void Round::setRadius(double radius) {
-	if (radius > 0) {
+	//if (radius > 0) {
 		this->radius = radius;
-	}
-	else {
-		throw std::invalid_argument("Некорректный радиус! \n");
-	}
+	//}
+	//else {
+	//	throw std::invalid_argument("Некорректный радиус! \n");
+	//}
 }
 
 double Round::getRadius() {
 	return radius;
 }
 
-
+void Round::print(std::ostream &os)
+ {
+	os << "Round" << std::endl;
+	os << "Id: " << Id << std::endl;
+	os << "Center: ( " << center.x << " , " << center.y << " )" << std::endl;
+	os << "Radius: " << radius << std::endl;
+	os << std::endl;
+	}
 
 bool Round::isPointInsideOfFigure(const Point &other) const {
 	double l = pow(other.x - center.x, 2) + pow(other.y - center.y, 2);

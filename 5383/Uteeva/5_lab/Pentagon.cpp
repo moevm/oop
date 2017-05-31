@@ -47,7 +47,19 @@ void Pentagon::ScaleFigure(double scale) {
 	}
 }
 
+std::ostream &operator<< (std::ostream &os, Shape &f)
+{
+	f.print(os);
+	return os;
+}
 
+void Pentagon::print(std::ostream &os)
+{
+	os << "[Pentagon]" << std::endl;
+	os << "Id: " << Id << std::endl;
+	os << "Center( x , y ): ( " << center.x << " , " << center.y << " )" << std::endl;
+	os << std::endl;
+}
 
 void Pentagon::Move(double dx, double dy) {
 	Shape::Move(dx, dy);

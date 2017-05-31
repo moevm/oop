@@ -18,10 +18,11 @@ public:
 	double getRadius();
 	virtual bool isInsideOfAnother(const Shape &other) const override;
 	virtual bool isPointInsideOfFigure(const Point &other) const override;
-	friend ostream&operator<<(std::ostream &os, const Round &round) {
+	/*friend ostream&operator<<(std::ostream &os, const Round &round) {
 		os << static_cast<const Shape &>(round) << " radius: " << round.radius <<"ID фигуры: "<< round.Id;
 		return os;
-	}
+	}*/
+	void print(std::ostream &os) override;
 
 		
 };

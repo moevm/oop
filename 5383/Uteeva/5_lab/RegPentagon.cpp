@@ -20,6 +20,13 @@ RegPentagon::RegPentagon(const Point &center, const Point &point, const Color &c
 	ID++;
 }
 
+void RegPentagon::print(std::ostream &os)
+{
+	os << "[Pentagon]" << std::endl;
+	os << "Id: " << Id << std::endl;
+	os << "Center( x , y ): ( " << center.x << " , " << center.y << " )" << std::endl;
+	os << std::endl;
+}
 
 double RegPentagon::getRadius() const {
 	return radius;

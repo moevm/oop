@@ -4,100 +4,155 @@
 #include <algorithm>
 #include <cstddef>
 namespace stepik
-{
-	template <typename T>
-	class shared_ptr
 	{
-		template <typename T2>
-		friend class shared_ptr;
-
-	public:
-
-		explicit shared_ptr(T *ptr = nullptr) {
-			ptr_ = ptr;
-			if (ptr_) {
-				reference_ = new size_t(1);
-			}
-			else {
-				reference_ = 0;
-			}
-		}
-		~shared_ptr()
-		{
-			decrement_r();
-		}
-
-		template <typename T2>
-		shared_ptr(const shared_ptr<T2> & other)
-		{
-			ptr_ = other.ptr_;
-			reference_ = other.reference_;
-			if (ptr_) {
-				++(*reference_);
-			}
-		}
-		template <typename T2>
-		shared_ptr& operator=(const shared_ptr<T2> & other)
-		{
-			shared_ptr tmp(other);
-			swap(tmp);
-			return *this;
-		}
-
-		void decrement_r() {
-			if (reference_ && ptr_ && !--(*reference_)) {
-				delete ptr_;
-				delete reference_;
-				reference_ = 0;
-			}
-		}
-		explicit operator bool() const
-		{
-			return (ptr_ != nullptr);
-		}
-
-		T* get() const
-		{
-			return ptr_;
-		}
-
-		long use_count() const
-		{
-			return (reference_ ? *reference_ : 0);
-		}
-
-		T& operator*() const
-		{
-			return *ptr_;
-		}
-
-		T* operator->() const
-		{
-			return ptr_;
-		}
-		template <typename T2>
-		bool operator==(const shared_ptr<T2> &other) const
-		{
-			return (ptr_ == other.ptr_);
-		}
-
-		void swap(shared_ptr& x) noexcept
-		{
-			std::swap(ptr_, x.ptr_);
-			std::swap(reference_, x.reference_);
-		}
-
-		void reset(T *ptr = 0)
-		{
-			shared_ptr tmp(ptr);
-			this->swap(tmp);
-		}
-
-	private:
-		T* ptr_;
-		size_t* reference_;
-
-	};
-} // namespace stepik
-
+	template <typename T>
+		class shared_ptr
+		 {
+		template <typename U>
+			friend class shared_ptr;
+		
+			public:
+			explicit shared_ptr(T *ptr = 0) :
+					m_ptr(ptr), m_count(ptr ? new size_t(1) : nullptr)
+					 {
+					      // implement this
+						}
+				
+					~shared_ptr()
+					 {
+					      // implement this
+						free();
+					}
+				
+					
+					template <typename U>
+					shared_ptr(const shared_ptr<U> & other) :
+					m_ptr(other.m_ptr), m_count(other.m_count)
+					 {
+					      // implement this
+						if (m_count)
+						{
+						(*m_count)++;
+						}
+					}
+				
+					shared_ptr(const shared_ptr & other) :
+					m_ptr(other.m_ptr), m_count(other.m_count)
+					 {
+					     // implement this
+						if (m_count)
+						{
+						(*m_count)++;
+						}
+					}
+				
+				template <typename U>
+					shared_ptr& operator=(const shared_ptr<U> & other)
+					 {
+						shared_ptr tmp(other);
+					    this->swap(tmp);
+					}
+				
+					shared_ptr& operator=(const shared_ptr & other)
+					 {
+						shared_ptr tmp(other);
+					    swap(tmp);
+						return *this;
+					}
+				
+					template <typename U>
+					bool operator > (const shared_ptr<U> &other)
+					 {
+					if (get()->getId() > other.get()->getId())
+						{
+						return true;
+						}
+					else
+						 {
+						return false;
+						}
+					}
+				
+					template <typename U>
+					bool operator < (const shared_ptr<U> &other)
+					 {
+					if (get()->getId() < other.get()->getId())
+						{
+						return true;
+						}
+					else
+						 {
+						return false;
+						}
+					}
+				
+					template <typename U>
+					bool operator == (const shared_ptr<U> &other) const
+					 {
+				return (m_ptr == other.m_ptr);
+					}
+				
+					explicit operator bool() const
+					 {
+					      // implement this
+						return (m_ptr != nullptr);
+					}
+				
+					T* get() const
+					 {
+					     // implement this
+						return m_ptr;
+					}
+				
+					long use_count() const
+					 {
+					      // implement this
+						return (m_count ? *m_count : 0);
+					}
+				
+					T& operator*() const
+					{
+					      // implement this
+						return *m_ptr;
+					}
+				
+					T* operator->() const
+					 {
+					      // implement this
+						return m_ptr;
+					}
+				
+					void swap(shared_ptr& x) noexcept
+					 {
+					      // implement this
+						std::swap(this->m_ptr, x.m_ptr);
+					std::swap(this->m_count, x.m_count);
+					}
+				
+					void reset(T *ptr = nullptr)
+					 {
+					      // implement this
+						shared_ptr tmp(ptr);
+					this->swap(tmp);
+					}
+				
+					private:
+						    // data members
+							T* m_ptr;
+					size_t* m_count;
+						
+							void free()
+							 {
+							if (m_ptr)
+								{
+								(*m_count)--;
+								if (*m_count == 0)
+									 {
+									delete m_ptr;
+									delete m_count;
+									}
+								}
+							}
+						};
+	} // namespace stepik
 #endif // SHAREDPTR_H

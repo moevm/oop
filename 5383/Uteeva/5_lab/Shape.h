@@ -83,7 +83,8 @@ protected:
 	Shape(const Point &center, const Color &color);
 	Shape(const Color &color);
 	Shape();
-	friend ostream&operator<<(ostream &, const Shape &); 
+	friend ostream&operator<<(ostream &os, const Shape &f); 
+
 	virtual void Move(double dx, double dy);  //перемещение
 	virtual void rotate(double angle) = 0;  //поворот
 	virtual void ScaleFigure(double scale) = 0; //масштабирование
@@ -96,6 +97,7 @@ public:
     void SetColor(const Color &color);  //задать цвет
 	virtual bool isInsideOfAnother(const Shape &other)  const = 0;
 	virtual bool isPointInsideOfFigure(const Point &other) const = 0;
+	virtual void print(std::ostream &os) = 0;
 	static double Length(const Point &p1, const Point &p2);
 	static double triangleS(const Point &p1, const Point &p2, const Point &p3);
 	virtual ~Shape();

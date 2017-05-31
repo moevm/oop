@@ -12,6 +12,7 @@ public:
 	int Id;
 	RegPentagon(const Point &center, const Point &point, const Color &color);
 	double getRadius() const;
+	void print(std::ostream &os) override;
 
 };
 #endif
