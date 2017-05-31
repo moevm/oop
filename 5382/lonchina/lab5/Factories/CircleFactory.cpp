@@ -5,9 +5,8 @@
 // center - центра
 // возвращаем новый круг с заданными значениями
 /**
- * @return
- */
+* @return
+*/
 AbstractShape* CircleFactory::createShape(std::vector<Point> & coord, Point & center, int dots, std::string figure) {
-    create(coord, center, dots, figure);
-    return new Circle(coord, center);
+	return new Circle(coord, center);
 }

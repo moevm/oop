@@ -5,6 +5,5 @@
 // center - центра
 // возвращаем новую трапецию с заданными значениями
 AbstractShape* TrapeziumFactory::createShape(std::vector<Point> & coord, Point & center, int dots, std::string figure) {
-    create(coord, center, dots, figure);
-    return new Trapezium(coord, center);
+	return new Trapezium(coord, center);
 }

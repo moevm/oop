@@ -1,12 +1,10 @@
-#define _USE_MATH_DEFINES
-
 #include <iostream>
 #include <vector>
-#include "../Figures/AbstractShape.h"
-#include "../Figures/Trapezium.h"
-#include "../Factories/RectangleFactory.h"
-#include "../Factories/CircleFactory.h"
-#include "../Factories/TrapeziumFactory.h"
+#include "Figures/AbstractShape.h"
+#include "Figures/Trapezium.h"
+#include "Factories/RectangleFactory.h"
+#include "Factories/CircleFactory.h"
+#include "Factories/TrapeziumFactory.h"
 #include <ctime>
 #include <cstdlib>
 #include <memory>
@@ -14,7 +12,6 @@
 using namespace std;
 
 void generator(vector< shared_ptr<AbstractShape> > &List) {
-	// инициализируем фабрики каждой из фигур
 	RectangleFactory* rectangle_factory = new RectangleFactory;
 	CircleFactory*  circle_factory = new CircleFactory;
 	TrapeziumFactory*  trapezium_factory = new TrapeziumFactory;
@@ -82,11 +79,11 @@ void generator(vector< shared_ptr<AbstractShape> > &List) {
 
 void menu()
 {
-	// инициализируем вектор фигур
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	vector< shared_ptr<AbstractShape> > sss, ppp, lll;
 	srand(time(nullptr));
 
-	// выбор
+	// пїЅпїЅпїЅпїЅпїЅ
 	int choose = 0;
 	do {
 		cout << "1. Non-modyfying algorithm" << endl;
@@ -96,11 +93,11 @@ void menu()
 		cin >> choose;
 		switch (choose) {
 		case 1: {
-					// генерируем два списка
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					generator(sss);
 					generator(ppp);
 
-					// сортируем элементы по убыванию
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					sort(sss.begin(), sss.end(), [](shared_ptr<AbstractShape> a, shared_ptr<AbstractShape> b) {
 						return a.get()->getArea() > b.get()->getArea();
 					});
@@ -108,7 +105,7 @@ void menu()
 						return a.get()->getArea() > b.get()->getArea();
 					});
 
-					// сравнивем равны ли списки поэлементно по площади
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					bool flag = false;
 					for (int i = 0; i < sss.size() && i < ppp.size(); ++i) {
 						if (sss[i].get()->getArea() != ppp[i].get()->getArea()) {
@@ -124,15 +121,15 @@ void menu()
 					break;
 		}
 		case 2: {
-					// генерируем фигуры
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					generator(lll);
 
-					// вводим границу, в которой сортируем элементы
+					// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					unsigned n = 0;
 					cout << "Enter range of sorting: ";
 					cin >> n;
 
-					// сортируем по возрастанию
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					sort(lll.begin(), lll.begin() + n, [](shared_ptr<AbstractShape> a, shared_ptr<AbstractShape> b) {
 						return a.get()->getArea() > b.get()->getArea();
 					});
