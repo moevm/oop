@@ -19,7 +19,6 @@ public:
 		}
 	}
 
-	static Rhombus* create_child();
 
 	void print(std::ostream& OS) const override; // Вывод
 };

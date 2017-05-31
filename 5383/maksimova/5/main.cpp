@@ -1,4 +1,5 @@
 #include "Lab5.h"
+
 int main() {
 	//Алгоритмы из моего задания имеются в <algorithm>
 
@@ -8,7 +9,7 @@ int main() {
 	stepik::vector< stepik::shared_ptr<Shape> > shapes = generate_conteiner(1000);
 
 	//Проверяем, выполним ли предикат для всех элементов контейнера. 
-	if (std::all_of(shapes.begin(), shapes.end(), Shape::common_side)) {
+	if (std::all_of(shapes.begin(), shapes.end(), predicate)) {
 		std::cout << "Все элементы данного контейнера имеют общую сторону" <<std::endl;
 	}
 	else {
@@ -22,7 +23,9 @@ int main() {
 	stepik::vector< stepik::shared_ptr<Shape> > new_shapes(1000);// новый контейнер куда скопируется
 
 	std::replace_copy_if(shapes.begin(), shapes.end(), new_shapes.begin(),
-		Shape::common_side, my_square);
+		predicate, my_square);
 
+//Ничего про гугл-тесты в задании не нашла, поэтому я их и не делаю :> 
+//Если что они были в количестве 10 штук во второй лабораторной работе.
 	return 0;
 }

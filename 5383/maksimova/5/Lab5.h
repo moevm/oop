@@ -1,4 +1,4 @@
-// Примите, пожалуйста, вторую лабораторную. Там оставалась только кодировка :(
+// Ïðèìèòå, ïîæàëóéñòà, âòîðóþ ëàáîðàòîðíóþ. Òàì îñòàâàëàñü òîëüêî êîäèðîâêà :(
 #include "Dot.h"
 #define _USE_MATH_DEFINES 
 #include <math.h>
@@ -16,10 +16,13 @@ std::default_random_engine gen(rd());
 
 const long int BORDER = 50;
 
-//ЭТО ТОЛЬКО ГЕНЕРАТОР АЛГОРИТМЫ В main-e 
+//Работа с алгоритмами в main'е
 
-
-//генератор
+//Обёртка для предиката
+bool predicate(const stepik::shared_ptr<Shape> &a, const stepik::shared_ptr<Shape> &b) {
+	return b->common_side(a.get());
+}
+//Генератор
 Dot generate_random_dot(long int BORDER) {
 
 	Dot random_dot(rand() % BORDER, rand() % BORDER);
@@ -46,7 +49,8 @@ stepik::shared_ptr<Shape> generate_random_square(long int BORDER) {
 
 stepik::shared_ptr<Shape>  generate_random_rhombus(long int BORDER) {
 	std::vector<Dot> corners(4);
-	//случайная вершина от которой всё строится
+	
+	//рандомим координаты
 	Dot first_corner = generate_random_dot(BORDER);
 	std::uniform_real_distribution<double> rnd1(0, M_PI);
 	double first_angle = rnd1(gen);
@@ -58,7 +62,7 @@ stepik::shared_ptr<Shape>  generate_random_rhombus(long int BORDER) {
 	corners[2] = { Dot(corners[1].x + side*cos(second_angle), corners[1].y + side*sin(second_angle)) };
 	corners[3] = { Dot(corners[0].x + side*cos(second_angle), corners[0].y + side*sin(second_angle)) };
 
-	//генерим цвет
+	//рандомим цвет
 	std::uniform_int_distribution<unsigned int> color(0, 255);
 	Color c(color(gen), color(gen), color(gen));
 	Rhombus* rh = new Rhombus(corners);
@@ -67,7 +71,7 @@ stepik::shared_ptr<Shape>  generate_random_rhombus(long int BORDER) {
 }
 stepik::shared_ptr<Shape>  generate_random_trapezium(long int BORDER) {
 	std::vector<Dot> corners(4);
-	//случайная вершина от которой всё строится
+	
 	std::uniform_real_distribution<double> rnd1(0, M_PI);
 	double first_angle = rnd1(gen);
 	double first_side = rand() % BORDER + 1;
@@ -78,13 +82,15 @@ stepik::shared_ptr<Shape>  generate_random_trapezium(long int BORDER) {
 	corners[2] = { Dot(corners[1].x + first_side*cos(first_angle), corners[1].y + first_side*sin(first_angle)) };
 	corners[3] = { Dot(corners[0].x + second_side*cos(first_angle), corners[0].y + second_side*sin(first_angle)) };
 
-	//генерим цвет
+
 	std::uniform_int_distribution<unsigned int> color(0, 255);
 	Color c(color(gen), color(gen), color(gen));
 	Trapezium* tr = new Trapezium(corners);
 	tr->set_color(c);
 	return stepik::shared_ptr<Shape>(tr);
 }
+
+//рандомим тип фигуры
 stepik::shared_ptr<Shape> generate_random_shape() {
 	int type = rand() % 3;
 
@@ -102,6 +108,7 @@ stepik::shared_ptr<Shape> generate_random_shape() {
 		return stepik::shared_ptr<Shape>();
 	}
 }
+//генерим контейнер
 stepik::vector< stepik::shared_ptr<Shape> > generate_conteiner(size_t n)
 {
 	srand(time(NULL));
