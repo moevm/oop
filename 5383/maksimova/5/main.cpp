@@ -25,7 +25,6 @@ int main() {
 	std::replace_copy_if(shapes.begin(), shapes.end(), new_shapes.begin(),
 		predicate, my_square);
 
-//Ничего про гугл-тесты в задании не нашла, поэтому я их и не делаю :> 
-//Если что они были в количестве 10 штук во второй лабораторной работе.
+
 	return 0;
 }
