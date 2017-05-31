@@ -7,11 +7,11 @@
 namespace stepik
 {
 
-
+const int BOUND = 20;
 bool predicate(Shape* shape)
 {
     // расстояние от начала координат до ближайшей вершины больше 20
-    return (shape->distance(Point()) > 20);
+    return (shape->distance(Point()) > BOUND);
 }
 
 
@@ -26,22 +26,24 @@ list_iterator< shared_ptr<Shape> > search_n(
             first = container.begin(),
             last = container.end();
 
+
+
     for (; first != last; first++)
     {
         curr_count = 0;
-        result = first;
+
 
         while (pred(first->get()))
         {
             curr_count++;
+            if (curr_count == 1)
+               result = first;
             if (curr_count == count)
-                return result;
-
-            first++;
+            return result;
         }
+        first ++;
     }
 
-    return last;
 }
 
 
