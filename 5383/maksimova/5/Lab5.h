@@ -1,6 +1,7 @@
 // Ïðèìèòå, ïîæàëóéñòà, âòîðóþ ëàáîðàòîðíóþ. Òàì îñòàâàëàñü òîëüêî êîäèðîâêà :(
 #include "Dot.h"
 #define _USE_MATH_DEFINES 
+#define _SCL_SECURE_NO_WARNINGS
 #include <math.h>
 #include <random>
 #include "StepShared.h"
@@ -9,6 +10,7 @@
 #include "Square.h"
 #include "Trapezium.h"
 #include "StepVector.h"
+
 
 
 std::random_device rd;
@@ -40,10 +42,9 @@ stepik::shared_ptr<Shape> generate_random_square(long int BORDER) {
 	corners[1] = { Dot(corners[0].x + side*cos(first_angle), corners[0].y + side*sin(first_angle)) };
 	corners[2] = { Dot(corners[1].x + side*cos(second_angle), corners[1].y + side*sin(second_angle)) };
 	corners[3] = { Dot(corners[0].x + side*cos(second_angle), corners[0].y + side*sin(second_angle)) };
-	std::uniform_int_distribution<unsigned int> color(0, 255);
-	Color c(color(gen), color(gen), color(gen));
+	
 	Square* sq = new Square(corners);
-	sq->set_color(c);
+	sq->set_color(generate_random_color());
 	return stepik::shared_ptr<Shape>(sq);
 }
 
@@ -63,10 +64,9 @@ stepik::shared_ptr<Shape>  generate_random_rhombus(long int BORDER) {
 	corners[3] = { Dot(corners[0].x + side*cos(second_angle), corners[0].y + side*sin(second_angle)) };
 
 	//рандомим цвет
-	std::uniform_int_distribution<unsigned int> color(0, 255);
-	Color c(color(gen), color(gen), color(gen));
+
 	Rhombus* rh = new Rhombus(corners);
-	rh->set_color(c);
+	rh->set_color(generate_random_color());
 	return stepik::shared_ptr<Shape>(rh);
 }
 stepik::shared_ptr<Shape>  generate_random_trapezium(long int BORDER) {
@@ -83,10 +83,9 @@ stepik::shared_ptr<Shape>  generate_random_trapezium(long int BORDER) {
 	corners[3] = { Dot(corners[0].x + second_side*cos(first_angle), corners[0].y + second_side*sin(first_angle)) };
 
 
-	std::uniform_int_distribution<unsigned int> color(0, 255);
-	Color c(color(gen), color(gen), color(gen));
+
 	Trapezium* tr = new Trapezium(corners);
-	tr->set_color(c);
+	tr->set_color(generate_random_color());
 	return stepik::shared_ptr<Shape>(tr);
 }
 
@@ -109,7 +108,7 @@ stepik::shared_ptr<Shape> generate_random_shape() {
 	}
 }
 //генерим контейнер
-stepik::vector< stepik::shared_ptr<Shape> > generate_conteiner(size_t n)
+stepik::vector< stepik::shared_ptr<Shape> > generate_container(size_t n)
 {
 	srand(time(NULL));
 	stepik::vector< stepik::shared_ptr<Shape> > shapes(n);
@@ -120,4 +119,6 @@ stepik::vector< stepik::shared_ptr<Shape> > generate_conteiner(size_t n)
 
 	return shapes;
 }
-
+Color generate_random_color() {
+	return Color(rand() % 256, rand() % 256, rand() % 256);
+}
