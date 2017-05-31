@@ -18,27 +18,27 @@ struct my_color
 };
 
 
-class Shape //áàçîâûé êëàññ
+class Shape //Ã¡Ã Ã§Ã®Ã¢Ã»Ã© ÃªÃ«Ã Ã±Ã±
 {
 protected:
 	Point center;	
 	my_color color;
-	int angle; // ïîâîðîò íà óãîë 
+	int angle; // Ã¯Ã®Ã¢Ã®Ã°Ã®Ã² Ã­Ã  Ã³Ã£Ã®Ã« 
 
 public:
-	Shape() {} //êîíñòðóêòîð êëàññà
+	Shape() {} //ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃªÃ«Ã Ã±Ã±Ã 
 	virtual void move(Point newCenter) = 0;
 	virtual void changesize(double k) = 0;
-	virtual void turn(double angle)=0; // ïîâîðà÷èâàåò íà óãîë
-	my_color getColor()	//ïîëó÷åíèå öâåòà
+	virtual void turn(double angle)=0; // Ã¯Ã®Ã¢Ã®Ã°Ã Ã·Ã¨Ã¢Ã Ã¥Ã² Ã­Ã  Ã³Ã£Ã®Ã«
+	my_color getColor()	//Ã¯Ã®Ã«Ã³Ã·Ã¥Ã­Ã¨Ã¥ Ã¶Ã¢Ã¥Ã²Ã 
 	{
 		return this->color;
 	}
-	void setñolor(my_color color)	//óñòàíîâêà öâåòà
+	void setÃ±olor(my_color color)	//Ã³Ã±Ã²Ã Ã­Ã®Ã¢ÃªÃ  Ã¶Ã¢Ã¥Ã²Ã 
 	{
 		this->color = color;
 	}
-	virtual ostream &operator << (ostream &output)	//îïåðàòîð âûâîäà â ïîòîê
+	virtual ostream &operator << (ostream &output)	//Ã®Ã¯Ã¥Ã°Ã Ã²Ã®Ã° Ã¢Ã»Ã¢Ã®Ã¤Ã  Ã¢ Ã¯Ã®Ã²Ã®Ãª
 	{
 		return output;
 	}
@@ -51,17 +51,17 @@ public:
 	}
 	virtual double const leftx() const = 0;
 };
-class Ellips : public Shape //êëàññ îêðóæíîñòè
+class Ellips : public Shape //ÃªÃ«Ã Ã±Ã± Ã®ÃªÃ°Ã³Ã¦Ã­Ã®Ã±Ã²Ã¨
 {
 private:
 	double R;
 	double r;
 	Point left;
 public:
-	Ellips(Point center, int _R = 1, int _r = 2);//êîíñòðóêòîð êëàññà
+	Ellips(Point center, int _R = 1, int _r = 2);//ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃªÃ«Ã Ã±Ã±Ã 
     void move(Point newCenter) ;
     void changesize(double k);
-    void turn(double angle); // ïîâîðà÷èâàåò íà óãîë
+    void turn(double angle); // Ã¯Ã®Ã¢Ã®Ã°Ã Ã·Ã¨Ã¢Ã Ã¥Ã² Ã­Ã  Ã³Ã£Ã®Ã«
 	double const leftx() const;
 
 	ostream &operator << (ostream &output)
@@ -76,16 +76,16 @@ public:
 };
 
 
-class SegEl : public Shape //êëàññ êâàäðàòà
+class SegEl : public Shape //ÃªÃ«Ã Ã±Ã± ÃªÃ¢Ã Ã¤Ã°Ã Ã²Ã 
 {
 private:
 	Point left;
 	Point right;
 public:
-	SegEl(Point center, Point left, Point right); //êîíñòðóêòîð êëàññà
+	SegEl(Point center, Point left, Point right); //ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃªÃ«Ã Ã±Ã±Ã 
 	void move(Point newCenter);
 	void changesize(double k);
-	void turn(double angle); // âèðòóàëüíûé ìåòîä äëÿ ïîâîðà ôèãóðû íà óãîë
+	void turn(double angle); // Ã¢Ã¨Ã°Ã²Ã³Ã Ã«Ã¼Ã­Ã»Ã© Ã¬Ã¥Ã²Ã®Ã¤ Ã¤Ã«Ã¿ Ã¯Ã®Ã¢Ã®Ã°Ã  Ã´Ã¨Ã£Ã³Ã°Ã» Ã­Ã  Ã³Ã£Ã®Ã«
 	double const leftx() const;
 	ostream &operator << (ostream &output)
 	{
@@ -99,7 +99,7 @@ public:
 	virtual ~SegEl() {}
 };
 
-class Parallelogramm : public Shape //êëàññ êâàäðàòà
+class Parallelogramm : public Shape //ÃªÃ«Ã Ã±Ã± ÃªÃ¢Ã Ã¤Ã°Ã Ã²Ã 
 {
 private:
 	double l,L;
@@ -107,7 +107,7 @@ public:
 	Parallelogramm(Point center, int _l = 9, int _L = 3);
 	void move(Point newCenter);
 	void changesize(double k);
-	void turn(double angle);  // âèðòóàëüíûé ìåòîä äëÿ ïîâîðà ôèãóðû íà óãîë
+	void turn(double angle);  // Ã¢Ã¨Ã°Ã²Ã³Ã Ã«Ã¼Ã­Ã»Ã© Ã¬Ã¥Ã²Ã®Ã¤ Ã¤Ã«Ã¿ Ã¯Ã®Ã¢Ã®Ã°Ã  Ã´Ã¨Ã£Ã³Ã°Ã» Ã­Ã  Ã³Ã£Ã®Ã«
 	double const leftx() const;
 	ofstream &operator << (ofstream &output)
 	{
