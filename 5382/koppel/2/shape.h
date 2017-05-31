@@ -1,4 +1,4 @@
-#ifndef SHAPE_H
+пїњ#ifndef SHAPE_H
 #define SHAPE_H
 #include "point.h"
 #include <string.h>
@@ -22,20 +22,16 @@ static map <color_type, char*> map_of_colour = {
 };
 
 class Shape {
-	
+
 private:
 	static size_t counter;
 
 protected:
 	color_type color = white;
-	//Point left_bottom;//лева€ нижн€€
-	//Point left_top;//лева€ верхн€€
-	//Point right_bottom;//права€ нижн€€
-	//Point right_top;//права€ верхн€€
-	unsigned ID;//индивидуальный ID
-	Point current_center;//текущий центр
-	int angle;//угол 
-	double scale;//масштаб 
+	unsigned ID;
+	Point current_center;
+	int angle;
+	double scale; 
 	vector <Point> vertex;
 
 public:
@@ -43,7 +39,7 @@ public:
 	Shape(Point current_center, int angle = 0, double scale = 1) :
 		current_center(current_center), angle(angle), scale(scale), ID(counter++) {}
 
-	~Shape(){}
+	virtual ~Shape() {}
 	const vector<Point>& get_vector() const {
 		return vertex;
 	}
@@ -54,11 +50,11 @@ public:
 	}
 
 
-	color_type get_color() const 
+	color_type get_color() const
 	{
 		return color;
 	}
-	
+
 
 	void set_ID()
 	{
@@ -66,9 +62,9 @@ public:
 		ID = ++counter;
 	}
 
-	unsigned get_ID() const 
+	unsigned get_ID() const
 	{
-		return ID; 
+		return ID;
 	}
 
 
@@ -78,16 +74,9 @@ public:
 	virtual void print(ostream &ost) = 0;
 	virtual void rotate(int new_angle) = 0;
 
-	//ƒополнительна€ функци€
-	
 	bool common_vertex(const Shape& other) const;
 
 
 };
 
-
-template <typename T>
-bool float_comparison(T f1, T f2) {
-	return (fabs(f1 - f2) <= std::numeric_limits<T>::epsilon());
-}
 #endif

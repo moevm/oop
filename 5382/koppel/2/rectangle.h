@@ -1,4 +1,4 @@
-#ifndef RECTANGLE_H
+п»ї#ifndef RECTANGLE_H
 #define RECTANGLE_H
 #include "shape.h"
 #include "point.h"
@@ -8,22 +8,19 @@
 
 using namespace std;
 
-class Rectangle : public Shape { // класс - прямоугольник 
+class Rectangle : public Shape { 
 protected:
 	double width;
 	double height;
-	
-public:		
+
+public:
 	Rectangle(Point current_center, int angle, double scale, double width, double height);
 	void Scale(double scale) override;
 	void move(Point new_center) override;
 	void print(ostream &ost) override;
 	void rotate(int NewAngle) override;
-	~Rectangle() {};
 
-	//std::vector<Point> common_vertex(const Shape& other) const override;
 };
 
 
 #endif// RECTANGLE_H
-

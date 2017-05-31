@@ -8,9 +8,9 @@
 
 using namespace std;
 
-class Star:public Shape {//класс звездочка :З 
-protected:
-	int starAngle = 0; // a
+class Star :public Shape {
+private:
+	int starAngle = 0; 
 	double radius;
 
 public:
@@ -19,10 +19,7 @@ public:
 	void move(Point new_center) override;
 	void print(ostream &ost) override;
 	void rotate(int NewAngle) override;
-	~Star(){}
-	
 };
 
 
 #endif //STAR_H
-
