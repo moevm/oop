@@ -1,10 +1,12 @@
 #include "Shape.h"
 #include <utility>
-
+#include <chrono>
+#include <random>
 
 size_t Shape::counter = 0; // инициализация статического поля
 
-//оператор вывода
+
+						   //оператор вывода
 std::ostream& operator <<(std::ostream& OS, const Shape& smth)//оператор вывода
 {
 	smth.print(OS);
@@ -59,16 +61,13 @@ void Shape::rotate(double new_angle) {
 	move(old_v0);
 }
 
-//Изумительное задание 
-//Работает на чёрной магии
 bool Shape::common_side(Shape* other) {
 
 	//std::vector<Dot>common_dots; // общие точки
 	Dot cdot1;
 	Dot cdot2;
 	int dots = 0;
-	//std::vector<Dot>old_this_corners = this->corners; // старые вершины
-	//std::vector<Dot>old_other_corners = other->corners;
+
 
 	bool flag1 = false;
 	bool flag2 = false;
@@ -109,7 +108,7 @@ bool Shape::common_side(Shape* other) {
 
 	return (flag1 && flag2);
 
-	
+
 }
 Dot& Shape::min_y(Dot& a, Dot& b) const {
 	if (a.y < b.y) {
@@ -127,3 +126,4 @@ Dot& Shape::max_y(Dot& a, Dot& b) const {
 		return b;
 	}
 }
+

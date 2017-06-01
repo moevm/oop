@@ -16,6 +16,8 @@ public:
 			corners = points;
 		}
 	}
+
+
 	void print(std::ostream& OS) const override; // Вывод
 };
 #endif Square_h

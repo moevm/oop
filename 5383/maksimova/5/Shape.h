@@ -2,6 +2,12 @@
 #include <iostream>
 #include "Dot.h"
 #include <vector>
+#include <functional>
+#include <chrono>
+#include <algorithm>
+
+//чёрная магия для генерации случайных фигур (скопипащено)
+
 
 struct Color {
 	unsigned char R, G, B;
@@ -17,7 +23,7 @@ protected:
 	size_t id;//айди каждой фиугры
 
 	Color color;//цвет
-	
+
 
 	virtual void print(std::ostream& OS) const = 0; // Вывод
 
@@ -25,10 +31,11 @@ public:
 	Shape(std::vector<Dot> points, Color color, double angle) :
 		id(counter++), angle(angle), color(color), corners(points) {} //консткруктор
 
+
 	virtual ~Shape() {}//деструктор
 
 	void move(Dot &new_center);//передвинуть
-	void scale(double scale );//расстянуть
+	void scale(double scale);//расстянуть
 	void rotate(double new_angle);//повернуть
 
 	Color get_color() const; //получить цвет
@@ -39,12 +46,18 @@ public:
 	Dot& max_y(Dot& a, Dot& b) const;
 	friend std::ostream& operator << (std::ostream& OS, const Shape& smth); // оператор вывода
 
-	//Задание
-	bool common_side( Shape* other);
+
+
+									   //Задание
+	bool common_side(Shape* other);
 
 };
 
+
 template <typename T>
-bool float_comparison(T f1, T f2) {
-	return (fabs(f1 - f2) <= std::numeric_limits<T>::epsilon());
+bool float_comparison(T a, T b)
+{
+	if (!(std::isfinite(a) && std::isfinite(b))) { return a == b; }
+	return std::fabs(a - b) <= std::numeric_limits<T>::epsilon() * std::max(std::fabs(a), std::fabs(b));
 }
+
