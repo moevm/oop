@@ -4,41 +4,49 @@
 #include <cmath>
 #include <iostream>
 #include <ostream>
+using namespace std;
 
 enum ProjectionType { X = 0, Y = 1 };
 
 struct Point
 {
 	double x, y;
+
+ Point(const double& x = 0, const double& y = 0): x(x), y(y)
+	{
+	}
 };
 
 struct my_color
 {
 	double r, g, b;
+	my_color(const double& r = 0, const double& g = 0, const double& b = 0) : r(r), g(g), b(b)
+	{
+	}
 };
 
 
-class Shape //Ã¡Ã Ã§Ã®Ã¢Ã»Ã© ÃªÃ«Ã Ã±Ã±
+class Shape //áàçîâûé êëàññ
 {
 protected:
 	Point center;	
 	my_color color;
-	int angle; // Ã¯Ã®Ã¢Ã®Ã°Ã®Ã² Ã­Ã  Ã³Ã£Ã®Ã« 
+	int angle; // ïîâîðîò íà óãîë 
 
 public:
-	Shape() {} //ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃªÃ«Ã Ã±Ã±Ã 
+	Shape() {} //êîíñòðóêòîð êëàññà
 	virtual void move(Point newCenter) = 0;
 	virtual void changesize(double k) = 0;
-	virtual void turn(double angle)=0; // Ã¯Ã®Ã¢Ã®Ã°Ã Ã·Ã¨Ã¢Ã Ã¥Ã² Ã­Ã  Ã³Ã£Ã®Ã«
-	my_color getColor()	//Ã¯Ã®Ã«Ã³Ã·Ã¥Ã­Ã¨Ã¥ Ã¶Ã¢Ã¥Ã²Ã 
+	virtual void turn(double angle)=0; // ïîâîðà÷èâàåò íà óãîë
+	my_color getColor()	//ïîëó÷åíèå öâåòà
 	{
 		return this->color;
 	}
-	void setÃ±olor(my_color color)	//Ã³Ã±Ã²Ã Ã­Ã®Ã¢ÃªÃ  Ã¶Ã¢Ã¥Ã²Ã 
+	void setñolor(my_color color)	//óñòàíîâêà öâåòà
 	{
 		this->color = color;
 	}
-	virtual ostream &operator << (ostream &output)	//Ã®Ã¯Ã¥Ã°Ã Ã²Ã®Ã° Ã¢Ã»Ã¢Ã®Ã¤Ã  Ã¢ Ã¯Ã®Ã²Ã®Ãª
+	virtual ostream &operator << (ostream &output)	//îïåðàòîð âûâîäà â ïîòîê
 	{
 		return output;
 	}
@@ -50,18 +58,19 @@ public:
 		else return false;
 	}
 	virtual double const leftx() const = 0;
+	virtual ~Shape();
 };
-class Ellips : public Shape //ÃªÃ«Ã Ã±Ã± Ã®ÃªÃ°Ã³Ã¦Ã­Ã®Ã±Ã²Ã¨
+class Ellips : public Shape //êëàññ îêðóæíîñòè
 {
 private:
 	double R;
 	double r;
 	Point left;
 public:
-	Ellips(Point center, int _R = 1, int _r = 2);//ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃªÃ«Ã Ã±Ã±Ã 
+	Ellips(Point center, int _R = 1, int _r = 2);//êîíñòðóêòîð êëàññà
     void move(Point newCenter) ;
     void changesize(double k);
-    void turn(double angle); // Ã¯Ã®Ã¢Ã®Ã°Ã Ã·Ã¨Ã¢Ã Ã¥Ã² Ã­Ã  Ã³Ã£Ã®Ã«
+    void turn(double angle); // ïîâîðà÷èâàåò íà óãîë
 	double const leftx() const;
 
 	ostream &operator << (ostream &output)
@@ -76,16 +85,16 @@ public:
 };
 
 
-class SegEl : public Shape //ÃªÃ«Ã Ã±Ã± ÃªÃ¢Ã Ã¤Ã°Ã Ã²Ã 
+class SegEl : public Shape //êëàññ êâàäðàòà
 {
 private:
 	Point left;
 	Point right;
 public:
-	SegEl(Point center, Point left, Point right); //ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃªÃ«Ã Ã±Ã±Ã 
+	SegEl(Point center, Point left, Point right); //êîíñòðóêòîð êëàññà
 	void move(Point newCenter);
 	void changesize(double k);
-	void turn(double angle); // Ã¢Ã¨Ã°Ã²Ã³Ã Ã«Ã¼Ã­Ã»Ã© Ã¬Ã¥Ã²Ã®Ã¤ Ã¤Ã«Ã¿ Ã¯Ã®Ã¢Ã®Ã°Ã  Ã´Ã¨Ã£Ã³Ã°Ã» Ã­Ã  Ã³Ã£Ã®Ã«
+	void turn(double angle); // âèðòóàëüíûé ìåòîä äëÿ ïîâîðà ôèãóðû íà óãîë
 	double const leftx() const;
 	ostream &operator << (ostream &output)
 	{
@@ -99,7 +108,7 @@ public:
 	virtual ~SegEl() {}
 };
 
-class Parallelogramm : public Shape //ÃªÃ«Ã Ã±Ã± ÃªÃ¢Ã Ã¤Ã°Ã Ã²Ã 
+class Parallelogramm : public Shape //êëàññ êâàäðàòà
 {
 private:
 	double l,L;
@@ -107,9 +116,9 @@ public:
 	Parallelogramm(Point center, int _l = 9, int _L = 3);
 	void move(Point newCenter);
 	void changesize(double k);
-	void turn(double angle);  // Ã¢Ã¨Ã°Ã²Ã³Ã Ã«Ã¼Ã­Ã»Ã© Ã¬Ã¥Ã²Ã®Ã¤ Ã¤Ã«Ã¿ Ã¯Ã®Ã¢Ã®Ã°Ã  Ã´Ã¨Ã£Ã³Ã°Ã» Ã­Ã  Ã³Ã£Ã®Ã«
+	void turn(double angle);  // âèðòóàëüíûé ìåòîä äëÿ ïîâîðà ôèãóðû íà óãîë
 	double const leftx() const;
-	ofstream &operator << (ofstream &output)
+	ostream &operator << (ostream &output)
 	{
 		my_color tmpColor = getColor();
 		output << "Color: " << "red component = " << tmpColor.r << ", green component = " << tmpColor.g << ", blue component = " << tmpColor.b << " " ;
