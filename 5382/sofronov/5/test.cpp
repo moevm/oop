@@ -8,12 +8,29 @@
 
 list<shared_ptr<Shape>> generation ();
 
+bool cmp(const shared_ptr<Shape>& rv, const shared_ptr<Shape>& lv) {
+    return (rv->radius()==lv->radius());
+}
+
 bool binary_predicate(const shared_ptr<Shape> &a, const shared_ptr<Shape> &b) {
     return a->doinsert(*b);
 }
 
 bool unary_predicate(const shared_ptr<Shape> &a) {
     return (a->radius()<50);
+}
+
+list_iterator<shared_ptr<Shape>>::difference_type operator- (const list_iterator<shared_ptr<Shape>>& lv, const list_iterator<shared_ptr<Shape>>& rv) {
+    list_iterator<shared_ptr<Shape>>::difference_type res=0;
+    for (auto it = lv; it != rv; it++) {
+        res++;
+    }
+    return res;
+}
+
+list_iterator<shared_ptr<Shape>>& operator+= (list_iterator<shared_ptr<Shape>>& rv, const list_iterator<shared_ptr<Shape>>& lv) {
+    for (auto it=lv; it!=rv; it++) {}
+    return rv;
 }
 
 
@@ -86,7 +103,38 @@ TEST(test, set_difference_1) {
     search_list.push_back(shared_ptr<Shape>(to_second_list_1));
     search_list.push_back(shared_ptr<Shape>(to_second_list_2));
 
+    std::sort(examine_list.begin(), examine_list.end(), cmp);
+
     std::set_difference(examine_list.begin(), examine_list.end(), search_list.begin(), search_list.end(), std::inserter(difference_list, difference_list.begin()));
 
     EXPECT_TRUE(difference_list.front()->_id==to_first_list_1->_id);
 }
+
+ /*
+TEST(test, set_difference_1) {
+
+    list<shared_ptr<Shape>> examine_list;
+    list<shared_ptr<Shape>> search_list;
+    list<shared_ptr<Shape>> difference_list;
+
+
+    Shape* to_first_list_1 = new Circle (Point(10,10), 50, red);
+    Shape* to_first_list_2 = new Circle (Point(-10,0), 50, red);
+
+    examine_list.push_back(shared_ptr<Shape>(to_first_list_1));
+    examine_list.push_back(shared_ptr<Shape>(to_first_list_2));
+
+
+    Shape* to_second_list_1 = new Circle (Point(10,10), 50, red);
+    Shape* to_second_list_2 = new Circle (Point(-200,0), 100, red);
+
+    search_list.push_back(shared_ptr<Shape>(to_second_list_1));
+    search_list.push_back(shared_ptr<Shape>(to_second_list_2));
+
+
+    std::set_difference(examine_list.begin(), examine_list.end(), search_list.begin(), search_list.end(), std::inserter(difference_list, difference_list.begin()), cmp);
+
+    EXPECT_TRUE(difference_list.front()->_id==to_first_list_1->_id);
+    EXPECT_TRUE(difference_list.back()->_id==to_first_list_2->_id);
+}
+ */

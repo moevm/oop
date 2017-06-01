@@ -41,6 +41,11 @@
     {
     }
 
+    list_iterator& operator--() {
+        m_node = m_node->prev;
+        return *this;
+    }
+
     list_iterator(const list_iterator& other)
       : m_node(other.m_node)
     {
@@ -54,6 +59,16 @@
         }
         return *this;
     }
+
+      list_iterator& operator + (int t) {
+          for (int i=0; i<t; i++) {
+              (*this)++;
+          }
+      }
+
+
+
+
 
     bool operator == (const list_iterator& other) const
     {
