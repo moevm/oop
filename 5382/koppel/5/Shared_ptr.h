@@ -58,12 +58,8 @@
 		shared_ptr& operator = (const shared_ptr<S> & other)
 		{
 			// implement this
-			if (this != &other) {
-				this->~shared_ptr();
-				ptr_ = other.get();
-				count = other.get_count();
-				if (m_ptr) ++(*m_count);
-			}
+			shared_ptr tmp(other);
+			this->swap(tmp);
 			return *this;
 		}
 
@@ -112,12 +108,8 @@
 		void swap(shared_ptr& x) noexcept
 		{
 			// implement this
-			if (this != &x)
-			{
-				shared_ptr<T> tmp(*this);
-				*this = x;
-				x = tmp;
-			}
+			std::swap(m_ptr, x.m_ptr);
+			std::swap(m_count, x.m_count);
 		}
 
 

@@ -60,7 +60,7 @@ TEST(Algorithm_tests, Non_modifying_test_true)
 	array.push_back(shared_ptr<Shape>
 		(new Rectangle(Point(1, 1), 1, 1, 1, 1)));
 	using namespace std::placeholders;
-	EXPECT_TRUE(std::find_if(array.begin(), array.end(), std::bind(&unary_predicate, _1, shape_etalon)));
+	EXPECT_TRUE(std::any_of(array.begin(), array.end(), std::bind(&unary_predicate, _1, shape_etalon)));
 }
 
 TEST(Algorithm_tests, Non_modifying_test_false)
@@ -68,7 +68,7 @@ TEST(Algorithm_tests, Non_modifying_test_false)
 	list<shared_ptr<Shape>> array = creator();
 	Rectangle shape_etalon(Point(10 * diapason, 10 * diapason), rand_val(), 1, rand_val(0), rand_val(0));
 	using namespace std::placeholders;
-	EXPECT_False(std::find_if_not(array.begin(), array.end(), std::bind(&unary_predicate, _1, shape_etalon)));
+	EXPECT_False(std::none_of(array.begin(), array.end(), std::bind(&unary_predicate, _1, shape_etalon)));
 }
 
 TEST(Algorithm_tests, Modifying_test_true)
@@ -78,7 +78,7 @@ TEST(Algorithm_tests, Modifying_test_true)
 	array_1.push_back(shared_ptr<Shape>
 		(new Rectangle(Point(1, 1), 1, 1, 1, 1)));
 	using namespace std::placeholders;
-	list<shared_ptr<Shape>> array_2 = remove_copy_if(array_1.begin(), array_1.end(), array_2.begin(),
+	list<shared_ptr<Shape>> array_2 = std::unique_copy(array_1.begin(), array_1.end(), array_2.begin(),
 		std::bind(&unary_predicate, _1, shape_etalon));
 	
 	EXPECT_TRUE(array_2.size() < array_1.size());
