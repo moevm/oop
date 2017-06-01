@@ -1,7 +1,3 @@
-//
-// Created by Xtail on 18.05.17.
-//
-
 #ifndef LAB2_H
 #define LAB2_H
 
@@ -55,50 +51,42 @@ private:
     static size_t counter;
     Color color;
 public:
-    // create random Shape
     static Shape* createRandomShape();
 
 
-    Shape(Color color) : color(color), id(counter++) {}//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
-    virtual ~Shape(){} //РґРµСЃС‚СЂСѓРєС‚РѕСЂ
-    virtual void move(int dx, int dy)=0;//РїРµСЂРµРјРµС‰РµРЅРёРµ
-    virtual void rotate(int angle)=0; //РїРѕРІРѕСЂРѕС‚ РЅР° СѓРіРѕР»
-    virtual void scale(int k)=0;//РјР°СЃС€Р°Р±РёСЂРѕРІР°РЅРёРµ РЅР° РєРѕСЌС„С„РёС†РёРµРЅС‚
-    Color getColor() const;//СЂР°СЃРєСЂР°СЃРєР°
+    Shape(Color color) : color(color), id(counter++) {}
+    virtual ~Shape(){}
+    virtual void move(int dx, int dy)=0;
+    virtual void rotate(int angle)=0;
+    virtual void scale(int k)=0;
+    Color getColor() const;
     void setColor(Color color);
     const bool operator ==(const Shape& other) const;
-    friend std::ostream&operator<<(std::ostream& os, Shape& p);//РїРѕС‚РѕРє РІС‹РІРѕРґР°
+    friend std::ostream&operator<<(std::ostream& os, Shape& p);
     virtual void print(std::ostream& os) = 0;
 protected:
     unsigned int id;
 
 };
 
-
-
-
-
-
-
-
-// Ellipse РЅР°СЃР»РµРґСѓРµС‚ Shape РєР°Рє public
 class Ellipse : public Shape {
 protected:
-    unsigned int a; //РїРѕР»СѓРѕСЃРё
+    unsigned int a;
     unsigned int b;
-    unsigned int fi; //СѓРіРѕР» РїРѕРІРѕСЂРѕС‚Р°
-    Point center; //РєРѕРѕСЂРґРёРЅР°С‚С‹ С†РµРЅС‚СЂР°
+    unsigned int fi;
+    Point center;
 public:
-    Ellipse(Color color, Point center, unsigned int a=0, unsigned int b=0, unsigned int fi=0) : Shape(color), a(a), b(b), fi(fi%360), center(center) {}//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
-    ~Ellipse() {}//РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+    Ellipse(Color color, Point center, unsigned int a=0, unsigned int b=0, unsigned int fi=0) :
+            Shape(color), a(a), b(b), fi(fi%360), center(center) {}
+    ~Ellipse() {}
 
     // create Random Ellipse
     static Ellipse* createRandomShape();
 
 
-    void move(int dx, int dy) override;//РїРµСЂРµРјРµС‰РµРЅРёРµ
-    void rotate(int angle) override; //РїРѕРІРѕСЂРѕС‚ РЅР° СѓРіРѕР»
-    void scale(int k) override;//РјР°СЃС€Р°Р±РёСЂРѕРІР°РЅРёРµ РЅР° РєРѕСЌС„С„РёС†РёРµРЅС‚
+    void move(int dx, int dy) override;
+    void rotate(int angle) override;
+    void scale(int k) override;
     Point getCenter() const;
     unsigned int getAAxis();
     unsigned int getBAxis();
@@ -109,15 +97,6 @@ protected:
 
 };
 
-
-
-
-
-
-
-
-//SectorOfEllipse РЅР°СЃР»РµРґСѓРµС‚ РєР°Рє Ellipse.
-//РўРµРј РЅРµ РјРµРЅРµРµ РІ SectorOfEllipse РёРјРµРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РѕРґРЅР° РєРѕРїРёСЏ Shape!
 class SectorOfEllipse : public Ellipse {
 private:
     int f1;
@@ -128,8 +107,8 @@ public:
             f1(f1%360),
             f2(f2%360)
     {
-    }//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
-    ~SectorOfEllipse(){}//РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+    }
+    ~SectorOfEllipse(){}
 
     // create random Sector
     static SectorOfEllipse* createRandomShape();
@@ -145,11 +124,6 @@ protected:
 };
 
 
-
-
-
-
-//Parallelogram РЅР°СЃР»РµРґСѓРµС‚ Shape РєР°Рє public
 class Parallelogram : public Shape {
 private:
     Point a;
@@ -157,16 +131,16 @@ private:
     Point c;
     Point d;
 public:
-    Parallelogram(Color color, Point a, Point b, Point c, Point d) : Shape (color), a(a), b(b), c(c), d(d) {}//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
-    ~Parallelogram(){}//РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+    Parallelogram(Color color, Point a, Point b, Point c, Point d) : Shape (color), a(a), b(b), c(c), d(d) {}
+    ~Parallelogram(){}
 
     // create random Parallelogram
     static Parallelogram* createRandomShape();
 
-    bool checkParallelogram(Point a, Point b, Point c, Point d);//РїСЂРѕРІРµСЂРєР° РЅР° РїР°СЂР°Р»Р»РµР»РѕРіСЂР°РјРј
-    void move(int dx, int dy) override;//РїРµСЂРµРјРµС‰РµРЅРёРµ
-    void rotate(int angle) override; //РїРѕРІРѕСЂРѕС‚ РЅР° СѓРіРѕР»
-    void scale(int k) override;//РјР°СЃС€Р°Р±РёСЂРѕРІР°РЅРёРµ РЅР° РєРѕСЌС„С„РёС†РёРµРЅС‚
+    bool checkParallelogram(Point a, Point b, Point c, Point d);
+    void move(int dx, int dy) override;
+    void rotate(int angle) override;
+    void scale(int k) override;
 
     void print(std::ostream& os) override;
 

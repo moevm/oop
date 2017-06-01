@@ -84,9 +84,9 @@ void eraseElement(stepik::list< stepik::shared_ptr<Shape> > &container,
         {
             container.erase(itContainer);
         }
-        else{
+//        else{
             itContainer++;
-        }
+//        }
     }
 }
 
