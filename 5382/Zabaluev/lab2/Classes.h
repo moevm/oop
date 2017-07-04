@@ -44,6 +44,10 @@ public:
 
     virtual ~Shape() {}
 
+    int get_id() {
+        return _id;
+    }
+
 protected:
     static int _last_id;
     int _id;
@@ -90,6 +94,14 @@ public:
         return out;
     }
 
+    Point get_center() {
+        return _center;
+    }
+
+    double get_angle() {
+        return _angle;
+    }
+
 private:
     Point _center; // Центр
     Point _start; // Начало
@@ -124,6 +136,14 @@ public:
         a.getcolor();
         out << " \n \n";
         return out;
+    }
+
+    Point get_center() {
+        return _center;
+    }
+
+    double get_radius() {
+        return _radius;
     }
 
 private:
@@ -184,6 +204,13 @@ public:
         return out;
     }
 
+    Point get_left_focus() {
+        return _left_focus;
+    }
+
+    Point get_right_focus() {
+        return _right_focus;
+    }
 private:
     Point _left_focus; //левый фокус
     Point _right_focus; //правый фокус
