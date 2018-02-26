@@ -40,7 +40,8 @@ public:
 	//my operator = 
 	Array & operator = (const Array& Arr)
 	{
-		Array(Arr).swap(*this);
+		if (this != &Arr)
+			Array(Arr).swap(*this);
 		return *this;
 	}
 
