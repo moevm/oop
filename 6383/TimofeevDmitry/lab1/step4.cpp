@@ -31,6 +31,7 @@ public:
   Array(Array &&x){
      m_size=x.m_size;
      m_array=x.m_array;
+     x.m_array=nullptr;
   }
   
   ~Array(){
