@@ -36,15 +36,56 @@ public:
     a.m_size  = 0;
   }
 
-  //Оператор перемещения
+  //Оператор присваивания
   Array& operator = ( Array &a)
  {
-    std::unique_ptr<T[]> b( new T[a.m_size] );
-    std::copy( a.m_array, a.m_array+a.m_size, b.get() );
-    delete[] m_array;
-    m_size = a.m_size;
-    m_array = b.release(); //копирование успешно, освобождать память не нужно
-    return *this;
+   T* save_a = m_array;
+   size_t save_s = m_size;
+
+   std::unique_ptr<T[]> b( new T[a.m_size] );
+
+   try
+   {
+       std::copy( a.m_array, a.m_array+a.m_size, b.get() );
+
+       m_size = a.m_size;
+       m_array = b.release(); // +b больше не следит за памятью
+
+       delete [] save_a;
+   }
+   catch(...)
+   {
+       m_array = save_a;
+       m_size  = save_s;
+   }
+
+   return *this;
+ }
+
+
+  //Оператор перемещения
+  Array& operator = ( Array &&a)
+ {
+   T*     save_a = m_array;
+   size_t save_s = m_size;
+
+   try
+   {
+       m_size  = a.m_size;
+       m_array = a.m_array;
+
+       delete [] save_a;
+
+       a.m_array = NULL;
+       a.m_size  = 0;
+   }
+   catch(...)
+   {
+       m_array = save_a;
+       m_size  = save_s;
+   }
+
+   return *this;
  }
     
   ~Array()
