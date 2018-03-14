@@ -5,6 +5,7 @@ Rhomb::Rhomb(std::string color,double width, double height):Parallelogram(color)
     pts.push_back(Point(0,height));
     pts.push_back(Point(-width,0));
     pts.push_back(Point(0,-height));
+    onTransformed();
 }
 std::string Rhomb::toString() const {
     return std::string("Shape = Rhomb\n")
