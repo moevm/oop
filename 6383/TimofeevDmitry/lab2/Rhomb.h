@@ -7,8 +7,7 @@
 #include <vector>
 #include "Parallelogram.h"
 
-class Rhomb:public Parallelogram{
-    std::vector<Point> pts;
+class Rhomb: public Parallelogram{
 public:
     // по двум диагоналям
     Rhomb(std::string color,double width, double height);
