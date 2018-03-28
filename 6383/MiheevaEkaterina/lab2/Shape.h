@@ -1,11 +1,12 @@
 //
 // Created by katier on 07.03.18.
 //
-#include <cmath>
-#include <ostream>
+
 #ifndef UNTITLED_SHAPE_H
 #define UNTITLED_SHAPE_H
 
+#include <cmath>
+#include <ostream>
 
 struct Point{
     double x;
@@ -31,31 +32,26 @@ struct Colour{
     }
 };
 
-unsigned long long counter=0;
+//unsigned long long counter=0;
 
 
 class Shape{
 public:
-    Shape(Colour colour):colour(colour){id=counter++;};
-    Colour getColour(){
-        return this->colour;
-    }
-    void setColour(Colour colour){
-        this->colour=colour;
-    }
-    unsigned long long int getId(){
-        return id;
-    }
+    explicit Shape(Colour colour);
+    Colour getColour();
+    void setColour(Colour colour);
+    unsigned long long int getId();
     virtual void move(Point newCoord) {}
-    virtual void rotate(double fi){};
+    virtual void rotate(double fi) = 0;
     virtual void scale(double k){}
     virtual void print(std::ostream& os){};
 
 private:
     Colour colour;
     unsigned long long id;
+    static unsigned long long counter;
 protected:
-        friend std::ostream &operator<<(std::ostream &os,  Shape &shape){
+    friend std::ostream &operator<<(std::ostream &os,  Shape &shape){
         shape.print(os);
         return os;
     }

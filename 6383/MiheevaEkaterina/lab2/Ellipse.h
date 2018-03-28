@@ -3,26 +3,17 @@
 //
 #ifndef UNTITLED_ELLIPSE_H
 #define UNTITLED_ELLIPSE_H
+
 #include "Shape.h"
 
-class Ellipse:public Shape{
+class Ellipse: public Shape{
 public:
-    Ellipse (Colour colour,double angle, Point center,double a,double b):Shape(colour),angle(angle),center(center),a(a),b(b){}
-    void scale(double k) override{
-        a*=k;
-        b*=k;
-    }
-    void move (Point toNewCenter) override{
-        center = toNewCenter;
-    }
-    void rotate(double angle) override {
-        this->angle +=angle;
-    }
-    void print (std::ostream& os) override {
-        os<<"\nEllipse\nid = "<<getId()<<"\na = "<<a<<"\nb = "<<b<<"\nangle = "<<angle<<"\nCenter:\n"<<center<<"Colour:\nblue = "
-          <<getColour().blue<<"\ngreen = "<<getColour().green<<"\nred = " <<getColour().red<<std::endl;
-    }
-
+    Ellipse (Colour colour,double angle, Point center,double a,double b);
+    void scale(double k) override;
+    void move (Point toNewCenter) override;
+    void rotate(double angle) override;
+    void print (std::ostream& os) override;
+    void roteteAroundZero(double angle);
 private:
     double a;
     double b;
