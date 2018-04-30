@@ -1,2 +1,4 @@
-Запуск: 
-	make
+How to run: 
+```
+make
+```
