@@ -21,6 +21,8 @@
 **Фигуры: Прямоугольник, окружность, трапеция**
 
 
-**UML диаграмма класса**
 
 ![UML диаграмма класса](https://github.com/kovinevmv/oop/blob/master/6304/kovynev/2/report/uml.png)
+
+
+<p align="center">**UML диаграмма класса**</p>
