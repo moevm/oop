@@ -41,9 +41,9 @@ int compareFiguresByName(const void * x1, const void * x2)
 	return typeid((*(*(shared_ptr<Shape>*)x1))).name() - typeid((*(*(shared_ptr<Shape>*)x2))).name();
 }
 
-// Проверка двух упорядоченных диапазонов на равенство по определенному критерию
-// Упорядоченные диапазоны по имени
-// Проверка диапазонов на совпадение имен фигур
+// РџСЂРѕРІРµСЂРєР° РґРІСѓС… СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅС‹С… РґРёР°РїР°Р·РѕРЅРѕРІ РЅР° СЂР°РІРµРЅСЃС‚РІРѕ РїРѕ РѕРїСЂРµРґРµР»РµРЅРЅРѕРјСѓ РєСЂРёС‚РµСЂРёСЋ
+// РЈРїРѕСЂСЏРґРѕС‡РµРЅРЅС‹Рµ РґРёР°РїР°Р·РѕРЅС‹ РїРѕ РёРјРµРЅРё
+// РџСЂРѕРІРµСЂРєР° РґРёР°РїР°Р·РѕРЅРѕРІ РЅР° СЃРѕРІРїР°РґРµРЅРёРµ РёРјРµРЅ С„РёРіСѓСЂ
 bool isSimiliarRegion(Region r1, Region r2, const stepik::vector<shared_ptr<Shape>>& vect_a)
 {
 	stepik::vector<shared_ptr<Shape>> a(vect_a.begin() + r1.start, vect_a.begin() + r1.finish);
@@ -63,8 +63,8 @@ bool isSimiliarRegion(Region r1, Region r2, const stepik::vector<shared_ptr<Shap
 	return true;
 }
 
-// Упорядочить элементы, пока первые n элементов не будут следовать в требуемом порядке.
-// Критерий - увеличение площади фигур
+// РЈРїРѕСЂСЏРґРѕС‡РёС‚СЊ СЌР»РµРјРµРЅС‚С‹, РїРѕРєР° РїРµСЂРІС‹Рµ n СЌР»РµРјРµРЅС‚РѕРІ РЅРµ Р±СѓРґСѓС‚ СЃР»РµРґРѕРІР°С‚СЊ РІ С‚СЂРµР±СѓРµРјРѕРј РїРѕСЂСЏРґРєРµ.
+// РљСЂРёС‚РµСЂРёР№ - СѓРІРµР»РёС‡РµРЅРёРµ РїР»РѕС‰Р°РґРё С„РёРіСѓСЂ
 void sortFirstNElements(stepik::vector<shared_ptr<Shape>>& vect_a, int n)
 {
 	qsort(&vect_a[0], n, sizeof(shared_ptr<Shape>), compareFiguresBySquare);
