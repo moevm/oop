@@ -31,10 +31,6 @@ stepik::vector<shared_ptr<Shape>> generateFigures(int size)
 	return vect_a;
 }
 
-int compareFiguresBySquare(const void * x1, const void * x2)
-{
-	return (*(*(shared_ptr<Shape>*)x1)).getSquare() - (*(*(shared_ptr<Shape>*)x2)).getSquare();
-}
 
 int compareFiguresByName(const void * x1, const void * x2)
 {
@@ -67,7 +63,16 @@ bool isSimiliarRegion(Region r1, Region r2, const stepik::vector<shared_ptr<Shap
 // Критерий - увеличение площади фигур
 void sortFirstNElements(stepik::vector<shared_ptr<Shape>>& vect_a, int n)
 {
-	qsort(&vect_a[0], n, sizeof(shared_ptr<Shape>), compareFiguresBySquare);
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = i; j < vect_a.size(); j++)
+		{
+			if ((*vect_a[i]).getSquare() >= (*vect_a[j]).getSquare())
+			{
+				std::swap(vect_a[i], vect_a[j]);
+			}
+		}
+	}
 }
 
 void printVector(const stepik::vector<shared_ptr<Shape>>& vect_a)
