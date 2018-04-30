@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "test.h"
 #include "AlgorithmsForShapes.h"
 
