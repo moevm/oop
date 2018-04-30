@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 # define M_PI           3.14159265358979323846

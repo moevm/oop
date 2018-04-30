@@ -2,6 +2,7 @@
 #include "Shape.h"
 #include "Vector.h"
 #include "Shared_ptr.h"
+#include <typeinfo>
 using namespace stepik;
 
 struct Region
@@ -12,7 +13,9 @@ struct Region
 
 stepik::vector<shared_ptr<Shape>> generateFigures(int);
 
-int compareFigures(const void*, const void*);
+int compareFiguresBySquare(const void*, const void*);
+
+int compareFiguresByName(const void* , const void*);
 
 bool isSimiliarRegion(Region, Region, const stepik::vector<shared_ptr<Shape>>&);
 
