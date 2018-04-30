@@ -1,8 +1,6 @@
+#include "stdafx.h"
 #include "test.h"
 #include "AlgorithmsForShapes.h"
-
-
-
 
 
 void checkSimiliarRegion()
@@ -46,14 +44,18 @@ void checkSort()
 	test2[6] = shared_ptr<Shape>(new Circle({ 0,0 }, 0.01));
 	test2[7] = shared_ptr<Shape>(new Circle({ 0,0 }, 0.02));
 
-	sortFirstNElements(test2, 6);
+	sortFirstNElements(test2, 3);
+	
 
-	assert(fabs((*test2[0]).getSquare() - 3.14159) <= 0.001);
-	assert(fabs((*test2[1]).getSquare() - 12.5664) <= 0.001);
-	assert(fabs((*test2[2]).getSquare() - 28.2743) <= 0.001);
-	assert(fabs((*test2[3]).getSquare() - 50.2655) <= 0.001);
-	assert(fabs((*test2[4]).getSquare() - 78.5398) <= 0.001);
-	assert(fabs((*test2[5]).getSquare() - 113.097) <= 0.001);
+
+	assert(fabs((*test2[0]).getSquare() - 0.000314159) <= 0.001);
+	assert(fabs((*test2[1]).getSquare() -  0.00125664) <= 0.001);
+	assert(fabs((*test2[2]).getSquare() -     3.14159) <= 0.001);
+	assert(fabs((*test2[3]).getSquare() -     113.097) <= 0.001);
+	assert(fabs((*test2[4]).getSquare() -     78.5398) <= 0.001);
+	assert(fabs((*test2[5]).getSquare() -     50.2655) <= 0.001);
+	assert(fabs((*test2[6]).getSquare() -     28.2743) <= 0.001);
+	assert(fabs((*test2[7]).getSquare() -     12.5664) <= 0.001);
 
 	// ========================= END CHECK SORT ========================== //
 
