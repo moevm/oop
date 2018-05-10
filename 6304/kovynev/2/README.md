@@ -22,6 +22,6 @@
 
 
 
-![UML диаграмма класса](6304/kovynev/2/report/uml.png)
+![UML диаграмма класса](/report/uml.png)
 
 <p align="center">UML диаграмма класса</p>
