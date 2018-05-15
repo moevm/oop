@@ -8,13 +8,40 @@ namespace stepik
 		typedef long* l_ptrl;
 
 	private:
-		Type* m_ptr;
-		l_ptrl m_count;
+		Type* m_ptr;    // Указатель на управляемый объект
+		l_ptrl m_count; // Счетчик ссылок
 
 	public:
+		/* установка значение Type *ptr и счетчика ссылок = 1. */
 		explicit shared_ptr(Type *ptr = 0)
 			: m_ptr(ptr), m_count((ptr != nullptr) ? new long(1) : nullptr) {}
 
+		// ---------------------------------------
+                
+        	/* Создает новый shared_ptr на существующий объект. 
+        	* Установка m_ptr и m_count такими же, как в other. 
+        	* Увеличение счетчика на 1, т.к. новая ссылка на other*/
+		shared_ptr(const shared_ptr & other) :
+			m_ptr(other.m_ptr), m_count(other.m_count)
+		{
+			if (use_count())
+				(*m_count)++;
+		}
+		
+		template <typename V>
+		shared_ptr(const shared_ptr<V> & other) :
+			m_ptr(other.m_ptr), m_count(other.m_count)
+		{
+			if (use_count())
+				(*m_count)++;
+
+		}
+		// ---------------------------------------
+	
+
+		/* Уничтожаем ссылку на объект. Уменьшаем
+	    	* m_count. Если m_count = 0, освобождаем память и
+	    	* уничтожаем объект. */
 		~shared_ptr()
 		{
 			if (use_count() > 1)
@@ -27,24 +54,11 @@ namespace stepik
 				m_count = nullptr;
 			}
 		}
-
-
-		template <typename V>
-		shared_ptr(const shared_ptr<V> & other) :
-			m_ptr(other.m_ptr), m_count(other.m_count)
-		{
-			if (use_count())
-				(*m_count)++;
-
-		}
-
-		shared_ptr(const shared_ptr & other) :
-			m_ptr(other.m_ptr), m_count(other.m_count)
-		{
-			if (use_count())
-				(*m_count)++;
-		}
-
+		// ---------------------------------------
+		
+		 /* Если уже имеет существующее значение, нужно уменьшить его количество ссылок.
+	    	 * Затем копируем указатели other.m_ptr и other.m_ptr. 
+	    	 * Так как мы создали новую ссылку, нам нужно увеличить m_count */    
 		template <typename V>
 		shared_ptr& operator=(const shared_ptr<V> & other)
 		{
@@ -69,43 +83,53 @@ namespace stepik
 			}
 			return *this;
 		}
-
+		// ---------------------------------------
+		
+		
+		// Проверка хранения элементов
 		explicit operator bool() const
 		{
 			return m_ptr != nullptr;
 		}
 
+		// доступ к хранимым элемента
 		Type* get() const
 		{
 			return m_ptr;
 		}
 
+		 // Количество объектов shared_ptr, ссылающиеся на тот же объект
 		long use_count() const
 		{
 			return (m_ptr != nullptr) ? *m_count : 0;
 		}
 
+		 // Возвращает ссылку на управляемый объект
 		Type& operator*() const
 		{
 			return *m_ptr;
 		}
 
+		// Возвращает указатель на управляемый объект
 		Type* operator->() const
 		{
 			return m_ptr;
 		}
 
+		 // обмен указателей
 		void swap(shared_ptr& x) noexcept
 		{
 			std::swap(m_ptr, x.m_ptr);
 			std::swap(m_count, x.m_count);
 		}
-
+		
+		// Функция, которая замещает указатель на другой
 		void reset(Type *m_ptr = 0)
 		{
 			shared_ptr<Type>(m_ptr).swap(*this);
 		}
 
+		// Оператор равенства
 		template <typename TN>
 		bool operator ==(const shared_ptr<TN> &other) const {
 			return (void*)m_ptr == (void*)other.m_ptr;
@@ -114,6 +138,7 @@ namespace stepik
 		bool operator ==(const shared_ptr &other)const {
 			return (void*)m_ptr == (void*)other.m_ptr;
 		}
+		// ---------------------------------------
 	
 	};
 } 
