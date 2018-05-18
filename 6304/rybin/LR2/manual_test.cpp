@@ -35,7 +35,8 @@ int main(int argc, char* argv[])
 	base_ptr->operator<<(std::cout);
 	delete base_ptr;
 
-	system("pause");
+	getchar();
+
 	return 0;
 }
 
