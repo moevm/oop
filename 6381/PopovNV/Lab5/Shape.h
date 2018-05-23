@@ -18,6 +18,7 @@ public:
 	virtual void scaling(double) = 0; //масштабирование 
 	void setColour(std::string); //установка цвета
 	std::string getColour() const; //получение цвета
+	virtual double square() = 0;
 	virtual void print(std::ostream &) const = 0;
 	friend std::ostream &operator << (std::ostream &, const Shape &);
 };

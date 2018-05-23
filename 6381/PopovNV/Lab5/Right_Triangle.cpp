@@ -17,6 +17,10 @@ Right_triangle::Right_triangle(double x0, double y0, double cath1, double cath2,
 
 Right_triangle::~Right_triangle(){}
 
+double Right_triangle::square(){
+	return catheter_one * catheter_two / 2;
+}
+
 void Right_triangle::scaling(double zoom){
 	if(zoom > 0.0){
 		catheter_one *= zoom;
@@ -35,5 +39,6 @@ void Right_triangle::print(std::ostream &os) const{
 	os << "Size of first catheter: " << catheter_one << std::endl;
 	os << "Size of second catheter: " << catheter_two << std::endl;
 	os << "Angle of rotation: " << Angle << std::endl;
+	os << "Square is " << catheter_one * catheter_two / 2 << std::endl;
 	os << std::endl;
 }

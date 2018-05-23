@@ -8,6 +8,7 @@ public:
 	Isosceles_triangle(double, double, double, double);
 	Isosceles_triangle(double, double, double, double, std::string);
 	~Isosceles_triangle();
+	double square();
 	void scaling(double);
 	void print(std::ostream &) const;
 };
