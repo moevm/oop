@@ -15,6 +15,10 @@ Square::Square(double x0, double y0, double Side, std::string colour){
 			  
 Square::~Square(){}
 
+double Square::square(){
+	return side*side;
+}
+
 void Square::scaling(double zoom){
 	if(zoom > 0.0){
 		side *= zoom;
@@ -31,5 +35,6 @@ void Square::print(std::ostream &os) const{
 	os << "Coordinates of the center: (" << X0 << "," << Y0 << ")" << std::endl;
 	os << "Size of side: " << side << std::endl;
 	os << "Angle of rotation: " << Angle << std::endl;
+	os << "Square is " << side*side << std::endl;
 	os << std::endl;
 }

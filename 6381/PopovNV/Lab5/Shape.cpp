@@ -23,7 +23,6 @@ void Shape::rotation(double angle) {
 
 void Shape::setColour(std::string colour) {
 	Colour = colour;
-	std::cout << "The shape number = " << number << " has been colored in: " << colour << std::endl;
 }
 
 std::string Shape::getColour() const {

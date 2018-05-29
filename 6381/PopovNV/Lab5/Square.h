@@ -7,6 +7,7 @@ public:
 	Square(double, double, double);
 	Square(double, double, double, std::string);
 	~Square();
+	double square();
 	void scaling(double);
 	void print(std::ostream &) const;
 };
