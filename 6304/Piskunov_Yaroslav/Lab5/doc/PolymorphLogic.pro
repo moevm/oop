@@ -8,4 +8,5 @@ SOURCES += main.cpp
 HEADERS += \
     shape.hpp \
     shared_ptr.hpp \
-    vector.hpp
+    vector.hpp \
+    alg.hpp
