@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named lab5_nomod
+
+# Build rule for target.
+lab5_nomod: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lab5_nomod
+.PHONY : lab5_nomod
+
+# fast build rule for target.
+lab5_nomod/fast:
+	$(MAKE) -f CMakeFiles/lab5_nomod.dir/build.make CMakeFiles/lab5_nomod.dir/build
+.PHONY : lab5_nomod/fast
+
+#=============================================================================
+# Target rules for targets named lab5_mod
+
+# Build rule for target.
+lab5_mod: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lab5_mod
+.PHONY : lab5_mod
+
+# fast build rule for target.
+lab5_mod/fast:
+	$(MAKE) -f CMakeFiles/lab5_mod.dir/build.make CMakeFiles/lab5_mod.dir/build
+.PHONY : lab5_mod/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -148,19 +174,6 @@ shape: cmake_check_build_system
 shape/fast:
 	$(MAKE) -f CMakeFiles/shape.dir/build.make CMakeFiles/shape.dir/build
 .PHONY : shape/fast
-
-#=============================================================================
-# Target rules for targets named lab5
-
-# Build rule for target.
-lab5: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lab5
-.PHONY : lab5
-
-# fast build rule for target.
-lab5/fast:
-	$(MAKE) -f CMakeFiles/lab5.dir/build.make CMakeFiles/lab5.dir/build
-.PHONY : lab5/fast
 
 #=============================================================================
 # Target rules for targets named algs
@@ -256,32 +269,59 @@ figures.cpp.s:
 	$(MAKE) -f CMakeFiles/shape.dir/build.make CMakeFiles/shape.dir/figures.cpp.s
 .PHONY : figures.cpp.s
 
-lab5.o: lab5.cpp.o
+lab5_mod.o: lab5_mod.cpp.o
 
-.PHONY : lab5.o
+.PHONY : lab5_mod.o
 
 # target to build an object file
-lab5.cpp.o:
-	$(MAKE) -f CMakeFiles/lab5.dir/build.make CMakeFiles/lab5.dir/lab5.cpp.o
-.PHONY : lab5.cpp.o
+lab5_mod.cpp.o:
+	$(MAKE) -f CMakeFiles/lab5_mod.dir/build.make CMakeFiles/lab5_mod.dir/lab5_mod.cpp.o
+.PHONY : lab5_mod.cpp.o
 
-lab5.i: lab5.cpp.i
+lab5_mod.i: lab5_mod.cpp.i
 
-.PHONY : lab5.i
+.PHONY : lab5_mod.i
 
 # target to preprocess a source file
-lab5.cpp.i:
-	$(MAKE) -f CMakeFiles/lab5.dir/build.make CMakeFiles/lab5.dir/lab5.cpp.i
-.PHONY : lab5.cpp.i
+lab5_mod.cpp.i:
+	$(MAKE) -f CMakeFiles/lab5_mod.dir/build.make CMakeFiles/lab5_mod.dir/lab5_mod.cpp.i
+.PHONY : lab5_mod.cpp.i
 
-lab5.s: lab5.cpp.s
+lab5_mod.s: lab5_mod.cpp.s
 
-.PHONY : lab5.s
+.PHONY : lab5_mod.s
 
 # target to generate assembly for a file
-lab5.cpp.s:
-	$(MAKE) -f CMakeFiles/lab5.dir/build.make CMakeFiles/lab5.dir/lab5.cpp.s
-.PHONY : lab5.cpp.s
+lab5_mod.cpp.s:
+	$(MAKE) -f CMakeFiles/lab5_mod.dir/build.make CMakeFiles/lab5_mod.dir/lab5_mod.cpp.s
+.PHONY : lab5_mod.cpp.s
+
+lab5_nomod.o: lab5_nomod.cpp.o
+
+.PHONY : lab5_nomod.o
+
+# target to build an object file
+lab5_nomod.cpp.o:
+	$(MAKE) -f CMakeFiles/lab5_nomod.dir/build.make CMakeFiles/lab5_nomod.dir/lab5_nomod.cpp.o
+.PHONY : lab5_nomod.cpp.o
+
+lab5_nomod.i: lab5_nomod.cpp.i
+
+.PHONY : lab5_nomod.i
+
+# target to preprocess a source file
+lab5_nomod.cpp.i:
+	$(MAKE) -f CMakeFiles/lab5_nomod.dir/build.make CMakeFiles/lab5_nomod.dir/lab5_nomod.cpp.i
+.PHONY : lab5_nomod.cpp.i
+
+lab5_nomod.s: lab5_nomod.cpp.s
+
+.PHONY : lab5_nomod.s
+
+# target to generate assembly for a file
+lab5_nomod.cpp.s:
+	$(MAKE) -f CMakeFiles/lab5_nomod.dir/build.make CMakeFiles/lab5_nomod.dir/lab5_nomod.cpp.s
+.PHONY : lab5_nomod.cpp.s
 
 tests.o: tests.cpp.o
 
@@ -317,11 +357,12 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... lab5_nomod"
+	@echo "... lab5_mod"
 	@echo "... edit_cache"
 	@echo "... tests"
 	@echo "... basis"
 	@echo "... shape"
-	@echo "... lab5"
 	@echo "... algs"
 	@echo "... algs.o"
 	@echo "... algs.i"
@@ -332,9 +373,12 @@ help:
 	@echo "... figures.o"
 	@echo "... figures.i"
 	@echo "... figures.s"
-	@echo "... lab5.o"
-	@echo "... lab5.i"
-	@echo "... lab5.s"
+	@echo "... lab5_mod.o"
+	@echo "... lab5_mod.i"
+	@echo "... lab5_mod.s"
+	@echo "... lab5_nomod.o"
+	@echo "... lab5_nomod.i"
+	@echo "... lab5_nomod.s"
 	@echo "... tests.o"
 	@echo "... tests.i"
 	@echo "... tests.s"
