@@ -1,0 +1,3 @@
+﻿  Source.cpp
+c:\users\user\desktop\oop2\geometry\geometry\source.cpp(6): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+  Geometry.vcxproj -> C:\Users\user\Desktop\oop2\Geometry\x64\Debug\Geometry.exe

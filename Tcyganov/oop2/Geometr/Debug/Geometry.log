@@ -1,0 +1,4 @@
+﻿  Source.cpp
+e:\workspace\репетиторство\ученики\михаил циганов\ооп\geometry\geometry\source.cpp(21): warning C4326: return type of 'main' should be 'int' instead of 'void'
+e:\workspace\репетиторство\ученики\михаил циганов\ооп\geometry\geometry\source.cpp(22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Geometry.vcxproj -> E:\WORKSPACE\Репетиторство\Ученики\Михаил Циганов\ООП\Geometry\Debug\Geometry.exe
