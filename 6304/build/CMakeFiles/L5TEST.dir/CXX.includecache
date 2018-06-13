@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Parallelogram.hpp
+shape.hpp
+../include/shape.hpp
+
+../include/Rhombus.hpp
+Parallelogram.hpp
+../include/Parallelogram.hpp
+
+../include/Triangle.hpp
+shape.hpp
+../include/shape.hpp
+
+../include/shape.hpp
+cmath
+-
+iostream
+-
+string.h
+-
+
+/home/ubuntu/workspace/LABS/L5/src/source.cpp
+shape.hpp
+/home/ubuntu/workspace/LABS/L5/src/shape.hpp
+Triangle.hpp
+/home/ubuntu/workspace/LABS/L5/src/Triangle.hpp
+Parallelogram.hpp
+/home/ubuntu/workspace/LABS/L5/src/Parallelogram.hpp
+Rhombus.hpp
+/home/ubuntu/workspace/LABS/L5/src/Rhombus.hpp
+
