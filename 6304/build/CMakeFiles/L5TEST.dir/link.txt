@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -ggdb    CMakeFiles/L5TEST.dir/src/source.cpp.o  -o L5TEST -rdynamic 
