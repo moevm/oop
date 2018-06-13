@@ -1,0 +1,2 @@
+/home/ubuntu/workspace/LABS/L5/build/CMakeFiles/L5.dir
+/home/ubuntu/workspace/LABS/L5/build/CMakeFiles/L5TEST.dir
