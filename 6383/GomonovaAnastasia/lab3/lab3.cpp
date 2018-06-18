@@ -1,4 +1,4 @@
-#include <assert.h>
+﻿#include <assert.h>
 #include <algorithm> // std::copy, std::rotate
 #include <cstddef> // size_t
 #include <initializer_list>
