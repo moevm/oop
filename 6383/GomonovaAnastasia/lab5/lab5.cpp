@@ -1,4 +1,4 @@
-namespace stepik
+﻿namespace stepik
 {
 	template <typename Type>
 	class shared_ptr
