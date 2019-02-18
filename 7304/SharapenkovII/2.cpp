@@ -18,7 +18,7 @@ public:
       *this = arr;
   }
     
-  Array(const Array&& arr)
+  Array(Array&& arr)
   {
       *this = arr;
 	  
@@ -29,7 +29,7 @@ public:
   {
       Array tmp(arr.m_size);
 	  
-	  std::copy(arr.m_array, arr.m_array + arr.m_size, tmp.m_array);
+      std::copy(arr.m_array, arr.m_array + arr.m_size, tmp.m_array);
       
       m_size = tmp.m_size;
       m_array = m_size ? new T[m_size]() : nullptr;
