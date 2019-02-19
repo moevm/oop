@@ -49,7 +49,7 @@ public:
       for (size_t i = 0;i < m_size;i++){
           m_array[i] = tmp.m_array[i];
       }
-      other->~Array();
+      other.~Array();
   }
   const size_t size() const
   {
@@ -71,3 +71,13 @@ private:
   size_t m_size;
   T* m_array;
 };
+
+int main(){
+    Array<int> tmp(5);
+    Array<int> a_copy(tmp);
+
+    Array<int> a_move = std::move(tmp);
+
+    Array<int> oper(4);
+    oper = tmp;
+}
