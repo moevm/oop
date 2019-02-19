@@ -76,8 +76,8 @@ int main(){
     Array<int> tmp(5);
     Array<int> a_copy(tmp);
 
-    Array<int> a_move = std::move(tmp);
+    Array<int> a_move = CreateArray(Array<int>(10));
 
-    Array<int> oper(4);
+    Array<int> oper (4);
     oper = tmp;
 }
