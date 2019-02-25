@@ -18,15 +18,19 @@ public:
 
   // (copy) constructor
   Array(const Array& arr)
-    : m_size(arr.m_size)
-    , m_array(m_size ? new T[m_size]() : nullptr)
+    : Array(arr.m_size)
   {
-      try {
-          for(size_t i=0; i<m_size; i++)
-              m_array[i] = arr.m_array[i];
-      } catch (...) {
+        try
+        {
+            for(size_t i=0; i<m_size; i++)
+                m_array[i] = arr.m_array[i];
+        }
+        catch(...)
+        {
+            delete[] m_array;
+            throw;
+        }
 
-      }
   }
 
   // (move) constructor
@@ -41,15 +45,28 @@ public:
   // operator =
   Array& operator=(const Array& arr)
   {
-      m_size = arr.m_size;
-      m_array = m_size ? new T[m_size]() : nullptr;
-
-      for(size_t i=0; i<arr.m_size; i++)
-          m_array[i] = arr.m_array[i];
+      if(this != &arr)
+      {
+          T* new_m_array = arr.m_size ? new T[arr.m_size]() : nullptr;
+          try
+          {
+              for(size_t i=0; i<arr.m_size; i++)
+                  new_m_array[i] = arr.m_array[i];
+              delete[] m_array;
+              m_array = new_m_array;
+              m_size = arr.m_size;
+          }
+          catch(...)
+          {
+              delete[] new_m_array;
+              throw;
+          }
+      }
+      return *this;
   }
 
 
-  size_t size() const
+  const size_t size() const
   {
     return m_size;
   }
@@ -66,7 +83,8 @@ public:
     return m_array[index];
   }
 
-  ~Array()
+
+ ~Array()
   {
       delete[] m_array;
   }
