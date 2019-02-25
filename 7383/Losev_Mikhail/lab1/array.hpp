@@ -1,6 +1,7 @@
+#pragma once
 #include <assert.h>
 #include <algorithm>	// std::copy
-#include <cstddef>		// size_t
+#include <cstddef>	// size_t
 
 using namespace std;
 
