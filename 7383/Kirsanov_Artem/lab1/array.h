@@ -39,14 +39,19 @@ public:
 
     Array& operator = (const Array& obj)
     {
+        if(&obj == this) return *this;
+        Array temp(obj.m_size);
         try{
-            Array res(obj.m_size);
-            std::copy(obj.m_array, obj.m_array + obj.m_size, res.m_array);
-            m_size = res.m_size;
-            m_array = new T[m_size]();
-            std::copy(res.m_array, res.m_array + res.m_size, m_array);
+            std::copy(obj.m_array, obj.m_array + obj.m_size, temp.m_array);
+            delete[] m_array;
+            m_size = obj.m_size;
+            m_array = temp.m_array;
+            temp.m_array = nullptr;
+            
         }
         catch(...){
+            delete[] temp.m_array;
+            temp.m_array = nullptr;
             throw;
         }
         return *this;
@@ -58,8 +63,6 @@ public:
     :    m_size(obj.size)
     ,    m_array(m_size ? new T[m_size]() : nullptr)
     {
-        std::copy(obj.m_array, obj.m_array + obj.m_size, m_array);
-        delete[] obj.m_array;
         obj.m_array = nullptr;
         obj.m_size = 0;
     }
