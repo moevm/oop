@@ -33,9 +33,8 @@ public:
         std::copy(array.m_array, array.m_array+m_size, m_array);
     }
     //move constructor
-    Array(Array&& array):m_size(array.m_size), m_array(m_size ? new T[m_size]() : nullptr)
+    Array(Array&& array):m_size(array.m_size), m_array(array.m_array)
     {
-        std::copy(array.m_array, array.m_array+m_size, m_array);
         delete [] array.m_array;
         array.m_array = nullptr;
         array.m_size = 0;
@@ -45,8 +44,6 @@ public:
     {
         Array tmp(array.m_size);
         std::copy(array.m_array, array.m_array + array.m_size, tmp.m_array);
-        m_size = 0;
-        m_array = nullptr;
         std::swap(tmp.m_array, m_array);
         std::swap(tmp.m_size, m_size);
         return *this;
