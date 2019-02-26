@@ -4,25 +4,31 @@
 
 using namespace std;
 
-unsigned int next_id = 0;
-
 enum Color{RED, ORANGE, YELLOW, GREEN, BLUE, DARK_BLUE, VIOLET};
+
+unsigned int next_id()
+{
+    static unsigned int id = 0; //start value
+    ++id;
+    return id;
+}
 
 //abstract class for next inheritance
 class Shape
 {
 public:
-    Shape(double x, double y, double angle, Color color) : x(x), y(y), color(color), id(next_id)
+    Shape(double x, double y, double angle, Color color) : x(x), y(y), color(color), id(next_id())
     {
         if(angle >= 360.0)
             this->angle = angle - int(angle / 360) * 360;
         else
             this->angle = angle;
-        ++next_id;
     }
 
-    ~Shape()
-    {}
+    virtual ~Shape()
+    {
+        cout << "~Shape()" << endl;
+    }
 
     //common methods
     void move_to(double x, double y)
@@ -92,15 +98,15 @@ private:
     unsigned int const id;
 };
 
-
 class EquilateralTriangle : public Shape
 {
 public:
     EquilateralTriangle(double x, double y, double angle, Color color,double a) : Shape(x, y, angle, color), a(a)
     {}
-
-    ~EquilateralTriangle()
-    {}
+    ~EquilateralTriangle() override
+    {
+        cout << "~EquilateralTriangle()" << endl;
+    }
 
     void scaling(double k) override
     {
@@ -118,10 +124,10 @@ private:
 };
 
 
-class Triangle : public EquilateralTriangle
+class Triangle : public Shape
 {
 public:
-    Triangle(double x, double y, double angle, Color color,double a, double b, double angle_a_b) : EquilateralTriangle (a, b, angle, color, a), b(b)
+    Triangle(double x, double y, double angle, Color color,double a, double b, double angle_a_b) : Shape (a, b, angle, color), a(a), b(b)
     {
         if(angle_a_b >= 360)
             this->angle_a_b = angle_a_b - int(angle_a_b / 360) * 360;
@@ -130,22 +136,25 @@ public:
         c = sqrt(a*a + b*b - 2*a*b*cos(angle_a_b * M_PI / 180));
     }
 
-    ~Triangle()
-    {}
+    ~Triangle() override
+    {
+        cout << "~Triangle()" << endl;
+    }
 
     void scaling(double k) override
     {
-        EquilateralTriangle::scaling(k);
+        a *= k;
         b *= k;
         c *= k;
     }
 
     friend std::ostream & operator << (std::ostream & out, Triangle &triangle)
     {
-        out << dynamic_cast<EquilateralTriangle &>(triangle) << endl << "Side b: " << triangle.b << endl <<  "Side c:" << triangle.c;
+        out << dynamic_cast<Shape &>(triangle) << endl << "Side a: " <<  triangle.a << endl <<  "Side b: " << triangle.b << endl <<  "Side c:" << triangle.c;
         return out;
     }
 private:
+    double a;
     double b;
     double angle_a_b;
     //this side compute by theorem of cos
@@ -156,11 +165,13 @@ private:
 class Parallelogram : public Shape
 {
 public:
-    Parallelogram(double x, double y, double angle, Color color, double a, double b, double angle_a_b) : Shape(x, y, angle, color), a(a), b(b), angle_a_b(angle_a_b)
+    Parallelogram(double x = 1, double y = 1, double angle = 1, Color color = Color::RED, double a = 1, double b = 1, double angle_a_b = 1) : Shape(x, y, angle, color), a(a), b(b), angle_a_b(angle_a_b)
     {}
 
-    ~Parallelogram()
-    {}
+    ~Parallelogram() override
+    {
+        cout << "~Parallelogram()" << endl;
+    }
 
     void scaling(double k) override
     {
@@ -170,7 +181,7 @@ public:
 
     friend std::ostream & operator << (std::ostream & out, Parallelogram &p)
     {
-        out << dynamic_cast<Shape &>(p) << endl << "Side a: " << p.a << endl << "Side b: " << p.b << endl <<  "Angel between a and b: " << p.angle_a_b;
+        out << dynamic_cast<Shape &>(p) << endl << "Side a: " << p.a << endl << "Side b: " << p.b << endl <<  "Angle between a and b: " << p.angle_a_b;
         return out;
     }
 private:
@@ -183,24 +194,8 @@ private:
 
 int main()
 {
-    Triangle *shape = new Triangle(1, 1, 21.56, Color::RED, 3, 4, 450);
-    cout << *shape << endl;
-    shape->scaling(1.4);
-    shape->move_to(2, 2.8);
-    shape->rotate(721.45);
-    shape->setup_color(Color::VIOLET);
-    cout << *shape << endl;
-    Parallelogram *p = new Parallelogram(2.5, 5.324, 184.434, Color::GREEN, 56.54, 78.7834, 76.54);
-    cout << *p << endl;
-    p->scaling(1.4);
-    p->move_to(2, 2.8);
-    p->rotate(721.45);
-    p->setup_color(Color::YELLOW);
-    cout << *p;
-    Parallelogram a(0, 0, 0, Color::RED, 4, 12, 23),  b(0, 0, 0, Color::RED, 4, 12, 23);
-    cout << endl;
-    cout << a << endl << b << endl;
-    Triangle c(1,2.534, 380.554, Color::GREEN, 54, 23, 73.2342);
-    cout << c <<endl;
+    Shape *shape = new Triangle(1, 1, 21.56, Color::RED, 3, 4, 450);
+    cout << *dynamic_cast<Triangle *>(shape) << endl;
+
     return 0;
 }
