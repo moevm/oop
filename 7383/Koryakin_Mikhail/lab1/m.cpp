@@ -62,7 +62,7 @@ public:
   Array(Array&& a){
       m_size = 0;
       m_array = nullptr;
- 
+      delete [] m_array;
       swap(m_size, a.m_size);
       swap(m_array, a.m_array);
  
