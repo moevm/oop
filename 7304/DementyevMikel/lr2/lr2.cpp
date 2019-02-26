@@ -17,7 +17,6 @@
 using namespace std;
 
 static const double Pi = M_PI;
-unsigned long long int curId = 0;
 
 struct PT
 {
@@ -33,6 +32,8 @@ struct RGB
 };
 
 class Shape {
+private:
+    static int NextCustomerId;
 protected:
     int angle;
     RGB color;
@@ -47,7 +48,7 @@ public:
         scaleValue = 1;
         angle = 0;
         color = { 0,0,0 };
-        id = curId++;
+        id = NextCustomerId++;
     }
     
     virtual ~Shape() {}
@@ -75,6 +76,8 @@ public:
         return out;
     }
 };
+
+int Shape:: NextCustomerId = 0;
 
 class fivePointedStar : public Shape {
 protected:
@@ -170,21 +173,81 @@ public:
 };
 
 class hexagonalStar : public Shape {
+protected:
+    PT X1, X2, X3, X4, X5, X6;
 public:
     hexagonalStar(double x1, double y1, double h) : Shape(x1, y1),
-    length(h) {}
+    length(h) {
+        double angle = 2 * Pi / 6;              //делится круг на 5 частей
+        X1.x = x1 + h * cos(angle * 0);
+        X1.y = y1 + h * sin(angle * 0);
+        X2.x = x1 + h * cos(angle * 1);
+        X2.y = y1 + h * sin(angle * 1);
+        X3.x = x1 + h * cos(angle * 2);
+        X3.y = y1 + h * sin(angle * 2);
+        X4.x = x1 + h * cos(angle * 3);
+        X4.y = y1 + h * sin(angle * 3);
+        X5.x = x1 + h * cos(angle * 4);
+        X5.y = y1 + h * sin(angle * 4);
+        X5.x = x1 + h * cos(angle * 5);
+        X5.y = y1 + h * sin(angle * 5);
+    }
     
     void Scaling(double factor){
+        scaleValue *= 2;
         length *= factor;
+        centre.x *= factor;
+        centre.y *= factor;
+        
+        X2.x *= factor;
+        X2.y *= factor;
+        X3.x *= factor;
+        X3.y *= factor;
+        X4.x *= factor;
+        X4.y *= factor;
+        X5.x *= factor;
+        X5.y *= factor;
     }
     
     void MoveFigure(double newX, double newY) {
+        X1.x += newX - centre.x;
+        X1.y += newY - centre.y;
+        X2.x += newX - centre.x;
+        X2.y += newY - centre.y;
+        X3.x += newX - centre.x;
+        X3.y += newY - centre.y;
+        X4.x += newX - centre.x;
+        X4.y += newY - centre.y;
+        X5.x += newX - centre.x;
+        X5.y += newY - centre.y;
+        X6.x += newX - centre.x;
+        X6.y += newY - centre.y;
         centre.x = newX;
         centre.y = newY;
     }
     
     void SetTurnAngle(int rotation_angle) {
         angle += rotation_angle;
+        angle %= 360;
+        double rad = angle * Pi / 180;
+        
+        vector<PT> points;
+        points.push_back(X1); points.push_back(X2);
+        points.push_back(X3); points.push_back(X4);
+        points.push_back(X5); points.push_back(X6);
+        
+        for (auto& pt : points) {
+            PT tmp_dot = pt;
+            pt.x = tmp_dot.x * cos(rad) - tmp_dot.y * sin(rad);
+            pt.y = tmp_dot.y * cos(rad) + tmp_dot.y * sin(rad);
+        }
+        
+        X1 = points[0];
+        X3 = points[2];
+        X2 = points[1];
+        X4 = points[3];
+        X5 = points[4];
+        X6 = points[5];
     }
     
     friend ostream &operator<<(ostream &out, hexagonalStar &hexagram) {
@@ -192,6 +255,12 @@ public:
         hexagram.PrintShapeInfo(out);
         out << "INFO ABOUT SIZE:\n";
         out << "Distance between opposite vertices: " << hexagram.length << endl;
+        out << "POINTS COORDINATES:\n";
+        out << "POINT X1: (" << hexagram.X1.x << ", " << hexagram.X1.y << ")\n";
+        out << "POINT X2: (" << hexagram.X2.x << ", " << hexagram.X2.y << ")\n";
+        out << "POINT X3: (" << hexagram.X3.x << ", " << hexagram.X3.y << ")\n";
+        out << "POINT X4: (" << hexagram.X4.x << ", " << hexagram.X4.y << ")\n";
+        out << "POINT X5: (" << hexagram.X5.x << ", " << hexagram.X5.y << ")\n";
         out << "-----------------------------------------------";
         out << endl;
         return out;
@@ -207,6 +276,7 @@ public:
     radius(radius) {}
     
     void Scaling(double factor){
+        scaleValue*=factor;
         radius *= factor;
     }
     
@@ -238,18 +308,20 @@ int main() {
     cout << pent;
     pent.MoveFigure(0, 0);
     pent.SetTurnAngle(30);
+    pent.Scaling(2);
     cout << pent;
     
     hexagonalStar hex(20, 20, 10);
     cout << hex;
     hex.Scaling(2);
+    hex.MoveFigure(0, 0);
     cout << hex;
     
     Circle circl(0, 10, 5);
     cout << circl;
     circl.SetColor(256, 256, 256);
+    circl.Scaling(2);
     cout << circl;
     
     return 0;
 }
-
