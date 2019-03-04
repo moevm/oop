@@ -48,7 +48,7 @@ public:
         scaleValue = 1;
         angle = 0;
         color = { 0,0,0 };
-        id = NextCustomerId++;
+        NextCustomerId++;
     }
     
     virtual ~Shape() {}
@@ -63,7 +63,7 @@ public:
     
     void PrintShapeInfo(ostream& out) {
         out.precision(2);
-        out << "Shape ID: " << id << endl;
+        out << "Shape ID: " << NextCustomerId << endl;
         out << "Figure centre: (" << centre.x << ", " << centre.y << ")\n";
         out << "Angle of rotation = " << angle << endl;
         out << "Color (RGB): (" << color.R << ", " << color.G << ", " << color.B << ")\n";
@@ -325,3 +325,4 @@ int main() {
     
     return 0;
 }
+
