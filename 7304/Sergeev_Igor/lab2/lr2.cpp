@@ -6,16 +6,18 @@
 using namespace std;
 
 
-string first_fig = "Rectangle";
-string second_fig = "Parallelogram";
-string third_fig = "Regular_hexagon";
+unsigned int our_id(){
+    static unsigned int id = 0;
+    ++id;
+    return id;
+}
 
 enum Color{RED, ORANGE, YELLOW, GREEN, BLUE, DARK_BLUE, VIOLET};
 
 class Shape
 {
 public:
-    Shape(double x, double y, double angle, Color color) : x(x), y(y), color(color)
+    Shape(double x, double y, double angle, Color color) : x(x), y(y), color(color), id(our_id())
     {
         if(angle >= 360.0)
             this->angle = angle - int(angle / 360) * 360;
@@ -23,8 +25,9 @@ public:
             this->angle = angle;
     }
 
-    ~Shape()
-    {}
+    virtual ~Shape()
+    {
+    }
 
     void move(double x, double y)
     {
@@ -79,28 +82,30 @@ public:
 
     friend std::ostream & operator <<(std::ostream &out, Shape &shape)
     {
-        out  << "(x, y): " << shape.x << ", " << shape.y << endl << "Angle with ox: " << shape.angle <<  " degrees" << endl << shape.get_color();
+        out << "Object id: " << shape.id << endl << "(x, y): " << shape.x << ", " << shape.y << endl << "Angle with ox: " << shape.angle <<  " degrees" << endl << shape.get_color();
         return out;
     }
 
     //abstract method
     virtual void scaling(double k) = 0;
 
-private:
+protected:
     double x, y;
     double angle;
     Color color;
+    unsigned int id;
 };
 
 
 class Regular_hexagon : public Shape
 {
 public:
-    Regular_hexagon(double x, double y, double angle, Color color,double a) : Shape(x, y, angle, color), a(a), name(third_fig)
+    Regular_hexagon(double x, double y, double angle, Color color,double a) : Shape(x, y, angle, color), a(a)
     {}
 
-    ~Regular_hexagon()
-    {}
+    virtual ~Regular_hexagon()
+    {
+    }
 
     void scaling(double k) override
     {
@@ -109,23 +114,29 @@ public:
 
     friend std::ostream & operator << (std::ostream & out, Regular_hexagon &hex)
     {
-        out << dynamic_cast<Shape &>(hex) << endl << "Object name: " << hex.name << endl << "Side a: " << hex.a;
+        out << "x1:y1 " << hex.x-hex.a*cos(hex.angle) << " : " << hex.y-hex.a*sin(hex.angle) << endl;
+        out << "x2:y2 " << hex.x-hex.a/2*cos(hex.angle) << " : " << hex.y+hex.a*sqrt(3)/2*sin(hex.angle) << endl;
+        out << "x3:y3 " << hex.x+hex.a/2*cos(hex.angle) << " : " << hex.y+hex.a*sqrt(3)/2*sin(hex.angle) << endl;
+        out << "x4:y4 " << hex.x+hex.a*cos(hex.angle) << " : " << hex.y+hex.a*sin(hex.angle) << endl;
+        out << "x5:y5 " << hex.x+hex.a/2*cos(hex.angle) << " : " << hex.y-hex.a*sqrt(3)/2*sin(hex.angle) << endl;
+        out << "x6:y6 " << hex.x-hex.a/2*cos(hex.angle) << " : " << hex.y-hex.a*sqrt(3)/2*sin(hex.angle) << endl;
+        out << dynamic_cast<Shape &>(hex) << endl << "Side a: " << hex.a;
         return out;
     }
 private:
     double a; //side of hexagon
-    string name;
 };
 
 
 class Rectangle : public Shape
 {
 public:
-    Rectangle(double x, double y, double angle, Color color,double a, double b) : Shape(x, y, angle, color), a(a), b(b), name(first_fig)
+    Rectangle(double x, double y, double angle, Color color,double a, double b) : Shape(x, y, angle, color), a(a), b(b)
     {}
 
-    ~Rectangle()
-    {}
+    virtual ~Rectangle()
+    {
+    }
 
     void scaling(double k) override
     {
@@ -135,24 +146,28 @@ public:
 
     friend std::ostream & operator << (std::ostream & out, Rectangle &rec)
     {
-        out << dynamic_cast<Shape &>(rec) << endl << "Object name: " << rec.name << endl << "Side a: " << rec.a << endl <<  "Side b:" << rec.b;
+        out <<  "x1:y1 " << rec.x-(rec.a+rec.b)/2*cos(rec.angle) << " : " << rec.y-(rec.a+rec.b)/2*sin(rec.angle) << endl;
+        out <<  "x2:y2 " << rec.x+(rec.a-rec.b)/2*cos(rec.angle) << " : " << rec.y+(rec.a-rec.b)/2*sin(rec.angle) << endl;
+        out <<  "x3:y3 " << rec.x+(rec.a+rec.b)/2*cos(rec.angle) << " : " << rec.y+(rec.a+rec.b)/2*sin(rec.angle) << endl;
+        out <<  "x4:y4 " << rec.x-(rec.a-rec.b)/2*cos(rec.angle) << " : " << rec.y-(rec.a-rec.b)/2*sin(rec.angle) << endl;
+        out << dynamic_cast<Shape &>(rec) << endl << "Side a: " << rec.a << endl <<  "Side b:" << rec.b;
         return out;
     }
 private:
     double a; //side a
     double b; //side b
-    string name;
 };
 
 
 class Parallelogram : public Shape
 {
 public:
-    Parallelogram(double x, double y, double angle, Color color, double a, double b, double sides_angle) : Shape(x, y, angle, color), a(a), b(b),sides_angle(sides_angle), name(second_fig)
+    Parallelogram(double x, double y, double angle, Color color, double a, double b, double sides_angle) : Shape(x, y, angle, color), a(a), b(b),sides_angle(sides_angle)
     {}
 
-    ~Parallelogram()
-    {}
+    virtual ~Parallelogram()
+    {
+    }
 
     void scaling(double k) override
     {
@@ -162,16 +177,18 @@ public:
 
     friend std::ostream & operator << (std::ostream & out, Parallelogram &par)
     {
-        out << dynamic_cast<Shape &>(par) << endl << "Object name: " << par.name << endl << "Side a: " << par.a << endl << "Side b: " << par.b << endl <<  "Angle between sides: " << par.sides_angle;
+        out <<  "x1:y1 " << par.x-(par.a*cos(par.sides_angle)+par.b)/2*cos(par.angle) << " : " << par.y-(par.a*sin(par.sides_angle)+par.b)/2*sin(par.angle) << endl;
+        out <<  "x2:y2 " << par.x+(par.a*cos(par.sides_angle)-par.b)/2*cos(par.angle) << " : " << par.y+(par.a*sin(par.sides_angle)-par.b)/2*sin(par.angle) << endl;
+        out <<  "x3:y3 " << par.x+(par.a*cos(par.sides_angle)+par.b)/2*cos(par.angle) << " : " << par.y+(par.a*sin(par.sides_angle)+par.b)/2*sin(par.angle) << endl;
+        out <<  "x4:y4 " << par.x-(par.a*cos(par.sides_angle)-par.b)/2*cos(par.angle) << " : " << par.y-(par.a*sin(par.sides_angle)-par.b)/2*sin(par.angle) << endl;
+        out << dynamic_cast<Shape &>(par) << endl << "Side a: " << par.a << endl << "Side b: " << par.b << endl <<  "Angle between sides: " << par.sides_angle << endl;
         return out;
     }
 private:
     double a;
     double b;
     double sides_angle; //angle betweend sides a and b
-    string name;
 };
-
 
 int main()
 {
@@ -190,6 +207,7 @@ int main()
     hex->move(1, 10);
     hex->rotate(771.85);
     hex->col(Color::VIOLET);
-    cout << *hex << endl;
+    cout   << *hex << endl;
+    delete shape;
     return 0;
 }
