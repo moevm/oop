@@ -2,16 +2,12 @@
 
 #include <iostream>
 #include <math.h>
+#include <algorithm>
 using namespace std;
-unsigned ID = 1;
 
 class Point {
 public:
     Point(double x = 0, double y = 0) : x(x), y(y) {}
-    
-    double getX() const {return x;}
-    double getY() const {return y;}
-    void setY(double newY) {y = newY;}
     
     Point &operator = (Point const &newPoint) = default;
     
@@ -20,7 +16,6 @@ public:
         return out;
     }
     
-private:
     double x, y;
 };
 
@@ -30,7 +25,7 @@ public:
     
     Color() {}
     
-    Color greeen() {
+    Color green() {
         return Color(0, 255, 0);
     }
     
@@ -47,21 +42,41 @@ public:
         return out;
     }
     
+    unsigned int getR() {
+        return RED;
+    }
+    
+    unsigned int getG() {
+        return GREEN;
+    }
+    
+    unsigned int getB() {
+        return BLUE;
+    }
+    
 private:
     unsigned int RED, GREEN, BLUE;
 };
 
 class Shape {
+private:
+    static int id;
 public:
     Shape(Point point = Point(0, 0), Color col = Color(255, 255, 255), double ang = 0)
-    : centerOffset(point), color(col), angle(ang), id(ID++) {}
-    
-    virtual void mv(Point mvPoint) {
-        centerOffset = mvPoint;
+    : center(point), color(col), angle(ang) {
+        id++;
+        defaultSet();
     }
     
-    virtual void rotate(double a) {
-        angle += a;
+    virtual void mv(Point mvPoint) {center = mvPoint;}
+    
+    virtual void rotate(double a) {angle += a;}
+    
+    void rotatePoints() {
+        rotatePoint(this->p1);
+        rotatePoint(this->p2);
+        rotatePoint(this->p3);
+        rotatePoint(this->p4);
     }
     
     virtual void setColor(Color c) {
@@ -72,52 +87,76 @@ public:
         return color;
     }
     
-    double getAngle() {
-        return angle;
+    Point getCenter() {
+        return center;
     }
     
-    void setAngle(double a) {
-        angle = a;
-    }
- 
     virtual void scale(double) = 0;
     
-    friend ostream &operator << (ostream &out, Shape const &shape) {
-        cout << "ID: " << shape.id << endl <<
+    friend ostream &operator << (ostream &out, Shape &shape) {
+        shape.rotatePoints();
+        cout << "IDENTIFIRE: " << shape._id << endl <<
         "COLOR: " << shape.color << endl <<
-        "CENTER OFFSET: " << shape.centerOffset << endl <<
-        "ANGLE: " << shape.angle << endl;
-        
+        "CENTER OFFSET: " << shape.center << endl <<
+        "ANGLE: " << shape.angle << endl <<
+        "p1:" << shape.p1 << ", p2:" << shape.p2 <<
+        ", p3:" << shape.p3 << ", p4:" << shape.p4 << endl;
         return out;
     }
     
 private:
     Color color;
-    Point centerOffset;
+    Point center;
     double angle;
-    unsigned id;
+    
+    void rotatePoint(Point & point) {
+        double rad = angle * M_PI / 180;
+        
+        double X = point.x;
+        double Y = point.y;
+        X -= center.x;
+        Y -= center.y;
+        
+        double newX = X * cos(rad) - Y * sin(rad);
+        double newY = X * sin(rad) + Y * cos(rad);
+        
+        point.x = newX + center.x;
+        point.y = newY + center.y;
+    }
+    void defaultSet() {_id = id;}
+protected:
+    Point p1, p2, p3, p4;int _id;
 };
+
+int Shape::id = 0;
 
 class Rectangle : public Shape {
 public:
     Rectangle(double width, double height, double angle = 0, Color color = Color(255, 255, 255), Point point = Point(0.0, 0.0))
-    : Shape(point, color, angle), width(width), height(height) {}
+    : Shape(point, color, angle), width(width), height(height) {updatePoints();}
     
     void scale(double s) override {
         height *= s;
         width *= s;
+        updatePoints();
     }
     
-    friend ostream &operator<<(ostream &out, Rectangle const &rectangle) {
-        cout << dynamic_cast<Shape const &>(rectangle) << "SHAPE: Rectangle" << endl <<
+    friend ostream &operator<<(ostream &out, Rectangle &rectangle) {
+        cout << dynamic_cast<Shape &>(rectangle) << "SHAPE: Rectangle" << endl <<
+        "ID " << rectangle._id << endl <<
         "WIDTH: " << rectangle.width << endl <<
-        "HEIGHT: " << rectangle.height << endl;
-        
+        "HEIGHT: " << rectangle.height << endl << endl;
         return out;
     }
     
 private:
     double width, height;
+    void updatePoints() {
+        p1 = Point(-(width/2) + getCenter().x, -(height/2) + getCenter().y);
+        p2 = Point(-(width/2) + getCenter().x, (height/2) + getCenter().y);
+        p3 = Point((width/2) + getCenter().x, (height/2) + getCenter().y);
+        p4 = Point((width/2) + getCenter().x, -(height/2) + getCenter().y);
+    }
 };
 
 class Line {
@@ -126,63 +165,60 @@ public:
 private:
     Point start;
     Point finish;
+    
+    
 };
 
 class Trapezium : public Shape {
 public:
-    Trapezium(Point topLineCenter, Point bottomLineCenter, double topLineWidth, double bottomLineWidth, double angle = 0.0, Color color = Color(255, 255, 255), Point center = Point(0.0, 0.0))
-    : Shape(center, color, angle), topLineCenter(topLineCenter), bottomLineCenter(bottomLineCenter), topLineWidth(topLineWidth), bottomLineWidth(bottomLineWidth) {}
-    
-    void scale(double s) override {
-        topLineWidth *= s;
-        bottomLineWidth *= s;
-        topLineCenter.setY(topLineCenter.getY() * s);
-    }
-    
-    void rotate(double a) override {
-        setAngle(getAngle() + a);
-        
-        double X = topLineCenter.getX();
-        double Y = topLineCenter.getY();
-        X -= bottomLineCenter.getX();
-        Y -= bottomLineCenter.getY();
-        
-        double newX = X * cos(a) - Y * sin(a);
-        double newY = X * sin(a) + Y * cos(a);
-        
-        topLineCenter = Point(newX + bottomLineCenter.getX(), newY + bottomLineCenter.getY());
-    }
-    
-    friend ostream &operator << (ostream &out, Trapezium const &trap) {
-        cout << dynamic_cast<Shape const &>(trap) << "SHAPE: Trapezium" << endl <<
-        "TOP LINE WIDTH: " << trap.topLineWidth << ", "<<
-        "CENTER: " << trap.topLineCenter << endl <<
-        "BOTTOM LINE WIDTH: " << trap.bottomLineWidth << ", " <<
-        "CENTER: " << trap.bottomLineCenter << endl;
-        
-        return out;
-    }
-    
-private:
-    Point topLineCenter;
-    Point bottomLineCenter;
-    double topLineWidth;
-    double bottomLineWidth;
-};
-
-class RightTrapezium : public Shape {
-public:
-    RightTrapezium(double height, double topLineWidth, double bottomLineWidth, double angle = 0.0, Color color = Color(255, 255, 255), Point center = Point(0.0, 0.0))
-    : Shape(center, color, angle), height(height), topLineWidth(topLineWidth), bottomLineWidth(bottomLineWidth) {}
+    Trapezium(double topLineWidth, double bottomLineWidth, double topLineOffset, double height, double angle = 0.0, Color color = Color(255, 255, 255), Point center = Point(0.0, 0.0))
+    : Shape(center, color, angle), topLineWidth(topLineWidth), bottomLineWidth(bottomLineWidth), topLineOffset(topLineOffset), height(height) {upadatePoints();}
     
     void scale(double s) override {
         topLineWidth *= s;
         bottomLineWidth *= s;
         height *= s;
+        topLineOffset *= s;
+        upadatePoints();
     }
     
-    friend ostream &operator << (ostream &out, RightTrapezium const &trap) {
-        cout << dynamic_cast<Shape const &>(trap) << "SHAPE: RightTrapezium" << endl <<
+    friend ostream &operator << (ostream &out, Trapezium &trap) {
+        cout << dynamic_cast<Shape &>(trap) << "SHAPE: Trapezium" << endl <<
+        "TOP LINE WIDTH: " << trap.topLineWidth << endl <<
+        "HEIGHT: " << trap.height << endl <<
+        "BOTTOM LINE WIDTH: " << trap.bottomLineWidth << endl <<
+        "TOP LINE OFFSET: " << trap.topLineOffset << endl;
+        return out;
+    }
+    
+private:
+    double topLineWidth;
+    double bottomLineWidth;
+    double topLineOffset;
+    double height;
+    
+    void upadatePoints() {
+        p1 = Point(-(bottomLineWidth/2) + getCenter().x, -(height/2) + getCenter().y);
+        p2 = Point(-(topLineWidth/2) + getCenter().x + topLineOffset, (height/2) + getCenter().y);
+        p3 = Point((topLineWidth/2) + getCenter().x + topLineOffset, (height/2) + getCenter().y);
+        p4 = Point((bottomLineWidth/2) + getCenter().x, -(height/2) + getCenter().y);
+    }
+};
+
+class RightTrapezium : public Shape {
+public:
+    RightTrapezium(double height, double topLineWidth, double bottomLineWidth, double angle = 0.0, Color color = Color(255, 255, 255), Point center = Point(0.0, 0.0))
+    : Shape(center, color, angle), height(height), topLineWidth(topLineWidth), bottomLineWidth(bottomLineWidth) {upadatePoints();}
+    
+    void scale(double s) override {
+        topLineWidth *= s;
+        bottomLineWidth *= s;
+        height *= s;
+        upadatePoints();
+    }
+    
+    friend ostream &operator << (ostream &out, RightTrapezium &trap) {
+        cout << dynamic_cast<Shape &>(trap) << "SHAPE: RightTrapezium" << endl <<
         "TOP LINE WIDTH: " << trap.topLineWidth << endl <<
         "BOTTOM LINE WIDTH: " << trap.bottomLineWidth << endl <<
         "HEIGHT: " << trap.height << endl;
@@ -193,11 +229,18 @@ private:
     double height;
     double topLineWidth;
     double bottomLineWidth;
+    
+    void upadatePoints() {
+        p1 = Point(-(bottomLineWidth/2) + getCenter().x, -(height/2) + getCenter().y);
+        p2 = Point(-(topLineWidth/2) + getCenter().x, (height/2) + getCenter().y);
+        p3 = Point((topLineWidth/2) + getCenter().x, (height/2) + getCenter().y);
+        p4 = Point((bottomLineWidth/2) + getCenter().x, -(height/2) + getCenter().y);
+    }
 };
 
 int main() {
-    Rectangle rect(99.5, 200.0);
-    Trapezium trap(Point(60.0, 30.0), Point(70.0, 0.0), 30.0, 100.0);
+    Rectangle rect(100.0, 200.0);
+    Trapezium trap(30.0, 100.0, 20.0, 40.0);
     RightTrapezium rtrap(10.0, 20.0, 60.0);
     
     cout << "BEFORE: \n\n";
@@ -206,9 +249,9 @@ int main() {
     cout << rtrap <<endl;
     
     cout << "\nAFTER: \n\n" ;
-    rect.rotate(100.0);
+    rect.rotate(90.0);
     rect.scale(3.5);
-    rect.setColor(Color().greeen());
+    rect.setColor(Color().green());
     
     trap.rotate(10.0);
     trap.mv(Point(10.0, -5.0));
