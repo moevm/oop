@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <vector>
 
 struct Point{
     Point():x(0), y(0){}
@@ -37,6 +36,7 @@ public:
     void set_color(const Color& color);
     Color get_color() const;
     Point get_pos() const;
+    void set_pos(const Point& p);
     unsigned long long get_id() const;
     double get_angle() const;
 

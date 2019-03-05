@@ -15,6 +15,10 @@ void Shape::set_color(const Color& color){
     this->color.set(color.red, color.green, color.blue);
 }
 
+void Shape::set_pos(const Point& p){
+    pos.set(p.x, p.y);
+}
+
 Point Shape::get_pos() const{
     return pos;
 }

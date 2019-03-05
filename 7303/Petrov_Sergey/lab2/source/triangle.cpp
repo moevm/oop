@@ -9,6 +9,9 @@ Triangle::Triangle(const Point& p1, const Point& p2, const Point& p3, const Colo
     a = sqrt((p1.x - p2.x)*(p1.x - p2.x) + (p1.y - p2.y)*(p1.y - p2.y));
     b = sqrt((p2.x - p3.x)*(p2.x - p3.x) + (p2.y - p3.y)*(p2.y - p3.y));
     c = sqrt((p3.x - p1.x)*(p3.x - p1.x) + (p3.y - p1.y)*(p3.y - p1.y));
+    if( (a+b) <= c || (a+c) <= b && (c+b) <= a){
+        throw std::logic_error("Not a triangle");
+    }
 }
 
 Triangle::Triangle(const Triangle& other)
@@ -46,21 +49,41 @@ void Triangle::scale(double scale){
 }
 
 void Triangle::turn(double angle){
+    Point t(pos.x, pos.y);
+    move(Point(0, 0));
     this->angle += angle;
+    double x, y;
     for(auto& el : points){
-        el.x *= el.x*cos(angle*M_PI/180) - el.y*sin(angle*M_PI/180);
-        el.y *= el.x*sin(angle*M_PI/180) + el.y*cos(angle*M_PI/180);
-    }
+        x = el.x;
+        y = el.y;
+        el.x = x*cos(this->angle*M_PI/180) - y*sin(this->angle*M_PI/180);
+        el.y = x*sin(this->angle*M_PI/180) + y*cos(this->angle*M_PI/180);
+    }66
+    move(t);
 }
 
 std::vector<double> Triangle::sides(){
     return std::vector<double>{a, b, c};
 }
 
+std::vector<Point> Triangle::get_points(){
+    return points;
+}
+
+Point Triangle::operator[](int ind){
+    if(ind >= points.size()){
+        throw std::out_of_range("Index > points.size");
+    }
+    return points[ind];
+}
+
 std::ostream& operator<<(std::ostream& os, Triangle& s){
     os << "---Triangle---\n";
     os << (Shape&)s;
     std::vector<double> sides = s.sides();
+    os << "Points: \n" <<"("<< s[0].x << ", " << s[0].y << ")" << '\n';
+    os << "(" << s[1].x << ", " << s[1].y << ")" << "\n";
+    os << "(" << s[2].x << ", " << s[2].y << ")" << "\n";
     os << "Sides: " << sides[0] << " " << sides[1] << " " << sides[2] << '\n';
     os << "--------------\n";
 }
