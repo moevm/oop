@@ -1,9 +1,10 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
 
-unsigned long long int current_id = 0;
+#define PI 3.141592653
 
 
 class Color {
@@ -44,6 +45,10 @@ public:
         return out;
     }
 
+    friend Coord operator+(Coord const &c1, Coord const &c2) {
+        return Coord(c1.getX() + c2.getX(), c1.getY() + c2.getY());
+    }
+
 private:
     double x, y;
 };
@@ -51,8 +56,12 @@ private:
 
 class Shape {
 public:
+    static unsigned id;
+
     explicit Shape(Coord p = Coord(0, 0), Color c = Color(255, 255, 255), double a = 0) : position(p), color(c),
-                                                                                          angle(a), id(current_id++) {}
+                                                                                          angle(a) {
+        id++;
+    }
 
     virtual void move(Coord new_position) {
         position = new_position;
@@ -72,6 +81,8 @@ public:
 
     virtual void scale(double) = 0;
 
+    virtual void getPointCoords() = 0;
+
     friend ostream &operator<<(ostream &out, Shape const &shape) {
         cout << "Shape ID: " << shape.id << endl <<
              "Color: " << shape.color << endl <<
@@ -81,22 +92,40 @@ public:
         return out;
     }
 
-private:
+protected:
     Color color;
     Coord position;
     double angle;
-    unsigned long long int id;
 };
+
+unsigned Shape::id = 0;
 
 class Parallelogram : public Shape {
 public:
     Parallelogram(double w, double h, double wha = 3.141592653, double a = 0, Color c = Color(255, 255, 255),
                   Coord p = Coord(0, 0)) : Shape(p, c, a),
-                                           width(w), height(h), wh_angle(wha) {}
+                                           width(w), height(h), wh_angle(wha) {
+        x1 = Coord(-w/2, h*cos(wha)/2);
+        x2 = Coord(w/2, h*cos(wha)/2);
+        x3 = Coord(-w/2+h*cos(wha), -h*cos(wha)/2);
+        x4 = Coord(w/2+h*cos(wha), -h*cos(wha)/2);
+    }
 
     void scale(double factor) override {
         height *= factor;
         width *= factor;
+    }
+
+    void getPointCoords() override {
+        Coord x1_real(x1.getX()*cos(angle)-x1.getY()*sin(angle), x1.getX()*sin(angle)+x1.getY()*cos(angle));
+        Coord x2_real(x2.getX()*cos(angle)-x2.getY()*sin(angle), x2.getX()*sin(angle)+x2.getY()*cos(angle));
+        Coord x3_real(x3.getX()*cos(angle)-x3.getY()*sin(angle), x3.getX()*sin(angle)+x3.getY()*cos(angle));
+        Coord x4_real(x4.getX()*cos(angle)-x4.getY()*sin(angle), x4.getX()*sin(angle)+x4.getY()*cos(angle));
+        cout << "x1: " << x1_real + position  << endl
+             << "x2: " << x2_real + position << endl
+             << "x3: " << x3_real + position << endl
+             << "x4: " << x4_real + position << endl;
+
     }
 
     friend ostream &operator<<(ostream &out, Parallelogram const &parallelogram) {
@@ -112,17 +141,34 @@ public:
 
 protected:
     double width, height, wh_angle;
+    Coord x1, x2, x3, x4;
 };
 
 class Rectangle : public Shape {
 public:
 
     Rectangle(double w, double h, double a = 0, Color c = Color(255, 255, 255),
-              Coord p = Coord(0, 0)) : Shape(p, c, a), width(w), height(h) {}
+              Coord p = Coord(0, 0)) : Shape(p, c, a), width(w), height(h) {
+        x1 = Coord(-w/2, h/2);
+        x2 = Coord(w/2, h/2);
+        x3 = Coord(-w/2, -h/2);
+        x4 = Coord(w/2, -h/2);
+    }
 
     void scale(double factor) override {
         height *= factor;
         width *= factor;
+    }
+
+    void getPointCoords() override {
+        Coord x1_real(x1.getX()*cos(angle)-x1.getY()*sin(angle), x1.getX()*sin(angle)+x1.getY()*cos(angle));
+        Coord x2_real(x2.getX()*cos(angle)-x2.getY()*sin(angle), x2.getX()*sin(angle)+x2.getY()*cos(angle));
+        Coord x3_real(x3.getX()*cos(angle)-x3.getY()*sin(angle), x3.getX()*sin(angle)+x3.getY()*cos(angle));
+        Coord x4_real(x4.getX()*cos(angle)-x4.getY()*sin(angle), x4.getX()*sin(angle)+x4.getY()*cos(angle));
+        cout << "x1: " << x1_real + position  << endl
+             << "x2: " << x2_real + position << endl
+             << "x3: " << x3_real + position << endl
+             << "x4: " << x4_real + position << endl;
     }
 
     friend ostream &operator<<(ostream &out, Rectangle const &rectangle) {
@@ -135,15 +181,29 @@ public:
 
 protected:
     double width, height;
+    Coord x1, x2, x3, x4;
 };
 
 class Hexagram : public Shape {
 public:
     explicit Hexagram(double h, double a = 0, Color c = Color(255, 255, 255), Coord p = Coord(0, 0)) : Shape(p, c, a),
-                                                                                                       height(h) {}
+                                                                                                       height(h) {
+        x1 = Coord(0, 2*h/3);
+        x2 = Coord(h*tan(30*PI/180), -h/3);
+        x3 = Coord(h*tan(30*PI/180), -h/3);
+    }
 
     void scale(double factor) override {
         height *= factor;
+    }
+
+    void getPointCoords() override {
+        Coord x1_real(x1.getX()*cos(angle)-x1.getY()*sin(angle), x1.getX()*sin(angle)+x1.getY()*cos(angle));
+        Coord x2_real(x2.getX()*cos(angle)-x2.getY()*sin(angle), x2.getX()*sin(angle)+x2.getY()*cos(angle));
+        Coord x3_real(x3.getX()*cos(angle)-x3.getY()*sin(angle), x3.getX()*sin(angle)+x3.getY()*cos(angle));
+        cout << "x1: " << x1_real + position  << endl
+             << "x2: " << x2_real + position << endl
+             << "x3: " << x3_real + position << endl;
     }
 
     friend ostream &operator<<(ostream &out, Hexagram const &hexagram) {
@@ -155,24 +215,29 @@ public:
 
 private:
     double height;
+    Coord x1, x2, x3;
 };
 
 
 int main() {
     Hexagram hex(120);
-    Rectangle rect(120, 130);
+    Rectangle rect(120, 130, 0, Color(255, 255, 255), Coord(100, 100));
     Parallelogram para(10, 20);
 
     cout << hex << endl;
     cout << rect << endl;
     cout << para << endl;
 
+    rect.rotate(PI/3);
+    rect.getPointCoords();
+
     hex.move(Coord(20, 30));
-    rect.rotate(100);
+    rect.rotate(PI);
     para.scale(1.2);
     rect.setColor(Color(100, 200, 30));
 
-    cout << rect.getColor() << endl << hex.getColor() << endl;
+    cout << "Rectangle color: " << rect.getColor() << endl
+         << "Hexagram color: " << hex.getColor() << endl << endl;
 
     cout << hex << endl;
     cout << rect << endl;
