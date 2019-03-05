@@ -5,20 +5,14 @@
 
 using namespace std;
 
-
-unsigned int our_id(){
-    static unsigned int id = 0;
-    ++id;
-    return id;
-}
-
 enum Color{RED, ORANGE, YELLOW, GREEN, BLUE, DARK_BLUE, VIOLET};
 
 class Shape
 {
 public:
-    Shape(double x, double y, double angle, Color color) : x(x), y(y), color(color), id(our_id())
+    Shape(double x, double y, double angle, Color color) : x(x), y(y), color(color)
     {
+        id = ++next_id;
         if(angle >= 360.0)
             this->angle = angle - int(angle / 360) * 360;
         else
@@ -93,9 +87,13 @@ protected:
     double x, y;
     double angle;
     Color color;
-    unsigned int id;
+    int id;
+    static int next_id;
 };
 
+
+//Делаем статичекую переменную в классе
+int Shape::next_id = 0;
 
 class Regular_hexagon : public Shape
 {
@@ -126,6 +124,7 @@ public:
 private:
     double a; //side of hexagon
 };
+
 
 
 class Rectangle : public Shape
@@ -207,7 +206,9 @@ int main()
     hex->move(1, 10);
     hex->rotate(771.85);
     hex->col(Color::VIOLET);
-    cout   << *hex << endl;
+    cout << *hex << endl;
     delete shape;
+    delete p;
+    delete hex;
     return 0;
 }
