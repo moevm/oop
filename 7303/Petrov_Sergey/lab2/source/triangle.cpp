@@ -58,16 +58,12 @@ void Triangle::turn(double angle){
         y = el.y;
         el.x = x*cos(this->angle*M_PI/180) - y*sin(this->angle*M_PI/180);
         el.y = x*sin(this->angle*M_PI/180) + y*cos(this->angle*M_PI/180);
-    }66
+    }
     move(t);
 }
 
 std::vector<double> Triangle::sides(){
     return std::vector<double>{a, b, c};
-}
-
-std::vector<Point> Triangle::get_points(){
-    return points;
 }
 
 Point Triangle::operator[](int ind){

@@ -9,7 +9,6 @@ public:
     Triangle(const Triangle& other);
 
     std::vector<double> sides();
-    std::vector<Point> get_points();
 
     void move(const Point& p);
     void scale(double scale);
