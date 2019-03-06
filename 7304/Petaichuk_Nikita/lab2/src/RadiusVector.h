@@ -27,7 +27,7 @@ private:
     double y_coord;
 };
 
-//Арифметические операции на точках на плоскости
+//Арифметические операции над радиус-векторами на плоскости
 RadiusVector operator+(const RadiusVector &first, const RadiusVector &second);
 
 RadiusVector operator-(const RadiusVector &first, const RadiusVector &second);

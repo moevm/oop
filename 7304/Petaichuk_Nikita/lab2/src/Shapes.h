@@ -62,6 +62,7 @@ public:
     void move(RadiusVector destination);
     void scale(double coefficient);
     void rotate(double angle);
+    void printVertexCoordinates();
 
     double getSideSize() const;
     double getAngle() const;
@@ -88,6 +89,7 @@ public:
     void move(RadiusVector destination);
     void scale(double coefficient);
     void rotate(double angle);
+    void printVertexCoordinates();
 
     double getUpperBaseSize() const;    
     double getLowerBaseSize() const;

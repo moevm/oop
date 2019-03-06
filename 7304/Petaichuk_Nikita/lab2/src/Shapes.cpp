@@ -188,20 +188,38 @@ void Rombus::rotate(double angle)
     lower_vertex -= center;
 
     //Поворот фигуры с помощью матрицы поворота
-    left_vertex.setX(left_vertex.getX()*cos(angle * M_PI / 180.0) - left_vertex.getY()*sin(angle * M_PI / 180.0));
-    left_vertex.setY(left_vertex.getX()*sin(angle * M_PI / 180.0) + left_vertex.getY()*cos(angle * M_PI / 180.0));
-    right_vertex.setX(right_vertex.getX()*cos(angle * M_PI / 180.0) - right_vertex.getY()*sin(angle * M_PI / 180.0));
-    right_vertex.setY(right_vertex.getX()*sin(angle * M_PI / 180.0) + right_vertex.getY()*cos(angle * M_PI / 180.0));
-    upper_vertex.setX(upper_vertex.getX()*cos(angle * M_PI / 180.0) - upper_vertex.getY()*sin(angle * M_PI / 180.0));
-    upper_vertex.setY(upper_vertex.getX()*sin(angle * M_PI / 180.0) + upper_vertex.getY()*cos(angle * M_PI / 180.0));
-    lower_vertex.setX(lower_vertex.getX()*cos(angle * M_PI / 180.0) - lower_vertex.getY()*sin(angle * M_PI / 180.0));
-    lower_vertex.setY(lower_vertex.getX()*sin(angle * M_PI / 180.0) + lower_vertex.getY()*cos(angle * M_PI / 180.0));
+    double new_x, new_y;
+    new_x = left_vertex.getX()*cos(angle * M_PI / 180.0) - left_vertex.getY()*sin(angle * M_PI / 180.0);
+    new_y = left_vertex.getX()*sin(angle * M_PI / 180.0) + left_vertex.getY()*cos(angle * M_PI / 180.0);
+    left_vertex.setX(new_x);
+    left_vertex.setY(new_y);
+    new_x = right_vertex.getX()*cos(angle * M_PI / 180.0) - right_vertex.getY()*sin(angle * M_PI / 180.0);
+    new_y = right_vertex.getX()*sin(angle * M_PI / 180.0) + right_vertex.getY()*cos(angle * M_PI / 180.0);
+    right_vertex.setX(new_x);
+    right_vertex.setY(new_y);
+    new_x = upper_vertex.getX()*cos(angle * M_PI / 180.0) - upper_vertex.getY()*sin(angle * M_PI / 180.0);
+    new_y = upper_vertex.getX()*sin(angle * M_PI / 180.0) + upper_vertex.getY()*cos(angle * M_PI / 180.0);
+    upper_vertex.setX(new_x);
+    upper_vertex.setY(new_y);
+    new_x = lower_vertex.getX()*cos(angle * M_PI / 180.0) - lower_vertex.getY()*sin(angle * M_PI / 180.0);
+    new_y = lower_vertex.getX()*sin(angle * M_PI / 180.0) + lower_vertex.getY()*cos(angle * M_PI / 180.0);
+    lower_vertex.setX(new_x);
+    lower_vertex.setY(new_y);
 
     //Возврат на прежнюю позицию
     left_vertex += center;
     right_vertex += center;
     upper_vertex += center;
     lower_vertex += center;
+}
+
+void Rombus::printVertexCoordinates()
+{
+    cout << "Vertexes:" << endl;
+    cout << "    -) Left: (" << left_vertex.getX() << ", " << left_vertex.getY() << ")" << endl;
+    cout << "    -) Right: (" << right_vertex.getX() << ", " << right_vertex.getY() << ")" << endl;
+    cout << "    -) Upper: (" << upper_vertex.getX() << ", " << upper_vertex.getY() << ")" << endl;
+    cout << "    -) Lower: (" << lower_vertex.getX() << ", " << lower_vertex.getY() << ")" << endl;
 }
 
 double Rombus::getSideSize() const
@@ -318,20 +336,38 @@ void Trapezium::rotate(double angle)
     right_lower_vertex -= center;
 
     //Поворот фигуры с помощью матрицы поворота
-    left_upper_vertex.setX(left_upper_vertex.getX()*cos(angle * M_PI / 180.0) - left_upper_vertex.getY()*sin(angle * M_PI / 180.0));
-    left_upper_vertex.setY(left_upper_vertex.getX()*sin(angle * M_PI / 180.0) + left_upper_vertex.getY()*cos(angle * M_PI / 180.0));
-    right_upper_vertex.setX(right_upper_vertex.getX()*cos(angle * M_PI / 180.0) - right_upper_vertex.getY()*sin(angle * M_PI / 180.0));
-    right_upper_vertex.setY(right_upper_vertex.getX()*sin(angle * M_PI / 180.0) + right_upper_vertex.getY()*cos(angle * M_PI / 180.0));
-    left_lower_vertex.setX(left_lower_vertex.getX()*cos(angle * M_PI / 180.0) - left_lower_vertex.getY()*sin(angle * M_PI / 180.0));
-    left_lower_vertex.setY(left_lower_vertex.getX()*sin(angle * M_PI / 180.0) + left_lower_vertex.getY()*cos(angle * M_PI / 180.0));
-    right_lower_vertex.setX(right_lower_vertex.getX()*cos(angle * M_PI / 180.0) - right_lower_vertex.getY()*sin(angle * M_PI / 180.0));
-    right_lower_vertex.setY(right_lower_vertex.getX()*sin(angle * M_PI / 180.0) + right_lower_vertex.getY()*cos(angle * M_PI / 180.0));
+    double new_x, new_y;
+    new_x = left_upper_vertex.getX()*cos(angle * M_PI / 180.0) - left_upper_vertex.getY()*sin(angle * M_PI / 180.0);
+    new_y = left_upper_vertex.getX()*sin(angle * M_PI / 180.0) + left_upper_vertex.getY()*cos(angle * M_PI / 180.0);
+    left_upper_vertex.setX(new_x);
+    left_upper_vertex.setY(new_y);
+    new_x = right_upper_vertex.getX()*cos(angle * M_PI / 180.0) - right_upper_vertex.getY()*sin(angle * M_PI / 180.0);
+    new_y = right_upper_vertex.getX()*sin(angle * M_PI / 180.0) + right_upper_vertex.getY()*cos(angle * M_PI / 180.0);
+    right_upper_vertex.setX(new_x);
+    right_upper_vertex.setY(new_y);
+    new_x = left_lower_vertex.getX()*cos(angle * M_PI / 180.0) - left_lower_vertex.getY()*sin(angle * M_PI / 180.0);
+    new_y = left_lower_vertex.getX()*sin(angle * M_PI / 180.0) + left_lower_vertex.getY()*cos(angle * M_PI / 180.0);
+    left_lower_vertex.setX(new_x);
+    left_lower_vertex.setY(new_y);
+    new_x = right_lower_vertex.getX()*cos(angle * M_PI / 180.0) - right_lower_vertex.getY()*sin(angle * M_PI / 180.0);
+    new_y = right_lower_vertex.getX()*sin(angle * M_PI / 180.0) + right_lower_vertex.getY()*cos(angle * M_PI / 180.0);
+    right_lower_vertex.setX(new_x);
+    right_lower_vertex.setY(new_y);
 
     //Возврат на прежнюю позицию
     left_upper_vertex += center;
     right_upper_vertex += center;
     left_lower_vertex += center;
     right_lower_vertex += center;
+}
+
+void Trapezium::printVertexCoordinates()
+{
+    cout << "Vertexes:" << endl;
+    cout << "    -) Left upper: (" << left_upper_vertex.getX() << ", " << left_upper_vertex.getY() << ")" << endl;
+    cout << "    -) Right upper: (" << right_upper_vertex.getX() << ", " << right_upper_vertex.getY() << ")" << endl;
+    cout << "    -) Left lower: (" << left_lower_vertex.getX() << ", " << left_lower_vertex.getY() << ")" << endl;
+    cout << "    -) Right lower: (" << right_lower_vertex.getX() << ", " << right_lower_vertex.getY() << ")" << endl;
 }
 
 double Trapezium::getUpperBaseSize() const

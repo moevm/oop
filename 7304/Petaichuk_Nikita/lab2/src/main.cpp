@@ -5,14 +5,16 @@ unsigned int Shape::next_id = 0;
 int main()
 {
     Shape *first_shape = new Circle(RadiusVector(10.0, 10.0), Color(255, 255, 255), 10.0);
-    Shape *second_shape = new Rombus(RadiusVector(), Color(), 9.0, 45.0);
+    Shape *second_shape = new Rombus(RadiusVector(), Color(), 9.0, 60.0);
     Shape *third_shape = new Trapezium(RadiusVector(-10.0, -10.0), RadiusVector(-10.0, -20.0), Color(0, 0, 255), 15.0, 25.0);
 
     cout << "BEFORE CHANGING:" << endl;
     cout << "------------------------------------" << endl; 
-    cout << *((Circle *) first_shape) << endl;
-    cout << *((Rombus *) second_shape) << endl;
+    cout << *((Circle *) first_shape);
+    cout << *((Rombus *) second_shape);
+    ((Rombus *) second_shape)->printVertexCoordinates();
     cout << *((Trapezium *) third_shape);
+    ((Trapezium *) third_shape)->printVertexCoordinates();
     cout << "------------------------------------" << endl << endl;
 
     first_shape->changeColor(Color(127, 127, 127));
@@ -32,10 +34,12 @@ int main()
 
     cout << "AFTER CHANGING:" << endl;
     cout << "------------------------------------" << endl; 
-    cout << *((Circle *) first_shape) << endl;
-    cout << *((Rombus *) second_shape) << endl;
+    cout << *((Circle *) first_shape);
+    cout << *((Rombus *) second_shape);
+    ((Rombus *) second_shape)->printVertexCoordinates();
     cout << *((Trapezium *) third_shape);
-    cout << "------------------------------------" << endl; 
+    ((Trapezium *) third_shape)->printVertexCoordinates();
+    cout << "------------------------------------" << endl << endl;
 
     delete first_shape;
     delete second_shape;
