@@ -160,7 +160,7 @@ public:
         points.push_back(t);
         t={b-sqrt(d*d-h*h), h};
         points.push_back(t);
-        t={0, b};
+        t={b, 0};
         points.push_back(t);
         //MoveFigure({0, 0});
     }
@@ -188,12 +188,15 @@ public:
         points.push_back(t);
         t={b-sqrt(d*d-h*h), h};
         points.push_back(t);
-        t={0, b};
+        t={b, 0};
         points.push_back(t);
         MoveFigure(center);
     }
     void SetTurnAngle(int new_angle) {
+        angle = new_angle;
+        new_angle%=360;
         double a = new_angle*PI/180;
+
         double _x, _y;
 
         for (unsigned int i = 0; i < points.size(); ++i) {
@@ -201,8 +204,12 @@ public:
             _y = points[i].y;
             points[i].x = ( _x - center.x ) * cos(a) - ( _y - center.y ) * sin(a) + center.x;
             points[i].y = ( _x - center.x ) * sin(a) + ( _y - center.y ) * cos(a) + center.y;
+            if(points[i].x<0.000001)
+                points[i].x = 0;
+            if(points[i].y<0.000001)
+                points[i].y = 0;
         }
-        angle = new_angle;
+
     }
 
     friend ostream& operator<<(ostream& out, TRAPEZOID& rect)
