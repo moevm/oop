@@ -38,5 +38,5 @@ private:
 ostream& operator <<(ostream& stream, Sector& sector) {
 	stream << dynamic_cast<Circle&>(sector)
 		   << "Координаты вспомогательной точки (x, y): " << sector.out.x << " " << sector.out.y << endl
-		   << "Угол: " << sector.getAngle() 					   				   				<< endl;
+		   << "Угол: " << sector.getAngle() 			   				 << endl;
 };
