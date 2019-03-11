@@ -34,7 +34,7 @@ void rotate(Point center, double angle) {}
 
 template <typename Type, typename... Types>
 void rotate(Point center, double angle, Type &out, Types&... outs) {	//	Угол в радианах.
-	if (angle > 0) 	// Поворот out по часовой стрелке вокруг center.
+    if (angle > 0) 	// Поворот out по часовой стрелке вокруг center.
     	out = Point((out.x - center.x)*cos(angle) - (out.y - center.y)*sin(angle) + center.x,
                     (out.x - center.x)*sin(angle) + (out.y - center.y)*cos(angle) + center.y);
     else if (angle < 0)	// Поворот out против часовой стрелке вокруг center.
@@ -60,13 +60,13 @@ void pullOutFromCenter(Point center, double k, Type& out, Types&... outs) {	//	O
 
 	if (center.y >= out.y)
 		out.y = center.y - abs(center.y - out.y)*k;
-    else
-    	out.y = center.y + abs(center.y - out.y)*k;
+    	else
+    		out.y = center.y + abs(center.y - out.y)*k;
 
 	if (center.x >= out.x)
 		out.x = center.x - abs(center.x - out.x)*k;
-    else
-    	out.x = center.x + abs(center.x - out.x)*k;
+    	else
+    		out.x = center.x + abs(center.x - out.x)*k;
 
     pullOutFromCenter(center, k, outs ...);
 }
