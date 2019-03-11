@@ -14,11 +14,9 @@ class Sector: public Circle {
 	double angle;
 
 public:
-	explicit Sector(Point center, 
-					Point out,
-					double angle, 
-					Color color = Color(0, 0, 0)): Circle(center, MAKE_RADIUS(center, out), color), 
-												   out(out), angle(angle) {checkAngle(angle);}
+	explicit Sector(Point center, Point out, double angle, 
+			Color color = Color(0, 0, 0)): Circle(center, MAKE_RADIUS(center, out), color), out(out), angle(angle)
+														{checkAngle(angle);}
 
 	virtual void setPos(Point p) override {fundament::movePoints(center, p, out);}
 	virtual void setPos(double x, double y) override {setPos(Point(x, y));}
