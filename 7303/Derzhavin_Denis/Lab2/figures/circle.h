@@ -11,8 +11,8 @@ class Circle: public Shape {
 
 public:
 	explicit Circle(Point center, 
-					double radius, 
-					Color color = Color(0, 0, 0)): Shape(center, color), radius(radius) {checkRadius(radius);}
+			double radius, 
+			Color color = Color(0, 0, 0)): Shape(center, color), radius(radius) {checkRadius(radius);}
 
 	void setRadius(double radius) {checkRadius(radius); this->radius = radius;}
 
@@ -32,5 +32,5 @@ private:
 
 ostream& operator <<(ostream& stream, Circle& circle) {
 	stream << dynamic_cast<Shape&>(circle) 
-		   << "Радиус: " << circle.getRadius() << endl;
+	       << "Радиус: " << circle.getRadius() << endl;
 }
