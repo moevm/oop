@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <cmath>
-#include <iomanip>
 
 #define DEG_TO_RAD(x) x/180.0* M_PI
 
