@@ -56,7 +56,7 @@ Trapeze::Trapeze(Point p1, Point p2, Point p3, Point p4, Color color): Shape(Poi
 
 Point Trapeze::makeCenter() {
 	return Point((b1.p1.x + b1.p2.x + b2.p1.x + b2.p2.x)/4.0,
-				 (b1.p1.y + b1.p2.y + b2.p1.y + b2.p2.y)/4.0);
+		     (b1.p1.y + b1.p2.y + b2.p1.y + b2.p2.y)/4.0);
 }
 
 ostream& operator <<(ostream& stream, Trapeze& trapeze) {
