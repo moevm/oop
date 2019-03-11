@@ -32,8 +32,8 @@ private:
 
 Trapeze::Trapeze(Point p1, Point p2, Point p3, Point p4, Color color): Shape(Point(0,0), color) {
 	Line l12 = Line(p1, p2), l34 = Line(p3, p4),
-		 l13 = Line(p1, p3), l24 = Line(p2, p4),
-		 l14 = Line(p1, p4), l23 = Line(p2, p3);
+	     l13 = Line(p1, p3), l24 = Line(p2, p4),
+	     l14 = Line(p1, p4), l23 = Line(p2, p3);
 
 	if ((p1.x == p2.x && p2.x == p3.x && p3.x == p4.x) ||
  		(p1.y == p2.y && p2.y == p3.y && p3.y == p4.y))
