@@ -32,7 +32,7 @@ public:
   }
 
   // move constr
-  Array(const Array&& src) : Array(src.size())
+  Array(Array&& src) : Array(src.size())
   {
       std::cout << "Move constructor\n";
       if(src.size())
@@ -43,7 +43,7 @@ public:
   // copy "=" operator
   Array& operator=(const Array& src)
   {
-      std::cout << "Operator = \n";
+      std::cout << "Copy Operator = \n";
 
       delete m_array;
       m_size = src.size();
@@ -54,6 +54,15 @@ public:
       else
           m_array = nullptr;
       return *this;
+  }
+
+  // оператор перемещения
+  Array& operator=(Array&& src)  
+  {
+      std::cout << "Move Operator = \n";
+      
+      std::swap(m_array, src.m_array);
+      m_size = src.size();
   }
 
   size_t size() const
@@ -88,6 +97,11 @@ int main()
     std::cout << "_________________________________\n";
 
     Array<int> ex(std::move(a));
+    std::cout << "_________________________________\n";
+
+    Array<int> ex2(13);
+    ex2 = std::move(b);
+    ex2.print();
     std::cout << "_________________________________\n";
 
     return 0;
