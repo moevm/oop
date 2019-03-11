@@ -6,7 +6,7 @@
 
 using namespace std;
 
-static const double PI = 3.14159265358979323846264338327950288419717;
+const double PI = 3.14159265358979323846264338327950288419717;
 
 struct Point
 {
@@ -248,7 +248,7 @@ public:
 
 int main()
 {
-    Shape *sh; /* создание указателя базового типа */
+    Shape *sh; /* Г±Г®Г§Г¤Г Г­ГЁГҐ ГіГЄГ Г§Г ГІГҐГ«Гї ГЎГ Г§Г®ГўГ®ГЈГ® ГІГЁГЇГ  */
 
      //Testing rectangle
     Rectangle p(4, 3);
