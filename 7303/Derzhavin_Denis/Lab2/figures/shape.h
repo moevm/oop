@@ -43,11 +43,11 @@ protected:
 ulli Shape::number_of_shapes = 0;
 
 ostream& operator <<(ostream& stream, Shape& shape) {
-	stream << "Id: "			   << shape.getId()			 	  << endl
-		   << "Координаты (x,y): " << shape.getPos().x		 	  << " "
-								   << shape.getPos().y		 	  << endl
+	stream << "Id: "		   << shape.getId()		  << endl
+		   << "Координаты (x,y): " << shape.getPos().x		  << " "
+					   << shape.getPos().y		  << endl
 
 		   << "Цвет (RGB): "	   << (int)shape.getColor().red	  << " "
-		   						   << (int)shape.getColor().green << " "
-		   						   << (int)shape.getColor().blue  << endl;
+		   			   << (int)shape.getColor().green << " "
+		   			   << (int)shape.getColor().blue  << endl;
 }
