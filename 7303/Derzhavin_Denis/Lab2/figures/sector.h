@@ -20,7 +20,6 @@ public:
 
 	virtual void setPos(Point p) override {fundament::movePoints(center, p, out);}
 	virtual void setPos(double x, double y) override {setPos(Point(x, y));}
-	
 	void setAngle(double angle) {checkAngle(angle); this->angle = angle;}
 
 	double getAngle() const {return angle;}
