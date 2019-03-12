@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void change(Shape& shape, ostream& stream) {
+void change(Shape& shape) {
 	shape.setColor(Color(0, 255, 0));
 	shape.setPos(-5, -4);
 	shape.scale(2);
@@ -25,21 +25,21 @@ int main() {
 
 	circle.printClass(cout);
 	cout << endl << "Before:" << endl << circle << endl;
-	change(circle, cout);
+	change(circle);
 	cout << "After:" << endl << circle;
 
 	cout << "============================" << endl;
 
 	sector.printClass(cout);
 	cout << endl << "Before:" << endl << sector << endl;
-	change(sector, cout);
+	change(sector);
 	cout << "After:" << endl << sector;
 
 	cout << "============================" << endl;
 
 	trapeze.printClass(cout);
 	cout << endl << "Before:" << endl << trapeze << endl;
-	change(trapeze, cout);
+	change(trapeze);
 	cout << "After:" << endl << trapeze;
 
 	cout << "============================" << endl;
