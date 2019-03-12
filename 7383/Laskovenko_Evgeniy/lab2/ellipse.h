@@ -16,8 +16,8 @@ public:
     void move(Point);
     void rotate(double);
     void scale(double);
+    void print(std::ostream&);
     ~Ellipse();
-    friend std::ostream& operator<<(std::ostream&, const Ellipse&);
 };
 
 #endif // ELLIPSE_H

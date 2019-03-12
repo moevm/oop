@@ -48,18 +48,16 @@ void Ellipse::scale(double k)
     set_crd();
 }
 
+void Ellipse::print(std::ostream& out)
+{
+    out << "Stape type: ellipse\n";
+    out << "a: " << a << std::endl;
+    out << "b: " << b << std::endl;
+}
+
 Ellipse::~Ellipse()
 {
     a = 0;
     b = 0;
 }
 
-std::ostream& operator<<(std::ostream& out, const Ellipse& obj)
-{
-    operator<<(out, dynamic_cast<const Shape&>(obj));
-    out << "Stape type: ellipse\n";
-    out << "a: " << obj.a << std::endl;
-    out << "b: " << obj.b << std::endl;
-
-    return out;
-}

@@ -14,8 +14,8 @@ public:
     void move(Point);
     void rotate(double);
     void scale(double);
+    void print(std::ostream&);
     ~Circle();
-    friend std::ostream& operator<<(std::ostream&, const Circle&);
 };
 
 #endif // CIRCLE_H

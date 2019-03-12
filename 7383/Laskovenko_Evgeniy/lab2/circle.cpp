@@ -32,16 +32,14 @@ void Circle::scale(double k)
     set_crd();
 }
 
+void Circle::print(std::ostream& out)
+{
+    out << "Stape type: circle\n";
+    out << "Radius: " << radius << std::endl;
+}
+
 Circle::~Circle()
 {
     radius = 0;
 }
 
-std::ostream& operator<<(std::ostream& out, const Circle& obj)
-{
-    operator<<(out, dynamic_cast<const Shape&>(obj));
-    out << "Stape type: circle\n";
-    out << "Radius: " << obj.radius << std::endl;
-
-    return out;
-}

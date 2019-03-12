@@ -43,20 +43,17 @@ void Ellipse_Sector::scale(double k)
     set_crd();
 }
 
+void Ellipse_Sector::print(std::ostream& out)
+{
+    out << "Stape type: ellipse sector\n";
+    out << "Radius 1: " << radius_1.radius << ", angle: " << radius_1.angle << std::endl;
+    out << "Radius 2: " << radius_2.radius << ", angle: " << radius_2.angle << std::endl;
+}
+
 Ellipse_Sector::~Ellipse_Sector()
 {
     radius_1.radius = 0;
     radius_1.angle = 0;
     radius_2.radius = 0;
     radius_2.angle = 0;
-}
-
-std::ostream& operator<<(std::ostream& out, const Ellipse_Sector& obj)
-{
-    operator<<(out, dynamic_cast<const Shape&>(obj));
-    out << "Stape type: ellipse sector\n";
-    out << "Radius 1: " << obj.radius_1.radius << ", angle: " << obj.radius_1.angle << std::endl;
-    out << "Radius 2: " << obj.radius_2.radius << ", angle: " << obj.radius_2.angle << std::endl;
-
-    return out;
 }

@@ -10,6 +10,7 @@
 class Shape
 {
 protected:
+    static unsigned s_id;
     unsigned id;
     Color clr;
     Point centre;
@@ -28,12 +29,13 @@ public:
     virtual void move(Point) = 0;
     virtual void rotate(double) = 0;
     virtual void scale(double) = 0;
+    virtual void print(std::ostream&) = 0;
 
     //Virtual functions:
     virtual ~Shape();
 
     //Friend functions:
-    friend std::ostream& operator<<(std::ostream&, const Shape&);
+    friend std::ostream& operator<<(std::ostream&, Shape&);
 };
 
 #endif // SHAPE_H
