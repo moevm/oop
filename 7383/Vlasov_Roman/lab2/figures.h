@@ -22,7 +22,7 @@ public:
         color_r = color_g = color_b = 0;
     }
     virtual ~Shape() {}
-    virtual void move_to(double x, double y)
+    void move_to(double x, double y)
     {
         center_x = x;
         center_y = y;
@@ -82,9 +82,9 @@ protected:
     double *y_arr;
 
 public:
-    Fivepointed_Star(double x = 0, double y = 0, double *x_arr = nullptr, double *y_arr = nullptr) : Shape(x, y)
+    Fivepointed_Star(double x = 0, double y = 0, double *x_arr = nullptr, double *y_arr = nullptr, int points = 5) : Shape(x, y)
     {
-        points = 5;
+        this->points = points;
         this->x_arr = new double[points];
         this->y_arr = new double[points];
         if (x_arr && y_arr)
@@ -152,58 +152,6 @@ public:
 class Sixpointed_Star : public Fivepointed_Star
 {
 public:
-    Sixpointed_Star(double x = 0, double y = 0, double *x_arr = nullptr, double *y_arr = nullptr) : Fivepointed_Star (x, y)
-    {
-        points = 6;
-        this->x_arr = new double[points];
-        this->y_arr = new double[points];
-        if (x_arr && y_arr)
-            for (int i = 0; i < points; i++)
-            {
-                this->x_arr[i] = x_arr[i];
-                this->y_arr[i] = y_arr[i];
-            }
-    }
-    Sixpointed_Star()
-    {
-        delete[] x_arr;
-        delete[] y_arr;
-    }
-    void move_to(double x, double y)
-    {
-        double dx = x - center_x;
-        double dy = y - center_y;
-        center_x = x;
-        center_y = y;
-        for (int i = 0; i < points; i++)
-        {
-            x_arr[i] = x_arr[i] + dx;
-            y_arr[i] = y_arr[i] + dy;
-        }
-    }
-    void rotate(double k)
-    {
-        for (int i = 0; i < points; i++)
-        {
-            double x_tmp = center_x + (center_x - x_arr[i]) * std::cos(k) - (center_y - y_arr[i]) * std::sin(k);
-            double y_tmp = center_y + (center_y - y_arr[i]) * std::cos(k) + (center_x - x_arr[i]) * std::sin(k);
-            x_arr[i] = x_tmp;
-            y_arr[i] = y_tmp;
-        }
-    }
-    bool scale(double k)
-    {
-        if (k == 0.0)
-            return false;
-
-        for (int i = 0; i < points; i++)
-        {
-            double x_tmp = center_x + (x_arr[i] - center_x) * k;
-            double y_tmp = center_y + (y_arr[i] - center_y) * k;
-            x_arr[i] = x_tmp;
-            y_arr[i] = y_tmp;
-        }
-        return true;
-    }
+    Sixpointed_Star(double x = 0, double y = 0, double *x_arr = nullptr, double *y_arr = nullptr) : Fivepointed_Star (x, y, x_arr, y_arr, 6) {}
 };
 #endif // FIGURES_H
