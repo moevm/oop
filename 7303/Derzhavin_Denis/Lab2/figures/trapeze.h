@@ -36,8 +36,8 @@ Trapeze::Trapeze(Point p1, Point p2, Point p3, Point p4, Color color): Shape(Poi
 	     l14 = Line(p1, p4), l23 = Line(p2, p3);
 
 	if ((p1.x == p2.x && p2.x == p3.x && p3.x == p4.x) ||
- 		(p1.y == p2.y && p2.y == p3.y && p3.y == p4.y))
- 			throw logic_error("Bad trapeze");
+ 	    (p1.y == p2.y && p2.y == p3.y && p3.y == p4.y))
+ 		throw logic_error("Bad trapeze");
 
  	if (l12.getTan() == l34.getTan()) {
  	 	b1 = l12;
