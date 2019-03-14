@@ -49,6 +49,8 @@ public:
         if (m_array != var.m_array) {
             m_size = var.m_size;
             std::swap(m_array, var.m_array);
+        } else {
+            var.m_array = nullptr;
         }
         return *this;
     }
