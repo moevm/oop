@@ -44,13 +44,12 @@ public:
         assert(index < m_size);
         return m_array[index];
     }
-    Array<T>& operator = (Array<T> var)
+    Array<T>& operator = (const Array<T> &var)
     {
-        if (m_array != var.m_array) {
-            m_size = var.m_size;
-            std::swap(m_array, var.m_array);
-        } else {
-            var.m_array = nullptr;
+        if (this != &var) {
+            Array<T> temp(var);
+            m_size = temp.m_size;
+            std::swap(m_array, temp.m_array);
         }
         return *this;
     }
