@@ -50,6 +50,12 @@ public:
         std::swap(m_array, var.m_array);
         return *this;
     }
+    Array<T>& operator = (Array<T> &&var)
+    {
+        m_size = var.m_size;
+        std::swap(m_array, var.m_array);
+        return *this;
+    }
     
 private:
     size_t m_size;
