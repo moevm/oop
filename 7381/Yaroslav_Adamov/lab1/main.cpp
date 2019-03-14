@@ -46,8 +46,10 @@ public:
     }
     Array<T>& operator = (Array<T> var)
     {
-        m_size = var.m_size;
-        std::swap(m_array, var.m_array);
+        if (m_array != var.m_array) {
+            m_size = var.m_size;
+            std::swap(m_array, var.m_array);
+        }
         return *this;
     }
     Array<T>& operator = (Array<T> &&var)
