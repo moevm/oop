@@ -2,6 +2,7 @@
 #define SHAPE_H
 #include <vector>
 #include <iostream>
+#include <math.h>
 struct Point{
     double x;
     double y;
@@ -24,6 +25,7 @@ protected:
     double angle;
     RGB colour;
     Point point;
+    std::vector <Point> points;
 
 
 public:
@@ -36,11 +38,10 @@ public:
     int get_id();
     double get_angle();
     static int counter;
-
+    void move(const Point p);
+    void rotate(int _angle);
     friend std::ostream& operator<<(std::ostream& out, Shape& shape);
-    virtual void move(const Point p) = 0;
     virtual void scale(int k) = 0;
-    virtual void rotate(int _angle) = 0;
     virtual double area() = 0;
     virtual ~Shape();
 };

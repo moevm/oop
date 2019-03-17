@@ -7,9 +7,7 @@ class Ellipse : public Shape
 public:
     Ellipse();
     Ellipse(const Point O, double a, double b, const RGB _colour);
-    void move(const Point p) override;
     void scale(int k) override;
-    void rotate(int _angle) override;
     double area() override;
 
     double get_radius1();
@@ -18,7 +16,6 @@ public:
 protected:
     double radius1;
     double radius2;
-    std::vector <Point> points;
 };
 
 #endif // ELLIPS_H

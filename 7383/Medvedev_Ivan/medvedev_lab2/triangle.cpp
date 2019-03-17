@@ -11,12 +11,7 @@ Triangle::Triangle():Shape(0, RGB(), Point()){
     points.push_back(C);
     points.push_back(B);
     points.push_back(A);
-    double AB = sqrt(pow((A.x - B.x) , 2.0) + pow((A.y - B.y) , 2.0));
-    double BC = sqrt(pow((B.x - C.x) , 2.0) + pow((B.y - C.y) , 2.0));
-    double CA = sqrt(pow((C.x - A.x) , 2.0) + pow((C.y - A.y) , 2.0));
-    sides.push_back(CA);
-    sides.push_back(BC);
-    sides.push_back(AB);
+    calculation_sides(A,B,C);
 
 }
 
@@ -27,6 +22,11 @@ Triangle::Triangle(const Point A, const Point B, const Point C, const RGB _colou
     points.push_back(C);
     points.push_back(B);
     points.push_back(A);
+    calculation_sides(A,B,C);
+}
+
+void Triangle::calculation_sides(Point A, Point B, Point C){
+    sides.clear();
     double AB = sqrt(pow((A.x - B.x) , 2.0) + pow((A.y - B.y) , 2.0));
     double BC = sqrt(pow((B.x - C.x) , 2.0) + pow((B.y - C.y) , 2.0));
     double CA = sqrt(pow((C.x - A.x) , 2.0) + pow((C.y - A.y) , 2.0));
@@ -35,17 +35,6 @@ Triangle::Triangle(const Point A, const Point B, const Point C, const RGB _colou
     sides.push_back(AB);
 }
 
-
-void Triangle::move(const Point p){
-    double delta = p.x - point.x;
-    double eps = p.y - point.y;
-    point.x += delta;
-    point.y += eps;
-    for(auto& pnt : points){
-        pnt.x += delta;
-        pnt.y += eps;
-    }
-}
 
 
 void Triangle::scale(int k){
@@ -62,32 +51,13 @@ void Triangle::scale(int k){
     Point C = Point(points[0].x, points[0].y);
     Point B = Point(points[1].x, points[1].y);
     Point A = Point(points[2].x, points[2].y);
-    double AB = sqrt(pow((A.x - B.x) , 2.0) + pow((A.y - B.y) , 2.0));
-    double BC = sqrt(pow((B.x - C.x) , 2.0) + pow((B.y - C.y) , 2.0));
-    double CA = sqrt(pow((C.x - A.x) , 2.0) + pow((C.y - A.y) , 2.0));
-    sides.clear();
-    sides.push_back(CA);
-    sides.push_back(BC);
-    sides.push_back(AB);
+    calculation_sides(A,B,C);
     point.x = X/3;
     point.y = Y/3;
     move(begin);
 
 }
 
-void Triangle::rotate(int _angle){
-    angle += _angle;
-    _angle %= 360;
-    double rad = _angle*M_PI/180;
-    double x, y;
-    for(auto& pnt : points){
-        x = pnt.x;
-        y = pnt.y;
-        pnt.x =(x - point.x) * cos(rad) - (y - point.y) * sin(rad) + point.x;
-        pnt.y = (x - point.x) * sin(rad) - (y - point.y) * cos(rad) + point.y;
-    }
-
-}
 
 double Triangle::area(){
     double AC = sides[0];

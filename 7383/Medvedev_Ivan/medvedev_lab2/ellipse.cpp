@@ -20,32 +20,6 @@ Ellipse::Ellipse(const Point O, double a, double b, const RGB _colour) : Shape(0
     points.push_back(Point(point.x, point.y - radius2));
 }
 
-void Ellipse::move(const Point p)
-{
-    double delta = p.x - point.x;
-    double eps = p.y - point.y;
-    point.x += delta;
-    point.y += eps;
-    for(auto& pnt : points){
-        pnt.x += delta;
-        pnt.y += eps;
-    }
-}
-
-void Ellipse::rotate(int _angle)
-{
-    angle += _angle;
-    _angle %= 360;
-    double rad = _angle*M_PI/180;
-    double x, y;
-    for(auto& pnt : points){
-        x = pnt.x;
-        y = pnt.y;
-        pnt.x =(x - point.x) * cos(rad) - (y - point.y) * sin(rad) + point.x;
-        pnt.y = (x - point.x) * sin(rad) - (y - point.y) * cos(rad) + point.y;
-    }
-
-}
 
 void Ellipse::scale(int k){
     points.clear();

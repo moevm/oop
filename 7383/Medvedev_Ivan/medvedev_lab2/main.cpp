@@ -13,7 +13,7 @@ int main(){
        std::cout << tri << std::endl;
 
        RightTriangle rtri({0, 0}, 4.5, 5.0, RGB());
-       std::cout<<"Constructor for right triangle"<<rtri<<std::endl<<"Set green color, rotate 180"<<std::endl;
+       std::cout<<"Constructor for right triangle"<<rtri<<std::endl<<"Set green color, rotate 90"<<std::endl;
        rtri.set_colour(RGB(0, 255, 0));
        rtri.rotate(180);
        std::cout << rtri << std::endl;
