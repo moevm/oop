@@ -10,11 +10,14 @@ struct Points {
 
 class Shape {
 public:
-	virtual void move(vector<Points> points) {};
-	virtual void rotate(int angle) {};
-	virtual void scale(int coeff) {};
-	virtual void set_color(string new_color) {};
-	virtual string get_color() {};
 	string color;
+    virtual void move(vector<Points> points) = 0;
+	virtual void rotate(int angle) = 0;
+	virtual void scale(int coeff) = 0;
+	virtual void set_color(string new_color) = 0;
+	virtual string get_color() = 0;
+	virtual ~Shape() {
+
+	}
 };
 

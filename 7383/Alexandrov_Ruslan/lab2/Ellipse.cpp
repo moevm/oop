@@ -9,15 +9,15 @@ void Ellipse::move(vector<Points> point) {
     if (point.size() > 1) {
         throw invalid_argument("Only Center Point");
     }
-    _points.x = point[0].x;
-    _points.y = point[0].y;
+    _center.x = point[0].x;
+    _center.y = point[0].y;
 }
 
 void Ellipse::rotate(int angle) {
-    double x = _points.x;
-    double y = _points.y;
-    _points.x = x + (x * cos(angle)+ y * sin(angle));
-    _points.y = y - (y * cos(angle) + x * sin(angle));
+    double x = _center.x;
+    double y = _center.y;
+    _center.x = x + (x * cos(angle)+ y * sin(angle));
+    _center.y = y - (y * cos(angle) + x * sin(angle));
 }
 
 void Ellipse::scale(int coeff) {
@@ -38,7 +38,7 @@ string Ellipse::get_color() {
 
 std::ostream &operator<<(std::ostream &os, const Ellipse &ellipse) {
     os << "Ellipse center points: " << endl;
-    os << "(" << ellipse._points.x << ";" << ellipse._points.y << ")" << endl;
+    os << "(" << ellipse._center.x << ";" << ellipse._center.y << ")" << endl;
     os << "Ellipse xradius and yradius: " << endl;
     os << "(" << ellipse._xradius << ";" << ellipse._yradius << ")" << endl;
     os << "Ellipse color: " << ellipse.color << endl;

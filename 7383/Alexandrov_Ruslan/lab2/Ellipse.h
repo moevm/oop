@@ -7,21 +7,23 @@
 using namespace std;
 
 class Ellipse : public Shape {
+private:
+    static long ID;
+    int NUMBER_POINTS = 1;
 public:
-    Points _points;
+    long  id;
     int _xradius;
     int _yradius;
-    long  id;
-    static long ID;
-    Ellipse(Points center, int xradius, int yradius) : id(ID++) {
-        if (xradius <= 0 || yradius <= 0) {
-            throw invalid_argument("Radius <= 0");
+    Points _center;
+    Ellipse(vector<Points> center, int xradius, int yradius) : id(ID++) {
+        if (center.size() != NUMBER_POINTS || xradius <= 0 || yradius <= 0) {
+            throw invalid_argument("Incorrect input");
         }
-        _points = center;
+        this->_center.x = center[0].x;
+        this->_center.y = center[0].y;
         _xradius = xradius;
         _yradius = yradius;
     }
-
     void move(vector<Points> point) override;
 
     void rotate(int angle) override;
@@ -30,6 +32,9 @@ public:
 
     void set_color(string new_color) override;
     string get_color() override;
+    ~Ellipse() {
+        ID--;
+    }
 };
 
 std::ostream &operator<<(std::ostream &os, const Ellipse &square);

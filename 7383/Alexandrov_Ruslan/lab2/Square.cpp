@@ -42,9 +42,13 @@ string Square::get_color() {
     return this->color;
 }
 
+int Square::get_number_points() const {
+    return this->NUMBER_POINTS;
+}
+
 std::ostream &operator<<(std::ostream &os, const Square &square) {
     os << "Square points: " << endl;
-    for (int i = 0; i < square.NUMBER_POINTS; i++) {
+    for (int i = 0; i < square.get_number_points(); i++) {
         os << "(" << square._points[i].x << ";" << square._points[i].y << ")" << endl;
     }
     os << "Square color: " << square.color << endl;

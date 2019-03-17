@@ -31,7 +31,6 @@ string RegularPentagon::get_color() {
     return this->color;
 }
 
-
 std::ostream &operator<<(std::ostream &os, const RegularPentagon &regPent) {
     os << "Regular Pentagon center points: " << endl;
     os << "(" << regPent._center.x << ";" << regPent._center.y << ")" << endl;
