@@ -1,15 +1,14 @@
 #include <iostream>
-#include <vector>
-#include <chrono>
+#include <list>
 
 #include "shape.h"
+
+void ShapeHandler(std::list<Shape>& list);
 
 int main()
 {
     Circle example(Coord(1, 1), 3);
     example.SetColor(RGB(14, 68, 145));
-   // example.Replace(Coord(3.35,9.1));
-   // example.Scale(1.55);
     example.Rotate(PI, Coord(0,0));
     example.PrintInfo();
 
@@ -17,7 +16,20 @@ int main()
     tr.Rotate(PI, Coord(-2, -1));
     tr.PrintInfo();
 
+    std::list<Shape*> mList = {&example, &tr};
+    
+
     return 0;
 }
 
-
+void ShapeHandler(std::list<Shape*>& list)
+{
+    for(auto it = list.begin(); it != list.end(); it++)
+    {
+	if((*it)->GetType() == CIRCLE) 	    (*it)->Replace(Coord(-2,0));
+	else if((*it)->GetType() == SECTOR)
+	    (*it)->Scale(2.0);
+	else if((*it)->GetType() == TRAPEZIUM)
+	    (*it)->Rotate(PI,Coord(0,0));
+    }
+}

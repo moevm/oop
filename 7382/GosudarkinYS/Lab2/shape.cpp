@@ -28,18 +28,15 @@ void Sector::PrintInfo()
     std::cout << "Circle sector info: \n"
               << "\tRadius: ["<< mRadius <<"]\n"
               << "\tCenter: ["<< mCenter.X << ", " << mCenter.Y << "]\n"
-              << "\tVertex1: ["<< mVertex1.X << ", " << mVertex1.Y << "]\n"
-              << "\tVertex2: ["<< mVertex2.X << ", " << mVertex2.Y << "]\n"
+              << "\tVertex: ["<< mVertex.X << ", " << mVertex.Y << "]\n"
+              << "\tAngle: ["<< (mAngle/PI)*180 << " (grad)\n "
               << "\tColor: " << color << "\n";
-    if(!mValid)
-        std::cout << "[WARNING] This Sector - invalid constructed!\n";
 }
 
-void Sector::Replace(Coord vector) { mCenter += vector; mVertex1 += vector; mVertex2 += vector; }
+void Sector::Replace(Coord vector) { mCenter += vector; mVertex += vector; }
 
 void Sector::Rotate(double angle, const Coord& rotCenter) { mCenter.Rotate(angle, rotCenter);
-                                                            mVertex1.Rotate(angle, rotCenter);
-                                                            mVertex2.Rotate(angle, rotCenter); }
+                                                            mVertex.Rotate(angle, rotCenter); }
 void Sector::Scale(double factor) { mRadius *= factor; }
 
 // Class Trapezium methods
