@@ -38,17 +38,17 @@ public:
                 point top=tops[i];
                 tops[i].x = o.x+(top.x-o.x)*cos(angle* PI / 180)-(top.y-o.y)*sin(angle* PI / 180);
                 tops[i].y =o.y+(top.x-o.x)*sin(angle* PI / 180)+(top.y-o.y)*cos(angle* PI / 180);
-				if (tops[i].x < 0.00000001) {
+				if (tops[i].x < 0.00000001 && tops[i].x > -0.00000001) {
 					tops[i].x = 0;
 				}
-				if (tops[i].y < 0.00000001) {
+				if (tops[i].y < 0.00000001 && tops[i].y > -0.00000001) {
 					tops[i].y = 0;
 				}
          }
      }
 
-	 virtual void scale(double coef) {};
-	 virtual void write() {};
+	 virtual void scale(double coef) =0;
+	 virtual void write() =0;
 };
 
 #endif // SHAPE_H
