@@ -10,44 +10,30 @@ using namespace std;
 
 int main()
 {
+	// CREATE 4 DIFFERENT SHAPES
+	Shape *shapes[4];
+	shapes[0] = new Sqare;
+	shapes[1] = new Sqare(Point(10, 10), Point(11, 11));
+	shapes[2] = new FivePointedStar(Point(0, 0), Point(0, 10));
+	shapes[3] = new Pentagon(Point(1, 0), Point(0, 1));
 
+	// TEST THEM ALL
+	for (int i = 0; i < 4; i++){
+		cout << "Sourse: " << endl;
+		cout << *shapes[i];
 
-	// TEST SQARE
+		shapes[i]->scale(2.0);
+		cout << "Scale(2.0): " << endl;
+		cout << *shapes[i];
 
-	Sqare sq(Point(1, 0), Point(0, 1));
+		shapes[i]->move(Point(0, 0));
+		cout << "Move(0, 0): " << endl;
+		cout << *shapes[i];
 
-	cout << "Sourse sqare: " << endl;
-	cout << sq;
-
-	sq.scale(2.0);
-	cout << "Scale(2.0): " << endl;
-	cout << sq;
-
-	sq.move(Point(10, 10));
-	cout << "Move(10, 10): " << endl;
-	cout << sq;
-
-	sq.rotate(Point(0, 0), M_PI / 2);
-	cout << "Rotate((10, 10), PI / 2)" << endl;
-	cout << sq;
-
-	Sqare sq0(Point(1.0, 0.0), Point(0.0, 1.0));
-	cout << "Another sqare: " << endl;
-	cout << sq0;
-	// END TEST SQARE
-
-	// TEST FIVE POINTED STAR
-	FivePointedStar fps(Point(1.0, 0.0), Point(0.0, 1.0));
-	cout << "Five pointed star: " << endl;
-	cout << fps;
-	// END TEST FIVE POINTED STAR
-	// TEST PENTAGON
-	Pentagon pnt(Point(1.0, 0.0), Point(0.0, 1.0));
-	cout << "Pentagon: " << endl;
-	cout << pnt;
-
-	// END TEST PENTAGON
-
+		shapes[i]->rotate(Point(10, 10), M_PI / 2);
+		cout << "Rotate((10, 10), PI / 2)" << endl;
+		cout << *shapes[i];
+	}
 	
 	return 0;
 }

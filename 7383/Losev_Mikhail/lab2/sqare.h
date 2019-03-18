@@ -1,25 +1,19 @@
 #pragma once
 
 #include <iostream>
-#include <string>
-#include <vector>
 
-#include "shape.h"
+#include "polygon.h"
 
 
-class Sqare : public Shape
+class Sqare : public Polygon
 {
 private:
-	Point vertex; // квадрат определяется серединой и одним из углов
-
+	
 public:
 	Sqare();
 	Sqare(Point, Point);
 
-	void rotate(Point, double);
-	void move(Point);
-	void scale(double);
+	std::ostream& print(std::ostream&) const;
 
 	~Sqare();
-	friend std::ostream& operator<<(std::ostream&, const Sqare&);
 };

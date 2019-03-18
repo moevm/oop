@@ -2,41 +2,74 @@
 #include "five_pointed_star.h"
 
 FivePointedStar::FivePointedStar()
-{	}
-
-FivePointedStar::FivePointedStar(Point cntr, Point crnr)
 {
 	set_color(COLORLESS);
-	centre = cntr;
-	vertex = crnr;
+	set_center(Point(0, 0));
+	ver_num = 5; 
+	inner_ver_num = 5;				
+	p_vertexes = new Point[ver_num]; 			// extern vertexex
+	p_inner_vertexes = new Point[inner_ver_num]; 	// inner vertexes
+	set_vertexes(Point(0, 0));
+	set_inner_vertexes(Point(0, 0));
+}
 
+FivePointedStar::FivePointedStar(Point cntr, Point v)
+{
+	set_color(COLORLESS);
+	set_center(cntr);
+	ver_num = 5; 
+	inner_ver_num = 5;					
+	p_vertexes = new Point [ver_num];	
+	p_inner_vertexes = new Point[inner_ver_num]; 
+	set_vertexes(v);
+	set_inner_vertexes(v);
+}
+
+void FivePointedStar::set_inner_vertexes(Point iv)
+{
+	iv.rotate(centre, M_PI / 5); 		// 36 / 360 * 2 * M_PI = M_PI / 5
+	iv.set_x(iv.get_x() * sin(M_PI / 10) / cos(M_PI / 5));
+	iv.set_y(iv.get_y() * sin(M_PI / 10) / cos(M_PI / 5));
+	
+	for (int i = 0; i < inner_ver_num; i++){
+		p_inner_vertexes[i] = iv;
+		iv.rotate(centre, 2 * M_PI / inner_ver_num);
+	}
 }
 
 void FivePointedStar::rotate(Point cntr, double ang)
 {
-	centre.rotate(cntr, ang);
-	vertex.rotate(cntr, ang);
+	for (int i = 0; i < inner_ver_num; i++)		// rotate inner vertexes
+		p_inner_vertexes[i].rotate(cntr, ang);
+	Polygon::rotate(cntr, ang);					// rotate extern vertexes
 }
+
 void FivePointedStar::move(Point p)
 {
-	vertex = (vertex - centre) + p;
-	centre = p;
+	for (int i = 0; i < inner_ver_num; i++)
+		p_inner_vertexes[i] = (p_inner_vertexes[i] - centre) + p;
+	Polygon::move(p);
 }
 void  FivePointedStar::scale(double coef)
 {
-	//vertex = centre + (vertex - centre) * coef;
-	vertex = Point(centre.get_x() + (vertex.get_x() - centre.get_x()) * coef, centre.get_y() + (vertex.get_y() - centre.get_y()) * coef);
+	Polygon::scale(coef);
+	for (int i = 0; i < inner_ver_num; i++)
+		p_inner_vertexes[i] = Point(centre.get_x() + (p_inner_vertexes[i].get_x() - centre.get_x()) * coef, centre.get_y() + (p_inner_vertexes[i].get_y() - centre.get_y()) * coef);
 }
 
-FivePointedStar::~FivePointedStar()
-{	}
-
-std::ostream& operator<<(std::ostream& out, const FivePointedStar& obj)
+std::ostream& FivePointedStar::print(std::ostream& out) const
 {
-	out << "\tFivePointedStar color: " << obj.get_color() << std::endl;
-	out << "\tCentre coorditates: (" << obj.centre.get_x() << ", " << obj.centre.get_y() << ")" << std::endl;
-	out << "\tVertex coorditates: (" << obj.vertex.get_x() << ", " << obj.vertex.get_y() << ")" << std::endl;
-	out << "\tId: " << obj.get_id() << std::endl;
+	out << "\tFivePointedStar id: " << get_id() << std::endl;
+	Polygon::print_info(out);
+
+	out << "\tInner vertexeses coorditates: ";
+	for (int i = 0; i < inner_ver_num; i++)
+		out << " (" << p_inner_vertexes[i].get_x() << "; " << p_inner_vertexes[i].get_y() << ")";
+	std::cout << std::endl;
 
 	return out;
 }
+
+FivePointedStar::~FivePointedStar()
+{ /* std::cout << "FivePointedStar destructor" << std::endl; */ }
+

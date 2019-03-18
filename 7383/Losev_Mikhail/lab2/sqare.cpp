@@ -1,42 +1,29 @@
-
 #include "sqare.h"
 
 Sqare::Sqare()
-{	}
-
-Sqare::Sqare(Point cntr, Point crnr)
 {
 	set_color(COLORLESS);
-	centre = cntr;
-	vertex = crnr;
-
+	ver_num = 4;
+	p_vertexes = new Point[ver_num];
+	set_center(Point(0, 0));
+	set_vertexes(Point(0, 0));
 }
 
-void Sqare::rotate(Point cntr, double ang)
+Sqare::Sqare(Point cntr, Point v)
 {
-	centre.rotate(cntr, ang);
-	vertex.rotate(cntr, ang);
-}
-void Sqare::move(Point p)
-{
-	vertex = (vertex - centre) + p;
-	centre = p;
-}
-void  Sqare::scale(double coef)
-{
-	//vertex = centre + (vertex - centre) * coef; // не смог перегрузить умножение (???)
-	vertex = Point(centre.get_x() + (vertex.get_x() - centre.get_x()) * coef, centre.get_y() + (vertex.get_y() - centre.get_y()) * coef);
+	set_color(COLORLESS);
+	ver_num = 4;		
+	p_vertexes = new Point [ver_num];	
+	set_center(cntr);
+	set_vertexes(v);
 }
 
 Sqare::~Sqare()
-{	}
+{ /* std::cout << "Sqare destructor" << std::endl; */ }
 
-std::ostream& operator<<(std::ostream& out, const Sqare& obj)
+
+std::ostream & Sqare::print(std::ostream & out) const 
 {
-	out << "\tSqare color: " << obj.get_color() << std::endl;
-	out << "\tCentre coorditates: (" << obj.centre.get_x() << ", " << obj.centre.get_y() << ")" << std::endl;
-	out << "\tVertex coorditates: (" << obj.vertex.get_x() << ", " << obj.vertex.get_y() << ")" << std::endl;
-	out << "\tId: " << obj.get_id() << std::endl;
-
-	return out;
+	out << "\tSqare id: " << get_id() << std::endl;
+	return Polygon::print_info(out);
 }

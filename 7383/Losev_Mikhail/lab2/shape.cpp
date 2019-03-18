@@ -14,7 +14,6 @@ Shape::Shape(Point centre) : id(count), clr(COLORLESS), centre(centre)
 Shape::Shape(Point centre, color clr) : id(count), clr(clr), centre(centre)
 { count++; }
 
-
 color Shape::get_color() const
 { return clr; }
 
@@ -25,13 +24,7 @@ int Shape::get_id() const
 { return id; }
 
 Shape::~Shape()
-{	}
+{ /* std::cout << "Shape destructor" << std::endl; */ }
 
-std::ostream& operator<<(std::ostream& out, const Shape& obj) 
-{
-	out << "Shape color: " << obj.get_color() << std::endl;
-	out << "Centre coordinates: (" << obj.centre.get_x() << ", " << obj.centre.get_y() << ")" << std::endl;;
-	
-
-	return out;
-}
+std::ostream& operator<<(std::ostream& out, const Shape & obj) 
+{ return obj.print(out); }

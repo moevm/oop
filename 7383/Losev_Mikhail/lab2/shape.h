@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <cmath>
 
 #include "point.h"
 #include "color.h"
@@ -12,9 +12,6 @@ class Shape
 private:
 	static unsigned int count;
 	int id;
-	
-	//Pure-virtual (non-used) functions:
-	//virtual void set_crd() = 0;
 
 protected:
 	Point centre;
@@ -23,12 +20,9 @@ protected:
 	Shape();
 	Shape(Point);
 	Shape(color);
-	Shape(Point centre, color clr); 
-	virtual ~Shape();
-
-public:
+	Shape(Point, color); 
 	
-
+public:
 	color get_color() const;
 	void set_color(color);
  	int get_id() const;
@@ -37,9 +31,12 @@ public:
 	virtual void move(Point) = 0;
 	virtual void rotate(Point, double) = 0;
 	virtual void scale(double) = 0;
+	virtual std::ostream & print(std::ostream&) const = 0;
 
 	//Virtual functions:
-	
+	virtual ~Shape();
+
 	//Friend operators:
 	friend std::ostream& operator<<(std::ostream&, const Shape&);
+
 };
