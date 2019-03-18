@@ -2,6 +2,9 @@
 
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <iostream>
+
+using namespace std;
 
 //Класс радиуса-вектора на плоскости
 class RadiusVector
@@ -21,6 +24,8 @@ public:
     RadiusVector& operator+=(const RadiusVector &other);
     RadiusVector& operator-=(const RadiusVector &other);
     RadiusVector& operator*=(double coeff);
+
+    friend ostream& operator<<(ostream &os, const RadiusVector &vector);
 
 private:
     double x_coord;

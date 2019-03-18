@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+
+using namespace std;
 
 //Класс цвета
 class Color
@@ -15,6 +18,8 @@ public:
     unsigned int getRedComponent() const;
     unsigned int getGreenComponent() const;
     unsigned int getBlueComponent() const;
+
+    friend ostream& operator<<(ostream &os, const Color &color);
 
 private:
     unsigned int red;

@@ -86,4 +86,10 @@ RadiusVector operator*(const RadiusVector &vector, double coeff)
 RadiusVector operator*(double coeff, const RadiusVector &vector)
 {
     return vector * coeff;
-} 
+}
+
+ostream& operator<<(ostream &os, const RadiusVector &vector)
+{
+    os << "(" << vector.x_coord << ", " << vector.y_coord << ")";
+    return os;
+}

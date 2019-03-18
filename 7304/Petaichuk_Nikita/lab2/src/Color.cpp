@@ -54,3 +54,12 @@ unsigned int Color::getBlueComponent() const
 {
     return blue;
 }
+
+ostream& operator<<(ostream &os, const Color &color)
+{
+    os << "Color:" << endl
+    << "    -) Red: " << color.red << endl
+    << "    -) Green: " << color.green << endl
+    << "    -) Blue: " << color.blue << endl;
+    return os;
+}
