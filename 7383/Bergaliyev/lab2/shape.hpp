@@ -27,9 +27,9 @@ std::ostream & operator<<(std::ostream & ostream, Point const & p);
 
 class Shape{
 public:
-    virtual void scale(double scale_ratio) = 0;
-    virtual void relocate(Point p) = 0;
-    virtual void rotate(double angle) = 0;
+    void scale(double scale_ratio);
+    void relocate(Point p);
+    void rotate(double angle);
     virtual std::ostream & print(std::ostream & ostream) const = 0;
     Color get_color() const {
 	return color;
@@ -40,15 +40,31 @@ public:
     unsigned int get_id() const{
 	return id;
     }
-protected:
-    Shape(Color color, Point center) : color(color), center(center), id(count) {
-	++count;
+    Point get_v1() const{
+	return v1;
     }
-    Shape(Color color) : color(color), id(count) {
+    Point get_v2() const{
+	return v2;
+    }
+    Point get_v3() const{
+	return v3;
+    }
+    Point get_v4() const{
+	return v4;
+    }
+    virtual ~Shape() {
+	--count;
+    }
+protected:
+    Shape(Color color, Point v1, Point v2, Point v3, Point v4) : color(color), v1(v1), v2(v2), v3(v3), v4(v4), id(count) {
 	++count;
     }
     Color color;
     Point center; //точка пересечения диагоналей
+    Point v1;
+    Point v2;
+    Point v3;
+    Point v4;
 private:
     unsigned int id;
     static unsigned int count;

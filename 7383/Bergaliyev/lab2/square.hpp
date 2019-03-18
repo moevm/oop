@@ -1,14 +1,9 @@
 #pragma once
 #include "shape.hpp"
-#include <iostream>
+#include "isosceles_trapeze.hpp"
 
-class Square : public Shape {
+class Square : public Isosceles_Trapeze {
 public:
-    Square(Color color, Point center, Point v);
-    void scale(double scale_ratio);
-    void relocate(Point p);
-    void rotate(double angle);
+    Square(Color color, Point v1, Point v2, Point v3, Point v4);
     std::ostream & print(std::ostream & ostream) const;
-private:
-    Point v;
 };
