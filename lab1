@@ -38,6 +38,7 @@ class Array {
             } catch(...) {
                 m_size = 0;
                 delete [] m_array;
+                m_array = nullptr;
                 throw;
             }
         }
