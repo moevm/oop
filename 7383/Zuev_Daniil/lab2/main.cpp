@@ -1,9 +1,8 @@
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 
-double pi = 3.14;
+const double pi = 3.14;
 
 class Shape
 {
@@ -75,7 +74,12 @@ public:
         green = intensity_g;
         blue = intensity_b;
     }
-    //virtual std::ostream& operator<< = 0;
+    virtual double square() = 0;
+    virtual ostream& print(ostream&) const = 0;
+    friend ostream& operator<< (ostream &out, Shape &shape)
+    {
+	return shape.print(out);
+    }
 };
 
 class Ellips: public Shape
@@ -84,15 +88,20 @@ public:
     Ellips(double rad_a, double rad_b, double ang, double x1, double y1)
         :Shape(rad_a, rad_b, ang, x1, y1){}
     ~Ellips(){}
-    friend std::ostream& operator<< (std::ostream &out, Ellips &ellips)
+    double square()
     {
-        out << "Радиусы a и b эллипса равны " << ellips.a << " и " << ellips.b <<
+	cout<<a*b*pi<<endl;
+	return pi*a*b;
+    }
+    ostream& print(std::ostream &out) const
+    {
+        out << "Радиусы a и b эллипса равны " << a << " и " << b <<
                ",\n центр эллипса находится в точке с координатами " <<
-               "( " << ellips.x << ", " << ellips.y << ")"<<
-               ",\n угол между радиусом a и осью Oy равен " << ellips.angle <<
-               ",\n цвета:\n" << "red = " <<ellips.intensity_r << endl <<
-               "blue = " << ellips.intensity_g << endl <<
-               "green = " << ellips.intensity_g << endl;
+               "( " << x << ", " << y << ")"<<
+               ",\n угол между радиусом a и осью Oy равен " << angle <<
+               ",\n цвета:\n" << "red = " <<intensity_r << endl <<
+               "blue = " << intensity_g << endl <<
+               "green = " << intensity_g << endl;
 
         return out;
     }
@@ -118,17 +127,17 @@ public:
             def_angle += pi;
     }
     ~Sector(){}
-    friend std::ostream& operator<< (std::ostream &out, Sector &sector)
+    ostream& print(std::ostream &out) const
     {
-        out << "Радиусы a и b сектора равны " << sector.a << " и " << sector.b << ", " <<
+        out << "Радиусы a и b сектора равны " << a << " и " << b << ", " <<
                ",\n центр сектора находится в точке с координатами " <<
-               "( " << sector.x << ", " << sector.y << ")"<<
-               ",\n угол между радиусом a и осью Oy равен " << sector.angle <<
-               ",\n угол между биссектрисой сектора эллипса и радиусом a равен " << sector.def_angle <<
-               ",\n угол между радиусами сектора равен " << sector.angle_bet_rad <<
-               ",\n цвета:\n" << "red = " <<sector.intensity_r << endl <<
-               "blue = " << sector.intensity_g << endl <<
-               "green = " << sector.intensity_g << endl;
+               "( " << x << ", " << y << ")"<<
+               ",\n угол между радиусом a и осью Oy равен " << angle <<
+               ",\n угол между биссектрисой сектора эллипса и радиусом a равен " << def_angle <<
+               ",\n угол между радиусами сектора равен " << angle_bet_rad <<
+               ",\n цвета:\n" << "red = " << intensity_r << endl <<
+               "blue = " << intensity_g << endl <<
+               "green = " << intensity_g << endl;
 
         return out;
     }
@@ -140,15 +149,20 @@ public:
     Rectangle(double a, double b, double ang, double x1, double y1)
         :Shape(a, b, ang, x1, y1){}
     ~Rectangle(){}
-    friend std::ostream& operator<< (std::ostream &out, Rectangle &rec)
+    double square()
     {
-        out << "Стороны a и b прямоугольника равны " << rec.a << " и " << rec.b << ", " <<
+	cout<<a*b<<endl;
+	return a*b;
+    }
+    ostream& print(std::ostream &out) const
+    {
+        out << "Стороны a и b прямоугольника равны " << a << " и " << b << ", " <<
                ",\n центр прямоугольника находится в точке с координатами " <<
-               "( " << rec.x << ", " << rec.y << ")"<<
-               ",\n угол между стороной a и осью Oy равен " << rec.angle <<
-               ",\n цвета:\n" << "red = " <<rec.intensity_r << endl <<
-               "blue = " << rec.intensity_g << endl <<
-               "green = " << rec.intensity_g << endl;
+               "( " << x << ", " << y << ")"<<
+               ",\n угол между стороной a и осью Oy равен " << angle <<
+               ",\n цвета:\n" << "red = " <<intensity_r << endl <<
+               "blue = " << intensity_g << endl <<
+               "green = " << intensity_g << endl;
         return out;
     }
 };
@@ -158,5 +172,16 @@ int main()
     Sector s(1,2,6,3,4,3,7);//классы эллипса и прямоугольника ведут себя аналогично
     cout<<s;//до установления цветов
     s.set_colour(255,255,255);
+    s.diplacement(3, 4);
+    s.scale(2);
+    s.rotate(5);
     cout<<s;//после установления цветов
+    static Shape* array[3];
+    array[0] = new Rectangle(4,5,5,1,1);
+    array[1] = new Ellips(4,5,5,1,1);
+    array[0]->square();
+    array[1]->square();
+    int id[3];
+    id[0] = int(array[0]);
+    id[1] = int(array[1]);
 }
