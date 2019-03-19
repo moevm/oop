@@ -184,7 +184,7 @@ namespace stepik
     {
       size_t index = pos - m_first;
       for(int i=index; i<size()-1; ++i)
-        m_first[i] = m_first[i+1];
+        new (m_first+i) Type(m_first[i+1]);
       --m_last;
       return m_first + index;
     }
@@ -194,7 +194,7 @@ namespace stepik
       size_t count = last - first;
       size_t index = first - m_first;
       for(int i=index; i<size()-count; ++i)
-        m_first[i] = m_first[i+count];
+        new (m_first+i) Type(m_first[i+count]);
       m_last -= count;
       return m_first + index;
     }
@@ -345,3 +345,4 @@ namespace stepik
     iterator m_last;
   };
 }
+
