@@ -1,5 +1,6 @@
 #include "Shape.h"
 
+
 class Ellipse : public Shape {
 
 private:
@@ -52,36 +53,36 @@ private:
 
 	void print(ostream& out) {
 
-		out << "Эллипс" << endl;
+		out << "Ellipse" << endl;
 		out << "Id: " << id << endl;
-		out << "Координаты крайних точек: ";
+		out << "Coordinates: ";
 
 		for (unsigned int i = 0; i < coordinates.size(); ++i) {
 
 			out << "(" << coordinates[i].x << ", " << coordinates[i].y << ") ";
 		}
 
-		out << endl << "Цвет: ";
+		out << endl << "Color: ";
 
 		switch (clr) {
 
 		case RED:
-			out << "красный" << endl;
+			out << "red" << endl;
 			break;
 		case ORANGE:
-			out << "оранжевый" << endl;
+			out << "orange" << endl;
 			break;
 		case GREEN:
-			out << "зеленый" << endl;
+			out << "green" << endl;
 			break;
 		case BLUE:
-			out << "голубой" << endl;
+			out << "blue" << endl;
 			break;
 		case YELLOW:
-			out << "желтый" << endl;
+			out << "yellow" << endl;
 			break;
 		case NO_COLOR:
-			out << "не определен" << endl;
+			out << "no color" << endl;
 			break;
 		}
 	}
