@@ -36,6 +36,7 @@ class Array {
             try {
                 copy(rst.m_array, rst.m_array + m_size, m_array);
             } catch(...) {
+                m_size = 0;
                 delete [] m_array;
                 throw;
             }
