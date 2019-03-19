@@ -117,7 +117,14 @@ namespace stepik
           x = erase(x);
       return x;
     }
-
+    iterator insert(const_iterator pos, const Type& value)
+    {
+      size_t new_pos = pos-m_first;
+      resize( size()+1);
+      *(m_last-1) = value;
+      std::rotate(m_first+new_pos, m_last-1, m_last);
+      return m_first+new_pos;
+    }
     template <typename InputIterator>
     iterator insert(const_iterator pos, InputIterator first, InputIterator last)
     {
