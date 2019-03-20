@@ -1,14 +1,17 @@
+
 #include <assert.h>
 #include <algorithm> // std::copy
 #include <cstddef> // size_t
 
 template<typename T>
-class Array{
+class Array
+{
 public:
 	// (default) constructor
 	Array(const size_t size = 0)
 		: m_size(size)
-		, m_array(m_size ? new T[m_size]() : nullptr){
+		, m_array(m_size ? new T[m_size]() : nullptr)
+	{
 	}
 	// copy constructor
 	Array(const Array &array):
@@ -33,6 +36,9 @@ public:
 	}
 
 	Array& operator = (const Array& array) {
+		if (this == &array)
+			return *this;
+
 		Array temp(array);
 		m_size = temp.m_size;
 		m_array = new T[temp.m_size];
@@ -44,11 +50,13 @@ public:
 		delete[] m_array;
 	}
 
-	const size_t size() const{
+	const size_t size() const
+	{
 		return m_size;
 	}
 
-	T& operator [](const size_t index){
+	T& operator [](const size_t index)
+	{
 		assert(index < m_size);
 
 		return m_array[index];
