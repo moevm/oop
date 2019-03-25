@@ -92,15 +92,15 @@ public:
 
   void swap(shared_ptr& x) noexcept
   {
-    std::swap(my_ptr,x.my_ptr);
-    std::swap(i,x.i);
+    swap(my_ptr,x.my_ptr);
+    swap(i,x.i);
   }
 
   void reset(T *ptr = 0)
   {
     this->~shared_ptr();
     my_ptr = ptr;
-    i = new long(1);
+    i = new long;
   }
 
 private:
