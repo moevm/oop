@@ -1,5 +1,4 @@
-#include <iostream>
-
+	#include <iostream>
 typedef struct Color {
     unsigned char r;
     unsigned char g;
@@ -29,15 +28,12 @@ typedef struct Color {
 class Shape{
 public:
 
-    void setCoordinates(double newX, double newY) {
-        s_x = newX;
-        s_y = newY;
-    }
+    void setCoordinates(double newX, double newY);
 
     Shape(double x = 0.0, double y = 0.0, double r_angle = 0.0, const Color& color = Color()) :
         s_x(x),
         s_y(y),
-        id (id_counter++),
+        id(id_counter++),
         s_color(color),
         rotation_angle(r_angle)
     {
@@ -45,28 +41,20 @@ public:
 
     virtual ~Shape() = default;
 
-    void setColor(const Color& newColor)
-    {
-        s_color = newColor;
-    }
+    void setColor(const Color& newColor);
 
-    const Color getColor(){
-        return s_color;
-    }
+    const Color getColor();
 
-    void rotate(double angle) {
-        rotation_angle += angle;
-    }
+    virtual void rotate(double angle);
 
     virtual void scale(double) = 0;
 
-    friend inline std::ostream& operator<<(std::ostream& stream, Shape& shape) {
+    friend std::ostream& operator<<(std::ostream& stream, Shape& shape) {
         return shape.printShape(stream);
     }
-
-    int get_id(){
-        return id;
-    }
+    //virtual Shape& operator++(int) = 0;
+    virtual Shape& operator++() = 0;
+    int get_id();
 
 protected:
     virtual std::ostream& printShape(std::ostream&) = 0;
@@ -75,12 +63,8 @@ protected:
     int id;
     Color s_color;
     double rotation_angle;
-
-private:
     static int id_counter;
 };
-
-int Shape::id_counter = 0;
 
 class Sector : public Shape {
 public:
@@ -108,10 +92,20 @@ public:
         return *this;
     }
 
-    void scale(double coefficient) override {
-        s_radius *= coefficient;
-    }
+    void scale(double coefficient) override;
+    Sector& operator++(int) {
+        Sector* a = new Sector(*this);
+        ++(*this);
+        a->id = this->id;
+         id_counter--;
+        return *a;
 
+    }
+    Sector& operator++(){
+        ++s_radius;
+        ++s_angle;
+        return *this;
+    }
     ~Sector() override = default;
 
 private:
@@ -127,16 +121,20 @@ private:
 
 class Star:public Shape{
 public:
-    Star(double x = 0, double y = 0, double r_angle = 0.0, Color color = Color(), double radius = 1.0) :
+    int dot1x,dot1y;
+    Star(double x = 0, double y = 0, double r_angle = 0.0, Color color = Color(), double radius = 1.0, double radius2 = 1.0) :
         Shape(x, y, r_angle, color),
-        s_radius(radius)
+        s_radius(radius),
+        s_radius2(radius2)
         {
-
+        dot1x = x+s_radius;
+        dot1y = y;
     }
 
     Star(const Star &item):
         Shape(item.s_x, item.s_y, item.rotation_angle, item.s_color),
-        s_radius(item.s_radius)
+        s_radius(item.s_radius),
+        s_radius2(item.s_radius2)
     {
     }
 
@@ -146,19 +144,36 @@ public:
         s_x = item.s_x;
         s_y = item.s_y;
         s_radius = item.s_radius;
+        s_radius2 = item.s_radius2;
         return *this;
     }
-    void scale(double coefficient) override{
-        s_radius *=coefficient;
+
+    Star& operator++(int) {
+        Star* a = new Star(*this);
+        ++(*this);
+        a->id = this->id;
+        id_counter--;
+        return *a;
     }
+
+    Star& operator++() override {
+        ++s_radius;
+        ++s_radius2;
+        return *this;
+    }
+    void scale(double coefficient) override;
+
+    void rotate(double angle) override;
 
     ~Star() override = default;
 private:
     std::ostream& printShape(std::ostream& stream = std::cout) override{
-        stream << "Звезда радиусом " << s_radius << " с центром в координатах (" << this->s_x << ',' << this->s_y << ")" << " и повернута на угол " << this->rotation_angle << " градусов" << ". Цвет - " << this->s_color << " id - " << get_id() << std::endl;
+        stream << "Звезда с внешним радиусом " << s_radius << " и внутренним "<< s_radius2 << " с центром в координатах (" << this->s_x << ',' << this->s_y << ")" << " и повернута на угол " << this->rotation_angle << " градусов" << " координаты 1 пика: ("<<dot1x <<", " << dot1y << "). Цвет - " << this->s_color << " id - " << get_id() << std::endl;
         return stream;
     }
     double s_radius;
+    double s_radius2;
+
 };
 
 class Ellipse : public Shape {
@@ -186,11 +201,20 @@ public:
         s_y = item.s_y;
         return *this;
     }
-
-    void scale(double coefficient) override {
-        e_a *= coefficient;
-        e_b *= coefficient;
+    Ellipse& operator++(int) {
+        Ellipse* a = new Ellipse(*this);
+        ++(*this);
+        a->id = this->id;
+        id_counter--;
+        return *a;
     }
+
+    Ellipse& operator++(){
+        ++e_a;
+        ++e_b;
+        return *this;
+    }
+    void scale(double coefficient) override;
 
     ~Ellipse() override = default;
 
@@ -203,23 +227,3 @@ private:
     double e_a;
     double e_b;
 };
-
-int main()
-{
-    Sector a(10, 10, 90, Color(255, 0, 0), 10, 90);
-    Sector b;
-    b = a;
-    b.setCoordinates(50,50);
-    b.rotate(45);
-    b.scale(0.5);
-    b.setColor(Color(0, 0, 0));
-
-    Star s(100, 100, 0, Color(0,0,0), 50);
-
-    Ellipse e(50, 250, 90, Color(0, 255, 0), 10, 10);
-
-    std::cout << a << s << e << b;
-
-    return 0;
-}
-
