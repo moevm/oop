@@ -325,16 +325,6 @@ namespace stepik
             return i;
             // implement this
         }
-        friend void operator << (std::ostream& os, list& element)
-        {
-            node<Type>* temp = element.m_head;
-            while(temp)
-            {
-                os << temp->value << " ";
-                temp = temp->next;
-            }
-            os << std::endl;
-        }
         
     private:
         //your private functions
