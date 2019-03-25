@@ -22,6 +22,8 @@ protected:
     unsigned short intensity_r;
     unsigned short intensity_g;
     unsigned short intensity_b;
+    static unsigned idnum = 0;
+    unsigned id;
 public:
     Shape(double a, double b, double ang, double x1, double y1)
         :a(a > 0 ? a : 0), b(b > 0 ? b : 0)
@@ -33,6 +35,7 @@ public:
         angle = ang - cl*pi;
         if(angle < 0)
             angle += pi;
+	id = idnum++;
     }
     virtual ~Shape(){}
     void diplacement(double x1, double y1){
