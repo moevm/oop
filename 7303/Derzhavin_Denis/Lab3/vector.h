@@ -228,7 +228,11 @@ private:
 
         return m_first[pos];
     }
-
+    void swap(vector & other)
+	{
+	    std::swap(this->m_first, other.m_first);
+		std::swap(this->m_last, other.m_last);
+	}
     //your private functions
 
 private:
