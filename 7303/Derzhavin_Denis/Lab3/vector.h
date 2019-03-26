@@ -60,8 +60,13 @@ public:
 
     vector& operator=(vector&& other)
     {
-        if (this != &other)
-            swap(other);
+        if(this != &other){
+            delete[] m_first;
+            m_first = other.m_first;
+            m_last = other.m_last;
+            other.m_first = nullptr;
+            other.m_last = nullptr;
+        }
         return *this;
     }
 
@@ -228,11 +233,6 @@ private:
 
         return m_first[pos];
     }
-    void swap(vector & other)
-	{
-	    std::swap(this->m_first, other.m_first);
-		std::swap(this->m_last, other.m_last);
-	}
     //your private functions
 
 private:
