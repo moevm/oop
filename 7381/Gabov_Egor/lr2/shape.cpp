@@ -1,50 +1,65 @@
 #include "shape.h"
 
 unsigned Shape::id = 0;
-std::string const Shape::defaultColor = "white";
-
-std::ostream& operator<<(std::ostream& out, const Parallelogram& parallelogram){
-    out << "COLOR: " << parallelogram.color << std::endl;
-    out << "ID: " << parallelogram.id << std::endl;
-    out << "CENTRE: " << parallelogram.centre << "Point 1: " << parallelogram.point1 << "Point 2: " << parallelogram.point2;
-    return out;
-}
+std::string Shape::defaultColor = "white";
 
 std::ostream& operator<<(std::ostream& out, const Point& point){
-    out << "Point X: " << point.x << " Point Y: " << point.y << std::endl;
+    out << "X: " << point.x << " Y: " << point.y;
+    return out;
+}
+std::ostream& operator<<(std::ostream& out, const Parallelogram& par){
+    out << "PARALLELOGRAM" << std::endl;
+    out << "CENTRE: " << par.centre << std::endl <<
+           "D1: " << par.D1 << std::endl <<
+           "D2: " << par.D2 << std::endl <<
+           "COLOR: " << par.color << std::endl <<
+           "ANGLE: " << par.angle << std::endl <<
+           "PAR ANGLE: " << par.parAngle << std::endl;
     return out;
 }
 
-Parallelogram::Parallelogram(Point centre = Point(0, 0), Point point1 = Point(0, 0), Point point2 = Point(0, 0), std::string color = defaultColor)
-            : id(Shape::id), centre(centre), point1(point1), point2(point2){
-    this->color = color;
+std::ostream& operator<<(std::ostream& out, const Ellipse& el){
+    out << "ELLIPSE" << std::endl;
+    out << "CENTRE: " << el.centre << std::endl <<
+           "D1: " << el.D1 << std::endl <<
+           "D2: " << el.D2 << std::endl <<
+           "COLOR: " << el.color << std::endl <<
+           "ANGLE: " << el.angle << std::endl;
+    return out;
 }
 
-Parallelogram::Parallelogram(): id(Shape::id){
-    this->color = defaultColor;
+std::ostream& operator<<(std::ostream& out, const EllipseSector& elS){
+    out << "ELLIPSESECTOR" << std::endl;
+    out << "CENTRE: " << elS.centre << std::endl <<
+           "D1: " << elS.D1 << std::endl <<
+           "D2: " << elS.D2 << std::endl <<
+           "COLOR: " << elS.color << std::endl <<
+           "ANGLE: " << elS.angle << std::endl <<
+           "SECTOR ANGLE: " << elS.sectorAngle << std::endl;
+    return out;
 }
 
-void Parallelogram::changeCoordinate(Point newCentre, Point newPoint1, Point newPoint2){ // аргументы по умолчанию?
-    centre = newCentre;
-    point1 = newPoint1;
-    point2 = newPoint2;
+double Parallelogram::calculatePerimeter(){
+    return 2 * sqrt(pow(D1, 2) + pow(D2, 2) - 2 * D1 * D2 * std::cos(parAngle * PI / 180)) +
+           2 * sqrt(pow(D1, 2) + pow(D2, 2) - 2 * D1 * D2 * std::cos((180 - parAngle) * PI / 180));
 }
 
-void Parallelogram::multiplicateCoordinate(unsigned k = 1){
-    point1.x = centre.x + (point1.x - centre.x) * k;
-    point1.y = centre.y + (point1.y - centre.y) * k;
-    point2.x = centre.x + (point2.x - centre.x) * k;
-    point2.y = centre.y + (point2.y - centre.y) * k;
+double Parallelogram::calculateArea(){
+    return 0.5 * D1 * D2 * std::sin(parAngle * PI / 180);
 }
 
-void Parallelogram::rotate(double angle){
-    point1.x = pow(point1.x - centre.x, 2) * cos(angle);
-    point1.y = pow(point1.y - centre.y, 2) * sin(angle);
-    point2.x = pow(point2.x - centre.x, 2) * cos(angle);
-    point2.y = pow(point2.y - centre.y, 2) * sin(angle);
+double Ellipse::calculatePerimeter(){
+    return 4 * ((PI * D1 * D2 + (D1 - D2)) / (D1 + D2));
 }
 
+double Ellipse::calculateArea(){
+    return D1 * D2 * PI;
+}
 
+double EllipseSector::calculateArea(){
+    return Ellipse::calculateArea() * sectorAngle / 180;
+}
 
-
-
+double EllipseSector::calculatePerimeter(){
+    return Ellipse::calculatePerimeter() * sectorAngle / 180;
+}
