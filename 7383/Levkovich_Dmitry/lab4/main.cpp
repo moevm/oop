@@ -106,7 +106,8 @@ public:
 private:
     T* my_ptr;
     long* i;
-  // data members
+    template <typename Derived>
+    friend class shared_ptr;
 };
 } // namespace stepik
 int main()
