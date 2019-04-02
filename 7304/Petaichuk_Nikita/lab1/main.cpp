@@ -17,15 +17,17 @@ public:
   {
     cout << "Usual constructor called" << endl;
   }
-    
-  Array(const Array &other) :
+
+private: 
+  Array(const Array &other) /*:
     m_size(other.m_size),
-    m_array(m_size ? new T[m_size]() : nullptr)
-  {
+    m_array(m_size ? new T[m_size]() : nullptr)*/ = delete;
+/*{
     cout << "Copy constructor called" << endl;
     copy(other.m_array, other.m_array + m_size, m_array);
-  }
-    
+  }*/
+
+public:
   Array(Array&& other)
   {
     cout << "Move constructor called" << endl;

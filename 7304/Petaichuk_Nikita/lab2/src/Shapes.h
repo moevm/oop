@@ -45,6 +45,8 @@ public:
     void rotate(double angle);
 
     double getRadius() const;
+
+    friend ostream& operator<<(ostream &os, const Circle &circle);
     
 private:
     double radius;
@@ -66,6 +68,8 @@ public:
 
     double getSideSize() const;
     double getAngle() const;
+
+    friend ostream& operator<<(ostream &os, const Rombus &rombus);
 
 private:
     RadiusVector left_vertex;
@@ -95,6 +99,8 @@ public:
     double getLowerBaseSize() const;
     double getHeight() const;
 
+    friend ostream& operator<<(ostream &os, const Trapezium &trapezium);
+
 private:
     RadiusVector left_upper_vertex;
     RadiusVector right_upper_vertex;
@@ -106,8 +112,6 @@ private:
 };
 
 //Перегрузка операторов << для каждой фигуры
-ostream& operator<<(ostream &os, const Circle &circle);
 
-ostream& operator<<(ostream &os, const Rombus &rombus);
 
-ostream& operator<<(ostream &os, const Trapezium &trapezium);
+

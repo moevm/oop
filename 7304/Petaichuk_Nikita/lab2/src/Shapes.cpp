@@ -389,54 +389,36 @@ double Trapezium::getHeight() const
 //Определение перегруженных операторов <<
 ostream& operator<<(ostream &os, const Circle &circle)
 {
-    Color circle_color = circle.getColor();
-    RadiusVector circle_center = circle.getCenterCoordinates();
-
-    os << "ID: " << circle.getID() << endl;
-    os << "Type: Circle" << endl;
-    os << "Center: (" << circle_center.getX() << ", " << circle_center.getY() << ")" << endl;
-    os << "Color:" << endl;
-    os << "    -) Red: " << circle_color.getRedComponent() << endl;
-    os << "    -) Green: " << circle_color.getGreenComponent() << endl;
-    os << "    -) Blue: " << circle_color.getBlueComponent() << endl;
-    os << "Size parameters:" << endl;
-    os << "    -) Radius: " << circle.getRadius() << endl;
+    os << "ID: " << circle.id << endl
+    << "Type: Circle" << endl
+    << "Center: " << circle_center << endl
+    << circle.color
+    << "Size parameters:" << endl
+    << "    -) Radius: " << circle.radius << endl;
     return os;
 }
 
 ostream& operator<<(ostream &os, const Rombus &rombus)
 {
-    Color rombus_color = rombus.getColor();
-    RadiusVector rombus_center = rombus.getCenterCoordinates();
-
-    os << "ID: " << rombus.getID() << endl;
-    os << "Type: Rombus" << endl;
-    os << "Center: (" << rombus_center.getX() << ", " << rombus_center.getY() << ")" << endl;
-    os << "Color:" << endl;
-    os << "    -) Red: " << rombus_color.getRedComponent() << endl;
-    os << "    -) Green: " << rombus_color.getGreenComponent() << endl;
-    os << "    -) Blue: " << rombus_color.getBlueComponent() << endl;
-    os << "Size parameters:" << endl;
-    os << "    -) Side: " << rombus.getSideSize() << endl;
-    os << "    -) Angle: " << rombus.getAngle() << endl;
+    os << "ID: " << rombus.id << endl
+    << "Type: Rombus" << endl
+    << "Center: " << rombus_center << endl
+    << rombus.color
+    << "Size parameters:" << endl
+    << "    -) Side: " << rombus.side_size << endl
+    << "    -) Angle: " << rombus.angle << endl;
     return os;
 }
 
 ostream& operator<<(ostream &os, const Trapezium &trapezium)
 {
-    Color trapezium_color = trapezium.getColor();
-    RadiusVector trapezium_center = trapezium.getCenterCoordinates();
-
-    os << "ID: " << trapezium.getID() << endl;
-    os << "Type: Trapezium" << endl;
-    os << "Center: (" << trapezium_center.getX() << ", " << trapezium_center.getY() << ")" << endl;
-    os << "Color:" << endl;
-    os << "    -) Red: " << trapezium_color.getRedComponent() << endl;
-    os << "    -) Green: " << trapezium_color.getGreenComponent() << endl;
-    os << "    -) Blue: " << trapezium_color.getBlueComponent() << endl;
-    os << "Size parameters:" << endl;
-    os << "    -) Upper base: " << trapezium.getUpperBaseSize() << endl;
-    os << "    -) Lower base: " << trapezium.getLowerBaseSize() << endl;
-    os << "    -) Height: " << trapezium.getHeight() << endl;
+    os << "ID: " << trapezium.id << endl
+    << "Type: Trapezium" << endl
+    << "Center: " << trapezium_center << endl
+    << trapezium.color
+    << "Size parameters:" << endl
+    << "    -) Upper base: " << trapezium.upper_base_size << endl
+    << "    -) Lower base: " << trapezium.lower_base_size << endl
+    << "    -) Height: " << trapezium.height << endl;
     return os;
 }
