@@ -85,6 +85,8 @@ namespace stepik {
         }
 
         iterator erase(const_iterator first, const_iterator last) {
+	    if (first < m_first || last > m_last)
+                throw std::out_of_range("out of range");
             size_t f = first - m_first;
 	    size_t l = last - m_first;
 	    std::rotate(m_first + f, m_first + l, m_last);
