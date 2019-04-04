@@ -69,6 +69,87 @@ namespace stepik {
             ++(*this);
             return temp;
         }
+        
+        list_iterator& operator -- () {
+            m_node = m_node->prev;
+            return *this;
+        }
+
+        list_iterator operator -- (int) {
+            list_iterator temp(*this);
+            --(*this);
+            return temp;
+        }
+
+    private:
+        friend class list<Type>;
+
+        list_iterator(node<Type>* p) : m_node(p) {
+        }
+
+        node<Type>* m_node;
+    };
+    
+    
+    
+    template <class Type>
+    class list_iterator_reverse {
+    public:
+        typedef ptrdiff_t difference_type;
+        typedef Type value_type;
+        typedef Type* pointer;
+        typedef Type& reference;
+        typedef size_t size_type;
+        typedef std::forward_iterator_tag iterator_category;
+
+        list_iterator() : m_node(nullptr) {
+        }
+
+        list_iterator(const list_iterator& other) : m_node(other.m_node) {
+        }
+
+        list_iterator& operator = (const list_iterator& other) {
+            m_node = other.m_node;
+            return *this;
+        }
+
+        bool operator == (const list_iterator& other) const {
+            return m_node == other.m_node;
+        }
+
+        bool operator != (const list_iterator& other) const {
+            return m_node != other.m_node;
+        }
+
+        reference operator * () {
+            return m_node->value;
+        }
+
+        pointer operator -> () {
+            return &(m_node->value);
+        }
+
+        list_iterator& operator -- () {
+            m_node = m_node->next;
+            return *this;
+        }
+
+        list_iterator operator -- (int) {
+            list_iterator temp(*this);
+            ++(*this);
+            return temp;
+        }
+        
+        list_iterator& operator ++ () {
+            m_node = m_node->prev;
+            return *this;
+        }
+
+        list_iterator operator ++ (int) {
+            list_iterator temp(*this);
+            --(*this);
+            return temp;
+        }
 
     private:
         friend class list<Type>;
