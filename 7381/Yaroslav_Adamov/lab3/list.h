@@ -60,6 +60,8 @@ namespace stepik {
         }
 
         list_iterator& operator ++ () {
+            if (m_node->next == nullptr)
+                throw std::out_of_range("out of range");
             m_node = m_node->next;
             return *this;
         }
@@ -71,6 +73,8 @@ namespace stepik {
         }
         
         list_iterator& operator -- () {
+            if (m_node->prev == nullptr)
+                throw std::out_of_range("out of range");
             m_node = m_node->prev;
             return *this;
         }
@@ -130,6 +134,8 @@ namespace stepik {
         }
 
         list_iterator& operator -- () {
+            if (m_node->next == nullptr)
+                throw std::out_of_range("out of range");
             m_node = m_node->next;
             return *this;
         }
@@ -141,6 +147,8 @@ namespace stepik {
         }
         
         list_iterator& operator ++ () {
+            if (m_node->prev == nullptr)
+                throw std::out_of_range("out of range");
             m_node = m_node->prev;
             return *this;
         }
