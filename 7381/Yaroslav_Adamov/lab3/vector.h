@@ -86,12 +86,10 @@ namespace stepik {
 
         iterator erase(const_iterator first, const_iterator last) {
             size_t f = first - m_first;
-			size_t l = last - m_first;
-			vector temp(*this);
-			std::rotate(temp.m_first + f, temp.m_first + l, temp.m_last);
-			temp.resize(temp.size() - l + f);
-			*this = std::move(temp);
-			return m_first + f;
+	    size_t l = last - m_first;
+	    std::rotate(m_first + f, m_first + l, m_last);
+	    resize(size() - l + f);
+	    return m_first + f;
         }
 
         iterator insert(const_iterator pos, const Type& value) {
