@@ -56,6 +56,13 @@ public:
 		return color;
 	}
 
+	friend std::ostream& operator<<(std::ostream& out, Shape& sh){
+		out << "ID = " << iam << std::endl;
+		out << "centre: (" << sh.cx << ", " << sh.cy << ")" << std::endl;
+		out << "angle: " << sh.angle << std::endl;
+		out << "colors (RGB): " << sh.color.RED << ", " << sh.color.GREEN << ", " << sh.color.BLUE << std::endl;
+		out << std::endl;
+	}
 };
 
 class Triangle : public Shape
@@ -89,21 +96,12 @@ public:
 
 	}
 
-
-	friend std::ostream& operator<< (std::ostream& out, const Triangle &t)
-	{
-		out << "Triangle: " << std::endl;
-		out << "Center (" << t.cx << ", " << t.cy << ")" << std::endl;
-		out << "Sides: " << t.a << ", " << t.b << ", " << t.c << std::endl;
-		out << "Angle: " << t.angle << std::endl;
-		out << "Colors (RGB): " << t.color.RED << ", " << t.color.GREEN << ", " << t.color.BLUE << std::endl;
-		out << "ID: " << t.iam << std:: endl;
-	}
-
 };
 
 class RightTriangle : public Triangle
 {
+protected:
+	std::string name = "RightTriangle";
 public:
 	RightTriangle() : Triangle()
 	{}
@@ -111,21 +109,13 @@ public:
 	RightTriangle(int cx, int cy, RGB c, int angle, int a, int b) : Triangle(cx, cy, c, angle, a, b, sqrt(pow(a, 2) + pow(b, 2)))
 	{}
 
-        friend std::ostream& operator<< (std::ostream& out, const RightTriangle &t)
-        {
-                out << "RightTriangle: " << std::endl;
-                out << "Center (" << t.cx << ", " << t.cy << ")" << std::endl;
-                out << "Sides: " << t.a << ", " << t.b << ", " << t.c << std::endl;
-                out << "Angle: " << t.angle << std::endl;
-		out << "Colors (RGB): " << t.color.RED << ", " << t.color.GREEN << ", " << t.color.BLUE << std::endl;
-		out << "ID: " << t.iam << std:: endl;
-        }
 };
 
 class Star5 : public Shape
 {
 public:
 	int a;
+	std::string name = "Five-pointed star";
 
 	Star5() : Shape(), a(0)
 	{}
@@ -143,16 +133,6 @@ public:
 		{
 			a /= abs(num);
 		}
-	}
-
-	friend std::ostream& operator<< (std::ostream& out, const Star5 &s)
-	{
-		out << "Five-pointed star:" << std::endl;
-		out << "Center (" << s.cx << ", " << s.cy << ")"  << std::endl;
-		out << "Side: " << s.a << std::endl;
-		out << "Angle: " << s.angle << std::endl;
-		out << "Colors (RGB): " << s.color.RED << ", " << s.color.GREEN << ", " << s.color.BLUE << std::endl;
-		out << "ID: " << s.iam << std:: endl;
 	}
 
 };
@@ -206,4 +186,11 @@ int main(){
 
         std::cout << st << std::endl;
 
+/*
+	Triangle tri(0, 0, {1,2,3}, 45, 10, 20, 30), *ptri;
+	std::cout << tri;
+	RightTriangle rtri(1,1, {1,2,3}, 90, 10, 20), *prtri;
+	std::cout << rtri;
+	ptri = &rtri;
+	std::cout << *ptri;*/
 }
