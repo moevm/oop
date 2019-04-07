@@ -155,8 +155,6 @@ public:
 };
 
 class Trapezium : public Shape{
-private:
-    vector <double> sides;
 public:
     Trapezium(const Point A, const Point B, double x1, double x2, const Color _color) : Shape(count, 0, _color, Point((A.x + B.x + x1 + x2) / 4, (2 * (A.y + B.y)) / 4)){
         id++;
