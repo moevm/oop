@@ -77,6 +77,9 @@ namespace stepik
 
 	list_iterator operator ++ (int)
 	{
+		
+ 	        if (m_node->next == nullptr)
+                	throw std::out_of_range("out of range");
 		list_iterator* old = new list_iterator(*this);
 		m_node = m_node->next;
 		return *old;
@@ -84,6 +87,8 @@ namespace stepik
 	
 	list_iterator& operator -- ()
 	{
+		if (m_node->prev == nullptr)
+                	throw std::out_of_range("out of range");
 		m_node = m_node->prev;
 		return *this;
 	}
