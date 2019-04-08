@@ -87,7 +87,7 @@ public:
           x = pnt.x;
           y = pnt.y;
           pnt.x =(x - center.x) * cos(rad) - (y - center.y) * sin(rad) + center.x;
-          pnt.y = (x - center.x) * sin(rad) - (y - center.y) * cos(rad) + center.y;
+          pnt.y = (x - center.x) * sin(rad) + (y - center.y) * cos(rad) + center.y;
       }
 
   }
@@ -151,7 +151,6 @@ public:
     Triangle(const Point A, const Point B, const Point C, const Color _color) : Shape(count,0 ,_color, Point((A.x+B.x+C.x)/3, (A.y+B.y+C.y)/3)){
       id++;
       points.clear();
-      sides.clear();
       points.push_back(A);
       points.push_back(B);
       points.push_back(C);
@@ -159,6 +158,7 @@ public:
     }
 
     void sides_of_shape() override{
+      sides.clear();
       double a = sqrt(pow((points[0].x - points[1].x) , 2.0) + pow((points[0].y - points[1].y) , 2.0));
       double b = sqrt(pow((points[1].x - points[2].x) , 2.0) + pow((points[1].y - points[2].y) , 2.0));
       double c = sqrt(pow((points[2].x - points[0].x) , 2.0) + pow((points[2].y - points[0].y) , 2.0));
@@ -197,7 +197,6 @@ public:
   Trapezium(const Point A, const Point B, double x1, double x2, const Color _color) : Shape(count,0 ,_color, Point((A.x+B.x+x1+x2)/4, (2*(A.y+B.y))/4)){
     id++;
     points.clear();
-    sides.clear();
     Point D = Point(x1, A.y);
     Point C = Point(x2, B.y);
     points.push_back(A);
@@ -208,6 +207,7 @@ public:
   }
 
   void sides_of_shape() override{
+    sides.clear();
     double a = sqrt(pow((points[0].x - points[1].x) , 2.0) + pow((points[0].y - points[1].y) , 2.0));
     double b = sqrt(pow((points[1].x - points[2].x) , 2.0) + pow((points[1].y - points[2].y) , 2.0));
     double c = sqrt(pow((points[2].x - points[3].x) , 2.0) + pow((points[2].y - points[3].y) , 2.0));
@@ -221,7 +221,7 @@ public:
   double area()override{
     double a = sides[1];
     double b = sides[3];
-    double h = points[0].y-points[1].y;
+    double h = abs(points[0].y-points[1].y);
     double area = h*(a+b)/2;
     return area;
   }
@@ -245,7 +245,6 @@ public:
     Eq_pentagon(const Point cntr, double r, const Color _color) : Shape(count,0 ,_color, Point(cntr)){
       id++;
       points.clear();
-      sides.clear();
       Point A = Point(cntr.x, cntr.y+r);
       int counter = 0;
       Point tmp;
@@ -270,14 +269,14 @@ public:
     }
 
     void sides_of_shape()override{
+    sides.clear();
     double n = sqrt(pow((points[0].x - points[1].x) , 2.0) + pow((points[0].y - points[1].y) , 2.0));
     sides.push_back(n);
     }
 
     double area()override{
-      double h = sqrt(pow((sides[0]/2*sin(M_PI/5)) , 2.0) - pow(sides[0], 2.0)/4);
-      double area = perimeter()*h/2;
-      return area;
+      double area = 5*pow(sides[0], 2.0)/(tan(M_PI/5)*4);
+      return abs(area);
     }
 
     void print(ostream &out) override{
