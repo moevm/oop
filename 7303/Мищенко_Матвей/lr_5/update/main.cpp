@@ -2,7 +2,7 @@
 #include<iostream>
 #include<cmath>
 #include"shared_ptr.h"
-#include"Shape.h"
+//#include"Shape.h"
 #include"vector.h"
 #include"list.h"
 #include<iomanip>
@@ -135,6 +135,10 @@ public:
 int main()
 {   vector<Shape *> vec(6);
     auto sp =  stepik::make_shared<class Rectangle>(6,2,std::make_pair(0,0));
+    auto m=sp.update();
+  
+    std::cout<<std::get<0>(m)<<" "<<std::get<1>(m)<<"\n";
+     std::cout<<*std::get<2>(m)<<","<<*std::get<2>(m)+1<<","<<*std::get<2>(m)+2<<"\n"<<std::get<3>(m);
     Rectangle rec(6,2,std::make_pair(0,0));
     Rectangle rec2(8,5,std::make_pair(0,0));
     Lsosceles_trapeze l_tr(10.0,8,4,std::make_pair(0,0));

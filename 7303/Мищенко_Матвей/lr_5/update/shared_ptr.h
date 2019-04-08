@@ -1,3 +1,4 @@
+#include "Shape.h"
 namespace stepik
 {
     template <typename T>
@@ -76,7 +77,11 @@ namespace stepik
         
         void reset(T *ptr = 0)
         { shared_ptr<T>(ptr).swap(*this);}
-        
+        std::tuple<int,int,int *,int> update()
+        {
+            Shape *shape=pointer;
+            return std::make_tuple(shape->centr.first,shape->centr.second,shape->color,shape->id);
+        }
         
     private:
         T *pointer;
