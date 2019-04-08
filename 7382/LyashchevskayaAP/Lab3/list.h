@@ -80,7 +80,9 @@ namespace stepik
 		list_iterator* old = new list_iterator(*this);
 		m_node = m_node->next;
 		return *old;
-	}list_iterator& operator -- ()
+	}
+	
+	list_iterator& operator -- ()
 	{
 		m_node = m_node->prev;
 		return *this;
