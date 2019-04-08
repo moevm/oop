@@ -137,6 +137,18 @@ namespace stepik
         return *this;
     }
 
+    list& operator= (list&& other)
+    {
+        if(this != &other)
+        {
+            clear();
+            for(node<value_type>* tmp = other.m_head; tmp; tmp = tmp->next)
+              push_back(tmp->value);
+            other.clear();
+        }
+        return *this;
+    }
+	  
     list::iterator begin()
     {
       return iterator(m_head);
