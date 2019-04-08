@@ -72,7 +72,7 @@ namespace stepik
     //assignment operators
     vector& operator=(const vector& other)
     {
-        if(m_first == other.m_first && size() == other.size())
+        if(m_first == other.m_first)
             return *this;
         if(m_first != m_last)
         {
@@ -89,6 +89,8 @@ namespace stepik
 
     vector& operator=(vector&& other)
     {
+	if(m_first == other.m_first)
+	    return *this;
         if(m_first != m_last)
         {
             delete [] m_first;
