@@ -3,6 +3,7 @@ template <typename T>
 class shared_ptr
 {
 public:
+	template <typename Sad> friend class shared_ptr;
 	explicit shared_ptr(T *ptr = 0)
 	{
 		pObj = ptr;
@@ -84,6 +85,41 @@ public:
 	{
 		shared_ptr p(ptr);
 		swap(p);
+	}
+
+	template <typename Sad>
+	shared_ptr(const shared_ptr<Sad> & other) :pObj(other.pObj), count(other.count)
+	{
+		if (count) {
+
+			(*count)++;
+
+		}
+	}
+
+	template <typename Sad>
+	shared_ptr& operator=(const shared_ptr<Sad> & other)
+	{
+		if (pObj != other.pObj) {
+
+			if ((*count)>0) {
+				(*count)--;
+			}
+			if ((*count) == 0) {
+				delete pObj;
+				delete count;
+			}
+
+			pObj = other.pObj;
+			count = other.count;
+			(*count)++;
+		}
+		return *this;
+	}
+
+	template <typename Sad>
+	bool operator == (const shared_ptr<Sad>& other) const {
+		return pObj == other.pObj;
 	}
 
 private:
