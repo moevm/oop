@@ -4,7 +4,7 @@
 
 class Star:public Shape{
 public:
-    Star(const Point &center,const Color& color, double _r1, double _r2);
+    Star(const Point &center,const Color& color ,double _r1, double _r2,  double angle = 0);
     Star(const Star& star);
 
     void Move(const Point& p);
@@ -13,6 +13,9 @@ public:
 
     double get_radius1() const;
     double get_radius2() const;
+
+    Star operator+(const Star& star);
+
 
     friend std::ostream& operator<<(std::ostream& out,const Star& star);
 protected:

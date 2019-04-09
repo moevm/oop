@@ -1,11 +1,11 @@
 #include "star.h"
 #include <cmath>
 
-Star::Star(const Point &center,const Color& color, double _r1, double _r2):
+Star::Star(const Point &center,const Color& color, double _r1, double _r2,double angle):
     Shape(center,color),
     radius1(_r1),
     radius2(_r2){
-    Turn(0);
+    Turn(angle);
 }
 
 Star::Star(const Star& star):
@@ -16,6 +16,18 @@ Star::Star(const Star& star):
     radius2(star.radius2){
 
 }
+
+ Star Star::operator+(const Star& star){
+     Point point_temp((this->pos.x + star.pos.x)/2.0,(this->pos.y + star.pos.y)/2.0);
+     double angle_temp = (this->angle + star.angle)/2.0;
+     Color color_temp((this->color.red + star.color.red)/2,
+                        (this->color.green + star.color.green)/2,
+                        (this->color.blue + star.color.blue)/2 );
+    double temp_r1 = (this->radius1 + star.radius1) /2.0;
+    double temp_r2 = (this->radius2 + star.radius2) /2.0;
+
+    return Star(point_temp,color_temp,temp_r1,temp_r2,angle);
+ }
 
 void Star::Turn(double _angle){
     this->angle += _angle;
