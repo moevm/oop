@@ -6,7 +6,7 @@ namespace stepik
         template <typename D>
         friend class shared_ptr;
     public:
-        explicit shared_ptr(T *ptr = 0) : ptr(ptr), counter(new long(1))
+        explicit shared_ptr(T *ptr = 0) : ptr(ptr), counter(new int(1))
         {
             // implement this
         }
@@ -72,7 +72,7 @@ namespace stepik
             return ptr;// implement this
         }
         
-        long use_count() const
+        int use_count() const
         {
             return ptr == nullptr ? 0 : *counter;// implement this
         }
@@ -90,7 +90,7 @@ namespace stepik
         void swap(shared_ptr& x) noexcept
         {
             T* tmp = ptr;
-            long* tmp_c = counter;
+            int* tmp_c = counter;
             ptr = x.ptr;
             counter = x.counter;
             x.ptr = tmp;
@@ -101,12 +101,12 @@ namespace stepik
         {
             del();
             this->ptr = ptr;
-            this->counter = new long(1);// implement this
+            this->counter = new int(1);// implement this
         }
         
     private:
         T* ptr;
-        long* counter;
+        int* counter;
         void del(){
             if(ptr != nullptr){
                 if(*counter == 1){
