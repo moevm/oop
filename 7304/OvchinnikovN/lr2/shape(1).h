@@ -27,17 +27,17 @@ public:
         this->blue = blue;
     }
 
-    int getRed()
+    int getRed() const
     {
         return red;
     }
 
-    int getGreen()
+    int getGreen() const
     {
         return green;
     }
 
-    int getBlue()
+    int getBlue() const
     {
         return blue;
     }
@@ -59,12 +59,12 @@ public:
         y = otherY;
     }
 
-    double getX()
+    double getX() const
     {
         return x;
     }
 
-    double getY()
+    double getY() const
     {
         return y;
     }
@@ -77,6 +77,22 @@ public:
     void setY(double Y)
     {
         y = Y;
+    }
+
+    Point operator +(const Point &other)
+    {
+        Point tmp;
+        tmp.x = (this->x + other.x)/2;
+        tmp.y = (this->y + other.y)/2;
+        return tmp;
+    }
+
+    Point operator +(double value)
+    {
+        Point tmp;
+        tmp.x = this->x + value;
+        tmp.y = this->y + value;
+        return tmp;
     }
 };
 
@@ -112,7 +128,8 @@ public:
         center.setPoint(x, y);
     }
 
-    Point getMainCenter(){
+    Point getMainCenter()
+    {
         return center;
     }
 
@@ -146,6 +163,7 @@ public:
         one.setPoint(x1,y1);
         two.setPoint(x2,y2);
         three.setPoint(x3,y3);
+        setCenter();
     }
 
     void setCenter(){
@@ -228,8 +246,40 @@ public:
     {
         rgb clr = shape.getShapeColor();
         out << "Triangle: (" << one.getX() << ", " << one.getY() << ") (" << two.getX() << ", " << two.getY() << ") (" << three.getX() << ", " << three.getY() << ")\n";
+        out << "          Center of shape: (" << center.getX() << ", " << center.getY() << ")\n";
         out << "          ID: " << shape.getId() << " Color: (" << clr.getRed() << ", " << clr.getGreen() << ", " << clr.getBlue() << ")\n";
         return out;
+    }
+
+    Triangle(const Triangle &other) : Shape()
+    {
+        one = other.one;
+        two = other.two;
+        three = other.three;
+        center = other.center;
+        color = other.color;
+        id = count;
+    }
+
+    Triangle operator +(const Triangle& other)
+    {
+        Triangle tmp;
+        tmp.one = this->one + other.one;
+        tmp.two = this->two + other.two;
+        tmp.three = this->three + other.three;
+        tmp.setCenter();
+        tmp.color.setColor((this->color.getRed()+other.color.getRed())/2, (this->color.getGreen()+other.color.getGreen())/2, (this->color.getBlue()+other.color.getBlue())/2);
+        return tmp;
+    }
+
+    Triangle operator +(double value)
+    {
+        Triangle tmp = *this;
+        tmp.one = tmp.one + value;
+        tmp.two = tmp.two + value;
+        tmp.three = tmp.three + value;
+        tmp.setCenter();
+        return tmp;
     }
 };
 
@@ -329,8 +379,29 @@ public:
     {
         rgb clr = shape.getShapeColor();
         out << "Ellipse: width = " << width << ", height = " << height << ", focus1(" << f1.getX() << ", " << f1.getY() << "), focus2(" << f2.getX() << ", " << f2.getY() << ")\n";
+        out << "         Center of shape: (" << center.getX() << ", " << center.getY() << ")\n";
         out << "         ID: " << shape.getId() << " Color: (" << clr.getRed() << ", " << clr.getGreen() << ", " << clr.getBlue() << ")\n";
         return out;
+    }
+
+    Ellipse(const Ellipse &other) : Ellipse()
+    {
+        height = other.height;
+        width = other.width;
+        f1 = other.f1;
+        f2 = other.f2;
+        center = other.center;
+        color = other.color;
+        id = count;
+    }
+
+    Ellipse operator +(double value)
+    {
+        Ellipse tmp = *this;
+        tmp.f1 = this->f1 + value;
+        tmp.f2 = this->f2 + value;
+        tmp.center = this->center + value;
+        return tmp;
     }
 };
 
@@ -358,9 +429,21 @@ public:
     {
         rgb clr = shape.getShapeColor();
         out << "RightTriangle: (" << one.getX() << ", " << one.getY() << ") (" << two.getX() << ", " << two.getY() << ") (" << three.getX() << ", " << three.getY() << ")\n";
+        out << "               Center of shape: (" << center.getX() << ", " << center.getY() << ")\n";
         out << "               ID: " << shape.getId() << " Color: (" << clr.getRed() << ", " << clr.getGreen() << ", " << clr.getBlue() << ")\n";
         return out;
     }
+
+    RightTriangle operator +(double value)
+    {
+        RightTriangle tmp = *this;
+        tmp.one = tmp.one + value;
+        tmp.two = tmp.two + value;
+        tmp.three = tmp.three + value;
+        tmp.setCenter();
+        return tmp;
+    }
+
 };
 
 #endif // SHAPE_H
