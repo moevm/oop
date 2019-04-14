@@ -3,7 +3,7 @@
 #include <vector>
 #include <iomanip>
 using namespace std;
-static int count = 0;
+static int count = 0, angle =  0;
 
 struct Point{
     double x;
@@ -23,23 +23,13 @@ struct Color{
 class Shape{
 protected:
     int id;
-    double angle;
     Color color;
-    Point center;
-    vector <Point> points;
-    vector <double> sides;
 public:
-    Shape(): id(count), angle(0), color(), center(){
+    Shape(): id(count), color(){
         count++;
     }
-    Shape(int id, double _angle, Color _color, Point _point): id(count), angle(_angle), color(_color), center(_point){
+    Shape(int id, Color _color): id(count), color(_color){
         count++;
-    }
-    double get_angle(){
-        return angle;
-    }
-    Point get_cntr(){
-        return center;
     }
     int get_id(){
         return id;
@@ -52,57 +42,21 @@ public:
         color.green = g;
         color.blue = b;
     }
-    void set_cntr(double absc, double ord){
-        center.x = absc;
-        center.y = ord;
-    }
     virtual ~Shape(){
-        points.clear();
-        sides.clear();
         id--;
-    }
-    void move(const Point p){
-        double dx = p.x - center.x;
-        double dy = p.y - center.y;
-        center.x += dx;
-        center.y += dy;
-        for(auto &pnt : points){
-            pnt.x += dx;
-            pnt.y += dy;
-        }
-    }
-    void rotate(int _angle){
-        angle += _angle;
-        _angle %= 360;
-        double angle = _angle * M_PI / 180.0;
-        for(size_t i = 0; i < points.size(); i++){
-            double x = center.x + (points[i].x - center.x) * cos(angle) - (points[i].y - center.y) * sin(angle);
-            double y = center.y + (points[i].x - center.x) * sin(angle) + (points[i].y - center.y) * cos(angle);
-            points[i].x = x;
-            points[i].y = y;
-        }
-    }
-    void scale(double coefficient){
-        double x;
-        double y;
-        for(size_t i = 0; i < points.size(); i++){
-            x = center.x + (points[i].x - center.x) * coefficient;
-            y = center.y + (points[i].y - center.y) * coefficient;
-            points[i].x = x;
-            points[i].y = y;
-        }
     }
     friend ostream &operator<<(ostream &out, Shape *shape);
     virtual void print(ostream &out) = 0;
     virtual double area() = 0;
     virtual void sides_of_shape() = 0;
+    virtual void rotate(int _angle) = 0;
+    virtual void scale(double coefficient) = 0;
+    virtual void move(const Point p) = 0;
 };
 
 ostream &operator<<(ostream &out, Shape *shape){
     out << setw(45) << right  << "!Информация о фигуре!" << endl;
-    out << "Центр фигуры: " << "(" << shape->get_cntr().x << ";" << shape->get_cntr().y << ")" << endl;
-    out << "Цвет фигуры:: " << "(" << shape->get_color().red << "," << shape->get_color().green << "," << shape->get_color().blue << ")" << endl;
-    out << "Угол: " << shape->get_angle() << endl;
+    out << "Цвет фигуры: " << "(" << shape->get_color().red << "," << shape->get_color().green << "," << shape->get_color().blue << ")" << endl;
     out << "Id фигуры: " << shape->get_id() << endl;
     out << "Площадь: " << shape->area() << endl;
     shape->print(out);
@@ -110,55 +64,16 @@ ostream &operator<<(ostream &out, Shape *shape){
     return out;
 }
 
-class Rhombus : public Shape{
-public:
-    Rhombus(const Point center, double dx, double dy, const Color _color) : Shape(count, 0, _color, Point(center)){
-        id++;
-        points.clear();
-        Point A = Point(center.x + dx, center.y);
-        Point B = Point(center.x, center.y + dy);
-        Point C = Point(center.x - dx, center.y);
-        Point D = Point(center.x, center.y - dy);
-        points.push_back(A);
-        points.push_back(B);
-        points.push_back(C);
-        points.push_back(D);
-    }
-    double area()override{
-        double dx = points[0].x - points[1].x;
-        double dy = points[1].y - points[0].y;
-        double d1 = 2 * dx;
-        double d2 = 2 * dy;
-        double area = d1 * d2 / 2;
-        return abs(area);
-    }
-    void sides_of_shape() override{
-        sides.clear();
-        double a = sqrt(pow((points[0].x - points[1].x), 2.0) + pow((points[0].y - points[1].y), 2.0));
-        double b = a, c = a, d = a;
-        sides.push_back(a);
-        sides.push_back(b);
-        sides.push_back(c);
-        sides.push_back(d);
-    }
-    void print(ostream &out) override{
-        sides_of_shape();
-        out << "Все стороны фигуры равны: " ;
-        out << sides[0] << endl;
-        out << "Координаты фигуры: " ;
-        for(int i = 0; i < points.size(); i++){
-            out << i << ": (" << points[i].x << "; " << points[i].y << "); ";
-        }
-        out << endl;
-    }
-    ~Rhombus(){}
-};
-
 class Trapezium : public Shape{
+private:
+    vector <double> sides;
+    vector <Point> points;
+    Point center;
 public:
-    Trapezium(const Point A, const Point B, double x1, double x2, const Color _color) : Shape(count, 0, _color, Point((A.x + B.x + x1 + x2) / 4, (2 * (A.y + B.y)) / 4)){
+    Trapezium(const Point A, const Point B, double x1, double x2, const Color _color) : Shape(count,  _color){
         id++;
         points.clear();
+        center =  Point((A.x + B.x + x1 + x2) / 4, (2 * (A.y + B.y)) / 4);
         Point D = Point(x1, A.y);
         Point C = Point(x2, B.y);
         points.push_back(A);
@@ -194,77 +109,161 @@ public:
             out << i << ": (" << points[i].x << "; " << points[i].y << "); ";
         }
         out << endl;
+        out << "Центр фигуры: " << "(" << center.x << ";" << center.y << ")" << endl;
+        out << "Угол: " << angle << endl;
+    }
+    void move(const Point p) override{
+        double dx = p.x - center.x;
+        double dy = p.y - center.y;
+        center.x += dx;
+        center.y += dy;
+        for(size_t i = 0; i < points.size(); i++){
+            points[i].x += dx;
+            points[i].y += dy;
+        }
+    }
+    void rotate(int _angle) override{
+        angle= _angle % 360;
+        double angle = _angle * M_PI / 180.0;
+        for(size_t i = 0; i < points.size(); i++){
+            double x = center.x + (points[i].x - center.x) * cos(angle) - (points[i].y - center.y) * sin(angle);
+            double y = center.y + (points[i].x - center.x) * sin(angle) + (points[i].y - center.y) * cos(angle);
+            points[i].x = x;
+            points[i].y = y;
+        }
+    }
+    void scale(double coefficient) override{
+        double x;
+        double y;
+        for(size_t i = 0; i < points.size(); i++){
+            x = center.x + (points[i].x - center.x) * coefficient;
+            y = center.y + (points[i].y - center.y) * coefficient;
+            points[i].x = x;
+            points[i].y = y;
+        }
     }
     ~Trapezium(){
         sides.clear();
+        points.clear();
     }
 };
 
-class Circle : public Shape{
+class Rhombus : public Shape{
+protected:
+  double sides;
+  Point center;
+private:
+  vector <Point> points;
+  void move(const Point p) override{
+      double dx = p.x - center.x;
+      double dy = p.y - center.y;
+      center.x += dx;
+      center.y += dy;
+      for(size_t i = 0; i < points.size(); i++){
+          points[i].x += dx;
+          points[i].y += dy;
+      }
+  }
+  void rotate(int _angle) override{
+      angle= _angle % 360;
+      double angle = _angle * M_PI / 180.0;
+      for(size_t i = 0; i < points.size(); i++){
+          double x = center.x + (points[i].x - center.x) * cos(angle) - (points[i].y - center.y) * sin(angle);
+          double y = center.y + (points[i].x - center.x) * sin(angle) + (points[i].y - center.y) * cos(angle);
+          points[i].x = x;
+          points[i].y = y;
+      }
+  }
+  void scale(double coefficient) override{
+      double x;
+      double y;
+      for(size_t i = 0; i < points.size(); i++){
+          x = center.x + (points[i].x - center.x) * coefficient;
+          y = center.y + (points[i].y - center.y) * coefficient;
+          points[i].x = x;
+          points[i].y = y;
+      }
+  }
+  void push_points( double dx, double dy) {
+    points.clear();
+    Point A = Point(center.x + dx, center.y);
+    Point B = Point(center.x, center.y + dy);
+    Point C = Point(center.x - dx, center.y);
+    Point D = Point(center.x, center.y - dy);
+    points.push_back(A);
+    points.push_back(B);
+    points.push_back(C);
+    points.push_back(D);
+  }
+  double area()override{
+      sides_of_shape();
+      double dx = points[0].x - points[1].x;
+      double dy = points[1].y - points[0].y;
+      double d1 = 2 * dx;
+      double d2 = 2 * dy;
+      double area = d1 * d2 / 2;
+      return abs(area);
+  }
+  void sides_of_shape() override{
+      sides = sqrt(pow((points[0].x - points[1].x), 2.0) + pow((points[0].y - points[1].y), 2.0));
+  }
 public:
-    Circle(const Point center, double r, const Color _color) : Shape(count, 0, _color, Point(center)){
+    Rhombus(const Point _center, double dx, double dy, const Color _color) : Shape(count, _color){
         id++;
-        points.clear();
-        Point A = Point(center.x, center.y + r);
-        Point B = Point(center.x + r, center.y);
-        Point C = Point(center.x, center.y - r);
-        Point D = Point(center.x - r, center.y);
-        points.push_back(A);
-        points.push_back(B);
-        points.push_back(C);
-        points.push_back(D);
+        center = _center;
+        push_points( dx, dy);
     }
-    void sides_of_shape() override{
-      sides.clear();
-      double r = (points[0].y - points[1].y);
-      sides.push_back(r);
+    void print(ostream &out) override{
+        out << "Все стороны фигуры равны: " ;
+        out << sides << endl;
+        out << "Координаты фигуры: " ;
+        for(int i = 0; i < points.size(); i++){
+            out << i << ": (" << points[i].x << "; " << points[i].y << "); ";
+        }
+        out << endl;
+        out << "Центр фигуры: " << "(" << center.x << ";" << center.y << ")" << endl;
+        out << "Угол: " << angle << endl;
+    }
+    ~Rhombus(){
+        points.clear();
+    }
+};
+
+class Circle : public Rhombus{
+public:
+    Circle(const Point center, double r, const Color _color) : Rhombus(Point(center), r, r, _color){
+    sides = r;
+    }
+    void move(const Point p) override{
+        center.x = p.x;
+        center.y = p.y;
+    }
+    void rotate(int _angle) override{};
+    void scale(double coefficient) override{
+        sides *=coefficient;
     }
     double area()override{
-        sides_of_shape();
-        double area = M_PI * pow(sides[0], 2.0);
+        double area = M_PI * pow(sides, 2.0);
         return abs(area);
     }
     void print(ostream &out) override{
-        sides_of_shape();
-        out << "Радиус:  " << sides[0] << endl;
-        out << "Координаты фигуры: " ;
-        for(int i = 0; i < points.size(); i++){
-            out << i << ": (" << points[i].x << "; " << points[i].y << "), ";
-        }
-        out << endl;
-
+        out << "Радиус:  " << sides << endl;
+        out << "Центр фигуры: " << "(" << center.x << ";" << center.y << ")" << endl;
     }
     ~Circle(){}
 };
 
 int main(){
     setlocale(LC_ALL, "Russian");
-    cout << "Ромб" << endl;
-    Shape *test1 = new Rhombus({1, 1}, 4, 6, {0, 0, 1});
-    cout << test1;
-    cout << "Маштабирование ромба" << endl;
-    test1->scale(4);
-    cout << test1;
-    cout << "Трапеция" << endl;
-    Shape *test2 = new Trapezium({1, 1}, {2, 5}, 5, 3, {0, 1, 0});
-    cout << test2;
-    cout << "Маштабирование трапеции" << endl;
-    test2->scale(6);
-    cout << test2;
-    cout << "Перемещение трапеции" << endl;
-    test2->move({10, 12});
-    cout << test2;
-    cout << "Поворот трапеции" << endl;
-    test2->rotate(60);
-    cout << test2;
-    cout << "Круг" << endl;
-    Shape *test3 = new Circle({5, 7}, 3, {1, 0, 0});
-    cout << test3;
-    cout << "Перемещение круга" << endl;
-    test3->move({10, 12});
-    cout << test3;
-    cout << "Маштабирование круга" << endl;
-    test3->scale(8);
-    cout << test3;
+    Shape* test[3]={ new Rhombus({1, 1}, 4, 6, {0, 0, 1}), new Trapezium({1, 1}, {2, 5}, 5, 3, {0, 1, 0}), new Circle({5, 7}, 3, {1, 0, 0})};
+    for(int i=0; i<3; i++){
+      cout<<test[i];
+      test[i]->rotate(60);
+      cout << test[i];
+      test[i]->move({10, 12});
+      cout << test[i];
+      test[i]->scale(3);
+      cout << test[i]<<"____________________________________"<<endl;
+    }
     return 0;
 }
