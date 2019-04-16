@@ -22,13 +22,3 @@ ostream &operator << (ostream &out, const Ellipse& ellipse) {
     out << "SmallRadius:" << ellipse.smallRadius << endl;
     return out;
 }
-
-void operator * (Ellipse& ellipse, double coefficient){
-    ellipse.Scale(coefficient);
-    cout << "* " << coefficient << endl;
-}
-
-void operator + (Ellipse& ellipse, double distance){
-     ellipse.Move(distance);
-     cout << "+ " << distance << endl;
-}

@@ -9,8 +9,20 @@ public:
     Ellipse(Color color, Point center, double smallRadius, double bigRadius);
     void Scale(double coefficient) override;
     friend ostream &operator << (ostream &out, const Ellipse& ellipse);
-    friend void operator * (Ellipse& ellipse, double coefficient);
-    friend void operator + (Ellipse& ellipse, double distance);
+
+    Ellipse operator * (double coefficient){
+        this->Scale(coefficient);
+        cout << "* " << coefficient << endl;
+        return *this;
+    }
+
+    Ellipse operator + (double distance){
+         this->Move(distance);
+         cout << "+ " << distance << endl;
+         return *this;
+    }
+
+
 private:
     double smallRadius;
     double bigRadius;

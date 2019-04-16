@@ -21,13 +21,3 @@ ostream &operator << (ostream &out, const Square& square){
     out << "Lenght`s square:" << square.lenght << endl;
     return out;
 }
-
-void operator * (Square& square, double coefficient){
-    square.Scale(coefficient);
-    cout << "* " << coefficient << endl;
-}
-
-void operator + (Square& square, double distance){
-     square.Move(distance);
-     cout << "+ " << distance << endl;
-}

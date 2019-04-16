@@ -2,6 +2,8 @@
 #include <time.h>
 #include <stdlib.h>
 
+int Shape::ID;
+
 Shape::Shape(Color color, Point center) : color(color), center(center) {
         Local_ID = ++ID;
 }

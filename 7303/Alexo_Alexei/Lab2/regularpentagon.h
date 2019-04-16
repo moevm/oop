@@ -9,8 +9,19 @@ public:
     RegularPentagon(Color color, Point center, int lenght);
     void Scale(double coefficient) override;
     friend ostream &operator << (ostream &out, const RegularPentagon& regularPentagon);
-    friend void operator * (RegularPentagon& regularPentagon, double coefficient);
-    friend void operator + (RegularPentagon& regularPentagon, double distance);
+
+    RegularPentagon operator * (double coefficient){
+        this->Scale(coefficient);
+        cout << "* " << coefficient << endl;
+        return *this;
+    }
+
+    RegularPentagon operator + (double distance){
+         this->Move(distance);
+         cout << "+ " << distance << endl;
+         return *this;
+    }
+
 private:
     int lenght;
 };

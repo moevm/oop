@@ -7,7 +7,6 @@
 #include "shape.h"
 #include "square.h"
 
-int Shape::ID;
 
 int main(int argc, char *argv[])
 {
@@ -20,12 +19,13 @@ int main(int argc, char *argv[])
     cout << square << endl;
     square * 0.5;
     cout << square << endl;
+    square + -5;
+    cout << square << endl;
     square * 1;
     cout << square << endl;
     square * 3;
     cout << square << endl;
-    square + -5;
-    cout << square << endl;
+
     square.Scale(0.5);
     cout << square << endl;
     square.Move(Point(100, 100));
@@ -35,8 +35,6 @@ int main(int argc, char *argv[])
     ellipse * 2;
     cout << ellipse << endl;
     ellipse.Scale(0.5);
-    cout << ellipse << endl;
-    ellipse.Scale(2);
     cout << ellipse << endl;
     ellipse + 15;
     cout << ellipse << endl;

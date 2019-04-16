@@ -23,13 +23,3 @@ ostream &operator<<(ostream &out, const RegularPentagon& regularPentagon) {
     out << "Length`s RegularPentagon:" << regularPentagon.lenght << endl;
     return out;
 }
-
-void operator * (RegularPentagon& regularPentagon, double coefficient){
-    regularPentagon.Scale(coefficient);
-    cout << "* " << coefficient << endl;
-}
-
-void operator + (RegularPentagon& regularPentagon, double distance){
-     regularPentagon.Move(distance);
-     cout << "+ " << distance << endl;
-}
