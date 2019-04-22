@@ -3,7 +3,8 @@
 #include <stdexcept>
 #include <cstddef>
 
-namespace stepik{
+namespace stepik
+{
 template <class Type>
 struct node
 {
@@ -77,6 +78,7 @@ public:
     typedef Type value_type;
     typedef value_type& reference;
     typedef const value_type& const_reference;
+    typedef list_iterator<Type> iterator;
 
     list(): m_head(nullptr), m_tail(nullptr){}
     ~list(){
@@ -122,7 +124,13 @@ public:
             return *this;
         }
     }
+    list::iterator begin(){
+      return iterator(m_head);
+    }
 
+    list::iterator end(){
+      return iterator();
+    }
     void push_back(const value_type& value){
         node <value_type> * el = new node <value_type> (value, nullptr, m_tail);
         if(!empty()) {
@@ -146,7 +154,43 @@ public:
             m_tail = m_head;
         }
     }
+    iterator insert(iterator pos, const Type& value){
+       if(!pos.m_node){
+            push_back(value);
+            return iterator(m_tail);
+        }
+        else if(!pos.m_node->prev){
+            push_front(value);
+            return iterator(m_head);
+        }
+        else{
+            node<Type>* tmp = new node<Type>(value, pos.m_node, pos.m_node->prev);
+            pos.m_node->prev =pos.m_node->prev->next= tmp;
+            return iterator(tmp);
+        }
+    }
 
+    iterator erase(iterator pos){
+      if (!pos.m_node){
+      return nullptr;
+    }
+    else if (!pos.m_node->prev){
+      pop_front();
+      return iterator(m_head);
+    }
+    else if (!pos.m_node->next){
+      pop_back();
+      return iterator(m_tail);
+    }
+    else{
+            node<Type>* tmp = pos.m_node;
+      pos.m_node->next->prev = pos.m_node->prev;
+      pos.m_node->prev->next = pos.m_node->next;
+      iterator n(pos.m_node->next);
+      delete tmp;
+      return n;
+    }
+  }
     reference front(){
         if(!empty()) return m_head->value;
 
