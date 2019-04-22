@@ -76,7 +76,7 @@ public:
     list_iterator operator++(int)
     {
         list_iterator tmp(m_node);
-        tmp = tmp->next;
+        m_node = m_node->next;
         return tmp;
     }
 
