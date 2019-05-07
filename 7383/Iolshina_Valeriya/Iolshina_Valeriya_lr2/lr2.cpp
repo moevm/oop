@@ -4,7 +4,7 @@
 class Shape
 {
 protected:
-	double x, y;
+  double x, y;
   int r, g, b;
   int id;
   static int next_id;
@@ -13,34 +13,34 @@ public:
 
 	Shape(double new_x = 0, double new_y = 0, double new_angle = 0) : x(new_x), y(new_y), id(++next_id)
 	{
-    r = g = b = 0;
-  }
+          r = g = b = 0;
+        }
 
 	virtual ~Shape() {}
 
 	void setColor(int new_r, int new_g, int new_b)
 	{
-    r = new_r;
-    g = new_g;
-    b = new_b;
-  }
+          r = new_r;
+          g = new_g;
+          b = new_b;
+        }
 
-  void getColor(int &cur_r, int &cur_g, int&cur_b)
-	{
-    cur_r = r;
-    cur_g = g;
-    cur_b = b;
-  }
+       void getColor(int &cur_r, int &cur_g, int&cur_b)
+       {
+         cur_r = r;
+         cur_g = g;
+         cur_b = b;
+       }
 
-	virtual void move(double x, double y) = 0;
-  virtual void rotate(double angle) = 0;
-  virtual void scale(double k) = 0;
+       virtual void move(double x, double y) = 0;
+       virtual void rotate(double angle) = 0;
+       virtual void scale(double k) = 0;
 
-  friend std::ostream & operator << (std::ostream &out, const Shape &figure)
-	{
+       friend std::ostream & operator << (std::ostream &out, const Shape &figure)
+       {
 		out << "Координаты центра:" << figure.x << ", " << figure.y << std::endl;
-    out << "ID: " << figure.id << std::endl;
-    out << "Цвет: " << figure.r << ", " << figure.g << ", " << figure.b << std::endl;
+                out << "ID: " << figure.id << std::endl;
+                out << "Цвет: " << figure.r << ", " << figure.g << ", " << figure.b << std::endl;
 		return out;
 	}
 };
@@ -64,20 +64,20 @@ public:
 		y = new_y;
 	}
 
-  void scale(double k) override
+        void scale(double k) override
 	{
-    radius *= k;
-  }
+          radius *= k;
+        }
 
 	void rotate(double new_angle) override
 	{}
 
-  friend std::ostream & operator << (std::ostream &out, Circle &figure)
+        friend std::ostream & operator << (std::ostream &out, Circle &figure)
 	{
-    out << "\tКруг" << std::endl;
-    out << (Shape&) figure << std::endl;
-    out << "Радиус: " << figure.radius;
-		return out;
+          out << "\tКруг" << std::endl;
+          out << (Shape&) figure << std::endl;
+          out << "Радиус: " << figure.radius;
+          return out;
 	}
 
 };
@@ -94,17 +94,17 @@ public:
         : Circle(new_x, new_y, radius), seg_angle(angle)
 	{}
 
-		void move(double new_x, double new_y)
-		{
-	    x = new_x;
-	    y = new_y;
-			double dx = abs(x - new_x);
-			double dy = abs(y - new_y);
-			x1 += dx;
-			x2 += dx;
-			y1 += dy;
-			y2 += dy;
-	  }
+	void move(double new_x, double new_y)
+	{
+	  x = new_x;
+	  y = new_y;
+	  double dx = abs(x - new_x);
+	  double dy = abs(y - new_y);
+	  x1 += dx;
+	  x2 += dx;
+	  y1 += dy;
+	  y2 += dy;
+	}
 
 	void scale(double k) override
 	{
@@ -124,12 +124,12 @@ public:
 	~CircleSeg() {}
 
         friend std::ostream & operator << (std::ostream &out, const CircleSeg &figure)
-				{
+	{
             out << "\tСегмент" << std::endl;
             out << (Circle&) figure << std::endl;
             out << "Угол сегмента: " << figure.seg_angle << std::endl;
             return out;
-	      }
+	}
 };
 
 class Trapeze : public Shape
@@ -139,21 +139,21 @@ class Trapeze : public Shape
         double bottom_side;
         double height;
         double x1, x2, x3, x4;
-				double y1, y2, y3, y4;
+	double y1, y2, y3, y4;
 
     public:
 
     Trapeze(double top, double bottom, double _x1, double _y1, double _x2, double _y2, double new_x = 0, double new_y = 0)
      : Shape(new_x, new_y), top_side(top), bottom_side(bottom), x1(_x1), y1(_y1), x2(_x2), y2(_y2)
-		 {
+    {
          height = abs(y2 - y1);
          y = (height/3) * ((2*top_side + bottom_side)/(top_side+bottom_side));
          x = x1 + bottom_side/2;
-     }
+    }
 
      ~Trapeze() {}
 
-		 void move(double new_x, double new_y)
+		void move(double new_x, double new_y)
 	 	{
 	 		x = new_x;
 	 		y = new_y;
@@ -169,7 +169,7 @@ class Trapeze : public Shape
 			y4 += dy;
 	 	}
 
-     void scale(double k) override
+     		void scale(double k) override
 		 {
 			 top_side *= k;
 			 bottom_side *= k;
@@ -189,7 +189,7 @@ class Trapeze : public Shape
  			y2 = y + (y - y2)*cos(new_angle) - (x - x2)*sin(new_angle);
  		}
 
-    friend std::ostream & operator << (std::ostream &out, const Trapeze &figure)
+        friend std::ostream & operator << (std::ostream &out, const Trapeze &figure)
         {
         out << "\tТрапеция" << std::endl;
         out << (Shape&) figure << std::endl;
