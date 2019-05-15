@@ -3,9 +3,9 @@
 #include <cstddef> // size_t
 #include <initializer_list>
 #include <stdexcept>
+#include "shape.h"
 
-namespace stepik
-{
+
   template <typename Type>
   class vector
   {
@@ -52,7 +52,10 @@ namespace stepik
     {
         delete[] m_first;
     }
-	
+
+    vector& operator*(const vector& other){
+      return *other;
+    }
     //assignment operators
     vector& operator=(const vector& other)
     {
@@ -73,30 +76,30 @@ namespace stepik
           other.m_first = other.m_last = nullptr;
       }
     }
-	
+
     // resize methods
     void resize(size_t count)
     {
-			iterator vec = new Type[count];
-			if (count > m_last - m_first)
-			{
-				std::copy(m_first, m_last, vec);
-			}
-			else
-			{
-				std::copy(m_first, m_first + count, vec);
-			}
-			delete[]m_first;
-			m_first = vec;
-			m_last = m_first + count;
+                        iterator vec = new Type[count];
+                        if (count > m_last - m_first)
+                        {
+                                std::copy(m_first, m_last, vec);
+                        }
+                        else
+                        {
+                                std::copy(m_first, m_first + count, vec);
+                        }
+                        delete[]m_first;
+                        m_first = vec;
+                        m_last = m_first + count;
     }
 
     //erase methods
     iterator erase(const_iterator pos)
     {
-			iterator iter = m_first;
-			difference_type size = m_last - m_first;
-			size_t i = 0;
+                        iterator iter = m_first;
+                        difference_type size = m_last - m_first;
+                        size_t i = 0;
 
 			while (iter != pos) {
 				iter++;
@@ -110,10 +113,10 @@ namespace stepik
 
     iterator erase(const_iterator first, const_iterator last)
     {
-			difference_type  n = last - first;
-			iterator iter = m_first;
+                        difference_type  n = last - first;
+                        iterator iter = m_first;
 
-			if (n == 0) 
+			if (n == 0)
 				return iter;
 
 			for (; iter != first; iter++);
@@ -125,8 +128,8 @@ namespace stepik
     //insert methods
     iterator insert(const_iterator pos, const Type& value)
     {
-			iterator iter = m_first;
-			size_t i = 0;
+                        iterator iter = m_first;
+                        size_t i = 0;
 
 			while (iter != pos) {
 				iter++;
@@ -137,27 +140,12 @@ namespace stepik
 			m_first[i] = value;
 			return  m_first + i;
     }
-      
-      		void resize(size_t count)
-		{
-			iterator vec = new Type[count];
-			if (count > m_last - m_first)
-			{
-				std::copy(m_first, m_last, vec);
-			}
-			else
-			{
-				std::copy(m_first, m_first + count, vec);
-			}
-			delete[]m_first;
-			m_first = vec;
-			m_last = m_first + count;
-		}
+
 
     template <typename InputIterator>
     iterator insert(const_iterator pos, InputIterator first, InputIterator last)
     {
-			difference_type  n = last - first;
+                        difference_type  n = last - first;
 
 			iterator iter = m_first;
 			size_t i = 0, index;
@@ -179,10 +167,10 @@ namespace stepik
     //push_back methods
     void push_back(const value_type& value)
     {
-			resize(size() + 1);
-			*(m_last - 1) = value;
+                        resize(size() + 1);
+                        *(m_last - 1) = value;
     }
-	
+
     //at methods
     reference at(size_t pos)
     {
@@ -239,7 +227,7 @@ namespace stepik
       return m_first == m_last;
     }
 
-  private:   
+  private:
     reference checkIndexAndGet(size_t pos) const
     {
       if (pos >= size())
@@ -256,4 +244,3 @@ namespace stepik
     iterator m_first;
     iterator m_last;
   };
-}// namespace stepik
