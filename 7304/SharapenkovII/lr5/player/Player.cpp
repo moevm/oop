@@ -6,6 +6,7 @@
 #include <iostream>
 #include "../runtime/Game.h"
 #include "Player.h"
+#include "../exception/Exception.h"
 
 unsigned Player::player_num = 0;
 
@@ -37,7 +38,7 @@ void Player::createUnit(Coord c, string unit_type) {
     else if(unit_type == "Killer")
         unit = make_shared<Killer>();
     else
-        return;
+        throw Exception("Unknown unit type: " + unit_type);
 
     addUnit(unit);
     placeUnit(c, unit);

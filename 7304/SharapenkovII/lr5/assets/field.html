@@ -8,19 +8,19 @@
 </head>
 
 <body>
-
     <div class="top-bar-info">
         <div class="current-turn-info">
-            <div id="current-turn-info">Current turn: Player 1</div>
+            <div id="current-turn-player">Current turn: None</div>
             <div id="num-of-moves-info">Number of moves: 0</div>
         </div>
-        <div class="next-turn-info">
-            <button onclick="OnNextTurn()" class="next-turn-btn">Next turn</button>
-            <button onclick="OnNextTurn()" class="next-turn-btn">New Game</button>
-            <button onclick="OnNextTurn()" class="next-turn-btn">Change</button>
-            <button onclick="OnRecreate(document.getElementById('field-size').value)" class="next-turn-btn">Recreate</button>
-            <button onclick="OnClearField()" class="next-turn-btn">Clear</button>
+        <div class="menu-btn">
+            <button onclick="OnNextTurn()" class="btn" id="next-btn">Next turn</button>
+            <button onclick="OnNewGame()" class="btn">New Game</button>
+            <button onclick="OnRecreate(document.getElementById('field-size').value)" class="btn">Recreate</button>
+            <button onclick="OnClearField()" class="btn">Clear</button>
+            <button onclick="OnLogMode()" class="btn">Log Mode</button>
             <input id="field-size" type="text" placeholder="Field size">
+            <div id="log-mode">Log mode: On(no cache)</div>
         </div>
     </div>
 
@@ -30,19 +30,18 @@
     <div class="menu">
         <div class="picked-hex-info" id="picked-hex-info">
             <h4>Picked hex info</h4>
+            <p id="picked-hex-info-coord">Coord: Wind</p>
+            <p id="picked-hex-info-unit">Unit: Wind</p>
             <p id="picked-hex-info-imp">Impediment: Wind</p>
         </div>
         <div class="picked-hex-info" id="picked-unit-info">
             <h4>Picked Unit info</h4>
-            <p>Attack: 10</p>
-            <p>Attack Type: 0</p>
-            <p>Health: 100/100</p>
-            <p>Energy: 100/100</p>
+            <p id="unit-attack">Attack: 10</p>
+            <p id="unit-attack-range">Attack range: 0</p>
+            <p id="unit-health">Health: 100/100</p>
+            <p id="unit-energy">Energy: 100/100</p>
         </div>
-        <div class="pass-info">
-            <h4>Information about the way</h4>
-            <p>Requires energy: 100</p>
-            <p>Possible event: Drown in the swamp</p>
+        <div class="logs" id="logs">
         </div>
     </div>
 

@@ -65,7 +65,7 @@ public:
         range = 5;
         health_max = 50;
         health = health_max;
-        energy_max = 200;
+        energy_max = 300;
         energy = energy_max;
     }
 
@@ -80,10 +80,10 @@ public:
     Tank() {
         type_name = "Tank";
         attack = 10;
-        range = 5;
-        health_max = 50;
+        range = 2;
+        health_max = 300;
         health = health_max;
-        energy_max = 200;
+        energy_max = 400;
         energy = energy_max;
     }
 
@@ -97,8 +97,8 @@ class Knight : public Unit {
 public:
     Knight() {
         type_name = "Knight";
-        attack = 10;
-        range = 5;
+        attack = 25;
+        range = 3;
         health_max = 50;
         health = health_max;
         energy_max = 200;
@@ -115,9 +115,9 @@ class King : public Unit {
 public:
     King() {
         type_name = "King";
-        attack = 10;
+        attack = 30;
         range = 5;
-        health_max = 50;
+        health_max = 100;
         health = health_max;
         energy_max = 200;
         energy = energy_max;
@@ -133,8 +133,8 @@ class Priest : public Unit {
 public:
     Priest() {
         type_name = "Priest";
-        attack = 10;
-        range = 5;
+        attack = 20;
+        range = 10;
         health_max = 50;
         health = health_max;
         energy_max = 200;
@@ -151,7 +151,7 @@ class Killer : public Unit {
 public:
     Killer() {
         type_name = "Killer";
-        attack = 10;
+        attack = 50;
         range = 5;
         health_max = 50;
         health = health_max;

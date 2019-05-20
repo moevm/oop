@@ -8,6 +8,7 @@
 #include "StaticImpediment.h"
 #include "DynamicImpediment.h"
 #include "../runtime/Game.h"
+#include "../exception/Exception.h"
 
 void ImpedimentOrchestrator::createImp(Coord c, string imp_type) {
     Game &game = Game::getGame();
@@ -143,6 +144,8 @@ void ImpedimentOrchestrator::createImp(Coord c, string imp_type) {
             next = rand() % 6;
             reachable = cell->getReachable();
         }
+    } else {
+        throw Exception("Unknown impediment type: " + imp_type);
     }
 }
 

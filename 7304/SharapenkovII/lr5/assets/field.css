@@ -5,7 +5,7 @@ body {
     min-width: 1350px;
 }
 
-.next-turn-info {
+.menu-btn {
     display: inline-block;
     margin-left: 20px;
 }
@@ -18,15 +18,15 @@ body {
     display: inline-block;
 }
 
-.next-turn-btn {
+.btn {
     background-color: white;
 }
 
-.next-turn-btn:hover {
+.btn:hover {
     background-color: #eeeeee;
 }
 
-.next-turn-btn:active {
+.btn:active {
     background-color: #dddddd;
 }
 
@@ -320,6 +320,14 @@ body {
     margin: 5px;
 }
 
+#picked-hex-info {
+    display: none;
+}
+
+#picked-unit-info {
+    display: none;
+}
+
 .picked-hex-info h4, .pass-info h4 {
   margin: 10px;
 }
@@ -330,4 +338,19 @@ body {
 
 .hide {
     display: none;
+}
+
+#logs {
+    background-color: white;
+    min-height: 100px;
+    max-height: 500px;
+    overflow: auto;
+    width: 95%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: none;
+}
+
+#log-mode {
+    display: inline-block;
 }

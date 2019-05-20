@@ -91,8 +91,11 @@ string FileLogger::read() {
     string line;
     stringstream result;
 
+    ilog_file.clear();
+    ilog_file.seekg(0, ios::beg);
+
     while(getline(ilog_file, line))
-        result << line;
+        result << line << "<br>";
 
     return result.str();
 }

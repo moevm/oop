@@ -38,6 +38,8 @@ public:
     void OnNextTurn(const JSObject& obj, const JSArgs& args);
     void OnRecreate(const JSObject& obj, const JSArgs& args);
     void OnClearField(const JSObject& obj, const JSArgs& args);
+    void OnNewGame(const JSObject& obj, const JSArgs& args);
+    void OnLogMode(const JSObject& obj, const JSArgs& args);
 
 protected:
     void CreateField();
@@ -52,6 +54,13 @@ protected:
     JSFunction renderImp;
     JSFunction renderUnit;
     JSFunction makeReachable;
+    JSFunction showHexInfo;
+    JSFunction setLogMode;
+    JSFunction showNextTurn;
+    JSFunction newGame;
+    JSFunction endGame;
+    JSFunction showPickedUnit;
+    JSFunction printLogs;
 };
 
 

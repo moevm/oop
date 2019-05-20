@@ -4,12 +4,15 @@
 #include <iostream>
 #include "Game.h"
 #include "../logger/Logger.h"
+#include "../exception/Exception.h"
 
 Game::Game() {
     gui = make_unique<GUI>();
     field = unique_ptr<Field>(nullptr);
 
     current_turn_player = 0;
+
+    number_of_moves = 0;
 
     current_cell = shared_ptr<Cell>(nullptr);
 
@@ -37,18 +40,26 @@ void Game::nextTurn() {
     clearPickCell();
     resetUnits();
 
-    Logger &logger = Logger::getLogger();
+    number_of_moves++;
 
+    Logger &logger = Logger::getLogger();
     logger.write("Next turn. Current player: " + players[current_turn_player]->getName());
 }
 
 void Game::createUnit(Coord c, string unit_type, shared_ptr<Player> player) {
-    player->createUnit(c, unit_type);
 
-    Logger &logger = Logger::getLogger();
-    logger.write(
-            "Create Unit. Type: " + unit_type + "; Coord: " + "(" + to_string(c.getX()) + "," + to_string(c.getY()) +
-            ")");
+    try {
+        player->createUnit(c, unit_type);
+
+        Logger &logger = Logger::getLogger();
+        logger.write(
+                "Create Unit. Type: " + unit_type + "; Coord: " + "(" + to_string(c.getX()) + "," + to_string(c.getY()) +
+                ")");
+    } catch (Exception &err) {
+        Logger &logger = Logger::getLogger();
+        logger.write(err.what());
+    }
+
 }
 
 void Game::clearUnits() {
@@ -84,10 +95,12 @@ void Game::attackUnit(shared_ptr<Cell> from, shared_ptr<Cell> to) {
 
     unit1->attackUnit(unit2);
 
+
     Logger &logger = Logger::getLogger();
     logger.write(
             "Attack Unit. From: (" + to_string(from->getX()) + "," + to_string(from->getY()) +
             "); To: (" + to_string(to->getX()) + "," + to_string(to->getY()) + ")");
+
 }
 
 void Game::resetUnits() {
@@ -96,8 +109,15 @@ void Game::resetUnits() {
 }
 
 void Game::createImp(Coord c, string imp_type) {
-    ImpedimentOrchestrator &imp_orch = field->getImpOrch();
-    imp_orch.createImp(c, imp_type);
+
+    try {
+        ImpedimentOrchestrator &imp_orch = field->getImpOrch();
+        imp_orch.createImp(c, imp_type);
+    } catch (Exception &err) {
+        Logger &logger = Logger::getLogger();
+        logger.write(err.what());
+    }
+
 }
 
 void Game::deleteImp(Coord c) {
@@ -120,7 +140,9 @@ Field &Game::getField() { return *field; }
 
 vector<shared_ptr<Player>>& Game::getPlayers() { return players; }
 
-shared_ptr<Player> Game::getCurrentPlayer() { return players[current_turn_player]; }
+shared_ptr<Player> Game::getCurrentPlayer() {
+    return players.size() ? players[current_turn_player] : shared_ptr<Player>(nullptr);
+}
 
 void Game::addPlayer(shared_ptr<Player> &player) {
 
@@ -130,9 +152,15 @@ void Game::addPlayer(shared_ptr<Player> &player) {
     logger.write("Create Player. Name: " + player->getName() + "; Color: " + player->getColor() + ";");
 }
 
+void Game::clearPlayers() {
+    players.clear();
+    current_cell.reset();
+    current_turn_player = 0;
+}
+
 void Game::pickCell(Coord c) {
 
-    if (hasPickCell() && getCurrentPlayer()->hasUnit(getCurrentCell()->getUnit()) &&
+    if (!!getCurrentPlayer() && hasPickCell() && getCurrentPlayer()->hasUnit(getCurrentCell()->getUnit()) &&
         !getCell(c)->hasUnit()) {
         if (getCurrentPlayer()->hasPath(getCell(c))) {
 
@@ -140,11 +168,10 @@ void Game::pickCell(Coord c) {
                           getCurrentPlayer()->getEnergyLoss(getCell(c)));
 
             getCurrentPlayer()->clearPaths();
-            clearPickCell();
 
             return;
         }
-    } else if (hasPickCell() && getCell(c)->hasUnit() &&
+    } else if (!!getCurrentPlayer() && hasPickCell() && getCell(c)->hasUnit() &&
                !getCurrentPlayer()->hasUnit(getCell(c)->getUnit()) &&
                getCurrentPlayer()->hasPath(getCell(c))) {
 
@@ -153,16 +180,24 @@ void Game::pickCell(Coord c) {
 
         clearUnits();
         getCurrentPlayer()->clearPaths();
-        clearPickCell();
+
+        for(auto &player : players) {
+            if(player->getUnits().size() == 0) {
+                Logger &logger = Logger::getLogger();
+                logger.write(
+                        "Player " + getCurrentPlayer()->getName() + " win!");
+            }
+        }
 
         return;
     }
 
     current_cell = field->getCell(c);
 
-    getCurrentPlayer()->clearPaths();
+    if(!!getCurrentPlayer())
+        getCurrentPlayer()->clearPaths();
 
-    if(current_cell->hasUnit() && getCurrentPlayer()->hasUnit(current_cell->getUnit()))
+    if(!!getCurrentPlayer() && current_cell->hasUnit() && getCurrentPlayer()->hasUnit(current_cell->getUnit()))
         getCurrentPlayer()->findPaths(current_cell, current_cell->getUnit()->getEnergy(), 6);
 
     if(current_cell->hasImp()) {
@@ -170,7 +205,7 @@ void Game::pickCell(Coord c) {
     }
 
     Logger &logger = Logger::getLogger();
-    logger.write("Pick Cell. Coord: " + to_string(current_cell->getX()) + ", " + to_string(current_cell->getX()) + ");");
+    logger.write("Pick Cell. Coord: (" + to_string(current_cell->getX()) + ", " + to_string(current_cell->getY()) + ");");
 }
 
 bool Game::hasPickCell() { return !!current_cell; }
@@ -180,3 +215,7 @@ void Game::clearPickCell() { current_cell.reset(); }
 shared_ptr<Cell> Game::getCell(Coord c) { return field->getCell(c); }
 
 shared_ptr<Cell> Game::getCurrentCell() { return current_cell; }
+
+unsigned Game::getNumOfMoves() { return number_of_moves; }
+
+void Game::resetNumOfMoves() { number_of_moves = 0; }

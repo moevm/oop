@@ -23,6 +23,7 @@ class Game {
 
     vector<shared_ptr<Player>> players;
     unsigned current_turn_player;
+    unsigned number_of_moves;
 
     shared_ptr<Cell> current_cell;
 
@@ -54,12 +55,16 @@ public:
     vector<shared_ptr<Player>> &getPlayers();
     shared_ptr<Player> getCurrentPlayer();
     void addPlayer(shared_ptr<Player> &);
+    void clearPlayers();
 
     void pickCell(Coord);
     bool hasPickCell();
     void clearPickCell();
     shared_ptr<Cell> getCell(Coord);
     shared_ptr<Cell> getCurrentCell();
+
+    unsigned getNumOfMoves();
+    void resetNumOfMoves();
 
 };
 
