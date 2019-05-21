@@ -25,7 +25,6 @@ namespace stepik
 
     explicit vector(size_t count = 0)
     {
-      // implement this
       m_first = new value_type[count]();
       m_last = m_first + count;
     }
@@ -54,7 +53,7 @@ namespace stepik
         other.m_first = other.m_last = nullptr;
     }
 
-    ~vector()
+    virtual ~vector()
     {
       // implement this
         delete[] m_first;
@@ -82,6 +81,15 @@ namespace stepik
         m_first = buffer;
         m_last = m_first + count;
     }
+
+// This method ////////////////////
+//    void Dekart(const vector<Type> &vector1, const vector<Type> &vector2) {
+//       //if(vector1[0] == )
+//        for(int i = 0, s = vector1.size(); i < s; i++) {
+//            *(m_first + i) = vector1[i] * vector2[i];
+//        }
+//    }
+// /////////////////////////////
 
     //erase methods
        iterator erase(const_iterator pos)
