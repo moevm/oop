@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->loadInfo();
     connect(ui->btnReplace,SIGNAL(clicked(bool)),this,SLOT(btnReplace_clicked()));
     connect(ui->btnHandle,SIGNAL(clicked(bool)),this,SLOT(btnHandle_clicked()));
+    connect(ui->btnUndo,SIGNAL(clicked(bool)),this,SLOT(btnUndo_clicked()));
     connect(ui->actionSave,SIGNAL(triggered(bool)),this,SLOT(actionSave_triggered()));
     connect(ui->actionLoad,SIGNAL(triggered(bool)),this,SLOT(actionLoad_triggered()));
 
@@ -28,6 +29,10 @@ void MainWindow::loadInfo(){
         ui->lstHandlers->addItem(QString::fromStdString(s)); ;
     }
     ui->lblModelState->setText(QString::fromStdString(controller.getModelState()));
+}
+void MainWindow::btnUndo_clicked(){
+    this->controller.undo();
+    this->loadInfo();
 }
 void MainWindow::btnReplace_clicked(){
     try{

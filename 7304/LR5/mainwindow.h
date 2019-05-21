@@ -28,6 +28,7 @@ private slots:
     void btnHandle_clicked();
     void actionSave_triggered();
     void actionLoad_triggered();
+    void btnUndo_clicked();
 };
 
 #endif // MAINWINDOW_H

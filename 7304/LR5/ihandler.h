@@ -20,6 +20,7 @@ class IBackupable {
 public:
     virtual Memento* makeBackup() const = 0;
     virtual void restore(Memento *m) = 0;
+    virtual ~IBackupable();
 };
 class Unit {
 private:
@@ -34,13 +35,15 @@ public:
     std::size_t noOut;
     std::size_t type;
     bool isOutput;
+    virtual void setNext(std::size_t slot, Unit* handler) = 0;
+    virtual void setNext(std::size_t slot, std::shared_ptr<Unit> handler) = 0;
     virtual bool verify() const = 0;
 
     virtual std::string toString(){
-        return "Unit "+id;
+        return "Unit "+std::to_string(id);
     }
-
-    virtual ~Unit(){}
+    virtual Unit* clone() = 0;
+    virtual ~Unit();
 };
 
 template <typename T>
@@ -68,8 +71,8 @@ private:
 protected:
     std::unique_ptr<U[]> results;
     std::unique_ptr<IHandler<U>*[]> nexts;
-    HandlerOutput(int noOut):output_size(noOut), results(new U[noOut]), nexts(new IHandler<U>*[noOut]){
-        for(int i = 0; i<noOut;i++){
+    HandlerOutput(std::size_t noOut):output_size(noOut), results(new U[noOut]), nexts(new IHandler<U>*[noOut]){
+        for(std::size_t i = 0; i<noOut;i++){
             this->results[i]=U();
             this->nexts[i] = nullptr;
         }
@@ -98,6 +101,8 @@ public:
     virtual IHandler<U>* getNext(std::size_t slot){
         return this->nexts[slot];
     }
+
+
     virtual void setNext(std::size_t slot, IHandler<U>* handler) = 0;
     virtual void setNext(std::size_t slot, std::shared_ptr<IHandler<U>> handler) = 0;
 

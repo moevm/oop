@@ -33,6 +33,22 @@
      </widget>
     </item>
     <item>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>Other</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="btnUndo">
+         <property name="text">
+          <string>Undo</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
      <widget class="QGroupBox" name="groupFunction1">
       <property name="title">
        <string>Replace</string>
@@ -90,7 +106,7 @@
      <x>0</x>
      <y>0</y>
      <width>730</width>
-     <height>21</height>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

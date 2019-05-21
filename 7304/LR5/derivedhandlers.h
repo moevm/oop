@@ -14,6 +14,10 @@ public:
     virtual std::string toString(){
         return SimpleHandler<double>::toString()+"\t\tType: SumHandler\n";
     }
+    virtual Unit* clone() {
+        return new SumHandler;
+    }
+
 };
 
 class SquaredHandler : public SimpleHandler<double> {
@@ -24,6 +28,9 @@ public:
     }
     virtual std::string toString(){
         return SimpleHandler<double>::toString()+"\t\tType: SquaredHandler\n";
+    }
+    virtual Unit* clone() {
+        return new SquaredHandler;
     }
 };
 
@@ -37,6 +44,9 @@ public:
     virtual std::string toString(){
         return SimpleHandler<int>::toString()+"\t\tType: DivModHandler\n";
     }
+    virtual Unit* clone() {
+        return new DivModHandler;
+    }
 };
 
 class DistributeHandler : public SimpleHandler<Coordinate>{
@@ -49,7 +59,9 @@ public:
     virtual std::string toString(){
         return SimpleHandler<Coordinate>::toString()+"\t\tType: DistributeHandler\n";
     }
-
+    virtual Unit* clone() {
+        return new DistributeHandler;
+    }
 };
 
 
@@ -63,7 +75,9 @@ public:
     virtual std::string toString(){
         return BaseHandler<Coordinate,double>::toString()+"\t\tType: CoordinateBreakupHandler\n";
     }
-
+    virtual Unit* clone() {
+        return new CoordinateBreakUpHandler;
+    }
 };
 
 
@@ -76,7 +90,9 @@ public:
     virtual std::string toString(){
         return BaseHandler<Coordinate,double>::toString()+"\t\tType: DistanceHandler\n";
     }
-
+    virtual Unit* clone() {
+        return new DistanceHandler;
+    }
 };
 
 class CoordinateMakingHandler : public BaseHandler<double, Coordinate>{
@@ -89,6 +105,9 @@ public:
     virtual std::string toString(){
         return BaseHandler<double,Coordinate>::toString()+"\t\tType: CoordinateMakingHandler\n";
     }
+    virtual Unit* clone() {
+        return new CoordinateMakingHandler;
+    }
 };
 
 class RoundHandler : public BaseHandler<double, int>{
@@ -100,6 +119,9 @@ public:
     }
     virtual std::string toString(){
         return BaseHandler<double, int>::toString()+"\t\tType: RoundHandler\n";
+    }
+    virtual Unit* clone() {
+        return new RoundHandler;
     }
 };
 

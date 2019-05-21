@@ -4,7 +4,7 @@
 #include "ihandler.h"
 #include <iostream>
 #include <sstream>
-
+#include "myexception.h"
 template <typename T, typename U>
 class BaseHandler : public IHandler <T>, public Unit, public HandlerOutput<U>{
 protected:
@@ -27,7 +27,20 @@ protected:
     }
 
 public :
-    virtual void setNext(std::size_t slot, IHandler<U>* handler){
+    virtual void setNext(std::size_t slot, Unit* handler){
+        IHandler<U>* next = dynamic_cast<IHandler<U>*>(handler);
+        if(next!=nullptr){
+            this->nexts[slot] = next;
+        }else throw TypeException();
+    }
+    virtual void setNext(std::size_t slot, std::shared_ptr<Unit> handler){
+        IHandler<U>* next = dynamic_cast<IHandler<U>*>(handler.get());
+        if(next!=nullptr){
+            this->nexts[slot] = next;
+        }else throw TypeException();
+    }
+
+    virtual void setNext(std::size_t slot, IHandler<U>* handler = nullptr){
         this->nexts[slot] = handler;
     }
 
@@ -104,7 +117,7 @@ public :
 
         return ss.str();
     }
-
+    virtual Unit* clone() = 0;
     virtual ~BaseHandler(){}
 };
 

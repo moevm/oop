@@ -20,9 +20,9 @@ public:
     using IMultiInputHandler<T>::handle;
     Model() : BaseHandler<T,U>(), inputHandler(nullptr), outputHandler(nullptr){}
 
-    template <typename A, typename B>
-    std::shared_ptr<BaseHandler<A,B>> add(BaseHandler<A,B> *h){
-        std::shared_ptr<BaseHandler<A,B>> sp (h);
+    //template <typename A, typename B>
+    std::shared_ptr<Unit> add(Unit *h){
+        std::shared_ptr<Unit> sp (h);
         handlers.push_back(sp);
         return sp;
     }
@@ -41,18 +41,44 @@ public:
     std::vector<std::shared_ptr<Unit>> getManagedHandlers(){
         return handlers;
     }
-    template <typename X>
-    void setInput(BaseHandler<T,X> *handler){
+    //template <typename X>
+
+    void setInput(Unit *handler){
+        IHandler<T> *conv = dynamic_cast<IHandler<T>*>(handler);
+        if(conv!=nullptr)
+            setInput(conv);
+        else throw TypeException();
+    }
+
+    void setOutput(Unit *handler){
+        HandlerOutput<U> *conv = dynamic_cast<HandlerOutput<U>*>(handler);
+        if(conv!=nullptr)
+            setOutput(conv);
+        else throw TypeException();
+    }
+
+    void setInput(IHandler<T> *handler){
         //check if h is in handlers
-        if(this->contains(handler)){
+        if(this->contains(dynamic_cast<Unit*>(handler))){
             inputHandler = handler;
-            this->noInp = handler->noInp;
+            this->noInp = dynamic_cast<Unit*>(handler)->noInp;
             // log about success
         }else{
             // log about failure
         }
     }
 
+    //template <typename X>
+    void setOutput(HandlerOutput<U> *handler){
+        // check if r is in handlers
+        if(this->contains(dynamic_cast<Unit*>(handler))){
+            outputHandler = handler;
+            dynamic_cast<Unit*>(handler)->isOutput = true;
+
+            this->noOut = dynamic_cast<Unit*>(handler)->noOut;
+            this->nexts.reset(new IHandler<U>*[this->noOut]);
+        }
+    }
     template <typename X, typename Y>
     void replace(Unit* h1, Unit *h2){
         BaseHandler<X,Y>* bh1 = dynamic_cast<BaseHandler<X,Y>*>(h1);
@@ -72,7 +98,7 @@ public:
                 for(std::size_t i = 0; i<h->noOut;i++){
                     if(h_out->getNext(i)!=nullptr){
                         if(h_out->getNext(i)==h1){
-                            h_out->setNext(i,h2);
+                            h_out->setNext(i,dynamic_cast<IHandler<X>*>(h2));
                         }
                     }
                 }
@@ -87,7 +113,7 @@ public:
             h1->isOutput = true; // set to true to pass the verify test
             for(std::size_t i = 0;i<h1->noOut;i++){
                 h2->setNext(i,h1->getNext(i));
-                h1->setNext(i,nullptr);
+                h1->setNext(i);
             }
 
         }
@@ -96,18 +122,6 @@ public:
             this->inputHandler = dynamic_cast<IHandler<T>*>(h2);
         }
 
-    }
-
-    template <typename X>
-    void setOutput(BaseHandler<X,U> *handler){
-        // check if r is in handlers
-        if(this->contains(handler)){
-            outputHandler = handler;
-            handler->isOutput = true;
-
-            this->noOut = handler->noOut;
-            this->nexts.reset(new IHandler<U>*[this->noOut]);
-        }
     }
 
     void backup(){
@@ -199,6 +213,9 @@ public:
 
 
         return ss.str();
+    }
+    virtual Unit* clone(){
+        return new Model;
     }
 private:
     virtual void process(std::size_t, const T*, std::size_t , U *){}

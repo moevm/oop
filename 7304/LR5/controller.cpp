@@ -5,20 +5,29 @@
 #include <iostream>
 #include "derivedhandlers.h"
 #include <memory>
+#include "handlerregistry.h"
 Controller::Controller(){
     init();
 
 }
 
 void Controller::init(){
-    auto h1 = myModel.add(new CoordinateMakingHandler);
-    auto h2 = myModel.add(new DistributeHandler);
-    auto h3 = myModel.add(new DistanceHandler);
-    auto h4 = myModel.add(new CoordinateBreakUpHandler);
-    auto h5 = myModel.add(new SquaredHandler);
-    auto h6 = myModel.add(new SumHandler);
-    auto h7 = myModel.add(new RoundHandler);
-    auto h8 = myModel.add(new DivModHandler);
+    //auto h1 = myModel.add(new CoordinateMakingHandler);
+    auto h1 = myModel.add(HandlerRegistry::getInstance().getByName("CoordinateMaking"));
+    auto h2 = myModel.add(HandlerRegistry::getInstance().getByName("Distribute"));
+    auto h3 = myModel.add(HandlerRegistry::getInstance().getByName("Distance"));
+    auto h4 = myModel.add(HandlerRegistry::getInstance().getByName("CoordinateBreakUp"));
+    auto h5 = myModel.add(HandlerRegistry::getInstance().getByName("Squared"));
+    auto h6 = myModel.add(HandlerRegistry::getInstance().getByName("Sum"));
+    auto h7 = myModel.add(HandlerRegistry::getInstance().getByName("Round"));
+    auto h8 = myModel.add(HandlerRegistry::getInstance().getByName("DivMod"));
+
+//    auto h3 = myModel.add(new DistanceHandler);
+//    auto h4 = myModel.add(new CoordinateBreakUpHandler);
+//    auto h5 = myModel.add(new SquaredHandler);
+//    auto h6 = myModel.add(new SumHandler);
+//    auto h7 = myModel.add(new RoundHandler);
+//    auto h8 = myModel.add(new DivModHandler);
 
     auto h6_dup = myModel.add(new SumHandler);
     h6_dup->isOutput = true;
@@ -42,8 +51,8 @@ void Controller::init(){
     h7->setNext(1,h8);
 
     myModel.isOutput = true;
-    myModel.setInput(h1.get());
-    myModel.setOutput(h8.get());
+    myModel.setInput(dynamic_cast<Unit*>(h1.get()));
+    myModel.setOutput(dynamic_cast<Unit*>(h8.get()));
 //        auto h1 =  myModel.add(new CoordinateBreakUpHandler);
 //        auto h2 = myModel.add(new SumHandler);
 //        auto h3 = myModel.add(new SumHandler);
@@ -82,7 +91,6 @@ void Controller::replace(std::size_t id1, std::size_t id2){
             break;
         default:
             throw TypeException();
-            break;
 
         }
     }
