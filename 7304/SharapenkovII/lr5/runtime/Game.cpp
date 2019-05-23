@@ -9,6 +9,7 @@
 Game::Game() {
     gui = make_unique<GUI>();
     field = unique_ptr<Field>(nullptr);
+    own_units = make_unique<OwnUnits>();
 
     current_turn_player = 0;
 
@@ -62,6 +63,23 @@ void Game::createUnit(Coord c, string unit_type, shared_ptr<Player> player) {
 
 }
 
+void Game::createUnit(shared_ptr<Cell> cell, shared_ptr<Unit> unit, shared_ptr<Player> player) {
+
+    try {
+        shared_ptr<Unit> new_unit = make_shared<OwnUnit>(*dynamic_cast<OwnUnit*>(unit.get()));
+        player->createUnit(cell, new_unit);
+
+        Logger &logger = Logger::getLogger();
+        logger.write(
+                "Create Unit. Type: " + unit->getTypeName() + "; Coord: " + "(" + to_string(cell->getX()) + "," + to_string(cell->getY()) +
+                ")");
+    } catch (Exception &err) {
+        Logger &logger = Logger::getLogger();
+        logger.write(err.what());
+    }
+
+}
+
 void Game::clearUnits() {
     for (auto &player : players) {
         auto units = player->getUnits();
@@ -71,10 +89,6 @@ void Game::clearUnits() {
                                          player->getUnits().end());
         }
     }
-}
-
-shared_ptr<Unit> Game::getUnit(Coord) {
-
 }
 
 void Game::moveUnit(shared_ptr<Cell> from, shared_ptr<Cell> to, unsigned energy_loss) {
@@ -219,3 +233,5 @@ shared_ptr<Cell> Game::getCurrentCell() { return current_cell; }
 unsigned Game::getNumOfMoves() { return number_of_moves; }
 
 void Game::resetNumOfMoves() { number_of_moves = 0; }
+
+OwnUnits &Game::getOwnUnits() { return *own_units; }

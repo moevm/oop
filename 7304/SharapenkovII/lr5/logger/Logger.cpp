@@ -24,7 +24,9 @@ void Logger::setLogger(unique_ptr<LoggerInterface> &&l) {
 }
 
 void Logger::write(string str) {
-    if(!logging) return;
+    if(!logging) {
+        cache.push_back(str);
+    }
 
     if(cached && cache.size() < cache_size) {
         cache.push_back(str);
@@ -44,7 +46,14 @@ string Logger::readline() {
 }
 
 string Logger::read() {
-    return logger->read();
+    string all_log;
+
+    all_log = logger->read();
+
+    for(auto &str : cache)
+        all_log.append(str + "<br>");
+
+    return all_log;
 }
 
 void Logger::cachedMode(bool) {
@@ -52,6 +61,12 @@ void Logger::cachedMode(bool) {
 }
 
 void Logger::loggingMode(bool) {
+
+    for(auto &s : cache)
+        logger->write(s);
+
+    cache.clear();
+
     logging = !logging;
 }
 

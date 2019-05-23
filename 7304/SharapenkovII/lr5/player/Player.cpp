@@ -43,6 +43,10 @@ void Player::createUnit(Coord c, string unit_type) {
     addUnit(unit);
     placeUnit(c, unit);
 }
+void Player::createUnit(shared_ptr<Cell> cell, shared_ptr<Unit> unit) {
+    addUnit(unit);
+    placeUnit(Coord(cell->getX(), cell->getY()), unit);
+}
 void Player::addUnit(shared_ptr<Unit> unit) { units.push_back(unit); }
 bool Player::hasUnit(shared_ptr<Unit> unit) { return find(units.begin(), units.end(), unit) != units.end(); }
 void Player::placeUnit(Coord c, shared_ptr<Unit> unit) {

@@ -17,11 +17,15 @@ function addFieldRow(field, x, y_coord) {
 
 function addFieldCell(row, x_coord, y_coord) {
     let cell = document.createElement("div")
+
     cell.className = "hexagon"
     cell.id = x_coord + "-" + y_coord
-    cell.onclick = function() { 
-            OnPickHex(x_coord, y_coord)
+    cell.onclick = function() {
+        OnPickHex(x_coord, y_coord)
+
+        return false
     }
+
     row.appendChild(cell)
 }
 
@@ -57,7 +61,7 @@ function removeUnit(x, y) {
     hex.removeChild(hex.children[0])
 }
 
-function renderUnit(x, y, unit_type, color) {
+function renderUnit(x, y, unit_type, color, style) {
     let hex = document.getElementById(x + "-" + y)
     let unit = document.createElement("div")
     unit.style.backgroundColor = color;
@@ -74,7 +78,10 @@ function renderUnit(x, y, unit_type, color) {
         unit.classList.add("hexagon-unit-priest")
     } else if(unit_type == "Killer") {
         unit.classList.add("hexagon-unit-killer")
+    } else {
+        unit.classList.add("hexagon-unit-own" + style)
     }
+
     
     hex.appendChild(unit)
 }
@@ -89,6 +96,7 @@ function showHexInfo(x, y, unit_name, imp_name) {
     let coord = document.getElementById("picked-hex-info-coord")
     let unit = document.getElementById("picked-hex-info-unit")
     let imp = document.getElementById("picked-hex-info-imp")
+
 
     hex.style.display = "flex"
 
@@ -135,11 +143,17 @@ function showPickedUnit(attack, range, health, health_max, energy, energy_max) {
 
 function newGame() {
     let next = document.getElementById("next-btn")
+    let cub = document.getElementById("create-unit-btn")
+
+    cub.disabled = false
     next.disabled = false
 }
 
 function endGame() {
     let next = document.getElementById("next-btn")
+    let cub = document.getElementById("create-unit-btn")
+
+    cub.disabled = true
     next.disabled = true
 }
 
@@ -148,4 +162,69 @@ function printLogs(str) {
     logs.style.display = "block"
     logs.innerHTML = str;
     logs.scrollTo(0, logs.scrollHeight + 100)
+}
+
+function showCreateUnitModal() {
+    let modal = document.getElementById("create-unit-modal")
+
+    modal.style.display = "flex"
+
+    let udu = document.getElementById("create-userdef-unit")
+
+    udu.innerHTML = "<h1>User defined units</h1>"
+}
+
+function addUserDefineUnit(index, name) {
+    let udu = document.getElementById("create-userdef-unit")
+    let btn = document.createElement("button")
+
+    btn.classList.add("btn")
+    btn.onclick = function() {
+        OnCreateNewUnit(index)
+    }
+    btn.innerHTML = name
+
+    udu.append(btn)
+}
+
+function closeCreateUnitModal() {
+    let modal = document.getElementById("create-unit-modal")
+
+    modal.style.display = "none"
+}
+
+
+function pickCell(x, y) {
+    let hex = document.getElementById(x + "-" + y)
+    let player = document.getElementById("current-turn-player")
+
+
+    hex.style.backgroundColor = "#6300a0"
+}
+
+hexagon_style_picked = 1
+function hexCreateUnitStyle(index) {
+    let style = document.getElementsByClassName("hex-style-crt")
+
+    style[hexagon_style_picked - 1].classList.remove("hexagon-picked")
+
+    hexagon_style_picked = index
+
+    style[hexagon_style_picked - 1].classList.add("hexagon-picked")
+}
+
+function createOwnUnit() {
+    let unit_type = document.getElementsByName("unit_type")[0].value;
+    let attack = document.getElementsByName("attack")[0].value;
+    let range = document.getElementsByName("range")[0].value;
+    let armor = document.getElementsByName("armor")[0].value;
+    let health = document.getElementsByName("health")[0].value;
+    let energy = document.getElementsByName("energy")[0].value;
+    let style = hexagon_style_picked
+
+    let imp = document.getElementById("picked-hex-info-imp")
+
+    if(!unit_type) return
+
+    OnCreateNewUnit(unit_type, attack, range, armor, health, energy, style);
 }

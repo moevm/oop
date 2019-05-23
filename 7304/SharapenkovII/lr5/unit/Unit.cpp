@@ -17,6 +17,7 @@ unsigned Unit::getHealth() const { return health; }
 unsigned Unit::getHealthMax() const { return health_max; }
 unsigned Unit::getEnergy() const { return energy; }
 unsigned Unit::getEnergyMax() const { return energy_max; }
+unsigned Unit::getStyle() const { return style; }
 
 void Unit::setEnergy(unsigned i) { energy = i; }
 
@@ -67,3 +68,8 @@ void Priest::destruction() {
 void Killer::destruction() {
     position->deleteUnit();
 }
+
+void OwnUnit::destruction() {
+    position->deleteUnit();
+}
+

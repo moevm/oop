@@ -7,6 +7,7 @@
 #include "UI.h"
 #include "../impediment/StaticImpediment.h"
 #include "../logger/Logger.h"
+#include "Ultralight/String.h"
 
 static UI *g_ui = nullptr;
 
@@ -50,6 +51,9 @@ void UI::OnDOMReady(ultralight::View* caller) {
     endGame = global["endGame"];
     showPickedUnit = global["showPickedUnit"];
     printLogs = global["printLogs"];
+    showCreateUnitModal = global["showCreateUnitModal"];
+    pickCell = global["pickCell"];
+    addUserDefineUnit = global["addUserDefineUnit"];
 
     global["OnPickHex"] = BindJSCallback(&UI::OnPickHex);
     global["OnNextTurn"] = BindJSCallback(&UI::OnNextTurn);
@@ -57,6 +61,8 @@ void UI::OnDOMReady(ultralight::View* caller) {
     global["OnClearField"] = BindJSCallback(&UI::OnClearField);
     global["OnNewGame"] = BindJSCallback(&UI::OnNewGame);
     global["OnLogMode"] = BindJSCallback(&UI::OnLogMode);
+    global["OnCreateUnit"] = BindJSCallback(&UI::OnCreateUnit);
+    global["OnCreateNewUnit"] = BindJSCallback(&UI::OnCreateNewUnit);
 
     endGame({});
 
@@ -121,7 +127,7 @@ void UI::OnRecreate(const JSObject &obj, const JSArgs &args) {
     Field &field = game.getField();
 
     int field_size = args[0].ToInteger();
-    if( !(field_size > 20 && field_size <= 35) ) field_size = 25;
+    if( !(field_size > 19 && field_size <= 35) ) field_size = 25;
 
     if(field_size != field.getSize())
         game.createField(field_size);
@@ -214,6 +220,104 @@ void UI::OnLogMode(const JSObject &obj, const JSArgs &args) {
     }
 }
 
+void UI::OnCreateUnit(const JSObject &obj, const JSArgs &args) {
+    Game &game = Game::getGame();
+    Logger &logger = Logger::getLogger();
+
+    shared_ptr<Cell> cur_cell = game.getCurrentCell();
+
+    if(!cur_cell) {
+        logger.write("Pick cell before create unit");
+
+        return;
+    }
+
+    showCreateUnitModal({});
+
+    int i = 6;
+    for(auto &unit : game.getOwnUnits().getOwnUnits()) {
+        addUserDefineUnit({ i, unit->getTypeName().c_str() });
+        i++;
+    }
+
+}
+
+void UI::OnCreateNewUnit(const JSObject &obj, const JSArgs &args) {
+    Game &game = Game::getGame();
+    Logger &logger = Logger::getLogger();
+
+    shared_ptr<Cell> cur_cell = game.getCurrentCell();
+
+    if(cur_cell->getUnit()) {
+        logger.write("Unit already exist in this cell");
+
+        printLogs({ logger.read().c_str() });
+
+        return;
+    }
+
+
+    if(args[0].IsNumber()) {
+        int unit_type = args[0].ToInteger();
+
+        switch (unit_type) {
+            case 0:
+                game.createUnit(Coord(cur_cell->getX(), cur_cell->getY()), "Archer", game.getCurrentPlayer());
+                break;
+            case 1:
+                game.createUnit(Coord(cur_cell->getX(), cur_cell->getY()), "Tank", game.getCurrentPlayer());
+                break;
+            case 2:
+                game.createUnit(Coord(cur_cell->getX(), cur_cell->getY()), "Knight", game.getCurrentPlayer());
+                break;
+            case 3:
+                game.createUnit(Coord(cur_cell->getX(), cur_cell->getY()), "King", game.getCurrentPlayer());
+                break;
+            case 4:
+                game.createUnit(Coord(cur_cell->getX(), cur_cell->getY()), "Priest", game.getCurrentPlayer());
+                break;
+            case 5:
+                game.createUnit(Coord(cur_cell->getX(), cur_cell->getY()), "Killer", game.getCurrentPlayer());
+                break;
+            default:
+                auto &own_units = game.getOwnUnits().getOwnUnits();
+                game.createUnit(game.getCurrentCell(), own_units[unit_type - 6], game.getCurrentPlayer());
+        }
+    } else {
+        JSString unit_type = args[0].ToString();
+        int attack = args[1].ToInteger();
+        int range = args[2].ToInteger();
+        int armor = args[3].ToInteger();
+        int health = args[4].ToInteger();
+        int energy = args[5].ToInteger();
+        int style = args[6].ToInteger();
+
+        auto &own_units = game.getOwnUnits();
+
+        string ut{String(unit_type).utf8().data()};
+
+        own_units.createUnit(ut, attack, range, armor, health, energy, style);
+
+        auto player = game.getCurrentPlayer();
+
+        player->addUnit(own_units.getLast());
+        player->placeUnit(Coord(game.getCurrentCell()->getX(), game.getCurrentCell()->getY()), own_units.getLast());
+    }
+
+    auto own_units = game.getOwnUnits().getOwnUnits();
+
+    showCreateUnitModal({});
+
+    int i = 6;
+    for(auto &unit : game.getOwnUnits().getOwnUnits()) {
+        addUserDefineUnit({ i, unit->getTypeName().c_str() });
+        i++;
+    }
+
+    CreateField();
+    RenderField();
+}
+
 void UI::CreateField() {
     Game &game = Game::getGame();
     Field &field = game.getField();
@@ -245,8 +349,12 @@ void UI::RenderField() {
             std::string d = player->getColor();
             auto unit_color = d.c_str();
             shared_ptr<Cell> position = unit->getPosition();
-            renderUnit({ position->getX(), position->getY(), unit_type, unit_color });
+            unsigned style = unit->getStyle();
+            renderUnit({ position->getX(), position->getY(), unit_type, unit_color, style});
         }
     }
+
+    if(game.getCurrentCell())
+        pickCell({game.getCurrentCell()->getX(), game.getCurrentCell()->getY()});
 
 }

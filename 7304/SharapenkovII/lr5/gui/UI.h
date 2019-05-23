@@ -40,6 +40,8 @@ public:
     void OnClearField(const JSObject& obj, const JSArgs& args);
     void OnNewGame(const JSObject& obj, const JSArgs& args);
     void OnLogMode(const JSObject& obj, const JSArgs& args);
+    void OnCreateUnit(const JSObject& obj, const JSArgs& args);
+    void OnCreateNewUnit(const JSObject& obj, const JSArgs& args);
 
 protected:
     void CreateField();
@@ -61,6 +63,9 @@ protected:
     JSFunction endGame;
     JSFunction showPickedUnit;
     JSFunction printLogs;
+    JSFunction pickCell;
+    JSFunction showCreateUnitModal;
+    JSFunction addUserDefineUnit;
 };
 
 

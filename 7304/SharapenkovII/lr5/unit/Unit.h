@@ -23,6 +23,7 @@ protected:
     unsigned health_max;
     unsigned energy;
     unsigned energy_max;
+    unsigned style;
 
     shared_ptr<Cell> position;
 
@@ -39,6 +40,7 @@ public:
     unsigned getHealthMax() const;
     unsigned getEnergy() const;
     unsigned getEnergyMax() const;
+    unsigned getStyle() const;
 
     void setEnergy(unsigned);
 
@@ -67,6 +69,7 @@ public:
         health = health_max;
         energy_max = 300;
         energy = energy_max;
+        style = 0;
     }
 
     void destruction() override;
@@ -85,6 +88,7 @@ public:
         health = health_max;
         energy_max = 400;
         energy = energy_max;
+        style = 0;
     }
 
     void destruction() override;
@@ -103,6 +107,7 @@ public:
         health = health_max;
         energy_max = 200;
         energy = energy_max;
+        style = 0;
     }
 
     void destruction() override;
@@ -121,6 +126,7 @@ public:
         health = health_max;
         energy_max = 200;
         energy = energy_max;
+        style = 0;
     }
 
     void destruction() override;
@@ -139,6 +145,7 @@ public:
         health = health_max;
         energy_max = 200;
         energy = energy_max;
+        style = 0;
     }
 
     void destruction() override;
@@ -157,6 +164,29 @@ public:
         health = health_max;
         energy_max = 200;
         energy = energy_max;
+        style = 0;
+    }
+
+    void destruction() override;
+
+};
+
+
+class OwnUnit : public Unit {
+
+public:
+    OwnUnit(string name, unsigned at, unsigned ra, unsigned ar, unsigned h, unsigned e, unsigned s) {
+        type_name = name;
+        attack = at;
+        range = ra;
+        armor = ar;
+        health_max = h;
+        health = h;
+        energy_max = e;
+        energy = e;
+        style = s;
+
+        position = shared_ptr<Cell>(nullptr);
     }
 
     void destruction() override;

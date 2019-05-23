@@ -32,6 +32,7 @@ public:
     string getColor();
 
     void createUnit(Coord, string);
+    void createUnit(shared_ptr<Cell>, shared_ptr<Unit>);
     void addUnit(shared_ptr<Unit>);
     bool hasUnit(shared_ptr<Unit>);
     void placeUnit(Coord, shared_ptr<Unit>);

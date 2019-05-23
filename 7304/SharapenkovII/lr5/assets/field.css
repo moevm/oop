@@ -2,7 +2,8 @@ html,
 body {
     height: 97%;
     margin: 0;
-    min-width: 1350px;
+    min-width: 1280px;
+    font-size: 12px;
 }
 
 .menu-btn {
@@ -32,6 +33,8 @@ body {
 
 .top-bar-info {
     display: flex;
+    position: fixed;
+    z-index: 99;
     align-items: center;
     width: 100%;
     height: 40px;
@@ -42,7 +45,9 @@ body {
 .field {
     display: inline-block;
     white-space: nowrap;
+    max-width: 950px;
     padding: 20px;
+    margin-top: 40px;
     overflow: auto;
     position: absolute;
 }
@@ -245,8 +250,73 @@ body {
     background-color: red;
 }
 
-.hexagon-picked {
-    opacity: 0.4;
+.hexagon-unit-own1{
+    position: absolute;
+    left: 15.5px;
+    top: 0px;
+    z-index: 2;
+    display: block;
+    height: 20px;
+    width: 4px;
+    border: solid 2px white;
+    background-color: black;
+}
+
+.hexagon-unit-own1:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 25%;
+    background-color: red;
+}
+
+.hexagon-unit-own2{
+    position: absolute;
+    left: 15.5px;
+    top: 0px;
+    z-index: 2;
+    display: block;
+    height: 20px;
+    width: 12px;
+    border: solid 2px white;
+    background-color: black;
+}
+
+.hexagon-unit-own2:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 25%;
+    background-color: red;
+}
+
+.hexagon-unit-own3{
+    position: absolute;
+    left: 15.5px;
+    top: 0px;
+    z-index: 2;
+    display: block;
+    height: 20px;
+    width: 14px;
+    border: solid 2px white;
+    background-color: black;
+}
+
+.hexagon-unit-own3:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 25%;
+    background-color: red;
 }
 
 .hexagon:before,
@@ -306,7 +376,7 @@ body {
     padding-top: 5px;
     margin-top: -1px;
     position: fixed;
-    top: 40px;
+    top: 20px;
     right: 0;
 }
 
@@ -353,4 +423,20 @@ body {
 
 #log-mode {
     display: inline-block;
+}
+
+#create-unit-modal {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    right: 0;
+    position: fixed;
+    z-index: 300;
+    width: 300px;
+    height: 500px;
+    background-color: white;
+}
+
+.hexagon-picked {
+    opacity: 0.4;
 }
