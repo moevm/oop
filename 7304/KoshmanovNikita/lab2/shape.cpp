@@ -5,8 +5,7 @@ unsigned Shape::s_id = 0;
 
 Shape::Shape(Point cntr)
 {
-	++s_id;
-	id = rand();
+	id = ++s_id;
 	clr = COLORLESS;
 	centre.x = cntr.x;
 	centre.y = cntr.y;
