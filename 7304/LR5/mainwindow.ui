@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>730</width>
+    <width>998</width>
     <height>593</height>
    </rect>
   </property>
@@ -23,13 +23,37 @@
      </widget>
     </item>
     <item>
-     <widget class="QListWidget" name="lstHandlers">
+     <widget class="QGroupBox" name="groupBox_3">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>3</verstretch>
        </sizepolicy>
       </property>
+      <property name="title">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QListWidget" name="lstHandlers">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>3</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGraphicsView" name="graphicsView"/>
+       </item>
+      </layout>
+      <zorder>lblModelState</zorder>
+      <zorder>lstHandlers</zorder>
+      <zorder>graphicsView</zorder>
      </widget>
     </item>
     <item>
@@ -105,8 +129,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>730</width>
-     <height>17</height>
+     <width>998</width>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

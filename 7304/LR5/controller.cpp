@@ -66,7 +66,25 @@ void Controller::init(){
 //        myModel.setOutput(h2.get());
 }
 
+std::vector<std::size_t> Controller::getUnitIds(){
+    std::vector<std::size_t> ids;
+    for(std::shared_ptr<Unit> &h : myModel.getManagedHandlers()){
+        ids.push_back(h->id);
+    }
+    return std::vector<std::size_t>(ids);
+}
 
+std::vector<std::pair<std::size_t,std::size_t>> Controller::getConnections()
+{
+    std::vector<std::pair<std::size_t,std::size_t>> connections;
+    for(std::shared_ptr<Unit> &h : myModel.getManagedHandlers()){
+        for(auto &nxt : h->getNexts()){
+            connections.push_back(std::pair<std::size_t,std::size_t>(h->id,nxt));
+        }
+    }
+    return std::vector<std::pair<std::size_t,std::size_t>>(connections);
+
+}
 void Controller::replace(std::size_t id1, std::size_t id2){
     Unit* unit1 = nullptr;
     Unit* unit2 = nullptr;
@@ -118,11 +136,11 @@ void Controller::undo(){
 std::string Controller::getModelState(){
     return myModel.toString();
 }
-std::vector<std::string> Controller::getHandlersInfo(){
-    std::vector<std::string> result;
+std::map<std::size_t,std::string> Controller::getHandlersInfo(){
+    std::map<std::size_t,std::string> result;
     for(std::shared_ptr<Unit> h : myModel.getManagedHandlers()){
         //std::cout<<h->toString();
-        result.push_back(h.get()->toString());
+        result.insert(std::pair<std::size_t,std::string>(h->id,h.get()->toString()));
     }
     return result;
 }

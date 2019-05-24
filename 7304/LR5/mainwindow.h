@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "controller.h"
 #include <QListWidget>
+#include "unitgraphics.h"
 namespace Ui {
 class MainWindow;
 }
@@ -14,13 +15,16 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-
+    std::map<std::size_t,UnitGraphics*> unitGraphics;
     ~MainWindow();
-
+    void focusItem(std::size_t id);
 private:
     Ui::MainWindow *ui;
     QListWidget *lstHandlers;
     Controller controller;
+    QGraphicsScene *scene;
+    std::map<std::size_t,UnitGraphics*> units;
+    std::map<std::size_t,std::size_t> map_row_id;
     void loadInfo();
 
 private slots:

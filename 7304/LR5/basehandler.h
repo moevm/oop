@@ -117,6 +117,16 @@ public :
 
         return ss.str();
     }
+    virtual std::vector<std::size_t> getNexts(){
+        std::vector<std::size_t> nexts;
+        for(std::size_t i = 0;i<this->noOut;i++){
+            IHandler<U> *u = this->nexts[i];
+            if(u!=nullptr){
+                nexts.push_back(dynamic_cast<Unit*>(u)->id);
+            }
+        }
+        return std::vector<std::size_t>(nexts);
+    }
     virtual Unit* clone() = 0;
     virtual ~BaseHandler(){}
 };

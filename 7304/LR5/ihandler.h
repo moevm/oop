@@ -37,6 +37,7 @@ public:
     bool isOutput;
     virtual void setNext(std::size_t slot, Unit* handler) = 0;
     virtual void setNext(std::size_t slot, std::shared_ptr<Unit> handler) = 0;
+    virtual std::vector<std::size_t> getNexts(){ return std::vector<std::size_t>();}
     virtual bool verify() const = 0;
 
     virtual std::string toString(){

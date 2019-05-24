@@ -18,7 +18,9 @@ SOURCES += main.cpp\
     ihandler.cpp \
     controller.cpp \
     logwriter.cpp \
-    handlerregistry.cpp
+    handlerregistry.cpp \
+    unitgraphics.cpp \
+    arrowgraphics.cpp
 
 HEADERS  += mainwindow.h \
     logwriter.h \
@@ -32,6 +34,8 @@ HEADERS  += mainwindow.h \
     coordinate.h \
     myexception.h \
     controller.h \
-    handlerregistry.h
+    handlerregistry.h \
+    unitgraphics.h \
+    arrowgraphics.h
 
 FORMS    += mainwindow.ui

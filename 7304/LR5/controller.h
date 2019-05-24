@@ -20,7 +20,10 @@ public:
 
     std::string getModelState();
 
-    std::vector<std::string> getHandlersInfo();
+    std::vector<std::size_t> getUnitIds();
+    std::vector<std::pair<std::size_t,std::size_t>> getConnections();
+
+    std::map<std::size_t,std::string> getHandlersInfo();
 
     void loadFromTextFile(std::string path);
 
