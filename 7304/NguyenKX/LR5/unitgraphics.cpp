@@ -8,9 +8,9 @@
 #include "arrowgraphics.h"
 #include "mainwindow.h"
 //! [8]
-UnitGraphics::UnitGraphics(std::size_t id, MainWindow *parent): id(id), parent(parent){
-    this->setX(std::rand()%400-200);
-    this->setY(std::rand()%400-200);
+UnitGraphics::UnitGraphics(std::size_t id, int x, int y, MainWindow *parent): id(id), parent(parent){
+    this->setX(x);
+    this->setY(y);
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
     setCacheMode(DeviceCoordinateCache);

@@ -8,6 +8,7 @@
 #include "coordinate.h"
 #include "reader.h"
 #include "writer.h"
+#include "handlerregistry.h"
 template <typename T, typename U>
 class Model : public IMultiInputHandler<T>, public BaseHandler <T,U>{
 protected:
@@ -18,13 +19,35 @@ protected:
     std::map<std::size_t, std::vector<Memento*>> history;
 public:
     using IMultiInputHandler<T>::handle;
-    Model() : BaseHandler<T,U>(), inputHandler(nullptr), outputHandler(nullptr){}
+    Model() : BaseHandler<T,U>(), inputHandler(nullptr), outputHandler(nullptr){
+        this->isOutput = true;
+    }
 
-    //template <typename A, typename B>
     std::shared_ptr<Unit> add(Unit *h){
         std::shared_ptr<Unit> sp (h);
         handlers.push_back(sp);
         return sp;
+    }
+
+    void remove(Unit* h){
+        std::size_t target_index = 99999;
+        for(std::size_t i = 0; i< handlers.size();i++){
+            if(h->id==handlers[i]->id) target_index = i;
+            for(std::size_t slot = 0;slot<handlers[i]->noOut;slot++){
+                if(handlers[i]->getNextU(slot)!=nullptr && handlers[i]->getNextU(slot)->id==h->id){
+                    handlers[i]->setNext(slot,nullptr);
+                }
+            }
+        }
+        if(dynamic_cast<Unit*>(inputHandler)!=nullptr && dynamic_cast<Unit*>(inputHandler)->id==h->id){
+            this->setInput();
+        }
+        if(dynamic_cast<Unit*>(outputHandler)!=nullptr && dynamic_cast<Unit*>(outputHandler)->id==h->id){
+            this->setOutput();
+        }
+        if(target_index<handlers.size())
+            handlers.erase(handlers.begin()+target_index);
+
     }
 
     bool contains(Unit *unit){
@@ -43,14 +66,24 @@ public:
     }
     //template <typename X>
 
-    void setInput(Unit *handler){
+    void setInput(Unit *handler=nullptr){
+        if(handler==nullptr){
+            this->inputHandler = nullptr;
+            this->noInp = 0;
+            return;
+        }
         IHandler<T> *conv = dynamic_cast<IHandler<T>*>(handler);
         if(conv!=nullptr)
             setInput(conv);
         else throw TypeException();
     }
 
-    void setOutput(Unit *handler){
+    void setOutput(Unit *handler=nullptr){
+        if(handler==nullptr){
+            this->outputHandler = nullptr;
+            this->noOut = 0;
+            return;
+        }
         HandlerOutput<U> *conv = dynamic_cast<HandlerOutput<U>*>(handler);
         if(conv!=nullptr)
             setOutput(conv);
@@ -182,20 +215,136 @@ public:
         return out<<std::endl;
     }
 
+    void clearStructure(){
+        handlers.clear();
+        setInput();
+        setOutput();
+    }
+
     template <typename R ,typename = typename std::enable_if<std::is_base_of<IReader, R>::value, R>::type>
     void loadFromFile(std::string fileName){
         R reader(fileName);
-        for(auto handler : this->handlers){
-            reader>>handler.get();
+        // clear current model
+        this->clearStructure();
+
+        // read number of handlers in management
+        std::size_t n=0;
+        reader>>n;
+        for(std::size_t i = 0; i<n;i++){
+            // create handlers (using typeId and id)
+            std::size_t typeId=0, id=0;
+            reader>>typeId;
+            reader>>id;
+            auto unit = this->add(HandlerRegistry::getInstance().getByTypeId(typeId));
+            reader>>unit.get();
+            unit->id = id;
         }
+
+        // load idSerial;
+        reader>>Unit::idSerial;
+
+        // load connection;
+        for(std::size_t i = 0; i<n;i++){
+            std::size_t sourceId, len;
+            reader>>sourceId;
+            reader>>len;
+            for(std::size_t j = 0;j<len;j++){
+                std::size_t destId;
+                reader>>destId;
+                if(destId!=99999)
+                    this->connectById(sourceId,j,destId);
+            }
+        }
+        // load input and output nodes
+        {
+            std::size_t id;
+            reader>>id;
+            if(id!=99999)
+                this->setInput(this->getHandlerById(id));
+            reader>>id;
+            if(id!=99999)
+                this->setOutput(this->getHandlerById(id));
+
+        }
+
     }
 
     template <typename R ,typename = typename std::enable_if<std::is_base_of<IWriter, R>::value, R>::type>
     void saveToFile(std::string fileName){
         R writer(fileName);
-        for(auto handler : this->handlers){
+
+        // write number of handlesr in management
+        writer<<this->handlers.size();
+
+        for(std::shared_ptr<Unit> &handler : this->handlers){
+            // save typeId and Id
+            writer<<handler->type<<handler->id;
             writer<<handler.get();
         }
+        // save idSerial
+        writer<<Unit::idSerial;
+
+        // write connections
+        for(std::shared_ptr<Unit> &handler : this->handlers){
+            writer<<handler->id;
+            writer<<handler->getNexts().size();
+            for(std::size_t i = 0;i<handler->getNexts().size();i++){
+                writer<<handler->getNexts()[i];
+            }
+        }
+
+        // write input and output nodes
+        if(inputHandler==nullptr){
+            writer<<99999;
+        }else {
+            writer<<(dynamic_cast<Unit*>(inputHandler)->id);
+        }
+
+        if(outputHandler==nullptr){
+            writer<<99999;
+        }else {
+            writer<<(dynamic_cast<Unit*>(outputHandler)->id);
+        }
+
+    }
+
+
+    Unit* getHandlerById(std::size_t id){
+        Unit* unit = nullptr;
+        for(std::shared_ptr<Unit> &u : this->getManagedHandlers()){
+            if(u->id==id) unit = u.get();
+        }
+        if(unit!=nullptr) return unit;
+        else throw HandlerNotFoundException();
+
+    }
+
+    void connectById(std::size_t id1, std::size_t slot, std::size_t id2){
+        Unit* unit1 = getHandlerById(id1);
+        Unit* unit2 = getHandlerById(id2);
+        unit1->setNext(slot,unit2);
+    }
+
+
+    std::vector<std::size_t> getUnitIds(){
+        std::vector<std::size_t> ids;
+        for(std::shared_ptr<Unit> &h : this->getManagedHandlers()){
+                ids.push_back(h->id);
+        }
+        return std::vector<std::size_t>(ids);
+    }
+
+    std::vector<std::pair<std::size_t,std::size_t>> getConnections()
+    {
+        std::vector<std::pair<std::size_t,std::size_t>> connections;
+        for(std::shared_ptr<Unit> &h : this->getManagedHandlers()){
+            for(auto &nxt : h->getNexts()){
+                if(nxt!=99999)
+                    connections.push_back(std::pair<std::size_t,std::size_t>(h->id,nxt));
+            }
+        }
+        return std::vector<std::pair<std::size_t,std::size_t>>(connections);
+
     }
 
     virtual std::string toString(){
@@ -204,13 +353,28 @@ public:
         ss<<"Num. input:  "<<this->noInp<<"\t\t";
         ss<<"Num. output: "<<this->noOut<<std::endl;
         ss<<"\t\t"<<"Status: "<<(this->verify()?"valid":"invalid")<<std::endl;
-        ss<<"\t\t"<<"State: ";
-        for(std::size_t i = 0;i<this->noOut;i++){
-            U u = this->getResult()[i];
-            ss<<"\t"<<u;
+        if(this->outputHandler!=nullptr){
+            ss<<"\t\t"<<"State: ";
+            for(std::size_t i = 0;i<this->noOut;i++){
+                U u = this->getResult()[i];
+                ss<<"\t"<<u;
+            }
         }
-        ss<<std::endl;
+        std::size_t idInp = this->inputHandler==nullptr?99999:dynamic_cast<Unit*>(this->inputHandler)->id;
 
+        std::size_t idOut= this->outputHandler==nullptr?99999:dynamic_cast<Unit*>(this->outputHandler)->id;
+
+        ss<<"\n\t\t";
+        if(idInp==99999)
+            ss<<"Input handler: "<< "not set";
+        else
+            ss<<"Input handler: "<< idInp;
+        ss<<"\t\t";
+        if(idOut==99999)
+            ss<<"Output handler: "<< "not set";
+        else
+            ss<<"Output handler: "<< idOut;
+        ss<<std::endl;
 
         return ss.str();
     }

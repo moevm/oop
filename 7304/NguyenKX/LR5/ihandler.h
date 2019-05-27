@@ -24,11 +24,11 @@ public:
 };
 class Unit {
 private:
-    static std::size_t idSerial;
 protected:
     Unit(std::size_t noInp, std::size_t noOut) : noInp(noInp), noOut(noOut), isOutput(false){
         this->id = idSerial++;
     }
+    static std::size_t idSerial;
 public:
     std::size_t id;
     std::size_t noInp;
@@ -37,7 +37,9 @@ public:
     bool isOutput;
     virtual void setNext(std::size_t slot, Unit* handler) = 0;
     virtual void setNext(std::size_t slot, std::shared_ptr<Unit> handler) = 0;
-    virtual std::vector<std::size_t> getNexts(){ return std::vector<std::size_t>();}
+    virtual std::vector<std::size_t> getNexts() = 0;
+    virtual Unit* getNextU(std::size_t slot) = 0;
+
     virtual bool verify() const = 0;
 
     virtual std::string toString(){

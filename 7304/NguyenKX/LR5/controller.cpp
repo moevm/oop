@@ -7,29 +7,41 @@
 #include <memory>
 #include "handlerregistry.h"
 Controller::Controller(){
-    init();
+    //init();
+}
+void Controller::addHandler(std::size_t type)
+{
+    myModel.add(HandlerRegistry::getInstance().getByTypeId(type));
+}
 
+void Controller::connect(std::size_t id1, std::size_t slot, std::size_t id2){
+    myModel.connectById(id1,slot,id2);
+}
+
+void Controller::setInput(std::size_t id){
+    myModel.setInput(myModel.getHandlerById(id));
+}
+
+void Controller::setOutput(std::size_t id){
+    myModel.setOutput(myModel.getHandlerById(id));
+}
+
+void Controller::deleteHandler(std::size_t id){
+    myModel.remove(myModel.getHandlerById(id));
 }
 
 void Controller::init(){
     //auto h1 = myModel.add(new CoordinateMakingHandler);
-    auto h1 = myModel.add(HandlerRegistry::getInstance().getByName("CoordinateMaking"));
-    auto h2 = myModel.add(HandlerRegistry::getInstance().getByName("Distribute"));
-    auto h3 = myModel.add(HandlerRegistry::getInstance().getByName("Distance"));
-    auto h4 = myModel.add(HandlerRegistry::getInstance().getByName("CoordinateBreakUp"));
-    auto h5 = myModel.add(HandlerRegistry::getInstance().getByName("Squared"));
-    auto h6 = myModel.add(HandlerRegistry::getInstance().getByName("Sum"));
-    auto h7 = myModel.add(HandlerRegistry::getInstance().getByName("Round"));
-    auto h8 = myModel.add(HandlerRegistry::getInstance().getByName("DivMod"));
+    auto h1 = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_COOR_MAKING));
+    auto h2 = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_DISTRIBUTE));
+    auto h3 = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_DISTANCE));
+    auto h4 = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_COOR_BREAKUP));
+    auto h5 = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_SQUARED));
+    auto h6 = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_SUM));
+    auto h7 = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_ROUND2));
+    auto h8 = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_DIV_MOD));
 
-//    auto h3 = myModel.add(new DistanceHandler);
-//    auto h4 = myModel.add(new CoordinateBreakUpHandler);
-//    auto h5 = myModel.add(new SquaredHandler);
-//    auto h6 = myModel.add(new SumHandler);
-//    auto h7 = myModel.add(new RoundHandler);
-//    auto h8 = myModel.add(new DivModHandler);
-
-    auto h6_dup = myModel.add(new SumHandler);
+    auto h6_dup = myModel.add(HandlerRegistry::getInstance().getByTypeId(HandlerRegistry::TYPE_SUM));
     h6_dup->isOutput = true;
 
     h1->setNext(0,h2);
@@ -53,38 +65,31 @@ void Controller::init(){
     myModel.isOutput = true;
     myModel.setInput(dynamic_cast<Unit*>(h1.get()));
     myModel.setOutput(dynamic_cast<Unit*>(h8.get()));
-//        auto h1 =  myModel.add(new CoordinateBreakUpHandler);
-//        auto h2 = myModel.add(new SumHandler);
-//        auto h3 = myModel.add(new SumHandler);
-//        auto h4 = myModel.add(new DistributeHandler);
 
-//        h1->isOutput = false;
-//        h1->setNext(0,h2);
-//        h1->setNext(1,h2);
 
-//        myModel.setInput(h1.get());
-//        myModel.setOutput(h2.get());
 }
 
 std::vector<std::size_t> Controller::getUnitIds(){
-    std::vector<std::size_t> ids;
-    for(std::shared_ptr<Unit> &h : myModel.getManagedHandlers()){
-        ids.push_back(h->id);
-    }
-    return std::vector<std::size_t>(ids);
+    return myModel.getUnitIds();
+//    std::vector<std::size_t> ids;
+//    for(std::shared_ptr<Unit> &h : myModel.getManagedHandlers()){
+//            ids.push_back(h->id);
+//    }
+//    return std::vector<std::size_t>(ids);
 }
 
 std::vector<std::pair<std::size_t,std::size_t>> Controller::getConnections()
 {
-    std::vector<std::pair<std::size_t,std::size_t>> connections;
-    for(std::shared_ptr<Unit> &h : myModel.getManagedHandlers()){
-        for(auto &nxt : h->getNexts()){
-            connections.push_back(std::pair<std::size_t,std::size_t>(h->id,nxt));
-        }
-    }
-    return std::vector<std::pair<std::size_t,std::size_t>>(connections);
-
+//    std::vector<std::pair<std::size_t,std::size_t>> connections;
+//    for(std::shared_ptr<Unit> &h : myModel.getManagedHandlers()){
+//        for(auto &nxt : h->getNexts()){
+//            connections.push_back(std::pair<std::size_t,std::size_t>(h->id,nxt));
+//        }
+//    }
+//    return std::vector<std::pair<std::size_t,std::size_t>>(connections);
+    return myModel.getConnections();
 }
+
 void Controller::replace(std::size_t id1, std::size_t id2){
     Unit* unit1 = nullptr;
     Unit* unit2 = nullptr;
@@ -94,18 +99,25 @@ void Controller::replace(std::size_t id1, std::size_t id2){
     }
     if(unit1!=nullptr&&unit2!=nullptr){
         switch(unit1->type){
-        case 1:
-        case 2:
-        case 4:
+        case HandlerRegistry::TYPE_SUM:
+        case HandlerRegistry::TYPE_SQUARED:
             myModel.replace<double,double>(unit1,unit2);
             break;
-
-        case 3:
+        case HandlerRegistry::TYPE_DIV_MOD:
             myModel.replace<int,int>(unit1,unit2);
             break;
-        case 5:
-        case 6:
+        case HandlerRegistry::TYPE_DISTRIBUTE:
             myModel.replace<Coordinate, double>(unit1,unit2);
+            break;
+        case HandlerRegistry::TYPE_COOR_BREAKUP:
+        case HandlerRegistry::TYPE_DISTANCE:
+            myModel.replace<Coordinate, double>(unit1,unit2);
+            break;
+        case HandlerRegistry::TYPE_COOR_MAKING:
+            myModel.replace<double, Coordinate>(unit1,unit2);
+            break;
+        case HandlerRegistry::TYPE_ROUND2:
+            myModel.replace<double, int>(unit1,unit2);
             break;
         default:
             throw TypeException();

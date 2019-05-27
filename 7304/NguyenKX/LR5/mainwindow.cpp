@@ -25,6 +25,26 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionSave,SIGNAL(triggered(bool)),this,SLOT(actionSave_triggered()));
     connect(ui->actionLoad,SIGNAL(triggered(bool)),this,SLOT(actionLoad_triggered()));
 
+    connect(ui->btnDelete,SIGNAL(clicked(bool)),this,SLOT(btnDelete_clicked()));
+    connect(ui->btnAdd,SIGNAL(clicked(bool)),this,SLOT(btnAdd_clicked()));
+    connect(ui->btnSetIn,SIGNAL(clicked(bool)),this,SLOT(btnSetInp_clicked()));
+    connect(ui->btnSetOut,SIGNAL(clicked(bool)),this,SLOT(btnSetOut_clicked()));
+    connect(ui->btnConnect,SIGNAL(clicked(bool)),this,SLOT(btnConnect_clicked()));
+    connect(ui->cbAddType,SIGNAL(currentIndexChanged(int)), this, SLOT(cdAddType_currentIndexChanged(int)));
+
+    QStringList types;
+    types   <<"Sum"
+            <<"Distribute"
+            <<"Squared"
+            <<"DivMod"
+            <<"Round2"
+            <<"Distance"
+            <<"CoordinateMaking"
+            <<"CoordinateBreakup"
+            <<"Round1"
+            <<"Distribute";
+
+    ui->cbAddType->addItems(types);
 
     this->scene = new QGraphicsScene(ui->graphicsView);
     ui->graphicsView->setScene(this->scene);
@@ -34,11 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     ui->graphicsView->scale(qreal(0.8), qreal(0.8));
 
-    for(auto &id : controller.getUnitIds()){
-        UnitGraphics *u = new UnitGraphics(id,this);
-        units.insert(std::pair<std::size_t, UnitGraphics*>(id,u));
-        scene->addItem(u);
-    }
+    this->drawBg();
 
     this->loadInfo();
 
@@ -47,6 +63,24 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
+void MainWindow::cdAddType_currentIndexChanged(int index){
+    ui->lblHandlerType->setText(QString::fromStdString(HandlerRegistry::getInstance().getTypeDescription(index)));
+}
+void MainWindow::drawBg(){
+//    scene->addLine(600,200,600,-200,QPen(Qt::black));
+
+//    QFont font;
+//    font.setPixelSize(30);
+//    font.setBold(false);
+//    font.setFamily("Calibri");
+
+//    QGraphicsTextItem *title = new QGraphicsTextItem;
+//    title->setPlainText("Unused Handler In Model");
+//    title->setFont(font);
+//    title->setPos(600,-250);
+//    scene->addItem(title);
+
+}
 void MainWindow::focusItem(std::size_t id){
     ui->lstHandlers->item(map_row_id[id])->setSelected(true);
     ui->lstHandlers->setFocus();
@@ -63,15 +97,42 @@ void MainWindow::loadInfo(){
     }
     ui->lblModelState->setText(QString::fromStdString(controller.getModelState()));
 
-    for( auto &item : scene->items()){
-        if(dynamic_cast<ArrowGraphics*>(item)!=nullptr) scene->removeItem(item);
-    }
-//    for (const auto& u : units) {
-//        scene->addItem(u.second);
-//    }
 
+    std::map<std::size_t, bool> map_used;
+
+    // create node
+    for(auto &id : controller.getUnitIds()){
+        if(units.find(id)==units.end()){
+            UnitGraphics *u = new UnitGraphics(id,(id-10)*70,std::sin(id/1.5*3.14)*200, this);
+            units[id]=u;
+            scene->addItem(u);
+        }
+        map_used[id] = false;
+    }
+
+    // remove all connection
+    for(QGraphicsItem *item : scene->items()){
+        if(dynamic_cast<ArrowGraphics*>(item)!=nullptr){
+            scene->removeItem(item);
+        }
+    }
+    // draw new connection
     for(std::pair<std::size_t,std::size_t> &connection : controller.getConnections()){
         scene->addItem(new ArrowGraphics(units[connection.first],units[connection.second]));
+        // mark as used
+        map_used[connection.first] = true;
+        map_used[connection.second] = true;
+
+    }
+
+    for(std::pair<std::size_t,bool> const& used : map_used){
+        if(used.second==false){
+            std::size_t id = used.first;
+            units[id]->setX(std::rand()%200+650);
+            //units[id]->setY(pos_unused);
+            //pos_unused-=50;
+
+        }
     }
 
 
@@ -111,7 +172,7 @@ void MainWindow::btnHandle_clicked(){
 void MainWindow::actionSave_triggered(){
     QString fileName = QFileDialog::getSaveFileName(this,
         tr("Save state"), "",
-        tr("Binary File (*.bin);;Text File (*.txt)"));
+        tr("Text File (*.txt);;Binary File (*.bin)"));
 
     if((fileName.toStdString().compare("")!=0))
     {
@@ -128,7 +189,7 @@ void MainWindow::actionSave_triggered(){
 void MainWindow::actionLoad_triggered(){
     QString fileName = QFileDialog::getOpenFileName(this,
         tr("Load state"), "",
-        tr("Binary File (*.bin);;Text File (*.txt)"));
+        tr("Text File (*.txt);;Binary File (*.bin)"));
     if((fileName.toStdString().compare("")!=0))
     {
         QFileInfo fi(fileName);
@@ -138,9 +199,75 @@ void MainWindow::actionLoad_triggered(){
         }else if(ext.toStdString().compare("txt")==0){
             controller.loadFromTextFile(fileName.toStdString());
         }
-        loadInfo();
+        scene->clear();
+        units.clear();
+        this->drawBg();
+        this->loadInfo();
     }
 }
+
+void MainWindow::btnAdd_clicked(){
+    try{
+        std::size_t typeId = ui->cbAddType->currentIndex();
+        controller.addHandler(typeId);
+        loadInfo();
+    }catch(const std::exception& e){
+        LogWriter::getInstance().log(" Error: "+std::string(e.what()));
+        QMessageBox::critical(this,QString("Error"),QString(e.what()));
+    }
+
+}
+void MainWindow::btnDelete_clicked(){
+    try{
+        std::size_t id = ui->txtDel->text().toUInt();
+        controller.deleteHandler(id);
+
+        //remove the node
+        if(units.find(id)!=units.end()){
+            UnitGraphics *u = units[id];
+            scene->removeItem(u);
+            units.erase(id);
+        }
+
+        loadInfo();
+    }catch(const std::exception& e){
+        LogWriter::getInstance().log(" Error: "+std::string(e.what()));
+        QMessageBox::critical(this,QString("Error"),QString(e.what()));
+    }
+}
+void MainWindow::btnConnect_clicked(){
+    try{
+        std::size_t id1 = ui->txtCon1->text().toUInt();
+        std::size_t id2 = ui->txtCon2->text().toUInt();
+        std::size_t slot = ui->txtConSlot->text().toUInt();
+        controller.connect(id1,slot,id2);
+        loadInfo();
+    }catch(const std::exception& e){
+        LogWriter::getInstance().log(" Error: "+std::string(e.what()));
+        QMessageBox::critical(this,QString("Error"),QString(e.what()));
+    }
+}
+void MainWindow::btnSetInp_clicked(){
+    try{
+        std::size_t id = ui->txtIn->text().toUInt();
+        controller.setInput(id);
+        loadInfo();
+    }catch(const std::exception& e){
+        LogWriter::getInstance().log(" Error: "+std::string(e.what()));
+        QMessageBox::critical(this,QString("Error"),QString(e.what()));
+    }
+}
+void MainWindow::btnSetOut_clicked(){
+    try{
+        std::size_t id = ui->txtOut->text().toUInt();
+        controller.setOutput(id);
+        loadInfo();
+    }catch(const std::exception& e){
+        LogWriter::getInstance().log(" Error: "+std::string(e.what()));
+        QMessageBox::critical(this,QString("Error"),QString(e.what()));
+    }
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;

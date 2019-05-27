@@ -11,7 +11,7 @@ public:
     std::size_t id;
     MainWindow *parent;
 
-    UnitGraphics(std::size_t id, MainWindow *parent);
+    UnitGraphics(std::size_t id, int x, int y, MainWindow *parent);
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
     void addEdge(ArrowGraphics *edge);

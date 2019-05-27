@@ -38,6 +38,12 @@ public:
         return os;
     }
 
+    friend TxtWriter& operator<<(TxtWriter& os, std::size_t obj)
+    {
+        os.os<< obj<<std::endl;
+        return os;
+    }
+
     virtual ~TxtWriter(){
         os.close();
     }
@@ -66,6 +72,10 @@ public:
         return os;
     }
 
+    friend BinaryWriter& operator<<(BinaryWriter& os, std::size_t obj){
+        os.os.write((char*)obj,sizeof(obj));
+        return os;
+    }
 };
 
 

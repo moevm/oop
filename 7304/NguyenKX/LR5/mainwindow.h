@@ -25,6 +25,7 @@ private:
     QGraphicsScene *scene;
     std::map<std::size_t,UnitGraphics*> units;
     std::map<std::size_t,std::size_t> map_row_id;
+    void drawBg();
     void loadInfo();
 
 private slots:
@@ -33,6 +34,15 @@ private slots:
     void actionSave_triggered();
     void actionLoad_triggered();
     void btnUndo_clicked();
+
+    void btnAdd_clicked();
+    void btnDelete_clicked();
+    void btnConnect_clicked();
+    void btnSetInp_clicked();
+    void btnSetOut_clicked();
+
+    void cdAddType_currentIndexChanged(int index);
+
 };
 
 #endif // MAINWINDOW_H

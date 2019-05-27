@@ -24,6 +24,10 @@ public:
         return is;
     }
 
+    friend TxtReader& operator>>(TxtReader& is, std::size_t &obj){
+        is.is>>obj;
+        return is;
+    }
 
     virtual ~TxtReader(){
         is.close();
@@ -44,6 +48,10 @@ public:
         return is;
     }
 
+    friend BinaryReader& operator>>(BinaryReader& is, std::size_t &obj){
+        is.is.read((char*)obj,sizeof(obj));
+        return is;
+    }
 
     virtual ~BinaryReader(){
         is.close();

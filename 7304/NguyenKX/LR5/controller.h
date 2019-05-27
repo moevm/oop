@@ -4,9 +4,21 @@
 #include "model.h"
 class Controller{
 public:
+
+
     Model<double,int> myModel;
 
     Controller();
+
+
+    void addHandler(std::size_t type);
+    void connect(std::size_t id1, std::size_t slot, std::size_t id2);
+
+    void setInput(std::size_t id);
+    void setOutput(std::size_t id);
+    void deleteHandler(std::size_t id);
+
+    Unit* getHandlerById(std::size_t id);
 
     void init();
 
@@ -32,5 +44,6 @@ public:
     void saveToTextFile(std::string path);
 
     void saveToBinFile(std::string path);
+
 };
 #endif // CONTROLLER_H

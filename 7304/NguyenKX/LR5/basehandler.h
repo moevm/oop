@@ -28,6 +28,10 @@ protected:
 
 public :
     virtual void setNext(std::size_t slot, Unit* handler){
+        if(handler == nullptr) {
+            this->nexts[slot] = nullptr;
+            return;
+        }
         IHandler<U>* next = dynamic_cast<IHandler<U>*>(handler);
         if(next!=nullptr){
             this->nexts[slot] = next;
@@ -42,6 +46,10 @@ public :
 
     virtual void setNext(std::size_t slot, IHandler<U>* handler = nullptr){
         this->nexts[slot] = handler;
+    }
+
+    virtual Unit* getNextU(std::size_t slot){
+        return dynamic_cast<Unit*>(this->nexts[slot]);
     }
 
     virtual void setNext(std::size_t slot, std::shared_ptr<IHandler<U>> handler){
@@ -123,6 +131,8 @@ public :
             IHandler<U> *u = this->nexts[i];
             if(u!=nullptr){
                 nexts.push_back(dynamic_cast<Unit*>(u)->id);
+            }else{
+                nexts.push_back(99999);
             }
         }
         return std::vector<std::size_t>(nexts);

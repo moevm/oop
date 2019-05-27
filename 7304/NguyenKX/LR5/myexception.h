@@ -19,4 +19,10 @@ struct InputFormatException : public std::exception {
       return "Error: Invalid input format ";
    }
 };
+
+struct HandlerNotFoundException : public std::exception {
+   const char * what () const throw () {
+      return "Error: Cannot find handler with this id";
+   }
+};
 #endif // MYEXCEPTION_H
