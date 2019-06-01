@@ -7,15 +7,15 @@
 using namespace std;
 
 class Square : public Shape {
-private:
     static long ID;
-    int NUMBER_POINTS = 4;
+protected:
+    int NUMBER_POINTS = 1;
 public:
     long  id;
     vector<Points> _points;
     Square(vector<Points> &points) : id(ID++) {
         if (points.size() != NUMBER_POINTS) {
-            throw invalid_argument("Square has 4 points");
+            throw invalid_argument("Square has center point");
         }
         _points = points;
     }

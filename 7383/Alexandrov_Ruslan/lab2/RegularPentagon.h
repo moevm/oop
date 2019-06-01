@@ -1,22 +1,20 @@
 #pragma once
 #include <iostream>
-#include "shape.h"
+#include "Square.h"
 #include <vector>
 
-class RegularPentagon : public  Shape {
-private:
+class RegularPentagon : public  Square {
     static long ID;
-    int NUMBER_POINTS = 1;
 public:
     int _radius;
     long  id;
     Points _center;
-    RegularPentagon(vector<Points> center, int radius) : id(ID++) {
-        if (center.size() != NUMBER_POINTS || radius <= 0) {
-            throw invalid_argument("Incorrect input");
+    RegularPentagon(vector<Points> &points, int radius) : Square(points), id(ID++) {
+        if (radius <= 0) {
+            throw invalid_argument("Incorrect radius");
         }
-        _center.x = center[0].x;
-        _center.y = center[0].y;
+        _center.x = points[0].x;
+        _center.y = points[0].y;
         _radius = radius;
     }
     void move(vector<Points> point) override;

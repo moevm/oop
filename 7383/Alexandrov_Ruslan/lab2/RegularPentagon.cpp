@@ -1,6 +1,7 @@
 #include "RegularPentagon.h"
 #include <cmath>
 long RegularPentagon::ID = 0;
+
 void RegularPentagon::move(vector<Points> point) {
     if (point.size() > 1) {
         throw invalid_argument("Only Center Point");
