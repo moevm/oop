@@ -13,23 +13,23 @@ void example1(){
 
     field.addObject(crossBowMan, 0, 0);
 
-    for (auto & it : field) {
-        std::cout << (int*)it << std::endl;
+    for (auto *obj : field) {
+        std::cout << obj << std::endl;
     }
 
     Point nextPoint(2, 2);
     field.moveObject(crossBowMan, nextPoint);
 
     std::cout << std::endl;
-    for (auto & obj : field) {
-        std::cout << (int*)obj << std::endl;
+    for (auto *obj : field) {
+        std::cout << obj << std::endl;
     }
 
     field.deleteObject(crossBowMan);
 
     std::cout << std::endl;
-    for (auto & obj : field) {
-        std::cout << (int*)obj << std::endl;
+    for (auto *obj : field) {
+        std::cout << obj << std::endl;
     }
 
 }
@@ -48,14 +48,14 @@ void example2(){
     fieldOne.addObject(swordMan, 1, 1);
 
     std::cout << std::endl;
-    for (auto & obj : fieldOne) {
-        std::cout << (int*)obj << std::endl;
+    for (auto *obj : fieldOne) {
+        std::cout << obj << std::endl;
     }
 
     GameField fieldTwo(fieldOne);
     std::cout << std::endl;
-    for (auto & obj : fieldTwo) {
-        std::cout << (int*)obj << std::endl;
+    for (auto *obj : fieldTwo) {
+        std::cout << obj << std::endl;
     }
 
 }
@@ -75,8 +75,8 @@ void example3(){
     field.addObject(swordMan, 1, 0);
 
     std::cout << std::endl;
-    for (auto & obj : field) {
-        std::cout << (int*)obj << std::endl;
+    for (auto *obj : field) {
+        std::cout << obj << std::endl;
     }
 
     Point p1(1, 0);
@@ -85,8 +85,8 @@ void example3(){
     field.moveObject(fireMage, p2);
 
     std::cout << std::endl;
-    for (auto & obj : field) {
-        std::cout << (int*)obj << std::endl;
+    for (auto *obj : field) {
+        std::cout << obj << std::endl;
     }
 
 }

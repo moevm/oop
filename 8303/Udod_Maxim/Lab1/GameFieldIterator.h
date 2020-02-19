@@ -16,29 +16,23 @@ class GameFieldIterator: public std::iterator<std::input_iterator_tag, Unit*>{
 private:
 
     Point p;
-    Unit ***field;
-    int fieldHeight;
-    int fieldWidth;
+    Unit *** field;
+    const int fieldHeight;
+    const int fieldWidth;
 
-    GameFieldIterator(Point p, Unit *** field, int fieldHeight, int fieldWidth): p(p){
-
-        this->p = p;
-        this->field = field;
-        this->fieldHeight = fieldHeight;
-        this->fieldWidth = fieldWidth;
-
-    };
+    GameFieldIterator(const Point p, Unit *** field, const int fieldHeight, const int fieldWidth):
+    p(p),
+    field(field),
+    fieldWidth(fieldWidth),
+    fieldHeight(fieldHeight){};
 
 public:
 
-    GameFieldIterator(const GameFieldIterator &it): p(it.p){
-
-        p = it.p;
-        field = it.field;
-        fieldHeight = it.fieldHeight;
-        fieldWidth = it.fieldWidth;
-
-    };
+    GameFieldIterator(const GameFieldIterator &it):
+    p(it.p),
+    field(it.field),
+    fieldWidth(it.fieldWidth),
+    fieldHeight(it.fieldHeight){};
 
     bool operator!=(const GameFieldIterator &other) { return p != other.p; };
     bool operator==(const GameFieldIterator &other) { return p == other.p; };
