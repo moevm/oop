@@ -169,53 +169,6 @@ namespace demo {
         }
     };
 
-    class ListMaps : public interactive::Command {
-        static void
-        write_map(std::ostream &os, const GameMap *map)
-        {
-            os << "a Map of size "
-               << map->width() << "x" << map->height()
-               << " with " << map->unitsCount() << " units";
-
-            int max_units = map->maxUnitsCount();
-            if (max_units > 0)
-                os << " of " << max_units;
-        }
-
-        static void
-        write_unit(std::ostream &os, const BaseUnit *unit)
-        {
-            if (unit) {
-                os << "a Unit";
-
-                if (const GamePos &pos = unit->position())
-                    os << " at " << pos.x() << "," << pos.y();
-
-                if (unit->alive())
-                    os << " with " << unit->health() << " HP";
-                else
-                    os << " DEAD";
-            } else {
-                os << "(none)";
-            }
-        }
-
-    public:
-        virtual void
-        run(interactive::Session *s, std::ostream &os) const override
-        {
-            auto &stack = s->stack();
-            int i = 0;
-            for (const interactive::Session::Context &c : stack) {
-                os << "#" << i++ << ":\t";
-                write_map(os, c.map);
-                os << "\tfocus: ";
-                write_unit(os, c.focus);
-                os << std::endl;
-            }
-        }
-    };
-
 
 
     class CreateUnit : public interactive::Command {
@@ -417,8 +370,67 @@ namespace demo {
 
 
 
+    class ObjectPrinter {
+    public:
+        static const std::map<std::type_index, const char *>
+        unittypenames;
+
+        static void
+        write_map(std::ostream &os, const GameMap *map)
+        {
+            os << "a Map of size "
+               << map->width() << "x" << map->height()
+               << " with " << map->unitsCount() << " units";
+
+            int max_units = map->maxUnitsCount();
+            if (max_units > 0)
+                os << " of " << max_units;
+        }
+
+        static void
+        write_unit(std::ostream &os, const BaseUnit *unit)
+        {
+            if (unit) {
+                os << "a ";
+
+                auto iter = unittypenames.find({typeid(*unit)});
+                os << ((iter != unittypenames.end())
+                       ? iter->second
+                       : "BaseUnit");
+
+                if (const GamePos &pos = unit->position())
+                    os << " at " << pos.x() << "," << pos.y();
+
+                if (unit->alive())
+                    os << " with " << unit->health() << " HP";
+                else
+                    os << " DEAD";
+            } else {
+                os << "(none)";
+            }
+        }
+    };
+
+    class ListMaps : public interactive::Command,
+                     private ObjectPrinter {
+    public:
+        virtual void
+        run(interactive::Session *s, std::ostream &os) const override
+        {
+            auto &stack = s->stack();
+            int i = 0;
+            for (const interactive::Session::Context &c : stack) {
+                os << "#" << i++ << ":\t";
+                write_map(os, c.map);
+                os << "\tfocus: ";
+                write_unit(os, c.focus);
+                os << std::endl;
+            }
+        }
+    };
+
     class MapPrinter {
-        static std::map<std::type_index, char> reprs;
+        static const std::map<std::type_index, char> reprs;
 
     public:
         static void
@@ -528,6 +540,62 @@ namespace demo {
             }
 
             print_map(map, 0, 0, map->width(), map->height(), os);
+        }
+    };
+
+    class ListUnits : public interactive::Command,
+                      private ObjectPrinter {
+    public:
+        virtual void
+        run(interactive::Session *s, std::ostream &os) const override
+        {
+            GameMap *map = s->map();
+            if (!map) {
+                os << "No current map" << std::endl;
+                return;
+            }
+
+            int n = 0;
+            for (const GameCell &cell : *map) {
+                BaseUnit *unit = cell.unit();
+                if (!unit)
+                    continue;
+
+                os << ++n << ". ";
+                write_unit(os, unit);
+                os << std::endl;
+            }
+        }
+    };
+
+    class UnitInfo : public PositionCommand,
+                     private ObjectPrinter {
+    public:
+        using PositionCommand::PositionCommand;
+
+        virtual void
+        run(interactive::Session *s, std::ostream &os) const override
+        {
+            GameMap *map = s->map();
+            if (!map) {
+                os << "No current map" << std::endl;
+                return;
+            }
+
+            GamePos pos = position(map);
+            if (!pos.valid()) {
+                os << "Invalid position" << std::endl;
+                return;
+            }
+
+            BaseUnit *unit = pos.cell().unit();
+            if (!unit) {
+                os << "No unit there" << std::endl;
+                return;
+            }
+
+            write_unit(os, unit);
+            os << std::endl;
         }
     };
 

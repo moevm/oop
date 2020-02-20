@@ -12,11 +12,18 @@ namespace demo {
     interactive::SimpleCommandFactory<DemoSession::HelpCommand>
     DemoSession::help_factory {};
 
-    std::map<std::type_index, char>
+    const std::map<std::type_index, char>
     MapPrinter::reprs = {
         {{typeid(units::Swordsman)}, 's'},
         {{typeid(units::Spearsman)}, 'S'},
         {{typeid(units::Rider)}, 'R'},
+    };
+
+    const std::map<std::type_index, const char *>
+    ObjectPrinter::unittypenames = {
+        {{typeid(units::Swordsman)}, "Swordsman"},
+        {{typeid(units::Spearsman)}, "Spearsman"},
+        {{typeid(units::Rider)}, "Rider"},
     };
 
     std::map<std::string, DemoSession::CommandEntry>
@@ -33,9 +40,6 @@ namespace demo {
         {"dupmap",
          {new demo::MapCommandFactory<demo::DupMap, 0>{},
          "dupmap [INDEX]"}},
-        {"listmaps",
-         {new interactive::SimpleCommandFactory<demo::ListMaps>{},
-         "listmaps"}},
 
         {"create",
          {new demo::CreateUnitFactory{{
@@ -63,6 +67,15 @@ namespace demo {
         {"showall",
          {new interactive::SimpleCommandFactory<demo::PrintAll>{},
           "showall"}},
+        {"listmaps",
+         {new interactive::SimpleCommandFactory<demo::ListMaps>{},
+         "listmaps"}},
+        {"list",
+         {new interactive::SimpleCommandFactory<demo::ListUnits>{},
+          "listunits"}},
+        {"info",
+         {new demo::PositionCommandFactory<demo::UnitInfo>{},
+          "info POSITION"}},
     };
 
 }
