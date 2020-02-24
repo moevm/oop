@@ -15,6 +15,14 @@ namespace units {
         return dmg;
     }
 
+    bool
+    BasicMeleeUnit::canAttack(const GamePos &pos) const
+    {
+        return pos.cell().unit()
+            && position().adjacent(pos);
+    }
+
+
     void
     BasicMeleeUnit::attack(const GamePos &pos)
     {
@@ -43,6 +51,17 @@ namespace units {
     Rider::typeDamageMultiplier(const BasicMeleeUnit *unit) const
     {
         return dynamic_cast<const Spearsman *>(unit) ? 1.75 : 1.0;
+    }
+
+
+
+    bool
+    BasicRangedUnit::canAttack(const GamePos &pos) const
+    {
+        assert(position().map() == pos.map());
+
+        return pos.cell().unit()
+            && position().distance(pos) <= shootingRange();
     }
 
 }

@@ -55,7 +55,7 @@ void
 BaseUnit::beAttacked(const BaseUnit *by, Damage modifier)
 {
     takeDamage(getDamageValue(
-                   by->baseDamage()
+                   by->baseDamage(position())
                    * damageMultipler(by)
                    * modifier));
 }

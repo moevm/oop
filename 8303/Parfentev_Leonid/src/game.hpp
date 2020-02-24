@@ -66,6 +66,14 @@ public:
 
     GameCell &cell() const;
 
+    double distance(const GamePos &pos) const
+    {
+        assert(_map == pos._map);
+        int dx = _x - pos._x,
+            dy = _y - pos._y;
+        return sqrt(dx*dx + dy*dy);
+    }
+
     bool adjacent(const GamePos &pos) const;
     bool pathExistsTo(const GamePos &pos, int max_length=-1) const;
 };
@@ -288,7 +296,7 @@ public:
 
     GamePos &position() { return _pos; }
     const GamePos &position() const { return _pos; }
-    bool moveTo(const GamePos &pos); // TODO: decide: check canMove()?
+    bool moveTo(const GamePos &pos);
 
     int health() const { return _health; }
     bool alive() const { return _health > 0; }
@@ -299,6 +307,11 @@ public:
 
         Damage(double v, double s) :value{v}, spread{s} {}
         Damage(double x) :Damage{x, x} {}
+
+        static Damage part(double x, double part)
+        {
+            return {x, x * part};
+        }
 
         Damage &operator*=(const Damage &d)
         {
@@ -313,9 +326,12 @@ public:
         }
     };
     virtual Damage
-    baseDamage() const { return {0}; }
+    baseDamage(const GamePos &) const { return {0}; }
     virtual Damage
-    damageMultipler(const BaseUnit *) const { return {1, 0.1}; }
+    damageMultipler(const BaseUnit *) const
+    {
+        return {1};
+    }
 
     static int getDamageValue(Damage damage);
     void beAttacked(const BaseUnit *by, Damage modifier={1});
@@ -323,7 +339,13 @@ public:
     virtual bool canAttack(const GamePos &) const =0;
     virtual bool canMove(const GamePos &) const =0;
 
-    virtual void attack(const GamePos &) =0;
+    virtual void attack(const GamePos &pos)
+    {
+        assert(pos.valid());
+        assert(pos.cell().unit());
+
+        pos.cell().unit()->beAttacked(this);
+    };
 
     virtual ~BaseUnit() {}
 };
