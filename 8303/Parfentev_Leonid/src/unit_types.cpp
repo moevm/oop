@@ -61,7 +61,59 @@ namespace units {
         assert(position().map() == pos.map());
 
         return pos.cell().unit()
+            && position() != pos
             && position().distance(pos) <= shootingRange();
+    }
+
+
+
+    BasicCatapult::DeltaXY
+    BasicCatapult::positionDelta(const GamePos &target) const
+    {
+        GamePos pos = position();
+        return {(double)(target.x() - pos.x()),
+                (double)(target.y() - pos.y())};
+    }
+
+    GamePos
+    BasicCatapult::alterTargetPos(
+        const GamePos &pos,
+        const BasicCatapult::DeltaXY &vec,
+        const BasicCatapult::Delta &delta)
+    {
+        Delta actual {
+            std::uniform_real_distribution<>{
+                -delta.tangential, delta.tangential}(random),
+            std::uniform_real_distribution<>{
+                -delta.normal, delta.normal}(random)};
+        DeltaXY dxy = vec.apply(actual);
+        int dx = round(dxy.x),
+            dy = round(dxy.y);
+
+        return GamePos{pos.map(), pos.x() + dx, pos.y() + dy};
+    }
+
+    void
+    BasicCatapult::attack(const GamePos &pos)
+    {
+        assert(pos.valid());
+
+        GamePos actual = alterTargetPos(
+            pos, positionDelta(pos), getDelta(pos));
+        if (!actual.valid())
+            return;
+
+        if (BaseUnit *unit = actual.cell().unit())
+            unit->beAttacked(this);
+    }
+
+    bool
+    BasicCatapult::canAttack(const GamePos &pos) const
+    {
+        MinMaxRange range = shootingMinMaxRange();
+        double dist = position().distance(pos);
+
+        return dist >= range.min && dist <= range.max;
     }
 
 }

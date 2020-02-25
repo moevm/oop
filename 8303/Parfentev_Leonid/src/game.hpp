@@ -282,11 +282,13 @@ operator-(int n, const GameMapIter<constp> &iter);
 class BaseUnit {
     GamePos _pos {};
     int _health;
-    static std::default_random_engine random;
 
     bool place();
     void unplace();
     void die();
+
+protected:
+    static std::default_random_engine random;
 
 public:
     explicit BaseUnit(int health) :_health{health} {}
