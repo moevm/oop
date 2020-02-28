@@ -364,7 +364,7 @@ namespace demo {
                 return;
             }
 
-            unit->attack(pos);
+            unit->attack(pos, s->evloop());
         }
     };
 

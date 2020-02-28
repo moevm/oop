@@ -25,6 +25,7 @@ namespace interactive {
         }
         is.putback(c);
 
+        is.clear();
         std::string cmd_name;
         is >> cmd_name;
 
@@ -58,6 +59,8 @@ namespace interactive {
 
         cmd->run(this, os);
         delete cmd;
+
+        _evloop.process();
     }
 
     void

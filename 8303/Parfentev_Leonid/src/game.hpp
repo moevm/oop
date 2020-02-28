@@ -1,10 +1,16 @@
 #ifndef _CLASSES_HPP_
 #define _CLASSES_HPP_
 
+#include <vector>
+#include <queue>
+
 #include <random>
 #include <iterator>
 
 #include <assert.h>
+
+
+extern std::default_random_engine global_random;
 
 class BaseUnit;
 
@@ -56,7 +62,10 @@ public:
     GameMap *map() const { return _map; }
 
     bool operator==(const GamePos &pos) const;
-    bool operator!=(const GamePos &pos) const { return *this == pos; }
+    bool operator!=(const GamePos &pos) const
+    {
+        return !(*this == pos);
+    }
 
     bool null() const { return _map == nullptr; }
     operator bool() const { return !null(); }
@@ -279,16 +288,34 @@ template<bool constp>
 GameMapIter<constp>
 operator-(int n, const GameMapIter<constp> &iter);
 
+
+
+class EventLoop;
+class Event {
+public:
+    virtual void execute(EventLoop *) =0;
+
+    virtual ~Event() {}
+};
+
+class EventLoop {
+    std::queue<Event *> _events {};
+
+public:
+    void push_back(Event *e) { _events.push(e); }
+    Event *front() const { return _events.front(); }
+    bool empty() const { return _events.empty(); }
+    void pop_front() { _events.pop(); }
+
+    void process();
+};
+
 class BaseUnit {
     GamePos _pos {};
     int _health;
 
     bool place();
     void unplace();
-    void die();
-
-protected:
-    static std::default_random_engine random;
 
 public:
     explicit BaseUnit(int health) :_health{health} {}
@@ -303,53 +330,80 @@ public:
     int health() const { return _health; }
     bool alive() const { return _health > 0; }
     void takeDamage(int dmg);
+    void die();
 
-    struct Damage {
+    struct DamageSpec {
         double value, spread;
 
-        Damage(double v, double s) :value{v}, spread{s} {}
-        Damage(double x) :Damage{x, x} {}
+        DamageSpec(double v, double s) :value{v}, spread{s} {}
+        DamageSpec(double x) :DamageSpec{x, x} {}
 
-        static Damage part(double x, double part)
+        static DamageSpec part(double x, double part)
         {
             return {x, x * part};
         }
 
-        Damage &operator*=(const Damage &d)
+        DamageSpec &operator*=(const DamageSpec &d)
         {
             value *= d.value;
             spread *= d.spread;
             return *this;
         }
-        Damage operator*(const Damage &d) const
+        DamageSpec operator*(const DamageSpec &d) const
         {
-            Damage tmp = *this;
+            DamageSpec tmp = *this;
             return tmp *= d;
         }
     };
-    virtual Damage
+    virtual DamageSpec
     baseDamage(const GamePos &) const { return {0}; }
-    virtual Damage
+    virtual DamageSpec
     damageMultipler(const BaseUnit *) const
     {
         return {1};
     }
 
-    static int getDamageValue(Damage damage);
-    void beAttacked(const BaseUnit *by, Damage modifier={1});
-
     virtual bool canAttack(const GamePos &) const =0;
     virtual bool canMove(const GamePos &) const =0;
 
-    virtual void attack(const GamePos &pos)
+    void
+    putDamage(BaseUnit *from,
+              DamageSpec modifier,
+              EventLoop *el);
+    virtual void
+    attack(const GamePos &pos,
+           EventLoop *el)
     {
         assert(pos.valid());
         assert(pos.cell().unit());
 
-        pos.cell().unit()->beAttacked(this);
+        pos.cell().unit()->putDamage(this, {1}, el);
     };
 
     virtual ~BaseUnit() {}
+};
+
+struct Damage : public Event {
+    BaseUnit::DamageSpec spec;
+    BaseUnit *unit;
+
+    Damage(BaseUnit::DamageSpec s, BaseUnit *u)
+        :spec{s}, unit{u} {}
+
+    virtual void
+    execute(EventLoop *) override;
+
+    int evaluate() const;
+    BaseUnit *target() const { return unit; }
+};
+
+struct Death : public Event {
+    BaseUnit *unit;
+
+    Death(BaseUnit *u) :unit{u} {}
+
+    virtual void
+    execute(EventLoop *) override;
 };
 
 class BaseUnitFactory {

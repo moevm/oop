@@ -3,7 +3,7 @@
 
 namespace units {
 
-    BaseUnit::Damage
+    BaseUnit::DamageSpec
     BasicMeleeUnit::damageMultipler(const BaseUnit *attacker) const
     {
         auto dmg = BaseUnit::damageMultipler(attacker);
@@ -24,15 +24,15 @@ namespace units {
 
 
     void
-    BasicMeleeUnit::attack(const GamePos &pos)
+    BasicMeleeUnit::attack(const GamePos &pos, EventLoop *el)
     {
         BaseUnit *target = pos.cell().unit();
         assert(target);
 
-        target->beAttacked(this);
+        target->putDamage(this, {1}, el);
 
         if (auto *bmu = dynamic_cast<BasicMeleeUnit *>(target))
-            beAttacked(bmu, {_defence_multiplier});
+            putDamage(bmu, {_defence_multiplier}, el);
     }
 
     double
@@ -83,9 +83,9 @@ namespace units {
     {
         Delta actual {
             std::uniform_real_distribution<>{
-                -delta.tangential, delta.tangential}(random),
+                -delta.tangential, delta.tangential}(global_random),
             std::uniform_real_distribution<>{
-                -delta.normal, delta.normal}(random)};
+                -delta.normal, delta.normal}(global_random)};
         DeltaXY dxy = vec.apply(actual);
         int dx = round(dxy.x),
             dy = round(dxy.y);
@@ -94,7 +94,7 @@ namespace units {
     }
 
     void
-    BasicCatapult::attack(const GamePos &pos)
+    BasicCatapult::attack(const GamePos &pos, EventLoop *el)
     {
         assert(pos.valid());
 
@@ -104,7 +104,7 @@ namespace units {
             return;
 
         if (BaseUnit *unit = actual.cell().unit())
-            unit->beAttacked(this);
+            unit->putDamage(this, {1}, el);
     }
 
     bool

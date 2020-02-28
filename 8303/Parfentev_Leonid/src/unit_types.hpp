@@ -14,11 +14,11 @@ namespace units {
         virtual double
         typeDamageMultiplier(const BasicMeleeUnit *) const =0;
 
-        virtual Damage
+        virtual DamageSpec
         damageMultipler(const BaseUnit *attacker) const override;
 
         virtual void
-        attack(const GamePos &pos) override;
+        attack(const GamePos &pos, EventLoop *el) override;
 
         virtual bool
         canAttack(const GamePos &pos) const override;
@@ -37,10 +37,10 @@ namespace units {
 
         virtual double
         typeDamageMultiplier(const BasicMeleeUnit *unit) const override;
-        virtual Damage
+        virtual DamageSpec
         baseDamage(const GamePos &) const override
         {
-            return Damage::part(
+            return DamageSpec::part(
                 _base_damage * ((double)health()/_base_health),
                 _damage_spread);
         }
@@ -65,10 +65,10 @@ namespace units {
 
         virtual double
         typeDamageMultiplier(const BasicMeleeUnit *unit) const override;
-        virtual Damage
+        virtual DamageSpec
         baseDamage(const GamePos &) const override
         {
-            return Damage::part(
+            return DamageSpec::part(
                 _base_damage * ((double)health()/_base_health),
                 _damage_spread);
         }
@@ -93,10 +93,10 @@ namespace units {
 
         virtual double
         typeDamageMultiplier(const BasicMeleeUnit *unit) const override;
-        virtual Damage
+        virtual DamageSpec
         baseDamage(const GamePos &) const override
         {
-            return Damage::part(
+            return DamageSpec::part(
                 _base_damage * ((double)health()/_base_health),
                 _damage_spread);
         }
@@ -137,14 +137,15 @@ namespace units {
         virtual double
         shootingRange() const override { return _shooting_range; }
 
-        virtual Damage
+        virtual DamageSpec
         baseDamage(const GamePos &pos) const override
         {
-            return Damage::part((_base_damage
-                                 * ((double)health() / _base_health)
-                                 / pow(position().distance(pos),
-                                       _distance_power)),
-                                _damage_spread);
+            return DamageSpec::part(
+                (_base_damage
+                 * ((double)health() / _base_health)
+                 / pow(position().distance(pos),
+                       _distance_power)),
+                _damage_spread);
         }
 
         virtual bool
@@ -170,14 +171,15 @@ namespace units {
         virtual double
         shootingRange() const override { return _shooting_range; }
 
-        virtual Damage
+        virtual DamageSpec
         baseDamage(const GamePos &pos) const override
         {
-            return Damage::part((_base_damage
-                                 * ((double)health() / _base_health)
-                                 / pow(position().distance(pos),
-                                       _distance_power)),
-                                _damage_spread);
+            return DamageSpec::part(
+                (_base_damage
+                 * ((double)health() / _base_health)
+                 / pow(position().distance(pos),
+                       _distance_power)),
+                _damage_spread);
         }
 
         virtual bool
@@ -270,7 +272,8 @@ namespace units {
         getDelta(const GamePos &pos) const =0;
 
         virtual void
-        attack(const GamePos &pos) override;
+        attack(const GamePos &pos,
+               EventLoop *el) override;
 
         struct MinMaxRange {
             double min, max;
@@ -304,10 +307,10 @@ namespace units {
             return position().pathExistsTo(pos, _basic_speed);
         }
 
-        virtual Damage
+        virtual DamageSpec
         baseDamage(const GamePos &) const override
         {
-            return Damage::part(_base_damage, _damage_spread);
+            return DamageSpec::part(_base_damage, _damage_spread);
         }
 
         virtual Delta

@@ -37,6 +37,7 @@ namespace interactive {
     private:
         std::list<Context> _maps {};
         bool _stop_running = false;
+        EventLoop _evloop;
 
         void spin(std::istream &is, std::ostream &os);
 
@@ -66,6 +67,8 @@ namespace interactive {
         void quit() { _stop_running = true; }
 
         void run(std::istream &is, std::ostream &os);
+
+        EventLoop *evloop() { return &_evloop; }
 
         virtual ~Session() {}
     };

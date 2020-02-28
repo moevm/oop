@@ -5,7 +5,7 @@
 #include "game.hpp"
 
 std::default_random_engine
-BaseUnit::random {};
+global_random {};
 
 bool
 BaseUnit::place()
@@ -39,23 +39,50 @@ void
 BaseUnit::takeDamage(int dmg)
 {
     _health -= dmg;
-    if (!alive())
-        die();
 }
 
 int
-BaseUnit::getDamageValue(Damage damage)
+Damage::evaluate() const
 {
-    return (int)round(damage.value
+    return (int)round(spec.value
                       + std::uniform_real_distribution<>{
-                          -damage.spread, damage.spread}(random));
+                          -spec.spread, spec.spread}(global_random));
 }
 
 void
-BaseUnit::beAttacked(const BaseUnit *by, Damage modifier)
+BaseUnit::putDamage(BaseUnit *from,
+                    DamageSpec modifier,
+                    EventLoop *el)
 {
-    takeDamage(getDamageValue(
-                   by->baseDamage(position())
-                   * damageMultipler(by)
-                   * modifier));
+    DamageSpec dmg = (from->baseDamage(position())
+                      * damageMultipler(from)
+                      * modifier);
+    el->push_back(new Damage {dmg, this});
+}
+
+
+
+void
+EventLoop::process()
+{
+    while (!_events.empty()) {
+        Event *ev = _events.front();
+        _events.pop();
+        ev->execute(this);
+        delete ev;
+    }
+}
+
+void
+Damage::execute(EventLoop *el)
+{
+    unit->takeDamage(evaluate());
+    if (!unit->alive())
+        el->push_back(new Death {unit});
+}
+
+void
+Death::execute(EventLoop *)
+{
+    unit->die();
 }
