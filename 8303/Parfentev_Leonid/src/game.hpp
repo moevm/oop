@@ -9,6 +9,7 @@
 
 #include <assert.h>
 
+class EventLoop;
 
 extern std::default_random_engine global_random;
 
@@ -290,26 +291,6 @@ operator-(int n, const GameMapIter<constp> &iter);
 
 
 
-class EventLoop;
-class Event {
-public:
-    virtual void execute(EventLoop *) =0;
-
-    virtual ~Event() {}
-};
-
-class EventLoop {
-    std::queue<Event *> _events {};
-
-public:
-    void push_back(Event *e) { _events.push(e); }
-    Event *front() const { return _events.front(); }
-    bool empty() const { return _events.empty(); }
-    void pop_front() { _events.pop(); }
-
-    void process();
-};
-
 class BaseUnit {
     GamePos _pos {};
     int _health;
@@ -343,6 +324,8 @@ public:
             return {x, x * part};
         }
 
+        int evaluate() const;
+
         DamageSpec &operator*=(const DamageSpec &d)
         {
             value *= d.value;
@@ -358,10 +341,7 @@ public:
     virtual DamageSpec
     baseDamage(const GamePos &) const { return {0}; }
     virtual DamageSpec
-    damageMultipler(const BaseUnit *) const
-    {
-        return {1};
-    }
+    damageMultipler(const BaseUnit *) const { return {1}; }
 
     virtual bool canAttack(const GamePos &) const =0;
     virtual bool canMove(const GamePos &) const =0;
@@ -381,29 +361,6 @@ public:
     };
 
     virtual ~BaseUnit() {}
-};
-
-struct Damage : public Event {
-    BaseUnit::DamageSpec spec;
-    BaseUnit *unit;
-
-    Damage(BaseUnit::DamageSpec s, BaseUnit *u)
-        :spec{s}, unit{u} {}
-
-    virtual void
-    execute(EventLoop *) override;
-
-    int evaluate() const;
-    BaseUnit *target() const { return unit; }
-};
-
-struct Death : public Event {
-    BaseUnit *unit;
-
-    Death(BaseUnit *u) :unit{u} {}
-
-    virtual void
-    execute(EventLoop *) override;
 };
 
 class BaseUnitFactory {

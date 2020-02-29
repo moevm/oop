@@ -4,9 +4,35 @@
 #include <ctype.h>
 
 #include "game.hpp"
+#include "event.hpp"
 #include "interactive.hpp"
 
 namespace interactive {
+
+    void
+    PrintingEventLoop::processWithOstream(std::ostream *os)
+    {
+        setOstream(os);
+        process();
+    }
+
+    void
+    PrintingEventLoop::handle(Damage *dmg)
+    {
+        if (!_os)
+            return;
+
+        *_os << "A unit takes damage: " << dmg->dmg << std::endl;
+    }
+
+    void
+    PrintingEventLoop::handle(Death *d)
+    {
+        if (!_os)
+            return;
+
+        *_os << "A unit dies." << std::endl;
+    }
 
     void
     Session::skip_to_eol(std::istream &is)
@@ -60,7 +86,7 @@ namespace interactive {
         cmd->run(this, os);
         delete cmd;
 
-        _evloop.process();
+        _evloop.processWithOstream(&os);
     }
 
     void

@@ -3,6 +3,7 @@
 #include <assert.h>
 
 #include "game.hpp"
+#include "event.hpp"
 
 std::default_random_engine
 global_random {};
@@ -22,6 +23,8 @@ BaseUnit::unplace()
 void
 BaseUnit::die()
 {
+    assert(!alive());
+
     unplace();
     delete this;
 }
@@ -42,11 +45,11 @@ BaseUnit::takeDamage(int dmg)
 }
 
 int
-Damage::evaluate() const
+BaseUnit::DamageSpec::evaluate() const
 {
-    return (int)round(spec.value
+    return (int)round(value
                       + std::uniform_real_distribution<>{
-                          -spec.spread, spec.spread}(global_random));
+                          -spread, spread}(global_random));
 }
 
 void
@@ -57,32 +60,5 @@ BaseUnit::putDamage(BaseUnit *from,
     DamageSpec dmg = (from->baseDamage(position())
                       * damageMultipler(from)
                       * modifier);
-    el->push_back(new Damage {dmg, this});
-}
-
-
-
-void
-EventLoop::process()
-{
-    while (!_events.empty()) {
-        Event *ev = _events.front();
-        _events.pop();
-        ev->execute(this);
-        delete ev;
-    }
-}
-
-void
-Damage::execute(EventLoop *el)
-{
-    unit->takeDamage(evaluate());
-    if (!unit->alive())
-        el->push_back(new Death {unit});
-}
-
-void
-Death::execute(EventLoop *)
-{
-    unit->die();
+    el->push_back(new Damage {dmg.evaluate(), this});
 }

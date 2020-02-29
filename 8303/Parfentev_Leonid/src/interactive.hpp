@@ -6,6 +6,7 @@
 #include <list>
 
 #include "game.hpp"
+#include "event.hpp"
 
 namespace interactive {
 
@@ -27,6 +28,21 @@ namespace interactive {
         virtual ~CommandFactory() {}
     };
 
+    class PrintingEventLoop : public EventLoop {
+        std::ostream *_os = nullptr;
+
+    public:
+        using EventLoop::EventLoop;
+
+        std::ostream *ostream() const { return _os; }
+        void setOstream(std::ostream *os) { _os = os; }
+
+        void processWithOstream(std::ostream *os);
+
+        virtual void handle(Damage *) override;
+        virtual void handle(Death *) override;
+    };
+
     class Session {
     public:
         struct Context {
@@ -37,7 +53,7 @@ namespace interactive {
     private:
         std::list<Context> _maps {};
         bool _stop_running = false;
-        EventLoop _evloop;
+        PrintingEventLoop _evloop;
 
         void spin(std::istream &is, std::ostream &os);
 

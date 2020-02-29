@@ -20,6 +20,7 @@ namespace demo {
         {{typeid(units::Archer)}, 'a'},
         {{typeid(units::Slinger)}, 'l'},
         {{typeid(units::Onager)}, 'O'},
+        {{typeid(units::BoltThrower)}, 'B'},
     };
 
     const std::map<std::type_index, const char *>
@@ -29,7 +30,8 @@ namespace demo {
         {{typeid(units::Rider)}, "Rider"},
         {{typeid(units::Archer)}, "Archer"},
         {{typeid(units::Slinger)}, "Slinger"},
-        {{typeid(units::Slinger)}, "Onager"},
+        {{typeid(units::Onager)}, "Onager"},
+        {{typeid(units::BoltThrower)}, "Bolt thrower"},
     };
 
     std::map<std::string, DemoSession::CommandEntry>
@@ -61,6 +63,8 @@ namespace demo {
                       new BasicUnitFactory<units::Slinger>{}},
                      {"onager",
                       new BasicUnitFactory<units::Onager>{}},
+                     {"boltthrower",
+                      new BasicUnitFactory<units::BoltThrower>{}},
                  }},
           "create CLASS X Y"}},
         {"focus",

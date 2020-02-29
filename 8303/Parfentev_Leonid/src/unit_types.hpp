@@ -268,6 +268,9 @@ namespace units {
     public:
         using BaseUnit::BaseUnit;
 
+        virtual DamageSpec
+        damageMultipler(const BaseUnit *) const override;
+
         virtual Delta
         getDelta(const GamePos &pos) const =0;
 
@@ -297,9 +300,51 @@ namespace units {
 
     public:
         Onager() :BasicCatapult{_base_health} {}
-
         virtual BaseUnit *
         copy() const override { return new Onager{}; }
+
+        virtual bool
+        canMove(const GamePos &pos) const override
+        {
+            return position().pathExistsTo(pos, _basic_speed);
+        }
+
+        virtual DamageSpec
+        baseDamage(const GamePos &) const override
+        {
+            return DamageSpec::part(_base_damage, _damage_spread);
+        }
+
+        virtual Delta
+        getDelta(const GamePos &pos) const override
+        {
+            double dist = position().distance(pos);
+            return
+                Delta{_base_coord_delta_t, _base_coord_delta_n} * dist;
+        }
+
+        virtual MinMaxRange
+        shootingMinMaxRange() const
+        {
+            return {_shooting_min_range, _shooting_max_range};
+        }
+
+    };
+
+    class BoltThrower : public BasicCatapult {
+        static constexpr int _base_health = 20;
+        static constexpr double _base_damage = 125;
+        static constexpr double _damage_spread = .10;
+        static constexpr double _shooting_max_range = 5;
+        static constexpr double _shooting_min_range = 1;
+        static constexpr int _basic_speed = 1;
+        static constexpr double _base_coord_delta_t = .09;
+        static constexpr double _base_coord_delta_n = .03;
+
+    public:
+        BoltThrower() :BasicCatapult{_base_health} {}
+        virtual BaseUnit *
+        copy() const override { return new BoltThrower{}; }
 
         virtual bool
         canMove(const GamePos &pos) const override

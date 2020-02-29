@@ -67,6 +67,14 @@ namespace units {
 
 
 
+    BaseUnit::DamageSpec
+    BasicCatapult::damageMultipler(const BaseUnit *unit) const
+    {
+        return (dynamic_cast<const BasicRangedUnit *>(unit)
+                ? DamageSpec{0}
+                : BaseUnit::damageMultipler(unit));
+    }
+
     BasicCatapult::DeltaXY
     BasicCatapult::positionDelta(const GamePos &target) const
     {
