@@ -299,39 +299,9 @@ namespace demo {
         }
     };
 
-    class CreateUnitFactory : public interactive::CommandFactory {
-        std::map<std::string, const BaseUnitFactory *> _typetab;
-
+    class PositionReader {
     public:
-        CreateUnitFactory(
-            std::map<std::string, const BaseUnitFactory *> typetab)
-            :_typetab{std::move(typetab)} {}
-
-        virtual interactive::Command *
-        create(std::istream &is, std::ostream &os) const override
-        {
-            std::string word;
-            int x, y;
-            is >> word >> x >> y;
-            if (is.fail()) {
-                os << "Failed to read unit class name" << std::endl;
-                return nullptr;
-            }
-
-            auto iter = _typetab.find(word);
-            if (iter == _typetab.end()) {
-                os << "Unit type name unknown: `"
-                   << word << "'" << std::endl;
-                return nullptr;
-            }
-
-            return new CreateUnit {iter->second, x, y};
-        }
-    };
-
-    template<typename T>
-    class PositionCommandFactory : public interactive::CommandFactory {
-        static bool read(const std::string &s, int *x, int *y)
+        static bool read_position(const std::string &s, int *x, int *y)
         {
             std::istringstream ss {s};
             ss >> *x;
@@ -348,6 +318,48 @@ namespace demo {
             // now we must hit EOF
             return ss.get() == std::istringstream::traits_type::eof();
         }
+    };
+
+    class CreateUnitFactory : public interactive::CommandFactory,
+                              private PositionReader {
+        std::map<std::string, const BaseUnitFactory *> _typetab;
+
+    public:
+        CreateUnitFactory(
+            std::map<std::string, const BaseUnitFactory *> typetab)
+            :_typetab{std::move(typetab)} {}
+
+        virtual interactive::Command *
+        create(std::istream &is, std::ostream &os) const override
+        {
+            std::string word, pos;
+            is >> word >> pos;
+            if (is.fail()) {
+                os << "Failed to read unit class name or position"
+                   << std::endl;
+                return nullptr;
+            }
+
+            auto iter = _typetab.find(word);
+            if (iter == _typetab.end()) {
+                os << "Unit type name unknown: `"
+                   << word << "'" << std::endl;
+                return nullptr;
+            }
+
+            int x, y;
+            if (!read_position(pos, &x, &y)) {
+                os << "Failed to read initial position" << std::endl;
+                return nullptr;
+            }
+
+            return new CreateUnit {iter->second, x, y};
+        }
+    };
+
+    template<typename T>
+    class PositionCommandFactory : public interactive::CommandFactory,
+                                   private PositionReader {
 
     public:
         virtual interactive::Command *
@@ -357,7 +369,7 @@ namespace demo {
             is >> buf;
 
             int x, y;
-            if (!read(buf, &x, &y)) {
+            if (!read_position(buf, &x, &y)) {
                 os << "Failed to read position" << std::endl;
                 return nullptr;
             }
