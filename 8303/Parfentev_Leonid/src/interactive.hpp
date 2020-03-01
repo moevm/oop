@@ -31,14 +31,9 @@ namespace interactive {
     };
 
     class Session {
-    public:
-        struct Context {
-            GameMap *map;
-            BaseUnit *focus;
-        };
-
     private:
-        std::list<Context> _maps {};
+        GameMap *_map = nullptr;
+        BaseUnit *_focus = nullptr;
         bool _stop_running = false;
 
         static void skip_to_eol(std::istream &is);
@@ -53,19 +48,25 @@ namespace interactive {
         virtual const CommandFactory *
         findCommandFactory(std::string name) const =0;
 
-        std::list<Context> &stack() { return _maps; };
-        Context &context()
-        {
-            assert(!_maps.empty());
-            return _maps.front();
-        }
         GameMap *map() const
         {
-            return _maps.empty() ? nullptr : _maps.front().map;
+            return _map;
         }
+        void resetMap(GameMap *map)
+        {
+            if (_map)
+                delete _map;
+            _map = map;
+            _focus = nullptr;
+        }
+
         BaseUnit *focus() const
         {
-            return _maps.empty() ? nullptr : _maps.front().focus;
+            return _focus;
+        }
+        void setFocus(BaseUnit *u)
+        {
+            _focus = u;
         }
 
         void quit() { _stop_running = true; }

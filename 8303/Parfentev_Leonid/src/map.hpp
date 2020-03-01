@@ -16,28 +16,15 @@ extern std::default_random_engine global_random;
 class GameCell {
     BaseUnit *_unit = nullptr;
 
-    void destroy();
-    void copy_from(const GameCell &c);
-    void move_from(GameCell &&c);
-
 public:
     GameCell() {}
 
-    GameCell(const GameCell &c) { copy_from(c); }
-    GameCell &operator=(const GameCell &c)
-    {
-        destroy();
-        copy_from(c);
-        return *this;
-    }
-    GameCell(GameCell &&c) { move_from(std::move(c)); }
-    GameCell &operator=(GameCell &&c)
-    {
-        destroy();
-        move_from(std::move(c));
-        return *this;
-    }
-    ~GameCell() { destroy(); }
+    GameCell(const GameCell &) =delete;
+    GameCell &operator=(const GameCell &) =delete;
+    GameCell(GameCell &&) =delete;
+    GameCell &operator=(GameCell &&) =delete;
+
+    ~GameCell();
 
     BaseUnit *unit() const { return _unit; }
     void setUnit(BaseUnit *u) { _unit = u; }
@@ -69,8 +56,6 @@ public:
     bool null() const { return _map == nullptr; }
     operator bool() const { return !null(); }
     bool valid() const;
-
-    void reset() { *this = GamePos{}; }
 
     GameCell &cell() const;
 
@@ -180,7 +165,6 @@ class GameMap {
     int _max_units = 0, _cur_units = 0;
 
     void destroy();
-    void copy_from(const GameMap &m);
 
     void throw_units_count();
 
@@ -190,13 +174,11 @@ public:
         :_w{w}, _h{h},
          _map{new GameCell[w * h]} {}
 
-    GameMap(const GameMap &m) { copy_from(m); }
-    GameMap &operator=(const GameMap &m)
-    {
-        destroy();
-        copy_from(m);
-        return *this;
-    }
+    GameMap(const GameMap &) =delete;
+    GameMap &operator=(const GameMap &) =delete;
+    GameMap(GameMap &&) =delete;
+    GameMap &operator=(GameMap &) =delete;
+
     ~GameMap() { delete[] _map; }
 
     using iterator = GameMapIter<false>;

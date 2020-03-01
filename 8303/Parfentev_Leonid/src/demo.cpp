@@ -39,15 +39,6 @@ namespace demo {
         {"newmap",
          {new demo::NewMapFactory{},
           "newmap WIDTH HEIGHT"}},
-        {"exchmap",
-         {new demo::MapCommandFactory<demo::ExchangeMaps, 1>{},
-         "exchmap [INDEX]"}},
-        {"popmap",
-         {new demo::MapCommandFactory<demo::PopMap, 0>{},
-         "popmap [INDEX]"}},
-        {"dupmap",
-         {new demo::MapCommandFactory<demo::DupMap, 0>{},
-         "dupmap [INDEX]"}},
 
         {"create",
          {new demo::CreateUnitFactory{{
@@ -80,15 +71,15 @@ namespace demo {
          {new interactive::SimpleCommandFactory<demo::DeleteUnit>{},
           "delete"}},
 
-        {"show",
+        {"print",
          {new demo::PrintSurroundingsFactory{},
-          "show CELLS"}},
-        {"showall",
+          "print CELLS"}},
+        {"printall",
          {new interactive::SimpleCommandFactory<demo::PrintAll>{},
-          "showall"}},
-        {"listmaps",
-         {new interactive::SimpleCommandFactory<demo::ListMaps>{},
-         "listmaps"}},
+          "printall"}},
+        {"status",
+         {new interactive::SimpleCommandFactory<demo::Status>{},
+         "status"}},
         {"list",
          {new interactive::SimpleCommandFactory<demo::ListUnits>{},
           "list"}},
@@ -115,7 +106,7 @@ namespace demo {
 
         // assume events only happen on the topmost map in stack
         if (d->unit == focus())
-            context().focus = nullptr;
+            setFocus(nullptr);
 
         write_unit(*_os, d->unit);
         *_os << " dies." << std::endl;

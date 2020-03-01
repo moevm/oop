@@ -9,25 +9,12 @@
 #include "unit.hpp"
 
 
-void
-GameCell::destroy()
+GameCell::~GameCell()
 {
     delete _unit;
     _unit = nullptr;
 }
 
-void
-GameCell::copy_from(const GameCell &c)
-{
-    _unit = c._unit ? c._unit->copy() : nullptr;
-}
-
-void
-GameCell::move_from(GameCell &&c)
-{
-    _unit = c._unit;
-    c._unit = nullptr;
-}
 
 
 
@@ -147,18 +134,6 @@ GameMap::destroy()
 {
     delete[] _map;
     _cur_units = _max_units = 0;
-}
-
-void
-GameMap::copy_from(const GameMap &m)
-{
-    _w = m._w;
-    _h = m._h;
-    _map = new GameCell[_w * _h];
-    _max_units = m._max_units;
-    _cur_units = m._cur_units;
-
-    std::copy(m.begin(), m.end(), begin());
 }
 
 void

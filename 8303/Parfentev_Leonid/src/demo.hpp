@@ -110,7 +110,7 @@ namespace demo {
         virtual void
         run(interactive::Session *s, std::ostream &) const override
         {
-            s->stack().push_front({new GameMap {_w, _h}, nullptr});
+            s->resetMap({new GameMap {_w, _h}});
         }
     };
 
@@ -126,130 +126,6 @@ namespace demo {
                 return nullptr;
             }
             return new NewMap {w, h};
-        }
-    };
-
-    class MapCommand : public interactive::Command {
-        int _idx;
-
-    protected:
-        int index() const { return _idx; }
-
-        std::list<interactive::Session::Context>::iterator
-        map(interactive::Session *s) const
-        {
-            auto &stack = s->stack();
-            auto iter = stack.begin();
-            for (int i = 0;
-                 i < _idx && iter != stack.end();
-                 ++i, ++iter);
-            return iter;
-        }
-
-    public:
-        MapCommand(int idx) :_idx{idx} {}
-    };
-
-    template<typename T, int default_idx>
-    class MapCommandFactory : public interactive::CommandFactory {
-    public:
-        virtual interactive::Command *
-        create(std::istream &is, std::ostream &os) const override
-        {
-            char c;
-            do {
-                c = is.get();
-            } while (isblank(c));
-            is.putback(c);
-            if (c == '\n')
-                return new T {default_idx};
-
-            int idx;
-            is >> idx;
-            if (is.fail()) {
-                os << "Failed to read map index" << std::endl;
-                return nullptr;
-            }
-            return new T {idx};
-        }
-    };
-
-    class ExchangeMaps : public MapCommand {
-    public:
-        using MapCommand::MapCommand;
-
-        virtual void
-        run(interactive::Session *s, std::ostream &os) const override
-        {
-            auto &stack = s->stack();
-
-            auto maphead = stack.begin();
-            if (maphead == stack.end()) {
-                os << "Map stack is empty" << std::endl;
-                return;
-            }
-
-            auto mapiter = map(s);
-            if (mapiter == stack.end()) {
-                os << "No map #" << index() << std::endl;
-                return;
-            }
-
-            std::swap(*maphead, *mapiter);
-        }
-    };
-
-    class PopMap : public MapCommand {
-    public:
-        using MapCommand::MapCommand;
-
-        virtual void
-        run(interactive::Session *s, std::ostream &os) const override
-        {
-            auto &stack = s->stack();
-            auto mapiter = map(s);
-            if (mapiter == stack.end()) {
-                os << "No map #" << index() << std::endl;
-                return;
-            }
-
-            delete mapiter->map;
-            stack.erase(mapiter);
-        }
-    };
-
-    class DupMap : public  MapCommand {
-        static BaseUnit *
-        get_new_focus(GameMap *map, const GamePos &pos)
-        {
-            return (pos
-                    ? GamePos{map, pos.x(), pos.y()}.cell().unit()
-                    : nullptr);
-        }
-
-    public:
-        using MapCommand::MapCommand;
-
-        virtual void
-        run(interactive::Session *s, std::ostream &os) const override
-        {
-            auto &stack = s->stack();
-            auto mapiter = map(s);
-            if (mapiter == stack.end()) {
-                os << "No map #" << index() << std::endl;
-                return;
-            }
-
-            GameMap *new_map = new GameMap {*mapiter->map};
-
-            BaseUnit
-                *old_focus = mapiter->focus,
-                *new_focus = (old_focus
-                              ? get_new_focus(
-                                  new_map, old_focus->position())
-                              : nullptr);
-
-            stack.push_front({new_map, new_focus});
         }
     };
 
@@ -407,7 +283,7 @@ namespace demo {
                 return;
             }
 
-            s->context().focus = unit;
+            s->setFocus(unit);
         }
 
     public:
@@ -487,21 +363,17 @@ namespace demo {
 
 
 
-    class ListMaps : public interactive::Command,
-                     private ObjectPrinter {
+    class Status : public interactive::Command,
+                   private ObjectPrinter {
     public:
         virtual void
         run(interactive::Session *s, std::ostream &os) const override
         {
-            auto &stack = s->stack();
-            int i = 0;
-            for (const interactive::Session::Context &c : stack) {
-                os << "#" << i++ << ":\t";
-                write_map(os, c.map);
-                os << "\tfocus: ";
-                write_unit(os, c.focus);
-                os << std::endl;
-            }
+            os << "Map: ";
+            write_map(os, s->map());
+            os << std::endl << "Focus: ";
+            write_unit(os, s->focus());
+            os << std::endl;
         }
     };
 
@@ -577,10 +449,10 @@ namespace demo {
                 y1_u = pos.y() + _cells + 1,
                 w = pos.map()->width(),
                 h = pos.map()->height(),
-                x0 = x0_u >= 0 ? x0_u : 0,
-                y0 = y0_u >= 0 ? y0_u : 0,
-                x1 = w > x1_u ? x1_u : w,
-                y1 = h > y1_u ? y1_u : h;
+                x0 = std::max(x0_u, 0),
+                y0 = std::max(y0_u, 0),
+                x1 = std::min(x1_u, w),
+                y1 = std::min(y1_u, h);
 
             print_map(pos.map(), x0, y0, x1 - x0, y1 - y0, os);
         }
