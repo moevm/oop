@@ -88,10 +88,58 @@ namespace demo {
          "listmaps"}},
         {"list",
          {new interactive::SimpleCommandFactory<demo::ListUnits>{},
-          "listunits"}},
+          "list"}},
         {"info",
          {new demo::PositionCommandFactory<demo::UnitInfo>{},
           "info POSITION"}},
     };
+
+    void
+    PrintingEventLoop::processWithOstream(std::ostream *os)
+    {
+        setOstream(os);
+        process();
+    }
+
+    void
+    PrintingEventLoop::handle(Damage *dmg)
+    {
+        if (!_os)
+            return;
+
+        write_unit(*_os, dmg->unit);
+        *_os << " takes damage: " << dmg->dmg << std::endl;
+    }
+
+    void
+    PrintingEventLoop::handle(Death *d)
+    {
+        if (!_os)
+            return;
+
+        write_unit(*_os, d->unit);
+        *_os << " dies." << std::endl;
+    }
+
+    const interactive::CommandFactory *
+    DemoSession::findCommandFactory(std::string name) const
+    {
+        if (name == "help")
+            return &help_factory;
+
+        auto iter = cmdtab.find(name);
+        if (iter == cmdtab.end())
+            return BasicSession::findCommandFactory(name);
+
+        return iter->second.factory;
+    }
+
+    void
+    DemoSession::spin(std::istream &is, std::ostream &os)
+    {
+        Session::spin(is, os);
+
+        _evloop.processWithOstream(&os);
+    }
 
 }

@@ -28,21 +28,6 @@ namespace interactive {
         virtual ~CommandFactory() {}
     };
 
-    class PrintingEventLoop : public EventLoop {
-        std::ostream *_os = nullptr;
-
-    public:
-        using EventLoop::EventLoop;
-
-        std::ostream *ostream() const { return _os; }
-        void setOstream(std::ostream *os) { _os = os; }
-
-        void processWithOstream(std::ostream *os);
-
-        virtual void handle(Damage *) override;
-        virtual void handle(Death *) override;
-    };
-
     class Session {
     public:
         struct Context {
@@ -53,17 +38,18 @@ namespace interactive {
     private:
         std::list<Context> _maps {};
         bool _stop_running = false;
-        PrintingEventLoop _evloop;
-
-        void spin(std::istream &is, std::ostream &os);
 
         static void skip_to_eol(std::istream &is);
+
+    protected:
+        virtual void
+        spin(std::istream &is, std::ostream &os);
 
     public:
         Session() {}
 
         virtual const CommandFactory *
-        findCommandFactory(std::string name) =0;
+        findCommandFactory(std::string name) const =0;
 
         std::list<Context> &stack() { return _maps; };
         Context &context()
@@ -83,8 +69,6 @@ namespace interactive {
         void quit() { _stop_running = true; }
 
         void run(std::istream &is, std::ostream &os);
-
-        EventLoop *evloop() { return &_evloop; }
 
         virtual ~Session() {}
     };
@@ -113,7 +97,7 @@ namespace interactive {
 
     public:
         virtual const CommandFactory *
-        findCommandFactory(std::string name) override
+        findCommandFactory(std::string name) const override
         {
             return (name == "quit") ? &quit_factory : nullptr;
         }

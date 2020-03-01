@@ -14,8 +14,102 @@
 #include "interactive.hpp"
 #include "game.hpp"
 #include "unit_types.hpp"
+#include "event.hpp"
 
 namespace demo {
+
+    class ObjectPrinter {
+    public:
+        static const std::map<std::type_index, const char *>
+        unittypenames;
+
+        static void
+        write_map(std::ostream &os, const GameMap *map)
+        {
+            os << "a Map of size "
+               << map->width() << "x" << map->height()
+               << " with " << map->unitsCount() << " units";
+
+            int max_units = map->maxUnitsCount();
+            if (max_units > 0)
+                os << " of " << max_units;
+        }
+
+        static void
+        write_unit(std::ostream &os, const BaseUnit *unit)
+        {
+            if (unit) {
+                os << "a ";
+
+                auto iter = unittypenames.find({typeid(*unit)});
+                os << ((iter != unittypenames.end())
+                       ? iter->second
+                       : "BaseUnit");
+
+                if (const GamePos &pos = unit->position())
+                    os << " at " << pos.x() << "," << pos.y();
+
+                os << " with " << unit->health() << " HP";
+            } else {
+                os << "(none)";
+            }
+        }
+    };
+
+    class PrintingEventLoop : public EventLoop,
+                              private ObjectPrinter {
+        std::ostream *_os = nullptr;
+
+    public:
+        using EventLoop::EventLoop;
+
+        std::ostream *ostream() const { return _os; }
+        void setOstream(std::ostream *os) { _os = os; }
+
+        void processWithOstream(std::ostream *os);
+
+        virtual void handle(Damage *) override;
+        virtual void handle(Death *) override;
+    };
+
+    class DemoSession : public interactive::BasicSession {
+        struct CommandEntry {
+            const interactive::CommandFactory *factory;
+            const char *description;
+        };
+
+        static std::map<std::string, CommandEntry> cmdtab;
+
+        class HelpCommand : public interactive::Command {
+        public:
+            virtual void
+            run(Session *, std::ostream &os) const override
+            {
+                os << "Available commands:" << std::endl;
+                for (const auto &p : cmdtab)
+                    os << " - " << p.second.description << std::endl;
+                os << " - quit" << std::endl;
+            }
+        };
+
+        static interactive::SimpleCommandFactory<HelpCommand>
+        help_factory;
+
+        PrintingEventLoop _evloop;
+
+    public:
+        using BasicSession::BasicSession;
+
+        EventLoop *evloop() { return &_evloop; }
+
+        virtual const interactive::CommandFactory *
+        findCommandFactory(std::string name) const override;
+
+        virtual void
+        spin(std::istream &is, std::ostream &os) override;
+    };
+
+
 
     class NewMap : public interactive::Command {
         int _w, _h;
@@ -364,52 +458,11 @@ namespace demo {
                 return;
             }
 
-            unit->attack(pos, s->evloop());
+            unit->attack(pos, dynamic_cast<DemoSession *>(s)->evloop());
         }
     };
 
 
-
-    class ObjectPrinter {
-    public:
-        static const std::map<std::type_index, const char *>
-        unittypenames;
-
-        static void
-        write_map(std::ostream &os, const GameMap *map)
-        {
-            os << "a Map of size "
-               << map->width() << "x" << map->height()
-               << " with " << map->unitsCount() << " units";
-
-            int max_units = map->maxUnitsCount();
-            if (max_units > 0)
-                os << " of " << max_units;
-        }
-
-        static void
-        write_unit(std::ostream &os, const BaseUnit *unit)
-        {
-            if (unit) {
-                os << "a ";
-
-                auto iter = unittypenames.find({typeid(*unit)});
-                os << ((iter != unittypenames.end())
-                       ? iter->second
-                       : "BaseUnit");
-
-                if (const GamePos &pos = unit->position())
-                    os << " at " << pos.x() << "," << pos.y();
-
-                if (unit->alive())
-                    os << " with " << unit->health() << " HP";
-                else
-                    os << " DEAD";
-            } else {
-                os << "(none)";
-            }
-        }
-    };
 
     class ListMaps : public interactive::Command,
                      private ObjectPrinter {
@@ -596,48 +649,6 @@ namespace demo {
 
             write_unit(os, unit);
             os << std::endl;
-        }
-    };
-
-
-
-    class DemoSession : public interactive::BasicSession {
-        struct CommandEntry {
-            const interactive::CommandFactory *factory;
-            const char *description;
-        };
-
-        static std::map<std::string, CommandEntry> cmdtab;
-
-        class HelpCommand : public interactive::Command {
-        public:
-            virtual void
-            run(Session *, std::ostream &os) const override
-            {
-                os << "Available commands:" << std::endl;
-                for (const auto &p : cmdtab)
-                    os << " - " << p.second.description << std::endl;
-                os << " - quit" << std::endl;
-            }
-        };
-
-        static interactive::SimpleCommandFactory<HelpCommand>
-        help_factory;
-
-    public:
-        using BasicSession::BasicSession;
-
-        virtual const interactive::CommandFactory *
-        findCommandFactory(std::string name)
-        {
-            if (name == "help")
-                return &help_factory;
-
-            auto iter = cmdtab.find(name);
-            if (iter == cmdtab.end())
-                return BasicSession::findCommandFactory(name);
-
-            return iter->second.factory;
         }
     };
 
