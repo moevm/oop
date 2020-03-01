@@ -24,88 +24,74 @@ namespace units {
         canAttack(const GamePos &pos) const override;
     };
 
-    class Swordsman : public BasicMeleeUnit {
-        static constexpr int _base_health = 100;
-        static constexpr double _base_damage = 40;
-        static constexpr double _damage_spread = .10;
-        static constexpr int _basic_speed = 2;
-
+    template<typename C, typename T>
+    class TemplateMeleeUnit : public BasicMeleeUnit {
     public:
-        Swordsman() :BasicMeleeUnit{_base_health} {}
+        TemplateMeleeUnit() :BasicMeleeUnit{C::baseHealth} {}
         virtual BaseUnit *
-        copy() const override { return new Swordsman {}; }
+        copy() const override { return new T {}; }
 
-        virtual double
-        typeDamageMultiplier(const BasicMeleeUnit *unit) const override;
         virtual DamageSpec
         baseDamage(const GamePos &) const override
         {
             return DamageSpec::part(
-                _base_damage * ((double)health()/_base_health),
-                _damage_spread);
+                C::baseDamage * ((double)health()/C::baseHealth),
+                C::damageSpread);
         }
 
         virtual bool
         canMove(const GamePos &pos) const override
         {
-            return position().pathExistsTo(pos, _basic_speed);
+            return position().pathExistsTo(pos, C::basicSpeed);
         }
     };
 
-    class Spearsman : public BasicMeleeUnit {
-        static constexpr int _base_health = 80;
-        static constexpr double _base_damage = 35;
-        static constexpr double _damage_spread = .05;
-        static constexpr int _basic_speed = 2;
-
-    public:
-        Spearsman() :BasicMeleeUnit{_base_health} {}
-        virtual BaseUnit *
-        copy() const override { return new Spearsman {}; }
-
-        virtual double
-        typeDamageMultiplier(const BasicMeleeUnit *unit) const override;
-        virtual DamageSpec
-        baseDamage(const GamePos &) const override
-        {
-            return DamageSpec::part(
-                _base_damage * ((double)health()/_base_health),
-                _damage_spread);
-        }
-
-        virtual bool
-        canMove(const GamePos &pos) const override
-        {
-            return position().pathExistsTo(pos, _basic_speed);
-        }
+    struct SwordsmanConfig {
+        static constexpr int baseHealth = 100;
+        static constexpr double baseDamage = 40;
+        static constexpr double damageSpread = .10;
+        static constexpr int basicSpeed = 2;
     };
 
-    class Rider : public BasicMeleeUnit {
-        static constexpr int _base_health = 75;
-        static constexpr double _base_damage = 50;
-        static constexpr double _damage_spread = .10;
-        static constexpr int _basic_speed = 3;
-
+    class Swordsman :
+        public TemplateMeleeUnit<SwordsmanConfig, Swordsman> {
     public:
-        Rider() :BasicMeleeUnit{_base_health} {}
-        virtual BaseUnit *
-        copy() const override { return new Rider {}; }
-
+        using TemplateMeleeUnit<SwordsmanConfig,
+                                Swordsman>::TemplateMeleeUnit;
         virtual double
         typeDamageMultiplier(const BasicMeleeUnit *unit) const override;
-        virtual DamageSpec
-        baseDamage(const GamePos &) const override
-        {
-            return DamageSpec::part(
-                _base_damage * ((double)health()/_base_health),
-                _damage_spread);
-        }
+    };
 
-        virtual bool
-        canMove(const GamePos &pos) const override
-        {
-            return position().pathExistsTo(pos, _basic_speed);
-        }
+    struct SpearsmanConfig {
+        static constexpr int baseHealth = 80;
+        static constexpr double baseDamage = 35;
+        static constexpr double damageSpread = .05;
+        static constexpr int basicSpeed = 2;
+    };
+
+    class Spearsman :
+        public TemplateMeleeUnit<SpearsmanConfig, Spearsman> {
+    public:
+        using TemplateMeleeUnit<SpearsmanConfig,
+                                Spearsman>::TemplateMeleeUnit;
+        virtual double
+        typeDamageMultiplier(const BasicMeleeUnit *unit) const override;
+    };
+
+    struct RiderConfig {
+        static constexpr int baseHealth = 75;
+        static constexpr double baseDamage = 50;
+        static constexpr double damageSpread = .10;
+        static constexpr int basicSpeed = 3;
+    };
+
+    class Rider :
+        public TemplateMeleeUnit<RiderConfig, Rider> {
+    public:
+        using TemplateMeleeUnit<RiderConfig,
+                                Rider>::TemplateMeleeUnit;
+        virtual double
+        typeDamageMultiplier(const BasicMeleeUnit *unit) const override;
     };
 
 
@@ -121,72 +107,60 @@ namespace units {
         canAttack(const GamePos &pos) const override;
     };
 
-    class Archer : public BasicRangedUnit {
-        static constexpr int _base_health = 70;
-        static constexpr double _base_damage = 45;
-        static constexpr double _damage_spread = .20;
-        static constexpr double _shooting_range = 3;
-        static constexpr double _distance_power = .20;
-        static constexpr int _basic_speed = 2;
-
+    template<typename C, typename T>
+    class TemplateRangedUnit : public BasicRangedUnit {
     public:
-        Archer() :BasicRangedUnit{_base_health} {}
+        TemplateRangedUnit() :BasicRangedUnit{C::baseHealth} {}
         virtual BaseUnit *
-        copy() const override { return new Archer {}; }
+        copy() const override { return new T {}; }
 
         virtual double
-        shootingRange() const override { return _shooting_range; }
+        shootingRange() const override { return C::shootingRange; }
 
         virtual DamageSpec
         baseDamage(const GamePos &pos) const override
         {
             return DamageSpec::part(
-                (_base_damage
-                 * ((double)health() / _base_health)
+                (C::baseDamage
+                 * ((double)health() / C::baseHealth)
                  / pow(position().distance(pos),
-                       _distance_power)),
-                _damage_spread);
+                       C::distancePower)),
+                C::damageSpread);
         }
 
         virtual bool
         canMove(const GamePos &pos) const override
         {
-            return position().pathExistsTo(pos, _basic_speed);
+            return position().pathExistsTo(pos, C::basicSpeed);
         }
     };
 
-    class Slinger : public BasicRangedUnit {
-        static constexpr int _base_health = 70;
-        static constexpr double _base_damage = 60;
-        static constexpr double _damage_spread = .25;
-        static constexpr double _shooting_range = 2;
-        static constexpr double _distance_power = .60;
-        static constexpr int _basic_speed = 2;
+    struct ArcherConfig {
+        static constexpr int baseHealth = 70;
+        static constexpr double baseDamage = 45;
+        static constexpr double damageSpread = .20;
+        static constexpr double shootingRange = 3;
+        static constexpr double distancePower = .20;
+        static constexpr int basicSpeed = 2;
+    };
 
-    public:
-        Slinger() :BasicRangedUnit{_base_health} {}
-        virtual BaseUnit *
-        copy() const override { return new Slinger {}; }
+    struct Archer : public TemplateRangedUnit<ArcherConfig, Archer> {
+        using TemplateRangedUnit<ArcherConfig,
+                                 Archer>::TemplateRangedUnit;
+    };
 
-        virtual double
-        shootingRange() const override { return _shooting_range; }
+    struct SlingerConfig {
+        static constexpr int baseHealth = 70;
+        static constexpr double baseDamage = 60;
+        static constexpr double damageSpread = .25;
+        static constexpr double shootingRange = 2;
+        static constexpr double distancePower = .60;
+        static constexpr int basicSpeed = 2;
+    };
 
-        virtual DamageSpec
-        baseDamage(const GamePos &pos) const override
-        {
-            return DamageSpec::part(
-                (_base_damage
-                 * ((double)health() / _base_health)
-                 / pow(position().distance(pos),
-                       _distance_power)),
-                _damage_spread);
-        }
-
-        virtual bool
-        canMove(const GamePos &pos) const override
-        {
-            return position().pathExistsTo(pos, _basic_speed);
-        }
+    struct Slinger : public TemplateRangedUnit<SlingerConfig, Slinger> {
+        using TemplateRangedUnit<SlingerConfig,
+                                 Slinger>::TemplateRangedUnit;
     };
 
 
@@ -288,31 +262,23 @@ namespace units {
         canAttack(const GamePos &pos) const override;
     };
 
-    class Onager : public BasicCatapult {
-        static constexpr int _base_health = 20;
-        static constexpr double _base_damage = 150;
-        static constexpr double _damage_spread = .10;
-        static constexpr double _shooting_max_range = 7;
-        static constexpr double _shooting_min_range = 2;
-        static constexpr int _basic_speed = 1;
-        static constexpr double _base_coord_delta_t = .3;
-        static constexpr double _base_coord_delta_n = .1;
-
+    template<typename C, typename T>
+    class TemplateCatapult : public BasicCatapult {
     public:
-        Onager() :BasicCatapult{_base_health} {}
+        TemplateCatapult() :BasicCatapult{C::baseHealth} {}
         virtual BaseUnit *
-        copy() const override { return new Onager{}; }
+        copy() const override { return new T {}; }
 
         virtual bool
         canMove(const GamePos &pos) const override
         {
-            return position().pathExistsTo(pos, _basic_speed);
+            return position().pathExistsTo(pos, C::basicSpeed);
         }
 
         virtual DamageSpec
         baseDamage(const GamePos &) const override
         {
-            return DamageSpec::part(_base_damage, _damage_spread);
+            return DamageSpec::part(C::baseDamage, C::damageSpread);
         }
 
         virtual Delta
@@ -320,58 +286,47 @@ namespace units {
         {
             double dist = position().distance(pos);
             return
-                Delta{_base_coord_delta_t, _base_coord_delta_n} * dist;
+                Delta{C::baseCoordDeltaT, C::baseCoordDeltaN} * dist;
         }
 
         virtual MinMaxRange
         shootingMinMaxRange() const
         {
-            return {_shooting_min_range, _shooting_max_range};
+            return {C::shootingMinRange, C::shootingMaxRange};
         }
 
     };
 
-    class BoltThrower : public BasicCatapult {
-        static constexpr int _base_health = 20;
-        static constexpr double _base_damage = 125;
-        static constexpr double _damage_spread = .10;
-        static constexpr double _shooting_max_range = 5;
-        static constexpr double _shooting_min_range = 1;
-        static constexpr int _basic_speed = 1;
-        static constexpr double _base_coord_delta_t = .09;
-        static constexpr double _base_coord_delta_n = .03;
+    struct OnagerConfig {
+        static constexpr int baseHealth = 20;
+        static constexpr double baseDamage = 150;
+        static constexpr double damageSpread = .10;
+        static constexpr double shootingMaxRange = 7;
+        static constexpr double shootingMinRange = 2;
+        static constexpr int basicSpeed = 1;
+        static constexpr double baseCoordDeltaT = .3;
+        static constexpr double baseCoordDeltaN = .1;
+    };
 
-    public:
-        BoltThrower() :BasicCatapult{_base_health} {}
-        virtual BaseUnit *
-        copy() const override { return new BoltThrower{}; }
+    struct Onager : public TemplateCatapult<OnagerConfig, Onager> {
+        using TemplateCatapult<OnagerConfig, Onager>::TemplateCatapult;
+    };
 
-        virtual bool
-        canMove(const GamePos &pos) const override
-        {
-            return position().pathExistsTo(pos, _basic_speed);
-        }
+    struct BoltThrowerConfig {
+        static constexpr int baseHealth = 20;
+        static constexpr double baseDamage = 125;
+        static constexpr double damageSpread = .10;
+        static constexpr double shootingMaxRange = 5;
+        static constexpr double shootingMinRange = 1;
+        static constexpr int basicSpeed = 1;
+        static constexpr double baseCoordDeltaT = .09;
+        static constexpr double baseCoordDeltaN = .03;
+    };
 
-        virtual DamageSpec
-        baseDamage(const GamePos &) const override
-        {
-            return DamageSpec::part(_base_damage, _damage_spread);
-        }
-
-        virtual Delta
-        getDelta(const GamePos &pos) const override
-        {
-            double dist = position().distance(pos);
-            return
-                Delta{_base_coord_delta_t, _base_coord_delta_n} * dist;
-        }
-
-        virtual MinMaxRange
-        shootingMinMaxRange() const
-        {
-            return {_shooting_min_range, _shooting_max_range};
-        }
-
+    struct BoltThrower :
+        public TemplateCatapult<BoltThrowerConfig, BoltThrower> {
+        using TemplateCatapult<BoltThrowerConfig,
+                               BoltThrower>::TemplateCatapult;
     };
 
     // TODO: ships
