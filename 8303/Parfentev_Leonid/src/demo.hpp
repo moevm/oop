@@ -56,23 +56,9 @@ namespace demo {
         }
     };
 
-    class PrintingEventLoop : public events::EventLoop,
-                              private ObjectPrinter {
-        std::ostream *_os = nullptr;
-
-    public:
-        using events::EventLoop::EventLoop;
-
-        std::ostream *ostream() const { return _os; }
-        void setOstream(std::ostream *os) { _os = os; }
-
-        void processWithOstream(std::ostream *os);
-
-        virtual void handle(events::Damage *) override;
-        virtual void handle(events::Death *) override;
-    };
-
-    class DemoSession : public interactive::BasicSession {
+    class DemoSession : public interactive::BasicSession,
+                        public events::EventLoop,
+                        private ObjectPrinter{
         struct CommandEntry {
             const interactive::CommandFactory *factory;
             const char *description;
@@ -95,18 +81,21 @@ namespace demo {
         static interactive::SimpleCommandFactory<HelpCommand>
         help_factory;
 
-        PrintingEventLoop _evloop;
+        std::ostream *_os;
 
     public:
         using BasicSession::BasicSession;
-
-        events::EventLoop *evloop() { return &_evloop; }
 
         virtual const interactive::CommandFactory *
         findCommandFactory(std::string name) const override;
 
         virtual void
         spin(std::istream &is, std::ostream &os) override;
+
+        virtual void
+        handle(events::Damage *) override;
+        virtual void
+        handle(events::Death *) override;
     };
 
 
@@ -472,7 +461,7 @@ namespace demo {
                 return;
             }
 
-            unit->attack(pos, dynamic_cast<DemoSession *>(s)->evloop());
+            unit->attack(pos, dynamic_cast<DemoSession *>(s));
         }
 
     public:
@@ -491,7 +480,7 @@ namespace demo {
             }
 
             auto *ss = dynamic_cast<DemoSession *>(s);
-            ss->evloop()->push_back(new events::Death {unit});
+            ss->push_back(new events::Death {unit});
         }
     };
 

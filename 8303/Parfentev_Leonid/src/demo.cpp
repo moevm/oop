@@ -98,14 +98,7 @@ namespace demo {
     };
 
     void
-    PrintingEventLoop::processWithOstream(std::ostream *os)
-    {
-        setOstream(os);
-        process();
-    }
-
-    void
-    PrintingEventLoop::handle(events::Damage *dmg)
+    DemoSession::handle(events::Damage *dmg)
     {
         if (!_os)
             return;
@@ -115,11 +108,15 @@ namespace demo {
     }
 
     void
-    PrintingEventLoop::handle(events::Death *d)
+    DemoSession::handle(events::Death *d)
     {
         if (!_os)
             return;
 
+        // assume events only happen on the topmost map in stack
+        if (d->unit == focus())
+            context().focus = nullptr;
+        
         write_unit(*_os, d->unit);
         *_os << " dies." << std::endl;
     }
@@ -141,8 +138,8 @@ namespace demo {
     DemoSession::spin(std::istream &is, std::ostream &os)
     {
         Session::spin(is, os);
-
-        _evloop.processWithOstream(&os);
+        _os = &os;
+        EventLoop::process();
     }
 
 }
