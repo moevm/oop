@@ -75,7 +75,10 @@ namespace demo {
                 os << "Available commands:" << std::endl;
                 for (const auto &p : cmdtab)
                     os << " - " << p.second.description << std::endl;
-                os << " - quit" << std::endl;
+                os << " - help -- Print this help message"
+                   << std::endl;
+                os << " - quit -- Quit"
+                   << std::endl;
             }
         };
 
@@ -423,7 +426,7 @@ namespace demo {
             }
 
             auto *ss = dynamic_cast<DemoSession *>(s);
-            ss->push_back(new events::Death {unit});
+            ss->push(new events::Death {unit});
         }
     };
 

@@ -60,5 +60,5 @@ BaseUnit::putDamage(BaseUnit *from,
     DamageSpec dmg = (from->baseDamage(position())
                       * damageMultipler(from)
                       * modifier);
-    el->push_back(new events::Damage {dmg.evaluate(), this});
+    el->push(new events::Damage {dmg.evaluate(), this});
 }

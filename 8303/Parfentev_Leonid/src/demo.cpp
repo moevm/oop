@@ -38,13 +38,14 @@ namespace demo {
     DemoSession::cmdtab = {
         {"newmap",
          {new NewMapFactory{},
-          "newmap WIDTH HEIGHT"}},
+          "newmap WIDTH HEIGHT -- Create new empty map of size WIDTHxHEIGHT"
+         }},
         {"setlimit",
          {new SetMaxUnitsFactory{},
-          "setlimit N"}},
+          "setlimit N -- Set a limit of N units on map"}},
         {"unsetlimit",
          {new interactive::SimpleCommandFactory<UnsetMaxUnits>{},
-          "unsetlimit"}},
+          "unsetlimit -- Unset the units count limit"}},
 
         {"create",
          {new CreateUnitFactory{{
@@ -63,42 +64,51 @@ namespace demo {
                      {"boltthrower",
                       new BasicUnitFactory<units::BoltThrower>{}},
                  }},
-          "create CLASS X Y"}},
+          "create CLASS POSITION -- Create unit of class CLASS at POSITION"
+         }},
         {"focus",
          {new PositionCommandFactory<FocusUnit>{},
-          "focus POSITION"}},
+          "focus POSITION -- Focus on the unit at POSITION"
+         }},
         {"moveto",
          {new PositionCommandFactory<MoveUnit>{},
-          "moveto DESTINATION"}},
+          "moveto DESTINATION -- Make the focused unit move to DESTINATION"
+         }},
         {"attack",
          {new PositionCommandFactory<AttackUnit>{},
-          "attack POSITION"}},
+          "attack POSITION -- Make the focused unit attack a unit at POSITION"
+         }},
         {"delete",
          {new interactive::SimpleCommandFactory<DeleteUnit>{},
-          "delete"}},
+          "delete -- Immediately kill the focused unit"
+         }},
 
         {"print",
          {new PrintSurroundingsFactory{},
-          "print CELLS"}},
+          "print N -- Display everything within N cells from the focused unit"
+         }},
         {"printall",
          {new interactive::SimpleCommandFactory<PrintAll>{},
-          "printall"}},
+          "printall -- Display the entire map"
+         }},
         {"status",
          {new interactive::SimpleCommandFactory<Status>{},
-         "status"}},
+          "status -- Describe the current map and focused unit"
+         }},
         {"list",
          {new interactive::SimpleCommandFactory<ListUnits>{},
-          "list"}},
+          "list -- Print a list of units on the map"
+         }},
         {"info",
          {new PositionCommandFactory<UnitInfo>{},
-          "info POSITION"}},
+          "info POSITION -- Describe the unit at POSITION"
+         }},
     };
 
     void
     DemoSession::handle(events::Damage *dmg)
     {
-        if (!_os)
-            return;
+        assert(_os);
 
         write_unit(*_os, dmg->unit);
         *_os << " takes damage: " << dmg->dmg << std::endl;
@@ -107,8 +117,7 @@ namespace demo {
     void
     DemoSession::handle(events::Death *d)
     {
-        if (!_os)
-            return;
+        assert(_os);
 
         // assume events only happen on the topmost map in stack
         if (d->unit == focus())

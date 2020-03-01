@@ -45,10 +45,9 @@ namespace events {
         std::queue<Event *> _events {};
 
     public:
-        void push_back(Event *e) { _events.push(e); }
+        void push(Event *e) { _events.push(e); }
         Event *front() const { return _events.front(); }
         bool empty() const { return _events.empty(); }
-        void pop_front() { _events.pop(); }
 
         void process();
 

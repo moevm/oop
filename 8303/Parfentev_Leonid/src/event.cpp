@@ -22,7 +22,7 @@ namespace events {
         el->handle(this);
         unit->takeDamage(dmg);
         if (!unit->alive())
-            el->push_back(new Death {unit});
+            el->push(new Death {unit});
     }
 
     void
