@@ -265,13 +265,22 @@ namespace demo {
 
 
 
-    class CreateUnit : public interactive::Command {
-        const BaseUnitFactory *_factory;
+    class PositionCommand : public interactive::Command {
         int _x, _y;
 
+    protected:
+        GamePos position(GameMap *map) const { return {map, _x, _y}; }
+
+        // TODO: runWithPosition(..., const GamePos pos);
+        // overridden ‘run’ that checks that position is valid
+
+        virtual void
+        runWithPosition(interactive::Session *s,
+                        std::ostream &os,
+                        const GamePos &pos) const =0;
+
     public:
-        CreateUnit(const BaseUnitFactory *factory, int x, int y)
-            :_factory{factory}, _x{x}, _y{y} {}
+        PositionCommand(int x, int y) :_x{x}, _y{y} {}
 
         virtual void
         run(interactive::Session *s, std::ostream &os) const override
@@ -282,12 +291,25 @@ namespace demo {
                 return;
             }
 
-            GamePos pos {map, _x, _y};
+            GamePos pos = position(map);
             if (!pos.valid()) {
                 os << "Invalid position" << std::endl;
                 return;
             }
 
+            runWithPosition(s, os, pos);
+        }
+    };
+
+    class CreateUnit : public PositionCommand {
+        const BaseUnitFactory *_factory;
+
+    protected:
+        virtual void
+        runWithPosition(interactive::Session *,
+                        std::ostream &os,
+                        const GamePos &pos) const override
+        {
             if (pos.cell().unit()) {
                 os << "Cell already occupied" << std::endl;
                 return;
@@ -297,6 +319,10 @@ namespace demo {
             bool res = unit->moveTo(pos);
             assert(res);
         }
+
+    public:
+        CreateUnit(const BaseUnitFactory *factory, int x, int y)
+            :PositionCommand{x, y}, _factory{factory} {}
     };
 
     class PositionReader {
@@ -378,29 +404,13 @@ namespace demo {
         }
     };
 
-    class PositionCommand : public interactive::Command {
-        int _x, _y;
-
-    protected:
-        GamePos position(GameMap *map) const { return {map, _x, _y}; }
-
-    public:
-        PositionCommand(int x, int y) :_x{x}, _y{y} {}
-    };
-
     class FocusUnit : public PositionCommand {
-    public:
-        using PositionCommand::PositionCommand;
-
+    protected:
         virtual void
-        run(interactive::Session *s, std::ostream &os) const override
+        runWithPosition(interactive::Session *s,
+                        std::ostream &os,
+                        const GamePos &pos) const override
         {
-            GamePos pos = position(s->map());
-            if (!pos.valid()) { // also when no current map
-                os << "Invalid position" << std::endl;
-                return;
-            }
-
             BaseUnit *unit = pos.cell().unit();
             if (!unit) {
                 os << "No unit there" << std::endl;
@@ -409,28 +419,24 @@ namespace demo {
 
             s->context().focus = unit;
         }
+
+    public:
+        using PositionCommand::PositionCommand;
     };
 
     class MoveUnit : public PositionCommand {
-    public:
-        using PositionCommand::PositionCommand;
-
+    protected:
         virtual void
-        run(interactive::Session *s, std::ostream &os) const override
+        runWithPosition(interactive::Session *s,
+                        std::ostream &os,
+                        const GamePos &pos) const override
         {
-            GameMap *map = s->map();
-            if (!map) {
-                os << "No current map" << std::endl;
-                return;
-            }
-
             BaseUnit *unit = s->focus();
             if (!unit) {
                 os << "No focused unit" << std::endl;
                 return;
             }
 
-            GamePos pos = position(map);
             if (!unit->canMove(pos)) {
                 os << "This unit can't move there" << std::endl;
                 return;
@@ -443,28 +449,24 @@ namespace demo {
                 return;
             }
         }
+
+    public:
+        using PositionCommand::PositionCommand;
     };
 
     class AttackUnit : public PositionCommand {
-    public:
-        using PositionCommand::PositionCommand;
-
+    protected:
         virtual void
-        run(interactive::Session *s, std::ostream &os) const override
+        runWithPosition(interactive::Session *s,
+                        std::ostream &os,
+                        const GamePos &pos) const override
         {
-            GameMap *map = s->map();
-            if (!map) {
-                os << "No current map" << std::endl;
-                return;
-            }
-
             BaseUnit *unit = s->focus();
             if (!unit) {
                 os << "No focused unit" << std::endl;
                 return;
             }
 
-            GamePos pos = position(map);
             if (!unit->canAttack(pos)) {
                 os << "Can't attack there" << std::endl;
                 return;
@@ -472,6 +474,9 @@ namespace demo {
 
             unit->attack(pos, dynamic_cast<DemoSession *>(s)->evloop());
         }
+
+    public:
+        using PositionCommand::PositionCommand;
     };
 
 
@@ -635,24 +640,12 @@ namespace demo {
 
     class UnitInfo : public PositionCommand,
                      private ObjectPrinter {
-    public:
-        using PositionCommand::PositionCommand;
-
+    protected:
         virtual void
-        run(interactive::Session *s, std::ostream &os) const override
+        runWithPosition(interactive::Session *,
+                        std::ostream &os,
+                        const GamePos &pos) const override
         {
-            GameMap *map = s->map();
-            if (!map) {
-                os << "No current map" << std::endl;
-                return;
-            }
-
-            GamePos pos = position(map);
-            if (!pos.valid()) {
-                os << "Invalid position" << std::endl;
-                return;
-            }
-
             BaseUnit *unit = pos.cell().unit();
             if (!unit) {
                 os << "No unit there" << std::endl;
@@ -662,6 +655,9 @@ namespace demo {
             write_unit(os, unit);
             os << std::endl;
         }
+
+    public:
+        using PositionCommand::PositionCommand;
     };
 
 }
