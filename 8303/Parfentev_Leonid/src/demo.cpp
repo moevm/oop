@@ -76,6 +76,9 @@ namespace demo {
         {"attack",
          {new demo::PositionCommandFactory<demo::AttackUnit>{},
           "attack POSITION"}},
+        {"delete",
+         {new interactive::SimpleCommandFactory<demo::DeleteUnit>{},
+          "delete"}},
 
         {"show",
          {new demo::PrintSurroundingsFactory{},

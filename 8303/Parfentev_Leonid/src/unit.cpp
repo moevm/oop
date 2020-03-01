@@ -23,8 +23,6 @@ BaseUnit::unplace()
 void
 BaseUnit::die()
 {
-    assert(!alive());
-
     unplace();
     delete this;
 }

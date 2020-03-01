@@ -479,6 +479,22 @@ namespace demo {
         using PositionCommand::PositionCommand;
     };
 
+    class DeleteUnit : public interactive::Command {
+    public:
+        virtual void
+        run(interactive::Session *s, std::ostream &os) const override
+        {
+            BaseUnit *unit = s->focus();
+            if (!unit) {
+                os << "No focused unit" << std::endl;
+                return;
+            }
+
+            auto *ss = dynamic_cast<DemoSession *>(s);
+            ss->evloop()->push_back(new events::Death {unit});
+        }
+    };
+
 
 
     class ListMaps : public interactive::Command,
