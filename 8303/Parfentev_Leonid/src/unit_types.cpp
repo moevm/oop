@@ -1,5 +1,8 @@
-#include "game.hpp"
+#include "map.hpp"
+#include "unit.hpp"
+#include "event.hpp"
 #include "unit_types.hpp"
+
 
 namespace units {
 

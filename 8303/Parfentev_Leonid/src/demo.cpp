@@ -116,7 +116,7 @@ namespace demo {
         // assume events only happen on the topmost map in stack
         if (d->unit == focus())
             context().focus = nullptr;
-        
+
         write_unit(*_os, d->unit);
         *_os << " dies." << std::endl;
     }

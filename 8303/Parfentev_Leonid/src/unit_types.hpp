@@ -1,7 +1,9 @@
 #ifndef _UNIT_TYPES_HPP_
 #define _UNIT_TYPES_HPP_
 
-#include "game.hpp"
+#include "map.hpp"
+#include "unit.hpp"
+
 
 namespace units {
 

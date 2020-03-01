@@ -3,7 +3,7 @@
 
 #include <ctype.h>
 
-#include "game.hpp"
+#include "map.hpp"
 #include "event.hpp"
 #include "interactive.hpp"
 

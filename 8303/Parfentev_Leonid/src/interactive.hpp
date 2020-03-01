@@ -5,8 +5,10 @@
 #include <string>
 #include <list>
 
-#include "game.hpp"
+#include "map.hpp"
+#include "unit.hpp"
 #include "event.hpp"
+
 
 namespace interactive {
 

@@ -2,8 +2,10 @@
 
 #include <assert.h>
 
-#include "game.hpp"
+#include "map.hpp"
 #include "event.hpp"
+#include "unit.hpp"
+
 
 std::default_random_engine
 global_random {};

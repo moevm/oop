@@ -12,7 +12,8 @@
 #include <ctype.h>
 
 #include "interactive.hpp"
-#include "game.hpp"
+#include "map.hpp"
+#include "unit.hpp"
 #include "unit_types.hpp"
 #include "event.hpp"
 

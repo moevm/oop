@@ -1,7 +1,11 @@
 #ifndef _EVENT_HPP_
 #define _EVENT_HPP_
 
-#include "game.hpp"
+#include <queue>
+
+#include "map.hpp"
+#include "unit.hpp"
+
 
 namespace events {
 
