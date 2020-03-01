@@ -18,7 +18,7 @@ namespace units {
         damageMultipler(const BaseUnit *attacker) const override;
 
         virtual void
-        attack(const GamePos &pos, EventLoop *el) override;
+        attack(const GamePos &pos, events::EventLoop *el) override;
 
         virtual bool
         canAttack(const GamePos &pos) const override;
@@ -250,7 +250,7 @@ namespace units {
 
         virtual void
         attack(const GamePos &pos,
-               EventLoop *el) override;
+               events::EventLoop *el) override;
 
         struct MinMaxRange {
             double min, max;

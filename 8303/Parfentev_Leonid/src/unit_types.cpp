@@ -24,7 +24,7 @@ namespace units {
 
 
     void
-    BasicMeleeUnit::attack(const GamePos &pos, EventLoop *el)
+    BasicMeleeUnit::attack(const GamePos &pos, events::EventLoop *el)
     {
         BaseUnit *target = pos.cell().unit();
         assert(target);
@@ -102,7 +102,7 @@ namespace units {
     }
 
     void
-    BasicCatapult::attack(const GamePos &pos, EventLoop *el)
+    BasicCatapult::attack(const GamePos &pos, events::EventLoop *el)
     {
         assert(pos.valid());
 

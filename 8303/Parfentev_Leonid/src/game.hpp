@@ -9,9 +9,11 @@
 
 #include <assert.h>
 
-class EventLoop;
-
 extern std::default_random_engine global_random;
+
+namespace events {
+    class EventLoop;
+}
 
 class BaseUnit;
 
@@ -349,10 +351,10 @@ public:
     void
     putDamage(BaseUnit *from,
               DamageSpec modifier,
-              EventLoop *el);
+              events::EventLoop *el);
     virtual void
     attack(const GamePos &pos,
-           EventLoop *el)
+           events::EventLoop *el)
     {
         assert(pos.valid());
         assert(pos.cell().unit());

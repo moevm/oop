@@ -55,10 +55,10 @@ BaseUnit::DamageSpec::evaluate() const
 void
 BaseUnit::putDamage(BaseUnit *from,
                     DamageSpec modifier,
-                    EventLoop *el)
+                    events::EventLoop *el)
 {
     DamageSpec dmg = (from->baseDamage(position())
                       * damageMultipler(from)
                       * modifier);
-    el->push_back(new Damage {dmg.evaluate(), this});
+    el->push_back(new events::Damage {dmg.evaluate(), this});
 }

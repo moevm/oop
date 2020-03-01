@@ -102,7 +102,7 @@ namespace demo {
     }
 
     void
-    PrintingEventLoop::handle(Damage *dmg)
+    PrintingEventLoop::handle(events::Damage *dmg)
     {
         if (!_os)
             return;
@@ -112,7 +112,7 @@ namespace demo {
     }
 
     void
-    PrintingEventLoop::handle(Death *d)
+    PrintingEventLoop::handle(events::Death *d)
     {
         if (!_os)
             return;

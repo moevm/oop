@@ -56,20 +56,20 @@ namespace demo {
         }
     };
 
-    class PrintingEventLoop : public EventLoop,
+    class PrintingEventLoop : public events::EventLoop,
                               private ObjectPrinter {
         std::ostream *_os = nullptr;
 
     public:
-        using EventLoop::EventLoop;
+        using events::EventLoop::EventLoop;
 
         std::ostream *ostream() const { return _os; }
         void setOstream(std::ostream *os) { _os = os; }
 
         void processWithOstream(std::ostream *os);
 
-        virtual void handle(Damage *) override;
-        virtual void handle(Death *) override;
+        virtual void handle(events::Damage *) override;
+        virtual void handle(events::Death *) override;
     };
 
     class DemoSession : public interactive::BasicSession {
@@ -100,7 +100,7 @@ namespace demo {
     public:
         using BasicSession::BasicSession;
 
-        EventLoop *evloop() { return &_evloop; }
+        events::EventLoop *evloop() { return &_evloop; }
 
         virtual const interactive::CommandFactory *
         findCommandFactory(std::string name) const override;
