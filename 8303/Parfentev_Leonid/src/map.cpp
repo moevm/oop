@@ -136,20 +136,15 @@ GameMap::destroy()
     _cur_units = _max_units = 0;
 }
 
-void
-GameMap::throw_units_count()
-{
-    throw std::runtime_error{
-        "Maximum unit count exceeded"};
-}
-
-void
+bool
 GameMap::setMaxUnitsCount(int n)
 {
     if (n > 0
         && n < _cur_units)
-        throw_units_count();
+        return false;
+
     _max_units = n;
+    return true;
 }
 
 GameCell &
@@ -182,7 +177,7 @@ GameMap::placeUnit(BaseUnit *u)
 
     if (_max_units > 0
         && _cur_units >= _max_units)
-        throw_units_count();
+        return false;
 
     cell.setUnit(u);
     _cur_units++;

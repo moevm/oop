@@ -166,8 +166,6 @@ class GameMap {
 
     void destroy();
 
-    void throw_units_count();
-
 public:
     GameMap() :_map{nullptr} {}
     GameMap(int w, int h)
@@ -218,7 +216,7 @@ public:
 
     int unitsCount() const { return _cur_units; }
     int maxUnitsCount() const { return _max_units; }
-    void setMaxUnitsCount(int n);
+    bool setMaxUnitsCount(int n);
 
     GameCell &operator()(int x, int y);
     const GameCell &operator()(int x, int y) const;

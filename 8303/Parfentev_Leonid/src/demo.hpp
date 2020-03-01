@@ -33,7 +33,7 @@ namespace demo {
 
             int max_units = map->maxUnitsCount();
             if (max_units > 0)
-                os << " of " << max_units;
+                os << " out of " << max_units;
         }
 
         static void
@@ -129,6 +129,68 @@ namespace demo {
         }
     };
 
+    class SetMaxUnits : public interactive::Command {
+        int _n;
+
+    public:
+        SetMaxUnits(int n) :_n{n} {}
+
+        virtual void
+        run(interactive::Session *s, std::ostream &os) const override
+        {
+            GameMap *map = s->map();
+            if (!map) {
+                os << "No current map" << std::endl;
+                return;
+            }
+
+            if (!map->setMaxUnitsCount(_n)) {
+                os << "Failed (currently " << map->unitsCount()
+                   << " units)" << std::endl;
+                return;
+            }
+        }
+    };
+
+    class SetMaxUnitsFactory : public interactive::CommandFactory {
+    public:
+        virtual interactive::Command *
+        create(std::istream &is, std::ostream &os) const override
+        {
+            int n;
+            is >> n;
+
+            if (is.fail()) {
+                os << "Failed to read new max number of units"
+                   << std::endl;
+                return nullptr;
+            }
+
+            if (n <= 0) {
+                os << "Max number of units must be positive"
+                   << std::endl;
+                return nullptr;
+            }
+
+            return new SetMaxUnits {n};
+        }
+    };
+
+    class UnsetMaxUnits : public interactive::Command {
+    public:
+        virtual void
+        run(interactive::Session *s, std::ostream &os) const override
+        {
+            GameMap *map = s->map();
+            if (!map) {
+                os << "No current map" << std::endl;
+                return;
+            }
+
+            map->setMaxUnitsCount(0);
+        }
+    };
+
 
 
     class PositionCommand : public interactive::Command {
@@ -182,8 +244,12 @@ namespace demo {
             }
 
             BaseUnit *unit = _factory->create();
-            bool res = unit->moveTo(pos);
-            assert(res);
+
+            if (!unit->moveTo(pos)) {
+                os << "Failed to place unit" << std::endl;
+                delete unit;
+                return;
+            }
         }
 
     public:
