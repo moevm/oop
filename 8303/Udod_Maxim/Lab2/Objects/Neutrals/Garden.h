@@ -1,0 +1,24 @@
+//
+// Created by shenk on 01.03.2020.
+//
+
+#ifndef UNTITLED13_GARDEN_H
+#define UNTITLED13_GARDEN_H
+
+#include "NeutralObject.h"
+#include "NeutralObjectStrategy/NeutralObjectStrategy.h"
+
+class Garden: public NeutralObject {
+
+public:
+
+    void applyTo(Unit &unit) override {
+
+        unit.heal(10*strategy->getUnitTypeFactor());
+
+    }
+
+};
+
+
+#endif //UNTITLED13_GARDEN_H
