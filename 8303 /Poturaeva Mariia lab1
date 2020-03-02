@@ -1,0 +1,230 @@
+#include <iostream>
+
+using namespace std;
+
+class Speed {
+public:
+	int speed;
+};
+
+class Health {
+public:
+	int health;
+};
+
+class Attack {
+public:
+	int attack;
+};
+
+class Unit : public Speed, public Health, public Attack {
+
+public:
+	int x;
+	int y;
+
+	void move(int x, int y) {
+		this->x = x;
+		this->y = y;
+
+	}
+};
+
+class Field {
+
+	int x;
+	int y;
+	int unitCount;
+	int maxUnit;
+	Unit*** map;	
+
+public:
+	Field(int x, int y, int maxUnit) {
+		this->x = x;
+		this->y = y;
+		this->unitCount = 0;
+		this->maxUnit = maxUnit;
+		map = new Unit** [y];
+		int i, j;
+		for (i = 0; i < y; i++) {
+			map[i] = new Unit* [x];
+			for (j = 0; j < x; j++)
+				map[i][j] = 0;
+		}
+	}
+
+	Field(const Field& field) : x(field.x), y(field.y), unitCount(field.unitCount), maxUnit(field.maxUnit), map(new Unit** [field.y]) {
+		for (int i = 0; i < this->y; i++) {
+			map[i] = new Unit * [this->x];
+			for (int j = 0; j < this->x; j++)
+				map[i][j] = field.map[i][j];
+		}
+	}
+
+	Field(Field&& field) : x(field.x), y(field.y), unitCount(field.unitCount), maxUnit(field.maxUnit), map(new Unit** [field.y]) {
+		for (int i = 0; i < this->y; i++) {
+			map[i] = new Unit * [this->x];
+			for (int j = 0; j < this->x; j++)
+				map[i][j] = field.map[i][j];
+		}
+	}
+
+	void deleteUnit(Unit& unit) {
+		int i, j;
+		for (i = 0; i < this->y; i++) {
+			for (j = 0; j < this->x; j++) {
+				if (map[i][j]==&unit) {
+					map[i][j] = 0;
+					unitCount--;
+					return;
+				}
+			}
+		}
+	}
+
+	void addUnit(Unit& unit) {
+		if ((unit.x <= this->x - 1) && (unit.y <= this->y - 1)) {
+			if (unitCount < maxUnit) {
+				map[unit.y][unit.x] = &unit;
+				unitCount++;
+			}
+		}
+	}
+
+	void moveUnit(Unit& unit, int x, int y) {
+		deleteUnit(unit);
+		unit.move(x, y);
+		addUnit(unit);
+	}
+
+	void print() {
+		int i, j;
+		for ( i = 0; i < this->y; i++) {
+			for (j = 0; j < this->x; j++) {
+				if (map[i][j] != 0)
+					cout << 1;
+				else
+					cout << 0;
+			}
+			cout << endl;
+		}
+	}
+};
+
+
+
+class SuperHeros: public Unit {
+
+};
+
+class IronMan : public SuperHeros {
+
+public:
+	IronMan(int x, int y) {
+		this->x = x;
+		this->y = y;
+		speed = 90;
+		health = 100;
+		attack = 50;
+	}
+};
+
+class Thor : public SuperHeros {
+
+public:
+	Thor(int x, int y) {
+		this->x = x;
+		this->y = y;
+		speed = 60;
+		health = 90;
+		attack = 70;
+	}
+};
+
+
+class Magicians: public Unit {
+
+};
+
+class DoctorStrange : public Magicians {
+
+public:
+	DoctorStrange(int x, int y) {
+		this->x = x;
+		this->y = y;
+		speed = 70;
+		health = 100;
+		attack = 60;
+	}
+};
+
+class Doom: public Magicians{
+
+	Doom(int x, int y) {
+		this->x = x;
+		this->y = y;
+		speed = 80;
+		health = 80;
+		attack = 70;
+	}
+};
+
+
+
+class Villains : public Unit {
+
+};
+
+class Loki : public Villains {
+
+public:
+	Loki(int x, int y) {
+		this->x = x;
+		this->y = y;
+		speed = 50;
+		health = 90;
+		attack = 80;
+
+	}
+};
+
+class Thanos: public Villains{
+
+	Thanos(int x, int y) {
+		this->x = x;
+		this->y = y;
+		speed = 60;
+		health = 100;
+		attack = 100;
+	}
+};
+
+
+
+int main() {
+
+	Field Field1(10, 10, 6);
+	DoctorStrange magic(1, 1);
+	Thor hero(0, 0);
+	Loki evil(5, 6);
+	Field1.addUnit(magic);
+	Field1.addUnit(hero);
+	Field1.addUnit(evil);
+	Field1.print();
+	cout << "---------------------------" << endl;
+
+	Field1.deleteUnit(magic);
+	Field1.deleteUnit(evil);
+	Field1.print();
+	cout << "---------------------------" << endl;
+
+	Field1.addUnit(evil);
+	Field1.moveUnit(hero, 1, 1);
+	Field1.moveUnit(evil, 4, 3);
+	Field Field2(Field1);
+	Field2.print();
+	Field Field3(Field2);
+	Field3.print();
+
+	return 0;
+}
