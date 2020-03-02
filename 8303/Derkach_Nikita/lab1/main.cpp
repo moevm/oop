@@ -30,19 +30,64 @@ public:
     }id;
     int x, y;
     bool compFlag = 1;
-    // virtual void interaction() = 0; // виртуальная функция для взаимодействия юнитов с нейтральными объектами. В каждом классе отряда перегружу её
 
 };
+
+/* взаимодействие с нейтральными объектами с помощью паттерна "Стратегия" */
 
 class NitralObject{
 public:
     char sym;
+    class Interaction{
+    public:
+        virtual bool compress(Unit* unit) = 0;
+    };
+    class Compressor{
+        Interaction* inter;
+    public:
+        Compressor(Interaction* in) : inter(in){}
+        bool compress(Unit* unit){
+            return inter->compress(unit);
+        }
+    };
+    Compressor* comp = nullptr;
+    NitralObject(){}
+    virtual bool strategy(Unit* unit) = 0;
 };
 
 class Stone: public NitralObject{
 public:
     Stone(){
         this->sym = 's';
+    }
+    class WarriorsInteraction : public Interaction{
+        bool compress(Unit *unit){
+            return 0;
+        }
+    };
+    class MagesInteraction : public Interaction{
+        bool compress(Unit *unit){
+            return 0;
+        }
+    };
+    class SaboteursInteraction : public Interaction{
+        bool compress(Unit *unit){
+            return 0;
+        }
+    };
+    bool strategy(Unit* unit){
+        if (unit->sym == 'G' || unit->sym == 'S'){
+            comp = new Compressor(new WarriorsInteraction);
+            return comp->compress(unit);
+        }
+        if (unit->sym == 'W' || unit->sym == 'H'){
+            comp = new Compressor(new MagesInteraction);
+            return comp->compress(unit);
+        }
+        if (unit->sym == 'J' || unit->sym == 'K'){
+            comp = new Compressor(new SaboteursInteraction);
+            return comp->compress(unit);
+        }
     }
 };
 
@@ -51,12 +96,79 @@ public:
     Gold(){
         this->sym = 'g';
     }
+    class WarriorsInteraction : public Interaction{
+        bool compress(Unit *unit){
+            return 1;
+        }
+    };
+    class MagesInteraction : public Interaction{
+        bool compress(Unit *unit){
+            return 1;
+        }
+    };
+    class SaboteursInteraction : public Interaction{
+        bool compress(Unit *unit){
+            return 1;
+        }
+    };
+    bool strategy(Unit* unit){
+        if (unit->sym == 'G' || unit->sym == 'S'){
+            comp = new Compressor(new WarriorsInteraction);
+            return comp->compress(unit);
+        }
+        if (unit->sym == 'W' || unit->sym == 'H'){
+            comp = new Compressor(new MagesInteraction);
+            return comp->compress(unit);
+        }
+        if (unit->sym == 'J' || unit->sym == 'K'){
+            comp = new Compressor(new SaboteursInteraction);
+            return comp->compress(unit);
+        }
+    }
 };
 
 class ForceWell: public NitralObject{
 public:
     ForceWell(){
         this->sym = 'f';
+    }
+    class WarriorsInteraction : public Interaction{
+        bool compress(Unit *unit){
+            unit->force += 50;
+            unit->compFlag = 0;
+            return 0;
+        }
+    };
+    class MagesInteraction : public Interaction{
+        bool compress(Unit *unit){
+            unit->force += 100;
+            unit->compFlag = 0;
+            return 0;
+        }
+    };
+    class SaboteursInteraction : public Interaction{
+        bool compress(Unit *unit){
+            unit->force += 1;
+            unit->compFlag = 0;
+            return 0;
+        }
+    };
+    bool strategy(Unit* unit){
+        if (unit->compFlag){
+            if (unit->sym == 'G' || unit->sym == 'S'){
+                comp = new Compressor(new WarriorsInteraction);
+                return comp->compress(unit);
+            }
+            if (unit->sym == 'W' || unit->sym == 'H'){
+                comp = new Compressor(new MagesInteraction);
+                return comp->compress(unit);
+            }
+            if (unit->sym == 'J' || unit->sym == 'K'){
+                comp = new Compressor(new SaboteursInteraction);
+                return comp->compress(unit);
+            }
+        }
+        return 0;
     }
 };
 
@@ -65,88 +177,68 @@ public:
     LifeWell(){
         this->sym = 'l';
     }
-};
-
-/* взаимодействие с нейтральными объектами с помощью паттерна "Стратегия" */
-
-class Compression{
-public:
-    virtual bool compress(Unit* unit) = 0;
-   // virtual ~Compression();
-};
-
-class StoneCompression: public Compression{
-public:
-    bool compress(Unit *unit){
-        return 0;
-    }
-};
-
-class GoldCompression: public Compression{
-public:
-    bool compress(Unit* unit){
-        return 1;
-    }
-};
-
-class ForceWellCompression: public Compression{
-public:
-    bool compress(Unit* unit){
-        if (unit->id.code == 0 || unit->id.code == 1){
-            unit->force += 50;
-        }
-        if (unit->id.code == 1 || unit->id.code == 2){
-            unit->force += 100;
-        }
-        if (unit->id.code == 5){
-            unit->force += 1;
-        }
-        unit->compFlag = 0;
-        return 0;
-    }
-};
-
-class LifeWellCompression: public Compression{
-public:
-    bool compress(Unit* unit){
-        if (unit->id.code == 0 || unit->id.code == 1){
+    class WarriorsInteraction : public Interaction{
+        bool compress(Unit *unit){
             unit->hp += 100;
+            unit->compFlag = 0;
+            return 0;
         }
-        if (unit->id.code == 1 || unit->id.code == 2){
+    };
+    class MagesInteraction : public Interaction{
+        bool compress(Unit *unit){
             unit->hp += 50;
+            unit->compFlag = 0;
+            return 0;
         }
-        if (unit->id.code == 5){
+    };
+    class SaboteursInteraction : public Interaction{
+        bool compress(Unit *unit){
             unit->hp += 1;
+            unit->compFlag = 0;
+            return 0;
         }
-        unit->compFlag = 0;
+    };
+    bool strategy(Unit* unit){
+        if (unit->compFlag){
+            if (unit->sym == 'G' || unit->sym == 'S'){
+                comp = new Compressor(new WarriorsInteraction);
+                return comp->compress(unit);
+            }
+            if (unit->sym == 'W' || unit->sym == 'H'){
+                comp = new Compressor(new MagesInteraction);
+                return comp->compress(unit);
+            }
+            if (unit->sym == 'J' || unit->sym == 'K'){
+                comp = new Compressor(new SaboteursInteraction);
+                return comp->compress(unit);
+            }
+        }
         return 0;
     }
 };
 
-class Compressor{
-private:
-    Compression* p;
-public:
-    Compressor(Compression* comp) : p(comp) {}
-    bool compress (Unit* unit){
-        return p->compress(unit);
-    }
-    ~Compressor(){
-        delete p;
-    }
-};
+
 
 /* ландшафт и паттерн "Прокси" */
 
+class Proxy {
+public:
+    bool moving(){
+        return true;
+    }
+    bool notMoving(){
+        return false;
+    }
+};
+
 class Landscape{
 public:
-  //  friend class Forest;
-  //  friend class Plain;
-  //  friend class Swamp;
+    Proxy land;
     char sym;
     virtual bool interaction(Unit* unit) = 0;
   //  virtual ~Landscape();
 };
+
 
 class Forest: public Landscape{
 
@@ -156,7 +248,7 @@ public:
     }
     bool interaction(Unit* unit){
         if (unit->sym == 'G'){
-            return 0;
+            return land.notMoving();
         }
         return 1;
     }
@@ -170,7 +262,7 @@ public:
     bool interaction (Unit* unit){
         if (unit->sym == 'G'){
             unit->force += 25;
-            return 1;
+            return land.moving();
         }
         return 1;
     }
@@ -184,7 +276,7 @@ public:
     bool interaction(Unit* unit){
         if (unit->sym == 'G'){
             unit->force -=25;
-            return 1;
+            return land.moving();
         }
         if (unit->sym == 'S'){
             return 0;
@@ -663,8 +755,22 @@ public:
                     this->field[i][j]->base->sym = field.field[i][j]->base->sym;
                 }
                 if (field.field[i][j]->nObject){
-                    this->field[i][j]->nObject = new NitralObject;
-                    this->field[i][j]->nObject->sym = field.field[i][j]->nObject->sym;
+                    if (field.field[i][j]->nObject->sym == 's'){
+                        this->field[i][j]->nObject = new Stone;
+                        this->field[i][j]->nObject = field.field[i][j]->nObject;
+                    }
+                    if (field.field[i][j]->nObject->sym == 'g'){
+                        this->field[i][j]->nObject = new Gold;
+                        this->field[i][j]->nObject = field.field[i][j]->nObject;
+                    }
+                    if (field.field[i][j]->nObject->sym == 'l'){
+                        this->field[i][j]->nObject = new LifeWell;
+                        this->field[i][j]->nObject = field.field[i][j]->nObject;
+                    }
+                    if (field.field[i][j]->nObject->sym == 'f'){
+                        this->field[i][j]->nObject = new ForceWell;
+                        this->field[i][j]->nObject = field.field[i][j]->nObject;
+                    }
                 }
                 if (field.field[i][j]->unit){
                     this->field[i][j]->unit = new Unit;
@@ -739,8 +845,22 @@ public:
                     this->field[i][j]->base->sym = field.field[i][j]->base->sym;
                 }
                 if (field.field[i][j]->nObject){
-                    this->field[i][j]->nObject = new NitralObject;
-                    this->field[i][j]->nObject->sym = field.field[i][j]->nObject->sym;
+                    if (field.field[i][j]->nObject->sym == 's'){
+                        this->field[i][j]->nObject = new Stone;
+                        this->field[i][j]->nObject = field.field[i][j]->nObject;
+                    }
+                    if (field.field[i][j]->nObject->sym == 'g'){
+                        this->field[i][j]->nObject = new Gold;
+                        this->field[i][j]->nObject = field.field[i][j]->nObject;
+                    }
+                    if (field.field[i][j]->nObject->sym == 'l'){
+                        this->field[i][j]->nObject = new LifeWell;
+                        this->field[i][j]->nObject = field.field[i][j]->nObject;
+                    }
+                    if (field.field[i][j]->nObject->sym == 'f'){
+                        this->field[i][j]->nObject = new ForceWell;
+                        this->field[i][j]->nObject = field.field[i][j]->nObject;
+                    }
                 }
                 if (field.field[i][j]->unit){
                     this->field[i][j]->unit = new Unit;
@@ -906,15 +1026,13 @@ public:
             if (field[y][x]->nObject){
                 if (field[y][x]->nObject->sym == 'f'){
                     if (unit->compFlag){
-                        Compressor* p = new Compressor(new ForceWellCompression);
-                        p->compress(unit);
+                        field[y][x]->nObject->strategy(unit);
                     }
                     return;
                 }
                 if (field[y][x]->nObject->sym == 'l'){
                     if (unit->compFlag){
-                        Compressor* p = new Compressor(new LifeWellCompression);
-                        p->compress(unit);
+                        field[y][x]->nObject->strategy(unit);
                     }
                     return;
                 }
