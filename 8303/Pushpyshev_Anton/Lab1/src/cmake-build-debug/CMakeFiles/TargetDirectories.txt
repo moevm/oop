@@ -1,0 +1,3 @@
+C:/Users/anton/CLionProjects/Battle_For_Honor/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/anton/CLionProjects/Battle_For_Honor/cmake-build-debug/CMakeFiles/Battle_For_Honor.dir
+C:/Users/anton/CLionProjects/Battle_For_Honor/cmake-build-debug/CMakeFiles/rebuild_cache.dir

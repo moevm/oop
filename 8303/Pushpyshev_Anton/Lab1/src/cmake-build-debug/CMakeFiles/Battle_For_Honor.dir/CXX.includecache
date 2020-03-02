@@ -1,0 +1,62 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Battle Field/Cell.h
+../Units/Unit.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Unit.h
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Battle Field/Field.h
+iostream
+-
+Cell.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Battle Field/Cell.h
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Armour.h
+string
+-
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Attributes.h
+Damage.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Damage.h
+Armour.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Armour.h
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Damage.h
+string
+-
+utility
+-
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Footman.h
+Unit.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Unit.h
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Spearman.h
+Footman.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Footman.h
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Swordsman.h
+Footman.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Footman.h
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Unit.h
+Attributes.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Attributes.h
+
+C:/Users/anton/CLionProjects/Battle_For_Honor/main.cpp
+iostream
+-
+Units/Unit.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Unit.h
+Battle Field/Field.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Battle Field/Field.h
+Units/Swordsman.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Swordsman.h
+Units/Spearman.h
+C:/Users/anton/CLionProjects/Battle_For_Honor/Units/Spearman.h
+
