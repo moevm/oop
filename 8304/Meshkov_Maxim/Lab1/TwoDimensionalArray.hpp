@@ -11,6 +11,9 @@ public:
     TwoDimensionalArray(const TwoDimensionalArray &other) {
         *this = other;
     }
+    TwoDimensionalArray(TwoDimensionalArray &&other) noexcept {
+        *this = other;
+    }
     TwoDimensionalArray &operator=(const TwoDimensionalArray &other) {
         if (this != &other) {
             m_width = other.m_width;
@@ -19,6 +22,14 @@ public:
             for (size_t i = 0; i < m_width * m_height; i++) {
                 m_array[i] = other.m_array[i];
             }
+        }
+        return *this;
+    }
+    TwoDimensionalArray &operator=(TwoDimensionalArray &&other) noexcept {
+        if (this != &other) {
+            m_width = other.m_width;
+            m_height = other.m_height;
+            m_array = std::move(other.m_array);
         }
         return *this;
     }
@@ -31,6 +42,10 @@ public:
     }
 
     T &at(int row, int col) {
+        // TODO checks?
+        return m_array[row * m_width + col];
+    }
+    const T &at(int row, int col) const {
         // TODO checks?
         return m_array[row * m_width + col];
     }

@@ -111,23 +111,22 @@ void Gui::show() {
         if (mode == USUAL || mode == UNIT_INFO || mode == NEW_UNIT_SELECTION) {
             DrawFPS(cellSize * 2 / 3, cellSize / 2);
 
-            for (int row = 0; row < m_game->getFieldHeight(); row++) {
-                for (int col = 0; col < m_game->getFieldWidth(); col++) {
-                    auto cellRectangle = getCellRectangle(row, col);
-                    DrawRectangleLinesEx(cellRectangle, borderWidth, borderColor);
-                    if (m_game->cellHasUnit({row, col})) {
-                        char text[] = " ";
-                        text[0] = getUnitMark(m_game->getUnit({row, col}));
-                        int textWidth = MeasureText(text, unitMarkFontSize);
-                        int textOffsetX = (cellSize - textWidth) / 2;
-                        int textOffsetY = (cellSize - unitMarkFontSize) / 2 + healthBarOffset;
-                        DrawText(text, (int)cellRectangle.x + textOffsetX,
-                                 (int)cellRectangle.y + textOffsetY, unitMarkFontSize, GREEN); // TODO different color for players
+            for (auto iter = m_game->getFieldBegin(); iter != m_game->getFieldEnd(); ++iter) {
+                auto [unit, row, col] = *iter;
+                auto cellRectangle = getCellRectangle(row, col);
+                DrawRectangleLinesEx(cellRectangle, borderWidth, borderColor);
+                if (m_game->cellHasUnit({row, col})) {
+                    char text[] = " ";
+                    text[0] = getUnitMark(*unit);
+                    int textWidth = MeasureText(text, unitMarkFontSize);
+                    int textOffsetX = (cellSize - textWidth) / 2;
+                    int textOffsetY = (cellSize - unitMarkFontSize) / 2 + healthBarOffset;
+                    DrawText(text, (int)cellRectangle.x + textOffsetX,
+                             (int)cellRectangle.y + textOffsetY, unitMarkFontSize, GREEN); // TODO different color for players
 
-                        DrawLineEx({cellRectangle.x + healthBarOffset, cellRectangle.y + healthBarOffset + healthBarWidth / 2.0f},
-                                  {cellRectangle.x + cellRectangle.width - healthBarOffset,
-                                   cellRectangle.y + healthBarOffset + healthBarWidth / 2.0f}, healthBarWidth, GREEN); // TODO color
-                    }
+                    DrawLineEx({cellRectangle.x + healthBarOffset, cellRectangle.y + healthBarOffset + healthBarWidth / 2.0f},
+                               {cellRectangle.x + cellRectangle.width - healthBarOffset,
+                                cellRectangle.y + healthBarOffset + healthBarWidth / 2.0f}, healthBarWidth, GREEN); // TODO color
                 }
             }
 

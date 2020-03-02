@@ -17,6 +17,8 @@ public:
 
     int getFieldWidth() const;
     int getFieldHeight() const;
+    FieldIterator getFieldBegin() const;
+    FieldIterator getFieldEnd() const;
 
     bool cellHasUnit(FieldPosition position) const;
     const Unit &getUnit(FieldPosition unitPosition) const;

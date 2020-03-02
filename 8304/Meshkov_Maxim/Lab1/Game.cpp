@@ -19,6 +19,14 @@ int Game::getFieldHeight() const {
     return m_field->getHeight();
 }
 
+FieldIterator Game::getFieldBegin() const {
+    return m_field->begin();
+}
+
+FieldIterator Game::getFieldEnd() const {
+    return m_field->end();
+}
+
 bool Game::cellHasUnit(FieldPosition position) const {
     return m_field->getUnit(position) != nullptr;
 }
