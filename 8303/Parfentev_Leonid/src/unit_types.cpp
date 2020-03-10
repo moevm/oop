@@ -38,17 +38,41 @@ namespace units {
             putDamage(iter, {_defence_multiplier}, el);
     }
 
+    const BasicMeleeUnit::Config
+    Swordsman::_cfg = {
+        .baseHealth = 100,
+        .baseDamage = 40,
+        .damageSpread = .10,
+        .basicSpeed = 2,
+    };
+
     double
     Swordsman::typeDamageMultiplier(const BasicMeleeUnit *unit) const
     {
         return dynamic_cast<const Rider *>(unit) ? 2.0 : 1.0;
     }
 
+    const BasicMeleeUnit::Config
+    Spearsman::_cfg = {
+        .baseHealth = 80,
+        .baseDamage = 35,
+        .damageSpread = .05,
+        .basicSpeed = 2,
+    };
+
     double
     Spearsman::typeDamageMultiplier(const BasicMeleeUnit *unit) const
     {
         return dynamic_cast<const Swordsman *>(unit) ? 1.5 : 1.0;
     }
+
+    const BasicMeleeUnit::Config
+    Rider::_cfg = {
+        .baseHealth = 75,
+        .baseDamage = 50,
+        .damageSpread = .10,
+        .basicSpeed = 3,
+    };
 
     double
     Rider::typeDamageMultiplier(const BasicMeleeUnit *unit) const
@@ -63,8 +87,28 @@ namespace units {
     {
         return iter->unit()
             && point() != iter.point()
-            && point().distance(iter.point()) <= shootingRange();
+            && point().distance(iter.point()) <= _c->shootingRange;
     }
+
+    const BasicRangedUnit::Config
+    Archer::_cfg = {
+        .baseHealth = 70,
+        .baseDamage = 45,
+        .damageSpread = .20,
+        .shootingRange = 3,
+        .distancePower = .20,
+        .basicSpeed = 2,
+    };
+
+    const BasicRangedUnit::Config
+    Slinger::_cfg = {
+        .baseHealth = 70,
+        .baseDamage = 60,
+        .damageSpread = .25,
+        .shootingRange = 2,
+        .distancePower = .60,
+        .basicSpeed = 2,
+    };
 
 
 
@@ -118,10 +162,30 @@ namespace units {
     bool
     BasicCatapult::canAttack(MapConstIter iter) const
     {
-        MinMaxRange range = shootingMinMaxRange();
         double dist = point().distance(iter.point());
 
-        return dist >= range.min && dist <= range.max;
+        return dist >= _c->shootingRange.min
+            && dist <= _c->shootingRange.max;
     }
+
+    const BasicCatapult::Config
+    Onager::_cfg = {
+        .baseHealth = 20,
+        .baseDamage = 150,
+        .damageSpread = .10,
+        .shootingRange = {2, 7},
+        .basicSpeed = 1,
+        .baseCoordDelta = {.3, .1},
+    };
+
+    const BasicCatapult::Config
+    BoltThrower::_cfg = {
+        .baseHealth = 20,
+        .baseDamage = 125,
+        .damageSpread = .10,
+        .shootingRange = {1, 5},
+        .basicSpeed = 1,
+        .baseCoordDelta = {.09, .03},
+    };
 
 }
