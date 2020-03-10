@@ -156,7 +156,7 @@ namespace units {
             return;
 
         if (BaseUnit *unit = actual->unit())
-            unit->putDamage(iter, {1}, el);
+            unit->putDamage(iter.otherAt(point()), {1}, el);
     }
 
     bool
