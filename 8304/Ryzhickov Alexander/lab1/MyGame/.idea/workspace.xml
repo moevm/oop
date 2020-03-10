@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="MyGame" targetName="MyGame" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0dc4861e-a692-4d97-bc39-0ad13b282e50" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectId" id="1XswTOFfgjKur0arb2gk9CNo2Ce" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Alex\CLionProjects\MyGame\Trappings\Weapons\MeleeWeapons" />
+      <recent name="C:\Users\Alex\CLionProjects\MyGame\Units" />
+      <recent name="C:\Users\Alex\CLionProjects\MyGame\HelpersClasses" />
+      <recent name="C:\Users\Alex\CLionProjects\MyGame\Units\Infantry" />
+      <recent name="C:\Users\Alex\CLionProjects\MyGame\Units\LongRangeIUnits" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="MyGame" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyGame" TARGET_NAME="MyGame" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MyGame" RUN_TARGET_NAME="MyGame">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0dc4861e-a692-4d97-bc39-0ad13b282e50" name="Default Changelist" comment="" />
+      <created>1581848116890</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581848116890</updated>
+      <workItem from="1581848119021" duration="26123000" />
+      <workItem from="1581905284400" duration="7043000" />
+      <workItem from="1582114702494" duration="446000" />
+      <workItem from="1582115293164" duration="699000" />
+      <workItem from="1582182222001" duration="653000" />
+      <workItem from="1582183819000" duration="600000" />
+      <workItem from="1582251456061" duration="9000" />
+      <workItem from="1582263016427" duration="27000" />
+      <workItem from="1582356364125" duration="556000" />
+      <workItem from="1582463958036" duration="2329000" />
+      <workItem from="1582466941727" duration="2299000" />
+      <workItem from="1582470263080" duration="545000" />
+      <workItem from="1582635824563" duration="2294000" />
+      <workItem from="1583154780366" duration="277000" />
+      <workItem from="1583159928124" duration="4000" />
+      <workItem from="1583163779794" duration="1581000" />
+      <workItem from="1583165367215" duration="11047000" />
+      <workItem from="1583243588751" duration="9592000" />
+      <workItem from="1583257957648" duration="4505000" />
+      <workItem from="1583268631407" duration="2818000" />
+      <workItem from="1583398211430" duration="931000" />
+      <workItem from="1583405643616" duration="6000" />
+      <workItem from="1583432029563" duration="18000" />
+      <workItem from="1583432284692" duration="9672000" />
+      <workItem from="1583482588350" duration="2526000" />
+      <workItem from="1583487415634" duration="515000" />
+      <workItem from="1583526167328" duration="5067000" />
+      <workItem from="1583650493571" duration="16607000" />
+      <workItem from="1583675734908" duration="4221000" />
+      <workItem from="1583688988445" duration="5714000" />
+      <workItem from="1583734025744" duration="13095000" />
+      <workItem from="1583756654879" duration="9574000" />
+      <workItem from="1583766733380" duration="3693000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/HelpersClasses/NeutralObjects/ArmorGenerator.cpp</url>
+          <line>11</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
