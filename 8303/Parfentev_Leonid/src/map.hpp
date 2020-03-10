@@ -157,21 +157,39 @@ public:
 };
 
 class GameMap {
-    const int _w, _h;
-    GameCell * const _map;
+    int _w, _h;
+    GameCell *_map;
     int _max_units = 0, _cur_units = 0;
 
     void destroy();
+    void move_from(GameMap &&m);
+    void copy_from(const GameMap &m);
 
 public:
     GameMap(int w, int h)
         :_w{w}, _h{h},
          _map{new GameCell[w * h]} {}
 
-    GameMap(const GameMap &) =delete;
-    GameMap &operator=(const GameMap &) =delete;
-    GameMap(GameMap &&) =delete;
-    GameMap &operator=(GameMap &) =delete;
+    GameMap(const GameMap &m)
+    {
+        copy_from(m);
+    }
+    GameMap &operator=(const GameMap &m)
+    {
+        destroy();
+        copy_from(m);
+        return *this;
+    };
+    GameMap(GameMap &&m)
+    {
+        move_from(std::move(m));
+    }
+    GameMap &operator=(GameMap &&m)
+    {
+        destroy();
+        move_from(std::move(m));
+        return *this;
+    }
 
     ~GameMap() { delete[] _map; }
 

@@ -49,6 +49,34 @@ GameMap::destroy()
     _cur_units = _max_units = 0;
 }
 
+void
+GameMap::move_from(GameMap &&m)
+{
+    _w = m._w;
+    _h = m._h;
+    _map = m._map;
+    _max_units = m._max_units;
+    _cur_units = m._cur_units;
+
+    m._map = nullptr;
+    m._cur_units = 0;
+}
+
+void
+GameMap::copy_from(const GameMap &m)
+{
+    _w = m._w;
+    _h = m._h;
+    _max_units = m._max_units;
+    _cur_units = m._cur_units;
+
+    _map = new GameCell[_w * _h];
+    auto i = begin();
+    for (const GameCell &c : m)
+        if (BaseUnit *u = c.unit())
+            placeUnit((i++).point(), u->copy());
+}
+
 bool
 GameMap::setMaxUnitsCount(int n)
 {
