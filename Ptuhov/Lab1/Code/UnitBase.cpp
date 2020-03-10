@@ -1,13 +1,36 @@
 #include "UnitBase.h"
 
-takeDamageResult UnitBase::takeDamage(size_t damageSize)
+void Hp::decrease(size_t n)
 {
-	if (damageSize >= hp)
-	{
-		hp = 0;
-		return takeDamageResult::death;
-	}
+	hp -= n;
+}
 
-	hp -= damageSize;
-	return takeDamageResult::damageTaken;
+void Hp::increase(size_t n)
+{
+	hp += n;
+}
+
+size_t Hp::get()
+{
+	return hp;
+}
+
+void Damage::decrease(size_t n)
+{
+	damage += n;
+}
+
+void Damage::increase(size_t n)
+{
+	damage += n;
+}
+
+size_t Damage::get()
+{
+	return damage;
+}
+
+void UnitBase::increaseDamage(size_t n)
+{
+	damage.increase(n);
 }

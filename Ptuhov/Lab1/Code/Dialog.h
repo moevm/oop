@@ -3,20 +3,19 @@
 #include <vector>
 #include <iostream>
 #include "Field.h"
-#include "UnitTypeDistance.h"
-#include "UnitTypeStealth.h"
-#include "UnitTypeWarrior.h"
 #include <map>
 
 struct Dialog
 {
 	Dialog()
 	{
-		options.push_back("1) Create field\n");
+		options.push_back("1) Create field(max 99x99)\n");
 		options.push_back("2) Add unit\n");
 		options.push_back("3) Remove unit\n");
 		options.push_back("4) Show field\n");
-		options.push_back("5) Quit\n");
+		options.push_back("5) Move Unit\n");
+		options.push_back("6) Set max units cnt\n");
+		options.push_back("7) Quit\n");
 
 		unitsLegend['A'] = "Archer";
 		unitsLegend['M'] = "Mage";
@@ -30,6 +29,8 @@ struct Dialog
 	void createFieldChoise();
 	void addUnitChoise();
 	void removeUnitChoise();
+	void moveChoise();
+	void maxUnitsCntChoise();
 	void writeUnitsLegend();
 	void readUnitType(Point p);
 
