@@ -67,20 +67,16 @@ namespace demo {
           "create CLASS POSITION -- Create unit of class CLASS at POSITION"
          }},
         {"focus",
-         {new PositionCommandFactory<FocusUnit>{},
+         {new PointCommandFactory<FocusUnit>{},
           "focus POSITION -- Focus on the unit at POSITION"
          }},
         {"moveto",
-         {new PositionCommandFactory<MoveUnit>{},
+         {new PointCommandFactory<MoveUnit>{},
           "moveto DESTINATION -- Make the focused unit move to DESTINATION"
          }},
         {"attack",
-         {new PositionCommandFactory<AttackUnit>{},
+         {new PointCommandFactory<AttackUnit>{},
           "attack POSITION -- Make the focused unit attack a unit at POSITION"
-         }},
-        {"delete",
-         {new interactive::SimpleCommandFactory<DeleteUnit>{},
-          "delete -- Immediately kill the focused unit"
          }},
 
         {"print",
@@ -100,7 +96,7 @@ namespace demo {
           "list -- Print a list of units on the map"
          }},
         {"info",
-         {new PositionCommandFactory<UnitInfo>{},
+         {new PointCommandFactory<UnitInfo>{},
           "info POSITION -- Describe the unit at POSITION"
          }},
     };
@@ -110,7 +106,7 @@ namespace demo {
     {
         assert(_os);
 
-        write_unit(*_os, dmg->unit);
+        write_unit(*_os, dmg->iter->unit());
         *_os << " takes damage: " << dmg->dmg << std::endl;
     }
 
@@ -119,11 +115,12 @@ namespace demo {
     {
         assert(_os);
 
+        BaseUnit *unit = d->iter->unit();
         // assume events only happen on the topmost map in stack
-        if (d->unit == focus())
+        if (unit == focus())
             setFocus(nullptr);
 
-        write_unit(*_os, d->unit);
+        write_unit(*_os, unit);
         *_os << " dies." << std::endl;
     }
 

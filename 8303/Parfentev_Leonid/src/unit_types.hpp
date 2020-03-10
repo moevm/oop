@@ -17,13 +17,13 @@ namespace units {
         typeDamageMultiplier(const BasicMeleeUnit *) const =0;
 
         virtual DamageSpec
-        damageMultipler(const BaseUnit *attacker) const override;
+        damageMultipler(MapConstIter iter) const override;
 
         virtual void
-        attack(const GamePos &pos, events::EventLoop *el) override;
+        attack(MapIter iter, events::EventLoop *el) override;
 
         virtual bool
-        canAttack(const GamePos &pos) const override;
+        canAttack(MapConstIter iter) const override;
     };
 
     template<typename C, typename T>
@@ -34,7 +34,7 @@ namespace units {
         copy() const override { return new T {}; }
 
         virtual DamageSpec
-        baseDamage(const GamePos &) const override
+        baseDamage(MapConstIter) const override
         {
             return DamageSpec::part(
                 C::baseDamage * ((double)health()/C::baseHealth),
@@ -42,9 +42,11 @@ namespace units {
         }
 
         virtual bool
-        canMove(const GamePos &pos) const override
+        canMove(MapConstIter iter) const override
         {
-            return position().pathExistsTo(pos, C::basicSpeed);
+            return iter.map()->pathExists(point(),
+                                          iter.point(),
+                                          C::basicSpeed);
         }
     };
 
@@ -106,7 +108,7 @@ namespace units {
         shootingRange() const =0;
 
         virtual bool
-        canAttack(const GamePos &pos) const override;
+        canAttack(MapConstIter iter) const override;
     };
 
     template<typename C, typename T>
@@ -120,20 +122,22 @@ namespace units {
         shootingRange() const override { return C::shootingRange; }
 
         virtual DamageSpec
-        baseDamage(const GamePos &pos) const override
+        baseDamage(MapConstIter iter) const override
         {
             return DamageSpec::part(
                 (C::baseDamage
                  * ((double)health() / C::baseHealth)
-                 / pow(position().distance(pos),
+                 / pow(point().distance(iter.point()),
                        C::distancePower)),
                 C::damageSpread);
         }
 
         virtual bool
-        canMove(const GamePos &pos) const override
+        canMove(MapConstIter iter) const override
         {
-            return position().pathExistsTo(pos, C::basicSpeed);
+            return iter.map()->pathExists(point(),
+                                          iter.point(),
+                                          C::basicSpeed);
         }
     };
 
@@ -234,10 +238,10 @@ namespace units {
         };
 
         DeltaXY
-        positionDelta(const GamePos &target) const;
+        pointDelta(const Point &target) const;
 
-        static GamePos
-        alterTargetPos(const GamePos &pos,
+        static MapConstIter
+        alterTargetPos(MapConstIter iter,
                        const DeltaXY &vec,
                        const Delta &delta);
 
@@ -245,13 +249,13 @@ namespace units {
         using BaseUnit::BaseUnit;
 
         virtual DamageSpec
-        damageMultipler(const BaseUnit *) const override;
+        damageMultipler(MapConstIter iter) const override;
 
         virtual Delta
-        getDelta(const GamePos &pos) const =0;
+        getDelta(MapConstIter iter) const =0;
 
         virtual void
-        attack(const GamePos &pos,
+        attack(MapIter iter,
                events::EventLoop *el) override;
 
         struct MinMaxRange {
@@ -261,7 +265,7 @@ namespace units {
         shootingMinMaxRange() const =0;
 
         virtual bool
-        canAttack(const GamePos &pos) const override;
+        canAttack(MapConstIter iter) const override;
     };
 
     template<typename C, typename T>
@@ -272,21 +276,23 @@ namespace units {
         copy() const override { return new T {}; }
 
         virtual bool
-        canMove(const GamePos &pos) const override
+        canMove(MapConstIter iter) const override
         {
-            return position().pathExistsTo(pos, C::basicSpeed);
+            return iter.map()->pathExists(point(),
+                                          iter.point(),
+                                          C::basicSpeed);
         }
 
         virtual DamageSpec
-        baseDamage(const GamePos &) const override
+        baseDamage(MapConstIter) const override
         {
             return DamageSpec::part(C::baseDamage, C::damageSpread);
         }
 
         virtual Delta
-        getDelta(const GamePos &pos) const override
+        getDelta(MapConstIter iter) const override
         {
-            double dist = position().distance(pos);
+            double dist = point().distance(iter.point());
             return
                 Delta{C::baseCoordDeltaT, C::baseCoordDeltaN} * dist;
         }

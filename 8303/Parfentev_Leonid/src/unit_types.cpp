@@ -7,35 +7,35 @@
 namespace units {
 
     BaseUnit::DamageSpec
-    BasicMeleeUnit::damageMultipler(const BaseUnit *attacker) const
+    BasicMeleeUnit::damageMultipler(MapConstIter iter) const
     {
-        auto dmg = BaseUnit::damageMultipler(attacker);
+        auto dmg = BaseUnit::damageMultipler(iter);
 
         if (const auto *a =
-            dynamic_cast<const BasicMeleeUnit *>(attacker))
+            dynamic_cast<const BasicMeleeUnit *>(iter->unit()))
             dmg *= {typeDamageMultiplier(a)};
 
         return dmg;
     }
 
     bool
-    BasicMeleeUnit::canAttack(const GamePos &pos) const
+    BasicMeleeUnit::canAttack(MapConstIter iter) const
     {
-        return pos.cell().unit()
-            && position().adjacent(pos);
+        return iter->unit()
+            && point().adjacent(iter.point());
     }
 
 
     void
-    BasicMeleeUnit::attack(const GamePos &pos, events::EventLoop *el)
+    BasicMeleeUnit::attack(MapIter iter, events::EventLoop *el)
     {
-        BaseUnit *target = pos.cell().unit();
+        BaseUnit *target = iter->unit();
         assert(target);
 
-        target->putDamage(this, {1}, el);
+        target->putDamage(iter.otherAt(point()), {1}, el);
 
-        if (auto *bmu = dynamic_cast<BasicMeleeUnit *>(target))
-            putDamage(bmu, {_defence_multiplier}, el);
+        if (dynamic_cast<BasicMeleeUnit *>(target))
+            putDamage(iter, {_defence_multiplier}, el);
     }
 
     double
@@ -59,36 +59,33 @@ namespace units {
 
 
     bool
-    BasicRangedUnit::canAttack(const GamePos &pos) const
+    BasicRangedUnit::canAttack(MapConstIter iter) const
     {
-        assert(position().map() == pos.map());
-
-        return pos.cell().unit()
-            && position() != pos
-            && position().distance(pos) <= shootingRange();
+        return iter->unit()
+            && point() != iter.point()
+            && point().distance(iter.point()) <= shootingRange();
     }
 
 
 
     BaseUnit::DamageSpec
-    BasicCatapult::damageMultipler(const BaseUnit *unit) const
+    BasicCatapult::damageMultipler(MapConstIter iter) const
     {
-        return (dynamic_cast<const BasicRangedUnit *>(unit)
+        return (dynamic_cast<const BasicRangedUnit *>(iter->unit())
                 ? DamageSpec{0}
-                : BaseUnit::damageMultipler(unit));
+                : BaseUnit::damageMultipler(iter));
     }
 
     BasicCatapult::DeltaXY
-    BasicCatapult::positionDelta(const GamePos &target) const
+    BasicCatapult::pointDelta(const Point &target) const
     {
-        GamePos pos = position();
-        return {(double)(target.x() - pos.x()),
-                (double)(target.y() - pos.y())};
+        return {(double)(target.x() - point().x()),
+                (double)(target.y() - point().y())};
     }
 
-    GamePos
+    MapConstIter
     BasicCatapult::alterTargetPos(
-        const GamePos &pos,
+        MapConstIter iter,
         const BasicCatapult::DeltaXY &vec,
         const BasicCatapult::Delta &delta)
     {
@@ -101,28 +98,28 @@ namespace units {
         int dx = round(dxy.x),
             dy = round(dxy.y);
 
-        return GamePos{pos.map(), pos.x() + dx, pos.y() + dy};
+        return iter.otherAt(iter.point().shifted(dx, dy));
     }
 
     void
-    BasicCatapult::attack(const GamePos &pos, events::EventLoop *el)
+    BasicCatapult::attack(MapIter iter, events::EventLoop *el)
     {
-        assert(pos.valid());
-
-        GamePos actual = alterTargetPos(
-            pos, positionDelta(pos), getDelta(pos));
+        MapConstIter actual =
+            alterTargetPos(iter,
+                           pointDelta(iter.point()),
+                           getDelta(iter));
         if (!actual.valid())
             return;
 
-        if (BaseUnit *unit = actual.cell().unit())
-            unit->putDamage(this, {1}, el);
+        if (BaseUnit *unit = actual->unit())
+            unit->putDamage(iter, {1}, el);
     }
 
     bool
-    BasicCatapult::canAttack(const GamePos &pos) const
+    BasicCatapult::canAttack(MapConstIter iter) const
     {
         MinMaxRange range = shootingMinMaxRange();
-        double dist = position().distance(pos);
+        double dist = point().distance(iter.point());
 
         return dist >= range.min && dist <= range.max;
     }

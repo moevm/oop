@@ -19,21 +19,20 @@ namespace events {
 
     struct Damage : public Event {
         int dmg;
-        BaseUnit *unit;
+        MapIter iter;
 
-        Damage(int d, BaseUnit *u)
-            :dmg{d}, unit{u} {}
+        Damage(int d, MapIter iter) :dmg{d}, iter{iter} {}
 
         virtual void
         execute(EventLoop *) override;
 
-        BaseUnit *target() const { return unit; }
+        BaseUnit *target() const { return iter->unit(); }
     };
 
     struct Death : public Event {
-        BaseUnit *unit;
+        MapIter iter;
 
-        Death(BaseUnit *u) :unit{u} {}
+        Death(MapIter iter) :iter{iter} {}
 
         virtual void
         execute(EventLoop *) override;

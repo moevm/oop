@@ -11,26 +11,23 @@ namespace events {
 
 
 class BaseUnit {
-    GamePos _pos {};
+    Point _pt {-1, -1};
     int _health;
-
-    bool place();
-    void unplace();
 
 public:
     explicit BaseUnit(int health) :_health{health} {}
 
-    // mustn’t place the clone anywhere
+    // The point of the clone must be unset (as it is by default)
     virtual BaseUnit *copy() const =0;
 
-    GamePos &position() { return _pos; }
-    const GamePos &position() const { return _pos; }
-    bool moveTo(const GamePos &pos);
+    bool pointSet() const { return _pt.x() >= 0 && _pt.y() >= 0; }
+    Point point() const { assert(pointSet()); return _pt; }
+    void setPoint(const Point &pt) { _pt = pt; }
+    void unsetPoint() { _pt = Point{-1, -1}; }
 
     int health() const { return _health; }
     bool alive() const { return _health > 0; }
     void takeDamage(int dmg);
-    void die();
 
     struct DamageSpec {
         double value, spread;
@@ -58,25 +55,22 @@ public:
         }
     };
     virtual DamageSpec
-    baseDamage(const GamePos &) const { return {0}; }
+    baseDamage(MapConstIter) const { return {0}; }
     virtual DamageSpec
-    damageMultipler(const BaseUnit *) const { return {1}; }
+    damageMultipler(MapConstIter) const { return {1}; }
 
-    virtual bool canAttack(const GamePos &) const =0;
-    virtual bool canMove(const GamePos &) const =0;
+    virtual bool canAttack(MapConstIter) const =0;
+    virtual bool canMove(MapConstIter) const =0;
 
     void
-    putDamage(BaseUnit *from,
+    putDamage(MapIter from,
               DamageSpec modifier,
               events::EventLoop *el);
     virtual void
-    attack(const GamePos &pos,
+    attack(MapIter iter,
            events::EventLoop *el)
     {
-        assert(pos.valid());
-        assert(pos.cell().unit());
-
-        pos.cell().unit()->putDamage(this, {1}, el);
+        iter->unit()->putDamage(iter.otherAt(point()), {1}, el);
     };
 
     virtual ~BaseUnit() {}

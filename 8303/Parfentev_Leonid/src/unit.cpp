@@ -10,34 +10,6 @@
 std::default_random_engine
 global_random {};
 
-bool
-BaseUnit::place()
-{
-    return _pos.map()->placeUnit(this);
-}
-
-void
-BaseUnit::unplace()
-{
-    _pos.map()->removeUnit(this);
-}
-
-void
-BaseUnit::die()
-{
-    unplace();
-    delete this;
-}
-
-bool
-BaseUnit::moveTo(const GamePos &pos)
-{
-    if (_pos)
-        unplace();
-    _pos = pos;
-    return pos ? place() : true;
-}
-
 void
 BaseUnit::takeDamage(int dmg)
 {
@@ -53,12 +25,13 @@ BaseUnit::DamageSpec::evaluate() const
 }
 
 void
-BaseUnit::putDamage(BaseUnit *from,
+BaseUnit::putDamage(MapIter from,
                     DamageSpec modifier,
                     events::EventLoop *el)
 {
-    DamageSpec dmg = (from->baseDamage(position())
+    MapIter iter = from.otherAt(point());
+    DamageSpec dmg = (from->unit()->baseDamage(iter)
                       * damageMultipler(from)
                       * modifier);
-    el->push(new events::Damage {dmg.evaluate(), this});
+    el->push(new events::Damage {dmg.evaluate(), iter});
 }

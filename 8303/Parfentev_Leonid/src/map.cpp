@@ -19,112 +19,25 @@ GameCell::~GameCell()
 
 
 bool
-GamePos::valid() const
+Point::operator==(const Point &pt) const
 {
-    return !null()
-        && _x >= 0
-        && _x < _map->width()
-        && _y >= 0
-        && _y < _map->height();
+    return _x == pt._x
+        && _y == pt._y;
 }
 
-GameCell &
-GamePos::cell() const
+double
+Point::distance(const Point &pt) const
 {
-    return (*_map)(_x, _y);
-}
-
-bool
-GamePos::operator==(const GamePos &pos) const
-{
-    return _map == pos._map
-        && _x == pos._x
-        && _y == pos._y;
+    int dx = _x - pt._x,
+        dy = _y - pt._y;
+    return sqrt(dx*dx + dy*dy);
 }
 
 bool
-GamePos::adjacent(const GamePos &pos) const
+Point::adjacent(const Point &pt) const
 {
-    return _map == pos._map
-        && (abs(_x - pos._x) == 1
-            || abs(_y - pos._y) == 1);
-}
-
-bool
-GamePos::pathExistsTo(const GamePos &pos, int max_length) const
-{
-    assert(valid());
-    assert(pos.valid());
-    if (_map != pos._map)
-        return false;
-
-    struct Pt2 {
-        int x, y;
-        int depth;
-
-        Pt2(int x, int y, int d)
-            :x{x}, y{y}, depth{d} {}
-
-        Pt2(const GamePos &pos)
-            :x{pos.x()}, y{pos.y()}, depth{0} {}
-
-        Pt2 toDirection(int dir) const
-        {
-            assert(dir >= 0 && dir < 8);
-
-            int d1 = (dir + 1) % 8;
-            int dx = (d1 % 4 == 3) ? 0 : (d1 < 4) ? 1 : -1,
-                dy = (dir % 4 == 0) ? 0 : (dir < 4) ? 1 : -1;
-
-            return {x + dx, y + dy, depth + 1};
-        }
-
-        int index(const GameMap *m) const
-        {
-            return x + m->width() * y;
-        }
-
-        bool operator==(const GamePos &pos)
-        {
-            return x == pos.x() && y == pos.y();
-        }
-    };
-
-    std::vector<bool> visited (_map->width() * _map->height(), false);
-    std::queue<Pt2> frontier {{*this}};
-
-    while (!frontier.empty()) {
-        Pt2 pt = frontier.front();
-        frontier.pop();
-
-        if (pt == pos)
-            return true;
-
-        if (max_length >= 0
-            && pt.depth >= max_length)
-            continue;
-
-        visited[pt.index(_map)] = true;
-
-        for (int i = 0; i < 8; ++i) {
-            Pt2 shifted = pt.toDirection(i);
-            GamePos ipos {_map, shifted.x, shifted.y};
-            if (!ipos.valid())
-                continue;
-
-            if (visited[shifted.index(_map)])
-                continue;
-
-            GameCell &icell = ipos.cell();
-            if (icell.unit())
-                continue;
-
-            frontier.push(shifted);
-        }
-    }
-
-    return false;
-
+    return abs(_x - pt._x) == 1
+        || abs(_y - pt._y) == 1;
 }
 
 
@@ -147,31 +60,124 @@ GameMap::setMaxUnitsCount(int n)
     return true;
 }
 
-GameCell &
-GameMap::operator()(int x, int y)
+int
+GameMap::cellIndex(const Point &pt) const
 {
-    assert((GamePos{this, x, y}.valid()));
+    assert(ptValid(pt));
 
-    return _map[x + y * _w];
+    return pt.x() + pt.y() * _w;
+}
+
+GameCell &
+GameMap::at(const Point &pt)
+{
+    return _map[cellIndex(pt)];
 }
 
 const GameCell &
-GameMap::operator()(int x, int y) const
+GameMap::at(const Point &pt) const
 {
-    assert((GamePos{this, x, y}.valid()));
+    return _map[cellIndex(pt)];
+}
 
-    return _map[x + y * _w];
+MapIter
+GameMap::iterAt(const Point &pt)
+{
+    return {this, pt};
+}
+
+MapConstIter
+GameMap::iterAt(const Point &pt) const
+{
+    return {this, pt};
 }
 
 bool
-GameMap::placeUnit(BaseUnit *u)
+GameMap::ptValid(const Point &pt) const
 {
-    GamePos pos = u->position();
+    int x = pt.x(),
+        y = pt.y();
 
-    assert(pos.valid());
-    assert(pos.map() == this);
+    return (x >= 0 && x < _w)
+        && (y >= 0 && y < _h);
+}
 
-    GameCell &cell = pos.cell();
+bool
+GameMap::pathExists(const Point &src,
+                    const Point &dest,
+                    int max_length) const
+{
+    assert(ptValid(src));
+    assert(ptValid(dest));
+
+    struct Pt2 {
+        Point pt;
+        int depth;
+
+        Pt2(const Point &pt, int depth=0)
+            :pt{pt}, depth{depth} {}
+
+        Pt2 toDirection(int dir) const
+        {
+            assert(dir >= 0 && dir < 8);
+
+            int d1 = (dir + 1) % 8;
+            int dx = (d1 % 4 == 3) ? 0 : (d1 < 4) ? 1 : -1,
+                dy = (dir % 4 == 0) ? 0 : (dir < 4) ? 1 : -1;
+
+            return Pt2{pt.shifted(dx, dy), depth + 1};
+        }
+
+        int index(const GameMap *m) const
+        {
+            return m->cellIndex(pt);
+        }
+
+        bool operator==(const Point &pt2)
+        {
+            return pt == pt2;
+        }
+    };
+
+    std::vector<bool> visited (area(), false);
+    std::queue<Pt2> frontier {{src}};
+
+    while (!frontier.empty()) {
+        Pt2 current = frontier.front();
+        frontier.pop();
+
+        if (current == dest)
+            return true;
+
+        if (max_length >= 0
+            && current.depth >= max_length)
+            continue;
+
+        visited[current.index(this)] = true;
+
+        for (int i = 0; i < 8; ++i) {
+            Pt2 shifted = current.toDirection(i);
+            if (!ptValid(shifted.pt))
+                continue;
+
+            if (visited[shifted.index(this)])
+                continue;
+
+            if (at(shifted.pt).unit())
+                continue;
+
+            frontier.push(shifted);
+        }
+    }
+
+    return false;
+}
+
+bool
+GameMap::placeUnit(const Point &pt,
+                   BaseUnit *u)
+{
+    GameCell &cell = at(pt);
     if (cell.unit())
         return false;
 
@@ -180,18 +186,22 @@ GameMap::placeUnit(BaseUnit *u)
         return false;
 
     cell.setUnit(u);
+    u->setPoint(pt);
     _cur_units++;
+
     return true;
 }
 
-void
-GameMap::removeUnit(BaseUnit *u)
+BaseUnit *
+GameMap::removeFrom(const Point &pt)
 {
-    GamePos pos = u->position();
+    GameCell &cell = at(pt);
+    BaseUnit *u = cell.unit();
 
-    assert(pos.valid());
-    assert(pos.map() == this);
+    if (!u)
+        return nullptr;
 
-    pos.cell().setUnit(nullptr);
-    _cur_units--;
+    cell.setUnit(nullptr);
+    u->unsetPoint();
+    return u;
 }

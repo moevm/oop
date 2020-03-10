@@ -47,8 +47,9 @@ namespace demo {
                        ? iter->second
                        : "BaseUnit");
 
-                if (const GamePos &pos = unit->position())
-                    os << " at " << pos.x() << "," << pos.y();
+                if (unit->pointSet())
+                    os << " at " << unit->point().x()
+                       << "," << unit->point().y();
 
                 os << " with " << unit->health() << " HP";
             } else {
@@ -196,22 +197,22 @@ namespace demo {
 
 
 
-    class PositionCommand : public interactive::Command {
+    class PointCommand : public interactive::Command {
         int _x, _y;
 
     protected:
-        GamePos position(GameMap *map) const { return {map, _x, _y}; }
+        Point point() const { return {_x, _y}; }
 
-        // TODO: runWithPosition(..., const GamePos pos);
+        // TODO: runWithMapIter(..., MapIter iter);
         // overridden ‘run’ that checks that position is valid
 
         virtual void
-        runWithPosition(interactive::Session *s,
-                        std::ostream &os,
-                        const GamePos &pos) const =0;
+        runWithMapIter(interactive::Session *s,
+                       std::ostream &os,
+                       MapIter iter) const =0;
 
     public:
-        PositionCommand(int x, int y) :_x{x}, _y{y} {}
+        PointCommand(int x, int y) :_x{x}, _y{y} {}
 
         virtual void
         run(interactive::Session *s, std::ostream &os) const override
@@ -222,33 +223,33 @@ namespace demo {
                 return;
             }
 
-            GamePos pos = position(map);
-            if (!pos.valid()) {
-                os << "Invalid position" << std::endl;
+            Point pt = point();
+            if (!map->ptValid(pt)) {
+                os << "Invalid point" << std::endl;
                 return;
             }
 
-            runWithPosition(s, os, pos);
+            MapIter iter = map->iterAt(pt);
+            runWithMapIter(s, os, iter);
         }
     };
 
-    class CreateUnit : public PositionCommand {
+    class CreateUnit : public PointCommand {
         const BaseUnitFactory *_factory;
 
     protected:
         virtual void
-        runWithPosition(interactive::Session *,
-                        std::ostream &os,
-                        const GamePos &pos) const override
+        runWithMapIter(interactive::Session *,
+                       std::ostream &os,
+                       MapIter iter) const override
         {
-            if (pos.cell().unit()) {
+            if (iter->unit()) {
                 os << "Cell already occupied" << std::endl;
                 return;
             }
 
             BaseUnit *unit = _factory->create();
-
-            if (!unit->moveTo(pos)) {
+            if (!iter.map()->placeUnit(iter.point(), unit)) {
                 os << "Failed to place unit" << std::endl;
                 delete unit;
                 return;
@@ -257,12 +258,12 @@ namespace demo {
 
     public:
         CreateUnit(const BaseUnitFactory *factory, int x, int y)
-            :PositionCommand{x, y}, _factory{factory} {}
+            :PointCommand{x, y}, _factory{factory} {}
     };
 
-    class PositionReader {
+    class PointReader {
     public:
-        static bool read_position(const std::string &s, int *x, int *y)
+        static bool read_point(const std::string &s, int *x, int *y)
         {
             std::istringstream ss {s};
             ss >> *x;
@@ -282,7 +283,7 @@ namespace demo {
     };
 
     class CreateUnitFactory : public interactive::CommandFactory,
-                              private PositionReader {
+                              private PointReader {
         std::map<std::string, const BaseUnitFactory *> _typetab;
 
     public:
@@ -309,7 +310,7 @@ namespace demo {
             }
 
             int x, y;
-            if (!read_position(pos, &x, &y)) {
+            if (!read_point(pos, &x, &y)) {
                 os << "Failed to read initial position" << std::endl;
                 return nullptr;
             }
@@ -319,8 +320,8 @@ namespace demo {
     };
 
     template<typename T>
-    class PositionCommandFactory : public interactive::CommandFactory,
-                                   private PositionReader {
+    class PointCommandFactory : public interactive::CommandFactory,
+                                private PointReader {
 
     public:
         virtual interactive::Command *
@@ -330,7 +331,7 @@ namespace demo {
             is >> buf;
 
             int x, y;
-            if (!read_position(buf, &x, &y)) {
+            if (!read_point(buf, &x, &y)) {
                 os << "Failed to read position" << std::endl;
                 return nullptr;
             }
@@ -339,14 +340,14 @@ namespace demo {
         }
     };
 
-    class FocusUnit : public PositionCommand {
+    class FocusUnit : public PointCommand {
     protected:
         virtual void
-        runWithPosition(interactive::Session *s,
-                        std::ostream &os,
-                        const GamePos &pos) const override
+        runWithMapIter(interactive::Session *s,
+                       std::ostream &os,
+                       MapIter iter) const override
         {
-            BaseUnit *unit = pos.cell().unit();
+            BaseUnit *unit = iter->unit();
             if (!unit) {
                 os << "No unit there" << std::endl;
                 return;
@@ -356,15 +357,15 @@ namespace demo {
         }
 
     public:
-        using PositionCommand::PositionCommand;
+        using PointCommand::PointCommand;
     };
 
-    class MoveUnit : public PositionCommand {
+    class MoveUnit : public PointCommand {
     protected:
         virtual void
-        runWithPosition(interactive::Session *s,
-                        std::ostream &os,
-                        const GamePos &pos) const override
+        runWithMapIter(interactive::Session *s,
+                       std::ostream &os,
+                       MapIter iter) const override
         {
             BaseUnit *unit = s->focus();
             if (!unit) {
@@ -372,12 +373,15 @@ namespace demo {
                 return;
             }
 
-            if (!unit->canMove(pos)) {
+            if (!unit->canMove(iter)) {
                 os << "This unit can't move there" << std::endl;
                 return;
             }
 
-            if (!unit->moveTo(pos)) {
+            GameMap *map = iter.map();
+            if (!map->placeUnit(iter.point(),
+                                map->removeFrom(
+                                    unit->point()))) {
                 os << "That cell is already occupied" << std::endl;
                 os << "NOTE: this should've been handled by canMove()"
                    << std::endl;
@@ -386,15 +390,15 @@ namespace demo {
         }
 
     public:
-        using PositionCommand::PositionCommand;
+        using PointCommand::PointCommand;
     };
 
-    class AttackUnit : public PositionCommand {
+    class AttackUnit : public PointCommand {
     protected:
         virtual void
-        runWithPosition(interactive::Session *s,
-                        std::ostream &os,
-                        const GamePos &pos) const override
+        runWithMapIter(interactive::Session *s,
+                       std::ostream &os,
+                       MapIter iter) const override
         {
             BaseUnit *unit = s->focus();
             if (!unit) {
@@ -402,32 +406,16 @@ namespace demo {
                 return;
             }
 
-            if (!unit->canAttack(pos)) {
+            if (!unit->canAttack(iter)) {
                 os << "Can't attack there" << std::endl;
                 return;
             }
 
-            unit->attack(pos, dynamic_cast<DemoSession *>(s));
+            unit->attack(iter, dynamic_cast<DemoSession *>(s));
         }
 
     public:
-        using PositionCommand::PositionCommand;
-    };
-
-    class DeleteUnit : public interactive::Command {
-    public:
-        virtual void
-        run(interactive::Session *s, std::ostream &os) const override
-        {
-            BaseUnit *unit = s->focus();
-            if (!unit) {
-                os << "No focused unit" << std::endl;
-                return;
-            }
-
-            auto *ss = dynamic_cast<DemoSession *>(s);
-            ss->push(new events::Death {unit});
-        }
+        using PointCommand::PointCommand;
     };
 
 
@@ -503,27 +491,33 @@ namespace demo {
         virtual void
         run(interactive::Session *s, std::ostream &os) const override
         {
+            GameMap *map = s->map();
+            if (!map) {
+                os << "No current map" << std::endl;
+                return;
+            }
+
             BaseUnit *unit = s->focus();
             if (!unit) {
                 os << "No focused unit" << std::endl;
                 return;
             }
 
-            GamePos pos = unit->position();
-            assert(pos.valid());
+            Point pt = unit->point();
+            assert(map->ptValid(pt));
 
-            int x0_u = pos.x() - _cells,
-                y0_u = pos.y() - _cells,
-                x1_u = pos.x() + _cells + 1,
-                y1_u = pos.y() + _cells + 1,
-                w = pos.map()->width(),
-                h = pos.map()->height(),
+            int x0_u = pt.x() - _cells,
+                y0_u = pt.y() - _cells,
+                x1_u = pt.x() + _cells + 1,
+                y1_u = pt.y() + _cells + 1,
+                w = map->width(),
+                h = map->height(),
                 x0 = std::max(x0_u, 0),
                 y0 = std::max(y0_u, 0),
                 x1 = std::min(x1_u, w),
                 y1 = std::min(y1_u, h);
 
-            print_map(pos.map(), x0, y0, x1 - x0, y1 - y0, os);
+            print_map(map, x0, y0, x1 - x0, y1 - y0, os);
         }
     };
 
@@ -585,15 +579,15 @@ namespace demo {
         }
     };
 
-    class UnitInfo : public PositionCommand,
+    class UnitInfo : public PointCommand,
                      private ObjectPrinter {
     protected:
         virtual void
-        runWithPosition(interactive::Session *,
-                        std::ostream &os,
-                        const GamePos &pos) const override
+        runWithMapIter(interactive::Session *,
+                       std::ostream &os,
+                       MapIter iter) const override
         {
-            BaseUnit *unit = pos.cell().unit();
+            BaseUnit *unit = iter->unit();
             if (!unit) {
                 os << "No unit there" << std::endl;
                 return;
@@ -604,7 +598,7 @@ namespace demo {
         }
 
     public:
-        using PositionCommand::PositionCommand;
+        using PointCommand::PointCommand;
     };
 
 }

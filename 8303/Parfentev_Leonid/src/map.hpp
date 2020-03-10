@@ -32,79 +32,75 @@ public:
 
 class GameMap;
 
-class GamePos {
-    GameMap *_map;
+class Point {
     int _x, _y;
 
 public:
-    GamePos() :_map{nullptr} {}
-    GamePos(GameMap *map, int x, int y)
-        :_map{map}, _x{x}, _y{y} {}
-    GamePos(const GameMap *map, int x, int y)
-        :_map{const_cast<GameMap *>(map)}, _x{x}, _y{y} {}
+    Point(int x, int y) :_x{x}, _y{y} {}
 
     int x() const { return _x; }
     int y() const { return _y; }
-    GameMap *map() const { return _map; }
 
-    bool operator==(const GamePos &pos) const;
-    bool operator!=(const GamePos &pos) const
+    bool operator==(const Point &pt) const;
+    bool operator!=(const Point &pt) const
     {
-        return !(*this == pos);
+        return !(*this == pt);
     }
 
-    bool null() const { return _map == nullptr; }
-    operator bool() const { return !null(); }
-    bool valid() const;
+    double distance(const Point &pt) const;
+    bool adjacent(const Point &pt) const;
 
-    GameCell &cell() const;
-
-    double distance(const GamePos &pos) const
-    {
-        assert(_map == pos._map);
-        int dx = _x - pos._x,
-            dy = _y - pos._y;
-        return sqrt(dx*dx + dy*dy);
-    }
-
-    bool adjacent(const GamePos &pos) const;
-    bool pathExistsTo(const GamePos &pos, int max_length=-1) const;
+    Point shifted(int dx, int dy) const { return {_x + dx, _y + dy}; }
 };
-
-template<bool const_p, typename T>
-using const_mb_t = typename std::conditional<const_p, const T, T>::type;
 
 template<bool constp>
 class GameMapIter {
-    GamePos _pos;
+    using map_ptr_t = typename std::conditional<constp,
+                                                const GameMap *,
+                                                GameMap *>::type;
+    using cell_t = typename std::conditional<constp,
+                                             const GameCell,
+                                             GameCell>::type;
 
-    int total() const;
+    map_ptr_t _map;
+    Point _pt;
+
+    int current_index() const;
     void advance(int n);
 
 public:
+    friend class GameMapIter<!constp>;
+
     using difference_type = int;
     using value_type = GameCell;
-    using pointer = const_mb_t<constp, GameCell *>;
-    using reference = const_mb_t<constp, GameCell &>;
+    using pointer = cell_t *;
+    using reference = cell_t &;
     using iterator_category = std::random_access_iterator_tag;
 
-    const GamePos &position() const { return _pos; }
+    GameMapIter(map_ptr_t map,
+                const Point &pt)
+        :_map{map}, _pt{pt} {}
+    GameMapIter(map_ptr_t map,
+                int x, int y)
+        :GameMapIter<constp>{map, Point{x, y}} {}
 
-    GameMapIter(const GamePos &pos) :_pos{pos}
+    template<bool other_constp>
+    GameMapIter(const GameMapIter<other_constp> &i)
+        // const -> non-const won’t compile
+        :_map{i._map}, _pt{i._pt} {}
+
+    bool valid() const;
+
+    Point point() const { return _pt; }
+    map_ptr_t map() const { return _map; }
+
+    GameMapIter<constp> otherAt(const Point &pt) const
     {
-        assert(!pos.null());
+        return {_map, pt};
     }
 
-    reference operator*() const
-    {
-        assert(_pos.valid());
-        return _pos.cell();
-    }
-    pointer operator->() const
-    {
-        assert(_pos.valid());
-        return &_pos.cell();
-    }
+    reference operator*() const;
+    pointer operator->() const;
 
     GameMapIter &operator+=(int n) { advance(n); return *this; }
     GameMapIter &operator-=(int n) { return *this += -n; }
@@ -135,7 +131,8 @@ public:
 
     bool operator==(const GameMapIter &i) const
     {
-        return _pos == i._pos;
+        return _map == i._map
+            && _pt == i._pt;
     }
     bool operator!=(const GameMapIter &i) const
     {
@@ -160,14 +157,13 @@ public:
 };
 
 class GameMap {
-    int _w, _h;
-    GameCell *_map;
+    const int _w, _h;
+    GameCell * const _map;
     int _max_units = 0, _cur_units = 0;
 
     void destroy();
 
 public:
-    GameMap() :_map{nullptr} {}
     GameMap(int w, int h)
         :_w{w}, _h{h},
          _map{new GameCell[w * h]} {}
@@ -186,10 +182,10 @@ public:
     using const_reverse_iterator =
         std::reverse_iterator<const_iterator>;
 
-    iterator begin() { return iterator{{this, 0, 0}}; }
+    iterator begin() { return iterator{this, 0, 0}; }
     const_iterator begin() const
     {
-        return const_iterator{{this, 0, 0}};
+        return const_iterator{this, 0, 0};
     }
     const_iterator cbegin() const { return begin(); }
 
@@ -200,8 +196,8 @@ public:
     }
     const_reverse_iterator crbegin() const { return rbegin(); }
 
-    iterator end() { return iterator{{this, 0, _h}}; }
-    const_iterator end() const { return const_iterator{{this, 0, _h}}; }
+    iterator end() { return iterator{this, 0, _h}; }
+    const_iterator end() const { return const_iterator{this, 0, _h}; }
     const_iterator cend() const { return end(); }
 
     reverse_iterator rend() { return reverse_iterator{begin()}; }
@@ -218,45 +214,82 @@ public:
     int maxUnitsCount() const { return _max_units; }
     bool setMaxUnitsCount(int n);
 
-    GameCell &operator()(int x, int y);
-    const GameCell &operator()(int x, int y) const;
+    iterator iterAt(const Point &pt);
+    const_iterator iterAt(const Point &pt) const;
 
-    bool placeUnit(BaseUnit *u);
-    void removeUnit(BaseUnit *u);
+    int area() const { return _w * _h; }
+    int cellIndex(const Point &pt) const;
+
+    GameCell &at(const Point &pt);
+    const GameCell &at(const Point &pt) const;
+    bool ptValid(const Point &pt) const;
+
+    bool placeUnit(const Point &pt,
+                   BaseUnit *u);
+    BaseUnit *removeFrom(const Point &pt);
+
+    bool pathExists(const Point &src,
+                    const Point &dest,
+                    int max_length=-1) const;
 };
+
+using MapIter = GameMap::iterator;
+using MapConstIter = GameMap::const_iterator;
 
 template<bool constp>
 int
-GameMapIter<constp>::total() const
+GameMapIter<constp>::current_index() const
 {
-    return _pos.x() + _pos.y() * _pos.map()->width();
+    return _map->cellIndex(_pt);
 }
 
 template<bool constp>
 void
 GameMapIter<constp>::advance(int n)
 {
-    int width = _pos.map()->width(),
-        ttl = total() + n,
-        x = ttl % width,
-        y = ttl / width;
-    _pos = GamePos{_pos.map(), x, y};
+    int width = _map->width(),
+        next = current_index() + n,
+        x = next % width,
+        y = next / width;
+    _pt = Point{x, y};
+}
+
+
+template<bool constp>
+auto
+GameMapIter<constp>::operator*() const -> reference
+{
+    return _map->at(_pt);
+}
+
+template<bool constp>
+auto
+GameMapIter<constp>::operator->() const -> pointer
+{
+    return &_map->at(_pt);
+}
+
+template<bool constp>
+bool
+GameMapIter<constp>::valid() const
+{
+    return _map->ptValid(_pt);
 }
 
 template<bool constp>
 int
 GameMapIter<constp>::operator-(const GameMapIter<constp> &i) const
 {
-    return this->total() - i.total();
+    return this->current_index() - i.current_index();
 }
 
 template<bool constp>
 bool
 GameMapIter<constp>::operator<(const GameMapIter<constp> &i) const
 {
-    assert(_pos.map() == i._pos.map());
-    return (_pos.y() < i._pos.y())
-        || (_pos.x() < i._pos.x());
+    assert(_map == i._map);
+    return (_pt.y() < i._pt.y())
+        || (_pt.x() < i._pt.x());
 }
 
 template<bool constp>

@@ -20,16 +20,18 @@ namespace events {
     Damage::execute(EventLoop *el)
     {
         el->handle(this);
+
+        BaseUnit *unit = iter->unit();
         unit->takeDamage(dmg);
         if (!unit->alive())
-            el->push(new Death {unit});
+            el->push(new Death {iter});
     }
 
     void
     Death::execute(EventLoop *el)
     {
         el->handle(this);
-        unit->die();
+        delete iter.map()->removeFrom(iter.point());
     }
 
 }
