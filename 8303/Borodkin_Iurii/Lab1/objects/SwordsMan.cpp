@@ -1,12 +1,24 @@
 #include "SwordsMan.h"
 #include <utility>
 
-SwordsMan::SwordsMan(std::pair<int, int> coords, std::string name) :
-                    ShortRange(coords, std::move(name))
+SwordsMan::SwordsMan(std::string name) : ShortRange(std::move(name))
 {
-    _health = H_SWORDSMAN  ;
-    _armor  = ARM_SWORD    ;
-    _attack = ATT_SWORDSMAN;
+    attr = new Attributes(HpTypes::SWORDSMAN, RngTypes::SWORDSMAN, DmgTypes::SWORDSMAN,
+                          ArmTypes::SWORDSMAN, ManaTypes::SWORDSMAN);
+}
+
+SwordsMan::SwordsMan(const SwordsMan& unit) : ShortRange(unit)
+{
+    _name = unit._name;
+    attr = new Attributes(unit.health(), unit.range(), unit.damage(),
+                          unit.armor(), unit.mana());
+}
+
+SwordsMan::SwordsMan(SwordsMan&& unit)
+{
+    _name = std::move(unit.name());
+    attr = unit.attr;
+    unit.attr = nullptr;
 }
 
 std::string SwordsMan::type() const {return "SwordsMan";}

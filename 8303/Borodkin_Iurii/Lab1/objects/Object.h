@@ -2,28 +2,31 @@
 #define OBJECT_H
 #include <string>
 #include <utility>
+#include <objects/Attributes.h>
 
+enum class Moves : int
+{
+    LEFT,
+    UP,
+    RIGHT,
+    DOWN
+};
 
 class Object
 {
 protected:
-    std::pair <int, int> _coordinates;
+    Attributes* attr;
     std::string _name;
-    unsigned _health;
-    explicit Object(std::pair<int, int> coordinates, std::string = "");
+    explicit Object(std::string = "");
 public:
-    enum Moves {
-        BACK = -1,
-        STAY     ,
-        FORWARD
-    };
+    unsigned health() const;
+    unsigned range() const;
+    unsigned damage() const;
+    unsigned armor() const;
+    unsigned mana() const;
     std::string &name();
-    virtual std::string type() const;
-    virtual unsigned health() const;
-    virtual std::pair <int, int> coordinates() const;
-    void moveX(Moves);
-    void moveY(Moves);
-    virtual ~Object() = default;
+    virtual std::string type() const = 0;
+    virtual ~Object();
 };
 
 #endif // OBJECT_H

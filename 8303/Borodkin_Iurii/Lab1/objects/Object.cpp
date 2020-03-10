@@ -1,23 +1,19 @@
 #include "Object.h"
 #include <utility>
 
-Object::Object(std::pair<int, int> coordinates, std::string name) :
-                _coordinates(coordinates), _name(std::move(name)), _health(0)
+Object::Object(std::string name) : _name(std::move(name))
 {}
 
 std::string& Object::name() {return _name;}
 
-std::string Object::type() const {return "Object";}
+unsigned Object::health() const {return attr ? attr->health : 0;}
 
-unsigned Object::health() const {return _health;}
+unsigned Object::range() const {return attr ? attr->range : 0;}
 
-std::pair <int, int> Object::coordinates() const {return _coordinates;}
+unsigned Object::damage() const {return attr ? attr->damage : 0;}
 
+unsigned Object::armor() const {return attr ? attr->armor : 0;}
 
-void Object::moveX(Object::Moves x) {
-    _coordinates.first  += x;
-}
+unsigned Object::mana() const {return attr ? attr->mana : 0;}
 
-void Object::moveY(Object::Moves y) {
-    _coordinates.second += y;
-}
+Object::~Object() {delete attr;}

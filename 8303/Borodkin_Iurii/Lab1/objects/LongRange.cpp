@@ -1,10 +1,7 @@
 #include "LongRange.h"
 #include <utility>
 
-LongRange::LongRange(std::pair<int, int> coordinates, std::string name) :
-                    Unit(coordinates, std::move(name)), _range(0)
+LongRange::LongRange(std::string name) : Unit(std::move(name))
 {}
 
 std::string LongRange::type() const {return "LongRange";}
-
-unsigned LongRange::range() const {return _range;}

@@ -4,7 +4,9 @@
 
 class Centaur : public Rider {
 public:
-    explicit Centaur(std::pair<int, int>, std::string = "");
+    explicit Centaur(std::string = "");
+    explicit Centaur(const Centaur&);
+    Centaur(Centaur&&);
     std::string type() const final;
 };
 

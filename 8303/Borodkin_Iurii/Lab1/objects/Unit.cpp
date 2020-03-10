@@ -1,7 +1,6 @@
 #include "Unit.h"
 
-Unit::Unit(std::pair<int, int> coordinates, std::string name) :
-            Object(coordinates, std::move(name)), _attack(0)
+Unit::Unit(std::string name) : Object(std::move(name))
 {}
 
 std::string Unit::type() const {return "Unit";}

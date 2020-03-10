@@ -4,7 +4,9 @@
 
 class SpearMan : public ShortRange {
 public:
-    explicit SpearMan(std::pair<int, int>, std::string = "");
+    explicit SpearMan(std::string = "");
+    explicit SpearMan(const SpearMan&);
+    SpearMan(SpearMan&&);
     std::string type() const final;
 };
 

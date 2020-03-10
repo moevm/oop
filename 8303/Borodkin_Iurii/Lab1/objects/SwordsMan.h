@@ -4,7 +4,9 @@
 
 class SwordsMan : public ShortRange {
 public:
-    explicit SwordsMan(std::pair<int, int>, std::string = "");
+    explicit SwordsMan(std::string = "");
+    explicit SwordsMan(const SwordsMan&);
+    SwordsMan(SwordsMan&&);
     std::string type() const final;
 };
 

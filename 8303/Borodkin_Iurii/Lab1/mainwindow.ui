@@ -14,17 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="cell">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>661</width>
-      <height>531</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="create_cell">
+   <widget class="QPushButton" name="create_field">
     <property name="geometry">
      <rect>
       <x>690</x>
@@ -112,7 +102,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>1</number>
+     <number>0</number>
+    </property>
+    <property name="value">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -151,7 +144,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>1</number>
+     <number>0</number>
+    </property>
+    <property name="value">
+     <number>0</number>
     </property>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
@@ -219,73 +215,29 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_3">
+   <widget class="QSpinBox" name="max_units">
     <property name="geometry">
      <rect>
-      <x>689</x>
-      <y>320</y>
-      <width>171</width>
-      <height>99</height>
+      <x>760</x>
+      <y>480</y>
+      <width>42</width>
+      <height>22</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_3">
-     <item>
-      <widget class="QPushButton" name="move_unit">
-       <property name="text">
-        <string>Подвинуть юнита</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="2">
-        <widget class="QSpinBox" name="diff_y">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QRadioButton" name="down">
-         <property name="text">
-          <string>Down</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QSpinBox" name="diff_x">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QRadioButton" name="up">
-         <property name="text">
-          <string>Up</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QRadioButton" name="left">
-         <property name="text">
-          <string>Left</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QRadioButton" name="right">
-         <property name="text">
-          <string>Right</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>661</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gameField"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

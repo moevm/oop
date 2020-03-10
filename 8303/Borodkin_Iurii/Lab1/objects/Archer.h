@@ -4,7 +4,9 @@
 
 class Archer : public LongRange {
 public:
-    explicit Archer(std::pair<int, int>, std::string = "");
+    explicit Archer(std::string = "");
+    explicit Archer(const Archer&);
+    Archer(Archer&&);
     std::string type() const final;
 };
 

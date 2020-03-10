@@ -16,10 +16,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Cell.cpp \
+    Field.cpp \
     main.cpp \
     mainwindow.cpp \
+    mygraphicsview.cpp \
     objects/Archer.cpp \
+    objects/Attributes.cpp \
     objects/Centaur.cpp \
     objects/LongRange.cpp \
     objects/Object.cpp \
@@ -29,13 +31,18 @@ SOURCES += \
     objects/SpearMan.cpp \
     objects/SwordsMan.cpp \
     objects/Unit.cpp \
-    objects/Wizard.cpp
+    objects/Wizard.cpp \
+    objects/longrangefactory.cpp \
+    objects/riderfactory.cpp \
+    objects/shortrangefactory.cpp
 
 HEADERS += \
-    Cell.h \
+    Field.h \
     main.cpp.autosave \
     mainwindow.h \
+    mygraphicsview.h \
     objects/Archer.h \
+    objects/Attributes.h \
     objects/Centaur.h \
     objects/LongRange.h \
     objects/Object.h \
@@ -45,7 +52,11 @@ HEADERS += \
     objects/SpearMan.h \
     objects/SwordsMan.h \
     objects/Unit.h \
-    objects/Wizard.h
+    objects/Wizard.h \
+    objects/longrangefactory.h \
+    objects/riderfactory.h \
+    objects/shortrangefactory.h \
+    objects/unitsfactory.h
 
 FORMS += \
     mainwindow.ui

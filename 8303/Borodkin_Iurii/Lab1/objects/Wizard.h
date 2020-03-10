@@ -4,7 +4,9 @@
 
 class Wizard : public LongRange {
 public:
-    explicit Wizard(std::pair<int, int>, std::string = "");
+    explicit Wizard(std::string = "");
+    explicit Wizard(const Wizard&);
+    Wizard(Wizard&&);
     std::string type() const final;
 };
 

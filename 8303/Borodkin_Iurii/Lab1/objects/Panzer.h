@@ -4,7 +4,9 @@
 
 class Panzer : public Rider {
 public:
-    explicit Panzer(std::pair<int, int>, std::string = "");
+    explicit Panzer(std::string = "");
+    explicit Panzer(const Panzer&);
+    Panzer(Panzer&&);
     std::string type() const final;
 };
 

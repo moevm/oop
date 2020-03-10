@@ -6,7 +6,8 @@
 #include <QMessageBox>
 #include <QGraphicsItem>
 #include <QTextItem>
-#include "Cell.h"
+#include "mygraphicsview.h"
+#include "Field.h"
 #include "objects/Archer.h"
 #include "objects/Centaur.h"
 #include "objects/SpearMan.h"
@@ -27,16 +28,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_create_cell_clicked();
+    void on_create_field_clicked();
 
     void on_add_unit_clicked();
 
-    void on_move_unit_clicked();
-
 private:
-    void update();
-    Cell *cell = nullptr;
-    QGraphicsScene *scene;
+    Field *field = nullptr;
+    MyGraphicsView *gameField;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
