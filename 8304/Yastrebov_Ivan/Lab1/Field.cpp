@@ -125,6 +125,9 @@ bool Field::moveUnit(int xPos, int yPos, int dX, int dY) {
 
 
 void Field::addObj(Unit* object, int xPos, int yPos) {
+	--xPos;
+	--yPos;
+
 	if (object == nullptr) {
 		std::cout << "If you want to delete an object use removeObject instead\n";
 		return;
@@ -149,11 +152,11 @@ void Field::addObj(Unit* object, int xPos, int yPos) {
 
 
 void Field::removeObj(location pos) {
-	if (head[(pos.getPosition().second - 1) * this->size.width + pos.getPosition().first] == nullptr) {
+	if (head[(pos.getPosition().second - 1) * this->size.width + pos.getPosition().first - 1] == nullptr) {
 		std::cout << "Invalid position of unit\n";
 		return;
 	}
-	head[(pos.getPosition().second - 1) * this->size.width + pos.getPosition().first] = nullptr;
+	head[(pos.getPosition().second - 1) * this->size.width + pos.getPosition().first - 1] = nullptr;
 	--currentQuantity;
 }
 
@@ -186,8 +189,40 @@ Unit **Field::GetHead() const {
 }
 
 
-Iterator* Field::getIterator() const {
+Iterator* Field::getIterator(){
 	return (new Iterator(*this));
 }
 
+Iterator* Field::begin(){
+	auto tmp = new Iterator(*this);
 
+	tmp->first();
+
+	return (tmp);
+}
+
+Iterator* Field::end(){
+	auto tmp = new Iterator(*this);
+
+	tmp->first();
+
+	for (int i = 0; i < this->size.height * this->size.width; ++i) {
+		++tmp;
+	}
+
+	return (tmp);
+}
+
+void Field::print() const{
+	for (int i = 0; i < size.height; ++i) {
+		for (int j = 0; j < size.width; ++j)
+		{
+			if (!head[i * size.width + j])
+				std::cout << "+ ";
+
+			else
+				std::cout << "U ";
+		}
+		std::cout << std::endl;
+	}
+}

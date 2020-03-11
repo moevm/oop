@@ -49,6 +49,8 @@ public:
 
 	void removeObj(location pos);
 
+	void print() const;
+
 	f_size getSize() const;
 
 	int getMax() const;
@@ -59,9 +61,11 @@ public:
 
 	Unit** GetHead() const;
 
-	Iterator* getIterator() const;
+	Iterator* getIterator();
 
+	Iterator* begin();
 
+	Iterator* end();
 private:
 	f_size size = { 0, 0 };
 
