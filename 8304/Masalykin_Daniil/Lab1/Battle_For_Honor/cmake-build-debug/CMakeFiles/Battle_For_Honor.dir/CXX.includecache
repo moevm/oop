@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Armour.h
+string
+-
+
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Attributes.h
+Damage.h
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Damage.h
+Armour.h
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Armour.h
+
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Damage.h
+string
+-
+utility
+-
+
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Unit.cpp
+Unit.h
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Unit.h
+
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Unit.h
+Attributes.h
+C:/Users/danma/Desktop/Battle_For_Honor/Units/Attributes.h
+
