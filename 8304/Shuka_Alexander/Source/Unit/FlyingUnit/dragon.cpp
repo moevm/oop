@@ -1,9 +1,12 @@
 #include "dragon.h"
 
+using namespace unit;
 
-Dragon::Dragon(const Point2D& point) : FlyingUnit(point)
+
+Dragon::Dragon(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    FlyingUnit(point, mediator)
 {
-    healthPoints = 150;
+    healthPoints = 100;
 }
 
 
@@ -27,12 +30,17 @@ Dragon& Dragon::operator=(const Dragon& unit)
 
 std::shared_ptr<Unit> Dragon::clone()
 {
-    std::shared_ptr<Unit> unit(new Dragon(*this));
-    return unit;
+    return std::make_shared<Dragon>(*this);
 }
 
 
-size_t Dragon::farm()
+char Dragon::draw() const
+{
+    return 'D';
+}
+
+
+size_t Dragon::farm() const
 {
     return NO_GOLD;
 }

@@ -1,7 +1,10 @@
 #include "groundunit.h"
 
+using namespace unit;
 
-GroundUnit::GroundUnit(const Point2D& point) : Unit(point)
+
+GroundUnit::GroundUnit(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    Unit(point, mediator)
 {
 
 }
@@ -13,35 +16,55 @@ GroundUnit::GroundUnit(const GroundUnit& unit) : Unit(unit)
 }
 
 
-Point2D GroundUnit::moveLeft()
+bool GroundUnit::moveLeft()
 {
-    position.x--;
+    bool result = mediator->notify(shared_from_this(), MOVE_LEFT);
 
-    return position;
+    if (result) {
+        position.x--;
+        return true;
+    }
+
+    return false;
 }
 
 
-Point2D GroundUnit::moveRight()
+bool GroundUnit::moveRight()
 {
-    position.x++;
+    bool result = mediator->notify(shared_from_this(), MOVE_RIGHT);
 
-    return position;
+    if (result) {
+        position.x++;
+        return true;
+    }
+
+    return false;
 }
 
 
-Point2D GroundUnit::moveTop()
+bool GroundUnit::moveTop()
 {
-    position.y--;
+    bool result = mediator->notify(shared_from_this(), MOVE_TOP);
 
-    return position;
+    if (result) {
+        position.y--;
+        return true;
+    }
+
+    return false;
 }
 
 
-Point2D GroundUnit::moveBottom()
+bool GroundUnit::moveBottom()
 {
-    position.y++;
+    bool result = mediator->notify(shared_from_this(), MOVE_BOTTOM);
 
-    return position;
+    if (result) {
+        position.y++;
+        return true;
+    }
+
+    return false;
 }
 
 

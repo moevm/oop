@@ -4,20 +4,23 @@
 #include "Unit/unit.h"
 
 
-class FlyingUnit : public Unit
+namespace unit {
+class FlyingUnit : public Unit,
+        public std::enable_shared_from_this<Unit>
 {
 public:
-    explicit FlyingUnit(const Point2D& point);
-    virtual ~FlyingUnit() = default;
+    explicit FlyingUnit(const Point2D& point,
+                        std::shared_ptr<Mediator> mediator);
 
     FlyingUnit(const FlyingUnit& unit);
 
-    virtual Point2D moveLeft() override;
-    virtual Point2D moveRight() override;
-    virtual Point2D moveTop() override;
-    virtual Point2D moveBottom() override;
+    virtual bool moveLeft() override;
+    virtual bool moveRight() override;
+    virtual bool moveTop() override;
+    virtual bool moveBottom() override;
 
     virtual bool isFly() const override;
 };
+}
 
 #endif // FLYINGUNIT_H

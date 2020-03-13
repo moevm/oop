@@ -3,21 +3,22 @@
 
 #include "standingunit.h"
 
-
+namespace unit {
 class Tower : public StandingUnit
 {
 public:
-    explicit Tower(const Point2D& point);
-    virtual ~Tower() = default;
+    explicit Tower(const Point2D& point,
+                   std::shared_ptr<Mediator> mediator);
 
     Tower(const Tower& unit);
-    Tower(Tower&& unit) = delete;
     Tower& operator=(const Tower& unit);
-    Tower& operator=(Tower&& unit) = delete;
 
-    virtual size_t farm() override;
+    virtual size_t farm() const override;
 
     virtual std::shared_ptr<Unit> clone() override;
+
+    virtual char draw() const override;
 };
+}
 
 #endif // TOWER_H

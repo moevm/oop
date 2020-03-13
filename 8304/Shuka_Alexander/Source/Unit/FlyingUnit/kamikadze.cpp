@@ -1,9 +1,12 @@
 #include "kamikadze.h"
 
+using namespace unit;
 
-Kamikadze::Kamikadze(const Point2D& point) : FlyingUnit(point)
+
+Kamikadze::Kamikadze(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    FlyingUnit(point, mediator)
 {
-    healthPoints = 30;
+    healthPoints = 70;
 }
 
 
@@ -25,7 +28,7 @@ Kamikadze& Kamikadze::operator=(const Kamikadze& unit)
 }
 
 
-size_t Kamikadze::farm()
+size_t Kamikadze::farm() const
 {
     return NO_GOLD;
 }
@@ -33,6 +36,11 @@ size_t Kamikadze::farm()
 
 std::shared_ptr<Unit> Kamikadze::clone()
 {
-    std::shared_ptr<Unit> unit(new Kamikadze(*this));
-    return unit;
+    return std::make_shared<Kamikadze>(*this);
+}
+
+
+char Kamikadze::draw() const
+{
+    return 'K';
 }

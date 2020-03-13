@@ -3,6 +3,7 @@
 
 #include <cstddef>
 
+
 constexpr size_t NO_GOLD = 0;
 constexpr size_t ONE_GOLD = 0;
 constexpr size_t FIVE_GOLD = 0;
@@ -13,7 +14,7 @@ class IFarming
 public:
     virtual ~IFarming() = default;
 
-    virtual size_t farm() = 0;
+    virtual size_t farm() const = 0;
 };
 
 #endif // IFARMING_H
