@@ -45,8 +45,7 @@ size_t Bow::getDistanceAttack() const
 }
 
 
-std::unique_ptr<Weapon> Bow::clone()
+std::shared_ptr<Weapon> Bow::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new Bow(*this));
-    return weapon;
+    return std::make_shared<Bow>(*this);
 }

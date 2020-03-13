@@ -9,10 +9,7 @@
 class NoWeaponFactory : public WeaponFactory
 {
 public:
-    explicit NoWeaponFactory() = default;
-    virtual ~NoWeaponFactory() = default;
-
-    virtual std::unique_ptr<Weapon> createWeapon() override;
+    virtual std::shared_ptr<Weapon> createWeapon() const override;
 };
 
 #endif // NOWEAPONFABRIC_H

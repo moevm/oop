@@ -1,9 +1,11 @@
 #include "thieffactory.h"
 
+using namespace unit;
 
-std::shared_ptr<Unit> ThiefFactory::createUnit(const Point2D& point)
+
+std::shared_ptr<Unit>
+ThiefFactory::createUnit(const Point2D& point,
+                         std::shared_ptr<Mediator> mediator) const
 {
-    std::shared_ptr<Unit> unit(new Thief(point));
-
-    return unit;
+    return std::make_shared<Thief>(point, mediator);
 }

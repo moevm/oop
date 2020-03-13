@@ -1,9 +1,11 @@
 #include "warriorfactory.h"
 
+using namespace unit;
 
-std::shared_ptr<Unit> WarriorFactory::createUnit(const Point2D& point)
+
+std::shared_ptr<Unit>
+WarriorFactory::createUnit(const Point2D& point,
+                           std::shared_ptr<Mediator> mediator) const
 {
-    std::shared_ptr<Unit> unit(new Warrior(point));
-
-    return unit;
+    return std::make_shared<Warrior>(point, mediator);
 }

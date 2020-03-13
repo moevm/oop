@@ -8,14 +8,11 @@ class NoArmor : public Armor
 {
 public:
     explicit NoArmor();
-    virtual ~NoArmor() = default;
 
     NoArmor(const NoArmor& armor);
-    NoArmor(NoArmor&& armor) = delete;
     NoArmor& operator=(const NoArmor& armor);
-    NoArmor& operator=(NoArmor&& armor) = delete;
 
-    virtual std::unique_ptr<Armor> clone() override;
+    virtual std::shared_ptr<Armor> clone() const override;
 
     virtual double getResistance() const override;
 };

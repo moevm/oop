@@ -1,9 +1,7 @@
 #include "magicweaponfactory.h"
 
 
-std::unique_ptr<Weapon> MagicWeaponFactory::createWeapon()
+std::shared_ptr<Weapon> MagicWeaponFactory::createWeapon() const
 {
-    std::unique_ptr<Weapon> weapon(new Magic);
-
-    return weapon;
+    return std::make_shared<Magic>();
 }

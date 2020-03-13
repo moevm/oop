@@ -4,13 +4,14 @@
 #include "Unit/unit.h"
 
 
+namespace unit {
 class UnitFactory
 {
 public:
-    explicit UnitFactory() = default;
-    virtual ~UnitFactory() = default;
-
-    virtual std::shared_ptr<Unit> createUnit(const Point2D& point) = 0;
+    virtual std::shared_ptr<Unit>
+    createUnit(const Point2D& point,
+               std::shared_ptr<Mediator> mediator) const = 0;
 };
+}
 
 #endif // UNITFACTORY_H

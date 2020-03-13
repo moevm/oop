@@ -33,10 +33,9 @@ size_t Sword::getDamage() const
 }
 
 
-std::unique_ptr<Weapon> Sword::clone()
+std::shared_ptr<Weapon> Sword::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new Sword(*this));
-    return weapon;
+    return std::make_shared<Sword>(*this);
 }
 
 

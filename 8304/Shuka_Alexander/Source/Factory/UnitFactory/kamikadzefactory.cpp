@@ -1,9 +1,11 @@
 #include "kamikadzefactory.h"
 
+using namespace unit;
 
-std::shared_ptr<Unit> KamikadzeFactory::createUnit(const Point2D& point)
+
+std::shared_ptr<Unit>
+KamikadzeFactory::createUnit(const Point2D& point,
+                             std::shared_ptr<Mediator> mediator) const
 {
-    std::shared_ptr<Unit> unit(new Kamikadze(point));
-
-    return unit;
+    return std::make_shared<Kamikadze>(point, mediator);
 }

@@ -13,10 +13,9 @@ double LightArmor::getResistance() const
 }
 
 
-std::unique_ptr<Armor> LightArmor::clone()
+std::shared_ptr<Armor> LightArmor::clone() const
 {
-    std::unique_ptr<Armor> armor(new LightArmor(*this));
-    return armor;
+    return std::make_shared<LightArmor>(*this);
 }
 
 

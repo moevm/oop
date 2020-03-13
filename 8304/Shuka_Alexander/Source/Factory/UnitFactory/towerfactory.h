@@ -6,13 +6,14 @@
 #include "Unit/StandingUnit/tower.h"
 
 
+namespace unit {
 class TowerFactory : public UnitFactory
 {
 public:
-    explicit TowerFactory() = default;
-    virtual ~TowerFactory() = default;
-
-    virtual std::shared_ptr<Unit> createUnit(const Point2D& point) override;
+    virtual std::shared_ptr<Unit>
+    createUnit(const Point2D& point,
+               std::shared_ptr<Mediator> mediator) const override;
 };
+}
 
 #endif // TOWERFACTORY_H

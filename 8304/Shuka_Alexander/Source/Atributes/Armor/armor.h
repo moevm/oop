@@ -13,12 +13,11 @@ constexpr double HEAVY_ARMOR = 0.75;
 class Armor
 {
 public:
-    Armor() = default;
     virtual ~Armor() = default;
 
     virtual double getResistance() const = 0;
 
-    virtual std::unique_ptr<Armor> clone() = 0;
+    virtual std::shared_ptr<Armor> clone() const = 0;
 
 protected:
     void doCopy(const Armor& armor);
