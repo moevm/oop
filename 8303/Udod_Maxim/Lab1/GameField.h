@@ -17,10 +17,10 @@ private:
 
     Unit ***field;
 
-    int fieldHeight;
-    int fieldWidth;
+    const int fieldHeight;
+    const int fieldWidth;
 
-    int maxObjectsCount = 3;
+    const int maxObjectsCount = 3;
     int objectsCount;
 
 public:

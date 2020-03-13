@@ -40,9 +40,26 @@ void FieldCell::eraseObject() {
 
 std::ostream &operator<<(std::ostream &stream, const FieldCell &cell) {
 
-    stream << "FieldCell( object: " << cell.getObject();
+    stream << " ";
+    if (cell.landscape){
 
-    return stream << ")";
+        if (cell.object)
+            cell.landscape->print(stream, *cell.object);
+        else
+            stream << *cell.landscape;
+
+    } else{
+
+        if (cell.object)
+            stream << "|" << *cell.object << "|";
+//            stream << *cell.object;
+        else
+            stream << "|.|";
+//            stream << ".";
+
+    }
+
+    return stream;
 
 }
 

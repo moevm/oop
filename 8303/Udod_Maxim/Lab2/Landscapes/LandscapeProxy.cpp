@@ -4,11 +4,7 @@
 
 #include "LandscapeProxy.h"
 
-LandscapeProxy::LandscapeProxy(Point position) {
-
-    landscape = GameField::getInstance()->getCell(position)->getLandscape();
-
-}
+LandscapeProxy::LandscapeProxy(Landscape *landscape): landscape(landscape) {}
 
 int LandscapeProxy::getDamageFactor(WeaponType type) {
     if (landscape) {
@@ -23,4 +19,5 @@ int LandscapeProxy::getAbsorptionFactor(ArmorType type) {
         return landscape->getAbsorptionFactor(type);
     } else{
         return 1;
-    }}
+    }
+}

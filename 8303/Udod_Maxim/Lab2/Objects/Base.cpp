@@ -8,8 +8,9 @@ bool Base::addUnit(Unit *unit, Point position) {
     if (units.size() < maxObjectsCount){
 
         units.push_back(unit);
-        GameField::getInstance()->addObject(unit, position.x, position.y);
-        maxObjectsCount++;
+        for (auto bo: baseObservers){
+            bo->onBaseNewUnitCreated(unit, position);
+        }
         return true;
 
     } else{
@@ -19,11 +20,11 @@ bool Base::addUnit(Unit *unit, Point position) {
     }
 }
 
-void Base::onUnitAttack(Unit *unit) {
+void Base::onUnitAttack(Unit *unit, Unit *other) {
     std::cout << "Base: Unit " << unit << " attack" << std::endl;
 }
 
-void Base::onUnitMove(Unit *unit) {
+void Base::onUnitMove(Unit *unit, Point p) {
 
     std::cout << "Base: Unit " << unit << " moving" << std::endl;
 
@@ -33,8 +34,7 @@ void Base::onUnitDestroy(Unit *unit) {
 
     auto position = std::find(units.begin(), units.end(), unit);
     if (position != units.end()) {
-        GameField::getInstance()->deleteObject(unit);
-        units.erase(position); // Тут уже и удаление юнита.
+        units.erase(position); // Удаление юнита из принадлежащих к этой базе
         std::cout << "Base: Unit " << unit << " destroyed" << std::endl;
     } else{
         std::cout << "Called observer of base for unit don't belong to it" << std::endl;
@@ -51,5 +51,17 @@ void Base::onUnitDamaged(Unit *unit) {
 void Base::onUnitHeal(Unit *unit) {
 
     std::cout << "Base: Unit " << unit << " healed" << std::endl;
+
+}
+
+void Base::print(std::ostream &stream) const {
+
+    stream << "B";
+
+}
+
+void Base::addObserver(BaseObserver *baseObserver) {
+
+    baseObservers.push_back(baseObserver);
 
 }

@@ -5,6 +5,7 @@
 #ifndef UNTITLED13_GAMEOBJECT_H
 #define UNTITLED13_GAMEOBJECT_H
 
+#include <ostream>
 #include "../Point.h"
 
 enum class ObjectType{
@@ -26,11 +27,15 @@ protected:
     Point position;
     bool isOnField = false;
 
+    virtual void print(std::ostream &stream) const = 0;
+
 public:
 
     GameObject(ObjectType type): type(type){}
     Point getPosition() { return position; }
     ObjectType getType() { return type; }
+
+    friend std::ostream &operator<<(std::ostream &stream, const GameObject &object);
 
 };
 

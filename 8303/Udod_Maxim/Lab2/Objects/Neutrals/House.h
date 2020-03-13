@@ -10,6 +10,14 @@
 
 class House: public NeutralObject {
 
+protected:
+
+    void print(std::ostream &stream) const override{
+
+        stream << "HS";
+
+    }
+
 public:
 
     void applyTo(Unit &unit) override {

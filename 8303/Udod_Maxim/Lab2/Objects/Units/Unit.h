@@ -7,12 +7,12 @@
 
 
 #include <vector>
+#include <ostream>
 #include "../../Armor/Armor.h"
 #include "../../Weapon/Weapon.h"
 #include "../../Point.h"
 #include "../GameObject.h"
-#include "../../UnitObserver.h"
-#include "../../GameField/GameField.h"
+#include "../../Observers/UnitObserver.h"
 #include "../../Landscapes/LandscapeProxy.h"
 #include "../Neutrals/NeutralObject.h"
 
@@ -34,12 +34,17 @@ protected:
 
     Armor &armor;
     Weapon &weapon;
-    int health{};
+    int health;
+
+    void print(std::ostream &stream) const override;
 
 public:
 
     Unit(const Unit &other);
     Unit(UnitType unitType, Armor &armor, Weapon &weapon, int health);
+
+    Weapon &getWeapon(){ return weapon; }
+    Armor &getArmor(){ return armor; }
 
     void move(Point position);
     void attack(Unit &other);

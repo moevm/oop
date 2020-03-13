@@ -2,10 +2,7 @@
 // Created by shenk on 14.02.2020.
 //
 
-#include <iostream>
 #include "GameField.h"
-
-GameField *GameField::gameField = nullptr;
 
 GameField::GameField():
 fieldHeight(0),
@@ -36,7 +33,6 @@ fieldWidth(fieldWidth)
 
 void GameField::deleteObject(int x, int y) {
 
-    delete field[y][x].getObject();
     field[y][x].eraseObject();
 
 }
@@ -124,24 +120,85 @@ GameField::~GameField() {
 
 }
 
-void GameField::init(int fieldHeight, int fieldWidth) {
+std::ostream &operator<<(std::ostream &stream, const GameField &field) {
 
-    if (!gameField){
-
-        gameField = new GameField(fieldHeight, fieldWidth);
-
-    } else{
-
-        std::cout << "Game field already initialized" << std::endl;
-
+    for (int y=0; y<field.fieldHeight; y++){
+        for (int x=0; x<field.fieldWidth; x++){
+            stream << field.field[y][x];
+        }
+        stream << std::endl;
     }
+
 }
 
-GameField *GameField::getInstance() {
-    if (gameField){
-        return gameField;
-    } else{
-        std::cout << "Game field is not initialized" << std::endl;
-        return nullptr;
+void GameField::onUnitMove(Unit *unit, Point p) {
+
+    FieldCell *cell = getCell(p);
+
+    if (!cell->isEmpty() && cell->getObject()->getType() == ObjectType::NEUTRAL_OBJECT){
+
+        NeutralObject *neutralObject = static_cast<NeutralObject*>(cell->getObject());
+
+        switch (unit->getUnitType()){
+            case UnitType::INFANTRY:
+                neutralObject->setStrategy(new InfantryStrategy());
+                break;
+            case UnitType::ARCHER:
+                neutralObject->setStrategy(new ArcherStrategy());
+                break;
+            case UnitType::WIZARD:
+                neutralObject->setStrategy(new WizardStrategy());
+                break;
+        }
+
+        (*unit) << neutralObject;
+        cell->eraseObject();
     }
+
+    moveObject(unit->getPosition(), p);
+
 }
+
+void GameField::onUnitDestroy(Unit *unit) {
+
+    deleteObject(unit->getPosition());
+
+}
+
+void GameField::addObject(GameObject *object, Point position) {
+
+    addObject(object, position.x, position.y);
+
+}
+
+void GameField::onBaseNewUnitCreated(Unit *unit, Point position) {
+
+    addObject(unit, position);
+    unit->addObserver(this);
+
+}
+
+void GameField::addBase(Base *base, Point position) {
+
+    addBase(base, position.x, position.y);
+
+}
+
+void GameField::addBase(Base *base, int x, int y) {
+
+    addObject(base, x, y);
+    base->addObserver(this);
+
+}
+
+void GameField::onUnitAttack(Unit *unit, Unit *other) {
+
+    Landscape *landscape = getCell(unit->getPosition())->getLandscape();
+    LandscapeProxy landscapeProxy(landscape);
+    int resDamage = unit->getWeapon().getDamage()*landscapeProxy.getDamageFactor(unit->getWeapon().getType())
+                    -other->getArmor().getDamageAbsorption()*landscapeProxy.getAbsorptionFactor(other->getArmor().getType());
+    if (resDamage < 0) resDamage = 0;
+    other->damage(resDamage);
+
+}
+

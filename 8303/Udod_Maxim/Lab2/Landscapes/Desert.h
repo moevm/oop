@@ -12,6 +12,18 @@ class Desert: public Landscape {
 
 public:
 
+    void print(std::ostream &stream, GameObject &object) const override{
+
+        stream << "(" << object << ")";
+
+    }
+
+    void print(std::ostream &stream) const override{
+
+        stream << "(" << "." << ")";
+
+    }
+
     int getDamageFactor(WeaponType type) override {
         switch (type){
 

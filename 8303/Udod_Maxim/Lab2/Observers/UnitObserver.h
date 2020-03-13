@@ -11,8 +11,8 @@ class UnitObserver {
 
 public:
 
-    virtual void onUnitAttack(Unit *unit)=0;
-    virtual void onUnitMove(Unit *unit)=0;
+    virtual void onUnitAttack(Unit *unit, Unit *other)=0;
+    virtual void onUnitMove(Unit *unit, Point p)=0;
     virtual void onUnitDestroy(Unit *unit)=0;
     virtual void onUnitDamaged(Unit *unit)=0;
     virtual void onUnitHeal(Unit *unit)=0;

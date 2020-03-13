@@ -10,6 +10,15 @@
 
 class Garden: public NeutralObject {
 
+
+protected:
+
+    void print(std::ostream &stream) const override{
+
+        stream << "G";
+
+    }
+
 public:
 
     void applyTo(Unit &unit) override {

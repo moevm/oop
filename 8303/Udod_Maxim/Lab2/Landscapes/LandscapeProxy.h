@@ -18,7 +18,7 @@ private:
 
 public:
 
-    LandscapeProxy(Point position);
+    LandscapeProxy(Landscape *landscape);
 
     int getDamageFactor(WeaponType type);
     int getAbsorptionFactor(ArmorType type);

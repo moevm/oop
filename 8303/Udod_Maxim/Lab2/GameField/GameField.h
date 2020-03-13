@@ -9,37 +9,39 @@
 #include "../Objects/GameObject.h"
 #include "GameFieldIterator.h"
 #include "FieldCell.h"
+#include "../Observers/UnitObserver.h"
+#include "../Observers/BaseObserver.h"
+#include "../Objects/Neutrals/NeutralObjectStrategy/InfantryStrategy.h"
+#include "../Objects/Neutrals/NeutralObjectStrategy/ArcherStrategy.h"
+#include "../Objects/Neutrals/NeutralObjectStrategy/WizardStrategy.h"
+#include "../Objects/Base.h"
+#include "../Objects/Neutrals/NeutralObject.h"
+#include "../Objects/Units/Unit.h"
 
-class Unit;
+#include <iostream>
 
-class GameField {
+class GameField: public UnitObserver, public BaseObserver {
 
 private:
-
-    static GameField *gameField;
 
     FieldCell **field;
 
     int fieldHeight;
     int fieldWidth;
 
+public:
+
     GameField();
     explicit GameField(int fieldSize);
     GameField(int fieldHeight, int fieldWidth);
-    GameField(const GameField &other) = delete;
-    GameField(GameField &&other) = delete;
     ~GameField();
-
-public:
-
-    static void init( int fieldHeight, int fieldWidth);
-    static GameField *getInstance();
 
     void deleteObject(int x, int y);
     void deleteObject(const Point &point);
     void deleteObject(GameObject *object);
 
     void addObject(GameObject *object, int x, int y);
+    void addObject(GameObject *object, Point p);
 
     void moveObject(const Point &p1, const Point &p2);
     void moveObject(GameObject *object, const Point &p2);
@@ -48,8 +50,21 @@ public:
     int getWidth() const;
     FieldCell *getCell(const Point &p) const;
 
+    friend std::ostream& operator<< (std::ostream &stream, const GameField &field);
+
     GameFieldIterator begin(){ return GameFieldIterator(Point(0, 0), field, fieldHeight, fieldWidth); }
     GameFieldIterator end(){ return GameFieldIterator(Point(0, fieldHeight), field, fieldHeight, fieldWidth); }
+
+    void onUnitAttack(Unit *unit, Unit *other) override;
+    void onUnitMove(Unit *unit, Point p) override;
+    void onUnitDestroy(Unit *unit) override;
+    void onUnitDamaged(Unit *unit) override {}
+    void onUnitHeal(Unit *unit) override {}
+
+    void onBaseNewUnitCreated(Unit *unit, Point position) override;
+
+    void addBase(Base *base, Point position);
+    void addBase(Base *base, int x, int y);
 
 };
 #endif //UNTITLED13_GAMEFIELD_H

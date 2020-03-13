@@ -24,7 +24,7 @@ protected:
 public:
 
     Armor(){}
-    int getDamageAbsorption(){ return damageAbsorption; }
+    int getDamageAbsorption() const { return damageAbsorption; }
     ArmorType getType(){ return type; }
 
     bool operator==(Armor &other){

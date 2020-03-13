@@ -10,6 +10,15 @@
 
 class Hospital: public NeutralObject {
 
+
+protected:
+
+    void print(std::ostream &stream) const override{
+
+        stream << "HP";
+
+    }
+
 public:
 
     void applyTo(Unit &unit) override {

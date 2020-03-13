@@ -7,26 +7,34 @@
 
 #include "../Armor/Armor.h"
 #include "GameObject.h"
-#include "Units/Wizard/FireMage.h"
-#include "Units/Wizard/Voldemort.h"
+#include "../Observers/UnitObserver.h"
+#include "../Observers/BaseObserver.h"
+
 #include <vector>
-#include "../GameField//GameField.h"
-#include "../UnitObserver.h"
 #include <iostream>
 #include <algorithm>
 
 class Base: public GameObject, public UnitObserver {
 
+private:
+
+    std::vector<BaseObserver*> baseObservers;
+
+protected:
+
+    void print(std::ostream &stream) const override;
+
 public:
 
-    Base(): GameObject(ObjectType::BASE) {}
+    Base(int health, Armor &armor): GameObject(ObjectType::BASE), health(health), armor(armor) {}
     bool addUnit(Unit *unit, Point position);
+    void addObserver(BaseObserver *baseObserver);
 
     template <typename T>
     T *createUnit(Point position);
 
-    void onUnitAttack(Unit *unit) override;
-    void onUnitMove(Unit *unit) override;
+    void onUnitAttack(Unit *unit, Unit *other) override;
+    void onUnitMove(Unit *unit, Point p) override;
     void onUnitDestroy(Unit *unit) override;
     void onUnitDamaged(Unit *unit) override;
     void onUnitHeal(Unit *unit) override;
@@ -36,8 +44,8 @@ private:
     std::vector<Unit*> units;
 
     int health;
-    int maxObjectsCount = 5;
-    Armor armor;
+    const int maxObjectsCount = 5;
+    Armor &armor;
 
 };
 
@@ -47,9 +55,9 @@ T *Base::createUnit(Point position) {
         T *unit = new T();
         units.push_back(unit);
         unit->addObserver(this);
-        GameField::getInstance()->addObject(unit, position.x, position.y);
 
-        maxObjectsCount++;
+        for (auto bo:baseObservers) bo->onBaseNewUnitCreated(unit, position);
+
         return unit;
     } else{
 
