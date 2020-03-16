@@ -7,6 +7,7 @@
 #include "../Units/UnitFactory.hpp"
 #include "GuiTools.hpp"
 
+// TODO remake specially for bases
 class NewUnitSelectionScreen {
 public:
     NewUnitSelectionScreen();

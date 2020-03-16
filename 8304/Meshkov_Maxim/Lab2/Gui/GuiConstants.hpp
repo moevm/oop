@@ -4,7 +4,7 @@
 
 // TODO? upper case
 constexpr Color backgroundColor = {50, 50, 50, 255 };
-const Color curtainColor = {0, 0, 0, 200};
+constexpr Color curtainColor = {0, 0, 0, 200};
 constexpr int borderWidth = 2;
 constexpr Color borderColor = GRAY;
 constexpr Color selectionColor = BLUE;

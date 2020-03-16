@@ -1,5 +1,8 @@
 #include "Field.hpp"
 
+#include "../Units/Unit.hpp"
+#include "../Base.hpp"
+
 Field::Field(int width, int height)
     : m_cells(width, height)
 {
@@ -54,26 +57,34 @@ std::shared_ptr<FieldCell> Field::getCell(FieldPosition position) {
     return m_cells.at(position.row, position.col);
 }
 
-void Field::addUnit(const std::shared_ptr<const UnitFactory> &unitFactory, FieldPosition position) {
+void Field::createUnit(const std::shared_ptr<const UnitFactory> &unitFactory, FieldPosition position) {
     // TODO checks if already exists
     if (unitFactory != nullptr) {
-        m_cells.at(position.row, position.col)->setUnit(unitFactory->create());
+        auto cell = m_cells.at(position.row, position.col);
+        cell->setUnit(unitFactory->create());
     }
 }
 
 void Field::moveUnit(FieldPosition unitPosition, FieldPosition targetPosition) {
     // TODO checks if already exist at targetPosition
-    auto unit = m_cells.at(unitPosition.row, unitPosition.col)->getUnit();
-    m_cells.at(targetPosition.row, targetPosition.col)->setUnit(unit);
-    removeUnit(unitPosition);
+    auto unitCell = m_cells.at(unitPosition.row, unitPosition.col);
+    m_cells.at(targetPosition.row, targetPosition.col)->setUnit(unitCell->getUnit());
+    unitCell->removeCreature();
 }
 
-void Field::removeUnit(FieldPosition position) {
-    m_cells.at(position.row, position.col)->setUnit(nullptr);
+void Field::removeCreature(FieldPosition position) {
+    auto cell = m_cells.at(position.row, position.col);
+    if (cell->getUnit() != nullptr)
+        cell->getUnit()->notifyAboutDeletionFromField();
+    cell->removeCreature();
 }
 
 void Field::setTerrain(const std::shared_ptr<const TerrainFactory> &terrainFactory, FieldPosition position) {
     if (terrainFactory != nullptr) {
         m_cells.at(position.row, position.col)->setTerrain(terrainFactory->create());
     }
+}
+
+void Field::createBase(FieldPosition basePosition, int player) {
+    m_cells.at(basePosition.row, basePosition.col)->setBase(std::make_shared<Base>(player, *this, basePosition));
 }

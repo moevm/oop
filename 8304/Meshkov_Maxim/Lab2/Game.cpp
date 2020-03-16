@@ -1,11 +1,18 @@
 #include "Game.hpp"
 
-#include "Terrains/WaterTerrain.hpp"
+#include "Terrains/GroundTerrain.hpp"
 #include "Terrains/StoneTerrain.hpp"
+#include "Terrains/WaterTerrain.hpp"
 #include "Terrains/ConcreteTerrainFactory.hpp"
+#include "Base.hpp"
+#include "Things/MedicineThing.hpp"
+#include "Things/MicroMedicineThing.hpp"
+#include "Things/SmallMedicineThing.hpp"
+#include "Things/PowerfulMedicineThing.hpp"
 
 constexpr float waterProbability = 0.1f;
 constexpr float stoneProbability = 0.1f;
+constexpr float thingProbability = 0.025f;
 
 Game::Game()
     : m_field(new Field(0, 0))
@@ -22,16 +29,35 @@ void Game::start(int width, int height) {
         else if (randomNumber <= waterProbability + stoneProbability) {
             m_field->setTerrain(std::make_shared<ConcreteTerrainFactory<StoneTerrain>>(), position);
         }
+        else if (randomNumber <= waterProbability + stoneProbability + 1 * thingProbability) {
+            m_field->getCell(position)->setThing(std::make_shared<MedicineThing>());
+        }
+        else if (randomNumber <= waterProbability + stoneProbability + 2 * thingProbability) {
+            m_field->getCell(position)->setThing(std::make_shared<MicroMedicineThing>());
+        }
+        else if (randomNumber <= waterProbability + stoneProbability + 3 * thingProbability) {
+            m_field->getCell(position)->setThing(std::make_shared<PowerfulMedicineThing>());
+        }
+        else if (randomNumber <= waterProbability + stoneProbability + 4 * thingProbability) {
+            m_field->getCell(position)->setThing(std::make_shared<SmallMedicineThing>());
+        }
+
     }
-    // TODO 2 bases with clearing cells and under it also.
+
+    int baseRow = height / 2;
+    int baseColOffset = 5;
+    m_field->createBase({baseRow, baseColOffset}, 0);
+    m_field->createBase({baseRow, (width - 1) - baseColOffset}, 1);
 }
 
 std::shared_ptr<const Field> Game::getField() const {
     return m_field;
 }
 
-void Game::addUnit(const std::shared_ptr<const UnitFactory> &unitFactory, FieldPosition unitPosition) {
-    m_field->addUnit(unitFactory, unitPosition);
+void Game::createUnit(const std::shared_ptr<const UnitFactory> &unitFactory, FieldPosition basePosition) {
+    auto base = m_field->getCell(basePosition)->getBase();
+    if (base != nullptr)
+        base->createUnit(unitFactory, basePosition, *m_field);
 }
 
 std::set<FieldPosition> Game::findPossibleMoves(FieldPosition unitPosition) const {
@@ -46,6 +72,11 @@ void Game::move(FieldPosition unitPosition, FieldPosition targetPosition) {
     if (possibleMoves.find(targetPosition) == possibleMoves.end())
         throw std::runtime_error("Impossible move.");
     m_field->moveUnit(unitPosition, targetPosition);
+    if (auto thing = m_field->getCell(targetPosition)->getThing()) {
+        auto unit = m_field->getCell(targetPosition)->getUnit();
+        *unit << *thing;
+        m_field->getCell(targetPosition)->setThing(nullptr);
+    }
 }
 
 std::set<FieldPosition> Game::findPossibleAttacks(FieldPosition unitPosition) const {

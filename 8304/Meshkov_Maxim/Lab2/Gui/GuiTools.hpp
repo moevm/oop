@@ -4,13 +4,16 @@
 #include <raylib.h>
 
 #include "../Units/Unit.hpp"
+#include "../Creature.hpp"
 #include "../Terrains/Terrain.hpp"
+#include "../Things/Thing.hpp"
 
 class GuiTools {
 public:
-    static std::string getUnitMark(const Unit &unit);
+    static std::string getMark(const Creature &creature);
     static std::string getUnitDescription(const Unit &unit, bool withIsIced = false);
-    static Color getTerrainColor(const std::shared_ptr<const Terrain> &terrain);
+    static Color getTerrainColor(const Terrain &terrain);
+    static Color getPlayerColor(std::optional<int> player);
 
     static void drawTextInHorizontalCenter(const std::string &text, int fontSize, Color color, int &y);
     static void drawCurtain();
@@ -22,5 +25,7 @@ public:
         int width = 0, height = 0;
     };
 
-    static void drawUnitInSquare(Rectangle square, const Unit &unit, int fontSize, Color fontColor);
+    // TODO delete fontSize
+    static void drawCreatureInSquare(Rectangle square, const Creature &creature, int fontSize, float healthBarWidth);
+    static void drawThingInSquare(Rectangle square, const Thing &thing);
 };

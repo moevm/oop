@@ -16,6 +16,6 @@ public:
         return true;
     }
     bool unitCanAttackHere() const override {
-        return true;
+        return false;
     }
 };

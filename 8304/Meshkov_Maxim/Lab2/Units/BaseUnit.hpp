@@ -4,10 +4,15 @@
 
 class BaseUnit : public Unit {
 public:
+    std::optional<int> getPlayer() const override;
+
     int getHealth() const override {
         return m_health;
     }
-    static const int maxHealth = 20;
+    int getMaxHealth() const override {
+        return 20;
+    }
+    void modifyHealth(int change) override;
     int getHit() const override {
         return m_hit;
     }
@@ -26,8 +31,6 @@ public:
     bool isIced() const override {
         return m_isIced;
     }
-
-    void modifyHealth(int change) override;
     void ice() override;
 
     std::set<FieldPosition> findPossibleMoves(FieldPosition unitPosition, const Field &field) const override;
@@ -35,8 +38,12 @@ public:
 
     void attack(FieldPosition victimPosition, Field &field) override;
 
+    std::weak_ptr<const Base> getBase() const override;
+    void setBase(std::weak_ptr<Base> base) override ;
+    void notifyAboutDeletionFromField() override;
+
 protected:
-    int m_health = maxHealth;
+    int m_health = getMaxHealth();
 
     int m_hit = 0;
     bool m_icesWhenAttacks = false;
@@ -44,6 +51,9 @@ protected:
     int m_moveRange = 0;
     int m_attackRange = 0;
     bool m_isIced = false;
+
+    std::weak_ptr<Base> m_base;
+    std::optional<int> m_player;
 
     BaseUnit &operator=(const BaseUnit &) = default;
 };

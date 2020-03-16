@@ -16,9 +16,7 @@ public:
 
     std::shared_ptr<const Field> getField() const;
 
-    // TODO Creating units through bases
-    // void createUnitUsingBase(const std::shared_ptr<const UnitFactory> &unitFactory, FieldPosition basePosition);
-    void addUnit(const std::shared_ptr<const UnitFactory> &unitFactory, FieldPosition unitPosition);
+    void createUnit(const std::shared_ptr<const UnitFactory> &unitFactory, FieldPosition basePosition);
 
     std::set<FieldPosition> findPossibleMoves(FieldPosition unitPosition) const;
     void move(FieldPosition unitPosition, FieldPosition targetPosition);

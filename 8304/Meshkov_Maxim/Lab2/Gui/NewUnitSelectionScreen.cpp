@@ -13,7 +13,7 @@
 #include "../Units/Mages/FireMageUnit.hpp"
 
 constexpr int cellSize = 48;
-constexpr int unitMarkFontSize = cellSize * 2 / 3;
+constexpr int markFontSize = cellSize * 2 / 3;
 
 NewUnitSelectionScreen::NewUnitSelectionScreen() {
     m_candidates.emplace_back(new HeavyKnightUnit);
@@ -39,7 +39,7 @@ void NewUnitSelectionScreen::draw() const {
         auto candidateSquare = getCandidateSquare(candidate);
         DrawRectangleRec(candidateSquare, backgroundColor);
         DrawRectangleLinesEx(candidateSquare, borderWidth, borderColor);
-        GuiTools::drawUnitInSquare(candidateSquare, *m_candidates[candidate], unitMarkFontSize, GREEN); // TODO different color for players
+        GuiTools::drawCreatureInSquare(candidateSquare, *m_candidates[candidate], markFontSize, 0);
     }
     y += m_candidatesListSize.height;
 

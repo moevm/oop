@@ -3,11 +3,9 @@
 #include <algorithm>
 
 #include "GuiConstants.hpp"
-#include "../Units/BaseUnit.hpp"
-#include "../Terrains/Terrain.hpp"
 
 constexpr int cellSize = 32;
-constexpr int unitMarkFontSize = cellSize * 2 / 3;
+constexpr int markFontSize = cellSize * 2 / 3;
 constexpr int healthBarWidth = borderWidth;
 constexpr Color possibleMoveColor = {255, 255, 255, 40};
 constexpr Color attackColor = RED;
@@ -36,7 +34,7 @@ void Gui::show() {
 }
 
 void Gui::newGame() {
-    m_game->start(rand() % 15 + 20, rand() % 10 + 15); // TODO? fix
+    m_game->start(rand() % 8 + 15, rand() % 5 + 15); // TODO? fix
 }
 
 void Gui::updateFieldSizeAndOffset() {
@@ -94,7 +92,7 @@ void Gui::handleEvents() {
                 if (auto unit = m_game->getField()->getCell(m_selectedCell.value())->getUnit()) {
                     m_unitInfoScreen.reset(new UnitInfoScreen(unit));
                 }
-                else if (m_game->getField()->getCell(m_selectedCell.value())->getTerrain()->canHoldSomething()){
+                else if (auto base = m_game->getField()->getCell(m_selectedCell.value())->getBase()){
                     m_newUnitSelectionScreen.reset(new NewUnitSelectionScreen());
                 }
             }
@@ -113,7 +111,7 @@ void Gui::handleEvents() {
         m_newUnitSelectionScreen->handleEvents();
         if (m_newUnitSelectionScreen->needToClose()) {
             if (auto unitFactory = m_newUnitSelectionScreen->getUnitToCreate()) {
-                m_game->addUnit(unitFactory, m_selectedCell.value());
+                m_game->createUnit(unitFactory, m_selectedCell.value());
                 updatePossibleMoves();
                 updatePossibleAttacks();
             }
@@ -149,17 +147,14 @@ void Gui::drawMainScreen() {
 
     for (auto [cell, position] : *(m_game->getField())) {
         auto cellRectangle = getCellSquare({position.row, position.col});
-        DrawRectangleRec(cellRectangle, GuiTools::getTerrainColor(cell->getTerrain()));
+        DrawRectangleRec(cellRectangle, GuiTools::getTerrainColor(*cell->getTerrain()));
         DrawRectangleLinesEx(cellRectangle, borderWidth, borderColor);
-        if (cell->getUnit() != nullptr) {
-            GuiTools::drawUnitInSquare(cellRectangle, *cell->getUnit(), unitMarkFontSize, GREEN); // TODO different color for players
 
-            Vector2 healthLineStart = {cellRectangle.x + healthBarWidth,
-                                       cellRectangle.y + healthBarWidth + healthBarWidth / 2.0f};
-            float health = (float)cell->getUnit()->getHealth() / BaseUnit::maxHealth;
-            Vector2 healthLineEnd = { cellRectangle.x + health * cellRectangle.width - healthBarWidth,
-                                      healthLineStart.y};
-            DrawLineEx(healthLineStart, healthLineEnd, healthBarWidth, GREEN); // TODO color
+        if (auto thing = cell->getThing()) {
+            GuiTools::drawThingInSquare(cellRectangle, *thing);
+        }
+        if (auto creature = cell->getCreature()) {
+            GuiTools::drawCreatureInSquare(cellRectangle, *creature, markFontSize, healthBarWidth);
         }
     }
 
@@ -183,7 +178,7 @@ void Gui::drawMainScreen() {
         DrawRectangleLinesEx(cellRectangle, borderWidth, selectionColor);
     }
 
-    if (m_unitInfoScreen) {
+    if (m_unitInfoScreen != nullptr) {
         m_unitInfoScreen->draw();
     }
     if (m_newUnitSelectionScreen != nullptr) {

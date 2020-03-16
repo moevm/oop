@@ -4,10 +4,13 @@
 #include <algorithm>
 
 #include "../Field/Field.hpp"
-#include "../Terrains/Terrain.hpp"
+
+std::optional<int> BaseUnit::getPlayer() const {
+    return m_player;
+}
 
 void BaseUnit::modifyHealth(int change) {
-    m_health = std::clamp(m_health + change, 0, +maxHealth);
+    m_health = std::clamp(m_health + change, 0, getMaxHealth());
 }
 
 void BaseUnit::ice() {
@@ -25,9 +28,7 @@ std::set<FieldPosition> BaseUnit::findPossibleMoves(FieldPosition unitPosition, 
     std::set<FieldPosition> possibleMoves;
     for (int row = rowStart; row <= rowEnd; row++) {
         for (int col = colStart; col <= colEnd; col++) {
-            if (!field.getCell({row, col})->getTerrain()->canHoldSomething())
-                continue;
-            if (field.getCell({row, col})->getUnit() != nullptr)
+            if (!field.getCell({row, col})->canHoldSomething())
                 continue;
             int rowDiffSquare = std::pow(row - unitPosition.row, 2);
             int colDiffSquare = std::pow(col - unitPosition.col, 2);
@@ -53,8 +54,13 @@ std::set<FieldPosition> BaseUnit::findPossibleAttacks(FieldPosition unitPosition
     std::set<FieldPosition> possibleAttacks;
     for (int row = rowStart; row <= rowEnd; row++) {
         for (int col = colStart; col <= colEnd; col++) {
-            if (field.getCell({row, col})->getUnit() == nullptr)
+            auto victim = field.getCell({row, col})->getCreature();
+            if (victim == nullptr)
                 continue;
+            if (victim->getPlayer().has_value() && getPlayer().has_value()) {
+                if (victim->getPlayer().value() == getPlayer().value())
+                    continue;
+            }
             int rowDiffSquare = std::pow(row - unitPosition.row, 2);
             int colDiffSquare = std::pow(col - unitPosition.col, 2);
             if (rowDiffSquare + colDiffSquare <= std::pow(maxAttackDistance, 2)) {
@@ -66,12 +72,29 @@ std::set<FieldPosition> BaseUnit::findPossibleAttacks(FieldPosition unitPosition
 }
 
 void BaseUnit::attack(FieldPosition victimPosition, Field &field) {
-    auto victim = field.getCell(victimPosition)->getUnit();
-    if (victim == nullptr)
+    auto victim = field.getCell(victimPosition)->getCreature();
+    if (victim != nullptr) {
+        victim->modifyHealth(-getHit());
+        if (victim->getHealth() == 0)
+            field.removeCreature(victimPosition);
+        auto unitVictim = field.getCell(victimPosition)->getUnit();
+        if (unitVictim != nullptr && icesWhenAttacks())
+            unitVictim->ice();
         return;
-    victim->modifyHealth(-getHit());
-    if (victim->getHealth() == 0)
-        field.removeUnit(victimPosition);
-    if (icesWhenAttacks())
-        victim->ice();
+    }
+}
+
+std::weak_ptr<const Base> BaseUnit::getBase() const {
+    return m_base;
+}
+
+void BaseUnit::setBase(std::weak_ptr<Base> base) {
+    m_base = std::move(base);
+    if (auto baseLocked = m_base.lock())
+        m_player = baseLocked->getPlayer();
+}
+
+void BaseUnit::notifyAboutDeletionFromField() {
+    if (auto base = m_base.lock())
+        base->reactOnUnitDeletion(this);
 }
