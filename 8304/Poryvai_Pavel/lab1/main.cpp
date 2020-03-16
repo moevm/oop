@@ -19,7 +19,7 @@ int main()
 	ob1.inic_cell(x, y);
 	ob1.output_field();
 	
-	std::cout<<"\nПередвинуть объект по полю(Куда строка\столбец откуда строка\столбец)\n";
+	/*std::cout<<"\nПередвинуть объект по полю(Куда строка\столбец откуда строка\столбец)\n";
 	std::cin>>x>>y>>a>>b;
 	ob1.move(x, y, a, b);
 	ob1.output_field();
@@ -36,7 +36,12 @@ int main()
         ob = init();
         std::cout << ob.get_type();
 
+*/
 
+	playing_field ob2;
+	
+	ob2= ob1;
+	ob2.output_field();
 
 	
 

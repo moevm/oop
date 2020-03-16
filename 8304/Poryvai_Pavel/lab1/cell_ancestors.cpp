@@ -153,8 +153,8 @@ cell cell::operator=(const cell& ob) {
 		kind = new char[50];
 	}
 
-	std::cout <<"\n"<< ob.type<<"\n";
-	std::cout << "\n" << type << "\n";
+//	std::cout <<"\n"<< ob.type<<"\n";
+//	std::cout << "\n" << type << "\n";
 
 	strcpy(type, ob.type);
 	strcpy(kind, ob.kind);

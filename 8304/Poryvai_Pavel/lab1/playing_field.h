@@ -11,7 +11,7 @@ public:
 
 	
 	playing_field(int height, int width);
-	//playing_field(const playing_field& ob2);//Конструктор копии
+	playing_field(const playing_field& ob2);//Конструктор копии
 
 
 	void remove_obj(int i, int j);
@@ -58,12 +58,29 @@ public:
 	}
 
 	int get_width() {
+		
 		return width;
 	}
 
+	//cell get_cell(int i,int j){
+		
+	//	cell ob;
+	//	ob = p_f[i][j];
+		
+	//	return ob;//конструктор копии?
+	//}
+	
+	char* get_type(int i, int j){
+		return p_f[i][j].get_type();
+	}
+
+	char* get_kind(int i, int j){
+		return p_f[i][j].get_kind();
+	}
 	void move(int i1, int j, int i2, int j2);
 
-	//playing_field operator=(playing_field& ob);
+	playing_field operator=(playing_field& ob);
+	
 	~playing_field();
 
 

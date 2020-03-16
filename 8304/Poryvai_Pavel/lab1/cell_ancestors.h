@@ -68,6 +68,9 @@ public:
 	char* get_type() {
 		return type;
 	};
+	char* get_kind(){
+		return kind;
+	}
 
 	int get_health() {
 		return health;
@@ -160,6 +163,6 @@ public:
 		}
 			
 	}
-	//void inic(const char* type, const char* kind, int healt, int attack, int paracetomol);
+	
 };
 

@@ -118,5 +118,54 @@ playing_field::playing_field(int height, int width) {
 }
 
 
+playing_field playing_field::operator=(playing_field &ob){
+
+	
+	std::cout<<"\nВызвана перегрузка оператора = для playing_field\n";
+
+	height = ob.height;
+	width = ob.width;
+	max_obj = ob.max_obj;
+
+	if(p_f != nullptr){
+
+		for(int i = 0; i < height;i++)
+			delete [] p_f[i];
+
+		delete p_f;
+	
+	}
+
+	p_f = new cell*[height];
+
+	for(int i = 0; i < height; i++)
+		p_f[i] = new cell[width];
+
+	
+	
+
+	
+
+	for(int i = 0; i < height; i++)
+		
+		for(int j = 0; j < width; j++){
+			if(ob.p_f[i][j].is_writein() == 1)
+				p_f[i][j].set(ob.get_type(i,j),ob.get_kind(i,j));
+			
+			
+		}
+			//p_f[i][j] = ob.get_cell(i,j);//здесь вызывается перегрузка и конструктор копии cell 
+
+	return *this;
+}
+
+
+playing_field::playing_field(const playing_field &ob){// для =  он условный
+
+	std::cout<<"\nВызван конструктор копии поля\n";
+	
+	p_f = new cell*[1];
+	p_f[0] = new cell[1];
+}
 
 
