@@ -9,6 +9,7 @@
 Base::Base(int player, Field &field, FieldPosition basePosition) {
     m_player = player;
     field.getCell(basePosition)->setTerrain(std::make_shared<GroundTerrain>());
+    field.getCell(basePosition)->setThing(nullptr);
     field.getCell({basePosition.row + 1, basePosition.col})->setTerrain(std::make_shared<GroundTerrain>());
     field.getCell({basePosition.row + 1, basePosition.col})->setThing(nullptr);
 }
