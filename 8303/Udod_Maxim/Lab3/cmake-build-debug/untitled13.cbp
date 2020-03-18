@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="untitled13"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/shenk/CLionProjects/untitled13/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/shenk/CLionProjects/untitled13/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="untitled13">
+				<Option output="/home/shenk/CLionProjects/untitled13/cmake-build-debug/untitled13" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/shenk/CLionProjects/untitled13/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled13"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="untitled13/fast">
+				<Option output="/home/shenk/CLionProjects/untitled13/cmake-build-debug/untitled13" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/shenk/CLionProjects/untitled13/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../include/c++/9.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled13/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/shenk/CLionProjects/untitled13/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/shenk/CLionProjects/untitled13/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Armor/Armor.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Armor/ArmorFlyWeight.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Armor/ArmorFlyWeight.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Armor/ChainArmor.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Armor/ChaosIronArmor.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Armor/LeatherArmor.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Armor/Tunic.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/GameFacade.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/GameField/FieldCell.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/GameField/FieldCell.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/GameField/GameField.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/GameField/GameField.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/GameField/GameFieldIterator.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/GameInfo.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Landscapes/Desert.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Landscapes/Landscape.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Landscapes/LandscapeProxy.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Landscapes/LandscapeProxy.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Landscapes/Ocean.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Landscapes/ZeroSpace.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Base.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Base.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/GameObject.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/GameObject.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/Garden.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/Hogwarts.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/Hospital.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/House.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/NeutralObject.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/NeutralObjectStrategy/ArcherStrategy.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/NeutralObjectStrategy/InfantryStrategy.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/NeutralObjectStrategy/NeutralObjectStrategy.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Neutrals/NeutralObjectStrategy/WizardStrategy.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Archer/Archer.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Archer/BlockBowMan.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Archer/CrossBowMan.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Infantry/Infantry.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Infantry/SpearMan.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Infantry/SwordMan.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Unit.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Unit.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Wizard/FireMage.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Wizard/Voldemort.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Objects/Units/Wizard/Wizard.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Observers/BaseObserver.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Observers/UnitObserver.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Point.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Point.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Attack/AttackCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Attack/AttackUnitCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Command.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Create/CreateBaseCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Create/CreateCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Create/CreateUnitCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/MainCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Move/MoveCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Move/MoveUnitCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Show/ShowBaseCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Show/ShowCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/UI/Commands/Show/ShowUnitCommand.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/AvadaKedavra.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/Bow.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/Fireball.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/Pistol.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/Spear.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/Sword.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/Weapon.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/WeaponFlyWeight.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/Weapon/WeaponFlyWeight.h">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/main.cpp">
+			<Option target="untitled13"/>
+		</Unit>
+		<Unit filename="/home/shenk/CLionProjects/untitled13/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
