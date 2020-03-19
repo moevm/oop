@@ -4,38 +4,56 @@
 #include <iostream>
 #include <Windows.h>
 #include <conio.h>
+#include <math.h>
 
 #include "Field/gamefield.h"
-#include "UnitBuilder/unitdirector.h"
+#include "facade.h"
+#include "Factory/ObjectFactory/randomobjectfactory.h"
+#include "Unit/base.h"
 
 
 enum class COMMAND : int
 {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT,
-    STAY,
+    NO_COMMAND,
+    CRT_GROUND,
+    CRT_FLYING,
+    CRT_STANDING,
+    ATTACK,
+    DEFFEND,
     EXIT,
-    ADD_UNIT
 };
 
 
 class Game
 {
 public:
-    Game(size_t width = 15, size_t height = 10);
-
+    explicit Game();
     void run();
 
 private:
-    void draw();
-    bool logic(COMMAND command);
+    void init();
+    void createField();
+    void draw() const;
+    void farmEnemy();
+    void farmPlayer();
+    void logic(COMMAND command = COMMAND::NO_COMMAND);
+    void enemyLogic();
     COMMAND input();
 
 private:
     bool isRun;
-    GameField gameField;
+    std::shared_ptr<Mediator> mediator;
+    std::shared_ptr<GameField> field;
+    std::shared_ptr<std::set<std::shared_ptr<unit::Unit>>> playerUnits;
+    std::shared_ptr<std::set<std::shared_ptr<unit::Unit>>> enemyUnits;
+    std::shared_ptr<unit::Base> playerBase;
+    std::shared_ptr<unit::Base> enemyBase;
+    std::shared_ptr<Facade> enemyFacade;
+    std::shared_ptr<Facade> playerFacade;
+    size_t playerGold;
+    size_t enemyGold;
+    std::shared_ptr<RandomObjectFactory> factory;
+    bool isPlayerAttack;
 };
 
 #endif // GAME_H

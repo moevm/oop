@@ -59,6 +59,7 @@ SOURCES += \
         atributes/weapon/noweapon.cpp \
         atributes/weapon/sword.cpp \
         atributes/weapon/weapon.cpp \
+    facade.cpp \
         field/celloffield.cpp \
         field/gamefield.cpp \
         field/iterator.cpp \
@@ -131,12 +132,13 @@ HEADERS += \
         atributes/weapon/noweapon.h \
         atributes/weapon/sword.h \
         atributes/weapon/weapon.h \
+    facade.h \
         field/celloffield.h \
         field/gamefield.h \
         field/iterator.h \
         field/point2d.h \
         game.h \
-    idrawable.h \
+        idrawable.h \
         mediator.h \
         unit/ifarming.h \
         unit/imovable.h \

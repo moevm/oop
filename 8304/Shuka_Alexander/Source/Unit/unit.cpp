@@ -16,7 +16,7 @@ Unit::Unit(const Unit& unit) : position(unit.position)
 }
 
 
-int Unit::getHealthPoints() const
+double Unit::getHealthPoints() const
 {
     return healthPoints;
 }
@@ -40,6 +40,12 @@ const std::shared_ptr<Weapon> Unit::getWeapon() const
 }
 
 
+PLAYER Unit::getPlayer() const
+{
+    return player;
+}
+
+
 void Unit::setWeapon(std::shared_ptr<Weapon> weapon)
 {
     if (weapon) {
@@ -56,7 +62,7 @@ void Unit::setArmor(std::shared_ptr<Armor> armor)
 }
 
 
-void Unit::toHurt(int damage)
+void Unit::toHurt(double damage)
 {
     healthPoints -= damage;
 }
@@ -65,6 +71,12 @@ void Unit::toHurt(int damage)
 void Unit::setMediator(std::shared_ptr<Mediator> mediator)
 {
     this->mediator = mediator;
+}
+
+
+void Unit::setPlayer(PLAYER player)
+{
+    this->player = player;
 }
 
 

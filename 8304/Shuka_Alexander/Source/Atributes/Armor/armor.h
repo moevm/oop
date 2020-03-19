@@ -4,10 +4,10 @@
 #include <memory>
 
 
-constexpr double NO_ARMOR = 0.0;
-constexpr double LIGHT_ARMOR = 0.25;
-constexpr double MEDIUM_ARMOR = 0.5;
-constexpr double HEAVY_ARMOR = 0.75;
+constexpr double NO_ARMOR = 1;
+constexpr double LIGHT_ARMOR = 0.8;
+constexpr double MEDIUM_ARMOR = 0.6;
+constexpr double HEAVY_ARMOR = 0.5;
 
 
 class Armor

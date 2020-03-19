@@ -3,7 +3,6 @@
 
 Bow::Bow()
 {
-    radius = NO_RADIUS;
     distance = MELEE_DISTANCE;
     damage = SWORD_DMG;
 }
@@ -30,12 +29,6 @@ Bow& Bow::operator=(const Bow& weapon)
 size_t Bow::getDamage() const
 {
     return damage;
-}
-
-
-size_t Bow::getRadiusAttack() const
-{
-    return  radius;
 }
 
 

@@ -32,6 +32,12 @@ std::shared_ptr<NeutralObject> NoObject::clone() const
 }
 
 
+char NoObject::draw() const
+{
+    return '.';
+}
+
+
 void NoObject::selectStrategy(std::shared_ptr<Unit> unit)
 {
     Q_UNUSED(unit);

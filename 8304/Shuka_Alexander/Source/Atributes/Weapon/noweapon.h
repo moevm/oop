@@ -13,7 +13,6 @@ public:
     NoWeapon& operator=(const NoWeapon& weapon);
 
     virtual size_t getDamage() const override;
-    virtual size_t getRadiusAttack() const override;
     virtual size_t getDistanceAttack() const override;
 
     virtual std::shared_ptr<Weapon> clone() const override;

@@ -79,7 +79,7 @@ bool CellOfField::isEmpty() const
 
 void CellOfField::setNeutralObject(std::shared_ptr<NeutralObject> neutralObject)
 {
-    this->neutralObject = std::move(neutralObject);
+    this->neutralObject = neutralObject;
 }
 
 
@@ -98,7 +98,7 @@ void CellOfField::deleteNeutralObject()
 
 void CellOfField::setLandscape(std::shared_ptr<Landscape> landscape)
 {
-    this->landscape = std::move(landscape);
+    this->landscape = landscape;
 }
 
 

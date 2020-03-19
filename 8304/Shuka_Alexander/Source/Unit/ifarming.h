@@ -5,8 +5,8 @@
 
 
 constexpr size_t NO_GOLD = 0;
-constexpr size_t ONE_GOLD = 0;
-constexpr size_t FIVE_GOLD = 0;
+constexpr size_t ONE_GOLD = 1;
+constexpr size_t FIVE_GOLD = 5;
 
 
 class IFarming

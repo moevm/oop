@@ -3,7 +3,6 @@
 
 Sword::Sword()
 {
-    radius = SWORD_RADIUS;
     distance = MELEE_DISTANCE;
     damage = SWORD_DMG;
 }
@@ -36,12 +35,6 @@ size_t Sword::getDamage() const
 std::shared_ptr<Weapon> Sword::clone() const
 {
     return std::make_shared<Sword>(*this);
-}
-
-
-size_t Sword::getRadiusAttack() const
-{
-    return radius;
 }
 
 

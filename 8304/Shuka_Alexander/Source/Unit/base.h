@@ -18,7 +18,8 @@ class Base : public Unit, public ISubscriber,
 {
 public:
     explicit Base(const Point2D& point,
-                  std::shared_ptr<Mediator> mediator);
+                  std::shared_ptr<Mediator> mediator,
+                  PLAYER player);
 
     virtual bool moveLeft() override;
     virtual bool moveTop() override;
@@ -26,9 +27,9 @@ public:
     virtual bool moveRight() override;
     virtual bool isFly() const override;
 
-    std::shared_ptr<Unit> createGroundUnit();
-    std::shared_ptr<Unit> createFlyingUnit();
-    std::shared_ptr<Unit> createStandingUnit();
+    std::shared_ptr<Unit> createGroundUnit(int dx, int dy);
+    std::shared_ptr<Unit> createFlyingUnit(int dx, int dy);
+    std::shared_ptr<Unit> createStandingUnit(int dx, int dy);
 
     virtual size_t farm() const override;
 

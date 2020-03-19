@@ -3,7 +3,6 @@
 
 Magic::Magic()
 {
-    radius = MAGIC_RADIUS;
     distance = RANGE_DISTANCE;
     damage = MAGIC_DMG;
 }
@@ -36,12 +35,6 @@ size_t Magic::getDamage() const
 std::shared_ptr<Weapon> Magic::clone() const
 {
     return std::make_shared<Magic>(*this);
-}
-
-
-size_t Magic::getRadiusAttack() const
-{
-    return radius;
 }
 
 

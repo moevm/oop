@@ -10,7 +10,8 @@ StandingUnit::StandingUnit(const Point2D& point, std::shared_ptr<Mediator> media
 }
 
 
-StandingUnit::StandingUnit(const StandingUnit& unit) : Unit(unit)
+StandingUnit::StandingUnit(const StandingUnit& unit) : Unit(unit),
+    std::enable_shared_from_this<Unit>(unit)
 {
 
 }

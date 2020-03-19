@@ -13,6 +13,8 @@ public:
 
     virtual std::shared_ptr<NeutralObject> clone() const override;
 
+    virtual char draw() const override;
+
 protected:
     virtual void selectStrategy(std::shared_ptr<unit::Unit> unit) override;
 };
