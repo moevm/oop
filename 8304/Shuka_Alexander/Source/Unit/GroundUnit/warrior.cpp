@@ -1,13 +1,16 @@
 #include "warrior.h"
 
+using namespace unit;
 
-Warrior::Warrior(const Point2D& point) : GroundUnit(point)
+
+Warrior::Warrior(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    GroundUnit(point, mediator)
 {
-    healthPoints = 100;
+    healthPoints = 70;
 }
 
 
-size_t Warrior::farm()
+size_t Warrior::farm() const
 {
     return NO_GOLD;
 }
@@ -33,6 +36,11 @@ Warrior& Warrior::operator=(const Warrior& unit)
 
 std::shared_ptr<Unit> Warrior::clone()
 {
-    std::shared_ptr<Unit> unit(new Warrior(*this));
-    return unit;
+    return std::make_shared<Warrior>(*this);
+}
+
+
+char Warrior::draw() const
+{
+    return 'W';
 }

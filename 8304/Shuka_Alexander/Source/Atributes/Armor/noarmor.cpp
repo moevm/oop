@@ -19,10 +19,9 @@ NoArmor::NoArmor(const NoArmor& armor)
 }
 
 
-std::unique_ptr<Armor> NoArmor::clone()
+std::shared_ptr<Armor> NoArmor::clone() const
 {
-    std::unique_ptr<Armor> armor(new NoArmor(*this));
-    return armor;
+    return std::make_shared<NoArmor>(*this);
 }
 
 

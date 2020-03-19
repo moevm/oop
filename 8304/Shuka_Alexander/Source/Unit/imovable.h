@@ -1,7 +1,6 @@
 #ifndef IMOVABLE_H
 #define IMOVABLE_H
 
-
 #include "Field/point2d.h"
 
 
@@ -16,10 +15,10 @@ class IMovable
 public:
     virtual ~IMovable() = default;
     
-    virtual Point2D moveLeft() = 0;
-    virtual Point2D moveRight() = 0;
-    virtual Point2D moveTop() = 0;
-    virtual Point2D moveBottom() = 0;
+    virtual bool moveLeft() = 0;
+    virtual bool moveRight() = 0;
+    virtual bool moveTop() = 0;
+    virtual bool moveBottom() = 0;
 };
 
 #endif // IMOVABLE_H

@@ -1,10 +1,14 @@
 #include "flyingunit.h"
 
+using namespace unit;
 
-FlyingUnit::FlyingUnit(const Point2D& point) : Unit(point)
+
+FlyingUnit::FlyingUnit(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    Unit(point, mediator)
 {
 
 }
+
 
 FlyingUnit::FlyingUnit(const FlyingUnit& unit) : Unit(unit)
 {
@@ -12,35 +16,55 @@ FlyingUnit::FlyingUnit(const FlyingUnit& unit) : Unit(unit)
 }
 
 
-Point2D FlyingUnit::moveLeft()
+bool FlyingUnit::moveLeft()
 {
-    position.x--;
+    bool result = mediator->notify(shared_from_this(), MOVE_LEFT);
 
-    return position;
+    if (result) {
+        position.x--;
+        return true;
+    }
+
+    return false;
 }
 
 
-Point2D FlyingUnit::moveRight()
+bool FlyingUnit::moveRight()
 {
-    position.x++;
+    bool result = mediator->notify(shared_from_this(), MOVE_RIGHT);
 
-    return position;
+    if (result) {
+        position.x++;
+        return true;
+    }
+
+    return false;
 }
 
 
-Point2D FlyingUnit::moveTop()
+bool FlyingUnit::moveTop()
 {
-    position.y--;
+    bool result = mediator->notify(shared_from_this(), MOVE_TOP);
 
-    return position;
+    if (result) {
+        position.y--;
+        return true;
+    }
+
+    return false;
 }
 
 
-Point2D FlyingUnit::moveBottom()
+bool FlyingUnit::moveBottom()
 {
-    position.y++;
+    bool result = mediator->notify(shared_from_this(), MOVE_BOTTOM);
 
-    return position;
+    if (result) {
+        position.y++;
+        return true;
+    }
+
+    return false;
 }
 
 

@@ -4,9 +4,6 @@
 #include "Field/gamefield.h"
 
 
-class GameField;
-
-
 class GameFieldIterator
 {
 public:
@@ -16,7 +13,7 @@ public:
     void first();
     friend const GameFieldIterator& operator++(GameFieldIterator& it);
     friend const GameFieldIterator operator++(GameFieldIterator& it, int);
-    CellOfField& operator*() const;
+    std::shared_ptr<CellOfField> operator*() const;
 
 private:
     size_t i;

@@ -1,10 +1,12 @@
 #include "unit.h"
 
+using namespace unit;
 
-Unit::Unit(const Point2D& point) : //, std::shared_ptr<Mediator> mediator) :
-    position(point)//, mediator(mediator)
+
+Unit::Unit(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    position(point), mediator(mediator)
 {
-    
+
 }
 
 
@@ -26,19 +28,19 @@ const Point2D& Unit::getPosition() const
 }
 
 
-const std::unique_ptr<Armor>& Unit::getArmor() const
+const std::shared_ptr<Armor> Unit::getArmor() const
 {
     return armor;
 }
 
 
-const std::unique_ptr<Weapon>& Unit::getWeapon() const
+const std::shared_ptr<Weapon> Unit::getWeapon() const
 {
     return weapon;
 }
 
 
-void Unit::setWeapon(std::unique_ptr<Weapon> weapon)
+void Unit::setWeapon(std::shared_ptr<Weapon> weapon)
 {
     if (weapon) {
         this->weapon = std::move(weapon);
@@ -46,11 +48,23 @@ void Unit::setWeapon(std::unique_ptr<Weapon> weapon)
 }
 
 
-void Unit::setArmor(std::unique_ptr<Armor> armor)
+void Unit::setArmor(std::shared_ptr<Armor> armor)
 {
     if (armor) {
         this->armor = std::move(armor);
     }
+}
+
+
+void Unit::toHurt(int damage)
+{
+    healthPoints -= damage;
+}
+
+
+void Unit::setMediator(std::shared_ptr<Mediator> mediator)
+{
+    this->mediator = mediator;
 }
 
 

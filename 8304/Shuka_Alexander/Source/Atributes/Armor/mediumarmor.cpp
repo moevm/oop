@@ -19,10 +19,9 @@ MediumArmor::MediumArmor(const MediumArmor& armor)
 }
 
 
-std::unique_ptr<Armor> MediumArmor::clone()
+std::shared_ptr<Armor> MediumArmor::clone() const
 {
-    std::unique_ptr<Armor> armor(new MediumArmor(*this));
-    return armor;
+    return std::make_shared<MediumArmor>(*this);
 }
 
 

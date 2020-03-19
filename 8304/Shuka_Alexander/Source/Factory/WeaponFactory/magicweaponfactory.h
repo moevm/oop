@@ -9,10 +9,7 @@
 class MagicWeaponFactory : public WeaponFactory
 {
 public:
-    explicit MagicWeaponFactory() = default;
-    virtual ~MagicWeaponFactory() = default;
-
-    virtual std::unique_ptr<Weapon> createWeapon() override;
+    virtual std::shared_ptr<Weapon> createWeapon() const override;
 };
 
 #endif // MAGICWEAPONFABRIC_H

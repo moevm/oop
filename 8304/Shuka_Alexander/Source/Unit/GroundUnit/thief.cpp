@@ -1,13 +1,16 @@
 #include "thief.h"
 
+using namespace unit;
 
-Thief::Thief(const Point2D &point) : GroundUnit(point)
+
+Thief::Thief(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    GroundUnit(point, mediator)
 {
-    healthPoints = 100;
+    healthPoints = 50;
 }
 
 
-size_t Thief::farm()
+size_t Thief::farm() const
 {
     return ONE_GOLD;
 }
@@ -33,6 +36,11 @@ Thief& Thief::operator=(const Thief& unit)
 
 std::shared_ptr<Unit> Thief::clone()
 {
-    std::shared_ptr<Unit> unit(new Thief(*this));
-    return unit;
+    return std::make_shared<Thief>(*this);
+}
+
+
+char Thief::draw() const
+{
+    return 'T';
 }

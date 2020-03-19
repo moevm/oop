@@ -22,16 +22,13 @@ constexpr size_t NO_RADIUS = 0;
 class Weapon
 {
 public:
-    explicit Weapon() = default;
     virtual ~Weapon() = default;
 
     virtual size_t getDamage() const = 0;
-
     virtual size_t getRadiusAttack() const = 0;
-
     virtual size_t getDistanceAttack() const = 0;
 
-    virtual std::unique_ptr<Weapon> clone() = 0;
+    virtual std::shared_ptr<Weapon> clone() const = 0;
     
 protected:
     void doCopy(const Weapon& weapon);

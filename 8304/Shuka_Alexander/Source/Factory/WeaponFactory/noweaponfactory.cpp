@@ -1,10 +1,8 @@
 #include "noweaponfactory.h"
 
 
-std::unique_ptr<Weapon> NoWeaponFactory::createWeapon()
+std::shared_ptr<Weapon> NoWeaponFactory::createWeapon() const
 {
-    std::unique_ptr<Weapon> weapon(new NoWeapon);
-
-    return weapon;
+    return std::make_shared<NoWeapon>();
 }
 

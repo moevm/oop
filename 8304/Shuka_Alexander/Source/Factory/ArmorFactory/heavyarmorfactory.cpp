@@ -1,9 +1,7 @@
 #include "heavyarmorfactory.h"
 
 
-std::unique_ptr<Armor> HeavyArmorFactory::createArmor()
+std::shared_ptr<Armor> HeavyArmorFactory::createArmor() const
 {
-    std::unique_ptr<Armor> armor(new HeavyArmor);
-
-    return armor;
+    return std::make_shared<HeavyArmor>();
 }

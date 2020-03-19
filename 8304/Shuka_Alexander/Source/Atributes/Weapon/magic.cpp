@@ -33,10 +33,9 @@ size_t Magic::getDamage() const
 }
 
 
-std::unique_ptr<Weapon> Magic::clone()
+std::shared_ptr<Weapon> Magic::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new Magic(*this));
-    return weapon;
+    return std::make_shared<Magic>(*this);
 }
 
 

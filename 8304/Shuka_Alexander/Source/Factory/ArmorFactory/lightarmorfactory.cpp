@@ -1,9 +1,7 @@
 #include "lightarmorfactory.h"
 
 
-std::unique_ptr<Armor> LightArmorFactory::createArmor()
+std::shared_ptr<Armor> LightArmorFactory::createArmor() const
 {
-    std::unique_ptr<Armor> armor(new LightArmor);
-
-    return armor;
+    return std::make_shared<LightArmor>();
 }

@@ -4,20 +4,23 @@
 #include "Unit/unit.h"
 
 
-class GroundUnit : public Unit
+namespace unit {
+class GroundUnit : public Unit,
+        public std::enable_shared_from_this<Unit>
 {
 public:
-    explicit GroundUnit(const Point2D& point);
-    virtual ~GroundUnit() = default;
+    explicit GroundUnit(const Point2D& point,
+                        std::shared_ptr<Mediator> mediator);
 
     GroundUnit(const GroundUnit& unit);
 
-    virtual Point2D moveLeft() override;
-    virtual Point2D moveRight() override;
-    virtual Point2D moveTop() override;
-    virtual Point2D moveBottom() override;
+    virtual bool moveLeft() override;
+    virtual bool moveRight() override;
+    virtual bool moveTop() override;
+    virtual bool moveBottom() override;
 
     virtual bool isFly() const override;
 };
+}
 
 #endif // GROUNDUNIT_H

@@ -1,5 +1,7 @@
 #include "unitbuilder.h"
 
+using namespace unit;
+
 
 UnitBuilder::UnitBuilder(const Point2D& point) : point(point)
 {
@@ -15,21 +17,27 @@ void UnitBuilder::reset()
 }
 
 
-void UnitBuilder::setArmorFactory(std::unique_ptr<ArmorFactory> armorFactory)
+void UnitBuilder::setArmorFactory(std::shared_ptr<ArmorFactory> armorFactory)
 {
-    this->armorFactory = std::move(armorFactory);
+    this->armorFactory = armorFactory;
 }
 
 
-void UnitBuilder::setWeaponFactory(std::unique_ptr<WeaponFactory> weaponFactory)
+void UnitBuilder::setMediator(std::shared_ptr<Mediator> mediator)
 {
-    this->weaponFactory = std::move(weaponFactory);
+    this->mediator = mediator;
 }
 
 
-void UnitBuilder::setUnitFactory(std::unique_ptr<UnitFactory> unitFactory)
+void UnitBuilder::setWeaponFactory(std::shared_ptr<WeaponFactory> weaponFactory)
 {
-    this->unitFactory = std::move(unitFactory);
+    this->weaponFactory = weaponFactory;
+}
+
+
+void UnitBuilder::setUnitFactory(std::shared_ptr<UnitFactory> unitFactory)
+{
+    this->unitFactory = unitFactory;
 }
 
 
@@ -41,7 +49,7 @@ void UnitBuilder::setPosition(const Point2D& point)
 
 std::shared_ptr<Unit> UnitBuilder::getUnit()
 {
-    std::shared_ptr<Unit> unit = unitFactory->createUnit(point);
+    std::shared_ptr<Unit> unit = unitFactory->createUnit(point, mediator);
     unit->setArmor(armorFactory->createArmor());
     unit->setWeapon(weaponFactory->createWeapon());
 

@@ -1,13 +1,16 @@
 #include "goldminer.h"
 
+using namespace unit;
 
-GoldMiner::GoldMiner(const Point2D& point) : StandingUnit(point)
+
+GoldMiner::GoldMiner(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    StandingUnit(point, mediator)
 {
     healthPoints = 50;
 }
 
 
-size_t GoldMiner::farm()
+size_t GoldMiner::farm() const
 {
     return FIVE_GOLD;
 }
@@ -35,4 +38,9 @@ std::shared_ptr<Unit> GoldMiner::clone()
 {
     std::shared_ptr<Unit> unit(new GoldMiner(*this));
     return unit;
+}
+
+char GoldMiner::draw() const
+{
+    return '$';
 }

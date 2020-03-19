@@ -4,20 +4,22 @@
 #include "groundunit.h"
 
 
+namespace  unit {
 class Warrior : public GroundUnit
 {
 public:
-    explicit Warrior(const Point2D& point);
-    virtual ~Warrior() = default;
+    explicit Warrior(const Point2D& point,
+                     std::shared_ptr<Mediator> mediator);
 
     Warrior(const Warrior& unit);
-    Warrior(Warrior&& unit) = delete;
     Warrior& operator=(const Warrior& unit);
-    Warrior& operator=(Warrior&& unit) = delete;
 
-    virtual size_t farm() override;
+    virtual size_t farm() const override;
 
     virtual std::shared_ptr<Unit> clone() override;
+
+    virtual char draw() const override;
 };
+}
 
 #endif // WARRIOR_H

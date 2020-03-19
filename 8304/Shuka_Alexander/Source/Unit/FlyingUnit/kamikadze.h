@@ -4,20 +4,22 @@
 #include "flyingunit.h"
 
 
+namespace unit {
 class Kamikadze : public FlyingUnit
 {
 public:
-    explicit Kamikadze(const Point2D& point);
-    virtual ~Kamikadze() = default;
+    explicit Kamikadze(const Point2D& point,
+                       std::shared_ptr<Mediator> mediator);
 
     Kamikadze(const Kamikadze& unit);
-    Kamikadze(Kamikadze&& unit) = delete;
     Kamikadze& operator=(const Kamikadze& unit);
-    Kamikadze& operator=(Kamikadze&& unit) = delete;
 
-    virtual size_t farm() override;
+    virtual size_t farm() const override;
 
     virtual std::shared_ptr<Unit> clone() override;
+
+    virtual char draw() const override;
 };
+}
 
 #endif // KAMIKADZE_H

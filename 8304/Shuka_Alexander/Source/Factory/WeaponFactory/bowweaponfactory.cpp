@@ -1,9 +1,7 @@
 #include "bowweaponfactory.h"
 
 
-std::unique_ptr<Weapon> BowWeaponFactory::createWeapon()
+std::shared_ptr<Weapon> BowWeaponFactory::createWeapon() const
 {
-    std::unique_ptr<Weapon> weapon(new Bow);
-
-    return weapon;
+    return std::make_shared<Bow>();
 }

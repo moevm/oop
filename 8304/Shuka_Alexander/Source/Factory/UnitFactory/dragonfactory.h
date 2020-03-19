@@ -6,13 +6,14 @@
 #include "Unit/FlyingUnit/dragon.h"
 
 
+namespace unit {
 class DragonFactory : public UnitFactory
 {
 public:
-    explicit DragonFactory() = default;
-    virtual ~DragonFactory() = default;
-
-    virtual std::shared_ptr<Unit> createUnit(const Point2D& point) override;
+    virtual std::shared_ptr<Unit>
+    createUnit(const Point2D& point,
+               std::shared_ptr<Mediator> mediator) const override;
 };
+}
 
 #endif // DRAGONFACTORY_H

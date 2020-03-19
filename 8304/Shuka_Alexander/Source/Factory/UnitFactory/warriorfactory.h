@@ -6,13 +6,14 @@
 #include "Unit/GroundUnit/warrior.h"
 
 
+namespace unit {
 class WarriorFactory : public UnitFactory
 {
 public:
-    explicit WarriorFactory() = default;
-    virtual ~WarriorFactory() = default;
-
-    virtual std::shared_ptr<Unit> createUnit(const Point2D& point) override;
+    virtual std::shared_ptr<Unit>
+    createUnit(const Point2D& point,
+               std::shared_ptr<Mediator> mediator) const override;
 };
+}
 
 #endif // WARRIORFACTORY_H

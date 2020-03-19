@@ -8,14 +8,11 @@ class LightArmor : public Armor
 {
 public:
     explicit LightArmor();
-    virtual ~LightArmor() = default;
 
     LightArmor(const LightArmor& armor);
-    LightArmor(LightArmor&& armor) = delete;
     LightArmor& operator=(const LightArmor& armor);
-    LightArmor& operator=(LightArmor&& armor) = delete;
 
-    virtual std::unique_ptr<Armor> clone() override;
+    virtual std::shared_ptr<Armor> clone() const override;
 
     virtual double getResistance() const override;
 };

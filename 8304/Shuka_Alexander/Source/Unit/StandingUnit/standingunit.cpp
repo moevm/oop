@@ -1,7 +1,10 @@
 #include "standingunit.h"
 
+using namespace unit;
 
-StandingUnit::StandingUnit(const Point2D& point) : Unit(point)
+
+StandingUnit::StandingUnit(const Point2D& point, std::shared_ptr<Mediator> mediator) :
+    Unit(point, mediator)
 {
 
 }
@@ -13,27 +16,27 @@ StandingUnit::StandingUnit(const StandingUnit& unit) : Unit(unit)
 }
 
 
-Point2D StandingUnit::moveLeft()
+bool StandingUnit::moveLeft()
 {
-    return position;
+    return false;
 }
 
 
-Point2D StandingUnit::moveRight()
+bool StandingUnit::moveRight()
 {
-    return position;
+    return false;
 }
 
 
-Point2D StandingUnit::moveTop()
+bool StandingUnit::moveTop()
 {
-    return position;
+    return false;
 }
 
 
-Point2D StandingUnit::moveBottom()
+bool StandingUnit::moveBottom()
 {
-    return position;
+    return false;
 }
 
 

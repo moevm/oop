@@ -1,26 +1,42 @@
 TEMPLATE = app
 CONFIG += console c++17
 CONFIG -= app_bundle
-CONFIG -= qt
+CONFIG += qt
 
 SOURCES += \
-        Factory/Armorfactory/armorfactory.cpp \
         Factory/Armorfactory/heavyarmorfactory.cpp \
         Factory/Armorfactory/lightarmorfactory.cpp \
         Factory/Armorfactory/mediumarmorfactory.cpp \
         Factory/Armorfactory/noarmorfactory.cpp \
+        Factory/ObjectFactory/noobjectfactory.cpp \
+        Factory/ObjectFactory/randomobjectfactory.cpp \
         Factory/UnitFactory/dragonfactory.cpp \
         Factory/UnitFactory/goldminerfactory.cpp \
         Factory/UnitFactory/kamikadzefactory.cpp \
         Factory/UnitFactory/thieffactory.cpp \
         Factory/UnitFactory/towerfactory.cpp \
-        Factory/UnitFactory/unitfactory.cpp \
         Factory/UnitFactory/warriorfactory.cpp \
         Factory/Weaponfactory/bowweaponfactory.cpp \
         Factory/Weaponfactory/magicweaponfactory.cpp \
         Factory/Weaponfactory/noweaponfactory.cpp \
         Factory/Weaponfactory/swordweaponfactory.cpp \
-        Factory/Weaponfactory/weaponfactory.cpp \
+        IObserver/ipublisher.cpp \
+        Landscape/foglandscape.cpp \
+        Landscape/proxylandscape.cpp \
+        Landscape/roadlandscape.cpp \
+        Landscape/spikeslandscape.cpp \
+        NeutralObject/armorobject.cpp \
+        NeutralObject/bombobject.cpp \
+        NeutralObject/healerobject.cpp \
+        NeutralObject/neutralobject.cpp \
+        NeutralObject/noobject.cpp \
+        Strategy/dragonarmorupstrategy.cpp \
+        Strategy/healerstrategy.cpp \
+        Strategy/kamikadzearmorupstrategy.cpp \
+        Strategy/killstrategy.cpp \
+        Strategy/nostrategy.cpp \
+        Strategy/thiefarmorupstrategy.cpp \
+        Strategy/warriorarmorupstrategy.cpp \
         Unit/FlyingUnit/dragon.cpp \
         Unit/FlyingUnit/flyingunit.cpp \
         Unit/FlyingUnit/kamikadze.cpp \
@@ -30,6 +46,7 @@ SOURCES += \
         Unit/StandingUnit/goldminer.cpp \
         Unit/StandingUnit/standingunit.cpp \
         Unit/StandingUnit/tower.cpp \
+        Unit/base.cpp \
         UnitBuilder/unitbuilder.cpp \
         UnitBuilder/unitdirector.cpp \
         atributes/armor/armor.cpp \
@@ -46,7 +63,9 @@ SOURCES += \
         field/gamefield.cpp \
         field/iterator.cpp \
         field/point2d.cpp \
+        game.cpp \
         main.cpp \
+        mediator.cpp \
         unit/unit.cpp \
 
 HEADERS += \
@@ -55,6 +74,9 @@ HEADERS += \
         Factory/Armorfactory/lightarmorfactory.h \
         Factory/Armorfactory/mediumarmorfactory.h \
         Factory/Armorfactory/noarmorfactory.h \
+        Factory/ObjectFactory/noobjectfactory.h \
+        Factory/ObjectFactory/objectfactory.h \
+        Factory/ObjectFactory/randomobjectfactory.h \
         Factory/UnitFactory/dragonfactory.h \
         Factory/UnitFactory/goldminerfactory.h \
         Factory/UnitFactory/kamikadzefactory.h \
@@ -67,6 +89,26 @@ HEADERS += \
         Factory/Weaponfactory/noweaponfactory.h \
         Factory/Weaponfactory/swordweaponfactory.h \
         Factory/Weaponfactory/weaponfactory.h \
+        IObserver/ipublisher.h \
+        IObserver/isubscriber.h \
+        Landscape/foglandscape.h \
+        Landscape/landscape.h \
+        Landscape/proxylandscape.h \
+        Landscape/roadlandscape.h \
+        Landscape/spikeslandscape.h \
+        NeutralObject/armorobject.h \
+        NeutralObject/bombobject.h \
+        NeutralObject/healerobject.h \
+        NeutralObject/neutralobject.h \
+        NeutralObject/noobject.h \
+        Strategy/dragonarmorupstrategy.h \
+        Strategy/healerstrategy.h \
+        Strategy/kamikadzearmorupstrategy.h \
+        Strategy/killstrategy.h \
+        Strategy/nostrategy.h \
+        Strategy/strategy.h \
+        Strategy/thiefarmorupstrategy.h \
+        Strategy/warriorarmorupstrategy.h \
         Unit/FlyingUnit/dragon.h \
         Unit/FlyingUnit/flyingunit.h \
         Unit/FlyingUnit/kamikadze.h \
@@ -76,6 +118,7 @@ HEADERS += \
         Unit/StandingUnit/goldminer.h \
         Unit/StandingUnit/standingunit.h \
         Unit/StandingUnit/tower.h \
+        Unit/base.h \
         UnitBuilder/unitbuilder.h \
         UnitBuilder/unitdirector.h \
         atributes/armor/armor.h \
@@ -92,6 +135,9 @@ HEADERS += \
         field/gamefield.h \
         field/iterator.h \
         field/point2d.h \
+        game.h \
+    idrawable.h \
+        mediator.h \
         unit/ifarming.h \
         unit/imovable.h \
         unit/unit.h \

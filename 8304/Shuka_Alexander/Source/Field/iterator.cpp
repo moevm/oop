@@ -1,7 +1,8 @@
 #include "iterator.h"
 
 
-GameFieldIterator::GameFieldIterator(const GameField& gameField) : gameField(gameField)
+GameFieldIterator::GameFieldIterator(const GameField& gameField) :
+    gameField(gameField)
 {
     this->i = 0;
     this->j = 0;
@@ -49,7 +50,7 @@ const GameFieldIterator operator++(GameFieldIterator& it, int)
 }
 
 
-CellOfField& GameFieldIterator::operator*() const
+std::shared_ptr<CellOfField> GameFieldIterator::operator*() const
 {
     return gameField.array[i][j];
 }

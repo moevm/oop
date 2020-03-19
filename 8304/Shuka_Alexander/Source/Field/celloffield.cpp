@@ -1,28 +1,26 @@
 #include "celloffield.h"
 
+using namespace unit;
+
 
 CellOfField::CellOfField()
 {
     empty = true;
+    NoObjectFactory factory;
+    this->neutralObject = factory.createObject();
+    this->landscape = std::shared_ptr<ProxyLandscape>(new ProxyLandscape);
 }
 
 
 CellOfField::CellOfField(const CellOfField& cell)
 {
-    if (cell.unit) {
-        this->unit = cell.unit->clone();
-    }
-
-    this->empty = cell.empty;
+    doCopy(cell);
 }
 
 
 CellOfField::CellOfField(CellOfField&& cell)
 {
-    this->unit = std::move(cell.unit);
-    this->empty = cell.empty;
-
-    cell.empty = true;
+    doMove(cell);
 }
 
 
@@ -32,13 +30,7 @@ CellOfField& CellOfField::operator=(const CellOfField& cell)
         return *this;
     }
 
-    this->unit.reset();
-
-    if (!cell.isEmpty()) {
-        this->unit = cell.unit->clone();
-    }
-
-    this->empty = cell.empty;
+    doCopy(cell);
 
     return *this;
 }
@@ -50,12 +42,7 @@ CellOfField& CellOfField::operator=(CellOfField&& cell)
         return *this;
     }
 
-    this->unit.reset();
-
-    this->unit = std::move(cell.unit);
-    this->empty = false;
-
-    cell.empty = true;
+    doMove(cell);
 
     return *this;
 }
@@ -64,21 +51,21 @@ CellOfField& CellOfField::operator=(CellOfField&& cell)
 void CellOfField::addUnit(std::shared_ptr<Unit> unit)
 {
     this->unit = unit;
-    this->empty = false;
+
+    if (unit) {
+        this->empty = false;
+    }
 }
 
 
 void CellOfField::deleteUnit()
 {
-    if (this->unit) {
-        this->unit.reset();
-    }
-
+    this->unit = nullptr;
     this->empty = true;
 }
 
 
-std::shared_ptr<Unit>& CellOfField::getUnit()
+std::shared_ptr<Unit> CellOfField::getUnit() const
 {
     return unit;
 }
@@ -87,4 +74,65 @@ std::shared_ptr<Unit>& CellOfField::getUnit()
 bool CellOfField::isEmpty() const
 {
     return empty;
+}
+
+
+void CellOfField::setNeutralObject(std::shared_ptr<NeutralObject> neutralObject)
+{
+    this->neutralObject = std::move(neutralObject);
+}
+
+
+std::shared_ptr<NeutralObject> CellOfField::getNeutralObject() const
+{
+    return neutralObject;
+}
+
+
+void CellOfField::deleteNeutralObject()
+{
+    NoObjectFactory factory;
+    this->neutralObject = factory.createObject();
+}
+
+
+void CellOfField::setLandscape(std::shared_ptr<Landscape> landscape)
+{
+    this->landscape = std::move(landscape);
+}
+
+
+std::shared_ptr<Landscape> CellOfField::getLandscape() const
+{
+    return landscape;
+}
+
+
+void CellOfField::doCopy(const CellOfField& cell)
+{
+    if (cell.landscape) {
+        this->landscape = cell.landscape->clone();
+    }
+
+    if (cell.neutralObject) {
+        this->neutralObject = cell.neutralObject->clone();
+    }
+
+    this->unit = nullptr;
+    this->empty = cell.empty;
+
+    if (!cell.isEmpty()) {
+        this->unit = cell.unit->clone();
+    }
+}
+
+
+void CellOfField::doMove(CellOfField& cell)
+{
+    this->unit = nullptr;
+    this->landscape = std::move(cell.landscape);
+    this->neutralObject = std::move(cell.neutralObject);
+    this->unit = std::move(cell.unit);
+    this->empty = cell.empty;
+    cell.empty = true;
 }

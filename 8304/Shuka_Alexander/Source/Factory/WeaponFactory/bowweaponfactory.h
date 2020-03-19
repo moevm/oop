@@ -9,10 +9,7 @@
 class BowWeaponFactory : public WeaponFactory
 {
 public:
-    explicit BowWeaponFactory() = default;
-    virtual ~BowWeaponFactory() = default;
-
-    virtual std::unique_ptr<Weapon> createWeapon() override;
+    virtual std::shared_ptr<Weapon> createWeapon() const override;
 };
 
 #endif // BOWWEAPONFactory_H

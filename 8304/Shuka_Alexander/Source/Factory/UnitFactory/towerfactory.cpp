@@ -1,9 +1,11 @@
 #include "towerfactory.h"
 
+using namespace unit;
 
-std::shared_ptr<Unit> TowerFactory::createUnit(const Point2D& point)
+
+std::shared_ptr<Unit>
+TowerFactory::createUnit(const Point2D& point,
+                         std::shared_ptr<Mediator> mediator) const
 {
-    std::shared_ptr<Unit> unit(new Tower(point));
-
-    return unit;
+    return std::make_shared<Tower>(point, mediator);
 }

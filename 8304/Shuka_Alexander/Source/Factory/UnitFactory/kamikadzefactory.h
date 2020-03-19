@@ -6,13 +6,14 @@
 #include "Unit/FlyingUnit/kamikadze.h"
 
 
+namespace unit {
 class KamikadzeFactory : public UnitFactory
 {
 public:
-    explicit KamikadzeFactory() = default;
-    virtual ~KamikadzeFactory() = default;
-
-    virtual std::shared_ptr<Unit> createUnit(const Point2D& point) override;
+    virtual std::shared_ptr<Unit>
+    createUnit(const Point2D& point,
+               std::shared_ptr<Mediator> mediator) const override;
 };
+}
 
 #endif // KAMIKADZEFACTORY_H

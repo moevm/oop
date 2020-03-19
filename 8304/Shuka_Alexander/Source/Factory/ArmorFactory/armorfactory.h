@@ -9,10 +9,9 @@
 class ArmorFactory
 {
 public:
-    explicit ArmorFactory() = default;
     virtual ~ArmorFactory() = default;
 
-    virtual std::unique_ptr<Armor> createArmor() = 0;
+    virtual std::shared_ptr<Armor> createArmor() const = 0;
 };
 
 #endif // ARMORFABRIC_H

@@ -27,10 +27,9 @@ NoWeapon& NoWeapon::operator=(const NoWeapon& weapon)
 }
 
 
-std::unique_ptr<Weapon> NoWeapon::clone()
+std::shared_ptr<Weapon> NoWeapon::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new NoWeapon(*this));
-    return weapon;
+    return std::make_shared<NoWeapon>(*this);
 }
 
 
