@@ -17,7 +17,7 @@ private:
 public:
 
     AttackUnitCommand(Point from, Point to): from(from), to(to){}
-    virtual void execute(GameInfo &gameInfo, GameField &gameField){
+    void execute(GameInfo &gameInfo, GameField &gameField) override{
 
         auto object1 = gameField.getCell(from)->getObject();
         auto object2 = gameField.getCell(to)->getObject();
