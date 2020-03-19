@@ -31,6 +31,12 @@ std::shared_ptr<NeutralObject> ArmorObject::clone() const
 }
 
 
+char ArmorObject::draw() const
+{
+    return 'a';
+}
+
+
 void ArmorObject::selectStrategy(std::shared_ptr<Unit> unit)
 {
     if (typeid (unit.get()) == typeid (Dragon)) {

@@ -10,7 +10,8 @@ FlyingUnit::FlyingUnit(const Point2D& point, std::shared_ptr<Mediator> mediator)
 }
 
 
-FlyingUnit::FlyingUnit(const FlyingUnit& unit) : Unit(unit)
+FlyingUnit::FlyingUnit(const FlyingUnit& unit) : Unit(unit),
+    std::enable_shared_from_this<Unit>(unit)
 {
 
 }

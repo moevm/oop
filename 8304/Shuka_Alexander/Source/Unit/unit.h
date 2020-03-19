@@ -17,6 +17,12 @@
 
 
 namespace unit {
+enum class PLAYER: int {
+    ONE,
+    TWO
+};
+
+
 constexpr const char* CRT_UNIT = "create unit";
 
 
@@ -30,16 +36,18 @@ public:
 
     Unit(const Unit& unit);
 
-    int getHealthPoints() const;
+    double getHealthPoints() const;
     const Point2D& getPosition() const;
     const std::shared_ptr<Armor> getArmor() const;
     const std::shared_ptr<Weapon> getWeapon() const;
+    PLAYER getPlayer() const;
 
     void setWeapon(std::shared_ptr<Weapon> weapon);
     void setArmor(std::shared_ptr<Armor> armor);
-    void toHurt(int damage);
+    void toHurt(double damage);
 
     void setMediator(std::shared_ptr<Mediator> mediator);
+    void setPlayer(PLAYER player);
 
     virtual bool isFly() const = 0;
 
@@ -49,8 +57,9 @@ protected:
     void doCopy(const Unit& unit);
 
 protected:
+    PLAYER player;
     Point2D position;
-    int healthPoints;
+    double healthPoints;
     std::shared_ptr<Armor> armor;
     std::shared_ptr<Weapon> weapon;
     std::shared_ptr<Mediator> mediator;

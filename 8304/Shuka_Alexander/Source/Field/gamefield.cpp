@@ -15,9 +15,6 @@ GameField::GameField(size_t height, size_t width) :
         }
     }
     RandomObjectFactory factory;
-
-    array[0][width/2]->setNeutralObject(factory.createObject());
-    array[height-1][width/2]->setNeutralObject(factory.createObject());
 }
 
 

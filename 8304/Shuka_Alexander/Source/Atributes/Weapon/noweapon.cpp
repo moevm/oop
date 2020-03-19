@@ -3,7 +3,6 @@
 
 NoWeapon::NoWeapon()
 {
-    radius = NO_RADIUS;
     distance = NO_DISTANCE;
     damage = NO_DMG;
 }
@@ -36,12 +35,6 @@ std::shared_ptr<Weapon> NoWeapon::clone() const
 size_t NoWeapon::getDamage() const
 {
     return damage;
-}
-
-
-size_t NoWeapon::getRadiusAttack() const
-{
-    return radius;
 }
 
 

@@ -10,7 +10,8 @@ GroundUnit::GroundUnit(const Point2D& point, std::shared_ptr<Mediator> mediator)
 }
 
 
-GroundUnit::GroundUnit(const GroundUnit& unit) : Unit(unit)
+GroundUnit::GroundUnit(const GroundUnit& unit) : Unit(unit),
+    std::enable_shared_from_this<Unit>(unit)
 {
 
 }

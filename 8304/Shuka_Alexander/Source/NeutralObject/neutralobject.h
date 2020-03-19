@@ -17,8 +17,10 @@
 #include "Strategy/warriorarmorupstrategy.h"
 #include "Strategy/healerstrategy.h"
 
+#include "idrawable.h"
 
-class NeutralObject
+
+class NeutralObject : public IDrawable
 {
 public:
     virtual ~NeutralObject() = default;

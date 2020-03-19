@@ -31,6 +31,12 @@ std::shared_ptr<NeutralObject> BombObject::clone() const
 }
 
 
+char BombObject::draw() const
+{
+    return '-';
+}
+
+
 void BombObject::selectStrategy(std::shared_ptr<Unit> unit)
 {
     Q_UNUSED(unit);

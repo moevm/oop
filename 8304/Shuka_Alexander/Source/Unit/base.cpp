@@ -3,13 +3,14 @@
 using namespace unit;
 
 
-Base::Base(const Point2D& point, std::shared_ptr<Mediator> mediator) :
-    Unit(point, mediator)
+Base::Base(const Point2D& point, std::shared_ptr<Mediator> mediator,
+           PLAYER player) : Unit(point, mediator)
 {
-    NoArmorFactory armorFactory;
+    HeavyArmorFactory armorFactory;
     NoWeaponFactory weaponFactory;
 
-    healthPoints = 200;
+    this->player = player;
+    healthPoints = 400;
     armor = armorFactory.createArmor();
     weapon = weaponFactory.createWeapon();
     nUnits = 0;
@@ -46,12 +47,13 @@ bool Base::isFly() const
 }
 
 
-std::shared_ptr<Unit> Base::createGroundUnit()
+std::shared_ptr<Unit> Base::createGroundUnit(int dx, int dy)
 {
     int num = generateRandomNum(2);
     std::shared_ptr<Unit> unit;
     Point2D pos = this->position;
-    pos.x++;
+    pos.x += dx;
+    pos.y += dy;
 
     switch (num) {
     case 0:
@@ -66,12 +68,13 @@ std::shared_ptr<Unit> Base::createGroundUnit()
 }
 
 
-std::shared_ptr<Unit> Base::createFlyingUnit()
+std::shared_ptr<Unit> Base::createFlyingUnit(int dx, int dy)
 {
     int num = generateRandomNum(2);
     std::shared_ptr<Unit> unit;
     Point2D pos = this->position;
-    pos.x++;
+    pos.x += dx;
+    pos.y += dy;
 
     switch (num) {
     case 0:
@@ -86,12 +89,13 @@ std::shared_ptr<Unit> Base::createFlyingUnit()
 }
 
 
-std::shared_ptr<Unit> Base::createStandingUnit()
+std::shared_ptr<Unit> Base::createStandingUnit(int dx, int dy)
 {
     int num = generateRandomNum(2);
     std::shared_ptr<Unit> unit;
     Point2D pos = this->position;
-    pos.x--;
+    pos.x += dx;
+    pos.y += dy;
 
     switch (num) {
     case 0:
@@ -121,7 +125,7 @@ std::shared_ptr<Unit> Base::clone()
 
 char Base::draw() const
 {
-    return '+';
+    return 'B';
 }
 
 
@@ -142,6 +146,7 @@ std::shared_ptr<Unit> Base::createUnit(std::shared_ptr<Unit> unit)
 {
     if (nUnits < MAX_N_UNITS && mediator->notify(unit, CRT_UNIT)) {
         unit->subscribe(shared_from_this());
+        unit->setPlayer(this->player);
         nUnits++;
         return unit;
     }

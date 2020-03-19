@@ -31,6 +31,12 @@ std::shared_ptr<NeutralObject> HealerObject::clone() const
 }
 
 
+char HealerObject::draw() const
+{
+    return '+';
+}
+
+
 void HealerObject::selectStrategy(std::shared_ptr<Unit> unit)
 {
     Q_UNUSED(unit);
