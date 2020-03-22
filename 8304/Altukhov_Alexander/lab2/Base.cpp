@@ -119,10 +119,15 @@ Unit* Base::createAndSetUnit(UnitTypes type, int lvl, int x, int y) {
 void Base::deleteUnit(Unit*& unit) {
 
 	std::cout << "Удален юнит номер " << unit->getId() << "\n";
+	int lastId = unit->getId();
 	units.erase(units.begin()+unit->getId() - 1);
 
 	this->getParentField()->lowAmountOfObjects();
 	unitsCounter--;
+
+	for (int i = lastId-1; i < unitsCounter; i++) {
+		units[i]->setId(units[i]->getId() - 1);
+	}
 
 	delete unit;
 }

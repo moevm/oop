@@ -3,10 +3,10 @@
 #include "Strategy.h"
 #include "TowerStrategy.h"
 #include "ShrineStrategy.h"
-#include "GunStrategy.h"
+#include "CannonStrategy.h"
 #include "WeaponryStrategy.h"
 enum class NeutralObjectTypes {
-	TOWER, WEAPONRY, GUN, SHRINE
+	TOWER, WEAPONRY, CANNON, SHRINE
 };
 
 class NeutralObject :public INeutralObject {

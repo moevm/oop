@@ -152,7 +152,7 @@ void Field::visualizeField() {
 					std::cout << " " << "T";
 				if (this->getTile(i, j).occupiedByNeutral->getNeutralObjectType() == NeutralObjectTypes::WEAPONRY)
 					std::cout << " " << "W";
-				if (this->getTile(i, j).occupiedByNeutral->getNeutralObjectType() == NeutralObjectTypes::GUN)
+				if (this->getTile(i, j).occupiedByNeutral->getNeutralObjectType() == NeutralObjectTypes::CANNON)
 					std::cout << " " << "G";
 				if (this->getTile(i, j).occupiedByNeutral->getNeutralObjectType() == NeutralObjectTypes::SHRINE)
 					std::cout << " " << "S";

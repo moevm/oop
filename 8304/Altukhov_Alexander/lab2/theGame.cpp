@@ -50,7 +50,7 @@ int main()
 
 
 	//демонстрация 3, создание поля и юнита, передвижение юнита, взаимодействие с ландшафтом
-	Field* f = new Field(3, 7);
+	/*Field* f = new Field(3, 7);
 	Base* base = f->createAndSetBase(f);
 	f->visualizeField();
 
@@ -61,7 +61,7 @@ int main()
 	std::cout << "Атака теперь: " << base->getUnit(1)->getAttack() << "\n";
 	f->visualizeField();
 	f->deleteBase(base);
-	delete f;
+	delete f;*/
 
 
 

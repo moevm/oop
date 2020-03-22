@@ -14,7 +14,7 @@ class Unit;
 #include "NeutralObject.h"
 #include "TowerNeutral.h"
 #include "WeaponryNeutral.h"
-#include "GunNeutral.h"
+#include "CannonNeutral.h"
 #include "ShrineNeutral.h"
 
 
@@ -60,7 +60,7 @@ struct Tile {
 		}
 		if ((x == 1) && (y == 1)) {
 			isOccupiedByNeutral = true;
-			occupiedByNeutral = new GunNeutral;
+			occupiedByNeutral = new CannonNeutral;
 
 		}
 		if ((y == 2) && (x == 0)) {

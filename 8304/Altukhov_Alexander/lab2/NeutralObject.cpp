@@ -16,8 +16,8 @@ void NeutralObject::selectStrategy() {
 	else if (type == NeutralObjectTypes::WEAPONRY) {
 		strategy = new WeaponryStrategy;
 	}
-	else if (type == NeutralObjectTypes::GUN) {
-		strategy = new GunStrategy;
+	else if (type == NeutralObjectTypes::CANNON) {
+		strategy = new CannonStrategy;
 	}
 	else if (type == NeutralObjectTypes::SHRINE) {
 		strategy = new ShrineStrategy;
