@@ -1,0 +1,21 @@
+#ifndef OOP_UNITPAR_H
+#define OOP_UNITPAR_H
+
+/*------------------------------------
+           UNITS PARAMETERS
+--------------------------------------*/
+
+        /* MOVEMENT RANGE */
+#define PEASANT_MOVEMENT_RANGE 2
+#define SWORDSMAN_MOVEMENT_RANGE 1
+#define ARCHER_MOVEMENT_RANGE 2
+#define MAGICIAN_MOVEMENT_RANGE 1
+#define KNIGHT_MOVEMENT_RANGE 3
+
+#define HECK_MOVEMENT_RANGE 1
+#define IFRIT_MOVEMENT_RANGE 2
+#define SUCCUBUS_MOVEMENT_RANGE 2
+#define DEMON_MOVEMENT_RANGE 1
+#define CERBERUS_MOVEMENT_RANGE 2
+
+#endif //OOP_UNITPAR_H
