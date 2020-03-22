@@ -25,6 +25,11 @@ SOURCES += \
         Landscape/proxylandscape.cpp \
         Landscape/roadlandscape.cpp \
         Landscape/spikeslandscape.cpp \
+    Logger/consolelogger.cpp \
+    Logger/filelogger.cpp \
+    Logger/logger.cpp \
+    Logger/playerlogmsg.cpp \
+    Logger/unitlogmsg.cpp \
         NeutralObject/armorobject.cpp \
         NeutralObject/bombobject.cpp \
         NeutralObject/healerobject.cpp \
@@ -97,6 +102,11 @@ HEADERS += \
         Landscape/proxylandscape.h \
         Landscape/roadlandscape.h \
         Landscape/spikeslandscape.h \
+    Logger/consolelogger.h \
+    Logger/filelogger.h \
+    Logger/logger.h \
+    Logger/playerlogmsg.h \
+    Logger/unitlogmsg.h \
         NeutralObject/armorobject.h \
         NeutralObject/bombobject.h \
         NeutralObject/healerobject.h \

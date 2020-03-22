@@ -7,9 +7,13 @@
 #include <math.h>
 
 #include "Field/gamefield.h"
+
 #include "facade.h"
-#include "Factory/ObjectFactory/randomobjectfactory.h"
-#include "Unit/base.h"
+
+#include "Logger/consolelogger.h"
+#include "Logger/filelogger.h"
+#include "Logger/unitlogmsg.h"
+#include "Logger/playerlogmsg.h"
 
 
 enum class COMMAND : int
@@ -20,7 +24,7 @@ enum class COMMAND : int
     CRT_STANDING,
     ATTACK,
     DEFFEND,
-    EXIT,
+    EXIT
 };
 
 
@@ -42,6 +46,7 @@ private:
 
 private:
     bool isRun;
+    std::shared_ptr<Logger> logger;
     std::shared_ptr<Mediator> mediator;
     std::shared_ptr<GameField> field;
     std::shared_ptr<std::set<std::shared_ptr<unit::Unit>>> playerUnits;
