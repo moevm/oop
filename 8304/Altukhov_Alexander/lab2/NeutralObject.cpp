@@ -25,10 +25,20 @@ void NeutralObject::selectStrategy() {
 }
 void NeutralObject::applyEffect(Unit*& unit) {
 	selectStrategy();
-	strategy->applyEffect(unit);
+	(*unit) << strategy;
+	//strategy->applyEffect(unit);
+
+
 }
 
 void NeutralObject::removeEffect(Unit*& unit) {
 	selectStrategy();
-	strategy->removeEffect(unit);
+	//strategy->removeEffect(unit);
 }
+
+void operator<<(Unit& unit, Strategy* strategy) {
+
+	strategy->applyEffectForTimur(unit);
+
+}
+

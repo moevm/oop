@@ -23,5 +23,7 @@ public:
 	void applyEffect(Unit*& unit);
 	void removeEffect(Unit*& unit);
 	void selectStrategy();
+	
 };
 
+void operator<<(Unit& unit, Strategy* strategy);
