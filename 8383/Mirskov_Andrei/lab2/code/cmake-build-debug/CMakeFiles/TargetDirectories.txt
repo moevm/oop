@@ -1,0 +1,3 @@
+/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles/oop_lab2.dir
+/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles/edit_cache.dir
