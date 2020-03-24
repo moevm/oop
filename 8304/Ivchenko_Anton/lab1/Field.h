@@ -17,7 +17,7 @@ public:
 	Field& operator =  (const Field& f);
 	Field& operator =  (const Field&& f);
 	void AddObj(Unit* a, int x, int y);
-	void RemObj(int x, int y);
+	void RemObj(Unit *a, int x, int y);
 	void Moving(Unit* a, int posx, int posy, int dx, int dy) ;
 	Field* CopyField(Field* a) ;
 	void SetUnit(Unit* a, int b, int c) ;

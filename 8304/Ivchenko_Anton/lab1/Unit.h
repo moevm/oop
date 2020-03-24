@@ -59,7 +59,7 @@ public:
 	}
 };
 
-class Slinger : Archer {
+class Slinger : public Archer {
 
 public:
 
@@ -72,7 +72,9 @@ public:
 	};
 };
 
-class Bowman : Archer {
+class Bowman : public Archer {
+
+public:
 
 	Bowman() {
 
@@ -88,12 +90,10 @@ class Cavalry : public Unit {
 
 public:
 
-	Cavalry() {
-
-	};
+	Cavalry() {};
 };
 
-class LightCavalry : Cavalry {
+class LightCavalry : public Cavalry {
 
 public:
 
@@ -107,7 +107,7 @@ public:
 	};
 };
 
-class HeavyCavalry : Cavalry {
+class HeavyCavalry : public Cavalry {
 
 public:
 

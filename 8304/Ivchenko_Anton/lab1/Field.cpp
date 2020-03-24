@@ -5,189 +5,190 @@
 
 
 Field::Field(int max, int _h, int  _w)
-	{
+{
 
-		this->h = _h;
-		this->w = _w;
-		this->qmax = max;
-		cur = 0;
+	this->h = _h;
+	this->w = _w;
+	this->qmax = max;
+	cur = 0;
 
-		field = new Unit * *[h];
+	field = new Unit * *[h];
 
-		for (int i = 0; i < h; i++) {
+	for (int i = 0; i < h; i++) {
 
-			field[i] = new Unit * [w];
+		field[i] = new Unit * [w];
 
-			for (int j = 0; j < w; j++) 
-				
-				field[i][j] = nullptr;
+		for (int j = 0; j < w; j++)
 
-			
-		}std::cout << "Field created\n";
-	};
+			field[i][j] = nullptr;
+
+
+	}std::cout << "Field created\n";
+};
 
 Field::Field(const Field& f) {//конструктор копирования
 
-		this->qmax = f.qmax;
-		this->h = f.h;
-		this->w = f.w;
-		this->cur = 0;
-		this->field = new Unit **[h];
-		
-		for (int i = 0; i < h; i++) {
+	this->qmax = f.qmax;
+	this->h = f.h;
+	this->w = f.w;
+	this->cur = 0;
+	this->field = new Unit * *[h];
 
-			this->field[i] = new Unit * [w];
+	for (int i = 0; i < h; i++) {
 
-			for (int k = 0; k < w; k++) {
+		this->field[i] = new Unit * [w];
 
-				this->field[i][k] = f.field[i][k];
+		for (int k = 0; k < w; k++) {
+
+			this->field[i][k] = f.field[i][k];
 
 
-			}
-		}std::cout << "Copy completed\n";
-	};
+		}
+	}std::cout << "Copy completed\n";
+};
 
 Field::Field(Field&& f) //конструктор перемещения
 
-	{
-		field = f.field;
-		this->qmax = f.qmax;
-		this->h = f.h;
-		this->w = f.w;
-		this->cur = 0;
-		f.field = nullptr;
+{
+	field = f.field;
+	this->qmax = f.qmax;
+	this->h = f.h;
+	this->w = f.w;
+	this->cur = 0;
+	f.field = nullptr;
 
-	};
+};
 
 Field& Field::operator= (const Field& f) {
 
-		this->qmax = f.qmax;
-		this->h = f.h;
-		this->w = f.w;
-		this->cur = 0;
+	this->qmax = f.qmax;
+	this->h = f.h;
+	this->w = f.w;
+	this->cur = 0;
 
-		if (this->field != nullptr)
+	if (this->field != nullptr)
 
-			delete[] this->field;
+		delete[] this->field;
 
-		this->field = new Unit * *[h];
+	this->field = new Unit * *[h];
 
-		for (int i = 0; i < h; i++) {
+	for (int i = 0; i < h; i++) {
 
-			this->field[i] = new Unit * [w];
+		this->field[i] = new Unit * [w];
 
-			for (int k = 0; k < w; k++) {
+		for (int k = 0; k < w; k++) {
 
-				this->field[i][k] = f.field[i][k];
-			}
+			this->field[i][k] = f.field[i][k];
 		}
-		return *this;
-
 	}
+	return *this;
+
+}
 
 Field& Field::operator= (const Field&& f) {
 
-		this->qmax = f.qmax;
-		this->h = f.h;
-		this->w = f.w;
-		this->cur = 0;
+	this->qmax = f.qmax;
+	this->h = f.h;
+	this->w = f.w;
+	this->cur = 0;
 
-		if (this->field != nullptr)
+	if (this->field != nullptr)
 
-			delete[] this->field;
+		delete[] this->field;
 
-		field = f.field;
+	field = f.field;
 
-		return *this;
-	};
+	return *this;
+};
 
 void Field::AddObj(Unit* a, int x, int y) {
 
 
-		if ((cur < qmax)||(0<x<h)||(0<y<h)){
+	if ((cur < qmax) && (0 < x < h) && (0 < y < h) && field[x][y] == nullptr) {
 
-			field[x][y] = a;
-			cur++;
-			std::cout << "\nUnit added\n";
+		field[x][y] = a;
+		cur++;
+		std::cout << "\nUnit added\n";
 
-		}
-		else
-			std::cout << "Incorrect arguments";
-	};
+	}
+	else
+		std::cout << "Incorrect arguments";
+};
 
-void Field::RemObj(int x, int y) {
+void Field::RemObj(Unit *a, int x, int y) {
 
-		if ((0 < x < h) || (0 < y < h)) {
+	if ((0 < x < h) && (0 < y < h) && field[x][y] == a) {
 
-			field[x][y] = nullptr;
-			cur--;
-			std::cout << "\nUnit removed\n";
-		}
-		else
-			std::cout << "Incorrect arguments";
+		field[x][y] = nullptr;
+		cur--;
+		std::cout << "\nUnit removed\n";
+	}
+	else
+		std::cout << "Incorrect arguments";
 
-	};
+};
 
 void Field::Moving(Unit* a, int posx, int posy, int dx, int dy) {
-		
 
-		if ((dx > a->speed)&&(posx+dx > h)&&(posy+dy > w))
 
-			std::cout << "Incorrect arguments";
-		else {
+	if ((dx > a->speed) && (posx + dx > h) && (posy + dy > w))
 
-			field[posx][posy] = nullptr;
+		std::cout << "Incorrect arguments";
 
-			field[posx + dx][posy + dy] = a;
+	else {
 
-			std::cout << "\nUnit moved\n";
+		field[posx][posy] = nullptr;
 
-			
+		field[posx + dx][posy + dy] = a;
+
+		std::cout << "\nUnit moved\n";
+
+
+	}
+
+};
+
+Field* Field::CopyField(Field* a) {
+
+	for (int i = 0; i < h; i++) {
+
+		for (int k = 0; k < w; k++) {
+
+			a->SetUnit(field[i][k], i, k);
+
 		}
-
-	};
-
-Field* Field::CopyField(Field *a) {
-
-		for (int i = 0; i < h; i++) {
-
-			for (int k = 0; k < w; k++) {
-
-				a->SetUnit(field[i][k], i, k);
-
-			}
-		}return a;
+	}return a;
 
 };
 
 
 void Field::SetUnit(Unit* a, int b, int c) {
 
-		field[b][c] = a;
+	field[b][c] = a;
 
 };
 
 void Field::PrintField() {
 
-		for (int i = 0; i < h; i++) {
+	for (int i = 0; i < h; i++) {
 
-			std::cout << '\n';
+		std::cout << '\n';
 
-			for (int k = 0; k < w; k++) {
+		for (int k = 0; k < w; k++) {
 
-				if (field[i][k] == nullptr)
+			if (field[i][k] == nullptr)
 
-					std::cout << '0';
-				else
-					std::cout << field[i][k]->id;
-			}
-		};
+				std::cout << '0';
+			else
+				std::cout << field[i][k]->id;
+		}
+	};
 
 };
 
-Field::~Field(){
+Field::~Field() {
 
-		delete[] field;
-		std::cout << "\nField deleted\n";
+	delete[] field;
+	std::cout << "\nField deleted\n";
 
-	};
+};

@@ -10,8 +10,8 @@ int main() {
 
 	f.AddObj(&swm, 1, 1);
 	f.AddObj(&spm, 2, 3);
-	f.Moving(&spm, 2, 3, 1, 1);
-	f.RemObj(1, 1);
+	f.Moving(&spm, 2, 3, 1, -1);
+	f.RemObj(&swm, 1, 1);
 	f.PrintField();
 
 	std::cout << std::endl;
