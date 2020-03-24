@@ -17,10 +17,10 @@ int main() {
 	std::cout << std::endl;
 
 
-	//Field newfield(10, 5, 10);
-	//newfield = f;
+	Field newfield(0, 0, 0);
+	newfield = f;
 	//Field newfield(f);
-	//newfield.PrintField();
+	newfield.PrintField();
 
 	//Field newfield(10,5,10);
 	//Field *n = f.CopyField(&newfield);
