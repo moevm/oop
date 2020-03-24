@@ -13,7 +13,9 @@ public:
 
 	Field(int max, int _h, int  _w);
 	Field(const Field& f);
+	Field(Field&& f);
 	Field& operator =  (const Field& f);
+	Field& operator =  (const Field&& f);
 	void AddObj(Unit* a, int x, int y);
 	void RemObj(int x, int y);
 	void Moving(Unit* a, int posx, int posy, int dx, int dy) ;
