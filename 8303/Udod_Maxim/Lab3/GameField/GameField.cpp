@@ -70,7 +70,7 @@ void GameField::deleteObject(GameObject *object) {
 
 void GameField::moveObject(const Point &p1, const Point &p2) {
 
-    if (!field[p1.y][p1.x].isEmpty() && field[p2.y][p2.x].isEmpty()){
+    if (isInField(p1) && isInField(p2) && !field[p1.y][p1.x].isEmpty() && field[p2.y][p2.x].isEmpty()){
 
         field[p2.y][p2.x] = std::move(field[p1.y][p1.x]);
         field[p2.y][p2.x].getObject()->position = p2;
@@ -207,5 +207,9 @@ void GameField::onUnitAttack(Unit *unit, Unit *other) {
     if (resDamage < 0) resDamage = 0;
     other->damage(resDamage);
 
+}
+
+bool GameField::isInField(const Point &p) const {
+    return p.x >=0 && p.x < fieldWidth && p.y >=0 && p.y < fieldHeight;
 }
 

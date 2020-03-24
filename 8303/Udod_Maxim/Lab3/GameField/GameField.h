@@ -66,5 +66,7 @@ public:
     bool addBase(Base *base, Point position);
     bool addBase(Base *base, int x, int y);
 
+    bool isInField(const Point &p) const;
+
 };
 #endif //UNTITLED13_GAMEFIELD_H
