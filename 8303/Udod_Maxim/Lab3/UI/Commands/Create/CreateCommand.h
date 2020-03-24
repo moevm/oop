@@ -9,30 +9,33 @@
 #include "CreateUnitCommand.h"
 #include "CreateBaseCommand.h"
 
-class CreateCommandHandler: CommandHandler {
+class CreateCommandHandler: public CommandHandler {
 
 public:
 
+    bool canHandle(std::vector<std::string> &cmd) override{
+
+        return cmd.size() > 1 && cmd[0] == "create";
+
+    }
+
     CommandPtr handle(std::vector<std::string> &cmd) override{
 
-        if (cmd.size() < 1){
-            std::cout << "Wrong command" << std::endl;
-            return CommandPtr(new Command);
-        }
+        if (canHandle(cmd)){
 
-        std::string cmdWrd = cmd[0];
-        cmd.erase(cmd.begin());
-        if (cmdWrd == "unit"){
+            cmd.erase(cmd.begin());
 
-            return CreateUnitCommandHandler().handle(cmd);
+            auto handle1 = new CreateUnitCommandHandler();
+            auto handle2 = new CreateBaseCommandHandler();
 
-        } else if (cmdWrd == "base"){
+            handle1->setNext(handle2);
 
-            return CreateBaseCommandHandler().handle(cmd);
+            return handle1->handle(cmd);
 
         }
 
-        return CommandPtr(new Command);
+        if (next) return next->handle(cmd);
+        return std::make_unique<Command>();
 
     }
 

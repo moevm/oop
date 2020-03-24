@@ -8,13 +8,34 @@
 #include <sstream>
 #include "GameInfo.h"
 #include "UI/Commands/Command.h"
-#include "UI/Commands/MainCommand.h"
+#include "UI/Commands/Attack/AttackCommand.h"
+#include "UI/Commands/Create/CreateCommand.h"
+#include "UI/Commands/Move/MoveCommand.h"
+#include "UI/Commands/Show/ShowCommand.h"
 
 class GameFacade: public GameInfo {
 
+private:
+
+    AttackCommandHandler *attackHandler;
+    CreateCommandHandler *createHandler;
+    MoveCommandHandler *moveHandler;
+    ShowCommandHandler *showHandler;
+
 public:
 
-    GameFacade(int playersCount, int fieldWidth, int fieldHeight): GameInfo(playersCount, fieldWidth, fieldWidth){}
+    GameFacade(int playersCount, int fieldWidth, int fieldHeight): GameInfo(playersCount, fieldWidth, fieldWidth){
+
+        attackHandler = new AttackCommandHandler();
+        createHandler = new CreateCommandHandler();
+        moveHandler = new MoveCommandHandler();
+        showHandler = new ShowCommandHandler();
+
+        attackHandler->setNext(createHandler);
+        createHandler->setNext(moveHandler);
+        moveHandler->setNext(showHandler);
+
+    }
     void nextTurn(){
 
         std::string commandString;
@@ -26,7 +47,8 @@ public:
         while (ss >> commandWord)
             commandSplitted.push_back(commandWord);
 
-        CommandPtr command = MainCommandHandler().handle(commandSplitted);
+
+        CommandPtr command = attackHandler->handle(commandSplitted);
         command->execute(*this, gameField);
 
         nextUser();

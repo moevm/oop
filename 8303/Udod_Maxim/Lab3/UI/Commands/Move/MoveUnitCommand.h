@@ -35,14 +35,28 @@ class MoveUnitCommandHandler: public CommandHandler {
 
 public:
 
+    bool canHandle(std::vector<std::string> &cmd) override{
+
+        return cmd.size() == 5 && cmd[0] == "unit";
+
+    }
+
     CommandPtr handle(std::vector<std::string> &cmd) override{
-        int x1 = std::stoi(cmd[0]);
-        int y1 = std::stoi(cmd[1]);
-        int x2 = std::stoi(cmd[2]);
-        int y2 = std::stoi(cmd[3]);
-        Point from(x1, y1);
-        Point to(x2, y2);
-        return CommandPtr(new MoveUnitCommand(from, to));
+
+        if (canHandle(cmd)){
+
+            int x1 = std::stoi(cmd[1]);
+            int y1 = std::stoi(cmd[2]);
+            int x2 = std::stoi(cmd[3]);
+            int y2 = std::stoi(cmd[4]);
+            Point from(x1, y1);
+            Point to(x2, y2);
+            return CommandPtr(new MoveUnitCommand(from, to));
+
+        }
+
+        if (next) return next->handle(cmd);
+        return std::make_unique<Command>();
 
     }
 

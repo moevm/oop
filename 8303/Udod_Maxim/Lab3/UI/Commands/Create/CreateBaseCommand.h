@@ -34,12 +34,25 @@ class CreateBaseCommandHandler: public CommandHandler{
 
 public:
 
+    bool canHandle(std::vector<std::string> &cmd) override{
+
+        return cmd.size() == 3 && cmd[0] == "base";
+
+    }
+
     CommandPtr handle(std::vector<std::string> &cmd) override {
 
-        int x = std::stoi(cmd[0]);
-        int y = std::stoi(cmd[1]);
-        Point basePosition(x, y);
-        return CommandPtr(new CreateBaseCommand(basePosition));
+        if (canHandle(cmd)){
+
+            int x = std::stoi(cmd[1]);
+            int y = std::stoi(cmd[2]);
+            Point basePosition(x, y);
+            return CommandPtr(new CreateBaseCommand(basePosition));
+
+        }
+
+        if (next) return next->handle(cmd);
+        return std::make_unique<Command>();
 
     }
 };

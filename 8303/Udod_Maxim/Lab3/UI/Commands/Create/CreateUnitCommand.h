@@ -21,7 +21,7 @@ private:
 public:
 
     explicit CreateUnitCommand(Point position, UnitType unitType): unitPosition(position), unitType(unitType){}
-    virtual void execute(GameInfo &gameInfo, GameField &gameField){
+    void execute(GameInfo &gameInfo, GameField &gameField) override{
 
         if (!gameInfo.getNowPlayerBase()){
             std::cout << "Can't create unit without base" << std::endl;
@@ -50,18 +50,26 @@ class CreateUnitCommandHandler: public CommandHandler {
 
 public:
 
+    bool canHandle(std::vector<std::string> &cmd) override{
+
+        return cmd.size() == 4 && cmd[0] == "unit";
+
+    }
+
     CommandPtr handle(std::vector<std::string> &cmd) override {
 
-        if (cmd.size() != 3){
-            std::cout << "Wrong command" << std::endl;
-            return CommandPtr(new Command);
+        if (canHandle(cmd)){
+
+            int x = std::stoi(cmd[1]);
+            int y = std::stoi(cmd[2]);
+            auto type = static_cast<UnitType>(std::stoi(cmd[3]));
+            Point basePosition(x, y);
+            return CommandPtr(new CreateUnitCommand(basePosition, type));
+
         }
 
-        int x = std::stoi(cmd[0]);
-        int y = std::stoi(cmd[1]);
-        auto type = static_cast<UnitType>(std::stoi(cmd[2]));
-        Point basePosition(x, y);
-        return CommandPtr(new CreateUnitCommand(basePosition, type));
+        if (next) return next->handle(cmd);
+        return std::make_unique<Command>();
 
     }
 

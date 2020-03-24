@@ -12,22 +12,26 @@ class MoveCommandHandler: public CommandHandler{
 
 public:
 
+    bool canHandle(std::vector<std::string> &cmd) override{
+
+        return cmd.size() > 1 && cmd[0] == "move";
+
+    }
+
     CommandPtr handle(std::vector<std::string> &cmd) override{
 
-        if (cmd.size() < 1){
-            std::cout << "Wrong command" << std::endl;
-            return CommandPtr(new Command);
-        }
+        if (canHandle(cmd)){
 
-        std::string cmdWrd = cmd[0];
-        cmd.erase(cmd.begin());
-        if (cmdWrd == "unit"){
+            cmd.erase(cmd.begin());
 
-            return MoveUnitCommandHandler().handle(cmd);
+            auto handle1 = new MoveUnitCommandHandler();
+
+            return handle1->handle(cmd);
 
         }
 
-        return CommandPtr(new Command);
+        if (next) return next->handle(cmd);
+        return std::make_unique<Command>();
 
     }
 

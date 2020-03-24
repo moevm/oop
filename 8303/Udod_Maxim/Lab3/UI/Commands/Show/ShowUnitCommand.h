@@ -40,12 +40,24 @@ class ShowUnitCommandHandler: public CommandHandler{
 
 public:
 
+    bool canHandle(std::vector<std::string> &cmd) override{
+
+        return cmd.size() == 3 && cmd[0] == "unit";
+
+    }
+
     virtual CommandPtr handle(std::vector<std::string> &cmd){
 
-        int x = std::stoi(cmd[0]);
-        int y = std::stoi(cmd[1]);
-        Point unitPosition(x, y);
-        return CommandPtr(new ShowUnitCommand(unitPosition));
+        if (canHandle(cmd)){
+            int x = std::stoi(cmd[1]);
+            int y = std::stoi(cmd[2]);
+            Point unitPosition(x, y);
+            return CommandPtr(new ShowUnitCommand(unitPosition));
+        }
+
+        if (next) return next->handle(cmd);
+
+        return std::make_unique<Command>();
 
     }
 

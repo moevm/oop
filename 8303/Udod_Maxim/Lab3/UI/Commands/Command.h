@@ -22,9 +22,16 @@ typedef std::unique_ptr<Command> CommandPtr;
 
 class CommandHandler{
 
-private:
+protected:
+    CommandHandler *next;
+
+public:
 
     virtual CommandPtr handle(std::vector<std::string> &cmd)=0;
+    virtual bool canHandle(std::vector<std::string> &cmd)=0;
+    void setNext(CommandHandler *commandHandler){
+        next = commandHandler;
+    }
 
 };
 

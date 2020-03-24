@@ -6,6 +6,8 @@
 #define UNTITLED13_SHOWCOMMAND_H
 
 #include "../Command.h"
+
+#include <memory>
 #include "ShowBaseCommand.h"
 #include "ShowUnitCommand.h"
 
@@ -13,26 +15,28 @@ class ShowCommandHandler: public CommandHandler{
 
 public:
 
+    bool canHandle(std::vector<std::string> &cmd) override{
+
+        return cmd.size() > 1 && cmd[0] == "show";
+
+    }
+
     CommandPtr handle(std::vector<std::string> &cmd) override{
 
-        if (cmd.size() < 1){
-            std::cout << "Wrong command" << std::endl;
-            return CommandPtr(new Command);
+        if (canHandle(cmd)){
+
+            cmd.erase(cmd.begin());
+
+            auto handler1 = new ShowUnitCommandHandler;
+            auto handler2 = new ShowBaseCommandHandler;
+            handler1->setNext(handler2);
+
+            return handler1->handle(cmd);
         }
 
-        std::string cmdWrd = cmd[0];
-        cmd.erase(cmd.begin());
-        if (cmdWrd == "base"){
+        if (next) return next->handle(cmd);
 
-            return ShowBaseCommandHandler().handle(cmd);
-
-        } else if (cmdWrd == "unit"){
-
-            return ShowUnitCommandHandler().handle(cmd);
-
-        }
-
-        return CommandPtr(new Command);
+        return std::make_unique<Command>();
 
     }
 
