@@ -8,8 +8,9 @@
 #include "../Information headers/constPar.h"
 #include "../Units/CompositeUnit.h"
 #include "UnitStorekeeper.h"
+#include "../Auxiliary functionality/EnumToString.h"
 
-typedef cds::ObjectFactory<Unit, std::string> UnitFabric;
+typedef cds::ObjectFactory<Unit, eUnitsType> UnitFabric;
 
 class GameBase : public UnitObserver, public std::enable_shared_from_this<GameBase>
 {
@@ -23,14 +24,14 @@ public:
     virtual ~GameBase() = default;
     void initUnitCount();
     template<class T>
-    void registerNewUnitType(const std::string &typeID)
+    void registerNewUnitType(eUnitsType typeID)
     {
         unitFabric.add<T>(typeID);
     }
     virtual void describeYourself();
-    std::shared_ptr<Unit> getUnit(const std::string &typeID);
+    std::shared_ptr<Unit> getUnit(eUnitsType typeID);
     std::shared_ptr<CompositeUnit> createLegion();
-    std::shared_ptr<CompositeUnit> createSquad(const std::string &type, size_t quantity);
+    std::shared_ptr<CompositeUnit> createSquad(eUnitsType, size_t quantity);
     void updateAfterDeath(std::shared_ptr<Unit> corpse, size_t x, size_t y) override;
 };
 

@@ -1,11 +1,12 @@
+#include <ostream>
 #include "UnitStorekeeper.h"
 
-bool UnitStorekeeper::checkAvailableSpace(const std::string& type, size_t toAdd)
+bool UnitStorekeeper::checkAvailableSpace(eUnitsType type, size_t toAdd)
 {
     return unitInfo[type].currCount + toAdd <= unitInfo[type].maxCount;
 }
 
-bool UnitStorekeeper::increaseElementCount(const std::string& type, size_t toAdd)
+bool UnitStorekeeper::increaseElementCount(eUnitsType type, size_t toAdd)
 {
     if(unitInfo[type].currCount + toAdd > unitInfo[type].maxCount)
     {
@@ -17,9 +18,9 @@ bool UnitStorekeeper::increaseElementCount(const std::string& type, size_t toAdd
     }
 }
 
-void UnitStorekeeper::addUnitType(const std::string& type, size_t maxCount)
+void UnitStorekeeper::addUnitType(eUnitsType type, size_t maxCount)
 {
-    unitInfo.insert(std::pair<std::string, MaxCurrUnitQuantity>(type, maxCount));
+    unitInfo.insert(std::pair<eUnitsType, MaxCurrUnitQuantity>(type, maxCount));
     //unitInfo[type] = MaxCurrUnitQuantity(maxCount);
 }
 
@@ -28,13 +29,13 @@ std::string UnitStorekeeper::getTotalInformation()
     std::string result = "Current base control following units.\n";
     for (const auto& x: unitInfo)
     {
-        result.append(x.first + ": " + std::to_string(x.second.currCount) + ";\n");
+        result.append(EnumTostring::enumToString(x.first) + ": " + std::to_string(x.second.currCount) + ";\n");
     }
 
     return result;
 }
 
-void UnitStorekeeper::decreaseElementsCount(const std::map<std::string, size_t>& decreasingUnits)
+void UnitStorekeeper::decreaseElementsCount(const std::map<eUnitsType, size_t> &decreasingUnits)
 {
     for (const auto &curr : decreasingUnits)
     {
@@ -42,7 +43,7 @@ void UnitStorekeeper::decreaseElementsCount(const std::map<std::string, size_t>&
     }
 }
 
-void UnitStorekeeper::decreaseOneElement(const std::string& unitType)
+void UnitStorekeeper::decreaseOneElement(eUnitsType unitType)
 {
     unitInfo[unitType].currCount--;
 }

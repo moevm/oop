@@ -19,11 +19,6 @@ Archer* Archer::clone() const
     return new Archer(*this);
 }
 
-bool Archer::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Archer::describeYourself()
 {
     std::cout << "Archer:" << std::endl;
@@ -45,7 +40,7 @@ Archer::~Archer()
 
 }
 
-std::string Archer::getType()
+eUnitsType Archer::getType()
 {
-     return "Shooter";
+     return SHOOTER;
 }

@@ -12,9 +12,8 @@ public:
 
     explicit Swordsman(std::string inputName);
 
-    [[nodiscard]] bool meleeAttack(size_t x, size_t y) const override;
     void describeYourself() override;
-    std::string getType() override;
+    eUnitsType getType() override;
 
     void closeTheRanks() override;
     void fury() override;

@@ -19,11 +19,6 @@ Swordsman* Swordsman::clone() const
     return new Swordsman(*this);
 }
 
-bool Swordsman::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Swordsman::describeYourself()
 {
     std::cout << "Swordsman:" << std::endl;
@@ -45,7 +40,7 @@ Swordsman::~Swordsman()
 
 }
 
-std::string Swordsman::getType()
+eUnitsType Swordsman::getType()
 {
-    return "Infantry";
+    return INFANTRY;
 }

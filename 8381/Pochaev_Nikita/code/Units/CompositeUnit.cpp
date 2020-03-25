@@ -34,11 +34,6 @@ size_t CompositeUnit::getMeleeAttackStrength() const
     return total;
 }
 
-bool CompositeUnit::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void CompositeUnit::describeYourself()
 {
     std::cout << ANSIColor::coloredString("I'm composite unit!", ANSIColor::FG_GREEN) << std::endl;
@@ -88,9 +83,9 @@ void CompositeUnit::initCurrPar()
     actionTokens = COMPOSITE_UNIT_ACTION_TOKENS;
 }
 
-std::map<std::string, size_t> CompositeUnit::getComposition()
+std::map<eUnitsType, size_t> CompositeUnit::getComposition()
 {
-    std::map<std::string, size_t> result;
+    std::map<eUnitsType, size_t> result;
     for (const auto& curr : units)
     {
         if(result.find(curr->getType()) != result.end())
@@ -99,16 +94,16 @@ std::map<std::string, size_t> CompositeUnit::getComposition()
         }
         else
         {
-            result.insert(std::pair<std::string, size_t>(curr->getType(), 1));
+            result.insert(std::pair<eUnitsType, size_t>(curr->getType(), 1));
         }
     }
 
     return result;
 }
 
-std::string CompositeUnit::getType()
+eUnitsType CompositeUnit::getType()
 {
-    return "Composite unit";
+    return eUnitsType::COMPOSITE_UNIT;
 }
 
 /**

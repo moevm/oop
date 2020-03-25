@@ -5,6 +5,21 @@
            UNITS PARAMETERS
 --------------------------------------*/
 
+enum eUnitsType
+{
+    VALUES_FIRST = 0,
+
+    CANNON_FODDER,
+    INFANTRY,
+    SHOOTER,
+    WIZARD,
+    CAVALRY,
+
+    COMPOSITE_UNIT,
+
+    VALUES_END
+};
+
         /* MOVEMENT RANGE */
 #define PEASANT_MOVEMENT_RANGE 2
 #define SWORDSMAN_MOVEMENT_RANGE 1

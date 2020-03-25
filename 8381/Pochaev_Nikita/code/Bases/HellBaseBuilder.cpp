@@ -8,11 +8,11 @@
 
 void HellBaseBuilder::buildFabric()
 {
-    base->registerNewUnitType<Heck>("Cannon fodder");
-    base->registerNewUnitType<Ifrit>("Infantry");
-    base->registerNewUnitType<Succubus>("Shooter");
-    base->registerNewUnitType<Demon>("Wizard");
-    base->registerNewUnitType<Cerberus>("Cavalry");
+    base->registerNewUnitType<Heck>(eUnitsType::CANNON_FODDER);
+    base->registerNewUnitType<Ifrit>(eUnitsType::INFANTRY);
+    base->registerNewUnitType<Succubus>(eUnitsType::SHOOTER);
+    base->registerNewUnitType<Demon>(eUnitsType::WIZARD);
+    base->registerNewUnitType<Cerberus>(eUnitsType::CAVALRY);
 }
 
 void HellBaseBuilder::buildUnitCount()

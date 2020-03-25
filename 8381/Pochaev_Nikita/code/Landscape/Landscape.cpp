@@ -16,7 +16,7 @@ bool Landscape::isAccessibleForMove(std::shared_ptr <Unit> &unit)
     return true;
 }
 
-bool Landscape::isAccessibleForAttack(const std::string &unitType)
+bool Landscape::isAccessibleForAttack(eUnitsType unitType)
 {
     return !(std::find(attackUnitsProhibition.begin(),
                        attackUnitsProhibition.end(), unitType) != attackUnitsProhibition.end());

@@ -19,11 +19,6 @@ Heck* Heck::clone() const
     return new Heck(*this);
 }
 
-bool Heck::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Heck::describeYourself()
 {
     std::cout << "Heck:" << std::endl;
@@ -45,7 +40,7 @@ Heck::~Heck()
 
 }
 
-std::string Heck::getType()
+eUnitsType Heck::getType()
 {
-    return "Cannon fodder";
+    return CANNON_FODDER;
 }

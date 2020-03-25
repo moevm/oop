@@ -19,11 +19,6 @@ Peasant* Peasant::clone() const
     return new Peasant(*this);
 }
 
-bool Peasant::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Peasant::describeYourself()
 {
     std::cout << "Peasant:" << std::endl;
@@ -45,7 +40,7 @@ Peasant::~Peasant()
 
 }
 
-std::string Peasant::getType()
+eUnitsType Peasant::getType()
 {
-    return "Cannon fodder";
+    return CANNON_FODDER;
 }

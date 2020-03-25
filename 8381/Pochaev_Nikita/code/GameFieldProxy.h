@@ -55,7 +55,7 @@ private:
     NeutralObjectFabric neutralObjectFabric;
     std::map<Coords, std::shared_ptr<NeutralObject>> artifactMap;
     std::map<std::string, std::shared_ptr<NeutralObject>> neutralObjectTypes;
-    std::unique_ptr<NeutralObjectContext>context;
+    std::unique_ptr<NeutralObjectContext> context;
 
     // moveMediator for correct unit moving
     std::shared_ptr<UnitMoveMediator> moveMediator{};

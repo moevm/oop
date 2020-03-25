@@ -43,10 +43,10 @@ RM = /cygdrive/c/Users/nikki/.CLion2019.3/system/cygwin_cmake/bin/cmake.exe -E r
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /cygdrive/d/GitHub/currentWork/OOP
+CMAKE_SOURCE_DIR = /cygdrive/d/GitHub/currentWork/OOP/code
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug
+CMAKE_BINARY_DIR = /cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/OOP.dir/depend.make
@@ -59,458 +59,458 @@ include CMakeFiles/OOP.dir/flags.make
 
 CMakeFiles/OOP.dir/main.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/OOP.dir/main.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/main.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/OOP.dir/main.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/main.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/main.cpp
 
 CMakeFiles/OOP.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/main.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/main.cpp > CMakeFiles/OOP.dir/main.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/main.cpp > CMakeFiles/OOP.dir/main.cpp.i
 
 CMakeFiles/OOP.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/main.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/main.cpp -o CMakeFiles/OOP.dir/main.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/main.cpp -o CMakeFiles/OOP.dir/main.cpp.s
 
 CMakeFiles/OOP.dir/GameField.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/GameField.cpp.o: ../GameField.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/OOP.dir/GameField.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/GameField.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/GameField.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/OOP.dir/GameField.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/GameField.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/GameField.cpp
 
 CMakeFiles/OOP.dir/GameField.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/GameField.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/GameField.cpp > CMakeFiles/OOP.dir/GameField.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/GameField.cpp > CMakeFiles/OOP.dir/GameField.cpp.i
 
 CMakeFiles/OOP.dir/GameField.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/GameField.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/GameField.cpp -o CMakeFiles/OOP.dir/GameField.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/GameField.cpp -o CMakeFiles/OOP.dir/GameField.cpp.s
 
 CMakeFiles/OOP.dir/Cell.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Cell.cpp.o: ../Cell.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/OOP.dir/Cell.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Cell.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Cell.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/OOP.dir/Cell.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Cell.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Cell.cpp
 
 CMakeFiles/OOP.dir/Cell.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Cell.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Cell.cpp > CMakeFiles/OOP.dir/Cell.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Cell.cpp > CMakeFiles/OOP.dir/Cell.cpp.i
 
 CMakeFiles/OOP.dir/Cell.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Cell.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Cell.cpp -o CMakeFiles/OOP.dir/Cell.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Cell.cpp -o CMakeFiles/OOP.dir/Cell.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.o: ../Units/Creatures/Peasant.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Peasant.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Peasant.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Peasant.cpp > CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Peasant.cpp > CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Peasant.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Peasant.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Peasant.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.o: ../Units/Creatures/Heck.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Heck.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Heck.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Heck.cpp > CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Heck.cpp > CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Heck.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Heck.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Heck.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.o: ../Units/Creatures/Swordsman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Swordsman.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Swordsman.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Swordsman.cpp > CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Swordsman.cpp > CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Swordsman.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Swordsman.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Swordsman.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.o: ../Units/Creatures/Ifrit.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Ifrit.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Ifrit.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Ifrit.cpp > CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Ifrit.cpp > CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Ifrit.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Ifrit.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Ifrit.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.o: ../Units/Creatures/Archer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Archer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Archer.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Archer.cpp > CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Archer.cpp > CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Archer.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Archer.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Archer.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.o: ../Units/Creatures/Succubus.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Succubus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Succubus.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Succubus.cpp > CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Succubus.cpp > CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Succubus.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Succubus.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Succubus.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.o: ../Units/Creatures/Magician.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Magician.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Magician.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Magician.cpp > CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Magician.cpp > CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Magician.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Magician.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Magician.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.o: ../Units/Creatures/Demon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Demon.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Demon.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Demon.cpp > CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Demon.cpp > CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Demon.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Demon.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Demon.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.o: ../Units/Creatures/Knight.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Knight.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Knight.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Knight.cpp > CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Knight.cpp > CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Knight.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Knight.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Knight.cpp.s
 
 CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.o: ../Units/Creatures/Cerberus.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Cerberus.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Cerberus.cpp
 
 CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Cerberus.cpp > CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Cerberus.cpp > CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.i
 
 CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Cerberus.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Cerberus.cpp -o CMakeFiles/OOP.dir/Units/Creatures/Cerberus.cpp.s
 
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Auxiliary\ functionality/UnitMediators.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/UnitMediators.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/UnitMediators.cpp"
 
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/UnitMediators.cpp" > CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/UnitMediators.cpp" > CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.i
 
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/UnitMediators.cpp" -o CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/UnitMediators.cpp" -o CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.s
 
 CMakeFiles/OOP.dir/Units/Unit.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/Unit.cpp.o: ../Units/Unit.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/OOP.dir/Units/Unit.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Unit.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/Unit.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/OOP.dir/Units/Unit.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/Unit.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/Unit.cpp
 
 CMakeFiles/OOP.dir/Units/Unit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/Unit.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/Unit.cpp > CMakeFiles/OOP.dir/Units/Unit.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/Unit.cpp > CMakeFiles/OOP.dir/Units/Unit.cpp.i
 
 CMakeFiles/OOP.dir/Units/Unit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/Unit.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/Unit.cpp -o CMakeFiles/OOP.dir/Units/Unit.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/Unit.cpp -o CMakeFiles/OOP.dir/Units/Unit.cpp.s
 
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: ../Bases/GameBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/OOP.dir/Bases/GameBase.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/GameBase.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Bases/GameBase.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/OOP.dir/Bases/GameBase.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/GameBase.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Bases/GameBase.cpp
 
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Bases/GameBase.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Bases/GameBase.cpp > CMakeFiles/OOP.dir/Bases/GameBase.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Bases/GameBase.cpp > CMakeFiles/OOP.dir/Bases/GameBase.cpp.i
 
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Bases/GameBase.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Bases/GameBase.cpp -o CMakeFiles/OOP.dir/Bases/GameBase.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Bases/GameBase.cpp -o CMakeFiles/OOP.dir/Bases/GameBase.cpp.s
 
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: ../Bases/HellBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/OOP.dir/Bases/HellBase.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/HellBase.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Bases/HellBase.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/OOP.dir/Bases/HellBase.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/HellBase.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBase.cpp
 
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Bases/HellBase.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Bases/HellBase.cpp > CMakeFiles/OOP.dir/Bases/HellBase.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBase.cpp > CMakeFiles/OOP.dir/Bases/HellBase.cpp.i
 
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Bases/HellBase.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Bases/HellBase.cpp -o CMakeFiles/OOP.dir/Bases/HellBase.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBase.cpp -o CMakeFiles/OOP.dir/Bases/HellBase.cpp.s
 
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: ../Bases/HumanBase.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBase.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBase.cpp
 
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Bases/HumanBase.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBase.cpp > CMakeFiles/OOP.dir/Bases/HumanBase.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBase.cpp > CMakeFiles/OOP.dir/Bases/HumanBase.cpp.i
 
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Bases/HumanBase.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBase.cpp -o CMakeFiles/OOP.dir/Bases/HumanBase.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBase.cpp -o CMakeFiles/OOP.dir/Bases/HumanBase.cpp.s
 
 CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.o: ../Units/CompositeUnit.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Units/CompositeUnit.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Units/CompositeUnit.cpp
 
 CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Units/CompositeUnit.cpp > CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Units/CompositeUnit.cpp > CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.i
 
 CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Units/CompositeUnit.cpp -o CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Units/CompositeUnit.cpp -o CMakeFiles/OOP.dir/Units/CompositeUnit.cpp.s
 
 CMakeFiles/OOP.dir/Tests/examples.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Tests/examples.cpp.o: ../Tests/examples.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/OOP.dir/Tests/examples.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Tests/examples.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Tests/examples.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/OOP.dir/Tests/examples.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Tests/examples.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Tests/examples.cpp
 
 CMakeFiles/OOP.dir/Tests/examples.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Tests/examples.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Tests/examples.cpp > CMakeFiles/OOP.dir/Tests/examples.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Tests/examples.cpp > CMakeFiles/OOP.dir/Tests/examples.cpp.i
 
 CMakeFiles/OOP.dir/Tests/examples.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Tests/examples.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Tests/examples.cpp -o CMakeFiles/OOP.dir/Tests/examples.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Tests/examples.cpp -o CMakeFiles/OOP.dir/Tests/examples.cpp.s
 
 CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o: ../Bases/UnitStorekeeper.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Bases/UnitStorekeeper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Bases/UnitStorekeeper.cpp
 
 CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Bases/UnitStorekeeper.cpp > CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Bases/UnitStorekeeper.cpp > CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.i
 
 CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Bases/UnitStorekeeper.cpp -o CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Bases/UnitStorekeeper.cpp -o CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.s
 
 CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.o: ../Auxiliary\ functionality/TextColoring.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/TextColoring.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/TextColoring.cpp"
 
 CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/TextColoring.cpp" > CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/TextColoring.cpp" > CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.i
 
 CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/TextColoring.cpp" -o CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/TextColoring.cpp" -o CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.s
 
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: ../Bases/HellBaseBuilder.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Bases/HellBaseBuilder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBaseBuilder.cpp
 
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Bases/HellBaseBuilder.cpp > CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBaseBuilder.cpp > CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.i
 
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Bases/HellBaseBuilder.cpp -o CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBaseBuilder.cpp -o CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.s
 
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: ../Bases/HumanBaseBuilder.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBaseBuilder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBaseBuilder.cpp
 
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBaseBuilder.cpp > CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBaseBuilder.cpp > CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.i
 
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBaseBuilder.cpp -o CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBaseBuilder.cpp -o CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.s
 
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: ../Bases/BaseMaster.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Bases/BaseMaster.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Bases/BaseMaster.cpp
 
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Bases/BaseMaster.cpp > CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Bases/BaseMaster.cpp > CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.i
 
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Bases/BaseMaster.cpp -o CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Bases/BaseMaster.cpp -o CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.s
 
 CMakeFiles/OOP.dir/Landscape/Champaign.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Landscape/Champaign.cpp.o: ../Landscape/Champaign.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/OOP.dir/Landscape/Champaign.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Landscape/Champaign.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Landscape/Champaign.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/OOP.dir/Landscape/Champaign.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Landscape/Champaign.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Champaign.cpp
 
 CMakeFiles/OOP.dir/Landscape/Champaign.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Landscape/Champaign.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Landscape/Champaign.cpp > CMakeFiles/OOP.dir/Landscape/Champaign.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Champaign.cpp > CMakeFiles/OOP.dir/Landscape/Champaign.cpp.i
 
 CMakeFiles/OOP.dir/Landscape/Champaign.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Landscape/Champaign.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Landscape/Champaign.cpp -o CMakeFiles/OOP.dir/Landscape/Champaign.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Champaign.cpp -o CMakeFiles/OOP.dir/Landscape/Champaign.cpp.s
 
 CMakeFiles/OOP.dir/Landscape/Landscape.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Landscape/Landscape.cpp.o: ../Landscape/Landscape.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/OOP.dir/Landscape/Landscape.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Landscape/Landscape.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Landscape/Landscape.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/OOP.dir/Landscape/Landscape.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Landscape/Landscape.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Landscape.cpp
 
 CMakeFiles/OOP.dir/Landscape/Landscape.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Landscape/Landscape.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Landscape/Landscape.cpp > CMakeFiles/OOP.dir/Landscape/Landscape.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Landscape.cpp > CMakeFiles/OOP.dir/Landscape/Landscape.cpp.i
 
 CMakeFiles/OOP.dir/Landscape/Landscape.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Landscape/Landscape.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Landscape/Landscape.cpp -o CMakeFiles/OOP.dir/Landscape/Landscape.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Landscape.cpp -o CMakeFiles/OOP.dir/Landscape/Landscape.cpp.s
 
 CMakeFiles/OOP.dir/Landscape/Forest.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Landscape/Forest.cpp.o: ../Landscape/Forest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/OOP.dir/Landscape/Forest.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Landscape/Forest.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Landscape/Forest.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/OOP.dir/Landscape/Forest.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Landscape/Forest.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Forest.cpp
 
 CMakeFiles/OOP.dir/Landscape/Forest.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Landscape/Forest.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Landscape/Forest.cpp > CMakeFiles/OOP.dir/Landscape/Forest.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Forest.cpp > CMakeFiles/OOP.dir/Landscape/Forest.cpp.i
 
 CMakeFiles/OOP.dir/Landscape/Forest.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Landscape/Forest.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Landscape/Forest.cpp -o CMakeFiles/OOP.dir/Landscape/Forest.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Forest.cpp -o CMakeFiles/OOP.dir/Landscape/Forest.cpp.s
 
 CMakeFiles/OOP.dir/Landscape/Mountains.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Landscape/Mountains.cpp.o: ../Landscape/Mountains.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/OOP.dir/Landscape/Mountains.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Landscape/Mountains.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/Landscape/Mountains.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/OOP.dir/Landscape/Mountains.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Landscape/Mountains.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Mountains.cpp
 
 CMakeFiles/OOP.dir/Landscape/Mountains.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Landscape/Mountains.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/Landscape/Mountains.cpp > CMakeFiles/OOP.dir/Landscape/Mountains.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Mountains.cpp > CMakeFiles/OOP.dir/Landscape/Mountains.cpp.i
 
 CMakeFiles/OOP.dir/Landscape/Mountains.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Landscape/Mountains.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/Landscape/Mountains.cpp -o CMakeFiles/OOP.dir/Landscape/Mountains.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Mountains.cpp -o CMakeFiles/OOP.dir/Landscape/Mountains.cpp.s
 
 CMakeFiles/OOP.dir/GameFieldProxy.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/GameFieldProxy.cpp.o: ../GameFieldProxy.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/OOP.dir/GameFieldProxy.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/GameFieldProxy.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/GameFieldProxy.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/OOP.dir/GameFieldProxy.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/GameFieldProxy.cpp.o -c /cygdrive/d/GitHub/currentWork/OOP/code/GameFieldProxy.cpp
 
 CMakeFiles/OOP.dir/GameFieldProxy.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/GameFieldProxy.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/GameFieldProxy.cpp > CMakeFiles/OOP.dir/GameFieldProxy.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/GitHub/currentWork/OOP/code/GameFieldProxy.cpp > CMakeFiles/OOP.dir/GameFieldProxy.cpp.i
 
 CMakeFiles/OOP.dir/GameFieldProxy.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/GameFieldProxy.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/GameFieldProxy.cpp -o CMakeFiles/OOP.dir/GameFieldProxy.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/GitHub/currentWork/OOP/code/GameFieldProxy.cpp -o CMakeFiles/OOP.dir/GameFieldProxy.cpp.s
 
 CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.o: ../Neutral\ objects/NeutralObjectContext.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/NeutralObjectContext.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/NeutralObjectContext.cpp"
 
 CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/NeutralObjectContext.cpp" > CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/NeutralObjectContext.cpp" > CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.i
 
 CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/NeutralObjectContext.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/NeutralObjectContext.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/NeutralObjectContext.cpp.s
 
 CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.o: ../Neutral\ objects/Poison.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/Poison.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/Poison.cpp"
 
 CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/Poison.cpp" > CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/Poison.cpp" > CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.i
 
 CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/Poison.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/Poison.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.s
 
 CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.o: ../Neutral\ objects/LegendaryWeapon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/LegendaryWeapon.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/LegendaryWeapon.cpp"
 
 CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/LegendaryWeapon.cpp" > CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/LegendaryWeapon.cpp" > CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.i
 
 CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/LegendaryWeapon.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/LegendaryWeapon.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/LegendaryWeapon.cpp.s
 
 CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.o: ../Neutral\ objects/EnchantedRobe.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnchantedRobe.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnchantedRobe.cpp"
 
 CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnchantedRobe.cpp" > CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnchantedRobe.cpp" > CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.i
 
 CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnchantedRobe.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnchantedRobe.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.s
 
 CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.o: CMakeFiles/OOP.dir/flags.make
 CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.o: ../Neutral\ objects/EnergyPotion.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnergyPotion.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.o -c "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnergyPotion.cpp"
 
 CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnergyPotion.cpp" > CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.i
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnergyPotion.cpp" > CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.i
 
 CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnergyPotion.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.s
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnergyPotion.cpp" -o CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.s
 
 # Object files for target OOP
 OOP_OBJECTS = \
@@ -590,7 +590,7 @@ OOP.exe: CMakeFiles/OOP.dir/Neutral_objects/EnchantedRobe.cpp.o
 OOP.exe: CMakeFiles/OOP.dir/Neutral_objects/EnergyPotion.cpp.o
 OOP.exe: CMakeFiles/OOP.dir/build.make
 OOP.exe: CMakeFiles/OOP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Linking CXX executable OOP.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Linking CXX executable OOP.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/OOP.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -603,6 +603,6 @@ CMakeFiles/OOP.dir/clean:
 .PHONY : CMakeFiles/OOP.dir/clean
 
 CMakeFiles/OOP.dir/depend:
-	cd /cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /cygdrive/d/GitHub/currentWork/OOP /cygdrive/d/GitHub/currentWork/OOP /cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug /cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug /cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/CMakeFiles/OOP.dir/DependInfo.cmake --color=$(COLOR)
+	cd /cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /cygdrive/d/GitHub/currentWork/OOP/code /cygdrive/d/GitHub/currentWork/OOP/code /cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug /cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug /cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/CMakeFiles/OOP.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/OOP.dir/depend
 

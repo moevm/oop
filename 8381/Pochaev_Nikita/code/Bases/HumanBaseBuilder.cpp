@@ -8,11 +8,11 @@
 
 void HumanBaseBuilder::buildFabric()
 {
-    base->registerNewUnitType<Peasant>("Cannon fodder");
-    base->registerNewUnitType<Swordsman>("Infantry");
-    base->registerNewUnitType<Archer>("Shooter");
-    base->registerNewUnitType<Magician>("Wizard");
-    base->registerNewUnitType<Knight>("Cavalry");
+    base->registerNewUnitType<Peasant>(eUnitsType::CANNON_FODDER);
+    base->registerNewUnitType<Swordsman>(eUnitsType::INFANTRY);
+    base->registerNewUnitType<Archer>(eUnitsType::SHOOTER);
+    base->registerNewUnitType<Magician>(eUnitsType::WIZARD);
+    base->registerNewUnitType<Knight>(eUnitsType::CAVALRY);
 }
 
 void HumanBaseBuilder::buildUnitCount()

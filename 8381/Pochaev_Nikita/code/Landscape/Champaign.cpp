@@ -2,5 +2,5 @@
 
 Champaign::Champaign()
 {
-    actionTokensUnitsBoost.emplace_back("Cavalry");
+    actionTokensUnitsBoost.emplace_back(eUnitsType::CAVALRY);
 }

@@ -13,32 +13,32 @@ std::shared_ptr<CompositeUnit> GameBase::createLegion()
 
     for(size_t i = 0; i < CANNON_FODDER_LEGION_Q; i++)
     {
-        legion->addUnit(unitFabric.create("Cannon fodder"));
+        legion->addUnit(unitFabric.create(eUnitsType::CANNON_FODDER));
     }
-    unitCount->increaseElementCount("Cannon Fodder", CANNON_FODDER_LEGION_Q);
+    unitCount->increaseElementCount(eUnitsType::CANNON_FODDER, CANNON_FODDER_LEGION_Q);
 
     for(size_t i = 0; i < INFANTRY_LEGION_Q; i++)
     {
-        legion->addUnit(unitFabric.create("Infantry"));
+        legion->addUnit(unitFabric.create(eUnitsType::INFANTRY));
     }
-    unitCount->increaseElementCount("Infantry", INFANTRY_LEGION_Q);
+    unitCount->increaseElementCount(eUnitsType::INFANTRY, INFANTRY_LEGION_Q);
 
     for(size_t i = 0; i < CAVALRY_LEGION_Q; i++)
     {
-        legion->addUnit(unitFabric.create("Cavalry"));
+        legion->addUnit(unitFabric.create(eUnitsType::CAVALRY));
     }
-    unitCount->increaseElementCount("Cavalry", CAVALRY_LEGION_Q);
+    unitCount->increaseElementCount(eUnitsType::CAVALRY, CAVALRY_LEGION_Q);
     army.push_back(legion);
 
     return legion;
 }
 
-std::shared_ptr<CompositeUnit> GameBase::createSquad(const std::string &type, size_t quantity)
+std::shared_ptr<CompositeUnit> GameBase::createSquad(eUnitsType type, size_t quantity)
 {
     auto squad = std::make_shared<CompositeUnit>();
     if(!unitCount->checkAvailableSpace(type, quantity))
     {
-        throw std::invalid_argument("Base limit of unit type: " + type + " reached");
+        throw std::invalid_argument("Base limit of unit type: " + EnumTostring::enumToString(type) + " reached");
     }
 
     for(size_t i = 0; i < quantity; i++)
@@ -55,11 +55,11 @@ std::shared_ptr<CompositeUnit> GameBase::createSquad(const std::string &type, si
 void GameBase::initUnitCount()
 {
     unitCount = std::make_unique<UnitStorekeeper>();
-    unitCount->addUnitType("Cannon Fodder", CANNON_FODDER_MAX_QUANTITY);
-    unitCount->addUnitType("Infantry", INFANTRY_MAX_QUANTITY);
-    unitCount->addUnitType("Shooter", SHOOTER_MAX_QUANTITY);
-    unitCount->addUnitType("Wizard", WIZARD_MAX_QUANTITY);
-    unitCount->addUnitType("Cavalry", CAVALRY_MAX_QUANTITY);
+    unitCount->addUnitType(eUnitsType::CANNON_FODDER, CANNON_FODDER_MAX_QUANTITY);
+    unitCount->addUnitType(eUnitsType::INFANTRY, INFANTRY_MAX_QUANTITY);
+    unitCount->addUnitType(eUnitsType::SHOOTER, SHOOTER_MAX_QUANTITY);
+    unitCount->addUnitType(eUnitsType::WIZARD, WIZARD_MAX_QUANTITY);
+    unitCount->addUnitType(eUnitsType::CAVALRY, CAVALRY_MAX_QUANTITY);
 }
 
 void GameBase::updateAfterDeath(std::shared_ptr<Unit> corpse, size_t x, size_t y)
@@ -82,7 +82,7 @@ void GameBase::updateAfterDeath(std::shared_ptr<Unit> corpse, size_t x, size_t y
     }
 }
 
-std::shared_ptr<Unit> GameBase::getUnit(const std::string &typeID)
+std::shared_ptr<Unit> GameBase::getUnit(eUnitsType typeID)
 {
     std::shared_ptr<Unit> newUnit = unitFabric.create(typeID);
     unitCount->increaseElementCount(typeID, 1);

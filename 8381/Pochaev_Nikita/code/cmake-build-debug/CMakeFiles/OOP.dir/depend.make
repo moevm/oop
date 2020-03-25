@@ -5,6 +5,7 @@ CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.o: ../Auxiliary\ fun
 CMakeFiles/OOP.dir/Auxiliary_functionality/TextColoring.cpp.o: ../Auxiliary\ functionality/TextColoring.h
 
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Auxiliary\ functionality/Array2D.h
+CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Auxiliary\ functionality/GameFieldIterator.h
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Auxiliary\ functionality/UnitMediators.cpp
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
@@ -25,6 +26,7 @@ CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Units/IUnitAt
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/Auxiliary_functionality/UnitMediators.cpp.o: ../Units/Unit.h
 
+CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: ../Auxiliary\ functionality/UnitObserver.h
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: ../Auxiliary\ functionality/UnitSubject.h
@@ -41,6 +43,7 @@ CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: ../Units/IUnitAttack.h
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/Bases/BaseMaster.cpp.o: ../Units/Unit.h
 
+CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: ../Auxiliary\ functionality/TextColoring.h
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: ../Auxiliary\ functionality/UnitObserver.h
@@ -56,6 +59,7 @@ CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: ../Units/IUnitAttack.h
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/Bases/GameBase.cpp.o: ../Units/Unit.h
 
+CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: ../Auxiliary\ functionality/TextColoring.h
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: ../Auxiliary\ functionality/UnitObserver.h
@@ -72,6 +76,7 @@ CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: ../Units/IUnitAttack.h
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/Bases/HellBase.cpp.o: ../Units/Unit.h
 
+CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: ../Auxiliary\ functionality/UnitObserver.h
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: ../Auxiliary\ functionality/UnitSubject.h
@@ -99,6 +104,7 @@ CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: ../Units/IWizard.h
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/Bases/HellBaseBuilder.cpp.o: ../Units/Unit.h
 
+CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: ../Auxiliary\ functionality/TextColoring.h
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: ../Auxiliary\ functionality/UnitObserver.h
@@ -115,6 +121,7 @@ CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: ../Units/IUnitAttack.h
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/Bases/HumanBase.cpp.o: ../Units/Unit.h
 
+CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: ../Auxiliary\ functionality/UnitObserver.h
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: ../Auxiliary\ functionality/UnitSubject.h
@@ -142,9 +149,12 @@ CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: ../Units/IWizard.h
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/Bases/HumanBaseBuilder.cpp.o: ../Units/Unit.h
 
+CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o: ../Bases/UnitStorekeeper.cpp
 CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o: ../Bases/UnitStorekeeper.h
+CMakeFiles/OOP.dir/Bases/UnitStorekeeper.cpp.o: ../Information\ headers/unitPar.h
 
+CMakeFiles/OOP.dir/Cell.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Cell.cpp.o: ../Auxiliary\ functionality/TextColoring.h
 CMakeFiles/OOP.dir/Cell.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
 CMakeFiles/OOP.dir/Cell.cpp.o: ../Auxiliary\ functionality/UnitObserver.h
@@ -163,6 +173,7 @@ CMakeFiles/OOP.dir/Cell.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/Cell.cpp.o: ../Units/Unit.h
 
 CMakeFiles/OOP.dir/GameField.cpp.o: ../Auxiliary\ functionality/Array2D.h
+CMakeFiles/OOP.dir/GameField.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/GameField.cpp.o: ../Auxiliary\ functionality/GameFieldIterator.h
 CMakeFiles/OOP.dir/GameField.cpp.o: ../Auxiliary\ functionality/TextColoring.h
 CMakeFiles/OOP.dir/GameField.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
@@ -201,6 +212,7 @@ CMakeFiles/OOP.dir/GameField.cpp.o: ../Units/ObjectFactory.h
 CMakeFiles/OOP.dir/GameField.cpp.o: ../Units/Unit.h
 
 CMakeFiles/OOP.dir/GameFieldProxy.cpp.o: ../Auxiliary\ functionality/Array2D.h
+CMakeFiles/OOP.dir/GameFieldProxy.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/GameFieldProxy.cpp.o: ../Auxiliary\ functionality/GameFieldIterator.h
 CMakeFiles/OOP.dir/GameFieldProxy.cpp.o: ../Auxiliary\ functionality/UnitMediators.h
 CMakeFiles/OOP.dir/GameFieldProxy.cpp.o: ../Auxiliary\ functionality/UnitObserver.h
@@ -335,6 +347,7 @@ CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.o: ../Units/IUnitAttack.h
 CMakeFiles/OOP.dir/Neutral_objects/Poison.cpp.o: ../Units/Unit.h
 
 CMakeFiles/OOP.dir/Tests/examples.cpp.o: ../Auxiliary\ functionality/Array2D.h
+CMakeFiles/OOP.dir/Tests/examples.cpp.o: ../Auxiliary\ functionality/EnumToString.h
 CMakeFiles/OOP.dir/Tests/examples.cpp.o: ../Auxiliary\ functionality/GameFieldIterator.h
 CMakeFiles/OOP.dir/Tests/examples.cpp.o: ../Auxiliary\ functionality/TextColoring.h
 CMakeFiles/OOP.dir/Tests/examples.cpp.o: ../Auxiliary\ functionality/UnitMediators.h

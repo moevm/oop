@@ -25,7 +25,7 @@ protected:
     size_t armor{};
     size_t meleeAttackStrength{};
     size_t movementRange{};
-    ssize_t actionTokens{};
+    size_t actionTokens{};
 
     Coords position;
     std::shared_ptr<UnitMoveMediator> moveMediator;
@@ -43,8 +43,8 @@ public:
     [[nodiscard]] Coords getCoords() const;
     [[nodiscard]] size_t getMovementRange() const;
     [[nodiscard]] virtual size_t getUnitQuantity() const;
-    [[nodiscard]] virtual std::map<std::string, size_t> getComposition();
-    [[nodiscard]] virtual std::string getType() = 0;
+    [[nodiscard]] virtual std::map<eUnitsType, size_t> getComposition();
+    [[nodiscard]] virtual eUnitsType getType() = 0;
 
     // For movement
     void move(size_t x, size_t y);
@@ -55,7 +55,6 @@ public:
     virtual void addUnit(std::shared_ptr<Unit> unit);
     virtual CompositeUnit* isComposite();
 
-    [[nodiscard]] virtual bool meleeAttack(size_t x, size_t y) const = 0;
     virtual void takeDamage(size_t damageSize);
     void setExtraActionToken();
     virtual void setMeleeAttackBoost(size_t boost);

@@ -19,11 +19,6 @@ Cerberus* Cerberus::clone() const
     return new Cerberus(*this);
 }
 
-bool Cerberus::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Cerberus::describeYourself()
 {
     std::cout << "Cerberus:" << std::endl;
@@ -45,7 +40,7 @@ Cerberus::~Cerberus()
 
 }
 
-std::string Cerberus::getType()
+eUnitsType Cerberus::getType()
 {
-    return "Cavalry";
+    return CAVALRY;
 }

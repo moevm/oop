@@ -5,6 +5,9 @@
 #include <map>
 #include <memory>
 
+#include "../Information headers/unitPar.h"
+#include "../Auxiliary functionality/EnumToString.h"
+
 /**
  * Contain current and max county of unit
  */
@@ -24,18 +27,18 @@ class UnitStorekeeper
 public:
     UnitStorekeeper() = default;
     ~UnitStorekeeper() = default;
-    bool checkAvailableSpace(const std::string& type, size_t toAdd);
-    bool increaseElementCount(const std::string& type, size_t toAdd);
-    void addUnitType(const std::string& type, size_t maxCount);
-    void decreaseElementsCount(const std::map<std::string, size_t>& decreasingUnits);
-    void decreaseOneElement(const std::string& unitType);
+    bool checkAvailableSpace(eUnitsType type, size_t toAdd);
+    bool increaseElementCount(eUnitsType type, size_t toAdd);
+    void addUnitType(eUnitsType type, size_t maxCount);
+    void decreaseElementsCount(const std::map<eUnitsType, size_t>& decreasingUnits);
+    void decreaseOneElement(eUnitsType unitType);
     std::string getTotalInformation();
 
 private:
     /*
      * First par - name of unit (also using in fabric)
      */
-    std::map<std::string, MaxCurrUnitQuantity> unitInfo;
+    std::map<eUnitsType, MaxCurrUnitQuantity> unitInfo;
 };
 
 #endif //OOP_UNITSTOREKEEPER_H

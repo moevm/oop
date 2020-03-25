@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="OOP">
-				<Option output="/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/OOP.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug"/>
+				<Option output="/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/OOP.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -42,15 +42,15 @@
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/9.3.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 OOP"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 OOP"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="OOP/fast">
-				<Option output="/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/OOP.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug"/>
+				<Option output="/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/OOP.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -63,285 +63,288 @@
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/9.3.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 OOP/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 OOP/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug"/>
+				<Option working_dir="/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/d/GitHub/currentWork/OOP/code/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/Array2D.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/Array2D.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/GameFieldIterator.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/EnumToString.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/TextColoring.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/GameFieldIterator.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/TextColoring.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/TextColoring.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/UnitMediators.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/TextColoring.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/UnitMediators.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/UnitMediators.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/UnitObserver.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/UnitMediators.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/UnitSubject.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/UnitObserver.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Auxiliary functionality/Vector.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/UnitSubject.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/BaseBuilder.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Auxiliary functionality/Vector.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/BaseMaster.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/BaseBuilder.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/BaseMaster.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/BaseMaster.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/GameBase.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/BaseMaster.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/GameBase.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/GameBase.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/HellBase.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/GameBase.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/HellBase.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBase.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/HellBaseBuilder.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBase.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/HellBaseBuilder.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBaseBuilder.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBase.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/HellBaseBuilder.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBase.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBase.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBaseBuilder.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBase.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/HumanBaseBuilder.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBaseBuilder.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/UnitStorekeeper.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/HumanBaseBuilder.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Bases/UnitStorekeeper.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/UnitStorekeeper.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Cell.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Bases/UnitStorekeeper.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Cell.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Cell.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Coords.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Cell.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/GameField.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Coords.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/GameField.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/GameField.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/GameFieldProxy.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/GameField.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/GameFieldProxy.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/GameFieldProxy.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/IGameField.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/GameFieldProxy.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Information headers/constPar.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/IGameField.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Information headers/unitPar.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Information headers/constPar.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Landscape/Champaign.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Information headers/unitPar.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Landscape/Champaign.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Champaign.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Landscape/Forest.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Champaign.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Landscape/Forest.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Forest.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Landscape/Landscape.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Forest.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Landscape/Landscape.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Landscape.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Landscape/Mountains.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Landscape.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Landscape/Mountains.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Mountains.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnchantedRobe.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Landscape/Mountains.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnchantedRobe.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnchantedRobe.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnergyPotion.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnchantedRobe.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/EnergyPotion.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnergyPotion.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/LegendaryWeapon.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/EnergyPotion.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/LegendaryWeapon.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/LegendaryWeapon.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/NeutralObject.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/LegendaryWeapon.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/NeutralObjectContext.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/NeutralObject.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/NeutralObjectContext.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/NeutralObjectContext.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/Poison.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/NeutralObjectContext.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Neutral objects/Poison.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/Poison.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Tests/examples.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Neutral objects/Poison.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Tests/examples.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Tests/examples.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/CompositeUnit.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Tests/examples.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/CompositeUnit.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/CompositeUnit.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Archer.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/CompositeUnit.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Archer.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Archer.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Cerberus.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Archer.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Cerberus.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Cerberus.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Demon.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Cerberus.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Demon.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Demon.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Heck.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Demon.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Heck.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Heck.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Ifrit.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Heck.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Ifrit.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Ifrit.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Knight.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Ifrit.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Knight.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Knight.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Magician.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Knight.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Magician.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Magician.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Peasant.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Magician.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Peasant.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Peasant.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Succubus.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Peasant.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Succubus.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Succubus.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Swordsman.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Succubus.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Creatures/Swordsman.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Swordsman.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/ICannonFodder.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Creatures/Swordsman.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/ICavalry.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/ICannonFodder.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/IInfantry.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/ICavalry.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/IShooter.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/IInfantry.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/IUnitAttack.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/IShooter.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/IWizard.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/IUnitAttack.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/ObjectFactory.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/IWizard.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Unit.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/ObjectFactory.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/Units/Unit.h">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Unit.cpp">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/main.cpp">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/Units/Unit.h">
 			<Option target="OOP"/>
 		</Unit>
-		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/CMakeLists.txt">
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/main.cpp">
+			<Option target="OOP"/>
+		</Unit>
+		<Unit filename="/cygdrive/d/GitHub/currentWork/OOP/code/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

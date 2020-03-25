@@ -2,7 +2,7 @@
 
 Forest::Forest()
 {
-    movingUnitsProhibition.emplace_back("Cavalry");
-    actionTokensUnitsBoost.emplace_back("Cannon fodder");
-    attackUnitsProhibition.emplace_back("Shooter");
+    movingUnitsProhibition.emplace_back(eUnitsType::CAVALRY);
+    actionTokensUnitsBoost.emplace_back(eUnitsType::CANNON_FODDER);
+    attackUnitsProhibition.emplace_back(eUnitsType::SHOOTER);
 }

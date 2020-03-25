@@ -19,11 +19,6 @@ Ifrit* Ifrit::clone() const
     return new Ifrit(*this);
 }
 
-bool Ifrit::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Ifrit::describeYourself()
 {
     std::cout << "Ifrit:" << std::endl;
@@ -45,7 +40,7 @@ Ifrit::~Ifrit()
 
 }
 
-std::string Ifrit::getType()
+eUnitsType Ifrit::getType()
 {
-    return "Infantry";
+    return INFANTRY;
 }

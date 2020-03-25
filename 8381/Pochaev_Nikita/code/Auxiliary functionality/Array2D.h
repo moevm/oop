@@ -37,7 +37,6 @@ namespace cds
                 friend class Array2D;
 
             public:
-                // FIXME: верные ли расчёты?
                 T& operator[] (size_t col)
                 {
                     // return parent.data() + col * parent.getHeight() + row;

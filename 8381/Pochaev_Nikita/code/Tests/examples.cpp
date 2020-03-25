@@ -53,7 +53,7 @@ void fieldBasedTest()
     // field->addCompositeUnit();
 
     // Check squad creation
-    std::shared_ptr<CompositeUnit> squad = hellBase->createSquad("Wizard", 3);
+    std::shared_ptr<CompositeUnit> squad = hellBase->createSquad(eUnitsType::WIZARD, 3);
     // TODO: it have to do Game class -> will be implemented in 3d LR
     field->addUnit(squad, 1, 1);
     std::cout << ANSIColor::coloredString("Cell/Base information after squad adding (1; 1).", ANSIColor::FG_YELLOW) << std::endl;
@@ -88,7 +88,7 @@ void ObserverDeathTest()
     std::shared_ptr<GameBase> hellBase = master.getBase();
     field->addBase(hellBase, 1, 1);
 
-    std::shared_ptr<Unit> succubus = hellBase->getUnit("Shooter");
+    std::shared_ptr<Unit> succubus = hellBase->getUnit(eUnitsType::SHOOTER);
     field->addUnit(succubus, 1, 1);
     std::cout << ANSIColor::coloredString("Field information after unit adding.", ANSIColor::FG_YELLOW) << std::endl;
     field->getTotalInformation();
@@ -120,7 +120,7 @@ void landscapeTest()
     std::shared_ptr<GameBase> hellBase = master.getBase();
     field->addBase(hellBase, 1, 1);
 
-    std::shared_ptr<Unit> cavalry = hellBase->getUnit("Cavalry");
+    std::shared_ptr<Unit> cavalry = hellBase->getUnit(eUnitsType::CAVALRY);
 
     field->addUnit(cavalry, 1, 1);
     std::cout << ANSIColor::coloredString("Field information after unit and base adding.", ANSIColor::FG_YELLOW) << std::endl;
@@ -177,8 +177,8 @@ void unitInteractionTest()
 
     field->getTotalInformation();
 
-    std::shared_ptr<Unit> cerberus = hellBase->getUnit("Cavalry");
-    std::shared_ptr<Unit> knight = humanBase->getUnit("Cavalry");
+    std::shared_ptr<Unit> cerberus = hellBase->getUnit(eUnitsType::CAVALRY);
+    std::shared_ptr<Unit> knight = humanBase->getUnit(eUnitsType::CAVALRY);
 
     field->addUnit(cerberus, 1, 1);
     field->addUnit(knight, 1, 2);

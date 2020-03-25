@@ -19,11 +19,6 @@ Succubus* Succubus::clone() const
     return new Succubus(*this);
 }
 
-bool Succubus::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Succubus::describeYourself()
 {
     std::cout << "Succubus:" << std::endl;
@@ -45,7 +40,7 @@ Succubus::~Succubus()
 
 }
 
-std::string Succubus::getType()
+eUnitsType Succubus::getType()
 {
-    return "Shooter";
+    return SHOOTER;
 }

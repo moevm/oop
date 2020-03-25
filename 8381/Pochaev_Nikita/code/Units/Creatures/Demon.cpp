@@ -19,11 +19,6 @@ Demon* Demon::clone() const
     return new Demon(*this);
 }
 
-bool Demon::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Demon::describeYourself()
 {
     std::cout << "Demon:" << std::endl;
@@ -45,7 +40,7 @@ Demon::~Demon()
 
 }
 
-std::string Demon::getType()
+eUnitsType Demon::getType()
 {
-    return "Wizard";
+    return WIZARD;
 }

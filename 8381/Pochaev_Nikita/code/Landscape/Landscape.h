@@ -19,13 +19,13 @@ public:
 
     // It can also make a boost or vice versa
     virtual bool isAccessibleForMove(std::shared_ptr<Unit> &unit);
-    virtual bool isAccessibleForAttack(const std::string &unitType);
+    virtual bool isAccessibleForAttack(eUnitsType unitType);
 
 protected:
     std::string type;
-    std::vector<std::string> movingUnitsProhibition;
-    std::vector<std::string> actionTokensUnitsBoost;
-    std::vector<std::string> attackUnitsProhibition;
+    std::vector<eUnitsType> movingUnitsProhibition;
+    std::vector<eUnitsType> actionTokensUnitsBoost;
+    std::vector<eUnitsType> attackUnitsProhibition;
 };
 
 #endif //OOP_LANDSCAPE_H

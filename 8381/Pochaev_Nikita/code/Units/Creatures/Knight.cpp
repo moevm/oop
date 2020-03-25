@@ -19,11 +19,6 @@ Knight* Knight::clone() const
     return new Knight(*this);
 }
 
-bool Knight::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Knight::describeYourself()
 {
     std::cout << "Knight:" << std::endl;
@@ -45,7 +40,7 @@ Knight::~Knight()
 
 }
 
-std::string Knight::getType()
+eUnitsType Knight::getType()
 {
-    return "Cavalry";
+    return CAVALRY;
 }

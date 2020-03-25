@@ -19,11 +19,6 @@ Magician* Magician::clone() const
     return new Magician(*this);
 }
 
-bool Magician::meleeAttack(size_t x, size_t y) const
-{
-    return false;
-}
-
 void Magician::describeYourself()
 {
     std::cout << "Magician:" << std::endl;
@@ -45,7 +40,7 @@ Magician::~Magician()
 
 }
 
-std::string Magician::getType()
+eUnitsType Magician::getType()
 {
-    return "Wizard";
+    return WIZARD;
 }

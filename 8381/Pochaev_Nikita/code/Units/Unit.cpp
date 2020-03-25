@@ -101,10 +101,10 @@ void Unit::notifyObserversAboutDeath()
     }
 }
 
-std::map<std::string, size_t> Unit::getComposition()
+std::map<eUnitsType, size_t> Unit::getComposition()
 {
-    std::map<std::string, size_t> result;
-    result.insert(std::make_pair<std::string, size_t>(getType(), 1));
+    std::map<eUnitsType, size_t> result;
+    result.insert(std::make_pair<eUnitsType, size_t>(getType(), 1));
 
     return result;
 }
