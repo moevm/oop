@@ -1,0 +1,4 @@
+ [Fri Mar 27 10:23:32 2020] [Base] added observer
+ [Fri Mar 27 10:23:32 2020] Command create base
+ [Fri Mar 27 10:23:35 2020] [GameField] Impossible to add Object( x: 0 y: 0) to field
+ [Fri Mar 27 10:23:35 2020] Command create base

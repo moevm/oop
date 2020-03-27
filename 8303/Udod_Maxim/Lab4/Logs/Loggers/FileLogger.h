@@ -16,11 +16,9 @@ private:
 
 public:
 
-    FileLogger(std::string filePath){
-        fileStream.open(filePath);
-    }
+    explicit FileLogger(std::string filePath): fileStream(filePath){}
 
-    ~FileLogger(){
+    ~FileLogger() override {
         fileStream.close();
     }
 
@@ -30,8 +28,11 @@ public:
 
     }
 
+    void log(game::Logend &l) override{
 
+        fileStream.flush();
 
+    }
 
 };
 

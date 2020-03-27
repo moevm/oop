@@ -6,6 +6,7 @@
 #define UNTITLED13_LOG_H
 
 #include "LogProxy.h"
+#include "Logend.h"
 
 namespace game{
 

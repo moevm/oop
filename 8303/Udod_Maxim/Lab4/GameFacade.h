@@ -12,6 +12,7 @@
 #include "UI/Commands/Create/CreateCommand.h"
 #include "UI/Commands/Move/MoveCommand.h"
 #include "UI/Commands/Show/ShowCommand.h"
+#include "UI/Commands/Exit/ExitCommand.h"
 
 class GameFacade: public GameInfo {
 
@@ -21,6 +22,7 @@ private:
     CreateCommandHandler *createHandler;
     MoveCommandHandler *moveHandler;
     ShowCommandHandler *showHandler;
+    ExitCommandHandler *exitHandler;
 
 public:
 
@@ -30,10 +32,12 @@ public:
         createHandler = new CreateCommandHandler();
         moveHandler = new MoveCommandHandler();
         showHandler = new ShowCommandHandler();
+        exitHandler = new ExitCommandHandler();
 
         attackHandler->setNext(createHandler);
         createHandler->setNext(moveHandler);
         moveHandler->setNext(showHandler);
+        showHandler->setNext(exitHandler);
 
     }
     void nextTurn(){

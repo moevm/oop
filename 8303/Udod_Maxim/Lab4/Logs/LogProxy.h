@@ -11,10 +11,6 @@
 #include <string>
 #include <iostream>
 
-namespace game {
-    class Logend {};
-}
-
 class LogProxy {
 
 private:

@@ -1,12 +1,11 @@
 #include <iostream>
 #include "GameFacade.h"
-#include "Logs/Loggers/TerminalLogger.h"
 #include "Logs/Formats/TimeFormat.h"
-#include "Logs/Formats/TagFormat.h"
+#include "Logs/Loggers/FileLogger.h"
 
 int main() {
 
-    game::log.setLogger(new TerminalLogger());
+    game::log.setLogger(new FileLogger("logs.txt"));
     game::log.setLogFormat(new TimeFormat());
 
     GameFacade game(2, 3, 3);
