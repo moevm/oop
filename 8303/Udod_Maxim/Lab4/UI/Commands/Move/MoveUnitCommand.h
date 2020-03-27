@@ -23,9 +23,9 @@ public:
         if (object1 && object1->getType() == ObjectType::UNIT){
             auto unit1 = dynamic_cast<Unit *>(object1);
             unit1->move(to);
-            game::log << "Command unite moved\n";
+            game::log << "Command unite moved" << game::logend;
         } else
-            game::log << "No unit on this cell\n";
+            game::log << "No unit on this cell" << game::logend;
 
 
     }

@@ -25,9 +25,9 @@ public:
             auto unit1 = dynamic_cast<Unit *>(object1);
             auto unit2 = dynamic_cast<Unit *>(object2);
             unit1->attack(*unit2);
-            game::log << "Gotted command attack\n";
+            game::log << "Gotted command attack" << game::logend;
         } else
-            game::log << "Impossible attack\n";
+            game::log << "Impossible attack" << game::logend;
 
 
     }

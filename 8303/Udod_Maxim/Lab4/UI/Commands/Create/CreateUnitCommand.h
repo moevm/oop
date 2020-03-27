@@ -24,7 +24,7 @@ public:
     void execute(GameInfo &gameInfo, GameField &gameField) override{
 
         if (!gameInfo.getNowPlayerBase()){
-            game::log << "Can't create unit without base\n";
+            game::log << "Can't create unit without base" << game::logend;
             return;
         }
 
@@ -41,7 +41,7 @@ public:
                 break;
 
         }
-        game::log << "Command create unit\n";
+        game::log << "Command create unit" << game::logend;
 
     }
 

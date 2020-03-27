@@ -12,7 +12,7 @@ health(other.health) {}
 
 void Unit::addObserver(UnitObserver *observer) {
 
-    game::log << "[Unit] observer added\n";
+    game::log << "[Unit] observer added" << game::logend;
     observers.push_back(observer);
 
 }
@@ -22,7 +22,7 @@ void Unit::move(Point point) {
     for (auto o: observers){
         o->onUnitMove(this, point);
     }
-    game::log << "[Unit] moving\n";
+    game::log << "[Unit] moving" << game::logend;
 
 }
 
@@ -31,7 +31,7 @@ void Unit::attack(Unit &other) {
     for (auto o: observers){
         o->onUnitAttack(this, &other);
     }
-    game::log << "[Unit] attack\n";
+    game::log << "[Unit] attack" << game::logend;
 
 }
 
@@ -51,7 +51,7 @@ void Unit::damage(int damage) {
 
     }
 
-    game::log << "[Unit] damaged by " << damage << " points \n";
+    game::log << "[Unit] damaged by " << damage << " points" << game::logend;
 
 }
 
@@ -62,7 +62,7 @@ void Unit::heal(int hp) {
     }
 
     health += hp;
-    game::log << "[Unit] healed by " << hp << " points \n";
+    game::log << "[Unit] healed by " << hp << " points \n" << game::logend;
 
 }
 

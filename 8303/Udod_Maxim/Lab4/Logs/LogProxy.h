@@ -8,8 +8,12 @@
 #include "Loggers/NoLogger.h"
 #include "Formats/NoFormat.h"
 
-#include <string.h>
+#include <string>
 #include <iostream>
+
+namespace game {
+    class Logend {};
+}
 
 class LogProxy {
 
@@ -17,6 +21,17 @@ private:
 
     Logger *logger;
     LogFormat *logFormat;
+    bool isFirstInLine = true;
+
+    void log(std::string s){
+        if (isFirstInLine) {
+            std::string formatted = logFormat->getFormatted(s);
+            logger->log(formatted);
+            isFirstInLine = false;
+        } else{
+            logger->log(s);
+        }
+    }
 
 public:
 
@@ -36,9 +51,10 @@ public:
         return logger;
     }
 
-    void log(std::string s){
-        std::string formatted = logFormat->getFormatted(s);
-        logger->log(formatted);
+    friend LogProxy& operator<< (LogProxy &logger, const game::Logend &l){
+        logger.log("\n");
+        logger.isFirstInLine = true;
+        return logger;
     }
 
     void setLogger(Logger *logger1){
@@ -54,14 +70,8 @@ public:
 
     }
 
-
-
 };
 
-namespace game{
 
-    static LogProxy log;
-
-}
 
 #endif //UNTITLED13_LOGPROXY_H

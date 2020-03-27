@@ -40,7 +40,7 @@ void GameField::deleteObject(int x, int y) {
 bool GameField::addObject(GameObject *object, int x, int y) {
 
     if (object->isOnField){
-        game::log << "[GameField] " << *object << " already on field\n";
+        game::log << "[GameField] " << *object << " already on field" << game::logend;
         return false;
     }
 
@@ -54,7 +54,7 @@ bool GameField::addObject(GameObject *object, int x, int y) {
 
     } else{
 
-        game::log << "[GameField] Impossible to add " << *object << " to field\n";
+        game::log << "[GameField] Impossible to add " << *object << " to field" << game::logend;
         return false;
 
     }
@@ -79,7 +79,7 @@ void GameField::moveObject(const Point &p1, const Point &p2) {
 
     } else{
 
-        game::log << "[GameField] Impossible to move object from " << p1.x << " " << p1.y << " to " << p2.x << " " << p2.y;
+        game::log << "[GameField] Impossible to move object from " << p1.x << " " << p1.y << " to " << p2.x << " " << p2.y << game::logend;
 
     }
 

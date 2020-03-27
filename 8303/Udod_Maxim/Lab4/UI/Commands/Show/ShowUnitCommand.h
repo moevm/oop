@@ -27,10 +27,10 @@ public:
             << "\tWeapon: " << unit->getWeapon() << std::endl
             << "\tArmor: " << unit->getArmor() << std::endl;
 
-            game::log << "Command show unit\n";
+            game::log << "Command show unit" << game::logend;
 
         } else{
-            game::log << "Empty cell\n";
+            game::log << "Empty cell" << game::logend;
         }
 
     }

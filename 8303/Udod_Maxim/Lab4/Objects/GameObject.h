@@ -7,7 +7,7 @@
 
 #include <ostream>
 #include "../Point.h"
-#include "../Logs/LogProxy.h"
+#include "../Logs/log.h"
 
 enum class ObjectType{
 

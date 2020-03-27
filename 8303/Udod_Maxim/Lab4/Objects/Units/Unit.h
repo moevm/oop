@@ -16,7 +16,7 @@
 #include "../../Landscapes/LandscapeProxy.h"
 #include "../Neutrals/NeutralObject.h"
 
-#include "../../Logs/LogProxy.h"
+#include "../../Logs/log.h"
 
 enum class UnitType{
 

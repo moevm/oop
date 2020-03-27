@@ -2,6 +2,7 @@
 #include "GameFacade.h"
 #include "Logs/Loggers/TerminalLogger.h"
 #include "Logs/Formats/TimeFormat.h"
+#include "Logs/Formats/TagFormat.h"
 
 int main() {
 

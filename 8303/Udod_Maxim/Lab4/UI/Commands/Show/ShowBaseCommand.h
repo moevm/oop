@@ -28,10 +28,10 @@ public:
                       << "\tHP: " << base->getHealth() << std::endl
                       << "\tArmor: " << base->getArmor() << std::endl
                       << "\tMax Objects Count: " << base->getMaxObjectsCount() << std::endl;
-            game::log << "Show base command\n";
+            game::log << "Show base command" << game::logend;
 
         } else{
-            game::log << "Empty cell\n";
+            game::log << "Empty cell" << game::logend;
         }
 
     }

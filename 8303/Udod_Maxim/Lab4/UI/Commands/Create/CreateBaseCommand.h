@@ -23,9 +23,9 @@ public:
         auto *base = new Base(100, *ArmorFlyWeight::getFlyWeight<LeatherArmor>());
         if (gameInfo.setNowPlayerBase(base)) {
             gameField.addBase(base, basePosition);
-            game::log << "Command create base\n";
+            game::log << "Command create base" << game::logend;
         } else
-            game::log << "This player already has base\n";
+            game::log << "This player already has base" << game::logend;
 
     }
 
