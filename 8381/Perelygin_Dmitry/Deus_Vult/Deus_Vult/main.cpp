@@ -65,6 +65,7 @@ int main()
     Horse->move_unit(2,2);// попытка передвинуться
     Battlefield.show_field();
     Horse->show_debuffs();
+    cout << "DEMONSTRATION ATTACKS: " << endl;
     Horse->attack_unit(&Man);
      Horse->attack_unit(&Man);
       Horse->attack_unit(&Man);
@@ -76,6 +77,7 @@ int main()
     {
     cout << "Crusader's HP after attack - "<<Man->get_hp() << endl;
     }
+    cout << "Field after fight: " << endl;
     Battlefield.show_field();
     cout << "Landscape" << endl;
     Battlefield.show_landscape();
@@ -86,10 +88,15 @@ int main()
 
     NeturalObjects* well = new Well();
     Battlefield.add_netural_obj(well, 5, 5);
+    cout << "Neutral Object Placement " << endl;
     Battlefield.show_net_obj();
     *well+=*Horse;
+    cout << "before heal:" << endl;
+    cout << Horse->get_hp() << endl;
+    cout << "try to heal with Well:" << endl;
     cout << Horse->get_hp() << endl;
     Battlefield.add_base(Castle, 7, 7);
+    cout << "Base Object Placement " << endl;
     Battlefield.show_base();
     return 0;
 }
