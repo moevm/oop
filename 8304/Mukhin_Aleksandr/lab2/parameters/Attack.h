@@ -8,7 +8,7 @@ public:
     Attack() = default;
     explicit Attack(int);
     void change(int);
-    int get_attack();
+    int get_attack() const;
 };
 
 

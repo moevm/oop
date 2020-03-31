@@ -69,3 +69,53 @@ TEST_CASE("Test of deleting units", "" ) {
     result = a.delete_unit(3, 4);
     REQUIRE(!result);
 }
+
+TEST_CASE("Attack", "") {
+    Boardfield a(5, 5);
+    Base b(2);
+    bool result = a.add_base(b, 3, 3);
+    REQUIRE(result);
+
+    result = a.add_unit(b, 0, 0, 0);
+    result = a.add_unit(b, 0, 1, 3);
+    REQUIRE(result);
+    REQUIRE(b.current_size == 2);
+    result = a.attack(0, 0, 0, 1);
+    REQUIRE(!result);
+}
+
+TEST_CASE("Add_units", "") {
+    Boardfield a(5, 5);
+    Base b(6);
+    bool result = a.add_base(b, 3, 3);
+    REQUIRE(result);
+
+    result = a.add_units(b, 5, 3);
+    REQUIRE(result);
+    REQUIRE(b.current_size == 5);
+    b.get_base();
+    std::cout << std::endl;
+    a.get_boardfield();
+}
+
+TEST_CASE("Landscape_action", "") {
+    Boardfield a(5, 5);
+    Base b(6);
+
+    bool result = a.add_base(b, 3, 3);
+    REQUIRE(result);
+
+    result = a.add_unit(b, 0, 2, 3);
+    REQUIRE(result);
+
+    b.get_base();
+    std::cout << std::endl;
+    a.get_boardfield();
+
+    result = a.add_landscape(0, 2, 0);
+    REQUIRE(result);
+
+    b.get_base();
+    std::cout << std::endl;
+    a.get_boardfield();
+}

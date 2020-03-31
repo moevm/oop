@@ -9,7 +9,7 @@ public:
     HealthPoints() = default;
     HealthPoints(int);
     void change(int);
-    int get_health();
+    int get_health() const;
 };
 
 

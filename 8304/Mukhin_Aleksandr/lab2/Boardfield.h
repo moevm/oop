@@ -31,6 +31,7 @@ public:
     bool add_units(Base&, int, int);
     bool add_base(Base&, int, int);
     bool add_landscapes();
+    bool add_landscape(int, int, int);
     bool attack(int, int, int, int);
     bool add_neutral_object(int, int, int);
     void get_boardfield();

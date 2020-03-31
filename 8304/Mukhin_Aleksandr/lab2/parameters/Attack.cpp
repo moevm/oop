@@ -8,6 +8,6 @@ void Attack::change(int value) {
     attack += value;
 }
 
-int Attack::get_attack() {
+int Attack::get_attack() const {
     return attack;
 }

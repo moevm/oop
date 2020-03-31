@@ -15,14 +15,14 @@ include_directories(
         creators/militaryCreator
         creators/governmentCreator
         neutralObject
-#        tests
+        tests
 )
 add_executable(lab2
-#        tests/test.cpp
-#        tests/catch.hpp
+        tests/test.cpp
+        tests/catch.hpp
         creators/Creator.h
         creators/Creator.cpp
-        main.cpp
+        #        main.cpp
         Base.cpp
         Base.h
         Boardfield.cpp
@@ -84,5 +84,7 @@ add_executable(lab2
         neutralObject/Serum.h
         neutralObject/SuperNeutralObject.cpp
         neutralObject/SuperNeutralObject.h
-#        tests/catch.hpp
+        tests/catch.hpp
+        landscapes/AbstractLandscape.cpp
+        landscapes/AbstractLandscape.h
         )

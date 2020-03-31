@@ -223,9 +223,9 @@ bool Boardfield::move_unit(int old_x, int old_y, int dest_x, int dest_y) {
 
 bool Boardfield::landscape_action(int x, int y) {
     if (is_valid_coordinates(x, y) && !is_free_coordinates(x, y) && is_unit(x, y) && is_landscape(x, y)) {
-        repository[x][y].unit->defense.change(repository[x][y].landscape->defense.get_health());
-        repository[x][y].unit->attack.change(repository[x][y].landscape->attack.get_attack());
-        repository[x][y].unit->intelligence += repository[x][y].landscape->intelligence;
+        repository[x][y].unit->defense.change(repository[x][y].landscape->get_health());
+        repository[x][y].unit->attack.change(repository[x][y].landscape->get_attack());
+        repository[x][y].unit->intelligence += repository[x][y].landscape->get_intelligence();
         return true;
     }
     return false;
@@ -372,6 +372,38 @@ bool Boardfield::add_units(Base& to_base, int count, int key) {
                 }
             }
         }
+    }
+    return false;
+}
+
+bool Boardfield::add_landscape(int x, int y, int key) {
+    if (!is_landscape(x, y)) {
+        std::shared_ptr<Landscape> tmp;
+        std::string tmp_image;
+        switch (key) {
+            case 0:
+                tmp = std::make_shared<Fire>();
+                tmp_image = "✨";
+                break;
+            case 1:
+                tmp = std::make_shared<Mountains>();
+                tmp_image = "∆";
+                break;
+            case 2:
+                tmp = std::make_shared<Champaign>();
+                tmp_image = "_";
+                break;
+            default:
+                std::cout << "Something wrong in adding landscape!" << std::endl;
+                return false;
+        }
+        repository[x][y].landscape = tmp;
+        repository[x][y].landscape_symbol = tmp_image;
+        if (is_unit(x, y)) {
+            landscape_action(x, y);
+            check_for_die(x, y);
+        }
+        return true;
     }
     return false;
 }
