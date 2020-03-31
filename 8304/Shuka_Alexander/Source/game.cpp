@@ -1,11 +1,14 @@
 #include "game.h"
 
+using namespace unit;
+
 
 Game::Game()
 {
     factory = std::make_shared<RandomObjectFactory>();
-    playerUnits = std::make_shared<std::set<std::shared_ptr<unit::Unit>>>();
-    enemyUnits = std::make_shared<std::set<std::shared_ptr<unit::Unit>>>();
+    playerUnits = std::make_shared<std::set<std::shared_ptr<Unit>>>();
+    enemyUnits = std::make_shared<std::set<std::shared_ptr<Unit>>>();
+    logger = std::make_shared<FileLogger>("log.txt");
 }
 
 
@@ -20,15 +23,17 @@ void Game::run()
         enemyLogic();
 
         if (playerBase->getHealthPoints() <= 0) {
+            logger->writeToLog("GAME OVER. ENEMY WON!");
             std::cout << "ENEMY WON!\n";
             return;
         }
         else if (enemyBase->getHealthPoints() <= 0) {
+            logger->writeToLog("GAME OVER. PLAYER WON!");
             std::cout << "YOU WON!\n";
             return;
         }
 
-        std::set<std::shared_ptr<unit::Unit>> tmp;
+        std::set<std::shared_ptr<Unit>> tmp;
         for (auto i : *playerUnits) {
             if (i->getHealthPoints() <= 0) {
                 tmp.insert(i);
@@ -36,6 +41,8 @@ void Game::run()
         }
 
         for (auto i : tmp) {
+            logger->writeToLog(UnitLogMsg::dieMessage(i));
+
             playerUnits->erase(i);
             i->notify();
             field->deleteUnit(i);
@@ -49,47 +56,59 @@ void Game::run()
         }
 
         for (auto i : tmp) {
+            logger->writeToLog(UnitLogMsg::dieMessage(i));
+
             enemyUnits->erase(i);
             i->notify();
             field->deleteUnit(i);
         }
 
         draw();
-        Sleep(150);
+        Sleep(200);
     }
 }
 
 
 void Game::init()
 {
+    logger->writeToLog("START GAME");
+
+    std::cout << "RULES:\na - armor\n. - road\n+ - heal\n* - fog\nx - spikes\n"
+                 "- - bomb\n^ - tower\nB- base\n";
+    Sleep(3000);
+
+    playerUnits->clear();
+    enemyUnits->clear();
+
     this->enemyGold = 0;
     this->playerGold = 0;
     isPlayerAttack = false;
 
     createField();
-    mediator = std::make_shared<Mediator>(field);
+    mediator = std::make_shared<Mediator>(field, logger);
 
-    playerBase = std::make_shared<unit::Base>(Point2D(1, field->getHeight()/2),
-                                              mediator, unit::PLAYER::ONE);
+    playerBase = std::make_shared<Base>(Point2D(1, field->getHeight()/2),
+                                        mediator, PLAYER::ONE);
 
-    enemyBase = std::make_shared<unit::Base>(Point2D(field->getWidth() - 2,
-                                                     field->getHeight()/2),
-                                             mediator, unit::PLAYER::TWO);
+    enemyBase = std::make_shared<Base>(Point2D(field->getWidth() - 2,
+                                               field->getHeight()/2),
+                                       mediator, PLAYER::TWO);
 
     field->addUnit(playerBase);
     field->addUnit(enemyBase);
+
+    logger->writeToLog(UnitLogMsg::createMessage(playerBase));
+    logger->writeToLog(UnitLogMsg::createMessage(enemyBase));
+    logger->writeToLog(PlayerLogMsg::attack(PLAYER::TWO));
+    logger->writeToLog(PlayerLogMsg::deffend(PLAYER::ONE));
 
     playerUnits->insert(playerBase);
     enemyUnits->insert(enemyBase);
 
     playerFacade = std::make_shared<Facade>(mediator, playerBase, playerUnits,
-                                            enemyBase, field);
+                                            enemyBase, field, logger);
     enemyFacade = std::make_shared<Facade>(mediator, enemyBase, enemyUnits,
-                                           playerBase, field);
-
-    std::cout << "a - armor\n. - road\n+ - heal\n* - fog\nx - spikes\n"
-                 "- - bomb\n^ - tower\nB- base\n";
-    //Sleep(3000);
+                                           playerBase, field, logger);
 }
 
 
@@ -183,9 +202,11 @@ void Game::logic(COMMAND command)
 
     switch (command) {
     case COMMAND::ATTACK:
+        logger->writeToLog(PlayerLogMsg::attack(PLAYER::ONE));
         isPlayerAttack = true;
         break;
     case COMMAND::DEFFEND:
+        logger->writeToLog(PlayerLogMsg::deffend(PLAYER::ONE));
         isPlayerAttack = false;
         break;
     case COMMAND::CRT_FLYING:
@@ -193,26 +214,36 @@ void Game::logic(COMMAND command)
             auto isCreate = playerFacade->createFlyingUnit();
             if (isCreate) {
                 playerGold -= 220;
+                logger->writeToLog(PlayerLogMsg::createUnit(true, PLAYER::ONE));
+                break;
             }
         }
+        logger->writeToLog(PlayerLogMsg::createUnit(false, PLAYER::ONE), LVL::WARNING);
         break;
     case COMMAND::CRT_GROUND:
         if (playerGold > 150) {
             auto isCreate = playerFacade->createGroundUnit();
             if (isCreate) {
                 playerGold -= 150;
+                logger->writeToLog(PlayerLogMsg::createUnit(true, PLAYER::ONE));
+                break;
             }
         }
+        logger->writeToLog(PlayerLogMsg::createUnit(false, PLAYER::ONE), LVL::WARNING);
         break;
     case COMMAND::CRT_STANDING:
         if (playerGold > 200) {
             auto isCreate = playerFacade->createStandingUnit();
             if (isCreate) {
                 playerGold -= 200;
+                logger->writeToLog(PlayerLogMsg::createUnit(true, PLAYER::ONE));
+                break;
             }
         }
+        logger->writeToLog(PlayerLogMsg::createUnit(false, PLAYER::ONE), LVL::WARNING);
         break;
     case COMMAND::EXIT:
+        logger->writeToLog("GAME OVER");
         isRun = false;
         break;
     default:
@@ -236,7 +267,7 @@ void Game::enemyLogic()
     srand(time(0));
     auto choose = rand() % 2;
 
-    if (choose == 1) {
+    if (choose == 1 && enemyGold > 150) {
         choose = rand() % 3;
         switch (choose) {
         case 0:
@@ -244,24 +275,33 @@ void Game::enemyLogic()
                 auto isCreate = enemyFacade->createStandingUnit();
                 if (isCreate) {
                     enemyGold -= 200;
+                    logger->writeToLog(PlayerLogMsg::createUnit(true, PLAYER::TWO));
+                    break;
                 }
             }
+            logger->writeToLog(PlayerLogMsg::createUnit(false, PLAYER::TWO), LVL::WARNING);
             break;
         case 1:
             if (enemyGold > 150) {
                 auto isCreate = enemyFacade->createGroundUnit();
                 if (isCreate) {
                     enemyGold -= 150;
+                    logger->writeToLog(PlayerLogMsg::createUnit(true, PLAYER::TWO));
+                    break;
                 }
             }
+            logger->writeToLog(PlayerLogMsg::createUnit(false, PLAYER::TWO), LVL::WARNING);
             break;
         case 2:
             if (enemyGold > 220) {
                 auto isCreate = enemyFacade->createFlyingUnit();
                 if (isCreate) {
                     enemyGold -= 220;
+                    logger->writeToLog(PlayerLogMsg::createUnit(true, PLAYER::TWO));
+                    break;
                 }
             }
+            logger->writeToLog(PlayerLogMsg::createUnit(false, PLAYER::TWO), LVL::WARNING);
             break;
         }
     }

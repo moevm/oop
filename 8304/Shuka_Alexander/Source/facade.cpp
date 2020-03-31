@@ -5,13 +5,15 @@ Facade::Facade(std::shared_ptr<Mediator> mediator,
                std::shared_ptr<unit::Base> base,
                std::shared_ptr<std::set<std::shared_ptr<unit::Unit>>> units,
                std::shared_ptr<unit::Base> enemyBase,
-               std::shared_ptr<GameField> field)
+               std::shared_ptr<GameField> field,
+               std::shared_ptr<Logger> logger)
 {
     this->base = base;
     this->mediator = mediator;
     this->units = units;
     this->enemyBase = enemyBase;
     this->field = field;
+    this->logger = logger;
 }
 
 
@@ -151,17 +153,22 @@ bool Facade::attack(std::shared_ptr<unit::Unit> unit)
     auto dist = weapon->getDistanceAttack();
     auto player = unit->getPlayer();
 
-    for (int i = posUnit.y - dist; i <= posUnit.y + dist; ++i) {
-        for (int j = posUnit.x - dist; j <= posUnit.x + dist; ++j) {
-            if (j < field->getWidth() && j >= 0 && i < field->getHeight() &&
-                    i >= 0) {
+    for (int i = posUnit.y - dist; i <= static_cast<int>(posUnit.y + dist); ++i) {
+        for (int j = posUnit.x - dist; j <= static_cast<int>(posUnit.x + dist); ++j) {
+            if (j < static_cast<int>(field->getWidth()) && j >= 0 &&
+                    i < static_cast<int>(field->getHeight()) && i >= 0) {
                 if (sqrt(pow(i - posUnit.y, 2) + pow(j - posUnit.x, 2)) <= dist) {
                     auto cell = field->getCell(Point2D(j, i));
                     if (!cell->isEmpty()) {
                         auto enemy = cell->getUnit();
                         if (enemy->getPlayer() != player) {
-                            enemy->toHurt(weapon->getDamage() *
-                                          enemy->getArmor()->getResistance());
+                            logger->writeToLog(UnitLogMsg::attackMessage(unit, enemy));
+                            logger->writeToLog(UnitLogMsg::hurtMessage(enemy,
+                                                                       weapon->getDamage() *
+                                                                       enemy->getArmor()->getResistance()));
+
+                                    enemy->toHurt(weapon->getDamage() *
+                                                  enemy->getArmor()->getResistance());
                             return true;
                         }
                     }
