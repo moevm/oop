@@ -18,3 +18,6 @@ void FileLogger::writeToLog(const std::string& msg, LVL lvl)
     file << getMsgLvl(lvl) + " " + msg + "\n";
     file.close();
 }
+
+
+

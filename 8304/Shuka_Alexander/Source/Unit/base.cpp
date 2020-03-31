@@ -1,16 +1,18 @@
 #include "base.h"
 
+#include "Snapshot/snapshot.h"
+
 using namespace unit;
 
 
 Base::Base(const Point2D& point, std::shared_ptr<Mediator> mediator,
-           PLAYER player) : Unit(point, mediator)
+           PLAYER player,  double healthPoints) : Unit(point, mediator)
 {
     HeavyArmorFactory armorFactory;
     NoWeaponFactory weaponFactory;
 
     this->player = player;
-    healthPoints = 400;
+    this->healthPoints = healthPoints;
     armor = armorFactory.createArmor();
     weapon = weaponFactory.createWeapon();
     nUnits = 0;
@@ -110,6 +112,35 @@ std::shared_ptr<Unit> Base::createStandingUnit(int dx, int dy)
 }
 
 
+std::shared_ptr<Unit> Base::createUnit(const UnitSnapshot& unitSnapshot)
+{
+    std::shared_ptr<Unit> unit;
+
+    switch (unitSnapshot.unit) {
+    case 'D':
+        unit = director.createDragon(unitSnapshot.pos, mediator, unitSnapshot.healthPoints);
+        break;
+    case 'T':
+        unit = director.createThief(unitSnapshot.pos, mediator, unitSnapshot.healthPoints);
+        break;
+    case 'W':
+        unit = director.createWarrior(unitSnapshot.pos, mediator, unitSnapshot.healthPoints);
+        break;
+    case 'K':
+        unit = director.createKamikadze(unitSnapshot.pos, mediator, unitSnapshot.healthPoints);
+        break;
+    case '^':
+        unit = director.createTower(unitSnapshot.pos, mediator, unitSnapshot.healthPoints);
+        break;
+    case '$':
+        unit = director.createGoldMiner(unitSnapshot.pos, mediator, unitSnapshot.healthPoints);
+        break;
+    }
+
+    return createUnit(unit);
+}
+
+
 size_t Base::farm() const
 {
     return FIVE_GOLD;
@@ -135,6 +166,12 @@ void Base::update()
 }
 
 
+size_t Base::getNUnits() const
+{
+    return nUnits;
+}
+
+
 int Base::generateRandomNum(int end) const
 {
     srand(time(0));
@@ -152,4 +189,10 @@ std::shared_ptr<Unit> Base::createUnit(std::shared_ptr<Unit> unit)
     }
 
     return nullptr;
+}
+
+
+void Base::setHealthPoints(double healthPoints)
+{
+    this->healthPoints = healthPoints;
 }

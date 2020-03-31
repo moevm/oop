@@ -25,16 +25,17 @@ SOURCES += \
         Landscape/proxylandscape.cpp \
         Landscape/roadlandscape.cpp \
         Landscape/spikeslandscape.cpp \
-    Logger/consolelogger.cpp \
-    Logger/filelogger.cpp \
-    Logger/logger.cpp \
-    Logger/playerlogmsg.cpp \
-    Logger/unitlogmsg.cpp \
+        Logger/consolelogger.cpp \
+        Logger/filelogger.cpp \
+        Logger/logger.cpp \
+        Logger/playerlogmsg.cpp \
+        Logger/unitlogmsg.cpp \
         NeutralObject/armorobject.cpp \
         NeutralObject/bombobject.cpp \
         NeutralObject/healerobject.cpp \
         NeutralObject/neutralobject.cpp \
         NeutralObject/noobject.cpp \
+        Snapshot/snapshot.cpp \
         Strategy/dragonarmorupstrategy.cpp \
         Strategy/healerstrategy.cpp \
         Strategy/kamikadzearmorupstrategy.cpp \
@@ -64,7 +65,7 @@ SOURCES += \
         atributes/weapon/noweapon.cpp \
         atributes/weapon/sword.cpp \
         atributes/weapon/weapon.cpp \
-    facade.cpp \
+        facade.cpp \
         field/celloffield.cpp \
         field/gamefield.cpp \
         field/iterator.cpp \
@@ -102,16 +103,17 @@ HEADERS += \
         Landscape/proxylandscape.h \
         Landscape/roadlandscape.h \
         Landscape/spikeslandscape.h \
-    Logger/consolelogger.h \
-    Logger/filelogger.h \
-    Logger/logger.h \
-    Logger/playerlogmsg.h \
-    Logger/unitlogmsg.h \
+        Logger/consolelogger.h \
+        Logger/filelogger.h \
+        Logger/logger.h \
+        Logger/playerlogmsg.h \
+        Logger/unitlogmsg.h \
         NeutralObject/armorobject.h \
         NeutralObject/bombobject.h \
         NeutralObject/healerobject.h \
         NeutralObject/neutralobject.h \
         NeutralObject/noobject.h \
+        Snapshot/snapshot.h \
         Strategy/dragonarmorupstrategy.h \
         Strategy/healerstrategy.h \
         Strategy/kamikadzearmorupstrategy.h \
@@ -142,7 +144,7 @@ HEADERS += \
         atributes/weapon/noweapon.h \
         atributes/weapon/sword.h \
         atributes/weapon/weapon.h \
-    facade.h \
+        facade.h \
         field/celloffield.h \
         field/gamefield.h \
         field/iterator.h \

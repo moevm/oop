@@ -22,6 +22,7 @@ public:
     void setWeaponFactory(std::shared_ptr<WeaponFactory> weaponFactory);
     void setUnitFactory(std::shared_ptr<UnitFactory> unitFactory);
     void setPosition(const Point2D& point);
+    void setHealthPoints(double healthPoints);
 
     std::shared_ptr<Unit> getUnit();
 
@@ -30,6 +31,7 @@ private:
     std::shared_ptr<UnitFactory> unitFactory;
     std::shared_ptr<WeaponFactory> weaponFactory;
     std::shared_ptr<ArmorFactory> armorFactory;
+    double healthPoints;
     Point2D point;
 };
 }

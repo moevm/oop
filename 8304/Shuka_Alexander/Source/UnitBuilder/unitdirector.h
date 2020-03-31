@@ -1,6 +1,8 @@
 #ifndef UNITDIRECTOR_H
 #define UNITDIRECTOR_H
 
+#include <climits>
+
 #include "unitbuilder.h"
 
 #include "Factory/ArmorFactory/heavyarmorfactory.h"
@@ -26,17 +28,24 @@ class UnitDirector
 {
 public:
     std::shared_ptr<Unit> createDragon(const Point2D& point,
-                                       std::shared_ptr<Mediator> mediator);
+                                       std::shared_ptr<Mediator> mediator,
+                                       double healthPoints = __DBL_MIN__);
     std::shared_ptr<Unit> createThief(const Point2D& point,
-                                      std::shared_ptr<Mediator> mediator);
+                                      std::shared_ptr<Mediator> mediator,
+                                      double healthPoints = __DBL_MIN__);
     std::shared_ptr<Unit> createWarrior(const Point2D& point,
-                                        std::shared_ptr<Mediator> mediator);
+                                        std::shared_ptr<Mediator> mediator,
+                                        double healthPoints = __DBL_MIN__);
     std::shared_ptr<Unit> createTower(const Point2D& point,
-                                      std::shared_ptr<Mediator> mediator);
+                                      std::shared_ptr<Mediator> mediator,
+                                      double healthPoints = __DBL_MIN__);
     std::shared_ptr<Unit> createKamikadze(const Point2D& point,
-                                          std::shared_ptr<Mediator> mediator);
+                                          std::shared_ptr<Mediator> mediator,
+                                          double healthPoints = __DBL_MIN__);
     std::shared_ptr<Unit> createGoldMiner(const Point2D& point,
-                                          std::shared_ptr<Mediator> mediator);
+                                          std::shared_ptr<Mediator> mediator,
+                                          double healthPoints = __DBL_MIN__);
+
 };
 }
 

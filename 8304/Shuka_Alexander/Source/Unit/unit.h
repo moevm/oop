@@ -29,6 +29,8 @@ constexpr const char* CRT_UNIT = "create unit";
 class Unit : public IMovable, public IFarming,
         public IPublisher, public IDrawable
 {
+    friend class UnitBuilder;
+
 public:
     explicit Unit(const Point2D& point,
                   std::shared_ptr<Mediator> mediator);
