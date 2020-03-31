@@ -17,8 +17,13 @@ std::ostream& operator<<(std::ostream &os, Cell& cell) {
 
 
 Cell& Cell::operator[](const std::shared_ptr<NeutralObject> object) {
-    this->unit->defense.change(object->defense.get_health());
-    this->unit->attack.change(object->attack.get_attack());
-    this->unit->intelligence += object->intelligence;
+    unit->defense.change(object->defense.get_health());
+    unit->attack.change(object->attack.get_attack());
+    unit->intelligence += object->intelligence;
+    return *this;
+}
+
+Cell &Cell::operator[](Cell& second_object) {
+    unit->defense.change(-second_object.unit->attack.get_attack());
     return *this;
 }

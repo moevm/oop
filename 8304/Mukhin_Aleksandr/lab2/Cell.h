@@ -26,6 +26,7 @@ public:
 
     friend std::ostream& operator<<(std::ostream&, Cell&);
     Cell& operator[] (std::shared_ptr<NeutralObject>);
+    Cell& operator[] (Cell&);
 };
 
 

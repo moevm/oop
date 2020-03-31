@@ -223,9 +223,10 @@ bool Boardfield::move_unit(int old_x, int old_y, int dest_x, int dest_y) {
 
 bool Boardfield::landscape_action(int x, int y) {
     if (is_valid_coordinates(x, y) && !is_free_coordinates(x, y) && is_unit(x, y) && is_landscape(x, y)) {
+//        repository[x][y].unit->defense.change(repository[x][y].landscape->defense.get_health());
         repository[x][y].unit->defense.change(repository[x][y].landscape->get_health());
-        repository[x][y].unit->attack.change(repository[x][y].landscape->get_attack());
-        repository[x][y].unit->intelligence += repository[x][y].landscape->get_intelligence();
+        repository[x][y].unit->attack.change(repository[x][y].landscape->attack.get_attack());
+        repository[x][y].unit->intelligence += repository[x][y].landscape->intelligence;
         return true;
     }
     return false;
@@ -239,9 +240,9 @@ bool Boardfield::neutral_object_action(int x, int y) {
     }
 
     if (is_valid_coordinates(x, y) && is_unit(x, y) && is_neutral_object(x, y)) {
-        repository[x][y].unit->defense.change(repository[x][y].neutral_object->get_health());
-        repository[x][y].unit->attack.change(repository[x][y].neutral_object->get_attack());
-        repository[x][y].unit->intelligence += repository[x][y].neutral_object->get_intelligence();
+        repository[x][y].unit->defense.change(repository[x][y].neutral_object->defense.get_health());
+        repository[x][y].unit->attack.change(repository[x][y].neutral_object->attack.get_attack());
+        repository[x][y].unit->intelligence += repository[x][y].neutral_object->intelligence;
         repository[x][y].neutral_object = nullptr;
         return true;
     }
@@ -349,10 +350,12 @@ bool Boardfield::is_neutral_object(int x, int y) {
 }
 
 bool Boardfield::attack(int first_x, int first_y, int second_x, int second_y) {
+//    repository[second_x][second_y] = repository[second_x][second_y][repository[first_x][first_y]]
     if (is_valid_coordinates(first_x, first_y) && is_valid_coordinates(second_x, second_y) &&
         is_unit(first_x, first_y) && is_unit(second_x, second_y) &&
         repository[first_x][first_y].base != repository[second_x][second_y].base) {
-        repository[second_x][second_y].unit->defense.change(-repository[first_x][first_y].unit->attack.get_attack());
+//        repository[second_x][second_y].unit->defense.change(-repository[first_x][first_y].unit->attack.get_attack());
+        repository[second_x][second_y] = repository[second_x][second_y][repository[first_x][first_y]];
         check_for_die(second_x, second_y);
         return true;
     }

@@ -120,26 +120,25 @@ TEST_CASE("Landscape_action", "") {
     a.get_boardfield();
 }
 
-TEST_CASE("Neutral object action", "") {
+TEST_CASE("Overload attack between units", "") {
     Boardfield a(5, 5);
     Base b(6);
 
     bool result = a.add_base(b, 3, 3);
     REQUIRE(result);
 
-    result = a.add_unit(b, 0, 2, 3);
+    result = a.add_unit(b, 0, 0, 3);
+    result = a.add_unit(b, 0, 1, 3);
     REQUIRE(result);
 
     b.get_base();
     std::cout << std::endl;
     a.get_boardfield();
 
-    result = a.add_neutral_object(0, 2, 0);
-    REQUIRE(result);
+    result = a.attack(0, 0, 0, 1);
+    REQUIRE(!result);
 
     b.get_base();
     std::cout << std::endl;
     a.get_boardfield();
 }
-
-
