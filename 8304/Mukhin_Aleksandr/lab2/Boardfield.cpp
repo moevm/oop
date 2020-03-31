@@ -239,9 +239,9 @@ bool Boardfield::neutral_object_action(int x, int y) {
     }
 
     if (is_valid_coordinates(x, y) && is_unit(x, y) && is_neutral_object(x, y)) {
-        repository[x][y].unit->defense.change(repository[x][y].neutral_object->defense.get_health());
-        repository[x][y].unit->attack.change(repository[x][y].neutral_object->attack.get_attack());
-        repository[x][y].unit->intelligence += repository[x][y].neutral_object->intelligence;
+        repository[x][y].unit->defense.change(repository[x][y].neutral_object->get_health());
+        repository[x][y].unit->attack.change(repository[x][y].neutral_object->get_attack());
+        repository[x][y].unit->intelligence += repository[x][y].neutral_object->get_intelligence();
         repository[x][y].neutral_object = nullptr;
         return true;
     }

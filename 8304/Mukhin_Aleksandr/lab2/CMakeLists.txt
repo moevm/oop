@@ -87,4 +87,4 @@ add_executable(lab2
         tests/catch.hpp
         landscapes/AbstractLandscape.cpp
         landscapes/AbstractLandscape.h
-        )
+        neutralObject/AbstractNeutralObject.cpp neutralObject/AbstractNeutralObject.h)
