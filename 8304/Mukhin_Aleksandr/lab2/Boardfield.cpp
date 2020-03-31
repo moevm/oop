@@ -350,10 +350,28 @@ bool Boardfield::is_neutral_object(int x, int y) {
 
 bool Boardfield::attack(int first_x, int first_y, int second_x, int second_y) {
     if (is_valid_coordinates(first_x, first_y) && is_valid_coordinates(second_x, second_y) &&
-        is_unit(first_x, first_y) && is_unit(second_x, second_y)) {
+        is_unit(first_x, first_y) && is_unit(second_x, second_y) &&
+        repository[first_x][first_y].base != repository[second_x][second_y].base) {
         repository[second_x][second_y].unit->defense.change(-repository[first_x][first_y].unit->attack.get_attack());
         check_for_die(second_x, second_y);
         return true;
+    }
+    return false;
+}
+
+bool Boardfield::add_units(Base& to_base, int count, int key) {
+    if (to_base.max_size - to_base.current_size >= count) {
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < width; j++) {
+                if (is_free_coordinates(i, j)) {
+                    add_unit(to_base, i, j, key);
+                    count--;
+                }
+                if (count == 0) {
+                    return true;
+                }
+            }
+        }
     }
     return false;
 }

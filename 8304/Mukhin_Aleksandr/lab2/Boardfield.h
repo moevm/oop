@@ -28,6 +28,7 @@ public:
     Boardfield(int, int);
     Boardfield(const Boardfield& old_obj);
     bool add_unit(Base&, int, int, int);
+    bool add_units(Base&, int, int);
     bool add_base(Base&, int, int);
     bool add_landscapes();
     bool attack(int, int, int, int);
