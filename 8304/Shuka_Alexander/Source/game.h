@@ -15,6 +15,8 @@
 #include "Logger/unitlogmsg.h"
 #include "Logger/playerlogmsg.h"
 
+#include "Snapshot/snapshot.h"
+
 
 enum class COMMAND : int
 {
@@ -24,12 +26,16 @@ enum class COMMAND : int
     CRT_STANDING,
     ATTACK,
     DEFFEND,
-    EXIT
+    EXIT,
+    SAVE,
+    LOAD
 };
 
 
 class Game
 {
+    friend Snapshot;
+
 public:
     explicit Game();
     void run();
@@ -40,7 +46,7 @@ private:
     void draw() const;
     void farmEnemy();
     void farmPlayer();
-    void logic(COMMAND command = COMMAND::NO_COMMAND);
+    bool logic(COMMAND command = COMMAND::NO_COMMAND);
     void enemyLogic();
     COMMAND input();
 

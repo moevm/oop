@@ -19,7 +19,12 @@ void Game::run()
     isRun = true;
     while (isRun) {
         auto command = input();
-        logic(command);
+        auto flag = logic(command);
+
+        if (!flag) {
+            break;
+        }
+
         enemyLogic();
 
         if (playerBase->getHealthPoints() <= 0) {
@@ -102,9 +107,6 @@ void Game::init()
     logger->writeToLog(PlayerLogMsg::attack(PLAYER::TWO));
     logger->writeToLog(PlayerLogMsg::deffend(PLAYER::ONE));
 
-    playerUnits->insert(playerBase);
-    enemyUnits->insert(enemyBase);
-
     playerFacade = std::make_shared<Facade>(mediator, playerBase, playerUnits,
                                             enemyBase, field, logger);
     enemyFacade = std::make_shared<Facade>(mediator, enemyBase, enemyUnits,
@@ -172,9 +174,10 @@ void Game::draw() const
 
     res += "\nGold: " + std::to_string(playerGold) + "\n";
     res += "Base HP: " + std::to_string(playerBase->getHealthPoints()) + "\n";
+    res += "enemy Base HP: " + std::to_string(enemyBase->getHealthPoints()) + "\n";
 
     res += "q - quit, 1 - standing, 2 - ground, 3 - flying\n"
-           "a - attack, d - defense\n";
+           "a - attack, d - defense\n9 - save\n0 - load\n";
     system("cls");
     std::cout << res;
 }
@@ -182,6 +185,7 @@ void Game::draw() const
 
 void Game::farmEnemy()
 {
+    enemyGold += enemyBase->farm();
     for (auto i : *enemyUnits) {
         enemyGold += i->farm();
     }
@@ -190,17 +194,26 @@ void Game::farmEnemy()
 
 void Game::farmPlayer()
 {
+    playerGold += playerBase->farm();
     for (auto i : *playerUnits) {
         playerGold += i->farm();
     }
 }
 
 
-void Game::logic(COMMAND command)
+bool Game::logic(COMMAND command)
 {
     farmPlayer();
 
     switch (command) {
+    case COMMAND::SAVE:
+        Snapshot::save(*this);
+        break;
+    case COMMAND::LOAD:
+        std::cout << "LOADED!\n";
+        Sleep(1000);
+        Snapshot::load(*this);
+        break;
     case COMMAND::ATTACK:
         logger->writeToLog(PlayerLogMsg::attack(PLAYER::ONE));
         isPlayerAttack = true;
@@ -245,7 +258,7 @@ void Game::logic(COMMAND command)
     case COMMAND::EXIT:
         logger->writeToLog("GAME OVER");
         isRun = false;
-        break;
+        return false;
     default:
         break;
     }
@@ -256,6 +269,8 @@ void Game::logic(COMMAND command)
     else {
         playerFacade->deffend();
     }
+
+    return true;
 }
 
 
@@ -324,6 +339,10 @@ COMMAND Game::input()
             return COMMAND::CRT_FLYING;
         case 'q':
             return COMMAND::EXIT;
+        case '9':
+            return COMMAND::SAVE;
+        case '0':
+            return  COMMAND::LOAD;
         }
     }
     return COMMAND::NO_COMMAND;

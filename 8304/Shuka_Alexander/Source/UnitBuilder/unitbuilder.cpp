@@ -47,11 +47,20 @@ void UnitBuilder::setPosition(const Point2D& point)
 }
 
 
+void UnitBuilder::setHealthPoints(double healthPoints)
+{
+    this->healthPoints = healthPoints;
+}
+
+
 std::shared_ptr<Unit> UnitBuilder::getUnit()
 {
     std::shared_ptr<Unit> unit = unitFactory->createUnit(point, mediator);
     unit->setArmor(armorFactory->createArmor());
     unit->setWeapon(weaponFactory->createWeapon());
+    if (this->healthPoints != __DBL_MIN__) {
+        unit->healthPoints = this->healthPoints;
+    }
 
     return unit;
 }
