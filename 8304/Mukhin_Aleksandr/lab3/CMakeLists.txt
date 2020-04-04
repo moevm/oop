@@ -17,13 +17,14 @@ include_directories(
         creators/governmentCreator
         neutralObject
         tests
+        commands
 )
 add_executable(lab2
-        tests/test.cpp
-        tests/catch.hpp
+#        tests/test.cpp
+#        tests/catch.hpp
         creators/Creator.h
         creators/Creator.cpp
-        #        main.cpp
+                main.cpp
         Base.cpp
         Base.h
         Boardfield.cpp
@@ -85,7 +86,5 @@ add_executable(lab2
         neutralObject/Serum.h
         neutralObject/SuperNeutralObject.cpp
         neutralObject/SuperNeutralObject.h
-        tests/catch.hpp
-        landscapes/AbstractLandscape.cpp
-        landscapes/AbstractLandscape.h
-        neutralObject/AbstractNeutralObject.cpp neutralObject/AbstractNeutralObject.h BaseComponent.cpp BaseComponent.h mediators/BaseMediator.cpp mediators/BaseMediator.h mediators/Mediator.cpp mediators/Mediator.h)
+#        tests/catch.hpp
+        BaseComponent.cpp BaseComponent.h mediators/BaseMediator.h mediators/Mediator.cpp mediators/Mediator.h commands/Command.cpp commands/Command.h commands/UnaryInteractionCommand.cpp commands/UnaryInteractionCommand.h commands/Invoker.cpp commands/Invoker.h commands/BinaryInteractionCommand.cpp commands/BinaryInteractionCommand.h Facade.cpp Facade.h)

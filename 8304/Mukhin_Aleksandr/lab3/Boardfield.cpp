@@ -1,17 +1,22 @@
-#include <Mountains.h>
-#include <Champaign.h>
-#include "AirborneCreator.h"
 #include "SpecialForcesCreator.h"
 #include "DoctorCreator.h"
-#include "Boardfield.h"
-#include "EngineerCreator.h"
-#include "AmbassadorCreator.h"
 #include "MinistryCreator.h"
-#include <FireExtinguisher.h>
-#include <Sword.h>
-#include <Serum.h>
-#include <SuperNeutralObject.h>
-#include <Mediator.h>
+#include "EngineerCreator.h"
+#include "AirborneCreator.h"
+#include "MilitaryCreator.h"
+#include "AmbassadorCreator.h"
+#include "Boardfield.h"
+#include "Landscape.h"
+#include "Cell.h"
+#include "Invoker.h"
+#include "UnaryInteractionCommand.h"
+#include "BinaryInteractionCommand.h"
+#include "Mountains.h"
+#include "Champaign.h"
+#include "FireExtinguisher.h"
+#include "Sword.h"
+#include "Serum.h"
+#include "SuperNeutralObject.h"
 
 Boardfield::Boardfield(int length, int width) {
     this->length = length;
@@ -22,7 +27,6 @@ Boardfield::Boardfield(int length, int width) {
         repository[i] = std::vector<Cell>(width);
     }
 }
-
 
 std::shared_ptr<Unit> Boardfield::get_unit(int key) {
     if (is_free_space()) {
@@ -59,7 +63,6 @@ std::shared_ptr<Unit> Boardfield::get_unit(int key) {
     }
     return nullptr;
 }
-
 
 bool Boardfield::add_unit(Base& to_base, int x, int y, int key) {
     if (to_base.max_size > to_base.current_size && is_valid_coordinates(x, y) && is_free_coordinates(x, y)) {
@@ -102,18 +105,15 @@ bool Boardfield::add_unit(Base& to_base, int x, int y, int key) {
 
         if (is_landscape(x, y)) {
             landscape_action(x, y);
-            check_for_die(x, y);
         }
 
         if (is_neutral_object(x, y)) {
             neutral_object_action(x, y);
-            check_for_die(x, y);
         }
         return true;
     }
     return false;
 }
-
 
 bool Boardfield::add_base(Base& to_base, int x, int y) {
     if (is_valid_coordinates(x, y) && is_free_coordinates(x, y)) {
@@ -127,11 +127,10 @@ bool Boardfield::add_base(Base& to_base, int x, int y) {
     return false;
 }
 
-
 void Boardfield::get_boardfield() {
     for (int i = 0; i < length; i++) {
         for (int j = 0; j < width; j++) {
-            if (repository[i][j].unit != nullptr) {
+            if (repository[i][j].is_unit()) {
                 std::cout << repository[i][j].unit->unit_symbol;
             }
             std::cout << repository[i][j].base_symbol << repository[i][j].landscape_symbol << repository[i][j].neutral_object_symbol << "     ";
@@ -140,7 +139,6 @@ void Boardfield::get_boardfield() {
     }
     std::cout << std::endl;
 }
-
 
 bool Boardfield::delete_unit(int x, int y) {
     if (is_valid_coordinates(x, y) && !is_free_coordinates(x, y)) {
@@ -161,7 +159,6 @@ bool Boardfield::delete_unit(int x, int y) {
     return false;
 }
 
-
 Boardfield::Boardfield(const Boardfield &old_obj) {
     length = old_obj.length;
     width = old_obj.width;
@@ -176,13 +173,11 @@ Boardfield::Boardfield(const Boardfield &old_obj) {
     }
 }
 
-
 void Boardfield::check_for_die(int x, int y) {
-    if (is_valid_coordinates(x, y) && is_unit(x, y) && repository[x][y].unit->defense.get_health() <= 0) {
+    if (is_valid_coordinates(x, y) && is_unit(x, y) && repository[x][y].unit->get_health() <= 0) {
         delete_unit(x, y);
     }
 }
-
 
 bool Boardfield::move_unit(int old_x, int old_y, int dest_x, int dest_y) {
     if (is_valid_coordinates(old_x, old_y) && is_valid_coordinates(dest_x, dest_y)
@@ -205,11 +200,9 @@ bool Boardfield::move_unit(int old_x, int old_y, int dest_x, int dest_y) {
 
                 if (is_landscape(dest_x, dest_y)) {
                     landscape_action(dest_x, dest_y);
-                    check_for_die(dest_x, dest_y);
                 }
                 if (is_neutral_object(dest_x, dest_y)) {
                     neutral_object_action(dest_x, dest_y);
-                    check_for_die(dest_x, dest_y);
                 }
                 repository[old_x][old_y].base = nullptr;
                 return true;
@@ -221,45 +214,44 @@ bool Boardfield::move_unit(int old_x, int old_y, int dest_x, int dest_y) {
     return false;
 }
 
-
 bool Boardfield::landscape_action(int x, int y) {
     if (is_valid_coordinates(x, y) && !is_free_coordinates(x, y) && is_unit(x, y) && is_landscape(x, y)) {
-//        repository[x][y].unit->defense.change(repository[x][y].landscape->defense.get_health());
-        repository[x][y].unit->defense.change(repository[x][y].landscape->get_health());
-        repository[x][y].unit->attack.change(repository[x][y].landscape->attack.get_attack());
-        repository[x][y].unit->intelligence += repository[x][y].landscape->intelligence;
+        auto invoker = new Invoker();
+        invoker->set_command(std::make_shared<UnaryInteractionCommand>("landscape action", repository[x][y]));
+        invoker->execute();
+
+        delete invoker;
+        check_for_die(x, y);
         return true;
     }
     return false;
 }
-
 
 bool Boardfield::neutral_object_action(int x, int y) {
     if (is_valid_coordinates(x, y) && is_unit(x, y) && is_neutral_object(x, y)) {
-//        repository[x][y] = repository[x][y][repository[x][y].neutral_object];
-//        repository[x][y].neutral_object = nullptr;
-        Mediator* mediator = new Mediator(repository[x][y].unit, repository[x][y].neutral_object);
-        repository[x][y].neutral_object->interaction();
+
+        auto invoker = new Invoker();
+        invoker->set_command(std::make_shared<UnaryInteractionCommand>("neutral object action", repository[x][y]));
+        invoker->execute();
+
+        delete invoker;
+        check_for_die(x, y);
         return true;
     }
     return false;
 }
 
-
 bool Boardfield::is_base(int x, int y) {
-    return repository[x][y].unit == nullptr && repository[x][y].base != nullptr;
+    return !repository[x][y].is_unit() && repository[x][y].is_base();
 }
-
 
 bool Boardfield::is_unit(int x, int y) {
-    return repository[x][y].unit != nullptr;
+    return repository[x][y].is_unit();
 }
-
 
 bool Boardfield::is_free_coordinates(int x, int y) {
     return repository[x][y].unit == nullptr && repository[x][y].base == nullptr;
 }
-
 
 bool Boardfield::is_valid_coordinates(int x, int y) {
     return x < length && x > -1 && y < width && y > -1;
@@ -298,7 +290,7 @@ bool Boardfield::add_landscapes() {
 }
 
 bool Boardfield::is_landscape(int x, int y) {
-    return repository[x][y].landscape != nullptr;
+    return repository[x][y].is_landscape();
 }
 
 bool Boardfield::is_free_space() {
@@ -334,7 +326,6 @@ bool Boardfield::add_neutral_object(int x, int y, int key) {
         repository[x][y].neutral_object_symbol = tmp_image;
         if (is_unit(x, y)) {
             neutral_object_action(x, y);
-            check_for_die(x, y);
         }
         return true;
     }
@@ -342,15 +333,18 @@ bool Boardfield::add_neutral_object(int x, int y, int key) {
 }
 
 bool Boardfield::is_neutral_object(int x, int y) {
-    return repository[x][y].neutral_object != nullptr;
+    return repository[x][y].is_neutral_object();
 }
 
-bool Boardfield::attack(int first_x, int first_y, int second_x, int second_y) {
+bool Boardfield::attack(int first_x, int first_y, int second_x, int second_y, std::string command) {
     if (is_valid_coordinates(first_x, first_y) && is_valid_coordinates(second_x, second_y) &&
-        is_unit(first_x, first_y) && is_unit(second_x, second_y) &&
-        repository[first_x][first_y].base != repository[second_x][second_y].base) {
-        repository[second_x][second_y] = repository[second_x][second_y][repository[first_x][first_y]];
+        (is_unit(first_x, first_y) || is_base(first_x, first_y)) && (is_unit(second_x, second_y) || is_base(second_x, second_y))) {
+
+        std::shared_ptr<Invoker> invoker = std::make_shared<Invoker>();
+        invoker->set_command(std::make_shared<BinaryInteractionCommand>(command, repository[first_x][first_y], repository[second_x][second_y]));
+        invoker->execute();
         check_for_die(second_x, second_y);
+
         return true;
     }
     return false;
@@ -398,7 +392,6 @@ bool Boardfield::add_landscape(int x, int y, int key) {
         repository[x][y].landscape_symbol = tmp_image;
         if (is_unit(x, y)) {
             landscape_action(x, y);
-            check_for_die(x, y);
         }
         return true;
     }

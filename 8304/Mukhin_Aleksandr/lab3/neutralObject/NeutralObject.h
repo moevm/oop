@@ -4,19 +4,13 @@
 
 #include <HealthPoints.h>
 #include <Attack.h>
-#include "AbstractNeutralObject.h"
+#include "BaseComponent.h"
 
-class NeutralObject : public AbstractNeutralObject {
+class NeutralObject : public BaseComponent {
 public:
-    NeutralObject(int def, int att, int intell) : defense(def), attack(att), intelligence(intell) {}
-    HealthPoints defense;
-    Attack attack;
-    int intelligence{};
+    NeutralObject(int def, int att, int intell) : BaseComponent(def, att, intell) {}
 
-    int get_health() const override;
-    int get_attack() const override;
     void interaction() const override;
-    int get_intelligence() const override;
 };
 
 

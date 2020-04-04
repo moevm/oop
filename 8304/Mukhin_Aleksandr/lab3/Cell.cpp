@@ -1,10 +1,10 @@
 #include "Cell.h"
 
 std::ostream& operator<<(std::ostream &os, Cell& cell) {
-    if (cell.unit->x != -1) {
-        os << "♘(" << cell.unit->defense.get_health() << ", " << cell.unit->attack.get_attack() << ", " << cell.unit->intelligence << ")";
-    } else if (cell.base != nullptr && cell.base->x != -1) {
-        os << "❆(" << cell.base->defense.get_health() << ", " << cell.base->attack.get_attack() << ", " << cell.base->current_size << ")";
+    if (cell.is_unit()) {
+        os << "♘(" << cell.unit->get_health() << ", " << cell.unit->get_attack() << ", " << cell.unit->get_intelligence() << ")";
+    } else if (cell.is_base()) {
+        os << "❆(" << cell.base->get_health() << ", " << cell.base->get_attack() << ", " << cell.base->current_size << ")";
     }
     if (cell.landscape != nullptr) {
         os << "♨";
@@ -15,15 +15,18 @@ std::ostream& operator<<(std::ostream &os, Cell& cell) {
     return os;
 }
 
-
-Cell& Cell::operator[](const std::shared_ptr<NeutralObject> object) {
-    unit->defense.change(object->defense.get_health());
-    unit->attack.change(object->attack.get_attack());
-    unit->intelligence += object->intelligence;
-    return *this;
+bool Cell::is_landscape() {
+    return landscape != nullptr;
 }
 
-Cell &Cell::operator[](Cell& second_object) {
-    unit->defense.change(-second_object.unit->attack.get_attack());
-    return *this;
+bool Cell::is_neutral_object() {
+    return neutral_object != nullptr;
+}
+
+bool Cell::is_unit() {
+    return unit != nullptr;
+}
+
+bool Cell::is_base() {
+    return base != nullptr;
 }

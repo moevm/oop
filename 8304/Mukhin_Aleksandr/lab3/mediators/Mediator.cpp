@@ -1,8 +1,14 @@
 #include "Mediator.h"
 
 void Mediator::make_action() const {
-    std::cout << "Neutral object is interaction with unit." << std::endl;
-    unit->defense.change(neutral_object->get_health());
-    unit->attack.change(neutral_object->get_attack());
-    unit->intelligence += neutral_object->get_intelligence();
+    std::cout << "Interaction!" << std::endl;
+    if (command == "unit action") {
+        elem2->change_health(-elem1->get_attack());
+    } else if (command == "base action") {
+        elem2->change_health(-base->get_attack());
+    } else {
+        elem1->change_health(elem2->get_health());
+        elem1->change_attack(elem2->get_attack());
+        elem1->change_intelligence(elem2->get_intelligence());
+    }
 }

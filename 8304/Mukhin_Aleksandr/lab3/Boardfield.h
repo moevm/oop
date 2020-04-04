@@ -1,11 +1,10 @@
 #ifndef LAB2_BOARDFIELD_H
 #define LAB2_BOARDFIELD_H
 
-#include <memory>
+#include <vector>
+#include "Base.h"
 #include "Cell.h"
-#include "vector"
 
-class Cell;
 class Boardfield {
     int length = 0;
     int width = 0;
@@ -27,13 +26,15 @@ class Boardfield {
 public:
     Boardfield(int, int);
     Boardfield(const Boardfield& old_obj);
+
+    bool add_base(Base&, int, int);
     bool add_unit(Base&, int, int, int);
     bool add_units(Base&, int, int);
-    bool add_base(Base&, int, int);
     bool add_landscapes();
     bool add_landscape(int, int, int);
-    bool attack(int, int, int, int);
     bool add_neutral_object(int, int, int);
+
+    bool attack(int, int, int, int, std::string);
     void get_boardfield();
     bool delete_unit(int, int);
     bool move_unit(int, int, int, int);

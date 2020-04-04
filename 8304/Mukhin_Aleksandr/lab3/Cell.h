@@ -27,6 +27,10 @@ public:
     friend std::ostream& operator<<(std::ostream&, Cell&);
     Cell& operator[] (std::shared_ptr<NeutralObject>);
     Cell& operator[] (Cell&);
+    bool is_landscape();
+    bool is_neutral_object();
+    bool is_unit();
+    bool is_base();
 };
 
 
