@@ -3,10 +3,13 @@
 //
 
 #include "Druid.h"
+#include "../Armor/Hoodie.h"
+#include "../Weapon/MagicStaff.h"
 
 Druid::Druid(){
     health = 60;
-    damage = 20;
+    armor = Hoodie();
+    weapon = MagicStaff();
     mana = 60;
 }
 

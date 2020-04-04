@@ -3,11 +3,14 @@
 //
 
 #include "Squire.h"
+#include "../Armor/ChainMail.h"
+#include "../Weapon/Dagger.h"
 
 Squire::Squire() {
     health = 100;
-    damage = 20;
-    armor = 5;
+    armor = ChainMail();
+    weapon = Dagger();
+    stamina = 20;
 }
 
 Texture Squire::texture() const{

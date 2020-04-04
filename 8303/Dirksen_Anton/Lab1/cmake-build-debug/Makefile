@@ -204,33 +204,6 @@ Point.cpp.s:
 	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Point.cpp.s
 .PHONY : Point.cpp.s
 
-Units/Archers/Archer.o: Units/Archers/Archer.cpp.o
-
-.PHONY : Units/Archers/Archer.o
-
-# target to build an object file
-Units/Archers/Archer.cpp.o:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o
-.PHONY : Units/Archers/Archer.cpp.o
-
-Units/Archers/Archer.i: Units/Archers/Archer.cpp.i
-
-.PHONY : Units/Archers/Archer.i
-
-# target to preprocess a source file
-Units/Archers/Archer.cpp.i:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.i
-.PHONY : Units/Archers/Archer.cpp.i
-
-Units/Archers/Archer.s: Units/Archers/Archer.cpp.s
-
-.PHONY : Units/Archers/Archer.s
-
-# target to generate assembly for a file
-Units/Archers/Archer.cpp.s:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.s
-.PHONY : Units/Archers/Archer.cpp.s
-
 Units/Archers/Bowman.o: Units/Archers/Bowman.cpp.o
 
 .PHONY : Units/Archers/Bowman.o
@@ -339,33 +312,6 @@ Units/Swordsmen/Squire.cpp.s:
 	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.s
 .PHONY : Units/Swordsmen/Squire.cpp.s
 
-Units/Swordsmen/Swordsman.o: Units/Swordsmen/Swordsman.cpp.o
-
-.PHONY : Units/Swordsmen/Swordsman.o
-
-# target to build an object file
-Units/Swordsmen/Swordsman.cpp.o:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o
-.PHONY : Units/Swordsmen/Swordsman.cpp.o
-
-Units/Swordsmen/Swordsman.i: Units/Swordsmen/Swordsman.cpp.i
-
-.PHONY : Units/Swordsmen/Swordsman.i
-
-# target to preprocess a source file
-Units/Swordsmen/Swordsman.cpp.i:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.i
-.PHONY : Units/Swordsmen/Swordsman.cpp.i
-
-Units/Swordsmen/Swordsman.s: Units/Swordsmen/Swordsman.cpp.s
-
-.PHONY : Units/Swordsmen/Swordsman.s
-
-# target to generate assembly for a file
-Units/Swordsmen/Swordsman.cpp.s:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.s
-.PHONY : Units/Swordsmen/Swordsman.cpp.s
-
 Units/Unit.o: Units/Unit.cpp.o
 
 .PHONY : Units/Unit.o
@@ -447,33 +393,6 @@ Units/Wizards/Druid.cpp.s:
 	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.s
 .PHONY : Units/Wizards/Druid.cpp.s
 
-Units/Wizards/Wizard.o: Units/Wizards/Wizard.cpp.o
-
-.PHONY : Units/Wizards/Wizard.o
-
-# target to build an object file
-Units/Wizards/Wizard.cpp.o:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o
-.PHONY : Units/Wizards/Wizard.cpp.o
-
-Units/Wizards/Wizard.i: Units/Wizards/Wizard.cpp.i
-
-.PHONY : Units/Wizards/Wizard.i
-
-# target to preprocess a source file
-Units/Wizards/Wizard.cpp.i:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.i
-.PHONY : Units/Wizards/Wizard.cpp.i
-
-Units/Wizards/Wizard.s: Units/Wizards/Wizard.cpp.s
-
-.PHONY : Units/Wizards/Wizard.s
-
-# target to generate assembly for a file
-Units/Wizards/Wizard.cpp.s:
-	$(MAKE) -f CMakeFiles/oop_labs.dir/build.make CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.s
-.PHONY : Units/Wizards/Wizard.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -519,9 +438,6 @@ help:
 	@echo "... Point.o"
 	@echo "... Point.i"
 	@echo "... Point.s"
-	@echo "... Units/Archers/Archer.o"
-	@echo "... Units/Archers/Archer.i"
-	@echo "... Units/Archers/Archer.s"
 	@echo "... Units/Archers/Bowman.o"
 	@echo "... Units/Archers/Bowman.i"
 	@echo "... Units/Archers/Bowman.s"
@@ -534,9 +450,6 @@ help:
 	@echo "... Units/Swordsmen/Squire.o"
 	@echo "... Units/Swordsmen/Squire.i"
 	@echo "... Units/Swordsmen/Squire.s"
-	@echo "... Units/Swordsmen/Swordsman.o"
-	@echo "... Units/Swordsmen/Swordsman.i"
-	@echo "... Units/Swordsmen/Swordsman.s"
 	@echo "... Units/Unit.o"
 	@echo "... Units/Unit.i"
 	@echo "... Units/Unit.s"
@@ -546,9 +459,6 @@ help:
 	@echo "... Units/Wizards/Druid.o"
 	@echo "... Units/Wizards/Druid.i"
 	@echo "... Units/Wizards/Druid.s"
-	@echo "... Units/Wizards/Wizard.o"
-	@echo "... Units/Wizards/Wizard.i"
-	@echo "... Units/Wizards/Wizard.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

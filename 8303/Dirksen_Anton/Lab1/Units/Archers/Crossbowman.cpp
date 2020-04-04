@@ -3,11 +3,14 @@
 //
 
 #include "Crossbowman.h"
+#include "../Armor/ChainMail.h"
+#include "../Weapon/Crossbow.h"
 
 
 Crossbowman::Crossbowman(){
     health = 60;
-    damage = 20;
+    armor = ChainMail();
+    weapon = Crossbow();
     range = 8;
 }
 

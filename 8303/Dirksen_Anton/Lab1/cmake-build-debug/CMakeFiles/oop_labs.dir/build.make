@@ -122,22 +122,9 @@ CMakeFiles/oop_labs.dir/Units/Unit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_labs.dir/Units/Unit.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Unit.cpp -o CMakeFiles/oop_labs.dir/Units/Unit.cpp.s
 
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: CMakeFiles/oop_labs.dir/flags.make
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Units/Archers/Archer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.cpp
-
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.cpp > CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.i
-
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.cpp -o CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.s
-
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: CMakeFiles/oop_labs.dir/flags.make
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Archers/Bowman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Bowman.cpp
 
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.i: cmake_force
@@ -150,7 +137,7 @@ CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.s: cmake_force
 
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: CMakeFiles/oop_labs.dir/flags.make
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Archers/Crossbowman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Crossbowman.cpp
 
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.i: cmake_force
@@ -161,22 +148,9 @@ CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Crossbowman.cpp -o CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.s
 
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: CMakeFiles/oop_labs.dir/flags.make
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Units/Swordsmen/Swordsman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Swordsman.cpp
-
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Swordsman.cpp > CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.i
-
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Swordsman.cpp -o CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.s
-
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: CMakeFiles/oop_labs.dir/flags.make
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Swordsmen/Knight.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Knight.cpp
 
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.i: cmake_force
@@ -189,7 +163,7 @@ CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.s: cmake_force
 
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: CMakeFiles/oop_labs.dir/flags.make
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Swordsmen/Squire.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Squire.cpp
 
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.i: cmake_force
@@ -200,22 +174,9 @@ CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Squire.cpp -o CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.s
 
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: CMakeFiles/oop_labs.dir/flags.make
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Units/Wizards/Wizard.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Wizard.cpp
-
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Wizard.cpp > CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.i
-
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Wizard.cpp -o CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.s
-
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: CMakeFiles/oop_labs.dir/flags.make
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Wizards/Druid.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Druid.cpp
 
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.i: cmake_force
@@ -228,7 +189,7 @@ CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.s: cmake_force
 
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: CMakeFiles/oop_labs.dir/flags.make
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Wizards/Archmage.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o -c /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Archmage.cpp
 
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.i: cmake_force
@@ -246,13 +207,10 @@ oop_labs_OBJECTS = \
 "CMakeFiles/oop_labs.dir/Object.cpp.o" \
 "CMakeFiles/oop_labs.dir/Point.cpp.o" \
 "CMakeFiles/oop_labs.dir/Units/Unit.cpp.o" \
-"CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o" \
 "CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o" \
 "CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o" \
-"CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o" \
 "CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o" \
 "CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o" \
-"CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o" \
 "CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o" \
 "CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o"
 
@@ -264,13 +222,10 @@ oop_labs: CMakeFiles/oop_labs.dir/Field/Field.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Object.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Point.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Units/Unit.cpp.o
-oop_labs: CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o
-oop_labs: CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o
-oop_labs: CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o
 oop_labs: CMakeFiles/oop_labs.dir/build.make
@@ -278,7 +233,7 @@ oop_labs: /home/mensch/SFML-2.5.1/lib/libsfml-graphics.so.2.5.1
 oop_labs: /home/mensch/SFML-2.5.1/lib/libsfml-window.so.2.5.1
 oop_labs: /home/mensch/SFML-2.5.1/lib/libsfml-system.so.2.5.1
 oop_labs: CMakeFiles/oop_labs.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable oop_labs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable oop_labs"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/oop_labs.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

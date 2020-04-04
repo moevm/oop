@@ -112,9 +112,6 @@
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Point.h">
 			<Option target="oop_labs"/>
 		</Unit>
-		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.cpp">
-			<Option target="oop_labs"/>
-		</Unit>
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.h">
 			<Option target="oop_labs"/>
 		</Unit>
@@ -128,6 +125,24 @@
 			<Option target="oop_labs"/>
 		</Unit>
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Crossbowman.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Armor.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/ChainMail.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Cloak.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Cuirass.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Hoodie.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/LeatherArmor.h">
 			<Option target="oop_labs"/>
 		</Unit>
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Factories/ArcherFactory.h">
@@ -154,9 +169,6 @@
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Squire.h">
 			<Option target="oop_labs"/>
 		</Unit>
-		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Swordsman.cpp">
-			<Option target="oop_labs"/>
-		</Unit>
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Swordsman.h">
 			<Option target="oop_labs"/>
 		</Unit>
@@ -164,6 +176,27 @@
 			<Option target="oop_labs"/>
 		</Unit>
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Unit.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Bow.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Crossbow.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Dagger.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/LongSword.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/MagicStaff.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/SpellBook.h">
+			<Option target="oop_labs"/>
+		</Unit>
+		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h">
 			<Option target="oop_labs"/>
 		</Unit>
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Archmage.cpp">
@@ -176,9 +209,6 @@
 			<Option target="oop_labs"/>
 		</Unit>
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Druid.h">
-			<Option target="oop_labs"/>
-		</Unit>
-		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Wizard.cpp">
 			<Option target="oop_labs"/>
 		</Unit>
 		<Unit filename="/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Wizard.h">

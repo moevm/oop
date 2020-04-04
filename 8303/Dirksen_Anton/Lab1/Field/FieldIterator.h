@@ -19,8 +19,7 @@ private:
     int height, width;
 
 private:
-    FieldIterator(const Point& coordinates, Cell** field, int height, int width)
-    {
+    FieldIterator(const Point& coordinates, Cell** field, int height, int width) {
         this->coordinates = coordinates;
         this->field = field;
         this->height = height;
@@ -28,41 +27,35 @@ private:
     }
 
 public:
-    FieldIterator(const FieldIterator& it)
-    {
+    FieldIterator(const FieldIterator& it) {
         coordinates = it.coordinates;
         field = it.field;
         height = it.height;
         width = it.width;
     }
 
-    bool operator!=( const FieldIterator& other) const
-    {
+    bool operator!=( const FieldIterator& other) const {
         return coordinates != other.coordinates;
     }
 
-    bool operator==(const FieldIterator& other) const
-    {
+    bool operator==(const FieldIterator& other) const {
         return coordinates == other.coordinates;
     }
 
 
-    reference operator*()const
-    {
+    reference operator*() const {
         return field[coordinates.y][coordinates.x];
     }
 
 
-    FieldIterator& operator++()
-    {
+    FieldIterator& operator++() {
         Point next = coordinates;
         next.x++;
 
         if (next.x < width) {
             coordinates = next;
             return *this;
-        } else{
-
+        } else {
             next.x = 0;
             next.y++;
 

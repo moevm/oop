@@ -9,7 +9,8 @@
 #include "../Point.h"
 #include "../Object.h"
 #include "../Field/Field.h"
-
+#include "./Armor/Armor.h"
+#include "./Weapon/Weapon.h"
 
 class Unit : public Object{
 
@@ -20,7 +21,8 @@ public:
 
 protected:
     int health;
-    int damage;
+    Armor armor;
+    Weapon weapon;
 };
 
 

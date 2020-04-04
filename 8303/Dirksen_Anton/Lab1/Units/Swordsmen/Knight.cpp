@@ -3,11 +3,14 @@
 //
 
 #include "Knight.h"
+#include "../Armor/Cuirass.h"
+#include "../Weapon/LongSword.h"
 
 Knight::Knight() {
     health = 150;
-    damage = 30;
-    armor = 10;
+    armor = Cuirass();
+    weapon = LongSword();
+    stamina = 10;
 }
 
 Texture Knight::texture() const{

@@ -3,10 +3,13 @@
 //
 
 #include "Archmage.h"
+#include "../Armor/Cloak.h"
+#include "../Weapon/SpellBook.h"
 
 Archmage::Archmage(){
     health = 70;
-    damage = 40;
+    armor = Cloak();
+    weapon = SpellBook();
     mana = 100;
 }
 

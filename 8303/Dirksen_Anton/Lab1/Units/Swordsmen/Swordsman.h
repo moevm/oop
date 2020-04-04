@@ -11,7 +11,7 @@
 class Swordsman : public Unit{
 
 protected:
-    int armor;
+    int stamina;
 };
 
 

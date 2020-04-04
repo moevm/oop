@@ -3,10 +3,13 @@
 //
 
 #include "Bowman.h"
+#include "../Armor/LeatherArmor.h"
+#include "../Weapon/Bow.h"
 
 Bowman::Bowman(){
     health = 70;
-    damage = 10;
+    armor = LeatherArmor();
+    weapon = Bow();
     range = 5;
 }
 
