@@ -26,7 +26,7 @@ Field::~Field() {
 }
 
 
-bool Field::addObject(Point point, Object* object) {
+bool Field::addObject(Point &point, Object* object) {
     return addObject(point.x, point.y, object);
 }
 
@@ -47,7 +47,7 @@ bool Field::addObject(int x, int y, Object* object) {
     return false;
 }
 
-bool Field::deleteObject(Point point) {
+bool Field::deleteObject(Point &point) {
     return deleteObject(point.x, point.y);
 }
 
@@ -66,7 +66,7 @@ bool Field::deleteObject(int x, int y) {
 }
 
 bool Field::deleteObject(Object* object) {
-    return deleteObject(object->get_coords().x, object->get_coords().y);
+    return deleteObject(object->getCoords().x, object->getCoords().y);
 }
 
 
@@ -116,10 +116,11 @@ Field& Field::operator=(Field&& field) {
 
 bool Field::moveObject(Object * object, int x, int y) {
     if (object != nullptr && object->type()==UNIT){
-        if ((isFreeCell(x, y) || object->texture() == ARCHMAGE ) && abs(object->get_coords().x-x) <= 1 && abs(object->get_coords().y-y) <= 1) {
-            std::swap(cell[object->get_coords().x][object->get_coords().y].object, cell[x][y].object);
-            if (!isFreeCell(object->get_coords().x, object->get_coords().y))
-                cell[object->get_coords().x][object->get_coords().y].object->move(object->get_coords());
+        if ((isFreeCell(x, y) || object->texture() == ARCHMAGE ) && abs(object->getCoords().x - x) <= 1 && abs(
+                object->getCoords().y - y) <= 1) {
+            std::swap(cell[object->getCoords().x][object->getCoords().y].object, cell[x][y].object);
+            if (!isFreeCell(object->getCoords().x, object->getCoords().y))
+                cell[object->getCoords().x][object->getCoords().y].object->move(object->getCoords());
             object->move({x, y});
             return true;
         }

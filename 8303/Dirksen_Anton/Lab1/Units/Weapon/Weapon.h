@@ -14,6 +14,9 @@ class Weapon {
 protected:
     int damage;
     DamageType damageType;
+public:
+    Weapon() = default;
+    virtual ~Weapon() = default;
 };
 
 

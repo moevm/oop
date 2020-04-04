@@ -44,15 +44,7 @@ Object.h
 Point.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Point.h
 
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Point.cpp
-Point.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Point.h
-
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Point.h
-
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.cpp
-Archer.h
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.h
 ../Unit.h
@@ -61,6 +53,10 @@ Archer.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Bowman.cpp
 Bowman.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Bowman.h
+../Armor/LeatherArmor.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/LeatherArmor.h
+../Weapon/Bow.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Bow.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Bowman.h
 Archer.h
@@ -69,10 +65,36 @@ Archer.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Crossbowman.cpp
 Crossbowman.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Crossbowman.h
+../Armor/ChainMail.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/ChainMail.h
+../Weapon/Crossbow.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Crossbow.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Crossbowman.h
 Archer.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Archers/Archer.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Armor.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/ChainMail.h
+Armor.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Armor.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Cloak.h
+Armor.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Armor.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Cuirass.h
+Armor.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Armor.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Hoodie.h
+Armor.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Armor.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/LeatherArmor.h
+Armor.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Armor.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Factories/ArcherFactory.h
 UnitFactory.h
@@ -105,6 +127,10 @@ UnitFactory.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Knight.cpp
 Knight.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Knight.h
+../Armor/Cuirass.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Cuirass.h
+../Weapon/LongSword.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/LongSword.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Knight.h
 Swordsman.h
@@ -113,12 +139,12 @@ Swordsman.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Squire.cpp
 Squire.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Squire.h
+../Armor/ChainMail.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/ChainMail.h
+../Weapon/Dagger.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Dagger.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Squire.h
-Swordsman.h
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Swordsman.h
-
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Swordsman.cpp
 Swordsman.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Swordsmen/Swordsman.h
 
@@ -139,10 +165,44 @@ Unit.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Object.h
 ../Field/Field.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Field/Field.h
+./Armor/Armor.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Armor.h
+./Weapon/Weapon.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Bow.h
+Weapon.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Crossbow.h
+Weapon.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Dagger.h
+Weapon.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/LongSword.h
+Weapon.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/MagicStaff.h
+Weapon.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/SpellBook.h
+Weapon.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h
+
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/Weapon.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Archmage.cpp
 Archmage.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Archmage.h
+../Armor/Cloak.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Cloak.h
+../Weapon/SpellBook.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/SpellBook.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Archmage.h
 Wizard.h
@@ -151,12 +211,12 @@ Wizard.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Druid.cpp
 Druid.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Druid.h
+../Armor/Hoodie.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Armor/Hoodie.h
+../Weapon/MagicStaff.h
+/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Weapon/MagicStaff.h
 
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Druid.h
-Wizard.h
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Wizard.h
-
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Wizard.cpp
 Wizard.h
 /home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/Units/Wizards/Wizard.h
 

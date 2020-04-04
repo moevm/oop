@@ -7,7 +7,9 @@ CMakeFiles/oop_labs.dir/Field/Field.cpp.o: ../Field/Field.h
 CMakeFiles/oop_labs.dir/Field/Field.cpp.o: ../Field/FieldIterator.h
 CMakeFiles/oop_labs.dir/Field/Field.cpp.o: ../Object.h
 CMakeFiles/oop_labs.dir/Field/Field.cpp.o: ../Point.h
+CMakeFiles/oop_labs.dir/Field/Field.cpp.o: ../Units/Armor/Armor.h
 CMakeFiles/oop_labs.dir/Field/Field.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/Field/Field.cpp.o: ../Units/Weapon/Weapon.h
 
 CMakeFiles/oop_labs.dir/Object.cpp.o: ../Object.cpp
 CMakeFiles/oop_labs.dir/Object.cpp.o: ../Object.h
@@ -15,15 +17,6 @@ CMakeFiles/oop_labs.dir/Object.cpp.o: ../Point.h
 
 CMakeFiles/oop_labs.dir/Point.cpp.o: ../Point.cpp
 CMakeFiles/oop_labs.dir/Point.cpp.o: ../Point.h
-
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Field/Cell.h
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Field/Field.h
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Field/FieldIterator.h
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Object.h
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Point.h
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Units/Archers/Archer.cpp
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Units/Archers/Archer.h
-CMakeFiles/oop_labs.dir/Units/Archers/Archer.cpp.o: ../Units/Unit.h
 
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Field/Cell.h
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Field/Field.h
@@ -33,7 +26,11 @@ CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Point.h
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Archers/Archer.h
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Archers/Bowman.cpp
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Archers/Bowman.h
+CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Armor/Armor.h
+CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Armor/LeatherArmor.h
 CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Weapon/Bow.h
+CMakeFiles/oop_labs.dir/Units/Archers/Bowman.cpp.o: ../Units/Weapon/Weapon.h
 
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Field/Cell.h
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Field/Field.h
@@ -43,51 +40,60 @@ CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Point.h
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Archers/Archer.h
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Archers/Crossbowman.cpp
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Archers/Crossbowman.h
+CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Armor/Armor.h
+CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Armor/ChainMail.h
 CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Weapon/Crossbow.h
+CMakeFiles/oop_labs.dir/Units/Archers/Crossbowman.cpp.o: ../Units/Weapon/Weapon.h
 
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Field/Cell.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Field/Field.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Field/FieldIterator.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Object.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Point.h
+CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Armor/Armor.h
+CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Armor/Cuirass.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Swordsmen/Knight.cpp
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Swordsmen/Knight.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Swordsmen/Swordsman.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Weapon/LongSword.h
+CMakeFiles/oop_labs.dir/Units/Swordsmen/Knight.cpp.o: ../Units/Weapon/Weapon.h
 
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Field/Cell.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Field/Field.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Field/FieldIterator.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Object.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Point.h
+CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Armor/Armor.h
+CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Armor/ChainMail.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Swordsmen/Squire.cpp
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Swordsmen/Squire.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Swordsmen/Swordsman.h
 CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Unit.h
-
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Field/Cell.h
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Field/Field.h
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Field/FieldIterator.h
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Object.h
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Point.h
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Units/Swordsmen/Swordsman.cpp
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Units/Swordsmen/Swordsman.h
-CMakeFiles/oop_labs.dir/Units/Swordsmen/Swordsman.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Weapon/Dagger.h
+CMakeFiles/oop_labs.dir/Units/Swordsmen/Squire.cpp.o: ../Units/Weapon/Weapon.h
 
 CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Field/Cell.h
 CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Field/Field.h
 CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Field/FieldIterator.h
 CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Object.h
 CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Point.h
+CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Units/Armor/Armor.h
 CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Units/Unit.cpp
 CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/Units/Unit.cpp.o: ../Units/Weapon/Weapon.h
 
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Field/Cell.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Field/Field.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Field/FieldIterator.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Object.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Point.h
+CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Armor/Armor.h
+CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Armor/Cloak.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Weapon/SpellBook.h
+CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Weapon/Weapon.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Wizards/Archmage.cpp
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Wizards/Archmage.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Archmage.cpp.o: ../Units/Wizards/Wizard.h
@@ -97,19 +103,14 @@ CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Field/Field.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Field/FieldIterator.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Object.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Point.h
+CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Armor/Armor.h
+CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Armor/Hoodie.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Weapon/MagicStaff.h
+CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Weapon/Weapon.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Wizards/Druid.cpp
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Wizards/Druid.h
 CMakeFiles/oop_labs.dir/Units/Wizards/Druid.cpp.o: ../Units/Wizards/Wizard.h
-
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Field/Cell.h
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Field/Field.h
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Field/FieldIterator.h
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Object.h
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Point.h
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Units/Unit.h
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Units/Wizards/Wizard.cpp
-CMakeFiles/oop_labs.dir/Units/Wizards/Wizard.cpp.o: ../Units/Wizards/Wizard.h
 
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Field/Cell.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Field/Field.h
@@ -119,6 +120,7 @@ CMakeFiles/oop_labs.dir/main.cpp.o: ../Point.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Archers/Archer.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Archers/Bowman.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Archers/Crossbowman.h
+CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Armor/Armor.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Factories/ArcherFactory.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Factories/SwordsmenFactory.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Factories/UnitFactory.h
@@ -127,6 +129,7 @@ CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Swordsmen/Knight.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Swordsmen/Squire.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Swordsmen/Swordsman.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Unit.h
+CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Weapon/Weapon.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Wizards/Archmage.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Wizards/Druid.h
 CMakeFiles/oop_labs.dir/main.cpp.o: ../Units/Wizards/Wizard.h

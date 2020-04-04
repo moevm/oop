@@ -13,9 +13,9 @@ public:
     explicit Field(int height, int width);
     ~Field();
     bool addObject(int x, int y, Object* object);
-    bool addObject(Point point, Object* object);
+    bool addObject(Point &point, Object* object);
     bool deleteObject(int x, int y);
-    bool deleteObject(Point point);
+    bool deleteObject(Point& point);
     bool deleteObject(Object* object);
     bool isFreeCell(int x, int y) const;
     Field(Field const& field);

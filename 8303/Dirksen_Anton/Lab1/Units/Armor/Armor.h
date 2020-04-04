@@ -12,7 +12,9 @@ protected:
     int physicDamageReduction;
     int magicDamageReduction;
     double weight;
-
+public:
+    Armor() = default;
+    virtual ~Armor() = default;
 };
 
 

@@ -27,7 +27,7 @@ protected:
 
 public:
     virtual ~Object() = default;
-    Point get_coords() const;
+    Point getCoords() const;
     virtual ObjectType type() const;
     virtual void move(Point point) = 0;
     virtual Texture texture() const = 0;

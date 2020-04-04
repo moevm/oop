@@ -1,6 +1,6 @@
 #include "Object.h"
 
-Point Object::get_coords() const {
+Point Object::getCoords() const {
     return this->coords;
 }
 
