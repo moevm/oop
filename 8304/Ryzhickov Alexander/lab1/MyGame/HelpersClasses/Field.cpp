@@ -45,8 +45,8 @@ Field::Field(int width, int height, int maxCountUnits) : width(width), height(he
 
     //std::cout << it.operator*().numer;
    /* for (int k = 0; k < 100; ++k) {
-        std::cout << (it).operator*().numer<<"\n";
-        it.operator++();
+        std::cout << (*it).numer<<"\n";
+        ++it;
     }*/
 
     while (it!=end()){
