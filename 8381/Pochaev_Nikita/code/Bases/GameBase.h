@@ -1,14 +1,15 @@
-#ifndef OOP_GAMEBASE_H
+﻿#ifndef OOP_GAMEBASE_H
 #define OOP_GAMEBASE_H
 
 #include <cstddef>
 
-#include "GameBase.h"
-#include "../Units/ObjectFactory.h"
-#include "../Information headers/constPar.h"
-#include "../Units/CompositeUnit.h"
+#include "Units/ObjectFactory.h"
+#include "InformationHeaders/constPar.h"
+#include "InformationHeaders/unitPar.h"
+#include "Units/CompositeUnit.h"
 #include "UnitStorekeeper.h"
-#include "../Auxiliary functionality/EnumToString.h"
+#include "AuxiliaryFunctionality/EnumToString.h"
+#include "AuxiliaryFunctionality/UnitObserver.h"
 
 typedef cds::ObjectFactory<Unit, eUnitsType> UnitFabric;
 

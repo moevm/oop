@@ -1,8 +1,8 @@
-#ifndef OOP_EXAMPLES_H
+﻿#ifndef OOP_EXAMPLES_H
 #define OOP_EXAMPLES_H
 
-#include "../Landscape/Landscape.h"
-#include "../Units/ObjectFactory.h"
+#include "Landscape/Landscape.h"
+#include "Units/ObjectFactory.h"
 
 void fieldBasedTest();
 void ObserverDeathTest();

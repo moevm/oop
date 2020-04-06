@@ -1,6 +1,6 @@
-#include <stdexcept>
+﻿#include <stdexcept>
 #include "Unit.h"
-#include "../Auxiliary functionality/TextColoring.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
 
 bool Unit::isAlive() const
 {

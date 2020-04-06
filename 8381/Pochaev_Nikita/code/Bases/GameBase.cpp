@@ -1,5 +1,5 @@
-#include "GameBase.h"
-#include "../Auxiliary functionality/TextColoring.h"
+﻿#include "GameBase.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
 
 void GameBase::describeYourself()
 {

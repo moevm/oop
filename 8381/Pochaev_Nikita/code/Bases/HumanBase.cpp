@@ -1,5 +1,5 @@
-#include "HumanBase.h"
-#include "../Auxiliary functionality/TextColoring.h"
+﻿#include "HumanBase.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
 
 void HumanBase::describeYourself()
 {

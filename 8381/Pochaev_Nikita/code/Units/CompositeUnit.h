@@ -1,10 +1,10 @@
-#ifndef OOP_COMPOSITEUNIT_H
+﻿#ifndef OOP_COMPOSITEUNIT_H
 #define OOP_COMPOSITEUNIT_H
 
 #include <vector>
 #include <memory>
 #include "Unit.h"
-#include "../Information headers/constPar.h"
+#include "InformationHeaders/constPar.h"
 
 class CompositeUnit : public Unit
 {

@@ -1,6 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
 #include "CompositeUnit.h"
-#include "../Auxiliary functionality/TextColoring.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
 
 size_t CompositeUnit::getHealth() const
 {

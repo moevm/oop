@@ -1,7 +1,7 @@
-#ifndef OOP_IUNITATTACK_H
+﻿#ifndef OOP_IUNITATTACK_H
 #define OOP_IUNITATTACK_H
 
-#include "../Auxiliary functionality/UnitMediators.h"
+#include "AuxiliaryFunctionality/UnitMediators.h"
 
 class IUnitAttack
 {

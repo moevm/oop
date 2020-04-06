@@ -1,5 +1,5 @@
-#include "HellBase.h"
-#include "../Auxiliary functionality/TextColoring.h"
+﻿#include "HellBase.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
 
 void HellBase::describeYourself()
 {
