@@ -6,10 +6,6 @@
 #include "NeutralObject.h"
 
 
-Unit::Unit(){
-    //    this->name = 'u';
-}
-
 
 void Unit::showStat(){
     std::cout<<type<<std::endl<<"HP:"<<hitPoint<<std::endl<<"MP:"<<manaPoint<<std::endl<<"Magic resist:"<<magicResistance<<std::endl<<"Armor:"<<armor<<std::endl;
@@ -18,7 +14,7 @@ void Unit::showStat(){
 void Unit::move(int x, int y, GameMap& map){
     if((map.getHeight() > (this->y+y)) && (map.getWidth() > (this->x+x)) && ((this->y+y) >= 0) && ((this->x+x) >= 0) ){
         GameBlock* nextBlock =map.getBlock(this->y+y, this->x+x);
-        if(nextBlock->landscape->availability == false){
+        if(nextBlock->landscape->availability == false || nextBlock->unitOnBlock !=nullptr){
             std::cout<<"The passage is blocked"<<std::endl;
         }
         else{
@@ -29,6 +25,7 @@ void Unit::move(int x, int y, GameMap& map){
             map.getBlock(this->y, this->x)->deleteUnit();
             this->x += x;
             this->y += y;
+        
         }
     }
     else{
@@ -37,22 +34,36 @@ void Unit::move(int x, int y, GameMap& map){
 }
 
 void Unit::getDamage(int damage){
-    //вообще тут еще нужно как-то сделать реакцию на то, что юнит сдох и в базе убрать его из списка велллл
     this->hitPoint -= damage;
     if (hitPoint<1){
         this->death();
-        std::cout<<"Unit "<<this->type<<" get damage and die"<<std::endl;
+        std::cout<<"Unit "<<this->type<<" get damage "<<damage<<" and die"<<std::endl;
     }
     else{
-        std::cout<<"Unit "<<this->type<<" get damage. HP:"<<this->hitPoint<<std::endl;
+        std::cout<<"Unit "<<this->type<<" get damage. "<<damage<<" HP:"<<this->hitPoint<<std::endl;
     }
 }
 
 void Unit::death(){
     delete this;
 }
+
+
 void Unit::update(){
     
+}
+
+
+bool Unit::checkForAttack(int x, int y){
+    if ((x - this->x)*(x - this->x) + (y- this->y)*(y- this->y) <= (this->weapon->radius*this->weapon->radius)){
+        return true;
+    }
+    return false;
+}
+
+void Unit::attack(Unit *enemy){
+    int distanse = (enemy->x - this->x)*(enemy->x - this->x) + (enemy->y- this->y)*(enemy->y- this->y);
+    enemy->getDamage(this->weapon->useWeapon(distanse, enemy->magicResistance, enemy->armor));
 }
 //----------------------------------------//
 
@@ -66,19 +77,17 @@ void Rogue::update(){
 }
 
 Ranger::Ranger(){
-    Bow weapon;
     this->magicResistance = 35;
     this->armor = 25;
-    this->weapon = weapon;
+    this->weapon = new Bow;
     this->type = 'R';
 }
 
 
 Slayer::Slayer(){
-    Dagger weapon;
     this->magicResistance = 25;
     this->armor = 35;
-    this->weapon = weapon;
+    this->weapon = new Dagger;
     this->type = 'S';
 }
 
@@ -94,19 +103,17 @@ void Mage::update(){
 
 
 BattleMage::BattleMage(){
-    Dagger weapon;
     this->magicResistance = 40;
     this->armor = 35;
-    this->weapon = weapon;
+    this->weapon = new Hands;
     this->type = 'B';
 }
 
 
 Witch::Witch(){
-    Dagger weapon;
     this->magicResistance = 60;
     this->armor = 10;
-    this->weapon = weapon;
+    this->weapon = new Staff;
     this->type = 'W';
 }
 
@@ -124,18 +131,16 @@ void Warrior::update(){
 
 
 Paladin::Paladin(){
-    Dagger weapon;
     this->magicResistance = 25;
     this->armor = 65;
-    this->weapon = weapon;
+    this->weapon = new Sword;
     this->type = 'P';
 }
 
 
 LanceKnight::LanceKnight(){
-    Dagger weapon;
     this->magicResistance = 35;
     this->armor = 45;
-    this->weapon = weapon;
+    this->weapon = new Lance;
     this->type = 'L';
 }

@@ -6,7 +6,7 @@
 #include "WeaponBehavior.h"
 
 
-class Unit: public IUnits, IObserver{
+class Unit: public IUnits, public IObserver{
 public:
     int x,y;
     int hitPoint;
@@ -14,17 +14,18 @@ public:
     int magicResistance;
     int armor;
     char type;
-    WeaponBehavior weapon;
+    WeaponBehavior* weapon;
     
     void showStat() override;
     void move(int x, int y, GameMap& map) override;
     void getDamage(int damage) override;
     void death() override;
     void update() override;
+    void attack(Unit* enemy) override;
+    bool checkForAttack(int x, int y) override;
 //    void deleteUnit() override;
 //    bool createUnit(GameMap& map, int x, int y, char type) override;
     
-    Unit();
 };
 
 

@@ -15,7 +15,7 @@ Base::Base(int x, int y): Base(){
     this->y = y;
 }
 bool Base::createUnit(){
-    if(units.size() < maxUnit){
+    if(unitsInBase < maxUnit){
         char type;
         std::cout<<"Enter type of unit:\n R - Ranger \n S - Slayer \n W - Witch \n B - Battle mage \n P - Paladin \n L - Lancer Knight\n Default: P"<<std::endl;
         std::cin>>type;
@@ -54,7 +54,7 @@ bool Base::createUnit(){
 }
 
 bool Base::createUnit(char type){
-    if(units.size() < maxUnit){
+    if(unitsInBase < maxUnit){
         switch (type) {
             case 'R':
                 units.push_back(f1.createRogue());
@@ -89,15 +89,16 @@ bool Base::createUnit(char type){
 
 
 void Base::showStat(){
-    std::cout<<"\nBase HP:"<<this->hitPoint<<"\n\nUnits in base:"<<this->unitsInBase<<std::endl;
+    std::cout<<"\nBase HP:"<<this->hitPoint<<"\n\nUnits in base:"<<units.size()<<std::endl;
     int i = 1;
     for(auto iter = units.begin(); iter != units.end(); iter++){
         std::cout<<i++<<std::endl;
         (*iter)->showStat();
         std::cout<<std::endl;
     }
-    std::cout<<"Count of units defined to this base:"<<units.size()<<std::endl;
+    std::cout<<"Count of units defined to this base:"<<this->unitsInBase<<std::endl;
 }
+
 
 Unit* Base::getUnit(){
     int k;
@@ -112,7 +113,9 @@ Unit* Base::getUnit(){
     }while(k  > units.size() || k < 1);
     auto iter = units.begin();
     std::advance(iter, k-1);
-    return *iter;
+    Unit* u = *iter;
+    units.erase(iter);
+    return u;
 }
 
 
@@ -130,6 +133,5 @@ void Base::baseUpdate(){
            unitsInBase--;
         }
     }
-        
 }
 

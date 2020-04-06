@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 #include "NeutralObject.h"
 #include "Units.h"
 
@@ -67,7 +66,6 @@ void MrWitcher::action(Unit &unit){
         nerves = 10;
     }
     else{
-        srand(time(0));
         int i = rand()%5;
         switch (i) {
             case 0:

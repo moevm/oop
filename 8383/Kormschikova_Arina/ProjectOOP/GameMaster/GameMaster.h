@@ -2,39 +2,31 @@
 
 #ifndef GameMaster_h
 #define GameMaster_h
-#include <vector>
 #include "Base.h" //WTF
+
+
 class GameMap;
 class Unit;
 class Base;
-
-
-class GameUnits{ 
-public:
-    
-    int size;
-    std::vector <Unit*> units;
-    GameUnits();
-    bool moveUnit(int x, int y, int index, GameMap &gameMap);
-    Unit* getUnit(int x, int y);
-    void addUnit(Unit* unit, int x, int y, GameMap &map);
-};
-
+class EnemiesUnits;
+class FriendsUnits;
+class Command;
+class Invoker;
 
 class GameMaster {
 public:
-    GameMap *map;
-    GameUnits units;
-    Base *base;
+    GameMap* map;
+    FriendsUnits* units;
+    EnemiesUnits* enemies;
+    Base* base;
+    Invoker* invoker;
+    Command* command;
     void gameCycle();
     void setMap();
+    void setEnemies();
     void setBase();
     void baseControl();
-    GameMaster() {
-        base = nullptr;
-        map = nullptr;
-        gameCycle();
-    }
+    GameMaster();
 };
 
 

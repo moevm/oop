@@ -1,6 +1,8 @@
 
 #include <iostream>
-
+#include <vector>
+#include <ctime>
+#include <cstdlib>
 #include "GameMaster.h"
 #include "Map.h"
 #include "Base.h" 
@@ -8,6 +10,21 @@
 #include "GameVisualization.h"
 #include "GameBlock.h"
 #include "NeutralObject.h"
+#include "GameUnits.h"
+#include "Invoker.h"
+#include "Command.h"
+#include "Handler.h"
+
+GameMaster::GameMaster(){
+    srand(time(0));
+    base = nullptr;
+    map = nullptr;
+    invoker = nullptr;
+    units = new FriendsUnits;
+    enemies = new EnemiesUnits;
+    gameCycle();
+       
+}
 
 
 void GameMaster::setMap(){
@@ -44,7 +61,6 @@ void GameMaster::setMap(){
 void GameMaster::setBase(){
     int x, y;
     do{
-
         std::cout<<"Enter coord for base: ";
         std::cin>>x>>y;
 
@@ -52,52 +68,90 @@ void GameMaster::setBase(){
     x--;
     y--;
     base = new Base(x, y);
-    this->map->getBlock(y, x)->baseOnBlock = new Base(x, y);
-    base->createUnit('R');
-//    base->createUnit('S');
     
+    this->map->getBlock(y, x)->baseOnBlock = new Base(x, y);
+    base->createUnit('L');
+    //update(*map);
+    base->showStat();
 }
+
+
+void GameMaster::setEnemies(){
+    Unit* newEnemy = new Paladin;
+    enemies->addUnit(newEnemy, 4, 2, *map);
+    newEnemy = new LanceKnight;
+    enemies->addUnit(newEnemy, 0, 6, *map);
+    newEnemy = new Slayer;
+    enemies->addUnit(newEnemy, 2, 7, *map);
+    newEnemy = new Witch;
+    enemies->addUnit(newEnemy, 1, 2, *map);
+}
+
+
+
+//
+//void GameMaster::gameCycle(){
+//    char input;
+//    int index = 0;
+//    setMap();
+//    setEnemies();
+//
+//    update(*map);
+////    setBase();
+//    invoker = new Invoker(map, units, enemies, base, &index);
+//    invoker->invokerCycle('b');
+//    do{
+//        update(*map);
+//        std::cout << "Enter command: ";
+//        std::cin >> input;
+//        std::cout<<std::endl;
+//        invoker->invokerCycle(input);
+//    }while (input != 'p');
+//}
+
 
 void GameMaster::baseControl(){
     if(this->base == nullptr){
         setBase();
+        update(*map);
     }
     base->baseUpdate();
     char input;
-    Unit* newUnit;
     do{
-        std::cout<<"Enter command for base 'c' - Create unit, 's' - select unit: "<<std::endl;
+        std::cout<<"Enter command for base 'c' - Create unit, 's' - select unit, t - show stat: "<<std::endl;
         std::cin>>input;
         std::cout<<std::endl;
         switch (input) {
             case 'c':
-                base->createUnit();
+                command = new CreateUnitInBaseCommand(base);
+                command->execute();
                 break;
             case 's':
-                newUnit = base->getUnit();
-                if(newUnit == nullptr){
-                    continue;
-                }
-                else{
-                    input = 'w';
-                    units.addUnit(newUnit, base->x, base->y, *map);
-                    break;
-                }
+                command = new SelectUnitInBaseCommand(units, base, map);
+                command->execute();
+                input = 'w';
+                break;
+            case 't':
+                command = new BaseStatCommand(base);
+                command->execute();
+                break;
             default:
                 break;
         }
-        
+
     }while(input != 'w');
 }
+
 
 
 void GameMaster::gameCycle() {
     char input;
     setMap();
+    setEnemies();
     update(*map);
     baseControl();
     int index = 0;
-    int deathCheck = 0;
+    bool deathCheck = false;
     do {
         update(*map);
         std::cout << "Enter command: ";
@@ -105,56 +159,52 @@ void GameMaster::gameCycle() {
         std::cout<<std::endl;
         switch (input) {
             case 'w':
-                deathCheck = units.moveUnit(0, -1, index, *map);
+                command = new MoveCommand(0, -1, index, map, units, &deathCheck);
+                command->execute();
                 break;
             case 's':
-                deathCheck = units.moveUnit(0, 1, index, *map);
+                command = new MoveCommand(0, 1, index, map, units, &deathCheck);
+                command->execute();
                 break;
             case 'd':
-                deathCheck = units.moveUnit(1, 0, index, *map);
+                command = new MoveCommand(1, 0, index, map, units, &deathCheck);
+                command->execute();
                 break;
             case 'a':
-                deathCheck = units.moveUnit(-1, 0, index, *map);
+                command = new MoveCommand(-1, 0, index, map, units, &deathCheck);
+                command->execute();
+                break;
+            case 'f':
+                command = new AttackCommand(map, enemies, units, index);
+                command->execute();
+
+                break;
+            case 'b':
+                baseControl();
+                index++;
+                break;
+            case 'u':
+                command = new SwitchUnitCommand(units, &index);
+                command->execute();
+
+                break;
+            case 'h':
+                command = new HelpCommand();
+                command->execute();
                 break;
             default:
                 break;
-                
+
         }
         if(deathCheck){
-            map->getBlock(units.units[index]->y, units.units[index]->x )->unitOnBlock = nullptr;
-            units.units.pop_back();
+            map->getBlock(units->units[index]->y, units->units[index]->x )->unitOnBlock = nullptr;
+            units->units.pop_back();
+            units->size--;
+            update(*map);
             baseControl();
         }
     } while (input != 'p');
 }
 
-GameUnits::GameUnits() {
-      size = 0;
-}
-
-void GameUnits::addUnit(Unit *unit, int x, int y, GameMap &gameMap){
-    this->size++;
-    units.push_back(unit);
-    units[0]->x = x;
-    units[0]->y = y;
-    gameMap.map[y][x].setUnit(unit);
-}
-
-
-Unit* GameUnits::getUnit(int x, int y) {
-    for (int i = 0; i < size; i++) {
-        if (units[i]->x == x && units[i]->y == y) return units[i];
-    }
-    
-    return nullptr;
-}
-
-
-//------------------------------------//
-bool GameUnits::moveUnit(int x, int y, int index, GameMap &gameMap) {
-    units[index]->move(x, y, gameMap);
-    if(units[index]->hitPoint < 1){
-        return 1;
-    }
-    return 0;
-};
+//
+//
