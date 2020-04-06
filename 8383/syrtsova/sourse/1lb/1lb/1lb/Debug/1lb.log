@@ -1,0 +1,111 @@
+﻿  1lb.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(19): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(26): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(27): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(29): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(31): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(32): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(34): error C2061: синтаксическая ошибка: идентификатор "Map"
+  Archer.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): error C2061: синтаксическая ошибка: идентификатор "Units"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2238: непредвиденные лексемы перед ";"
+  Bases.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): error C2061: синтаксическая ошибка: идентификатор "Units"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\bases.cpp(31): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\bases.cpp(36): warning C4244: -=: преобразование "double" в "int", возможна потеря данных
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\bases.cpp(52): error C2660: MapBlock::setUnit: функция не принимает 1 аргументов
+  c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): note:  см. объявление "MapBlock::setUnit"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\bases.cpp(62): error C2660: MapBlock::setUnit: функция не принимает 1 аргументов
+  c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): note:  см. объявление "MapBlock::setUnit"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\bases.cpp(72): error C2660: MapBlock::setUnit: функция не принимает 1 аргументов
+  c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): note:  см. объявление "MapBlock::setUnit"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\bases.cpp(83): error C2660: MapBlock::setUnit: функция не принимает 1 аргументов
+  c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): note:  см. объявление "MapBlock::setUnit"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\bases.cpp(92): error C2660: MapBlock::setUnit: функция не принимает 1 аргументов
+  c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): note:  см. объявление "MapBlock::setUnit"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\bases.cpp(101): error C2660: MapBlock::setUnit: функция не принимает 1 аргументов
+  c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): note:  см. объявление "MapBlock::setUnit"
+  Classes.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): error C2061: синтаксическая ошибка: идентификатор "Units"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\classes.cpp(20): warning C4552: "+": результат выражения не используется
+  Game.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(19): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(26): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(27): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(29): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(31): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(32): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(34): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\game.cpp(90): warning C4551: в вызове функции отсутствует список аргументов
+  Landscape.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(19): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(26): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(27): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(29): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(31): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(32): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(34): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\landscape.cpp(13): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\landscape.cpp(17): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\landscape.cpp(24): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Map.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(19): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(26): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(27): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(29): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(31): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(32): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.h(34): error C2061: синтаксическая ошибка: идентификатор "Map"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.cpp(149): warning C4551: в вызове функции отсутствует список аргументов
+  Neutral.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): error C2061: синтаксическая ошибка: идентификатор "Units"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2238: непредвиденные лексемы перед ";"
+  Units.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): error C2061: синтаксическая ошибка: идентификатор "Units"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\units.cpp(30): error C2039: getUnit: не является членом "MapBlock"
+  c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(11): note:  см. объявление "MapBlock"
+  Warlock.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): error C2061: синтаксическая ошибка: идентификатор "Units"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2238: непредвиденные лексемы перед ";"
+  Warrior.cpp
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(16): error C2238: непредвиденные лексемы перед ";"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(17): error C2061: синтаксическая ошибка: идентификатор "Units"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2143: синтаксическая ошибка: отсутствие ";" перед "*"
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C4430: отсутствует спецификатор типа - предполагается int. Примечание. C++ не поддерживает int по умолчанию
+c:\users\artem\onedrive\рабочий стол\1lb\1lb\map.h(19): error C2238: непредвиденные лексемы перед ";"
+  Создание кода...
