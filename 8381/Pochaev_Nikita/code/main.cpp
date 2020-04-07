@@ -11,11 +11,6 @@
 
 int main(int argc, char *argv[])
 {
-    // fieldBasedTest();
-    // ObserverDeathTest();
-    // landscapeTest();
-    unitInteractionTest();
-
     Game *game = new Game(argc, argv);
     game->start();
 

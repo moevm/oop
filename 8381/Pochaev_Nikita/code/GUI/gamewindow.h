@@ -7,7 +7,7 @@
 #include <QCloseEvent>
 #include <QTextEdit>
 #include <QLineEdit>
-#include <QFontComboBox>
+#include <QComboBox >
 #include <QSpinBox>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -15,7 +15,7 @@
 #include <QPushButton>
 #include <QLabel>
 
-class GameWindow : public QWindow
+class GameWindow : public QWidget
 {
     Q_OBJECT
 public:
@@ -30,29 +30,49 @@ private:
     // unit
     QPushButton *addUnitButton;
     QLabel *unitTypeLabel;
-    QFontComboBox *unitTypeCompoBox;
+    QComboBox *unitTypeComboBox;
     QLabel *unitPositionLabel;
-    QSpinBox xCoordUnitPos;
-    QSpinBox yCoordUnitPos;
+    QSpinBox *xCoordUnitPos;
+    QSpinBox *yCoordUnitPos;
 
     // base
     QPushButton *addBaseButton;
+    QLabel *baseTypeLabel;
+    QComboBox *baseTypeComboBox;
     QLabel *basePositionLabel;
-    QSpinBox xCoordBasePos;
-    QSpinBox yCoordBasePos;
+    QSpinBox *xCoordBasePos;
+    QSpinBox *yCoordBasePos;
 
     // unit functionality
     QPushButton *moveUnitButton;
     QPushButton *attackUnitButton;
-    QPushButton *unitInformationButton;
     QLabel *unitActionLabel;
+    QLabel *unitSourceActionLabel;
+    QSpinBox *xCoordUnitSourceAction;
+    QSpinBox *yCoordUnitSourceAction;
+    QLabel *unitDestActionLabel;
+    QSpinBox *xCoordUnitDestAction;
+    QSpinBox *yCoordUnitDestAction;
+
+    // logs
+    QTextEdit *logs;
+    QPushButton *cellInfromationButton;
+    QLabel *logCoordsLabel;
+    QSpinBox *xCoordLogPos;
+    QSpinBox *yCoordLogPos;
 
     // other
     QTextEdit *visualField;
-    QTextEdit *logs;
+
+    /*    PAR    */
+    size_t gameFieldSize{};
+    size_t playersCount{};
 
 signals:
     void gameWindowClosed();
+
+public slots:
+    void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_);
 };
 
 #endif // GAMEWINDOW_H

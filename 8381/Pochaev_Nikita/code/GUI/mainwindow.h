@@ -29,13 +29,22 @@ private:
     QPushButton *startNewGameButton;
     QLabel *playersCountLabel;
     QSpinBox *playersCountSpinBox;
+    QLabel *fieldSizeLabel;
+    QSpinBox *fieldSizeSpinBox;
 
     // GAME WINDOW
     GameWindow *gameWindow;
 
+    // PAR
+    size_t gameFieldSize{};
+    size_t playersCount{};
+
 private slots:
     void on_startNewGameButton_clicked();
     void on_gameWindow_closeEvent();
+
+signals:
+    void startNewGameWindow(size_t gameFieldSize, size_t playersCount);
 };
 
 #endif // MAINWINDOW_H
