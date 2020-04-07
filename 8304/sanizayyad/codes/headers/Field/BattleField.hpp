@@ -4,6 +4,7 @@
 #include "FieldCell.hpp"
 
 #include <stdio.h>
+#include <iostream>
 #include <memory>
 
 class BattleFieldIterator;
@@ -35,6 +36,7 @@ public:
 
 private:
     size_t numberOfUnits;
+    size_t maxUnit;
     size_t height;
     size_t width;
     std::unique_ptr<std::unique_ptr<FieldCell[]>[]> battleFieldArray;

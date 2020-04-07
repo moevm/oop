@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-class DynamicRangeUnit : public Unit
+class DynamicRangeUnit : public Unit,public std::enable_shared_from_this<Unit>
 {
 public:
     explicit DynamicRangeUnit(const Position2D& position,std::shared_ptr<Mediator> mediator);

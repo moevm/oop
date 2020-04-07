@@ -36,7 +36,6 @@ const BattleFieldIterator& operator++(BattleFieldIterator& it)
         ++it.i;
         it.j = 0;
     }
-
     return it;
 }
 

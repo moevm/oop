@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-class ShortRangeUnit : public Unit
+class ShortRangeUnit : public Unit,public std::enable_shared_from_this<Unit>
 {
 public:
     explicit ShortRangeUnit(const Position2D& position,std::shared_ptr<Mediator> mediator);

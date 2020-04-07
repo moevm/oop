@@ -7,6 +7,7 @@ BattleField::BattleField(size_t height, size_t width) :
 
 {
     this->numberOfUnits = 0;
+    this->maxUnit = width * height;
 
     for (size_t i = 0; i < height; ++i) {
         battleFieldArray[i] = std::make_unique<FieldCell[]>(width);
@@ -16,7 +17,6 @@ BattleField::BattleField(size_t height, size_t width) :
 
 BattleField::BattleField(const BattleField& battleField)
 {
-    std::cout<<"\nconstructoeree\n";
     battleFieldArray = std::make_unique<std::unique_ptr<FieldCell[]>[]>(battleField.height);
 
     height = battleField.height;
@@ -37,8 +37,6 @@ BattleField::BattleField(const BattleField& battleField)
 
 BattleField& BattleField::operator=(const BattleField& battleField)
 {
-    std::cout<<"\asiignmentttt\n";
-
     if (this == &battleField) {
         return *this;
     }
@@ -70,8 +68,6 @@ BattleField& BattleField::operator=(const BattleField& battleField)
 
 BattleField::BattleField(BattleField&& battleField)
 {
-    std::cout<<"\tf 1\n";
-
     height = battleField.height;
     width = battleField.width;
     numberOfUnits = battleField.numberOfUnits;
@@ -86,8 +82,6 @@ BattleField::BattleField(BattleField&& battleField)
 
 BattleField& BattleField::operator=(BattleField&& battleField)
 {
-    std::cout<<"\tf2222222\n";
-
     if (this == &battleField) {
         return* this;
     }
@@ -133,7 +127,7 @@ bool BattleField::addUnit(std::shared_ptr<Unit> unit)
 {
     Position2D position = unit->getPosition();
 
-    if (!battleFieldArray[position.y][position.x].isEmpty()) {
+    if (!battleFieldArray[position.y][position.x].isEmpty() && numberOfUnits < maxUnit) {
         return false;
     }
 
@@ -186,7 +180,6 @@ void BattleField::deleteUnitCord(Position2D position)
        }
       else{
           std::cout<<"Empty!";
-
        }
     numberOfUnits--;
 }

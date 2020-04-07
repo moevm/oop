@@ -2,6 +2,10 @@
 #define FieldCell_hpp
 
 #include "unit.hpp"
+#include "neutralobject.hpp"
+#include "landscape.hpp"
+#include "proxylandscape.hpp"
+#include "noobject.hpp"
 
 #include <stdio.h>
 #include <memory>
@@ -23,9 +27,19 @@ public:
     std::shared_ptr<Unit> getUnit();
     bool isEmpty() const;
 //    getAbout
+    
+    void setNeutralObject(std::shared_ptr<NeutralObject> neutralObject);
+    std::shared_ptr<NeutralObject> getNeutralObject() const;
+    void deleteNeutralObject();
+
+    void setLandscape(std::shared_ptr<Landscape> landscape);
+    std::shared_ptr<Landscape> getLandscape() const;
+    
 
 private:
     std::shared_ptr<Unit> unit;
+    std::shared_ptr<NeutralObject> neutralObject;
+    std::shared_ptr<Landscape> landscape;
     bool empty;
 };
 

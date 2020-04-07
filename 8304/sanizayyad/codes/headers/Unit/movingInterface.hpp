@@ -11,6 +11,8 @@ constexpr const char* MOVE_TOP = "move top";
 constexpr const char* MOVE_BOTTOM = "move bottom";
 constexpr const char* MOVE_LEFT = "move left";
 constexpr const char* MOVE_RIGHT = "move right";
+constexpr const char* CREATE_UNIT = "create_unit";
+
 
 
 class MovingInterface

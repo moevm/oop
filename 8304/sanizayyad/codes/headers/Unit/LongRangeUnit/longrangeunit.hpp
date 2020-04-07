@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-class LongRangeUnit : public Unit
+class LongRangeUnit : public Unit,public std::enable_shared_from_this<Unit>
 {
 public:
     explicit LongRangeUnit(const Position2D& Position2D,std::shared_ptr<Mediator> mediator);

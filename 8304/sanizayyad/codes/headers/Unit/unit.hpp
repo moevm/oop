@@ -3,6 +3,7 @@
 
 #include "movingInterface.hpp"
 #include "mediator.hpp"
+#include "subject.hpp"
 
 #include "armor.hpp"
 #include "weapon.hpp"
@@ -11,13 +12,13 @@
 #include <memory>
 
 constexpr double SHORT_RANGE_HEALTHPOINTS = 100;
-constexpr double ARCHER_HEALTHPOINTS = 110;
+constexpr double ARCHER_HEALTHPOINTS = 100;
 constexpr double BALLISTICS_HEALTHPOINTS = 150;
 constexpr double VAMPIRE_HEALTHPOINTS = 180;
 constexpr double DRAGON_HEALTHPOINTS = 200;
 
 
-class Unit: public MovingInterface, public std::enable_shared_from_this<Unit>{
+class Unit: public MovingInterface, public ObserverSubject{
     public:
         explicit Unit(const Position2D& position, std::shared_ptr<Mediator> mediator);
         virtual ~Unit() = default;
