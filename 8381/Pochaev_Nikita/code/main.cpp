@@ -7,11 +7,11 @@
 #include <QScreen>
 
 #include "Tests/examples.h"
-#include "Game/game.h"
+#include "Game/UIFacade.h"
 
 int main(int argc, char *argv[])
 {
-    Game *game = new Game(argc, argv);
+    UIFacade *game = new UIFacade(argc, argv);
     game->start();
 
     return 0;

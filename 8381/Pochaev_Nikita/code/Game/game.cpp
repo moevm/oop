@@ -1,39 +1,26 @@
 ﻿#include "game.h"
 
-Game::Game(int argc, char *argv[])
+Game::Game(size_t fieldHieght, size_t fieldWidth)
 {
-    application = new QApplication(argc, argv);
-    window = new MainWindow();
+
 }
 
-void Game::start()
+std::vector<std::shared_ptr<GameBase>> Game::getBases() const
 {
-    guiSetup();
-    QApplication::exec();
+
 }
 
-void Game::guiSetup()
+std::vector<std::shared_ptr<Unit>> Game::getUnits() const
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: GUI setup of the game started" << endl;
-#endif
-    // set up full screen view
-    QScreen *screen = application->primaryScreen();
-    QRect screenGeometry = screen->geometry();
-    int height = screenGeometry.height();
-    int width = screenGeometry.width();
 
-    /*      MAIN WINDOW     */
-    window->resize(static_cast<int>(0.25 * width), static_cast<int>(0.25 * height));
-    window->setFixedSize(static_cast<int>(0.25 * width), static_cast<int>(0.25 * height));
-
-    window->show();
-#ifdef QT_DEBUG
-    qDebug() << "Debug: GUI setup of the game finished" << endl;
-#endif
 }
 
-void Game::startGameWindow()
+std::shared_ptr<GameBase> Game::getBaseByNumber(size_t nuumber)
+{
+
+}
+
+void Game::createBase(Coords coords, BaseType type)
 {
 
 }

@@ -1,28 +1,35 @@
 ﻿#ifndef GAME_H
 #define GAME_H
 
-#include <QApplication>
-#include <QScreen>
+#include <cstddef>
+#include <vector>
+#include <map>
 
-#include "GUI/mainwindow.h"
+#include "GameField/GameFieldProxy.h"
+#include "IGame.h"
+#include "IGameMediator.h"
 
-class Game : QObject
+// TODO: вектор игроков, кнопка передачи хода с вызовом соответствующих параметров
+
+class Game : public IGame
 {
-    Q_OBJECT
-
 public:
-    Game(int argc, char *argv[]);
-    ~Game() = default;
+    Game(size_t fieldHieght, size_t fieldWidth);
 
-    void start();
+    // Getters
+    std::shared_ptr<GameFieldProxy> getField() const;
+    std::vector<std::shared_ptr<GameBase>> getBases() const;
+    std::vector<std::shared_ptr<Unit>> getUnits() const;
+    std::shared_ptr<GameBase> getBaseByNumber(size_t nuumber);
+
+    // Setters
+    void createBase(Coords coords, BaseType type) override;
+
 
 private:
-    QApplication *application;
-    // GUI
-    MainWindow *window;
-
-    void guiSetup();
-    void startGameWindow();
+    std::unique_ptr<GameFieldProxy> field;
+    std::vector<std::unique_ptr<GameBase>> bases;
+    std::shared_ptr<IGameMediator> *baseMediator;
 };
 
 #endif // GAME_H

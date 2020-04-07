@@ -28,8 +28,10 @@ SOURCES += \
     Bases/HumanBase.cpp \
     Bases/HumanBaseBuilder.cpp \
     Bases/UnitStorekeeper.cpp \
+    GUI/command.cpp \
     GUI/gamewindow.cpp \
     GUI/mainwindow.cpp \
+    Game/UIFacade.cpp \
     Game/game.cpp \
     GameField/Cell.cpp \
     GameField/GameField.cpp \
@@ -75,14 +77,22 @@ HEADERS += \
     Bases/HumanBase.h \
     Bases/HumanBaseBuilder.h \
     Bases/UnitStorekeeper.h \
+    GUI/ICommand.h \
+    GUI/command.h \
     GUI/gamewindow.h \
     GUI/mainwindow.h \
+    Game/FacadeMediator.h \
+    Game/IFacadeMediator.h \
+    Game/IGame.h \
+    Game/IGameMediator.h \
+    Game/UIFacade.h \
     Game/game.h \
     GameField/Cell.h \
     GameField/Coords.h \
     GameField/GameField.h \
     GameField/GameFieldProxy.h \
     GameField/IGameField.h \
+    InformationHeaders/commandPar.h \
     InformationHeaders/constPar.h \
     InformationHeaders/unitPar.h \
     Landscape/Champaign.h \
