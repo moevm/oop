@@ -84,6 +84,7 @@ TEST_CASE("Attack", "") {
     std::cout << std::endl;
     a.get_boardfield();
     result = a.attack(0, 0, 0, 1, "unit action");
+    result = a.attack(3, 3, 0, 1, "base action");
     REQUIRE(result);
     b.get_base();
     std::cout << std::endl;
