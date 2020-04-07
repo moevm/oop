@@ -175,6 +175,22 @@ Unit* Base::getUnit(int id) {
 	return units[id];
 }
 
+bool Base::writeUnitInfo(int id) {
+	auto it = units.find(id);
+	if (it == units.end())
+		return false;
+	std::cout << "--------------------\n";
+	std::cout << "Id: " << it->first << "\n";
+	std::cout << "Имя: " << it->second->getUnitName() << "\n";
+	std::cout << "Здоровье: " << it->second->getHp() << "\n";
+	std::cout << "Атака: " << it->second->getAttack() << "\n";
+	std::cout << "Скорость: " << it->second->getHaste() << "\n";
+	std::cout << "Дальность: " << it->second->getRange() << "\n";
+	std::cout << "Броня: " << it->second->getArmor() << "\n";
+	std::cout << "--------------------\n";
+	return true;
+}
+
 Base::~Base() {
 
 	if (unitsCounter > 0) {

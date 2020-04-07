@@ -40,6 +40,7 @@ public:
 	int getHp();
 
 	void writeBaseState();
+	bool writeUnitInfo(int id);//true если успешно
 
 	Unit* createAndSetUnit(UnitTypes type, int lvl, int x=0, int y=0);
 	void deleteUnit(Unit*& unit);

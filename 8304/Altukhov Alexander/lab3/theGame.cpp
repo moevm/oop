@@ -75,7 +75,7 @@ int main()
 
 	InputProcessor inputProcessor(base);
 
-	std::cout << "Поддерживаются команды вида:\nattack attackerId targetId\nmove unitId xCoord yCoord\ncreate typeId lvl\nbaseLog\nexit\n";
+	std::cout << "Поддерживаются команды вида:\nattack attackerId targetId\nmove unitId xCoord yCoord\ncreate typeId lvl\nbaseLog\nunitInfo id\nexit\n";
 
 	std::string input;
 	std::getline(std::cin, input);

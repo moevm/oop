@@ -5,6 +5,8 @@
 #include "MoveCommand.h"
 #include "CreateCommand.h"
 #include "BaseLogCommand.h"
+#include "UnitInfoCommand.h"
+
 
 class Base;
 
@@ -21,6 +23,6 @@ public:
 	void move(std::vector<std::string>& args);
 	void create(std::vector<std::string>& args);
 	void baseLog();
-
+	void unitInfo(std::vector<std::string>& args);
 };
 

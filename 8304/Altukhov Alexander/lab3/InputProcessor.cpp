@@ -61,13 +61,20 @@ bool InputProcessor::processString(std::string& input) {//true - exit
 		}
 		else if (args[0] == "create") {
 			if (!checkArguments(args, 2)) {
-				std::cout << args.size() << "Ошибка! Некорректные аргументы\n";
+				std::cout << "Ошибка! Некорректные аргументы\n";
 				return false;
 			}
 			create(args);
 		}
 		else if (args[0] == "baseLog") {
 			baseLog();
+		}
+		else if (args[0] == "unitInfo") {
+			if (!checkArguments(args, 1)) {
+				std::cout << "Ошибка! Некорректные аргументы\n";
+				return false;
+			}
+			unitInfo(args);
 		}
 		else if (args[0] == "exit") {
 			return true;
@@ -101,5 +108,10 @@ void InputProcessor::create(std::vector<std::string>& args) {
 
 void InputProcessor::baseLog() {
 	BaseLogCommand command(base);
+	command.execute();
+}
+
+void InputProcessor::unitInfo(std::vector<std::string>& args) {
+	UnitInfoCommand command(base, std::stoi(args[1]));
 	command.execute();
 }
