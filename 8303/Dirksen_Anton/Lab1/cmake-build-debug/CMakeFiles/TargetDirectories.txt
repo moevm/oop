@@ -1,3 +1,0 @@
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles/oop_labs.dir
-/home/mensch/Documents/Leti/oop/8303/Dirksen_Anton/Lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
