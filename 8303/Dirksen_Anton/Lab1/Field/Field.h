@@ -2,12 +2,13 @@
 #define OOP_LABS_FIELD_H
 #include <cstdint>
 #include "../Object.h"
-#include "FieldIterator.h"
 #include <iostream>
 #include "Cell.h"
 
+class FieldIterator;
 
 class Field {
+    friend class FieldIterator;
 
 public:
     explicit Field(int height, int width);
@@ -26,10 +27,10 @@ public:
     Object* getObject(int x, int y) const;
     void print() const;
 
-    FieldIterator begin() { return FieldIterator(Point(0, 0), cell, size.x, size.y); }
-    FieldIterator end() { return FieldIterator(Point(0, size.x), cell, size.x, size.y); }
+    FieldIterator begin();
+    FieldIterator end();
 
-protected:
+private:
     Point size;
     int countOfUnits = 0;
     int maxCountOfObjects = 10;

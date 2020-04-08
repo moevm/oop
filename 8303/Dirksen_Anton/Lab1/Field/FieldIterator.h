@@ -8,30 +8,26 @@
 
 #include <iterator>
 #include "../Units/Unit.h"
-#include "./Cell.h"
+#include "Cell.h"
+#include "Field.h"
 
 class FieldIterator : public std::iterator<std::input_iterator_tag, Cell>{
     friend class Field;
 
 private:
     Point coordinates;
-    Cell** field;
-    int height, width;
+    Field* field;
 
 private:
-    FieldIterator(const Point& coordinates, Cell** field, int height, int width) {
+    FieldIterator(const Point& coordinates, Field* field) {
         this->coordinates = coordinates;
         this->field = field;
-        this->height = height;
-        this->width = width;
     }
 
 public:
     FieldIterator(const FieldIterator& it) {
         coordinates = it.coordinates;
         field = it.field;
-        height = it.height;
-        width = it.width;
     }
 
     bool operator!=( const FieldIterator& other) const {
@@ -44,7 +40,7 @@ public:
 
 
     reference operator*() const {
-        return field[coordinates.y][coordinates.x];
+        return (field->cell)[coordinates.y][coordinates.x];
     }
 
 
@@ -52,7 +48,7 @@ public:
         Point next = coordinates;
         next.x++;
 
-        if (next.x < width) {
+        if (next.x < field->size.x) {
             coordinates = next;
             return *this;
         } else {

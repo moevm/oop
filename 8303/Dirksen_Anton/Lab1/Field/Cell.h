@@ -5,6 +5,7 @@
 #ifndef OOP_LABS_CELL_H
 #define OOP_LABS_CELL_H
 
+
 struct Cell{
     Object* object;
 };

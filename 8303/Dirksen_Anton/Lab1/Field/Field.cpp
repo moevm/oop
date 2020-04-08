@@ -1,6 +1,7 @@
 #include "Field.h"
 #include <cassert>
 #include <unordered_map>
+#include "FieldIterator.h"
 
 Field::Field(int height, int width) : size(height, width)
 {
@@ -147,3 +148,6 @@ void Field::print() const{
 Object* Field::getObject(int x, int y) const{
     return cell[x][y].object;
 }
+
+FieldIterator Field::begin() { return FieldIterator(Point(0, 0), this); }
+FieldIterator Field::end() { return FieldIterator(Point(0, size.x), this); }
