@@ -8,7 +8,8 @@ class File;
 class SnapshotField {
 public:
     SnapshotField(Field* field, int lengthX, int lengthY, int maxCountObject, int countUnit, Base* base1, Base* base2);
-
+    SnapshotField(Field* field);
+    ~SnapshotField();
 
     void save();
     void load(Mediator *mediator);
@@ -23,7 +24,7 @@ private:
     Field* field;
     Adapter* adapter;
     FileRead* fileRead;
-    FileWrite* file;
+    FileWrite* fileWrite;
 
 
 };

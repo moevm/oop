@@ -37,6 +37,8 @@ public:
     bool wasAttack(int damage);
 
     bool setUnit(char name, int unitX, int unitY, int health, int attack, int armor, Mediator *mediator, Adapter *adapter);
+
+    bool isDestroyed();
 };
 
 

@@ -38,17 +38,21 @@ public:
 
         if (number == 1)
             current = field->base1->getUnit();
-        else
+        else if (number == 2)
             current = field->base2->getUnit();
+        else
+            current = field->base3->getUnit();
 
         while(true){
             std::cout << "Unit "<< current->name << " x: " << field->findUnit(current)->x << " y: " << field->findUnit(current)->y <<std::endl;
             std::cin >> command;
             if (command == "n") {
-                if (number==1)
+                if (number == 1)
                     current = field->base1->getUnit();
-                else
+                else if (number == 2)
                     current = field->base2->getUnit();
+                else
+                    current = field->base3->getUnit();
             }
             else if (command == "w"){
                 if (current->name == 's' || current->name == 'k')
@@ -101,7 +105,7 @@ public:
             std::cout << "Units of base: " << std::endl;
             field->base1->printUnit();
         }
-        else{
+        else if (number == 2){
             std::cout << "Base number 2" <<std::endl;
             std::cout << "x: " << field->base2->BaseX << "  y: " << field->base2->BaseY << std::endl;
             std::cout << "Health: " << field->base2->health << std::endl;
@@ -109,6 +113,15 @@ public:
             std::cout << "Count unit: " << field->base2->countUnit << std::endl;
             std::cout << "Units of base: " << std::endl;
             field->base2->printUnit();
+        }
+        else{
+            std::cout << "Base number 3" <<std::endl;
+            std::cout << "x: " << field->base3->BaseX << "  y: " << field->base3->BaseY << std::endl;
+            std::cout << "Health: " << field->base3->health << std::endl;
+            std::cout << "MaxCountUnit: " << field->base3->maxCountUnit << std::endl;
+            std::cout << "Count unit: " << field->base3->countUnit << std::endl;
+            std::cout << "Units of base: " << std::endl;
+            field->base3->printUnit();
         }
 
     }
@@ -126,17 +139,21 @@ public:
 
         if (number == 1)
             current = field->base1->getUnit();
-        else
+        else if (number == 2)
             current = field->base2->getUnit();
+        else
+            current = field->base3->getUnit();
 
             while(true){
                 std::cout << "Unit "<< current->name << " x: " << field->findUnit(current)->x << " y: " << field->findUnit(current)->y <<std::endl;
                 std::cin >> command;
                 if (command == "n") {
-                    if (number==1)
+                    if (number == 1)
                         current = field->base1->getUnit();
-                    else
+                    else if (number == 2)
                         current = field->base2->getUnit();
+                    else
+                        current = field->base3->getUnit();
                 }
                 else if (command == "w"){
                     field->moveUnitUp(current);
@@ -183,12 +200,25 @@ public:
             std::cout << "Units has been set"<<std::endl;
         }
 
-        else{
+        else if (number == 2){
             int capacity = field->base2->getCapacityUnit();
             for (int i = 0; i < capacity; i++) {
                 std::cout << "Enter name of unit" << std::endl;
                 std::cin >> character;
                 if (!field->base2->createUnit(character, mediator, adapter)){
+                    std::cout << "The area near base is limited" << std::endl;
+                    break;
+                }
+            }
+            std::cout << "Units has been set"<<std::endl;
+        }
+
+        else{
+            int capacity = field->base3->getCapacityUnit();
+            for (int i = 0; i < capacity; i++) {
+                std::cout << "Enter name of unit" << std::endl;
+                std::cin >> character;
+                if (!field->base3->createUnit(character, mediator, adapter)){
                     std::cout << "The area near base is limited" << std::endl;
                     break;
                 }

@@ -5,7 +5,8 @@
 #include "Potion.h"
 #include "DrinkStrong.h"
 
-Field::Field(int x, int y, int maxCountObject, Adapter* adapter): lenghtX(x), lengthY(y), maxCountObject(maxCountObject), countUnit(0), base1(nullptr), base2(nullptr), adapter(adapter){
+Field::Field(int x, int y, int maxCountObject, Adapter* adapter): lenghtX(x), lengthY(y), maxCountObject(maxCountObject), countUnit(0), base1(nullptr), base2(nullptr), base3(
+        nullptr), adapter(adapter){
 
     mapCell = new Cell**[this->lengthY];
     for (int i=0; i<this->lengthY; i++) {
@@ -19,7 +20,7 @@ Field::Field(int x, int y, int maxCountObject, Adapter* adapter): lenghtX(x), le
                 mapCell[i][j]->neutralObject = nullptr;
             }
     }
-    this->adapter->createField(this);
+    //this->adapter->createField(this);
 
 
     }
@@ -54,6 +55,7 @@ Field& Field::operator= (const Field& field){
     this->maxCountObject = field.maxCountObject;
     this->base1 = field.base1;
     this->base2 = field.base2;
+    this->base3 = field.base3;
     this->mapCell = new Cell** [field.lengthY];
     for (int i = 0; i < lengthY; i++){
         mapCell[i] = new Cell*[lenghtX];
@@ -91,8 +93,10 @@ Field& Field::operator= (const Field& field){
                 if (mapCell[i][j]->base != nullptr) {
                     if (mapCell[i][j]->base == this->base1)
                         std::cout << "1 ";
-                    else
+                    else if (mapCell[i][j]->base == this->base2)
                         std::cout << "2 ";
+                    else
+                        std::cout << "3 ";
                     continue;
                 }
                 if (mapCell[i][j]->unit != nullptr) {
@@ -203,6 +207,7 @@ Field& Field::operator= (const Field& field){
     }
 
     Base* Field::createBase(int BaseX, int BaseY, int maxCountUnit, int health, Adapter* adapter){
+
         Base* base = new Base(this, maxCountUnit, health, BaseX, BaseY);
         base->adapter = adapter;
         this->mapCell[BaseY][BaseX]->base = base;
@@ -210,16 +215,24 @@ Field& Field::operator= (const Field& field){
             base->numberBase = 1;
             this->base1 = base;
         }
-        else {
+        else if (base2 == nullptr){
             this->base2 = base;
             base->numberBase = 2;
+        }
+        else{
+            this->base3 = base;
+            base->numberBase = 3;
         }
         base->adapter->createBase(base);
         return base;
     }
 
-    SnapshotField* Field::createSnap(){
-        SnapshotField* snap = new SnapshotField(this, lenghtX, lengthY, maxCountObject, countUnit, base1, base2);
+    SnapshotField* Field::createSnap(std::string mode){
+        SnapshotField* snap;
+        if (mode == "save")
+            snap = new SnapshotField(this, lenghtX, lengthY, maxCountObject, countUnit, base1, base2);
+        else
+            snap = new SnapshotField(this);
         return snap;
     }
 

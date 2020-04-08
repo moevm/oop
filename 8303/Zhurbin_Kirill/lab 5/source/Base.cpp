@@ -96,6 +96,10 @@ void Base::removeUnit(Unit *unit) {
 
 }
 
+bool Base::isDestroyed(){
+    return health <= 0;
+}
+
 bool Base::wasAttack(int damage){
     std::cout << "The base was attack" << std::endl;
     std::cout << "Health before attack: " << this-> health << std::endl;

@@ -6,6 +6,7 @@
 #include "Base.h"
 #include "Field.h"
 #include "Command.h"
+#include "Exceptions.h"
 
 class BaseHandler{
     BaseHandler* next;
@@ -22,9 +23,6 @@ public:
     }
 
 
-    void setNext(BaseHandler *n){
-        next = n;
-        }
     void add(BaseHandler *n){
         if (next)
             next->add(n);
@@ -32,35 +30,56 @@ public:
             next = n;
     }
 
-    virtual void handle(std::string commandStr)
+    virtual void handle(std::string commandStr, int player)
     {
-        next->handle(commandStr);
+        next->handle(commandStr, player);
     }
 };
 
 class SetBaseHandler: public BaseHandler{
+    std::string xStr, yStr, maxCountStr, healthStr;
     int x, y, maxCount, health;
     Adapter* adapter;
 public:
     SetBaseHandler(Field* field, Adapter* adapter): BaseHandler(field), adapter(adapter){
 
     }
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int player) override {
         if (commandStr == "setBase"){
             std::cout << "Set x of base:" << std::endl;
-            std::cin >> x;
+            std::cin >> xStr;
             std::cout << "Set y of base: "<< std::endl;
-            std::cin >> y;
+            std::cin >> yStr;
             std::cout << "Set maximum count unit of base: "<< std::endl;
-            std::cin >> maxCount;
+            std::cin >> maxCountStr;
             std::cout << "Set  health of base: "<< std::endl;
-            std::cin >> health;
+            std::cin >> healthStr;
             std::cout << std::endl;
+
+            try{
+                x = std::stoi(xStr);
+                y = std::stoi(yStr);
+                maxCount = std::stoi(maxCountStr);
+                health = std::stoi(healthStr);
+            }
+            catch(std::exception){
+                throw TypeInputException("int");
+            }
+
+            if (x < 0 || x > field->lenghtX - 1)
+                throw LogicException("base coordinates", x);
+            if (y < 0 || y > field->lengthY - 1)
+                throw LogicException("base coordinates", y);
+            if (maxCount < 0 || maxCount > field->maxCountObject)
+                throw LogicException("max count unit of base", maxCount);
+            if (health < 0)
+                throw LogicException("health of base", health);
+
             BaseCommand* setBase = new SetBaseCommand(field, x, y, maxCount, health, adapter);
             setBase->execute();
         }
         else{
-            BaseHandler::handle(commandStr);
+            BaseHandler::handle(commandStr, player);
         }
 
     }
@@ -73,7 +92,7 @@ public:
     SwitchLogHandler(Adapter* adapter): adapter(adapter){
 
     }
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int player) override {
         if (commandStr == "switchLog"){
             std::cin >> command;
             if (command == "off"){
@@ -97,7 +116,7 @@ public:
             }
         }
         else{
-            BaseHandler::handle(commandStr);
+            BaseHandler::handle(commandStr, player);
         }
 
     }
@@ -112,12 +131,9 @@ public:
     SetUnitHandler(Field* field, Mediator* mediator, Adapter* adapter): BaseHandler(field), mediator(mediator), adapter(adapter){
 
     }
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int number) override {
         if (commandStr == "setUnit"){
-            std::cout << "Choose the number base" << std::endl;
-            std::cin >> number;
-
-            if (number <= 0 || number > 2){
+            if (number <= 0 || number > 3){
                 std::cout << "Incorrect number base"<<std::endl;
                 return;
             }
@@ -127,7 +143,7 @@ public:
 
         }
         else{
-            BaseHandler::handle(commandStr);
+            BaseHandler::handle(commandStr, number);
         }
 
     }
@@ -139,14 +155,14 @@ public:
     SaveHandler(Field* field): BaseHandler(field){
 
     }
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int player) override {
         if (commandStr == "save"){
-            SnapshotField* snap = field->createSnap();
+            SnapshotField* snap = field->createSnap("save");
             snap->save();
 
         }
         else{
-            BaseHandler::handle(commandStr);
+            BaseHandler::handle(commandStr, player);
         }
 
     }
@@ -158,29 +174,26 @@ public:
     LoadHandler(Field* field, Mediator* mediator): BaseHandler(field), mediator(mediator){
 
     }
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int player) override {
         if (commandStr == "load"){
-            SnapshotField* snap = field->createSnap();
+            SnapshotField* snap = field->createSnap("load");
             snap->load(mediator);
         }
         else{
-            BaseHandler::handle(commandStr);
+            BaseHandler::handle(commandStr, player);
         }
 
     }
 };
 
 class AttackUnitHandler: public BaseHandler{
-    int number;
 public:
     AttackUnitHandler(Field* field): BaseHandler(field){
 
     }
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int number) override {
         if (commandStr == "attackUnit"){
-            std::cout << "Choose the number base" << std::endl;
-            std::cin >> number;
-            if (number <= 0 || number > 2){
+            if (number <= 0 || number > 3){
                 std::cout << "Incorrect number base"<<std::endl;
                 return;
             }
@@ -189,23 +202,20 @@ public:
 
         }
         else{
-            BaseHandler::handle(commandStr);
+            BaseHandler::handle(commandStr, number);
         }
 
     }
 };
 
 class StatusBaseHandler: public BaseHandler{
-    int number;
 public:
     StatusBaseHandler(Field* field): BaseHandler(field){
 
     }
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int number) override {
         if (commandStr == "statusBase"){
-            std::cout << "Choose the number base" << std::endl;
-            std::cin >> number;
-            if (number <= 0 || number > 2){
+            if (number <= 0 || number > 3){
                 std::cout << "Incorrect number base"<<std::endl;
                 return;
             }
@@ -214,23 +224,20 @@ public:
 
         }
         else{
-            BaseHandler::handle(commandStr);
+            BaseHandler::handle(commandStr, number);
         }
 
     }
 };
 
 class MoveUnitHandler: public BaseHandler{
-    int number;
 public:
     MoveUnitHandler(Field* field): BaseHandler(field){
 
     }
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int number) override {
         if (commandStr == "moveUnit"){
-            std::cout << "Choose the number base" << std::endl;
-            std::cin >> number;
-            if (number <= 0 || number > 2){
+            if (number <= 0 || number > 3){
                 std::cout << "Incorrect number base"<<std::endl;
                 return;
             }
@@ -239,7 +246,7 @@ public:
 
         }
         else{
-            BaseHandler::handle(commandStr);
+            BaseHandler::handle(commandStr, number);
         }
 
     }
@@ -247,8 +254,7 @@ public:
 
 class NoCommandHandler: public BaseHandler{
 public:
-
-    void handle (std::string commandStr) override {
+    void handle (std::string commandStr, int player) override {
         std::cout << "Not this command!" << std::endl;
     }
 };

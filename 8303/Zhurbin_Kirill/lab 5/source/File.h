@@ -14,6 +14,7 @@ public:
             out.open(filename, std::ios::app | std::ios::out);
         else
             out.open(filename);
+
     }
 
     ~FileWrite() {

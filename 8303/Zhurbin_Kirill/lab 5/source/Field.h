@@ -24,9 +24,11 @@ public:
     Field& operator= (const Field& field);
     Base* base1;
     Base* base2;
+    Base* base3;
 
     friend class Iterator;
     friend class Mediator;
+    friend class SetBaseHandler;
 
     Field(int x, int y, int maxCountObject, Adapter* adapter);
 
@@ -62,7 +64,7 @@ public:
 
     void printNeutral() const;
 
-    SnapshotField *createSnap();
+    SnapshotField *createSnap(std::string mode);
 
     Adapter *getAdapter();
 };

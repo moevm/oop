@@ -3,12 +3,22 @@
 #include "Field.h"
 #include "File.h"
 #include "Mediator.h"
+#include "Exceptions.h"
 
 SnapshotField::SnapshotField(Field* field, int lengthX, int lengthY, int maxCountObject, int countUnit, Base* base1, Base* base2): field(field), lenghtX(lengthX), lengthY(lengthY), maxCountObject(maxCountObject), countUnit(countUnit), mapCell(mapCell), base1(base1), base2(base2){
+    fileWrite = new FileWrite("saveField.txt", "save");
+}
+
+SnapshotField::SnapshotField(Field* field): field(field){
+    fileRead = new FileRead("saveField.txt");
+}
+
+SnapshotField::~SnapshotField() {
+    delete fileWrite;
+    delete fileRead;
 }
 
 void SnapshotField::save(){
-    file = new FileWrite("saveField.txt", "save");
     std::ostringstream out;
     this->adapter = field->getAdapter();
 
@@ -16,7 +26,7 @@ void SnapshotField::save(){
 
     if (field->base1 == nullptr){
         out << "no" << std::endl;
-        file->write(out.str());
+        fileWrite->write(out.str());
         adapter->gameSaved();
         return;
     }
@@ -40,7 +50,7 @@ void SnapshotField::save(){
 
     if (field->base2 == nullptr){
         out << "no" << std::endl;
-        file->write(out.str());
+        fileWrite->write(out.str());
         adapter->gameSaved();
         return;
     }
@@ -60,34 +70,29 @@ void SnapshotField::save(){
         out << unit->name << " " << unit->condition.health << " " << unit->condition.attack << " " << unit->condition.armor << " " << field->findUnit(unit)->x << " " << field->findUnit(unit)->y << std::endl;
     }
 
-    file->write(out.str());
+    fileWrite->write(out.str());
     adapter->gameSaved();
 }
 
 void SnapshotField::load(Mediator* mediator){
-    fileRead = new FileRead("saveField.txt");
+
     std::stringstream stream = fileRead->read();
 
     int fieldX, fieldY, maxCountUnit;
     adapter = new Adapter();
 
-    try {
-        stream >> fieldX;
-        stream >> fieldY;
-        stream >> maxCountUnit;
-    }
 
-    catch(int i) {
-        std::cout << "Load file incorrect, loadding stopped" << std::endl;
-        adapter->incorrectFile();
-        return;
-    }
+    stream >> fieldX >> fieldY >> maxCountUnit;
+    if (stream.fail())
+        throw TypeInputException("int");
 
-    if (fieldX < 3 || fieldY < 3 || maxCountUnit <= 0){
-        std::cout << "Load file incorrect, loadding stopped" << std::endl;
-        adapter->incorrectFile();
-        return;
-    }
+    if (fieldX != 10 && fieldX != 8)
+        throw LogicException("field coordinates", fieldX);
+    if (fieldY != 10 && fieldY != 8)
+        throw LogicException("field coordinates", fieldY);
+    if (maxCountUnit <= 0)
+        throw LogicException("max count of field unit", maxCountUnit);
+
 
     Field*  newField = new Field(fieldX, fieldY, maxCountUnit, adapter);
     *(this->field) = *newField;
@@ -99,9 +104,7 @@ void SnapshotField::load(Mediator* mediator){
     stream >> flagContain;
 
     if (flagContain != "yes" && flagContain != "no"){
-        std::cout << "Load file incorrect, loadding stopped" << std::endl;
-        adapter->incorrectFile();
-        return;
+        throw LogicException("flag of base", flagContain);
     }
 
     if (flagContain == "no") {
@@ -111,26 +114,20 @@ void SnapshotField::load(Mediator* mediator){
 
     int baseX, baseY, maxCountUnitBase, health, countUnitBase, numberBase;
 
-    try {
-        stream >> baseX;
-        stream >> baseY;
-        stream >> maxCountUnitBase;
-        stream >> health;
-        stream >> countUnitBase;
-        stream >> numberBase;
-    }
+    stream >> baseX >> baseY >> maxCountUnitBase >> health >> countUnitBase >> numberBase;
+     if (stream.fail())
+        throw TypeInputException("int");
 
-    catch (int i){
-        std::cout << "Load file incorrect, loadding stopped" << std::endl;
-        adapter->incorrectFile();
-        return;
-    }
-
-    if (baseX < 0 || baseY < 0 || maxCountUnitBase <= 0 || health < 0 || (numberBase != 1 && numberBase != 2)){
-        std::cout << "Load file incorrect, loadding stopped" << std::endl;
-        adapter->incorrectFile();
-        return;
-    }
+    if (baseX < 0)
+        throw LogicException("base coordinates", baseX);
+    if (baseY < 0)
+        throw LogicException("base coordinates", baseY);
+    if (maxCountUnitBase <= 0)
+        throw LogicException("max count unit of base", maxCountUnit);
+    if (health < 0)
+        throw LogicException("health of base", health);
+    if (numberBase != 1 && numberBase != 2 && numberBase != 3)
+        throw LogicException("number base", numberBase);
 
     field->createBase(baseX, baseY, maxCountUnitBase, health, adapter);
 
@@ -138,25 +135,26 @@ void SnapshotField::load(Mediator* mediator){
     int healthUnit, attack, armor, x, y;
 
     for (int i=0; i<countUnitBase; i++){
-        try {
-            stream >> name;
-            stream >> healthUnit;
-            stream >> attack;
-            stream >> armor;
-            stream >> x;
-            stream >> y;
-        }
-        catch (int i){
-            std::cout << "Load file incorrect, loadding stopped" << std::endl;
-            adapter->incorrectFile();
-            return;
+
+        stream >> name;
+        if (stream.fail()){
+            throw TypeInputException("char");
         }
 
-        if (healthUnit <= 0 || attack <= 0 || armor < 0 || x < 0 || y < 0){
-            std::cout << "Load file incorrect, loadding stopped" << std::endl;
-            adapter->incorrectFile();
-            return;
-        }
+        stream >> healthUnit >> attack >> armor >> x >> y;
+        if (stream.fail())
+            throw TypeInputException("int");
+
+        if (healthUnit <= 0)
+            throw LogicException("health of unit", healthUnit);
+        if (attack <= 0)
+            throw LogicException("attack of unit", attack);
+        if (armor <= 0)
+            throw LogicException("armor of unit", armor);
+        if (x < 0)
+            throw LogicException("coordinate x of unit", x);
+        if (y < 0)
+            throw LogicException("coordinate y of unit", y);
 
         field->base1->setUnit(name, x, y, healthUnit, attack, armor,  mediator, adapter);
     }
@@ -164,9 +162,7 @@ void SnapshotField::load(Mediator* mediator){
     stream >> flagContain;
 
     if (flagContain != "yes" && flagContain != "no"){
-        std::cout << "Load file incorrect, loadding stopped" << std::endl;
-        adapter->incorrectFile();
-        return;
+        throw LogicException("flag of base", flagContain);
     }
 
     if (flagContain == "no") {
@@ -174,48 +170,43 @@ void SnapshotField::load(Mediator* mediator){
         return;
     }
 
-    try {
-        stream >> baseX;
-        stream >> baseY;
-        stream >> maxCountUnitBase;
-        stream >> health;
-        stream >> countUnitBase;
-        stream >> numberBase;
-    }
-    catch (int i){
-        std::cout << "Load file incorrect, loadding stopped" << std::endl;
-        adapter->incorrectFile();
-        return;
-    }
+    stream >> baseX >> baseY >> maxCountUnitBase >> health >> countUnitBase >> numberBase;
+    if (stream.fail())
+        throw TypeInputException("int");
 
-    if (baseX < 0 || baseY < 0 || maxCountUnitBase <= 0 || health < 0 || (numberBase != 1 && numberBase != 2)){
-        std::cout << "Load file incorrect, loadding stopped" << std::endl;
-        adapter->incorrectFile();
-        return;
-    }
+    if (baseX < 0)
+        throw LogicException("base coordinates", baseX);
+    if (baseY < 0)
+        throw LogicException("base coordinates", baseY);
+    if (maxCountUnitBase <= 0)
+        throw LogicException("max count unit of base", maxCountUnit);
+    if (health < 0)
+        throw LogicException("health of base", health);
+    if (numberBase != 1 && numberBase != 2 && numberBase != 3)
+        throw LogicException("number base", numberBase);
 
     field->createBase(baseX, baseY, maxCountUnitBase, health, adapter);
 
     for (int i=0; i<countUnitBase; i++){
-        try {
-            stream >> name;
-            stream >> healthUnit;
-            stream >> attack;
-            stream >> armor;
-            stream >> x;
-            stream >> y;
-        }
-        catch (int i){
-            std::cout << "Load file incorrect, loadding stopped" << std::endl;
-            adapter->incorrectFile();
-            return;
-        }
 
-        if (healthUnit <= 0 || attack <= 0 || armor < 0 || x < 0 || y < 0){
-            std::cout << "Load file incorrect, loadding stopped" << std::endl;
-            adapter->incorrectFile();
-            return;
-        }
+        stream >> name;
+        if (stream.fail())
+            throw TypeInputException("char");
+
+        stream >> healthUnit >> attack >> armor >> x >> y;
+        if (stream.fail())
+            throw TypeInputException("int");
+
+        if (healthUnit <= 0)
+            throw LogicException("health of unit", healthUnit);
+        if (attack <= 0)
+            throw LogicException("attack of unit", attack);
+        if (armor <= 0)
+            throw LogicException("armor of unit", armor);
+        if (x < 0)
+            throw LogicException("coordinate x of unit", x);
+        if (y < 0)
+            throw LogicException("coordinate y of unit", y);
 
         field->base2->setUnit(name, x, y, healthUnit, attack, armor, mediator, adapter);
     }

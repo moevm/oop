@@ -2,7 +2,7 @@
 
 void Facade::createGame() {
 
-    adapter = new Adapter();
+    /*adapter = new Adapter();
 
     field = new Field(8, 8, 20, adapter);
     field->addLandscape();
@@ -39,10 +39,12 @@ void Facade::createGame() {
     baseHandler->add(load);
     baseHandler->add(noCommand);
 
-    std::cout << "Game preparation done, you can start playing" << std::endl;
+    std::cout << "Game preparation done, you can start playing" << std::endl;*/
 }
 
+
+
 void Facade::play(std::string commandStr) {
-        baseHandler->handle(commandStr);
-        field->printAll();
+        /*baseHandler->handle(commandStr);
+        field->printAll();*/
 }
