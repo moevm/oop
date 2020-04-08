@@ -6,6 +6,7 @@
 #define UNTITLED13_ATTACKUNITCOMMAND_H
 
 #include "../Command.h"
+#include "../../../Utils/utils.h"
 
 class AttackUnitCommand: public Command{
 
@@ -55,10 +56,10 @@ public:
 
         if (canHandle(cmd)){
 
-            int x1 = std::stoi(cmd[1]);
-            int y1 = std::stoi(cmd[2]);
-            int x2 = std::stoi(cmd[3]);
-            int y2 = std::stoi(cmd[4]);
+            int x1 = utils::StrToInt(cmd[1]);
+            int y1 = utils::StrToInt(cmd[2]);
+            int x2 = utils::StrToInt(cmd[3]);
+            int y2 = utils::StrToInt(cmd[4]);
             Point from(x1, y1);
             Point to(x2, y2);
             return CommandPtr(new AttackUnitCommand(from, to));

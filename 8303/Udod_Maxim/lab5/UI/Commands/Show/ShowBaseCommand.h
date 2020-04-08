@@ -8,6 +8,7 @@
 
 #include "../Command.h"
 #include "../../../Point.h"
+#include "../../../Utils/utils.h"
 
 class ShowBaseCommand: public Command {
 
@@ -51,8 +52,8 @@ public:
     CommandPtr handle(std::vector<std::string> &cmd) override{
 
         if (canHandle(cmd)){
-            int x = std::stoi(cmd[1]);
-            int y = std::stoi(cmd[2]);
+            int x = utils::StrToInt(cmd[1]);
+            int y = utils::StrToInt(cmd[2]);
             Point basePosition(x, y);
             return CommandPtr(new ShowBaseCommand(basePosition));
         }

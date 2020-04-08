@@ -50,8 +50,8 @@ public:
     virtual CommandPtr handle(std::vector<std::string> &cmd){
 
         if (canHandle(cmd)){
-            int x = std::stoi(cmd[1]);
-            int y = std::stoi(cmd[2]);
+            int x = utils::StrToInt(cmd[1]);
+            int y = utils::StrToInt(cmd[2]);
             Point unitPosition(x, y);
             return CommandPtr(new ShowUnitCommand(unitPosition));
         }

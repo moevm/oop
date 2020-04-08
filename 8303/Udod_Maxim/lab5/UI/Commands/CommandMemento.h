@@ -25,6 +25,12 @@ public:
 
     }
 
+    unsigned long int getHash(std::hash<std::string> &hashFunc){
+
+        return hashFunc(commandLine);
+
+    }
+
 };
 
 

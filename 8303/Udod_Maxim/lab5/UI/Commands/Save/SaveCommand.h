@@ -24,13 +24,27 @@ public:
     }
     void execute(GameInfo &gameInfo) override{
 
+        std::hash<std::string> hashFunc;
+        unsigned long int fileHash = 0;
+
         game::log << "Saving..." << game::logend;
         auto history = gameInfo.getHistory();
+
+        for (auto m: history){
+
+            fileHash += m->getHash(hashFunc);
+
+        }
+
+        fs << fileHash << std::endl;
+
         for (auto m: history){
 
             m->saveToFile(fs);
 
         }
+
+        game::log << "Saved commands count: " << gameInfo.getHistory().size() << game::logend;
 
     }
 

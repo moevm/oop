@@ -47,6 +47,11 @@ public:
         return logger;
     }
 
+    friend LogProxy& operator<< (LogProxy &logger, const unsigned long int i){
+        logger.log(std::to_string(i));
+        return logger;
+    }
+
     friend LogProxy& operator<< (LogProxy &logger, const game::Logend &l){
         logger.log("\n");
         logger.isFirstInLine = true;

@@ -8,6 +8,7 @@
 #include "../Command.h"
 #include "../../../Armor/ArmorFlyWeight.h"
 #include "../../../Armor/LeatherArmor.h"
+#include "../../../Utils/utils.h"
 
 class CreateBaseCommand: public Command {
 
@@ -52,8 +53,8 @@ public:
 
         if (canHandle(cmd)){
 
-            int x = std::stoi(cmd[1]);
-            int y = std::stoi(cmd[2]);
+            int x = utils::StrToInt(cmd[1]);
+            int y = utils::StrToInt(cmd[1]);
             Point basePosition(x, y);
             return CommandPtr(new CreateBaseCommand(basePosition));
 

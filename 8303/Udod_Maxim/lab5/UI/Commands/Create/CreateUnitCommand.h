@@ -10,6 +10,7 @@
 #include "../../../Objects/Units/Infantry/SwordMan.h"
 #include "../../../Objects/Units/Archer/CrossBowMan.h"
 #include "../../../Objects/Units/Wizard/FireMage.h"
+#include "../../../Utils/utils.h"
 
 class CreateUnitCommand: public Command {
 
@@ -69,8 +70,8 @@ public:
 
         if (canHandle(cmd)){
 
-            int x = std::stoi(cmd[1]);
-            int y = std::stoi(cmd[2]);
+            int x = utils::StrToInt(cmd[1]);
+            int y = utils::StrToInt(cmd[2]);
             auto type = static_cast<UnitType>(std::stoi(cmd[3]));
             Point basePosition(x, y);
             return CommandPtr(new CreateUnitCommand(basePosition, type));
