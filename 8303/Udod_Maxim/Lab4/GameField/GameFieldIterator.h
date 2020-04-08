@@ -6,21 +6,21 @@
 #define UNTITLED13_GAMEFIELDITERATOR_H
 
 #include <iterator>
-#include "Point.h"
-#include "Units/Unit.h"
+#include "../Point.h"
+#include "FieldCell.h"
 
-class GameFieldIterator: public std::iterator<std::input_iterator_tag, Unit*>{
+class GameFieldIterator: public std::iterator<std::input_iterator_tag, FieldCell>{
 
     friend class GameField;
 
 private:
 
     Point p;
-    Unit *** field;
+    FieldCell **field;
     const int fieldHeight;
     const int fieldWidth;
 
-    GameFieldIterator(const Point p, Unit *** field, const int fieldHeight, const int fieldWidth):
+    GameFieldIterator(const Point p, FieldCell **field, const int fieldHeight, const int fieldWidth):
     p(p),
     field(field),
     fieldWidth(fieldWidth),

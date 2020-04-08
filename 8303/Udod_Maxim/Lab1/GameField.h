@@ -13,38 +13,37 @@ class Unit;
 
 class GameField {
 
-    friend class Unit;
-
 private:
 
     Unit ***field;
 
-    int fieldHeight;
-    int fieldWidth;
+    const int fieldHeight;
+    const int fieldWidth;
 
-    int maxObjectsCount = 3;
+    const int maxObjectsCount = 3;
+    int objectsCount;
 
 public:
 
-    GameField(int fieldSize);
+    explicit GameField(int fieldSize);
     GameField(int fieldHeight, int fieldWidth);
-    GameField(GameField &other);
+    GameField(const GameField &other);
     GameField(GameField &&other);
 
+    ~GameField();
+
     void deleteObject(int x, int y);
-    void deleteObject(Point &point);
+    void deleteObject(const Point &point);
     void deleteObject(Unit *object);
 
     void addObject(Unit *object, int x, int y);
 
-    void moveObject(Point &p1, Point &p2);
-    void moveObject(Unit *object, Point &p2);
+    void moveObject(const Point &p1, const Point &p2);
+    void moveObject(Unit *object, const Point &p2);
 
-    Unit ***getField(){ return field; }
-
-    int getHeight();
-    int getWidth();
-    Unit *getObject(Point &p);
+    int getHeight() const;
+    int getWidth() const;
+    Unit *getObject(const Point &p) const;
 
     GameFieldIterator begin(){ return GameFieldIterator(Point(0, 0), field, fieldHeight, fieldWidth); }
     GameFieldIterator end(){ return GameFieldIterator(Point(0, fieldHeight), field, fieldHeight, fieldWidth); }

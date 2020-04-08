@@ -5,7 +5,11 @@
 #include <iostream>
 #include "GameField.h"
 
-GameField::GameField(int fieldSize){
+GameField::GameField(int fieldSize):
+fieldHeight(fieldSize),
+fieldWidth(fieldSize),
+objectsCount(0)
+{
 
     field = new Unit** [fieldSize];
     for (int i=0; i<fieldSize; i++){
@@ -14,14 +18,13 @@ GameField::GameField(int fieldSize){
             field[i][j] = nullptr;
         }
     }
-
-    fieldHeight = fieldSize;
-    fieldWidth = fieldSize;
-
 }
 
-GameField::GameField(int fieldHeight, int fieldWidth) {
-
+GameField::GameField(int fieldHeight, int fieldWidth):
+fieldHeight(fieldHeight),
+fieldWidth(fieldWidth),
+objectsCount(0)
+{
     field = new Unit** [fieldHeight];
     for (int i=0; i<fieldHeight; i++){
         field[i] = new Unit* [fieldWidth];
@@ -30,29 +33,55 @@ GameField::GameField(int fieldHeight, int fieldWidth) {
         }
     }
 
-    this->fieldHeight = fieldHeight;
-    this->fieldWidth = fieldWidth;
+}
+
+GameField::GameField(const GameField &other) :
+fieldWidth(other.fieldWidth),
+fieldHeight(other.fieldHeight),
+maxObjectsCount(other.maxObjectsCount)
+{
+
+    field = new Unit** [fieldHeight];
+    for (int i=0; i<fieldHeight; i++){
+        field[i] = new Unit* [fieldWidth];
+        for (int j=0; j<fieldWidth; j++){
+            if (other.field[i][j])
+                field[i][j] = new Unit(*other.field[i][j]);
+            else
+                field[i][j] = nullptr;
+        }
+    }
+}
+
+GameField::GameField(GameField &&other) :
+fieldWidth(other.fieldWidth),
+fieldHeight(other.fieldHeight),
+maxObjectsCount(other.maxObjectsCount),
+objectsCount(other.objectsCount)
+{
+
+    field = other.field;
+    other.field = nullptr;
 
 }
 
 void GameField::deleteObject(int x, int y) {
 
     if (field[y][x]) {
-        maxObjectsCount++;
+        objectsCount--;
         delete field[y][x];
         field[y][x] = nullptr;
     }
-
 }
 
 void GameField::addObject(Unit *object, int x, int y) {
 
     bool isInBorder = x < fieldWidth && y < fieldHeight && x >= 0 && y >= 0;
 
-    if (isInBorder && !field[y][x] && maxObjectsCount && !object->isOnField){
+    if (isInBorder && !field[y][x] && objectsCount < maxObjectsCount && !object->isOnField){
 
         field[y][x] = object;
-        maxObjectsCount--;
+        objectsCount++;
         object->position = Point(x, y);
 
     } else{
@@ -68,7 +97,7 @@ void GameField::deleteObject(Unit *object) {
 
 }
 
-void GameField::moveObject(Point &p1, Point &p2) {
+void GameField::moveObject(const Point &p1, const Point &p2) {
 
     if (field[p1.y][p1.x] && !field[p2.y][p2.x]){
 
@@ -85,47 +114,28 @@ void GameField::moveObject(Point &p1, Point &p2) {
 
 }
 
-void GameField::moveObject(Unit *object, Point &p2) {
+void GameField::moveObject(Unit *object, const Point &p2) {
 
     Point p1 = object->getPosition();
     moveObject(p1, p2);
 
 }
 
-GameField::GameField(GameField &other) {
-
-    fieldHeight = other.fieldHeight;
-    fieldWidth = other.fieldWidth;
-    maxObjectsCount = other.maxObjectsCount;
-
-    field = new Unit** [fieldHeight];
-    for (int i=0; i<fieldHeight; i++){
-        field[i] = new Unit* [fieldWidth];
-        for (int j=0; j<fieldWidth; j++){
-            if (other.field[i][j])
-                field[i][j] = new Unit(other.field[i][j]);
-            else
-                field[i][j] = nullptr;
-        }
-    }
-
-}
-
-void GameField::deleteObject(Point &point) {
+void GameField::deleteObject(const Point &point) {
 
     deleteObject(point.x, point.y);
 
 }
 
-int GameField::getHeight() {
+int GameField::getHeight() const{
     return fieldHeight;
 }
 
-int GameField::getWidth() {
+int GameField::getWidth() const{
     return fieldWidth;
 }
 
-Unit *GameField::getObject(Point &p){
+Unit *GameField::getObject(const Point &p) const{
 
     if (p.x < fieldWidth && p.y < fieldHeight)
         return field[p.y][p.x];
@@ -133,11 +143,12 @@ Unit *GameField::getObject(Point &p){
 
 }
 
-GameField::GameField(GameField &&other) {
+GameField::~GameField() {
 
-    field = other.field;
-    fieldHeight = other.fieldHeight;
-    fieldWidth = other.fieldWidth;
-    maxObjectsCount = other.maxObjectsCount;
+    for (int i=0; i<fieldHeight; i++){
+        delete []field[i];
+    }
+
+    delete []field;
 
 }
