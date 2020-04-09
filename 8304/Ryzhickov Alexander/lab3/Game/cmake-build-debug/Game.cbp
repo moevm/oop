@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Game"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/Alex/CLionProjects/Game22/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Game">
+				<Option output="C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Game.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Alex/CLionProjects/Game22/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 Game"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Game/fast">
+				<Option output="C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Game.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Alex/CLionProjects/Game22/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 Game/fast"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Alex/CLionProjects/Game22/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Alex/CLionProjects/Game22/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/Alex/CLionProjects/Game22/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Game/Game.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Game/Game.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Base/Base.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Base/Base.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Factories/LandscapeFactory.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Factories/LandscapeFactory.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Factories/UnitFactories.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Factories/UnitFactories.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Field/Field.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Field/Field.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/GameCell/GameCell.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/GameCell/GameCell.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/FieldLandscape.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/FieldLandscape.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/ForestLandscape.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/ForestLandscape.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/Landscape.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/Landscape.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/MountainsLandscape.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/MountainsLandscape.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/ProxyLandscape.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/Landscapes/ProxyLandscape.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/Generators/ArmorGenerator.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/Generators/ArmorGenerator.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/Generators/GoldGenerator.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/Generators/GoldGenerator.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/Generators/HealthGenerator.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/Generators/HealthGenerator.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/NeutralObject.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/Settlements/Village.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/OtherClasses/NeutralObjects/Settlements/Village.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Armor/Armor.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Armor/Armor.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Armor/AttackUnitArmor/AttackUnitArmor.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Armor/AttackUnitArmor/AttackUnitArmor.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Armor/HeavyUnitArmor/HeavyUnitArmor.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Armor/HeavyUnitArmor/HeavyUnitArmor.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Armor/RangeUnitArmor/RangeUnitArmor.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Armor/RangeUnitArmor/RangeUnitArmor.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/ColdSteel/Axe.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/ColdSteel/Axe.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/ColdSteel/Spear.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/ColdSteel/Spear.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/ColdSteel/Sword.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/ColdSteel/Sword.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/RangeWeapons/Bow.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/RangeWeapons/Bow.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/RangeWeapons/Rod.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/RangeWeapons/Rod.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/Weapon.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/UnitAmunition/Weapon/Weapon.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/AttackInfantry/AttackInfantry.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/AttackInfantry/AttackInfantry.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/AttackInfantry/Spearmen.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/AttackInfantry/Spearmen.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/AttackInfantry/Swordmen.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/AttackInfantry/Swordmen.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/HeavyInfantry/HeavyInfantry.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/HeavyInfantry/HeavyInfantry.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/HeavyInfantry/King.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/HeavyInfantry/King.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/HeavyInfantry/Knight.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/HeavyInfantry/Knight.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/RangedUnits/Archer.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/RangedUnits/Archer.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/RangedUnits/Magician.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/RangedUnits/Magician.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/RangedUnits/RangedUnit.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/RangedUnits/RangedUnit.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/Unit.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/Unit.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/Units/UnitInterface.h">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/main.cpp">
+			<Option target="Game"/>
+		</Unit>
+		<Unit filename="C:/Users/Alex/CLionProjects/Game22/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
