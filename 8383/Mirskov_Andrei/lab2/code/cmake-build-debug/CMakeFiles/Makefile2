@@ -44,10 +44,10 @@ RM = /home/andrei/Загрузки/clion-2019.3.2/bin/cmake/linux/bin/cmake -E r
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/andrei/CLionProjects/oop_lab2_norm
+CMAKE_SOURCE_DIR = /home/andrei/CLionProjects/oop_lab2_3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug
+CMAKE_BINARY_DIR = /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ preinstall:
 CMakeFiles/oop_lab2.dir/all:
 	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/depend
 	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31 "Built target oop_lab2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32 "Built target oop_lab2"
 .PHONY : CMakeFiles/oop_lab2.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/oop_lab2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles 31
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles 32
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/oop_lab2.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/oop_lab2.dir/rule
 
 # Convenience name for target.

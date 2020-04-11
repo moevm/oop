@@ -4,13 +4,25 @@
 
 #include "wooden.h"
 
-WoodenArcher::WoodenArcher(int x, int y) : Archer() {
-    this->x = x;
-    this->y = y;
+WoodenArcher::WoodenArcher(Base *base) : Archer() {
     this->damage.setValue(1);
     this->armor.setValue(2);
+    this->view = base;
 }
 
 char WoodenArcher::getType() {
     return 'W';
+}
+
+void WoodenArcher::notify() {
+    this->view->update(this);
+}
+
+int WoodenArcher::getBaseNum() {
+    return this->view->getNum();
+}
+
+WoodenArcher::~WoodenArcher() {
+    this->notify();
+    this->view = nullptr;
 }

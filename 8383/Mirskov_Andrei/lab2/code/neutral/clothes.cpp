@@ -4,6 +4,10 @@
 
 #include "clothes.h"
 
+void Clothes::use(Unit *unit) {
+    unit->setArmor(unit->getArmor() + this->getArmor());
+}
+
 int Clothes::getArmor() {
     return this->armor;
 }

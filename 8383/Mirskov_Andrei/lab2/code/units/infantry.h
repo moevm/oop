@@ -5,7 +5,6 @@
 #ifndef OOP_LAB1_INFANTRY_H
 #define OOP_LAB1_INFANTRY_H
 
-#include "unit.h"
 #include "mainUnit.h"
 
 class Infantry : public MainUnit {

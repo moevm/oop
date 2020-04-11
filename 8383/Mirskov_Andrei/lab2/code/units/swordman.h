@@ -6,11 +6,24 @@
 #define OOP_LAB1_SWORDMAN_H
 
 #include "infantry.h"
+#include "../base/base.h"
+
+class Base;
 
 class SwordMan : public Infantry {
 public:
-    SwordMan(int x, int y);
+    SwordMan(Base *base);
+
+    ~SwordMan();
+
     char getType() override;
+
+    void notify() override;
+
+    int getBaseNum() override;
+
+private:
+    Base* view;
 };
 
 

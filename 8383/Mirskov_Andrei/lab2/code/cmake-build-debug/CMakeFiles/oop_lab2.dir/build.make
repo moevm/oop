@@ -43,10 +43,10 @@ RM = /home/andrei/Загрузки/clion-2019.3.2/bin/cmake/linux/bin/cmake -E r
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/andrei/CLionProjects/oop_lab2_norm
+CMAKE_SOURCE_DIR = /home/andrei/CLionProjects/oop_lab2_3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug
+CMAKE_BINARY_DIR = /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/oop_lab2.dir/depend.make
@@ -59,397 +59,411 @@ include CMakeFiles/oop_lab2.dir/flags.make
 
 CMakeFiles/oop_lab2.dir/main.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/oop_lab2.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/main.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/oop_lab2.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/main.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/main.cpp
 
 CMakeFiles/oop_lab2.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/main.cpp > CMakeFiles/oop_lab2.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/main.cpp > CMakeFiles/oop_lab2.dir/main.cpp.i
 
 CMakeFiles/oop_lab2.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/main.cpp -o CMakeFiles/oop_lab2.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/main.cpp -o CMakeFiles/oop_lab2.dir/main.cpp.s
+
+CMakeFiles/oop_lab2.dir/game/game.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
+CMakeFiles/oop_lab2.dir/game/game.cpp.o: ../game/game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/oop_lab2.dir/game/game.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/game/game.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/game/game.cpp
+
+CMakeFiles/oop_lab2.dir/game/game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/game/game.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/game/game.cpp > CMakeFiles/oop_lab2.dir/game/game.cpp.i
+
+CMakeFiles/oop_lab2.dir/game/game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/game/game.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/game/game.cpp -o CMakeFiles/oop_lab2.dir/game/game.cpp.s
 
 CMakeFiles/oop_lab2.dir/field/field.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/field/field.cpp.o: ../field/field.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/oop_lab2.dir/field/field.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/field/field.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/field/field.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/oop_lab2.dir/field/field.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/field/field.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/field/field.cpp
 
 CMakeFiles/oop_lab2.dir/field/field.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/field/field.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/field/field.cpp > CMakeFiles/oop_lab2.dir/field/field.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/field/field.cpp > CMakeFiles/oop_lab2.dir/field/field.cpp.i
 
 CMakeFiles/oop_lab2.dir/field/field.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/field/field.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/field/field.cpp -o CMakeFiles/oop_lab2.dir/field/field.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/field/field.cpp -o CMakeFiles/oop_lab2.dir/field/field.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/unit.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/unit.cpp.o: ../units/unit.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/oop_lab2.dir/units/unit.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/unit.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/unit.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/oop_lab2.dir/units/unit.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/unit.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/unit.cpp
 
 CMakeFiles/oop_lab2.dir/units/unit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/unit.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/unit.cpp > CMakeFiles/oop_lab2.dir/units/unit.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/unit.cpp > CMakeFiles/oop_lab2.dir/units/unit.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/unit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/unit.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/unit.cpp -o CMakeFiles/oop_lab2.dir/units/unit.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/unit.cpp -o CMakeFiles/oop_lab2.dir/units/unit.cpp.s
 
 CMakeFiles/oop_lab2.dir/vector/vector.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/vector/vector.cpp.o: ../vector/vector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/oop_lab2.dir/vector/vector.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/vector/vector.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/vector/vector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/oop_lab2.dir/vector/vector.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/vector/vector.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/vector/vector.cpp
 
 CMakeFiles/oop_lab2.dir/vector/vector.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/vector/vector.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/vector/vector.cpp > CMakeFiles/oop_lab2.dir/vector/vector.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/vector/vector.cpp > CMakeFiles/oop_lab2.dir/vector/vector.cpp.i
 
 CMakeFiles/oop_lab2.dir/vector/vector.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/vector/vector.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/vector/vector.cpp -o CMakeFiles/oop_lab2.dir/vector/vector.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/vector/vector.cpp -o CMakeFiles/oop_lab2.dir/vector/vector.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/infantry.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/infantry.cpp.o: ../units/infantry.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/oop_lab2.dir/units/infantry.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/infantry.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/infantry.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/oop_lab2.dir/units/infantry.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/infantry.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/infantry.cpp
 
 CMakeFiles/oop_lab2.dir/units/infantry.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/infantry.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/infantry.cpp > CMakeFiles/oop_lab2.dir/units/infantry.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/infantry.cpp > CMakeFiles/oop_lab2.dir/units/infantry.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/infantry.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/infantry.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/infantry.cpp -o CMakeFiles/oop_lab2.dir/units/infantry.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/infantry.cpp -o CMakeFiles/oop_lab2.dir/units/infantry.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/swordman.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/swordman.cpp.o: ../units/swordman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/oop_lab2.dir/units/swordman.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/swordman.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/swordman.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/oop_lab2.dir/units/swordman.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/swordman.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/swordman.cpp
 
 CMakeFiles/oop_lab2.dir/units/swordman.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/swordman.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/swordman.cpp > CMakeFiles/oop_lab2.dir/units/swordman.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/swordman.cpp > CMakeFiles/oop_lab2.dir/units/swordman.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/swordman.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/swordman.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/swordman.cpp -o CMakeFiles/oop_lab2.dir/units/swordman.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/swordman.cpp -o CMakeFiles/oop_lab2.dir/units/swordman.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/spearman.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/spearman.cpp.o: ../units/spearman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/oop_lab2.dir/units/spearman.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/spearman.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/spearman.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/oop_lab2.dir/units/spearman.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/spearman.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/spearman.cpp
 
 CMakeFiles/oop_lab2.dir/units/spearman.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/spearman.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/spearman.cpp > CMakeFiles/oop_lab2.dir/units/spearman.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/spearman.cpp > CMakeFiles/oop_lab2.dir/units/spearman.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/spearman.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/spearman.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/spearman.cpp -o CMakeFiles/oop_lab2.dir/units/spearman.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/spearman.cpp -o CMakeFiles/oop_lab2.dir/units/spearman.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/archer.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/archer.cpp.o: ../units/archer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/oop_lab2.dir/units/archer.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/archer.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/archer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/oop_lab2.dir/units/archer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/archer.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/archer.cpp
 
 CMakeFiles/oop_lab2.dir/units/archer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/archer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/archer.cpp > CMakeFiles/oop_lab2.dir/units/archer.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/archer.cpp > CMakeFiles/oop_lab2.dir/units/archer.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/archer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/archer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/archer.cpp -o CMakeFiles/oop_lab2.dir/units/archer.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/archer.cpp -o CMakeFiles/oop_lab2.dir/units/archer.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/firearcher.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/firearcher.cpp.o: ../units/firearcher.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/oop_lab2.dir/units/firearcher.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/firearcher.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/firearcher.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/oop_lab2.dir/units/firearcher.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/firearcher.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/firearcher.cpp
 
 CMakeFiles/oop_lab2.dir/units/firearcher.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/firearcher.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/firearcher.cpp > CMakeFiles/oop_lab2.dir/units/firearcher.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/firearcher.cpp > CMakeFiles/oop_lab2.dir/units/firearcher.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/firearcher.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/firearcher.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/firearcher.cpp -o CMakeFiles/oop_lab2.dir/units/firearcher.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/firearcher.cpp -o CMakeFiles/oop_lab2.dir/units/firearcher.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/wooden.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/wooden.cpp.o: ../units/wooden.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/oop_lab2.dir/units/wooden.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/wooden.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/wooden.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/oop_lab2.dir/units/wooden.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/wooden.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/wooden.cpp
 
 CMakeFiles/oop_lab2.dir/units/wooden.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/wooden.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/wooden.cpp > CMakeFiles/oop_lab2.dir/units/wooden.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/wooden.cpp > CMakeFiles/oop_lab2.dir/units/wooden.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/wooden.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/wooden.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/wooden.cpp -o CMakeFiles/oop_lab2.dir/units/wooden.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/wooden.cpp -o CMakeFiles/oop_lab2.dir/units/wooden.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/rider.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/rider.cpp.o: ../units/rider.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/oop_lab2.dir/units/rider.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/rider.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/rider.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/oop_lab2.dir/units/rider.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/rider.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/rider.cpp
 
 CMakeFiles/oop_lab2.dir/units/rider.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/rider.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/rider.cpp > CMakeFiles/oop_lab2.dir/units/rider.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/rider.cpp > CMakeFiles/oop_lab2.dir/units/rider.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/rider.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/rider.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/rider.cpp -o CMakeFiles/oop_lab2.dir/units/rider.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/rider.cpp -o CMakeFiles/oop_lab2.dir/units/rider.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/horseman.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/horseman.cpp.o: ../units/horseman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/oop_lab2.dir/units/horseman.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/horseman.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/horseman.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/oop_lab2.dir/units/horseman.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/horseman.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/horseman.cpp
 
 CMakeFiles/oop_lab2.dir/units/horseman.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/horseman.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/horseman.cpp > CMakeFiles/oop_lab2.dir/units/horseman.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/horseman.cpp > CMakeFiles/oop_lab2.dir/units/horseman.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/horseman.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/horseman.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/horseman.cpp -o CMakeFiles/oop_lab2.dir/units/horseman.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/horseman.cpp -o CMakeFiles/oop_lab2.dir/units/horseman.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/elephantman.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/elephantman.cpp.o: ../units/elephantman.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/oop_lab2.dir/units/elephantman.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/elephantman.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/elephantman.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/oop_lab2.dir/units/elephantman.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/elephantman.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/elephantman.cpp
 
 CMakeFiles/oop_lab2.dir/units/elephantman.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/elephantman.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/elephantman.cpp > CMakeFiles/oop_lab2.dir/units/elephantman.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/elephantman.cpp > CMakeFiles/oop_lab2.dir/units/elephantman.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/elephantman.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/elephantman.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/elephantman.cpp -o CMakeFiles/oop_lab2.dir/units/elephantman.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/elephantman.cpp -o CMakeFiles/oop_lab2.dir/units/elephantman.cpp.s
 
 CMakeFiles/oop_lab2.dir/factory/factory.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/factory/factory.cpp.o: ../factory/factory.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/oop_lab2.dir/factory/factory.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/factory/factory.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/factory/factory.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/oop_lab2.dir/factory/factory.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/factory/factory.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/factory/factory.cpp
 
 CMakeFiles/oop_lab2.dir/factory/factory.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/factory/factory.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/factory/factory.cpp > CMakeFiles/oop_lab2.dir/factory/factory.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/factory/factory.cpp > CMakeFiles/oop_lab2.dir/factory/factory.cpp.i
 
 CMakeFiles/oop_lab2.dir/factory/factory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/factory/factory.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/factory/factory.cpp -o CMakeFiles/oop_lab2.dir/factory/factory.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/factory/factory.cpp -o CMakeFiles/oop_lab2.dir/factory/factory.cpp.s
 
 CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.o: ../vector/Iterator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/vector/Iterator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/vector/Iterator.cpp
 
 CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/vector/Iterator.cpp > CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/vector/Iterator.cpp > CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.i
 
 CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/vector/Iterator.cpp -o CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/vector/Iterator.cpp -o CMakeFiles/oop_lab2.dir/vector/Iterator.cpp.s
 
 CMakeFiles/oop_lab2.dir/atributes/health.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/atributes/health.cpp.o: ../atributes/health.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/oop_lab2.dir/atributes/health.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/atributes/health.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/atributes/health.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/oop_lab2.dir/atributes/health.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/atributes/health.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/atributes/health.cpp
 
 CMakeFiles/oop_lab2.dir/atributes/health.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/atributes/health.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/atributes/health.cpp > CMakeFiles/oop_lab2.dir/atributes/health.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/atributes/health.cpp > CMakeFiles/oop_lab2.dir/atributes/health.cpp.i
 
 CMakeFiles/oop_lab2.dir/atributes/health.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/atributes/health.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/atributes/health.cpp -o CMakeFiles/oop_lab2.dir/atributes/health.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/atributes/health.cpp -o CMakeFiles/oop_lab2.dir/atributes/health.cpp.s
 
 CMakeFiles/oop_lab2.dir/atributes/damage.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/atributes/damage.cpp.o: ../atributes/damage.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/oop_lab2.dir/atributes/damage.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/atributes/damage.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/atributes/damage.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/oop_lab2.dir/atributes/damage.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/atributes/damage.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/atributes/damage.cpp
 
 CMakeFiles/oop_lab2.dir/atributes/damage.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/atributes/damage.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/atributes/damage.cpp > CMakeFiles/oop_lab2.dir/atributes/damage.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/atributes/damage.cpp > CMakeFiles/oop_lab2.dir/atributes/damage.cpp.i
 
 CMakeFiles/oop_lab2.dir/atributes/damage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/atributes/damage.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/atributes/damage.cpp -o CMakeFiles/oop_lab2.dir/atributes/damage.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/atributes/damage.cpp -o CMakeFiles/oop_lab2.dir/atributes/damage.cpp.s
 
 CMakeFiles/oop_lab2.dir/atributes/armor.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/atributes/armor.cpp.o: ../atributes/armor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/oop_lab2.dir/atributes/armor.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/atributes/armor.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/atributes/armor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/oop_lab2.dir/atributes/armor.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/atributes/armor.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/atributes/armor.cpp
 
 CMakeFiles/oop_lab2.dir/atributes/armor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/atributes/armor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/atributes/armor.cpp > CMakeFiles/oop_lab2.dir/atributes/armor.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/atributes/armor.cpp > CMakeFiles/oop_lab2.dir/atributes/armor.cpp.i
 
 CMakeFiles/oop_lab2.dir/atributes/armor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/atributes/armor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/atributes/armor.cpp -o CMakeFiles/oop_lab2.dir/atributes/armor.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/atributes/armor.cpp -o CMakeFiles/oop_lab2.dir/atributes/armor.cpp.s
 
 CMakeFiles/oop_lab2.dir/base/base.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/base/base.cpp.o: ../base/base.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/oop_lab2.dir/base/base.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/base/base.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/base/base.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/oop_lab2.dir/base/base.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/base/base.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/base/base.cpp
 
 CMakeFiles/oop_lab2.dir/base/base.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/base/base.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/base/base.cpp > CMakeFiles/oop_lab2.dir/base/base.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/base/base.cpp > CMakeFiles/oop_lab2.dir/base/base.cpp.i
 
 CMakeFiles/oop_lab2.dir/base/base.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/base/base.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/base/base.cpp -o CMakeFiles/oop_lab2.dir/base/base.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/base/base.cpp -o CMakeFiles/oop_lab2.dir/base/base.cpp.s
 
 CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.o: ../landscape/landscape.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/landscape/landscape.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/landscape/landscape.cpp
 
 CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/landscape/landscape.cpp > CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/landscape/landscape.cpp > CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.i
 
 CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/landscape/landscape.cpp -o CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/landscape/landscape.cpp -o CMakeFiles/oop_lab2.dir/landscape/landscape.cpp.s
 
 CMakeFiles/oop_lab2.dir/landscape/ground.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/landscape/ground.cpp.o: ../landscape/ground.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/oop_lab2.dir/landscape/ground.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/landscape/ground.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/landscape/ground.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/oop_lab2.dir/landscape/ground.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/landscape/ground.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/landscape/ground.cpp
 
 CMakeFiles/oop_lab2.dir/landscape/ground.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/landscape/ground.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/landscape/ground.cpp > CMakeFiles/oop_lab2.dir/landscape/ground.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/landscape/ground.cpp > CMakeFiles/oop_lab2.dir/landscape/ground.cpp.i
 
 CMakeFiles/oop_lab2.dir/landscape/ground.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/landscape/ground.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/landscape/ground.cpp -o CMakeFiles/oop_lab2.dir/landscape/ground.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/landscape/ground.cpp -o CMakeFiles/oop_lab2.dir/landscape/ground.cpp.s
 
 CMakeFiles/oop_lab2.dir/landscape/wall.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/landscape/wall.cpp.o: ../landscape/wall.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/oop_lab2.dir/landscape/wall.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/landscape/wall.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/landscape/wall.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/oop_lab2.dir/landscape/wall.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/landscape/wall.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/landscape/wall.cpp
 
 CMakeFiles/oop_lab2.dir/landscape/wall.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/landscape/wall.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/landscape/wall.cpp > CMakeFiles/oop_lab2.dir/landscape/wall.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/landscape/wall.cpp > CMakeFiles/oop_lab2.dir/landscape/wall.cpp.i
 
 CMakeFiles/oop_lab2.dir/landscape/wall.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/landscape/wall.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/landscape/wall.cpp -o CMakeFiles/oop_lab2.dir/landscape/wall.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/landscape/wall.cpp -o CMakeFiles/oop_lab2.dir/landscape/wall.cpp.s
 
 CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.o: ../landscape/liquid.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/landscape/liquid.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/landscape/liquid.cpp
 
 CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/landscape/liquid.cpp > CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/landscape/liquid.cpp > CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.i
 
 CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/landscape/liquid.cpp -o CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/landscape/liquid.cpp -o CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.s
 
 CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.o: ../neutral/neutral.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/neutral/neutral.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/neutral/neutral.cpp
 
 CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/neutral/neutral.cpp > CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/neutral/neutral.cpp > CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.i
 
 CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/neutral/neutral.cpp -o CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.s
-
-CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
-CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.o: ../neutral/mainNeutral.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/neutral/mainNeutral.cpp
-
-CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/neutral/mainNeutral.cpp > CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.i
-
-CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/neutral/mainNeutral.cpp -o CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/neutral/neutral.cpp -o CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.s
 
 CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.o: ../neutral/weapon.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/neutral/weapon.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/neutral/weapon.cpp
 
 CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/neutral/weapon.cpp > CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/neutral/weapon.cpp > CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.i
 
 CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/neutral/weapon.cpp -o CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/neutral/weapon.cpp -o CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.s
 
 CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.o: ../neutral/clothes.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/neutral/clothes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/neutral/clothes.cpp
 
 CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/neutral/clothes.cpp > CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/neutral/clothes.cpp > CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.i
 
 CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/neutral/clothes.cpp -o CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/neutral/clothes.cpp -o CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.s
 
 CMakeFiles/oop_lab2.dir/neutral/potion.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/neutral/potion.cpp.o: ../neutral/potion.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/potion.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/potion.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/neutral/potion.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/potion.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/potion.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/neutral/potion.cpp
 
 CMakeFiles/oop_lab2.dir/neutral/potion.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/neutral/potion.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/neutral/potion.cpp > CMakeFiles/oop_lab2.dir/neutral/potion.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/neutral/potion.cpp > CMakeFiles/oop_lab2.dir/neutral/potion.cpp.i
 
 CMakeFiles/oop_lab2.dir/neutral/potion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/neutral/potion.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/neutral/potion.cpp -o CMakeFiles/oop_lab2.dir/neutral/potion.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/neutral/potion.cpp -o CMakeFiles/oop_lab2.dir/neutral/potion.cpp.s
 
 CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.o: ../units/mainUnit.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/units/mainUnit.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/units/mainUnit.cpp
 
 CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/units/mainUnit.cpp > CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/units/mainUnit.cpp > CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.i
 
 CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/units/mainUnit.cpp -o CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/units/mainUnit.cpp -o CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.s
 
 CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
 CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o: ../neutral/kit.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o -c /home/andrei/CLionProjects/oop_lab2_norm/neutral/kit.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/neutral/kit.cpp
 
 CMakeFiles/oop_lab2.dir/neutral/kit.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/neutral/kit.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_norm/neutral/kit.cpp > CMakeFiles/oop_lab2.dir/neutral/kit.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/neutral/kit.cpp > CMakeFiles/oop_lab2.dir/neutral/kit.cpp.i
 
 CMakeFiles/oop_lab2.dir/neutral/kit.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/neutral/kit.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_norm/neutral/kit.cpp -o CMakeFiles/oop_lab2.dir/neutral/kit.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/neutral/kit.cpp -o CMakeFiles/oop_lab2.dir/neutral/kit.cpp.s
+
+CMakeFiles/oop_lab2.dir/cell/cell.cpp.o: CMakeFiles/oop_lab2.dir/flags.make
+CMakeFiles/oop_lab2.dir/cell/cell.cpp.o: ../cell/cell.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/oop_lab2.dir/cell/cell.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/oop_lab2.dir/cell/cell.cpp.o -c /home/andrei/CLionProjects/oop_lab2_3/cell/cell.cpp
+
+CMakeFiles/oop_lab2.dir/cell/cell.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/oop_lab2.dir/cell/cell.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrei/CLionProjects/oop_lab2_3/cell/cell.cpp > CMakeFiles/oop_lab2.dir/cell/cell.cpp.i
+
+CMakeFiles/oop_lab2.dir/cell/cell.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/oop_lab2.dir/cell/cell.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrei/CLionProjects/oop_lab2_3/cell/cell.cpp -o CMakeFiles/oop_lab2.dir/cell/cell.cpp.s
 
 # Object files for target oop_lab2
 oop_lab2_OBJECTS = \
 "CMakeFiles/oop_lab2.dir/main.cpp.o" \
+"CMakeFiles/oop_lab2.dir/game/game.cpp.o" \
 "CMakeFiles/oop_lab2.dir/field/field.cpp.o" \
 "CMakeFiles/oop_lab2.dir/units/unit.cpp.o" \
 "CMakeFiles/oop_lab2.dir/vector/vector.cpp.o" \
@@ -473,17 +487,18 @@ oop_lab2_OBJECTS = \
 "CMakeFiles/oop_lab2.dir/landscape/wall.cpp.o" \
 "CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.o" \
 "CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.o" \
-"CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.o" \
 "CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.o" \
 "CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.o" \
 "CMakeFiles/oop_lab2.dir/neutral/potion.cpp.o" \
 "CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.o" \
-"CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o"
+"CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o" \
+"CMakeFiles/oop_lab2.dir/cell/cell.cpp.o"
 
 # External object files for target oop_lab2
 oop_lab2_EXTERNAL_OBJECTS =
 
 oop_lab2: CMakeFiles/oop_lab2.dir/main.cpp.o
+oop_lab2: CMakeFiles/oop_lab2.dir/game/game.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/field/field.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/units/unit.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/vector/vector.cpp.o
@@ -507,15 +522,15 @@ oop_lab2: CMakeFiles/oop_lab2.dir/landscape/ground.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/landscape/wall.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/landscape/liquid.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/neutral/neutral.cpp.o
-oop_lab2: CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/neutral/weapon.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/neutral/clothes.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/neutral/potion.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/units/mainUnit.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/neutral/kit.cpp.o
+oop_lab2: CMakeFiles/oop_lab2.dir/cell/cell.cpp.o
 oop_lab2: CMakeFiles/oop_lab2.dir/build.make
 oop_lab2: CMakeFiles/oop_lab2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX executable oop_lab2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Linking CXX executable oop_lab2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/oop_lab2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -528,6 +543,6 @@ CMakeFiles/oop_lab2.dir/clean:
 .PHONY : CMakeFiles/oop_lab2.dir/clean
 
 CMakeFiles/oop_lab2.dir/depend:
-	cd /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/andrei/CLionProjects/oop_lab2_norm /home/andrei/CLionProjects/oop_lab2_norm /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles/oop_lab2.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/andrei/CLionProjects/oop_lab2_3 /home/andrei/CLionProjects/oop_lab2_3 /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles/oop_lab2.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/oop_lab2.dir/depend
 

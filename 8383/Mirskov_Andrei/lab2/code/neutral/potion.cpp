@@ -11,3 +11,7 @@ int Potion::getHealth() {
 char Potion::getType() {
     return 'p';
 }
+
+void Potion::use(Unit *unit) {
+    unit->heal(this->getHealth());
+}

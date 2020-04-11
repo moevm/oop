@@ -15,3 +15,8 @@ int Kit::getDamage() {
 int Kit::getArmor() {
     return this->armor;
 }
+
+void Kit::use(Unit *unit) {
+    unit->setDamage(unit->getDamage() + this->getDamage());
+    unit->setArmor(unit->getArmor() + this->getArmor());
+}

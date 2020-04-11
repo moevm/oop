@@ -5,7 +5,6 @@
 #ifndef OOP_LAB1_ARCHER_H
 #define OOP_LAB1_ARCHER_H
 
-#include "unit.h"
 #include "mainUnit.h"
 
 class Archer : public MainUnit {

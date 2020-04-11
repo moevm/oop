@@ -7,3 +7,11 @@
 char Ground::getType() {
     return this->type;
 }
+
+void Ground::unitLeft(Unit* unit) {
+    unit->setArmor(unit->getArmor() + 1);
+}
+
+void Ground::unitCame(Unit *unit) {
+    unit->setArmor(unit->getArmor() - 1);
+}

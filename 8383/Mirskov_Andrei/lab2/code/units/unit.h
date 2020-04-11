@@ -5,18 +5,17 @@
 #ifndef OOP_LAB1_UNIT_H
 #define OOP_LAB1_UNIT_H
 
-
 #include "../atributes/health.h"
 #include "../atributes/armor.h"
 #include "../atributes/damage.h"
 #include "../neutral/neutral.h"
-#include "../neutral/clothes.h"
-#include "../neutral/potion.h"
-#include "../neutral/weapon.h"
-#include "../neutral/kit.h"
+
+class Neutral;
 
 class Unit {
 public:
+    virtual ~Unit() = 0;
+
     virtual int getHealth() = 0;
 
     virtual void heal(int health) = 0;
@@ -31,27 +30,13 @@ public:
 
     virtual void setDamage(int damage) = 0;
 
-    virtual int getX() = 0;
-
-    virtual void setX(int newX) = 0;
-
-    virtual int getY() = 0;
-
-    virtual void setY(int newY) = 0;
-
-    virtual void takeItem(Clothes*) = 0;
-
-    virtual void takeItem(Potion*) = 0;
-
-    virtual void takeItem(Weapon*) = 0;
-
-    virtual void takeItem(Kit*) = 0;
-
     virtual void operator += (Neutral*) = 0;
 
     virtual char getType() = 0;
 
+    virtual void notify() = 0;
 
+    virtual int getBaseNum() = 0;
 };
 
 

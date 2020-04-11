@@ -7,13 +7,12 @@
 
 
 #include "neutral.h"
-#include "mainNeutral.h"
 
-class Clothes: public MainNeutral {
+class Clothes: public Neutral {
 public:
-    using MainNeutral::MainNeutral;
-
     char getType() override;
+
+    void use(Unit* unit) override;
 
     int getArmor();
 

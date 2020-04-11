@@ -4,13 +4,26 @@
 
 #include "spearman.h"
 
-SpearMan::SpearMan(int x, int y) : Infantry() {
-    this->x = x;
-    this->y = y;
+SpearMan::SpearMan(Base *base) : Infantry() {
     this->damage.setValue(4);
     this->armor.setValue(5);
+    this->view = base;
 }
 
 char SpearMan::getType() {
     return 'M';
+}
+
+void SpearMan::notify() {
+    this->view->update(this);
+}
+
+int SpearMan::getBaseNum() {
+    return this->view->getNum();
+}
+
+SpearMan::~SpearMan() {
+    this->notify();
+    this->view = nullptr;
+
 }

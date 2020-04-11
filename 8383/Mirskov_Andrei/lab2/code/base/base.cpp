@@ -5,69 +5,33 @@
 #include "base.h"
 #include "../vector/vector.cpp"
 
-Base::Base(int x, int y, int health) {
-    this->x = x;
-    this->y = y;
+Base::Base(int baseNum, int health) {
     this->health = health;
+    this->baseNum = baseNum;
 }
 
-void Base::addUnit(int x, int y, char type) {
-    if (this->units.getSize() == maxUnit) return;
+Unit* Base::createUnit(char type) {
+    if (this->onView.getSize() == maxUnit) return nullptr;
 
-    for (int i = 0; i < this->units.getSize(); i++) {
-        if (this->units[i]->getX() == x && this->units[i]->getY() == y) {
-            this->removeUnit(x, y);
-            break;
-        }
-    }
-    this->units.push(Factory::createUnit(x, y, type));
-
+    Unit* newUnit = Factory::createUnit(this, type);
+    this->onView.push(newUnit);
+    return newUnit;
 }
 
-void Base::removeUnit(int x, int y) {
-    for (int i = 0; i < this->units.getSize(); i++) {
-        if (this->units[i]->getX() == x && this->units[i]->getY() == y) {
-            this->units.remove(i);
-            break;
+void Base::update(Unit *unit) {
+    for (int i = 0; i < this->onView.getSize(); i++) {
+        if (this->onView[i] == unit) {
+            this->onView.remove(i);
+            return;
         }
     }
+}
+
+int Base::getNum() {
+    return this->baseNum;
 }
 
 void Base::takeDamage(int damage) {
     this->health -= damage;
-}
 
-void Base::moveUnit(int x1, int y1, int x2, int y2) {
-    for (int i = 0; i < this->units.getSize(); i++) {
-        if (this->units[i]->getX() == x1 && this->units[i]->getY() == y1) {
-            this->units[i]->setX(x2);
-            this->units[i]->setY(y2);
-        }
-    }
-}
-
-void Base::takeItem(int x1, int y1, Neutral* neutral) {
-    for (int i = 0; i < this->units.getSize(); i++) {
-        if (this->units[i]->getX() == x1 && this->units[i]->getY() == y1) {
-            *this->units[i] += neutral;
-            break;
-        }
-    }
-}
-
-bool Base::isUnit(int x, int y) {
-    for (int i = 0; i < this->units.getSize(); i++) {
-        if (this->units[i]->getX() == x && this->units[i]->getY() == y) {
-            return true;
-        }
-    }
-    return false;
-}
-
-Unit *Base::getUnit(int x, int y) {
-    for (int i = 0; i < this->units.getSize(); i++) {
-        if (this->units[i]->getX() == x && this->units[i]->getY() == y) {
-            return units[i];
-        }
-    }
 }

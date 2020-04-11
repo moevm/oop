@@ -7,3 +7,11 @@
 char Liquid::getType() {
     return this->type;
 }
+
+void Liquid::unitLeft(Unit *unit) {
+    unit->setDamage(unit->getDamage() + 1);
+}
+
+void Liquid::unitCame(Unit *unit) {
+    unit->setDamage(unit->getDamage() - 1);
+}

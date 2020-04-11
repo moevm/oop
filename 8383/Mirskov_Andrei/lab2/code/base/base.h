@@ -5,35 +5,27 @@
 #ifndef OOP_LAB1_BASE_H
 #define OOP_LAB1_BASE_H
 
-
-#include "../units/unit.h"
-#include "../vector/vector.h"
 #include "../factory/factory.h"
+#include "../vector/vector.h"
 
 class Base {
 public:
-    Base(int x, int y, int health = 50);
+    explicit Base(int baseNum, int health = 50);
 
-    void addUnit(int x, int y, char type);
+    Unit* createUnit(char type);
 
-    void removeUnit(int x, int y);
+    void update(Unit*);
 
-    void moveUnit(int x1, int y1, int x2, int y2);
-
-    void takeItem(int x1, int y1, Neutral* neutral);
-
-    bool isUnit(int x, int y);
-
-    Unit* getUnit(int x, int y);
+    int getNum();
 
     void takeDamage(int damage);
 
 private:
-    int x, y;
     int health;
-    const int maxUnit = 10;
+    int baseNum;
+    const int maxUnit = 5;
 
-    Vector<Unit*> units;
+    Vector<Unit*> onView;
 
 };
 

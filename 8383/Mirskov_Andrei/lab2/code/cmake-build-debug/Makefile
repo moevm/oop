@@ -48,10 +48,10 @@ RM = /home/andrei/Загрузки/clion-2019.3.2/bin/cmake/linux/bin/cmake -E r
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/andrei/CLionProjects/oop_lab2_norm
+CMAKE_SOURCE_DIR = /home/andrei/CLionProjects/oop_lab2_3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug
+CMAKE_BINARY_DIR = /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andrei/CLionProjects/oop_lab2_norm/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -231,6 +231,33 @@ base/base.cpp.s:
 	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/base/base.cpp.s
 .PHONY : base/base.cpp.s
 
+cell/cell.o: cell/cell.cpp.o
+
+.PHONY : cell/cell.o
+
+# target to build an object file
+cell/cell.cpp.o:
+	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/cell/cell.cpp.o
+.PHONY : cell/cell.cpp.o
+
+cell/cell.i: cell/cell.cpp.i
+
+.PHONY : cell/cell.i
+
+# target to preprocess a source file
+cell/cell.cpp.i:
+	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/cell/cell.cpp.i
+.PHONY : cell/cell.cpp.i
+
+cell/cell.s: cell/cell.cpp.s
+
+.PHONY : cell/cell.s
+
+# target to generate assembly for a file
+cell/cell.cpp.s:
+	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/cell/cell.cpp.s
+.PHONY : cell/cell.cpp.s
+
 factory/factory.o: factory/factory.cpp.o
 
 .PHONY : factory/factory.o
@@ -284,6 +311,33 @@ field/field.s: field/field.cpp.s
 field/field.cpp.s:
 	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/field/field.cpp.s
 .PHONY : field/field.cpp.s
+
+game/game.o: game/game.cpp.o
+
+.PHONY : game/game.o
+
+# target to build an object file
+game/game.cpp.o:
+	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/game/game.cpp.o
+.PHONY : game/game.cpp.o
+
+game/game.i: game/game.cpp.i
+
+.PHONY : game/game.i
+
+# target to preprocess a source file
+game/game.cpp.i:
+	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/game/game.cpp.i
+.PHONY : game/game.cpp.i
+
+game/game.s: game/game.cpp.s
+
+.PHONY : game/game.s
+
+# target to generate assembly for a file
+game/game.cpp.s:
+	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/game/game.cpp.s
+.PHONY : game/game.cpp.s
 
 landscape/ground.o: landscape/ground.cpp.o
 
@@ -473,33 +527,6 @@ neutral/kit.s: neutral/kit.cpp.s
 neutral/kit.cpp.s:
 	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/neutral/kit.cpp.s
 .PHONY : neutral/kit.cpp.s
-
-neutral/mainNeutral.o: neutral/mainNeutral.cpp.o
-
-.PHONY : neutral/mainNeutral.o
-
-# target to build an object file
-neutral/mainNeutral.cpp.o:
-	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.o
-.PHONY : neutral/mainNeutral.cpp.o
-
-neutral/mainNeutral.i: neutral/mainNeutral.cpp.i
-
-.PHONY : neutral/mainNeutral.i
-
-# target to preprocess a source file
-neutral/mainNeutral.cpp.i:
-	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.i
-.PHONY : neutral/mainNeutral.cpp.i
-
-neutral/mainNeutral.s: neutral/mainNeutral.cpp.s
-
-.PHONY : neutral/mainNeutral.s
-
-# target to generate assembly for a file
-neutral/mainNeutral.cpp.s:
-	$(MAKE) -f CMakeFiles/oop_lab2.dir/build.make CMakeFiles/oop_lab2.dir/neutral/mainNeutral.cpp.s
-.PHONY : neutral/mainNeutral.cpp.s
 
 neutral/neutral.o: neutral/neutral.cpp.o
 
@@ -954,12 +981,18 @@ help:
 	@echo "... base/base.o"
 	@echo "... base/base.i"
 	@echo "... base/base.s"
+	@echo "... cell/cell.o"
+	@echo "... cell/cell.i"
+	@echo "... cell/cell.s"
 	@echo "... factory/factory.o"
 	@echo "... factory/factory.i"
 	@echo "... factory/factory.s"
 	@echo "... field/field.o"
 	@echo "... field/field.i"
 	@echo "... field/field.s"
+	@echo "... game/game.o"
+	@echo "... game/game.i"
+	@echo "... game/game.s"
 	@echo "... landscape/ground.o"
 	@echo "... landscape/ground.i"
 	@echo "... landscape/ground.s"
@@ -981,9 +1014,6 @@ help:
 	@echo "... neutral/kit.o"
 	@echo "... neutral/kit.i"
 	@echo "... neutral/kit.s"
-	@echo "... neutral/mainNeutral.o"
-	@echo "... neutral/mainNeutral.i"
-	@echo "... neutral/mainNeutral.s"
 	@echo "... neutral/neutral.o"
 	@echo "... neutral/neutral.i"
 	@echo "... neutral/neutral.s"

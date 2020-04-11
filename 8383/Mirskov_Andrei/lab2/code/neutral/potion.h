@@ -7,13 +7,12 @@
 
 
 #include "neutral.h"
-#include "mainNeutral.h"
 
-class Potion: public MainNeutral {
+class Potion: public Neutral {
 public:
-    using MainNeutral::MainNeutral;
-
     char getType() override;
+
+    void use(Unit*) override;
 
     int getHealth();
 

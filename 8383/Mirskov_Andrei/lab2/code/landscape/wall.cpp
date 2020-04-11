@@ -7,3 +7,11 @@
 char Wall::getType() {
     return this->type;
 }
+
+void Wall::unitLeft(Unit *unit) {
+
+}
+
+void Wall::unitCame(Unit *unit) {
+
+}

@@ -6,11 +6,24 @@
 #define OOP_LAB1_SPEARMAN_H
 
 #include "infantry.h"
+#include "../base/base.h"
+
+class Base;
 
 class SpearMan : public Infantry {
 public:
-    SpearMan(int x, int y);
+    SpearMan(Base *base);
+
+    ~SpearMan();
+
     char getType() override ;
+
+    void notify() override;
+
+    int getBaseNum() override;
+
+private:
+    Base* view;
 };
 
 

@@ -4,13 +4,26 @@
 
 #include "swordman.h"
 
-SwordMan::SwordMan(int x, int y) : Infantry() {
-    this->x = x;
-    this->y = y;
-    this->damage.setValue(5);
+SwordMan::SwordMan(Base *base) : Infantry() {
+    this->damage.setValue(50);
     this->armor.setValue(3);
+    this->view = base;
 }
 
 char SwordMan::getType() {
     return 'S';
+}
+
+void SwordMan::notify() {
+    this->view->update(this);
+}
+
+int SwordMan::getBaseNum() {
+    return this->view->getNum();
+}
+
+SwordMan::~SwordMan() {
+    this->notify();
+    this->view = nullptr;
+
 }

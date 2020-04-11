@@ -7,11 +7,24 @@
 
 
 #include "archer.h"
+#include "../base/base.h"
+
+class Base;
 
 class WoodenArcher : public Archer {
 public:
-    WoodenArcher(int x, int y);
+    WoodenArcher(Base *base);
+
+    ~WoodenArcher();
+
     char getType() override;
+
+    void notify() override;
+
+    int getBaseNum() override;
+
+private:
+    Base* view;
 };
 
 

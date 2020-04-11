@@ -5,6 +5,6 @@
 #include "infantry.h"
 
 Infantry::Infantry() : MainUnit() {
-    this->maxHealth = 10;
+    this->maxHealth = 100;
     this->health.setValue(maxHealth);
 }

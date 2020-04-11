@@ -7,11 +7,24 @@
 
 
 #include "rider.h"
+#include "../base/base.h"
+
+class Base;
 
 class ElephantMan : public Rider {
 public:
-    ElephantMan(int x, int y);
+    ElephantMan(Base *base);
+
+    ~ElephantMan();
+
     char getType() override;
+
+    void notify() override;
+
+    int getBaseNum() override;
+
+private:
+    Base* view;
 };
 
 

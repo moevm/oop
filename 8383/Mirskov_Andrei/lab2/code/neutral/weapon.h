@@ -7,13 +7,12 @@
 
 
 #include "neutral.h"
-#include "mainNeutral.h"
 
-class Weapon: public MainNeutral {
+class Weapon: public Neutral {
 public:
-    using MainNeutral::MainNeutral;
-
     char getType() override;
+
+    void use(Unit*) override;
 
     int getDamage();
 

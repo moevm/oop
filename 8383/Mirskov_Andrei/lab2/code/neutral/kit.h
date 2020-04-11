@@ -6,13 +6,13 @@
 #define OOP_LAB1_KIT_H
 
 
-#include "mainNeutral.h"
+#include "neutral.h"
 
-class Kit: public MainNeutral {
+class Kit: public Neutral {
 public:
-    using MainNeutral::MainNeutral;
-
     char getType() override;
+
+    void use(Unit*) override;
 
     int getArmor();
 

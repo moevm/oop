@@ -12,3 +12,7 @@ int Weapon::getDamage() {
 char Weapon::getType() {
     return 'w';
 }
+
+void Weapon::use(Unit *unit) {
+    unit->setDamage(unit->getDamage() + this->getDamage());
+}

@@ -4,35 +4,35 @@
 
 #include "factory.h"
 
-Unit *Factory::createUnit(int x, int y, char type) {
+Unit *Factory::createUnit(Base* base, char type) {
     switch (type) {
         case 'E':
-            return new ElephantMan(x,y);
+            return new ElephantMan(base);
         case 'H':
-            return new HorseMan(x,y);
+            return new HorseMan(base);
         case 'F':
-            return new FireArcher(x,y);
+            return new FireArcher(base);
         case 'M':
-            return new SpearMan(x,y);
+            return new SpearMan(base);
         case 'S':
-            return new SwordMan(x,y);
+            return new SwordMan(base);
         case 'W':
-            return new WoodenArcher(x,y);
+            return new WoodenArcher(base);
         default: ;
 
     }
 }
 
-Neutral *Factory::createNeutral(int x, int y, char type) {
+Neutral *Factory::createNeutral(char type) {
     switch (type) {
         case 'c':
-            return new Clothes(x, y);
+            return new Clothes;
         case 'p':
-            return new Potion(x, y);
+            return new Potion;
         case 'w':
-            return new Weapon(x, y);
+            return new Weapon;
         case 'k':
-            return new Kit(x,y);
+            return new Kit;
         default: ;
     }
 }

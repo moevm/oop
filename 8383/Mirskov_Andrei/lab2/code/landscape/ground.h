@@ -12,6 +12,10 @@ class Ground: public Landscape {
 public:
     char getType() override;
 
+    void unitLeft(Unit* unit) override;
+
+    void unitCame(Unit* unit) override;
+
 private:
     const char type = 'g';
 };

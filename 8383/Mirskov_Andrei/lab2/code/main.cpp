@@ -1,36 +1,47 @@
-#include "field/field.h"
+#include "game/game.h"
 
 class Test {
 public:
     static void test1() {
-        Field mainField(5,5,3,3,4,4);
-        mainField.addUnit(0,0,'S',1);
-        mainField.addNeutral(1,1,'w');
-        mainField.printField();
-        mainField.moveUnit(0,0,0,1,1);
-        mainField.printField();
-        mainField.moveUnit(0,1,1,1,1);
-        mainField.printField();
+        Game* game = new Game;
+        game->createField(5,5);
+        game->addBase(2,2);
+        game->addBase(3,3);
+        game->printField();
+        game->addUnit(0,0,'S',1);
+        game->printField();
+        game->addUnit(0,1,'E',2);
+        game->printField();
+        game->moveUnit(0,0,0,1);
+        game->printField();
     }
 
     static void test2() {
-        Field mainField(3,3,0,0,2,2);
-        mainField.addUnit(0,0,'E',2);
-        mainField.addUnit(1,0,'W',1);
-        mainField.printField();
-        mainField.moveUnit(0,0,1,0,2);
-        mainField.printField();
+        Game* game = new Game;
+        game->createField(6,4);
+        game->addBase(2,2);
+        game->addBase(3,3);
+        game->addUnit(0,0,'F',1);
+        game->addNeutral(1,1,'c');
+        game->printField();
+        game->moveUnit(0,0,1,1);
+        game->printField();
     }
 
     static void test3() {
-        Field mainField(5,5,0,0,4,4);
-        mainField.addUnit(0,1,'S',1);
-        mainField.addUnit(1,0,'E',2);
-        mainField.addUnit(1,1,'W',1);
-        mainField.printField();
-        mainField.moveUnit(1,1,1,0,1);
-        mainField.printField();
+        Game* game = new Game;
+        game->createField(5,5);
+        game->addBase(4,4);
+        game->addUnit(0,0,'S',1);
+        game->addUnit(0,1,'F',1);
+        game->addUnit(0,2,'E',1);
+        game->addUnit(1,0,'S',1);
+        game->addUnit(1,1,'E',1);
+        game->printField();
+        game->addUnit(1,2,'S',1);
+        game->printField();
     }
+
 };
 
 int main() {
