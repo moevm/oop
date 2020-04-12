@@ -7,3 +7,8 @@ void HumanBase::describeYourself()
     std::cout << "Current Health is: " << health << std::endl;
     std::cout << unitCount->getTotalInformation();
 }
+
+std::string HumanBase::getInformationAbout()
+{
+    return "I'm Human Base!\nCurrent Health is: " + std::to_string(health) + "\n" + unitCount->getTotalInformation();
+}

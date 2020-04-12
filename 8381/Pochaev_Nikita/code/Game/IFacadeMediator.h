@@ -10,8 +10,8 @@ class IFacadeMediator
 {
 public:
     virtual ~IFacadeMediator() = default;
-    virtual UIFacade *getFacade() const = 0;
-    virtual void sendString(Request request, std::string answer) = 0;
+    virtual std::string sendRequest(std::vector<size_t> param, eUnitsType unitType_ = NONE_UNIT, eBaseType baseType_ = NONE_BASE) = 0;
+    virtual std::string sendInfoRequest(eRequest request, size_t x = 0, size_t y = 0) = 0;
 };
 
 #endif // IFACADEMEDIATOR_H

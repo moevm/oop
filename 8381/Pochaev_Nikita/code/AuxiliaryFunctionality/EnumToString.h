@@ -28,9 +28,10 @@ public:
                 return "Composite unit";
             case VALUES_END:
                 return "VALUES_END";
+            case NONE_UNIT:
+                return "Null unit";
         }
-
-        return "";
+        return "Null unit";
     }
 };
 

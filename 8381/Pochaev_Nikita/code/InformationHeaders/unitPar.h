@@ -1,4 +1,4 @@
-#ifndef OOP_UNITPAR_H
+﻿#ifndef OOP_UNITPAR_H
 #define OOP_UNITPAR_H
 
 /*------------------------------------
@@ -8,6 +8,8 @@
 enum eUnitsType
 {
     VALUES_FIRST = 0,
+
+    NONE_UNIT,
 
     CANNON_FODDER,
     INFANTRY,

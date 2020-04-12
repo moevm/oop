@@ -1,28 +1,31 @@
 ﻿#ifndef COMMANDPAR_H
 #define COMMANDPAR_H
 
-enum LandscapeType
+enum eLandscapeType
 {
     CHAMPAIGN,
     FOREST,
     MOUNTAINS,
 };
 
-enum BaseType
+enum eBaseType
 {
-    HUMAN_BASE = 80,
+    NONE_BASE,
+    HUMAN_BASE,
     HELL_BASE
 };
 
-enum Request
+enum eRequest
 {
-    GAME_INFO = 100,
+    NONE,
+    GAME_INFO,
     BASE_INFO,
+    UNIT_INFO,
     LAND_INFO,
-    ITEMS_INFO,
-    ADD,
-    MOVE,
-    ATTACK,
+    ITEM_INFO,
+    ADD_UNIT,
+    MOVE_UNIT,
+    ATTACK_UNIT,
 };
 
 #endif // COMMANDPAR_H

@@ -182,7 +182,7 @@ void GameField::moveUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y)
         {
             int dist_x = abs(static_cast<int>(sender->getCoords().x) - static_cast<int>(x));
             int dist_y = abs(static_cast<int>(sender->getCoords().y) - static_cast<int>(y));
-            if (dist_x <= x + sender->getMovementRange() && dist_y <= y + sender->getMovementRange())
+            if (dist_x <= static_cast<int>(x + sender->getMovementRange()) && dist_y <= static_cast<int>(y + sender->getMovementRange()))
             {
                 cellMatrix[x][y]->addUnit(sender);
                 Coords old_coords = sender->getCoords();
@@ -242,7 +242,7 @@ void GameField::meleeAttackUnit(std::shared_ptr<Unit> &sender, size_t x, size_t 
     {
         int dist_x = abs(static_cast<int>(sender->getCoords().x) - static_cast<int>(x));
         int dist_y = abs(static_cast<int>(sender->getCoords().y) - static_cast<int>(y));
-        if (dist_x <= x + sender->getMovementRange() && dist_y <= y + sender->getMovementRange())
+        if (dist_x <= static_cast<int>(x + (sender->getMovementRange()) && dist_y <= static_cast<int>(y + sender->getMovementRange())))
         {
             cellMatrix[x][y]->giveUnitDamage(sender->getMeleeAttackStrength());
             return;
@@ -256,4 +256,48 @@ void GameField::meleeAttackUnit(std::shared_ptr<Unit> &sender, size_t x, size_t 
     {
         throw std::out_of_range("Coords are not in Game Field size");
     }
+}
+
+void GameField::meleeAttackUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest)
+{
+    std::shared_ptr<Unit> tempUnit = cellMatrix[xSource][ySource]->getUnitByCoords();
+    meleeAttackUnit(tempUnit, xDest, yDest);
+}
+
+size_t GameField::thatIsOnCell(size_t x, size_t y, std::vector<eRequest> items)
+{
+    size_t itemsCount{};
+    if(cellMatrix[x][y]->isUnitFree())
+    {
+        itemsCount++;
+        items.push_back(UNIT_INFO);
+    }
+    if(cellMatrix[x][y]->isBaseFree())
+    {
+        itemsCount++;
+        items.push_back(BASE_INFO);
+    }
+
+    return itemsCount;
+}
+
+std::shared_ptr<GameBase> GameField::getBaseByCoords(size_t x, size_t y)
+{
+    return cellMatrix[x][y]->getBaseByCoords();
+}
+
+void GameField::moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest)
+{
+    std::shared_ptr<Unit> tempUnit = cellMatrix[xSource][ySource]->getUnitByCoords();
+    moveUnit(tempUnit, xDest, yDest);
+}
+
+std::string GameField::getInfAboutBase(size_t xDest, size_t yDest)
+{
+    return cellMatrix[xDest][yDest]->getBaseByCoords()->getInformationAbout();
+}
+
+std::string GameField::getInfAboutUnit(size_t xDest, size_t yDest)
+{
+    return cellMatrix[xDest][yDest]->getUnitByCoords()->getUnitInf();
 }

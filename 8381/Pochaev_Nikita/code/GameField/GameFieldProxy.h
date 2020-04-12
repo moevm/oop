@@ -39,9 +39,17 @@ public:
     void informationAboutCell(size_t x, size_t y) override;
 
     void moveUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y) override;
+    void moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest) override;
     void meleeAttackUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y) override;
+    void meleeAttackUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest) override;
 
     void getTotalInformation() override;
+    std::string getInfAboutBase(size_t xDest, size_t yDest) override;
+    std::string getInfAboutUnit(size_t xDest, size_t yDest) override;
+    std::string getInfAboutItem(size_t x, size_t y);
+    std::string getInfAboutLand(size_t x, size_t y);
+
+    std::shared_ptr<GameBase> getBaseByCoords(size_t x, size_t y) override;
 private:
     // The field for which this class is a protecting and caching proxy
     std::shared_ptr<GameField> field;

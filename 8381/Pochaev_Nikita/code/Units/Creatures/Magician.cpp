@@ -1,4 +1,4 @@
-#include "Magician.h"
+﻿#include "Magician.h"
 
 Magician::Magician()
 {
@@ -23,6 +23,11 @@ void Magician::describeYourself()
 {
     std::cout << "Magician:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Magician::getUnitInf()
+{
+    return "Magician:\n" + Unit::getUnitInf();
 }
 
 void Magician::magicFist()

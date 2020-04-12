@@ -7,6 +7,11 @@ void GameBase::describeYourself()
             ANSIColor::FG_RED) << std::endl;
 }
 
+std::string GameBase::getInformationAbout()
+{
+    return "I'm empty abstract base!";
+}
+
 std::shared_ptr<CompositeUnit> GameBase::createLegion()
 {
     auto legion = std::make_shared<CompositeUnit>();
@@ -88,4 +93,14 @@ std::shared_ptr<Unit> GameBase::getUnit(eUnitsType typeID)
     unitCount->increaseElementCount(typeID, 1);
     newUnit->registerObserver(shared_from_this());
     return newUnit;
+}
+
+size_t GameBase::getHealth()
+{
+    return health;
+}
+
+std::string GameBase::getUnitCountInf()
+{
+    return unitCount->getTotalInformation();
 }

@@ -21,6 +21,8 @@ public:
     virtual bool isAccessibleForMove(std::shared_ptr<Unit> &unit);
     virtual bool isAccessibleForAttack(eUnitsType unitType);
 
+    virtual std::string getNameOfLandscape() = 0;
+
 protected:
     std::string type;
     std::vector<eUnitsType> movingUnitsProhibition;

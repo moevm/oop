@@ -1,4 +1,4 @@
-#ifndef OOP_CERBERUS_H
+﻿#ifndef OOP_CERBERUS_H
 #define OOP_CERBERUS_H
 
 #include "../Unit.h"
@@ -12,6 +12,7 @@ public:
     explicit Cerberus(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void postMortem() override;

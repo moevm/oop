@@ -1,4 +1,4 @@
-#include "Succubus.h"
+﻿#include "Succubus.h"
 
 Succubus::Succubus()
 {
@@ -23,6 +23,11 @@ void Succubus::describeYourself()
 {
     std::cout << "Succubus:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Succubus::getUnitInf()
+{
+    return "Succubus:\n" + Unit::getUnitInf();
 }
 
 void Succubus::shot()

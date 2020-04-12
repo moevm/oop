@@ -11,6 +11,7 @@ public:
     HumanBase() = default;
     ~HumanBase() override = default;
     void describeYourself() override;
+    std::string getInformationAbout() override;
 };
 
 #endif //OOP_HUMANBASE_H

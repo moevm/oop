@@ -28,6 +28,7 @@ public:
 
     void takeDamage(size_t damageSize) override;
     void describeYourself() override;
+    std::string getUnitInf() override;
 
 private:
     std::vector<std::shared_ptr<Unit>> units;

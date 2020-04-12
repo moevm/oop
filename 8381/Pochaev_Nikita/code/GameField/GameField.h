@@ -1,7 +1,8 @@
-#ifndef OOP_GAMEFIELD_H
+﻿#ifndef OOP_GAMEFIELD_H
 #define OOP_GAMEFIELD_H
 
 #include "IGameField.h"
+#include "InformationHeaders/commandPar.h"
 
 class GameField : public UnitObserver, public IGameField, public std::enable_shared_from_this<GameField>
 {
@@ -35,12 +36,25 @@ public:
     bool isCellFreeForUnit(size_t x, size_t y) override;
     bool isCellFreeForBase(size_t x, size_t y) override;
     void informationAboutCell(size_t x, size_t y) override;
+    std::shared_ptr<GameBase> getBaseByCoords(size_t x, size_t y) override;
+    /**
+     * @brief thatIsOnCell
+     * @param x
+     * @param y
+     * @param items
+     * @return the number of objects for which information needs to be provided
+     */
+    size_t thatIsOnCell(size_t x, size_t y, std::vector<eRequest> items);
 
     void moveUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y) override;
+    void moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDist) override;
     void meleeAttackUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y) override;
+    void meleeAttackUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest) override;
     void updateAfterDeath(std::shared_ptr<Unit> corpse, size_t x, size_t y) override;
 
     void getTotalInformation() override;
+    std::string getInfAboutBase(size_t xDest, size_t yDest) override;
+    std::string getInfAboutUnit(size_t xDest, size_t yDest) override;
 
 private:
     cds::Array2D<std::shared_ptr<Cell>> cellMatrix;

@@ -61,6 +61,7 @@ public:
     virtual void setArmorBoost(size_t boost);
     void disableExtraActionToken();
     virtual void describeYourself();
+    virtual std::string getUnitInf() = 0;
 
     // Observer functionality
     void registerObserver(std::shared_ptr<UnitObserver> observer) override;

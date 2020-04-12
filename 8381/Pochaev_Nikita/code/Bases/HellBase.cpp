@@ -7,3 +7,8 @@ void HellBase::describeYourself()
     std::cout << "Current Health is: " << health << std::endl;
     std::cout << unitCount->getTotalInformation();
 }
+
+std::string HellBase::getInformationAbout()
+{
+    return "I'm Hell Base!\n Current Health is: " + std::to_string(health) + "\n" + unitCount->getTotalInformation();
+}

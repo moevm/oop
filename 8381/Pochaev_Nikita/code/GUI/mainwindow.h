@@ -21,6 +21,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() = default;
     virtual void closeEvent(QCloseEvent* event);
+    GameWindow* getGameWindow() const;
 
 private:
     void setUpUI();

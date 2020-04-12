@@ -1,4 +1,4 @@
-#include "Peasant.h"
+﻿#include "Peasant.h"
 
 Peasant::Peasant()
 {
@@ -23,6 +23,11 @@ void Peasant::describeYourself()
 {
     std::cout << "Peasant:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Peasant::getUnitInf()
+{
+    return "Peasant:\n" + Unit::getUnitInf();
 }
 
 void Peasant::train()

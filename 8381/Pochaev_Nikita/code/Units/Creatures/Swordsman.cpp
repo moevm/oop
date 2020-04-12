@@ -1,4 +1,4 @@
-#include "Swordsman.h"
+﻿#include "Swordsman.h"
 
 Swordsman::Swordsman()
 {
@@ -23,6 +23,11 @@ void Swordsman::describeYourself()
 {
     std::cout << "Swordsman:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Swordsman::getUnitInf()
+{
+    return "Swordsman:\n" + Unit::getUnitInf();
 }
 
 void Swordsman::closeTheRanks()

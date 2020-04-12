@@ -1,4 +1,4 @@
-#ifndef OOP_DEMON_H
+﻿#ifndef OOP_DEMON_H
 #define OOP_DEMON_H
 
 #include "../Unit.h"
@@ -12,6 +12,7 @@ public:
     explicit Demon(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void magicFist() override;

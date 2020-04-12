@@ -14,6 +14,12 @@
 #include <QGridLayout>
 #include <QPushButton>
 #include <QLabel>
+#include <QDebug>
+#include <QString>
+#include <QMessageBox>
+
+#include "InformationHeaders/commandPar.h"
+#include "InformationHeaders/unitPar.h"
 
 class GameWindow : public QWidget
 {
@@ -31,9 +37,8 @@ private:
     QPushButton *addUnitButton;
     QLabel *unitTypeLabel;
     QComboBox *unitTypeComboBox;
-    QLabel *unitPositionLabel;
-    QSpinBox *xCoordUnitPos;
-    QSpinBox *yCoordUnitPos;
+    QLabel *unitSourceBaseLabel;
+    QComboBox *unitSourceBaseComboBox;
 
     // base
     QPushButton *addBaseButton;
@@ -42,6 +47,8 @@ private:
     QLabel *basePositionLabel;
     QSpinBox *xCoordBasePos;
     QSpinBox *yCoordBasePos;
+    QLabel *baseNameLabel;
+    QLineEdit *baseNameText;
 
     // unit functionality
     QPushButton *moveUnitButton;
@@ -60,6 +67,8 @@ private:
     QLabel *logCoordsLabel;
     QSpinBox *xCoordLogPos;
     QSpinBox *yCoordLogPos;
+    QLabel *cellInfromationWhoLabel;
+    QComboBox *cellInfromationWhoComboBox;
 
     // other
     QTextEdit *visualField;
@@ -70,9 +79,20 @@ private:
 
 signals:
     void gameWindowClosed();
+    void createFieldRequest(size_t heigt, size_t width);
+    void addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, QString name);
+    void addUnitRequest(eUnitsType unitType, QString sourceBaseName);
+    void moveUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist);
+    void attackUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist);
+    void cellUnfromationRequest(size_t xCoord, size_t yCoord, eRequest infRequest);
 
 public slots:
     void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_);
+    void on_addBaseButton_clicked();
+    void on_addUnitButton_clicked();
+    void on_moveUnitButton_clicked();
+    void on_attackUnitButton_clicked();
+    void on_cellInfromationButton_clicked();
 };
 
 #endif // GAMEWINDOW_H

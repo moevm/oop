@@ -1,4 +1,4 @@
-#include "GameFieldProxy.h"
+﻿#include "GameFieldProxy.h"
 
 GameFieldProxy::GameFieldProxy(size_t width_, size_t height_)
 {
@@ -200,4 +200,43 @@ void GameFieldProxy::meleeAttackUnit(std::shared_ptr<Unit> &sender, size_t x, si
     {
         throw std::invalid_argument("For this type of unit it's impossible to attack from this landscape");
     }
+}
+
+std::string GameFieldProxy::getInfAboutItem(size_t x, size_t y)
+{
+    std::string res = "On possition (" + std::to_string(x) + ";" + std::to_string(y) + ") there are ";
+    Coords coords(x, y);
+    return res + artifactMap[coords]->getNameOfNeutralObject();
+}
+
+std::string GameFieldProxy::getInfAboutLand(size_t x, size_t y)
+{
+    std::string res = "On possition (" + std::to_string(x) + ";" + std::to_string(y) + ") there are ";
+    Coords coords(x, y);
+    return res + terrain[coords]->getNameOfLandscape();
+}
+
+std::shared_ptr<GameBase> GameFieldProxy::getBaseByCoords(size_t x, size_t y)
+{
+    return field->getBaseByCoords(x, y);
+}
+
+void GameFieldProxy::moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest)
+{
+    field->moveUnit(xSource, ySource, xDest, yDest);
+}
+
+void GameFieldProxy::meleeAttackUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest)
+{
+    field->meleeAttackUnit(xSource, ySource, xDest, yDest);
+}
+
+std::string GameFieldProxy::getInfAboutBase(size_t xDest, size_t yDest)
+{
+    return field->getInfAboutBase(xDest, yDest);
+}
+
+std::string GameFieldProxy::getInfAboutUnit(size_t xDest, size_t yDest)
+{
+    return field->getInfAboutUnit(xDest, yDest);
 }

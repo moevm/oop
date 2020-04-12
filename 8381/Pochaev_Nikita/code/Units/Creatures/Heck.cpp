@@ -1,4 +1,4 @@
-#include "Heck.h"
+﻿#include "Heck.h"
 
 Heck::Heck()
 {
@@ -23,6 +23,11 @@ void Heck::describeYourself()
 {
     std::cout << "Heck:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Heck::getUnitInf()
+{
+    return "Heck:\n" + Unit::getUnitInf();
 }
 
 void Heck::train()

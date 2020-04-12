@@ -1,4 +1,4 @@
-#ifndef OOP_CELL_H
+﻿#ifndef OOP_CELL_H
 #define OOP_CELL_H
 
 #include <memory>
@@ -25,6 +25,10 @@ public:
     void clearUnit();
     void makeUnitSpeak();
     void makeBaseSpeak();
+    std::string getInfAboutUnit();
+    std::string getInfAboutBase();
+    std::shared_ptr<GameBase> getBaseByCoords();
+    std::shared_ptr<Unit> getUnitByCoords();
 
     Cell& operator* () { return *this; };
 

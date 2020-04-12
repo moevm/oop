@@ -1,4 +1,4 @@
-#ifndef OOP_MAGICIAN_H
+﻿#ifndef OOP_MAGICIAN_H
 #define OOP_MAGICIAN_H
 
 #include "../Unit.h"
@@ -13,6 +13,7 @@ public:
     explicit Magician(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void magicFist() override;

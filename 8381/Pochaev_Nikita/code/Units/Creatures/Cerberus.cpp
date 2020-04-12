@@ -1,4 +1,4 @@
-#include "Cerberus.h"
+﻿#include "Cerberus.h"
 
 Cerberus::Cerberus()
 {
@@ -23,6 +23,11 @@ void Cerberus::describeYourself()
 {
     std::cout << "Cerberus:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Cerberus::getUnitInf()
+{
+    return "Cerberus:\n" + Unit::getUnitInf();
 }
 
 void Cerberus::postMortem()

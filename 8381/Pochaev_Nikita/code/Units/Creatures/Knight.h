@@ -1,4 +1,4 @@
-#ifndef OOP_KNIGHT_H
+﻿#ifndef OOP_KNIGHT_H
 #define OOP_KNIGHT_H
 
 #include "../Unit.h"
@@ -13,6 +13,7 @@ public:
     explicit Knight(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void postMortem() override;

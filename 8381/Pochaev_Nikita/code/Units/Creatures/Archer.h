@@ -1,4 +1,4 @@
-#ifndef OOP_ARCHER_H
+﻿#ifndef OOP_ARCHER_H
 #define OOP_ARCHER_H
 
 #include "../Unit.h"
@@ -12,6 +12,7 @@ public:
     explicit Archer(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void shot() override;

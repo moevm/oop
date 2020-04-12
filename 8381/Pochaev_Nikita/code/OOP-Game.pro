@@ -31,6 +31,8 @@ SOURCES += \
     GUI/command.cpp \
     GUI/gamewindow.cpp \
     GUI/mainwindow.cpp \
+    Game/ChainHandler.cpp \
+    Game/FacadeMediator.cpp \
     Game/UIFacade.cpp \
     Game/game.cpp \
     GameField/Cell.cpp \
@@ -81,10 +83,10 @@ HEADERS += \
     GUI/command.h \
     GUI/gamewindow.h \
     GUI/mainwindow.h \
+    Game/ChainHandler.h \
     Game/FacadeMediator.h \
     Game/IFacadeMediator.h \
     Game/IGame.h \
-    Game/IGameMediator.h \
     Game/UIFacade.h \
     Game/game.h \
     GameField/Cell.h \

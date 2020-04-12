@@ -2,12 +2,13 @@
 #define ICOMMAND_H
 
 #include <vector>
+#include <string>
 
 class ICommand
 {
 public:
     virtual ~ICommand() = default;
-    virtual std::vector<size_t> exec() = 0;
+    virtual void exec() = 0;
 };
 
 #endif // ICOMMAND_H

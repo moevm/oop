@@ -65,6 +65,7 @@ void MainWindow::setUpUI()
     connect(startNewGameButton, &QPushButton::pressed, this, &MainWindow::on_startNewGameButton_clicked);
     connect(gameWindow, &GameWindow::gameWindowClosed, this, &MainWindow::on_gameWindow_closeEvent);
     connect(this, &MainWindow::startNewGameWindow, gameWindow, &GameWindow::startNewPlayingWindow);
+
 #ifdef QT_DEBUG
     qDebug() << "Debug: UI setup finished" << endl;
 #endif
@@ -72,7 +73,7 @@ void MainWindow::setUpUI()
 
 void MainWindow::on_startNewGameButton_clicked()
 {
-    gameFieldSize = playersCountSpinBox->value();
+    gameFieldSize = fieldSizeSpinBox->value();
     playersCount = playersCountSpinBox->value();
     emit startNewGameWindow(gameFieldSize, playersCount);
     setDisabled(true);
@@ -88,4 +89,9 @@ void MainWindow::closeEvent(QCloseEvent* event)
 void MainWindow::on_gameWindow_closeEvent()
 {
     setEnabled(true);
+}
+
+GameWindow* MainWindow::getGameWindow() const
+{
+    return gameWindow;
 }

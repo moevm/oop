@@ -1,4 +1,4 @@
-#include "Ifrit.h"
+﻿#include "Ifrit.h"
 
 Ifrit::Ifrit()
 {
@@ -23,6 +23,11 @@ void Ifrit::describeYourself()
 {
     std::cout << "Ifrit:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Ifrit::getUnitInf()
+{
+    return "Ifrit:\n" + Unit::getUnitInf();
 }
 
 void Ifrit::closeTheRanks()

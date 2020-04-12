@@ -11,6 +11,7 @@ public:
     HellBase() = default;
     ~HellBase() override = default;
     void describeYourself() override;
+    std::string getInformationAbout() override;
 };
 
 #endif //OOP_HELLBASE_H

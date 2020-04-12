@@ -1,4 +1,4 @@
-#include "Demon.h"
+﻿#include "Demon.h"
 
 Demon::Demon()
 {
@@ -23,6 +23,11 @@ void Demon::describeYourself()
 {
     std::cout << "Demon:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Demon::getUnitInf()
+{
+    return "Demon:\n" + Unit::getUnitInf();
 }
 
 void Demon::magicFist()

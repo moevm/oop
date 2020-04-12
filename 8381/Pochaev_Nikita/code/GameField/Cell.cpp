@@ -107,3 +107,25 @@ void Cell::giveUnitDamage(size_t damage)
         throw std::out_of_range("Attempt to attack an empty cell");
     }
 }
+
+std::string Cell::getInfAboutUnit()
+{
+    // FIXME: is it correct (externally) unit info
+    std::string composite = unit->isComposite() != nullptr ? "C" : "Not c";
+    return "It's " + composite + "omposite unit;" + unit->getUnitInf();
+}
+
+std::string Cell::getInfAboutBase()
+{
+    return base->getInformationAbout();
+}
+
+std::shared_ptr<GameBase> Cell::getBaseByCoords()
+{
+    return base;
+}
+
+std::shared_ptr<Unit> Cell::getUnitByCoords()
+{
+    return unit;
+}
