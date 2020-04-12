@@ -6,6 +6,7 @@
 #include "Landscape/forest.h"
 #include "Landscape/mountain.h"
 #include "Landscape/river.h"
+#include "Base/base.h"
 
 class Cell{
 public:
@@ -24,10 +25,14 @@ public:
     NeutralObj* getNeutral() const;
     string characteristic(unsigned, unsigned);
     Landscape *getLandscape() const;
-    void setLandscape(Landscape *value);   
+    void setLandscape(Landscape *value);
+    Base *getBase() const;
+    void setBase(Base *value);
+
 private:
     Unit* unit{};
     NeutralObj* neutral{};
     Landscape* landscape{};
+    Base* base{};
 };
 #endif // CELL_H

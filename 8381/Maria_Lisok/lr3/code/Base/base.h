@@ -6,6 +6,8 @@
 #include "Units/Factory/humanityArmy.h"
 #include "game/gamemediator.h"
 #include "enums.h"
+
+#include <createmediator.h>
 class Base : public Observer
 {
 public:
@@ -18,7 +20,7 @@ public:
     int getMaxCount() const;
     int getHealth() const;
 
-    Unit* createUnit(UnitsType type, int x, int y);
+    Unit* createUnit(UnitsType type);
     void addUnit(Unit* u);
     void deleteUnit(Subject*);
     Unit* getCurrUnit();
@@ -26,6 +28,10 @@ public:
     void update(Subject *);
     void setGameMediator(GameMediator* val);
     CompositeUnit *getUnits() const;
+
+    void setCreateMediator(CreateMediator *value);
+
+    CreateMediator *getCreateMediator() const;
 
 private:
     int baseNumb;
@@ -36,7 +42,7 @@ private:
     CompositeUnit* units;
     int unitCurr;
     GameMediator* gameMediator;
-
+    CreateMediator* createMediator;
 };
 
 #endif // BASE_H

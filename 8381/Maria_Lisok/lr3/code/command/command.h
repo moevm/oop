@@ -6,7 +6,9 @@
 using namespace std;
 struct Data{
     int x, y;
-    UnitsType type;
+    UnitsType unitType;
+    NeutralType neutralType;
+    int base;
 };
 class Command{
 public:

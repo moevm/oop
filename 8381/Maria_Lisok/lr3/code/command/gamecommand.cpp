@@ -6,7 +6,7 @@ map<string, int> GameCommand::baseInfo()
 {
     map<string, int> information;
     int baseNum = params.find("base num")->second.x;
-    if(baseNum > 0){
+    if(baseNum >= 0){
         if(static_cast<unsigned>(baseNum) < game->getBases().size()){
             BaseCommand com(game->getBaseByNum(baseNum),action, params);
             return com.mainInfoAboutObj();
@@ -14,7 +14,7 @@ map<string, int> GameCommand::baseInfo()
             information["not base with such number"] = baseNum;
         }
     }else{
-        information["base number must be > 0"] = 0;
+        information["base number must be >="] = 0;
     }
     return information;
 }
@@ -39,14 +39,21 @@ map<string, int> GameCommand::attack()
         information["no such unit"] = 0;
         return information;
     }
-    for (Unit* i : game->getUnits())
-    {
-        if (i == u)
+    try {
+
+        for (Unit* i : game->getUnits())
         {
-            i->attack(params.find("attack pos")->second.x, params.find("attack pos")->second.y);
-            information["attack was"] = 0;
-            return information;
+            if (i == u)
+            {
+                i->attack(params.find("attack pos")->second.x, params.find("attack pos")->second.y);
+                information["attack was"] = 0;
+                return information;
+            }
         }
+    }
+    catch (invalid_argument& e) {
+        information[e.what()]=0;
+        return information;
     }
     information["not such attacker"] = -1;
     return information;
@@ -60,34 +67,63 @@ map<string, int> GameCommand::move()
 
 map<string, int> GameCommand::addBase()
 {
+    map<string, int> information;
     int maxUnitsCount = params.find("addParams")->second.x;
     int health = params.find("addParams")->second.y;
     int x = params.find("pos")->second.x;
     int y = params.find("pos")->second.y;
-    int baseNumb = params.find("base num")->second.x;
-    game->createBase(maxUnitsCount, health, x, y, baseNumb);
-    map<string, int> information;
-    information["base was created"] = baseNumb;
+    int baseNumb = params.find("addParams")->second.base;
+    try {
+        if(game->getField()->getCell(static_cast<unsigned>(x),static_cast<unsigned>(y))->getBase()){
+            throw invalid_argument("there is base on such cell "+to_string(x)+","+to_string(y));
+        }
+        else{
+            game->createBase(maxUnitsCount, health, x, y, baseNumb);
+            information["base was created"] = baseNumb;
+        }
+    } catch (out_of_range& e) {
+        information[e.what()]=0;
+    }
     return information;
 }
 
 map<string, int> GameCommand::addNeutral()
 {
+    map<string, int> information;
     unsigned x = static_cast<unsigned>(params.find("addParams")->second.x);
     unsigned y = static_cast<unsigned>(params.find("addParams")->second.y);
-    game->createNeutral(static_cast<NeutralType>(params.find("type")->second.x), x, y);
-    map<string, int> information;
-    information["action"] = NEUTRAL_ADD;
-    information["pos x "] = static_cast<int>(x);
-    information["pos y "] = static_cast<int>(y);
+    try{
+        game->createNeutral(params.find("addParams")->second.neutralType, x, y);
+        information["neutral add"] = NEUTRAL_ADD;
+        information["pos x "] = static_cast<int>(x);
+        information["pos y "] = static_cast<int>(y);
+    }catch(out_of_range& e){
+        information[e.what()]=0;
+    }catch(invalid_argument& e){
+        information[e.what()]=0;
+    }
     return information;
 }
 
 map<string, int> GameCommand::addUnit()
 {
-    int baseNum = params.find("base num")->second.x;
-    BaseCommand com(game->getBaseByNum(baseNum),action, params);
+    int baseNum = params.find("addParams")->second.base;
+    Base* base{};
+    try {
+        base = game->getBaseByNum(baseNum);
+    } catch (invalid_argument& e) {
+        map<string, int> info;
+        info[e.what()]=0;
+        return info;
+    }
+    CreateMediator* createMed = new CreateMediator(game->getField(), base);
+    base->setCreateMediator(createMed);
+    game->getField()->setCreateMediator(createMed);
+    BaseCommand com(base,action, params);
+
     return com.mainInfoAboutObj();
+
+
 }
 
 map<string, int> GameCommand::noSuchAct()

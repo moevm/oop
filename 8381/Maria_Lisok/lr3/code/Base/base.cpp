@@ -37,7 +37,7 @@ int Base::getHealth() const
     return health;
 }
 
-Unit *Base::createUnit(UnitsType type, int x, int y)
+Unit *Base::createUnit(UnitsType type)
 {
     AbstractArmy* humanityArmy = new HumanityArmy();
     AbstractArmy* creaturesArmy = new CreaturesArmy();
@@ -108,6 +108,16 @@ void Base::setGameMediator(GameMediator *val)
 CompositeUnit *Base::getUnits() const
 {
     return units;
+}
+
+void Base::setCreateMediator(CreateMediator *value)
+{
+    createMediator = value;
+}
+
+CreateMediator *Base::getCreateMediator() const
+{
+    return createMediator;
 }
 
 

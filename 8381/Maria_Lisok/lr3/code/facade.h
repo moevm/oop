@@ -17,7 +17,7 @@ public:
     void moveUnit(int x, int y, int xDelta, int yDelta);
     void attackUnit(int x, int y, int xDelta, int yDelta);
     void addBase(int x, int y, int, int);
-    void addUnit(int x, int y, int base, int type);
+    void addUnit(int base, int type);
     void addNeutral(int x, int y, int type);
 
 private:

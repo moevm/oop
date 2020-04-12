@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include "facade.h"
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,26 +15,28 @@ public:
     MainWindow(QWidget *parent = nullptr, Game* game = nullptr);
     ~MainWindow();
 
+
+
 private slots:
-    void gameInfoButton();
+    void on_gameInfoButton_clicked();
 
-    void addNeutralButton();
+    void on_addNeutralButton_clicked();
 
-    void addUnitButton();
+    void on_addUnitButton_clicked();
 
-    void addBaseButton();
+    void on_baseInfoButton_clicked();
 
-    void moveUnitButton();
+    void on_addBaseButton_clicked();
 
-    void attackButton();
+    void on_moveButton_clicked();
 
-    void baseInfoButton();
+    void on_attackButton_clicked();
 
-    void unitInfoButton();
+    void on_unitInfoButton_clicked();
 
-    void neutralInfoButton();
+    void on_landInfoButton_clicked();
 
-    void landscapeInfoButton();
+    void on_neutralInfoButton_clicked();
 
 private:
     Ui::MainWindow *ui;

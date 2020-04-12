@@ -37,7 +37,7 @@ public:
     unsigned getMaxItems() const;
 
     bool isCellFreeForUnit(size_t x, size_t y);
-    bool addUnit(Unit*, unsigned, unsigned, int);
+    bool addUnit(Unit*, unsigned, unsigned);
     bool deleteUnit(unsigned, unsigned);
 
     bool addNeutral(NeutralObj*, unsigned, unsigned);
@@ -46,15 +46,15 @@ public:
     std::string getAbout(unsigned x, unsigned y);
     Cell* getCell(unsigned x, unsigned y);
     Cell* findUnit(Unit *unit);
+
     void update(Subject *);
     void deleteUnit(Subject*);
-    void setBase(Base*);
-    string printBase(Base *base);
-    Base *getBase1() const;
+    void addBase(Base*);
 
-    Base *getBase2() const;
 
     unsigned getCountOfItems() const;
+
+    void setCreateMediator(CreateMediator *value);
 
 private:
     const unsigned width;
@@ -63,10 +63,7 @@ private:
     unsigned countOfItems;
     Cell*** items{};
     MoveMediator* moveMediator;
-
-    Base* base1;
-
-    Base* base2;
+    CreateMediator* createMediator;
 };
 
 class PlayingFieldIterator{

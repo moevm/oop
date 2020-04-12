@@ -22,7 +22,7 @@ bool PlayingField::isCellFreeForUnit(size_t x, size_t y)
 }
 
 
-bool PlayingField::addUnit(Unit * item, unsigned x, unsigned y, int baseNum)
+bool PlayingField::addUnit(Unit * item, unsigned x, unsigned y)
 {
     if(maxItems == countOfItems){
         throw length_error("you can't add item!"
@@ -41,12 +41,6 @@ bool PlayingField::addUnit(Unit * item, unsigned x, unsigned y, int baseNum)
     if(!p->canStand()){
         throw invalid_argument("item  can't add to this landscape");
     }
-
-    Base* base = (baseNum == 1) ? base1 : base2;
-    if(!base){
-        throw invalid_argument("create base!!!!");
-    }
-    base->addUnit(item);
     items[x][y]->addUnit(item);
     items[x][y]->getUnit()->addObserver(this);
     countOfItems++;
@@ -62,10 +56,6 @@ bool PlayingField::deleteUnit(unsigned x, unsigned y)
     if(items[x][y]->isUnitFree()){
         return false;
     }
-    if (base1)
-        base1->deleteUnit(items[x][y]->getUnit());
-    if (base2)
-        base2->deleteUnit(items[x][y]->getUnit());
     items[x][y]->getUnit()->removeObserver(this);
     items[x][y]->delUnit();
     countOfItems--;
@@ -75,13 +65,13 @@ bool PlayingField::deleteUnit(unsigned x, unsigned y)
 bool PlayingField::addNeutral(NeutralObj * item, unsigned x, unsigned y)
 {
     if(x >= width || y >= height){
-        throw out_of_range("check position coordinates of unit");
+        throw out_of_range("check position coordinates of neutral");
     }
     if(!item){
         throw invalid_argument("item can't be empty");
     }
     if(items[x][y]->getNeutral()){
-        throw invalid_argument("this cell of field have unit");
+        throw invalid_argument("this cell of field have neutral");
     }
     items[x][y]->addNeutral(item);
     return true;
@@ -102,7 +92,7 @@ bool PlayingField::deleteNeutral(unsigned x, unsigned y)
 
 
 PlayingField::PlayingField(unsigned x, unsigned y, unsigned maxIt)
-    :width(x), height(y), maxItems(maxIt), countOfItems(0), base1(nullptr), base2(nullptr)
+    :width(x), height(y), maxItems(maxIt), countOfItems(0)
 {  
     items = new Cell**[width];
     for(unsigned i = 0; i < width; i++){
@@ -131,8 +121,8 @@ PlayingField::PlayingField(unsigned x, unsigned y, unsigned maxIt)
 
 PlayingField::PlayingField(const PlayingField& playingField)
     :width(playingField.width), height(playingField.height),
-    maxItems(playingField.maxItems), countOfItems(playingField.countOfItems),
-    base1(playingField.base1), base2(playingField.base2) 
+    maxItems(playingField.maxItems), countOfItems(playingField.countOfItems)
+
 {
     items = new Cell**[width];
     for(unsigned i = 0; i < width; i++){
@@ -173,10 +163,7 @@ PlayingField &PlayingField::operator=(const PlayingField & playingField)
             }
         }
     }
-    delete base1;
-    base1 = playingField.base1;
-    delete base2;
-    base2 = playingField.base2;
+
     return *this;
 }
 
@@ -197,8 +184,6 @@ PlayingField &PlayingField::operator=(PlayingField && playingField)
     for(unsigned i=0; i < width; i++)
         delete []  playingField.items[i];
     delete [] playingField.items;
-    base1 = playingField.base1;
-    base2 = playingField.base2;
     return *this;
 }
 
@@ -206,7 +191,7 @@ PlayingField &PlayingField::operator=(PlayingField && playingField)
 PlayingField::PlayingField(PlayingField && playingField)
     :width(playingField.width), height(playingField.height),
       maxItems(playingField.maxItems), countOfItems(playingField.countOfItems),
-      items( new Cell**[width]), base1(playingField.base1), base2(playingField.base2)
+      items( new Cell**[width])
 {
     for(unsigned i=0; i < width; i++){
         items[i] = new Cell*[height];
@@ -307,10 +292,6 @@ void PlayingField::deleteUnit(Subject * unit)
             if (unit == items[i][j]->getUnit()) {
                 items[i][j]->delUnit();
                 countOfItems--;
-                if (base1)
-                    base1->deleteUnit(unit);
-                if (base2)
-                    base2->deleteUnit(unit);
                 unit->removeObserver(this);
                 return;
             }
@@ -318,64 +299,33 @@ void PlayingField::deleteUnit(Subject * unit)
     }
 }
 
-void PlayingField::setBase(Base* base)
+void PlayingField::addBase(Base* base)
 {
     if(base->getMaxCount() <= 0)
         throw invalid_argument("maxCount must be >0");
     if(base->getHealth() <= 0)
         throw invalid_argument("health must be >0");
-    if(base->getX() > width)
+    unsigned posX = static_cast<unsigned>(base->getX());
+    unsigned posY = static_cast<unsigned>(base->getY());
+    if(posX > width)
         throw invalid_argument("width must be < curr width");
-    if(base->getY() > height)
+    if(posY > height)
         throw invalid_argument("height must be < curr height");
 
-    if (base->getBaseNumb() == 1){
-        if(base1){
-            throw invalid_argument("there is base with such num(1)");
-        }
-        base1 = new Base(base->getMaxCount(), base->getHealth(), base->getX(), base->getY(), base->getBaseNumb());
-
+    if(items[posX][posY]->getBase()){
+        throw invalid_argument("there is base on"+to_string(posX)+","+to_string(posY));
     }
-    else if (base->getBaseNumb() == 2){
-        if(base2){
-            throw invalid_argument("there is base with such num(2)");
-        }
-        base2 = new Base(base->getMaxCount(), base->getHealth(), base->getX(), base->getY(), base->getBaseNumb());
-
-    }else{
-        throw invalid_argument("there are two num of bases 1 and 2");
-    }
-}
-
-string PlayingField::printBase(Base *base)
-{
-    Unit* unit;
-    Cell* point;
-    string str{};
-    str+="Base ";
-    str += base->getBaseNumb() + "\n";
-    std::cout<<"Count of units in base " << base->getUnitCount() << endl;
-    for (int i = 0; i < base->getUnitCount(); i++){
-        unit = base->getCurrUnit();
-        point = findUnit(unit);
-        str.append( unit->characteristic()+"\n");
-    }
-    return str;
-}
-
-Base *PlayingField::getBase1() const
-{
-    return base1;
-}
-
-Base *PlayingField::getBase2() const
-{
-    return base2;
+    items[posX][posY]->setBase(base);
 }
 
 unsigned PlayingField::getCountOfItems() const
 {
     return countOfItems;
+}
+
+void PlayingField::setCreateMediator(CreateMediator *value)
+{
+    createMediator = value;
 }
 
 PlayingFieldIterator::PlayingFieldIterator(PlayingField * current)

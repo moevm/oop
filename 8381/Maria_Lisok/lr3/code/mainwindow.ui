@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1026</width>
-    <height>740</height>
+    <width>1058</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,401 +18,37 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>60</y>
+      <y>70</y>
       <width>381</width>
-      <height>421</height>
+      <height>391</height>
      </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="infoWindow">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>60</y>
-      <width>271</width>
-      <height>421</height>
+      <x>400</x>
+      <y>70</y>
+      <width>311</width>
+      <height>391</height>
      </rect>
     </property>
    </widget>
-   <widget class="QTextEdit" name="logsWindow">
+   <widget class="QTextEdit" name="logWindow">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>60</y>
-      <width>271</width>
-      <height>421</height>
+      <x>720</x>
+      <y>70</y>
+      <width>311</width>
+      <height>391</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addNeutralButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>500</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add Neutral</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelNeutralType">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>540</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Neutral type</string>
-    </property>
-   </widget>
-   <widget class="QFontComboBox" name="typesOfNeutral">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>540</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="neutralPosX">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>600</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelNeutralPosition">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>570</y>
-      <width>59</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Position</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="neutralPosY">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>600</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addUnitButton">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>500</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add Unit</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelUnitType">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>540</y>
-      <width>91</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Unit type</string>
-    </property>
-   </widget>
-   <widget class="QFontComboBox" name="typesOfUnits">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>540</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelUnitPosition">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>570</y>
-      <width>59</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Position</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="unitPosX">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>600</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="unitPosY">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>600</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelUnitBase">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>630</y>
-      <width>59</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Unit base</string>
-    </property>
-   </widget>
-   <widget class="QFontComboBox" name="fontComboBox_3">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>630</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addBaseButton">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>500</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add base</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelBasePosition">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>540</y>
-      <width>59</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Position</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="basePosX">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>570</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="basePosY">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>570</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="moveUnitButton">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>500</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Move Unit</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="attackButton">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>500</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Attack</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelStep">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>540</y>
-      <width>59</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Step</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="stepPosX">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>570</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="stepPosY">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>570</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="unitInfoButton">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>610</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>unit info</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="neutralInfoButton">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>640</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>neutral  info</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="landscapeInfoButton">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>670</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>landscape info</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="baseInfoButton">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>660</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>base info</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelPositionInfoItem">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>610</y>
-      <width>59</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Position</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="infoItemPosX">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>640</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="infoItemPosY">
-    <property name="geometry">
-     <rect>
-      <x>960</x>
-      <y>640</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="gameInfoButton">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>game info</string>
     </property>
    </widget>
    <widget class="QLabel" name="labelField">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>50</y>
       <width>59</width>
       <height>16</height>
      </rect>
@@ -424,9 +60,9 @@
    <widget class="QLabel" name="labelInfo">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>40</y>
-      <width>161</width>
+      <x>400</x>
+      <y>50</y>
+      <width>201</width>
       <height>16</height>
      </rect>
     </property>
@@ -434,11 +70,11 @@
      <string>Information about item</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelLogs">
+   <widget class="QLabel" name="labelLog">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>40</y>
+      <x>720</x>
+      <y>50</y>
       <width>59</width>
       <height>16</height>
      </rect>
@@ -447,24 +83,237 @@
      <string>Logs</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QPushButton" name="gameInfoButton">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>610</y>
+      <x>0</x>
+      <y>10</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>game info</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addNeutralButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>490</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Neutral</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelNeutralType">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>530</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Neutral type</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelPosNeutral">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>560</y>
+      <width>59</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Position</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="posNeutralX">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>580</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="posNeutralY">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>580</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addUnitButton">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>490</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add unit</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelUnitType">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>530</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit type</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="posBaseY">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>550</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addBaseButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>490</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add base</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="posBaseX">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>550</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelPosBase">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>530</y>
+      <width>59</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Position</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="moveButton">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>490</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Move</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="attackButton">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>490</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Attack</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelStep">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>520</y>
+      <width>59</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Step</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="stepX">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>540</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="stepY">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>540</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMaxCountOfItems">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>580</y>
       <width>131</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>max count of units</string>
+     <string>max count of items</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QSpinBox" name="maxCountOfItems">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>650</y>
+      <x>520</x>
+      <y>600</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelHealth">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>630</y>
       <width>59</width>
       <height>16</height>
      </rect>
@@ -473,24 +322,175 @@
      <string>health</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="basePosX_2">
+   <widget class="QSpinBox" name="health">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>630</y>
-      <width>61</width>
+      <x>520</x>
+      <y>650</y>
+      <width>51</width>
       <height>21</height>
      </rect>
     </property>
    </widget>
-   <widget class="QSpinBox" name="basePosX_3">
+   <widget class="QLabel" name="labelUnitBase">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>670</y>
-      <width>61</width>
+      <x>270</x>
+      <y>570</y>
+      <width>59</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Unit base</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="baseNum">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>570</y>
+      <width>51</width>
       <height>21</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="unitInfoButton">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>570</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>unit info</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="landInfoButton">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>600</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>landscape info</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="neutralInfoButton">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>630</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>neutral info</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="baseInfoButton">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>600</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>base info</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelPosForInfo">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>590</y>
+      <width>59</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Position</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="posForInfoX">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>610</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="posForInfoY">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>610</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="typesOfNeutrals">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>520</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="typesOfUnits">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>520</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="fromX">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>540</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="fromY">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>540</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelFrom">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>520</y>
+      <width>59</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>From</string>
     </property>
    </widget>
   </widget>

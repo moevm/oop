@@ -58,7 +58,7 @@ map<string, int> FieldCommand::neutrallInfo()
     unsigned x = static_cast<unsigned>(params.find("infoParams")->second.x);
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
     NeutralObj* neutr = field->getCell(x, y)->getNeutral();
-    if(!neutr){
+    if(neutr){
        information["neutal type:"] = neutr->getTypeEnum();
     }
     else{
@@ -73,7 +73,7 @@ map<string, int> FieldCommand::unitlInfo()
     unsigned x = static_cast<unsigned>(params.find("infoParams")->second.x);
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
     Unit* un = field->getCell(x, y)->getUnit();
-    if(!un){
+    if(un){
        information["unit characteristic:\n"+un->characteristic()] = 0;
     }
     else{
@@ -88,7 +88,7 @@ map<string, int> FieldCommand::landCelllInfo()
     unsigned x = static_cast<unsigned>(params.find("infoParams")->second.x);
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
     Landscape* land = field->getCell(x, y)->getLandscape();
-    if(!land){
+    if(land){
        information["landscape type:"] = field->getCell(x, y)->getLandscape()->getLandscapeTypeEnum();
     }
     else{
@@ -144,10 +144,16 @@ map<string, int> FieldCommand::unitFind()
 
 map<string, int> FieldCommand::unitMove()
 {
-    Unit* u = findItem();
-    u->move(params.find("move")->second.x, params.find("move")->second.y);
     map<string, int> information;
-    information["move unit"] = u->getTypeEnum();
+    Unit* u = findItem();
+    try{
+        u->move(params.find("move")->second.x, params.find("move")->second.y);
+        information["move unit"] = u->getTypeEnum();
+    }catch(out_of_range& e){
+        information[e.what()]=0;
+    }catch(invalid_argument& e){
+        information[e.what()]=0;
+    }
     return information;
 }
 

@@ -1,7 +1,7 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 enum Actions{
-    GAME_INFO,
+    GAME_INFO=1,
     BASE_INFO,
     LAND_INFO,
     NEUTRALS_INFO,

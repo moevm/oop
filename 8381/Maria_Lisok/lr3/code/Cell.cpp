@@ -10,17 +10,21 @@ Cell::~Cell()
     neutral = nullptr;
     delete landscape;
     landscape = nullptr;
+    delete base;
+    base = nullptr;
 }
 
-Cell::Cell(const Cell &cell) : unit(cell.unit->copyItem()), neutral(cell.neutral), landscape(cell.landscape)
+Cell::Cell(const Cell &cell) : unit(cell.unit->copyItem()), neutral(cell.neutral), landscape(cell.landscape),base(cell.base)
 {
 
 }
 
-Cell::Cell(Cell &&cell) : unit(std::move(cell.unit)), neutral(std::move(cell.neutral))
+Cell::Cell(Cell &&cell) : unit(std::move(cell.unit)), neutral(std::move(cell.neutral)), landscape(std::move(cell.landscape)), base(std::move(base))
 {
     cell.unit = nullptr;
     cell.neutral = nullptr;
+    cell.landscape = nullptr;
+    cell.base = nullptr;
 }
 
 Cell& Cell::operator= (const Cell& cell)
@@ -30,12 +34,15 @@ Cell& Cell::operator= (const Cell& cell)
     delete unit;
     delete neutral;
     delete landscape;
+    delete base;
     unit = std::move(cell.unit);
     delete cell.unit;
     neutral = std::move(cell.neutral);
     delete cell.neutral;
     landscape =std::move(cell.landscape);
     delete cell.landscape;
+    base =std::move(cell.base);
+    delete cell.base;
     return *this;
 }
 
@@ -46,7 +53,8 @@ Cell& Cell::operator= (Cell&& cell)
 
     unit = std::move(cell.unit);
     neutral = std::move(cell.neutral);
-
+    landscape = std::move(cell.landscape);
+    base = std::move(cell.base);
     return *this;
 }
 void Cell::delUnit()
@@ -109,4 +117,14 @@ Landscape *Cell::getLandscape() const
 void Cell::setLandscape(Landscape *value)
 {
     landscape = value;
+}
+
+Base *Cell::getBase() const
+{
+    return base;
+}
+
+void Cell::setBase(Base *value)
+{
+    base = value;
 }

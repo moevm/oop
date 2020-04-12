@@ -18,7 +18,7 @@ void Game::createBase(int maxUnitsCount, int health, int xx, int yy, int baseNum
 
 void Game::createNeutral(NeutralType net, unsigned x, unsigned y)
 {
-    NeutralObj* obj;
+    NeutralObj* obj=nullptr;
     switch(net){
     case  HELMET:
         obj = new GetArmor(new Helmet());
@@ -79,7 +79,7 @@ Base *Game::getBaseByNum(int num)
             return b;
         }
     }
-     throw invalid_argument("there is not such base number");
+    throw invalid_argument("there is not such base number");
 }
 
 std::vector<Base *> Game::getBases() const

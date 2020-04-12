@@ -41,6 +41,7 @@ SOURCES += \
     command/basecommand.cpp \
     command/fieldcommand.cpp \
     command/gamecommand.cpp \
+    createmediator.cpp \
     facade.cpp \
     game/game.cpp \
     game/gamemediator.cpp \
@@ -84,6 +85,8 @@ HEADERS += \
     command/command.h \
     command/fieldcommand.h \
     command/gamecommand.h \
+    convertEnum.h \
+    createmediator.h \
     enums.h \
     facade.h \
     game/game.h \
