@@ -57,6 +57,7 @@ void Game::addUnit(Unit *unit, Base *base)
     for(Base* b : bases){
         if(b == base){
             units->addUnit(unit);
+            return;
         }
     }
     throw std::invalid_argument("Error! No such base in the game!!!");
@@ -67,6 +68,7 @@ void Game::deleteUnit(Unit *unit, Base *base)
     for(Base* b : bases){
         if(b == base){
             units->deleteUnit(unit);
+            return;
         }
     }
     throw std::invalid_argument("Error! No such base in the game!!!");

@@ -120,7 +120,6 @@ map<string, int> GameCommand::addUnit()
     base->setCreateMediator(createMed);
     game->getField()->setCreateMediator(createMed);
     BaseCommand com(base,action, params);
-
     return com.mainInfoAboutObj();
 
 

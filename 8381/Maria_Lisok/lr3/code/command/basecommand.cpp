@@ -18,9 +18,8 @@ map<string, int> BaseCommand::unitAdd()
 {
     map<string, int> information;
     Data data = params.find("addParams")->second;
-    Unit* u = base->createUnit(data.unitType);
     try {
-        base->getCreateMediator()->notify(u, base->getX(), base->getY());
+        Unit* u = base->createUnit(data.unitType);
         information["unit added. name:" + u->getName()]=1;
     }catch (out_of_range& e) {
         information[e.what()]=0;

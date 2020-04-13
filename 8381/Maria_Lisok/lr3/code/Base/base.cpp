@@ -5,6 +5,7 @@ Base::Base(int maxUnitsCount, int health, int xx, int yy, int baseNumb) : baseNu
     unitCurr(0),health(health), x(xx), y(yy)
 {
     units = new CompositeUnit();
+
 }
 
 int Base::getBaseNumb() const
@@ -60,7 +61,15 @@ Unit *Base::createUnit(UnitsType type)
     else if (type == ORK){
         unit = creaturesArmy->createInfantry();
     }
-
+    try {
+        this->getCreateMediator()->notify(unit, x, y);
+        gameMediator->Notify(unit, true);
+    } catch (out_of_range& e) {
+        throw e;
+    }
+    catch (invalid_argument& e) {
+        throw e;
+    }
     units->addUnit(unit);
     unitCount++;
     return unit;
