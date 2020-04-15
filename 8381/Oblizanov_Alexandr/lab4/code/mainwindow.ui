@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1127</width>
+    <height>699</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2" stretch="3,0">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,1,1">
+        <item>
+         <widget class="QTextEdit" name="textField">
+          <property name="styleSheet">
+           <string notr="true">font: 9pt &quot;Consolas&quot;;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="textOutput">
+          <property name="styleSheet">
+           <string notr="true">font: 9pt &quot;Consolas&quot;;</string>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+          </property>
+          <property name="placeholderText">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="debugOutput">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1,2,1,2,1,4,1,2,1,2">
+      <item>
+       <layout class="QGridLayout" name="InfoLayout">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushGameInfo">
+          <property name="text">
+           <string>Game Info</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushItems">
+          <property name="text">
+           <string>Items on Field</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushLandspace">
+          <property name="text">
+           <string>Landspace</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="1" column="1">
+         <widget class="QComboBox" name="comboNeutral">
+          <item>
+           <property name="text">
+            <string>Chest</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Keygen</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Antivirus</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Data</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSpinBox" name="setNeutralY"/>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QPushButton" name="pushAddNeutral">
+          <property name="text">
+           <string>Add Neutral</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QSpinBox" name="setNeutralX"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Neutral type:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="baseLayout">
+        <item row="1" column="0">
+         <widget class="QSpinBox" name="setBaseX"/>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QPushButton" name="pushAddBase">
+          <property name="text">
+           <string>Add Base</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="setBaseY"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="unitLayout">
+        <item row="1" column="0" colspan="2">
+         <widget class="QPushButton" name="pushAddUnit">
+          <property name="text">
+           <string>Add Unit</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Unit base:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Unit type:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QSpinBox" name="setUnitY"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QSpinBox" name="setUnitX"/>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="comboBases"/>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="comboBox">
+          <item>
+           <property name="text">
+            <string comment="0">Att Scien</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string comment="1">Att Bers</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string comment="2">Sup Scien</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string comment="3">Sup Bers</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string comment="4">Sim Scien</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string comment="5">Sim Bers</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QPushButton" name="pushBaseInfo">
+          <property name="text">
+           <string>Base Info</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="6" column="0">
+         <widget class="QSpinBox" name="setDeltaX">
+          <property name="minimum">
+           <number>-99</number>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushMoveUnit">
+          <property name="text">
+           <string>Move Unit</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Unit coords:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QSpinBox" name="setActY"/>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pushAttack">
+          <property name="text">
+           <string>Attack</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QSpinBox" name="setActX"/>
+        </item>
+        <item row="6" column="1">
+         <widget class="QSpinBox" name="setDeltaY">
+          <property name="minimum">
+           <number>-99</number>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Action delta:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="1">
+         <widget class="QSpinBox" name="setItemY"/>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QPushButton" name="pushItemInfo">
+          <property name="text">
+           <string>Item Info</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QSpinBox" name="setItemX"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1127</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuLogs">
+    <property name="title">
+     <string>Logs</string>
+    </property>
+    <addaction name="actionSet_to_file"/>
+    <addaction name="actionSet_to_terminal"/>
+    <addaction name="actionSet_disabled"/>
+    <addaction name="actionSet_short"/>
+    <addaction name="actionSet_full"/>
+   </widget>
+   <addaction name="menuLogs"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSet_to_file">
+   <property name="text">
+    <string>Set to file</string>
+   </property>
+  </action>
+  <action name="actionSet_to_terminal">
+   <property name="text">
+    <string>Set to terminal</string>
+   </property>
+  </action>
+  <action name="actionSet_disabled">
+   <property name="text">
+    <string>Set disabled</string>
+   </property>
+  </action>
+  <action name="actionSet_short">
+   <property name="text">
+    <string>Set short</string>
+   </property>
+  </action>
+  <action name="actionSet_full">
+   <property name="text">
+    <string>Set full</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
