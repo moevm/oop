@@ -14,7 +14,7 @@ Base::~Base() {
 
 void Base::addInOrcsBase(string& character, Field& f1, int G) {
 	if (currentOrcsNum >= max) {
-		cout << "Íà áàçå ìàêñèìàëüíîå êîëè÷åñòâî þíèòîâ!\n";
+		cout << "ÐÐ° Ð±Ð°Ð·Ðµ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑŽÐ½Ð¸Ñ‚Ð¾Ð²!\n";
 		system("pause");
 		return;
 	}
@@ -38,7 +38,7 @@ void Base::addInOrcsBase(string& character, Field& f1, int G) {
 	w.un = fuf.getUnitNum(vOrcs.size() - 1);
 	vOrcs.push_back(w);
 
-	baseHealth += 10;       //ïðè äîáàâëåíèè íîâîãî þíèòà çäîðîâüå áàçû óâåëè÷èâàåòñÿ íà 10
+	baseHealth += 10;       //Ð¿Ñ€Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ð¸ Ð½Ð¾Ð²Ð¾Ð³Ð¾ ÑŽÐ½Ð¸Ñ‚Ð° Ð·Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ Ð±Ð°Ð·Ñ‹ ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð½Ð° 10
 	currentOrcsNum++;
 }
 
@@ -69,7 +69,7 @@ void Base::createOrcsBase(int G, Field& f1, int numOfUnits) {
 
 void Base::addInMEBase(string& character, Field& f1, int G) {
 	if (currentMEnum >= max) {
-		cout << "Íà áàçå ìàêñèìàëüíîå êîëè÷åñòâî þíèòîâ!\n";
+		cout << "ÐÐ° Ð±Ð°Ð·Ðµ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑŽÐ½Ð¸Ñ‚Ð¾Ð²!\n";
 		system("pause");
 		return;
 	}
@@ -93,7 +93,7 @@ void Base::addInMEBase(string& character, Field& f1, int G) {
 	w.un = fuf.getUnitNum(vME.size() - 1);
 	vME.push_back(w);
 
-	baseHealth += 10;       //ïðè äîáàâëåíèè íîâîãî þíèòà çäîðîâüå áàçû óâåëè÷èâàåòñÿ íà 10
+	baseHealth += 10;       //Ð¿Ñ€Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ð¸ Ð½Ð¾Ð²Ð¾Ð³Ð¾ ÑŽÐ½Ð¸Ñ‚Ð° Ð·Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ Ð±Ð°Ð·Ñ‹ ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð½Ð° 10
 	currentMEnum++;
 }
 

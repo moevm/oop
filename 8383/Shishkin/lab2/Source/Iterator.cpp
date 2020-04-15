@@ -68,8 +68,8 @@ void Iterator::displayUnitData(Field& f1) {
 	while (!isEnd) {
 		Cell** tmp = f1.getCell();
 		if (tmp[x][y].getUnit().GetValue()[0] == 'E' || tmp[x][y].getUnit().GetValue()[0] == 'M' || tmp[x][y].getUnit().GetValue()[0] == 'O')
-			cout << "Персонаж " << tmp[x][y].getUnit().GetValue() << " : здоровье - " << tmp[x][y].getUnit().GetHealth() << ", броня - " 
-			<< tmp[x][y].getUnit().GetArmor() << ", урон - " << tmp[x][y].getUnit().GetDamage() << endl;
+			cout << "С•РµСЂСЃРѕРЅР°Р¶ " << tmp[x][y].getUnit().GetValue() << " : Р·РґРѕСЂРѕРІСЊРµ - " << tmp[x][y].getUnit().GetHealth() << ", Р±СЂРѕРЅВ¤ - " 
+			<< tmp[x][y].getUnit().GetArmor() << ", СѓСЂРѕРЅ - " << tmp[x][y].getUnit().GetDamage() << endl;
 		next();
 	}
 	isEnd = false;

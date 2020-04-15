@@ -20,8 +20,8 @@ class Game {
 public:
 	Game();
 	~Game() = default;
-	int scan(int& numOfOrcs, int& numOfMens, int& numOfElfs, int& G);      //считывание количества юнитов и размера поля
-	void unitMove(Field& f, string character);       //двигает в поле f юнит character
+	int scan(int& numOfOrcs, int& numOfMens, int& numOfElfs, int& G);      //СЃС‡РёС‚С‹РІР°РЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СЋРЅРёС‚РѕРІ Рё СЂР°Р·РјРµСЂР° РїРѕР»СЏ
+	void unitMove(Field& f, string character);       //РґРІРёРіР°РµС‚ РІ РїРѕР»Рµ f СЋРЅРёС‚ character
 	bool addUnit(Field& f);
 	void delUnit(Field& f);
 };
