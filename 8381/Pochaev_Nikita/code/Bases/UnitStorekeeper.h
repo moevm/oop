@@ -1,12 +1,12 @@
-#ifndef OOP_UNITSTOREKEEPER_H
+﻿#ifndef OOP_UNITSTOREKEEPER_H
 #define OOP_UNITSTOREKEEPER_H
 
 #include <cstddef>
 #include <map>
 #include <memory>
 
-#include "../Information headers/unitPar.h"
-#include "../Auxiliary functionality/EnumToString.h"
+#include "InformationHeaders/unitPar.h"
+#include "AuxiliaryFunctionality/EnumToString.h"
 
 /**
  * Contain current and max county of unit

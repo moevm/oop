@@ -1,4 +1,4 @@
-#ifndef OOP_HECK_H
+﻿#ifndef OOP_HECK_H
 #define OOP_HECK_H
 
 #include "../Unit.h"
@@ -13,6 +13,7 @@ public:
     explicit Heck(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void train() override;

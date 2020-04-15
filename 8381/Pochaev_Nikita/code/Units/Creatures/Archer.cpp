@@ -1,4 +1,4 @@
-#include "Archer.h"
+﻿#include "Archer.h"
 
 Archer::Archer()
 {
@@ -23,6 +23,11 @@ void Archer::describeYourself()
 {
     std::cout << "Archer:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Archer::getUnitInf()
+{
+    return "Archer:\n" + Unit::getUnitInf();
 }
 
 void Archer::shot()

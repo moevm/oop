@@ -1,4 +1,4 @@
-#include "Knight.h"
+﻿#include "Knight.h"
 
 Knight::Knight()
 {
@@ -23,6 +23,11 @@ void Knight::describeYourself()
 {
     std::cout << "Knight:" << std::endl;
     Unit::describeYourself();
+}
+
+std::string Knight::getUnitInf()
+{
+    return "Knight:\n" + Unit::getUnitInf();
 }
 
 void Knight::postMortem()

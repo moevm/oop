@@ -1,7 +1,7 @@
-#ifndef OOP_LANDSCAPE_H
+﻿#ifndef OOP_LANDSCAPE_H
 #define OOP_LANDSCAPE_H
 
-#include "../Units/Unit.h"
+#include "Units/Unit.h"
 
 #include <string>
 #include <vector>
@@ -20,6 +20,8 @@ public:
     // It can also make a boost or vice versa
     virtual bool isAccessibleForMove(std::shared_ptr<Unit> &unit);
     virtual bool isAccessibleForAttack(eUnitsType unitType);
+
+    virtual std::string getNameOfLandscape() = 0;
 
 protected:
     std::string type;

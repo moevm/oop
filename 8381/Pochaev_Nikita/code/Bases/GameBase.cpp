@@ -1,10 +1,15 @@
-#include "GameBase.h"
-#include "../Auxiliary functionality/TextColoring.h"
+﻿#include "GameBase.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
 
 void GameBase::describeYourself()
 {
     std::cout << ANSIColor::coloredString("I'm empty abstract base!",
             ANSIColor::FG_RED) << std::endl;
+}
+
+std::string GameBase::getInformationAbout()
+{
+    return "I'm empty abstract base!";
 }
 
 std::shared_ptr<CompositeUnit> GameBase::createLegion()
@@ -88,4 +93,14 @@ std::shared_ptr<Unit> GameBase::getUnit(eUnitsType typeID)
     unitCount->increaseElementCount(typeID, 1);
     newUnit->registerObserver(shared_from_this());
     return newUnit;
+}
+
+size_t GameBase::getHealth()
+{
+    return health;
+}
+
+std::string GameBase::getUnitCountInf()
+{
+    return unitCount->getTotalInformation();
 }

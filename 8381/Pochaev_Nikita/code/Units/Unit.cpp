@@ -1,6 +1,6 @@
-#include <stdexcept>
+﻿#include <stdexcept>
 #include "Unit.h"
-#include "../Auxiliary functionality/TextColoring.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
 
 bool Unit::isAlive() const
 {
@@ -75,6 +75,11 @@ void Unit::describeYourself()
     std::cout << "Melee attack strength: " << meleeAttackStrength << std::endl;
     std::cout << "Position: X = " << position.x << "; Y = " << position.y << std::endl;
     std::cout << std::endl;
+}
+
+std::string Unit::getUnitInf()
+{
+    return "Health: " + std::to_string(health) + "\nArmor: " + std::to_string(armor) + "\nMelee attack strength: " + std::to_string(meleeAttackStrength) + "\nPosition: X = " + std::to_string(position.x) + "; Y = " + std::to_string(position.y) + "\n";
 }
 
 void Unit::registerObserver(std::shared_ptr<UnitObserver> observer)

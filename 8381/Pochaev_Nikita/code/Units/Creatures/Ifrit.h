@@ -1,4 +1,4 @@
-#ifndef OOP_IFRIT_H
+﻿#ifndef OOP_IFRIT_H
 #define OOP_IFRIT_H
 
 #include "../Unit.h"
@@ -13,6 +13,7 @@ public:
     explicit Ifrit(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void closeTheRanks() override;

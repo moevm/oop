@@ -1,4 +1,4 @@
-#ifndef OOP_SWORDSMAN_H
+﻿#ifndef OOP_SWORDSMAN_H
 #define OOP_SWORDSMAN_H
 
 #include "../Unit.h"
@@ -13,6 +13,7 @@ public:
     explicit Swordsman(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void closeTheRanks() override;

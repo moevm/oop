@@ -1,15 +1,15 @@
-#include "examples.h"
+﻿#include "examples.h"
 #include <iostream>
 #include "memory"
-#include "../GameField.h"
-#include "../Bases/HumanBase.h"
-#include "../Bases/BaseMaster.h"
-#include "../Bases/HellBaseBuilder.h"
-#include "../Bases/HellBase.h"
-#include "../Auxiliary functionality/TextColoring.h"
-#include "../Units/Creatures/Archer.h"
-#include "../GameFieldProxy.h"
-#include "../Bases/HumanBaseBuilder.h"
+#include "GameField/GameField.h"
+#include "Bases/HumanBase.h"
+#include "Bases/BaseMaster.h"
+#include "Bases/HellBaseBuilder.h"
+#include "Bases/HellBase.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
+#include "Units/Creatures/Archer.h"
+#include "GameField/GameFieldProxy.h"
+#include "Bases/HumanBaseBuilder.h"
 
 /**
  * ------------------------------------------

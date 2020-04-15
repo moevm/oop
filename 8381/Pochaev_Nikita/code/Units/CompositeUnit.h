@@ -1,10 +1,10 @@
-#ifndef OOP_COMPOSITEUNIT_H
+﻿#ifndef OOP_COMPOSITEUNIT_H
 #define OOP_COMPOSITEUNIT_H
 
 #include <vector>
 #include <memory>
 #include "Unit.h"
-#include "../Information headers/constPar.h"
+#include "InformationHeaders/constPar.h"
 
 class CompositeUnit : public Unit
 {
@@ -28,6 +28,7 @@ public:
 
     void takeDamage(size_t damageSize) override;
     void describeYourself() override;
+    std::string getUnitInf() override;
 
 private:
     std::vector<std::shared_ptr<Unit>> units;

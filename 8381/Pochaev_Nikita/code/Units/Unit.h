@@ -1,4 +1,4 @@
-#ifndef OOP_UNIT_H
+﻿#ifndef OOP_UNIT_H
 #define OOP_UNIT_H
 
 #include <iostream>
@@ -8,12 +8,12 @@
 #include <memory>
 #include <map>
 
-#include "../Information headers/unitPar.h"
-#include "../Coords.h"
+#include "InformationHeaders/unitPar.h"
+#include "GameField/Coords.h"
 #include "IUnitAttack.h"
-#include "../Auxiliary functionality/UnitObserver.h"
-#include "../Auxiliary functionality/UnitMediators.h"
-#include "../Auxiliary functionality/UnitSubject.h"
+#include "AuxiliaryFunctionality/UnitObserver.h"
+#include "AuxiliaryFunctionality/UnitMediators.h"
+#include "AuxiliaryFunctionality/UnitSubject.h"
 
 class CompositeUnit;
 
@@ -61,6 +61,7 @@ public:
     virtual void setArmorBoost(size_t boost);
     void disableExtraActionToken();
     virtual void describeYourself();
+    virtual std::string getUnitInf() = 0;
 
     // Observer functionality
     void registerObserver(std::shared_ptr<UnitObserver> observer) override;

@@ -1,6 +1,6 @@
-#include <iostream>
+﻿#include <iostream>
 #include "CompositeUnit.h"
-#include "../Auxiliary functionality/TextColoring.h"
+#include "AuxiliaryFunctionality/TextColoring.h"
 
 size_t CompositeUnit::getHealth() const
 {
@@ -43,6 +43,17 @@ void CompositeUnit::describeYourself()
     {
         instance->describeYourself();
     }
+}
+
+std::string CompositeUnit::getUnitInf()
+{
+    std::string result;
+    result = "I'm composite unit!\nPosition: X = " + std::to_string(position.x) + "; Y = " + std::to_string(position.y) + "\nIncludes:\n";
+    for(auto const& instance : units)
+    {
+        result += instance->getUnitInf();
+    }
+    return result;
 }
 
 void CompositeUnit::reallocation(size_t new_x, size_t new_y)

@@ -1,4 +1,4 @@
-#ifndef OOP_PEASANT_H
+﻿#ifndef OOP_PEASANT_H
 #define OOP_PEASANT_H
 
 #include <utility>
@@ -15,6 +15,7 @@ public:
     explicit Peasant(std::string inputName);
 
     void describeYourself() override;
+    std::string getUnitInf() override;
     eUnitsType getType() override;
 
     void train() override;
