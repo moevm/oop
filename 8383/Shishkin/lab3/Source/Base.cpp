@@ -15,7 +15,7 @@ Base::~Base() {
 
 void Base::addInOrcsBase(string& character, Field& f1, int G) {
 	if (currentOrcsNum >= max) {
-		cout << "Íà áàçå ìàêñèìàëüíîå êîëè÷åñòâî þíèòîâ!\n";
+		cout << "ÐÐ° Ð±Ð°Ð·Ðµ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑŽÐ½Ð¸Ñ‚Ð¾Ð²!\n";
 		system("pause");
 		return;
 	}
@@ -39,7 +39,7 @@ void Base::addInOrcsBase(string& character, Field& f1, int G) {
 	w.un = fuf.getUnitNum(vOrcs.size() - 1);
 	vOrcs.push_back(w);
 
-	baseHealth += 30;       //ïðè äîáàâëåíèè íîâîãî þíèòà çäîðîâüå áàçû óâåëè÷èâàåòñÿ íà 30
+	baseHealth += 30;       //Ð¿Ñ€Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ð¸ Ð½Ð¾Ð²Ð¾Ð³Ð¾ ÑŽÐ½Ð¸Ñ‚Ð° Ð·Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ Ð±Ð°Ð·Ñ‹ ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð½Ð° 30
 	currentOrcsNum++;
 }
 
@@ -64,14 +64,14 @@ void Base::createOrcsBase(int G, Field& f1) {
 	w.addObserver(this);
 	w.un = fuf.getUnitNum(vOrcs.size() - 1);
 	vOrcs.push_back(w);
-	baseHealth = 80;     //èçíà÷àëüíîå õï áàçû = 20 + 2 þíèòà = 20 + 30*2 = 80 õï
+	baseHealth = 80;     //Ð¸Ð·Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¾Ðµ Ñ…Ð¿ Ð±Ð°Ð·Ñ‹ = 20 + 2 ÑŽÐ½Ð¸Ñ‚Ð° = 20 + 30*2 = 80 Ñ…Ð¿
 	currentOrcsNum = 2;
 	typeOfBase = 'o';
 }
 
 void Base::addInMEBase(string& character, Field& f1, int G) {
 	if (currentMEnum >= max) {
-		cout << "Íà áàçå ìàêñèìàëüíîå êîëè÷åñòâî þíèòîâ!\n";
+		cout << "ÐÐ° Ð±Ð°Ð·Ðµ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑŽÐ½Ð¸Ñ‚Ð¾Ð²!\n";
 		system("pause");
 		return;
 	}
@@ -95,7 +95,7 @@ void Base::addInMEBase(string& character, Field& f1, int G) {
 	w.un = fuf.getUnitNum(vME.size() - 1);
 	vME.push_back(w);
 
-	baseHealth += 30;       //ïðè äîáàâëåíèè íîâîãî þíèòà çäîðîâüå áàçû óâåëè÷èâàåòñÿ íà 30
+	baseHealth += 30;       //Ð¿Ñ€Ð¸ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ð¸ Ð½Ð¾Ð²Ð¾Ð³Ð¾ ÑŽÐ½Ð¸Ñ‚Ð° Ð·Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ Ð±Ð°Ð·Ñ‹ ÑƒÐ²ÐµÐ»Ð¸Ñ‡Ð¸Ð²Ð°ÐµÑ‚ÑÑ Ð½Ð° 30
 	currentMEnum++;
 }
 
@@ -147,25 +147,25 @@ void Base::updateNotify(Subject* s) {
 
 void Base::printBaseCondition() {
 	if (baseHealth == 0) {
-		if (currentMEnum == 0 && typeOfBase == 'm') cout << "Áàçû ëþäåé è ýëüôîâ íåò\n";
-		else if (currentOrcsNum == 0 && typeOfBase == 'o') cout << "Áàçû îðêîâ íåò\n";
+		if (currentMEnum == 0 && typeOfBase == 'm') cout << "Ð‘Ð°Ð·Ñ‹ Ð»ÑŽÐ´ÐµÐ¹ Ð¸ ÑÐ»ÑŒÑ„Ð¾Ð² Ð½ÐµÑ‚\n";
+		else if (currentOrcsNum == 0 && typeOfBase == 'o') cout << "Ð‘Ð°Ð·Ñ‹ Ð¾Ñ€ÐºÐ¾Ð² Ð½ÐµÑ‚\n";
 	}
 
 	if (currentMEnum != 0 && typeOfBase == 'm') {
-		cout << "Çäîðîâüå áàçû ëþäåé è ýëüôîâ: " << baseHealth << " HP\n";
-		cout << "Íà áàçå " << currentMEnum << " ëþäåé è ýëüôîâ:\n";
+		cout << "Ð—Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ Ð±Ð°Ð·Ñ‹ Ð»ÑŽÐ´ÐµÐ¹ Ð¸ ÑÐ»ÑŒÑ„Ð¾Ð²: " << baseHealth << " HP\n";
+		cout << "ÐÐ° Ð±Ð°Ð·Ðµ " << currentMEnum << " Ð»ÑŽÐ´ÐµÐ¹ Ð¸ ÑÐ»ÑŒÑ„Ð¾Ð²:\n";
 		for (int i = 0; i < vME.size(); i++) {
-			cout << "Ïåðñîíàæ íà áàçå " << vME[i].GetValue() << ": çäîðîâüå - " << vME[i].GetHealth() <<
-				", áðîíÿ - " << vME[i].GetArmor() << ", óðîí - " << vME[i].GetDamage() << endl;
+			cout << "ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð¶ Ð½Ð° Ð±Ð°Ð·Ðµ " << vME[i].GetValue() << ": Ð·Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ - " << vME[i].GetHealth() <<
+				", Ð±Ñ€Ð¾Ð½Ñ - " << vME[i].GetArmor() << ", ÑƒÑ€Ð¾Ð½ - " << vME[i].GetDamage() << endl;
 		}
 	}
 
 	if (currentOrcsNum != 0 && typeOfBase == 'o') {
-		cout << "Çäîðîâüå áàçû îðêîâ: " << baseHealth << " HP\n";
-		cout << "Íà áàçå " << currentOrcsNum << " îðêîâ:\n";
+		cout << "Ð—Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ Ð±Ð°Ð·Ñ‹ Ð¾Ñ€ÐºÐ¾Ð²: " << baseHealth << " HP\n";
+		cout << "ÐÐ° Ð±Ð°Ð·Ðµ " << currentOrcsNum << " Ð¾Ñ€ÐºÐ¾Ð²:\n";
 		for (int i = 0; i < vOrcs.size(); i++) {
-			cout << "Ïåðñîíàæ íà áàçå " << vOrcs[i].GetValue() << ": çäîðîâüå - " << vOrcs[i].GetHealth() <<
-				", áðîíÿ - " << vOrcs[i].GetArmor() << ", óðîí - " << vOrcs[i].GetDamage() << endl;
+			cout << "ÐŸÐµÑ€ÑÐ¾Ð½Ð°Ð¶ Ð½Ð° Ð±Ð°Ð·Ðµ " << vOrcs[i].GetValue() << ": Ð·Ð´Ð¾Ñ€Ð¾Ð²ÑŒÐµ - " << vOrcs[i].GetHealth() <<
+				", Ð±Ñ€Ð¾Ð½Ñ - " << vOrcs[i].GetArmor() << ", ÑƒÑ€Ð¾Ð½ - " << vOrcs[i].GetDamage() << endl;
 		}
 	}
 }

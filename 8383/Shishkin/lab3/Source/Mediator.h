@@ -9,7 +9,7 @@ class Field;
 class Mediator {
 public:
 	Mediator(Field* f);
-	void attack(Warrior w1, Warrior& w2);  //атака w1 на w2
+	void attack(Warrior w1, Warrior& w2);  //Р°С‚Р°РєР° w1 РЅР° w2
 
 private:
 	Field* f;

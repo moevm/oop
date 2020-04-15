@@ -13,31 +13,31 @@ public:
 	virtual ~NeutralObject() = default;
 	virtual void operator+=(Warrior* w) = 0;
 	virtual string getNeutObjType() = 0;
-	NeutralObject* create(NeutralObject_ID id);     //фабричный метод
+	NeutralObject* create(NeutralObject_ID id);     //С„Р°Р±СЂРёС‡РЅС‹Р№ РјРµС‚РѕРґ
 };
 
-class HealthReplenishment : public NeutralObject {      //пополнение здоровья
+class HealthReplenishment : public NeutralObject {      //РїРѕРїРѕР»РЅРµРЅРёРµ Р·РґРѕСЂРѕРІСЊСЏ
 public:
 	string getNeutObjType() override;
 	void operator+=(Warrior* w) override;
 
 };
 
-class ArmorReplenishment : public NeutralObject {  //пополнение брони
+class ArmorReplenishment : public NeutralObject {  //РїРѕРїРѕР»РЅРµРЅРёРµ Р±СЂРѕРЅРё
 public:
 	string getNeutObjType() override;
 	void operator+=(Warrior* w) override;
 
 };
 
-class Killer : public NeutralObject {  //здоровье стоящего на этом блоке юнита становится равно 5
+class Killer : public NeutralObject {  //Р·РґРѕСЂРѕРІСЊРµ СЃС‚РѕСЏС‰РµРіРѕ РЅР° СЌС‚РѕРј Р±Р»РѕРєРµ СЋРЅРёС‚Р° СЃС‚Р°РЅРѕРІРёС‚СЃСЏ СЂР°РІРЅРѕ 5
 public:
 	string getNeutObjType() override;
 	void operator+=(Warrior* w) override;
 
 };
 
-class Freezer : public NeutralObject {  //юнит не может двигаться на протяжении 2 ходов
+class Freezer : public NeutralObject {  //СЋРЅРёС‚ РЅРµ РјРѕР¶РµС‚ РґРІРёРіР°С‚СЊСЃСЏ РЅР° РїСЂРѕС‚СЏР¶РµРЅРёРё 2 С…РѕРґРѕРІ
 public:
 	string getNeutObjType() override;
 	void operator+=(Warrior* w) override;

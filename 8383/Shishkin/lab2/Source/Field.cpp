@@ -23,7 +23,7 @@ Field::~Field() {
 	delete cell;
 }
 
-Field::Field(const Field& f) {      //ÍÓÌÒÚÛÍÚÓ ÍÓÔËÓ‚‡ÌËˇ
+Field::Field(const Field& f) {      //–∫–æ–Ω—Å—Ç—Ä—É–∫—Ç–æ—Ä –∫–æ–ø–∏—Ä–æ–≤–∞–Ω–∏—è
 	this->current1stPlayerUnits = f.current1stPlayerUnits;
 	this->current2ndPlayerUnits = f.current2ndPlayerUnits;
 	this->size = f.size;
@@ -35,7 +35,7 @@ Field::Field(const Field& f) {      //ÍÓÌÒÚÛÍÚÓ ÍÓÔËÓ‚‡ÌËˇ
 	}
 }
  
-Field::Field(Field&& f) {                    //ÍÓÌÒÚÛÍÚÓ ÔÂÂÏÂ˘ÂÌËˇ
+Field::Field(Field&& f) {                    //–∫–æ–Ω—Å—Ç—Ä—É–∫—Ç–æ—Ä –ø–µ—Ä–µ–º–µ—â–µ–Ω–∏—è
 	this->current1stPlayerUnits = f.current1stPlayerUnits;
 	this->current2ndPlayerUnits = f.current2ndPlayerUnits;
 	this->size = f.size;
@@ -62,43 +62,43 @@ void Field::print() {
 	for (int i = 0; i < size; i++) {
 		cout << "|";
 		for (int j = 0; j < size; j++) {
-			if (cell[i][j].getUnit().GetValue() != "---")        //≈—À» ¬  À≈“ ≈ ≈—“‹ ﬁÕ»“, “Œ œ≈◊¿“¿≈Ã ≈√Œ
+			if (cell[i][j].getUnit().GetValue() != "---")        //–ï–°–õ–ò –í –ö–õ–ï–¢–ö–ï –ï–°–¢–¨ –Æ–ù–ò–¢, –¢–û –ü–ï–ß–ê–¢–ê–ï–ú –ï–ì–û
 				cout << " " << cell[i][j].getUnit().GetValue();
 
 			else if (cell[i][j].getNeutral() != nullptr) {
 
-				if (cell[i][j].getNeutral()->getNeutObjType() == "HealthR") {        //≈—À» ¬  À≈“ ≈ ≈—“‹ Õ≈…“–¿À‹Õ€… Œ¡⁄≈ “ “»œ¿ 'œŒœŒÀÕ≈Õ»≈ «ƒŒ–Œ¬‹ﬂ', “Œ œ≈◊¿“¿≈Ã ≈√Œ
+				if (cell[i][j].getNeutral()->getNeutObjType() == "HealthR") {        //–ï–°–õ–ò –í –ö–õ–ï–¢–ö–ï –ï–°–¢–¨ –ù–ï–ô–¢–†–ê–õ–¨–ù–´–ô –û–ë–™–ï–ö–¢ –¢–ò–ü–ê '–ü–û–ü–û–õ–ù–ï–ù–ò–ï –ó–î–û–†–û–í–¨–Ø', –¢–û –ü–ï–ß–ê–¢–ê–ï–ú –ï–ì–û
 					cout << " " << "+HP";
 				}
 
-				else if (cell[i][j].getNeutral()->getNeutObjType() == "ArmorR") {        //≈—À» ¬  À≈“ ≈ ≈—“‹ Õ≈…“–¿À‹Õ€… Œ¡⁄≈ “ “»œ¿ 'œŒœŒÀÕ≈Õ»≈ ¡–ŒÕ»', “Œ œ≈◊¿“¿≈Ã ≈√Œ
+				else if (cell[i][j].getNeutral()->getNeutObjType() == "ArmorR") {        //–ï–°–õ–ò –í –ö–õ–ï–¢–ö–ï –ï–°–¢–¨ –ù–ï–ô–¢–†–ê–õ–¨–ù–´–ô –û–ë–™–ï–ö–¢ –¢–ò–ü–ê '–ü–û–ü–û–õ–ù–ï–ù–ò–ï –ë–†–û–ù–ò', –¢–û –ü–ï–ß–ê–¢–ê–ï–ú –ï–ì–û
 					cout << " " << "+AR";
 				}
 
-				else if (cell[i][j].getNeutral()->getNeutObjType() == "Killer") {        //≈—À» ¬  À≈“ ≈ ≈—“‹ Õ≈…“–¿À‹Õ€… Œ¡⁄≈ “ “»œ¿ '”¡»¬¿À ¿', “Œ œ≈◊¿“¿≈Ã ≈√Œ
+				else if (cell[i][j].getNeutral()->getNeutObjType() == "Killer") {        //–ï–°–õ–ò –í –ö–õ–ï–¢–ö–ï –ï–°–¢–¨ –ù–ï–ô–¢–†–ê–õ–¨–ù–´–ô –û–ë–™–ï–ö–¢ –¢–ò–ü–ê '–£–ë–ò–í–ê–õ–ö–ê', –¢–û –ü–ï–ß–ê–¢–ê–ï–ú –ï–ì–û
 					cout << " " << "/I\\";
 				}
 
-				else if (cell[i][j].getNeutral()->getNeutObjType() == "Freezer") {        //≈—À» ¬  À≈“ ≈ ≈—“‹ Õ≈…“–¿À‹Õ€… Œ¡⁄≈ “ “»œ¿ '«¿ÃŒ–Œ« ¿', “Œ œ≈◊¿“¿≈Ã ≈√Œ
+				else if (cell[i][j].getNeutral()->getNeutObjType() == "Freezer") {        //–ï–°–õ–ò –í –ö–õ–ï–¢–ö–ï –ï–°–¢–¨ –ù–ï–ô–¢–†–ê–õ–¨–ù–´–ô –û–ë–™–ï–ö–¢ –¢–ò–ü–ê '–ó–ê–ú–û–†–û–ó–ö–ê', –¢–û –ü–ï–ß–ê–¢–ê–ï–ú –ï–ì–û
 					cout << " " << "***";
 				}
 			}
 			
 
 
-			else if (cell[i][j].getLandscape()->getLandscapeType() == "forest") {      //≈—À» ¬  À≈“ ≈ ≈—“‹ À¿Õƒÿ¿‘“ “»œ¿ 'À≈—', “Œ œ≈◊¿“¿≈Ã ≈√Œ
+			else if (cell[i][j].getLandscape()->getLandscapeType() == "forest") {      //–ï–°–õ–ò –í –ö–õ–ï–¢–ö–ï –ï–°–¢–¨ –õ–ê–ù–î–®–ê–§–¢ –¢–ò–ü–ê '–õ–ï–°', –¢–û –ü–ï–ß–ê–¢–ê–ï–ú –ï–ì–û
 				cout << " " << "~~~";
 			}
 
-			else if (cell[i][j].getLandscape()->getLandscapeType() == "burningE") {      //≈—À» ¬  À≈“ ≈ ≈—“‹ À¿Õƒÿ¿‘“ “»œ¿ '–¿— ¿À≈ÕÕ€≈ «≈ÃÀ»', “Œ œ≈◊¿“¿≈Ã ≈√Œ
+			else if (cell[i][j].getLandscape()->getLandscapeType() == "burningE") {      //–ï–°–õ–ò –í –ö–õ–ï–¢–ö–ï –ï–°–¢–¨ –õ–ê–ù–î–®–ê–§–¢ –¢–ò–ü–ê '–†–ê–°–ö–ê–õ–ï–ù–ù–´–ï –ó–ï–ú–õ–ò', –¢–û –ü–ï–ß–ê–¢–ê–ï–ú –ï–ì–û
 				cout << " " << "$$$";
 			}
 
-			else if (cell[i][j].getLandscape()->getLandscapeType() == "UnknownL") {      //≈—À» ¬  À≈“ ≈ ≈—“‹ À¿Õƒÿ¿‘“ “»œ¿ 'Õ≈»«¬≈—“Õ€≈ «≈ÃÀ»', “Œ œ≈◊¿“¿≈Ã ≈√Œ
+			else if (cell[i][j].getLandscape()->getLandscapeType() == "UnknownL") {      //–ï–°–õ–ò –í –ö–õ–ï–¢–ö–ï –ï–°–¢–¨ –õ–ê–ù–î–®–ê–§–¢ –¢–ò–ü–ê '–ù–ï–ò–ó–í–ï–°–¢–ù–´–ï –ó–ï–ú–õ–ò', –¢–û –ü–ï–ß–ê–¢–ê–ï–ú –ï–ì–û
 				cout << " " << "???";
 			}
 
-			else {                            //≈—À» ¡¿«¿
+			else {                            //–ï–°–õ–ò –ë–ê–ó–ê
 				cout << " " << cell[i][j].getUnit().GetValue();
 			}
 		}
@@ -107,13 +107,13 @@ void Field::print() {
 
 	for (int i = 0; i < (size + 1) * 4 - 2; i++) cout << "_";
 	cout << endl << endl << endl << endl;
-	cout << "œÓ‰ÒÍ‡ÁÍË:\n";
-	cout << "OD - Orcs Devourers - ÓÍË ÔÓÊË‡ÚÂÎË; OR - Orcs Robbers - ÓÍË ‡Á·ÓÈÌËÍË\n";
-	cout << "MS - Mens Spearman - Î˛‰Ë ÍÓÔ¸ÂÌÓÒˆ˚; MW - Mens Wizard - Î˛‰Ë Ï‡„Ë\n";
-	cout << "EA - Elfs Archer - ˝Î¸Ù ÎÛ˜ÌËÍ; EI - Elfs Invisible - ˝Î¸Ù ÌÂ‚Ë‰ËÏÍ‡\n";
-	cout << "À‡Ì‰¯‡ÙÚ: ~~~ - ÎÂÒ; $$$ - ‡ÒÍ‡ÎÂÌÌ˚Â ÁÂÏÎË; ??? - ÌÂËÁ‚ÂÒÚÌ˚Â ÁÂÏÎË\n";
-	cout << "ÕÂÈÚ‡Î¸Ì˚Â Ó·˙ÂÍÚ˚: +HP - ÔÓÔÓÎÌÂÌËÂ Á‰ÓÓ‚¸ˇ; +AR - ÔÓÔÓÎÌÂÌËÂ ·ÓÌË; /I\\ - Û·Ë‚‡ÎÍ‡; *** - Á‡ÏÓÓÁÍ‡\n";
-	cout << "¬‚Â‰ËÚÂ \"exit\" ‰Îˇ ‚˚ıÓ‰‡, \"add\" - ‰Îˇ ‰Ó·‡‚ÎÂÌËˇ ÔÂÒÓÌ‡Ê‡, \"del\" - ‰Îˇ Û‰‡ÎÂÌËˇ ÔÂÒÓÌ‡Ê‡,\n \"base\" - ‰Îˇ ·‡Á˚\n";
+	cout << "–ü–æ–¥—Å–∫–∞–∑–∫–∏:\n";
+	cout << "OD - Orcs Devourers - –æ—Ä–∫–∏ –ø–æ–∂–∏—Ä–∞—Ç–µ–ª–∏; OR - Orcs Robbers - –æ—Ä–∫–∏ —Ä–∞–∑–±–æ–π–Ω–∏–∫–∏\n";
+	cout << "MS - Mens Spearman - –ª—é–¥–∏ –∫–æ–ø—å–µ–Ω–æ—Å—Ü—ã; MW - Mens Wizard - –ª—é–¥–∏ –º–∞–≥–∏\n";
+	cout << "EA - Elfs Archer - —ç–ª—å—Ñ –ª—É—á–Ω–∏–∫; EI - Elfs Invisible - —ç–ª—å—Ñ –Ω–µ–≤–∏–¥–∏–º–∫–∞\n";
+	cout << "–õ–∞–Ω–¥—à–∞—Ñ—Ç: ~~~ - –ª–µ—Å; $$$ - —Ä–∞—Å–∫–∞–ª–µ–Ω–Ω—ã–µ –∑–µ–º–ª–∏; ??? - –Ω–µ–∏–∑–≤–µ—Å—Ç–Ω—ã–µ –∑–µ–º–ª–∏\n";
+	cout << "–ù–µ–π—Ç—Ä–∞–ª—å–Ω—ã–µ –æ–±—ä–µ–∫—Ç—ã: +HP - –ø–æ–ø–æ–ª–Ω–µ–Ω–∏–µ –∑–¥–æ—Ä–æ–≤—å—è; +AR - –ø–æ–ø–æ–ª–Ω–µ–Ω–∏–µ –±—Ä–æ–Ω–∏; /I\\ - —É–±–∏–≤–∞–ª–∫–∞; *** - –∑–∞–º–æ—Ä–æ–∑–∫–∞\n";
+	cout << "–í–≤–µ–¥–∏—Ç–µ \"exit\" –¥–ª—è –≤—ã—Ö–æ–¥–∞, \"add\" - –¥–ª—è –¥–æ–±–∞–≤–ª–µ–Ω–∏—è –ø–µ—Ä—Å–æ–Ω–∞–∂–∞, \"del\" - –¥–ª—è —É–¥–∞–ª–µ–Ω–∏—è –ø–µ—Ä—Å–æ–Ω–∞–∂–∞,\n \"base\" - –¥–ª—è –±–∞–∑—ã\n";
 	cout << endl;
 }
 
@@ -128,10 +128,10 @@ void Field::init(int numOfOrcs, int numOfElfs, int numOfMens) {
 	DevourerFactory devF;
 	RobberFactory robF;
 
-	int num = 0;   //‰Îˇ ‡Ì‰ÓÏÌÓ„Ó ‚˚·Ó‡ ˛ÌËÚÓ‚
+	int num = 0;   //–¥–ª—è —Ä–∞–Ω–¥–æ–º–Ω–æ–≥–æ –≤—ã–±–æ—Ä–∞ —é–Ω–∏—Ç–æ–≤
 
 	//----------------------------------------------
-	//         —Œ«ƒ¿Õ»≈ ﬁÕ»“Œ¬
+	//         –°–û–ó–î–ê–ù–ò–ï –Æ–ù–ò–¢–û–í
 	//----------------------------------------------
 
 	for (int i = 0; i < numOfElfs; i++) {
@@ -294,31 +294,31 @@ void Field::init(int numOfOrcs, int numOfElfs, int numOfMens) {
 	}
 
 	//----------------------------------------------
-	//         —Œ«ƒ¿Õ»≈ À¿Õƒÿ¿‘“¿
+	//         –°–û–ó–î–ê–ù–ò–ï –õ–ê–ù–î–®–ê–§–¢–ê
 	//----------------------------------------------
 
 	Landscape* l = nullptr;
 
-	for (int i = 0; i < size / 2 + 2; i++) {               //ÎÂ‚˚È ‚ÂıÌËÈ Û„ÓÎ
+	for (int i = 0; i < size / 2 + 2; i++) {               //–ª–µ–≤—ã–π –≤–µ—Ä—Ö–Ω–∏–π —É–≥–æ–ª
 		for (int j = 0; j < size / 2; j++) {
 			cell[i][j].setLandscape(l->create(Forest_ID));
 		}
 	}
 
-	for (int i = 0; i < size / 2 + 2; i++) {              //Ô‡‚˚È ‚ÂıÌËÈ Û„ÓÎ
+	for (int i = 0; i < size / 2 + 2; i++) {              //–ø—Ä–∞–≤—ã–π –≤–µ—Ä—Ö–Ω–∏–π —É–≥–æ–ª
 		for (int j = size / 2; j < size; j++) {
 			cell[i][j].setLandscape(l->create(BurningEarth_ID));
 		}
 	}
 
-	for (int i = size / 2 + 2; i < size; i++) {					//ÌËÊÌˇˇ ÔÓÎÓ‚ËÌ‡
+	for (int i = size / 2 + 2; i < size; i++) {					//–Ω–∏–∂–Ω—è—è –ø–æ–ª–æ–≤–∏–Ω–∞
 		for (int j = 0; j < size; j++) {
 			cell[i][j].setLandscape(l->create(UnknownLand_ID));
 		}
 	}
 
 	//----------------------------------------------
-	//         —Œ«ƒ¿Õ»≈ Õ≈…“–¿À‹Õ€’ Œ¡⁄≈ “Œ¬
+	//         –°–û–ó–î–ê–ù–ò–ï –ù–ï–ô–¢–†–ê–õ–¨–ù–´–• –û–ë–™–ï–ö–¢–û–í
 	//----------------------------------------------
 
 	NeutralObject* NO = nullptr;
@@ -405,17 +405,17 @@ void Field::moving(string& character, int direction) {
 		break;
 
 	default:
-		cout << "ﬁÌËÚ ÓÒÚ‡ÂÚÒˇ Ì‡ ÏÂÒÚÂ\n";
+		cout << "–Æ–Ω–∏—Ç –æ—Å—Ç–∞–µ—Ç—Å—è –Ω–∞ –º–µ—Å—Ç–µ\n";
 		break;
 	}
 
 	if (w.GetValue() == "---") {
 		if (warriorToAttack[0] == 'O') {
-			cout << "œÂÒÓÌ‡Ê " << warriorToAttack << " ÛÏÂ\n";
+			cout << "–ü–µ—Ä—Å–æ–Ω–∞–∂ " << warriorToAttack << " —É–º–µ—Ä\n";
 			current2ndPlayerUnits--;
 		}
 		else if (warriorToAttack[0] == 'E' || warriorToAttack[0] == 'M') {
-			cout << "œÂÒÓÌ‡Ê " << warriorToAttack << " ÛÏÂ\n";
+			cout << "–ü–µ—Ä—Å–æ–Ω–∞–∂ " << warriorToAttack << " —É–º–µ—Ä\n";
 			current1stPlayerUnits--;
 		}
 	}
@@ -438,56 +438,56 @@ string Field::check(string& character) {
 	string opportunity = "5";
 	string tmp = "---";
 	if (cell[coordx][coordy].getUnit().GetAbilityToWalk() == 0) {
-		cout << "¬ÓÁÏÓÊÌ˚Â ‚‡Ë‡ÌÚ˚ ıÓ‰‡:\n";
+		cout << "–í–æ–∑–º–æ–∂–Ω—ã–µ –≤–∞—Ä–∏–∞–Ω—Ç—ã —Ö–æ–¥–∞:\n";
 		if (coordx != 0) {
 			if (cell[coordx - 1][coordy].getUnit().GetValue() == tmp) {
 				opportunity += '1';
-				cout << "1 - ‚‚Âı\n";
+				cout << "1 - –≤–≤–µ—Ä—Ö\n";
 			}
 			else {
 				opportunity += '6';
-				cout << "6 - ‡Ú‡Í‡ ˛ÌËÚ‡ Ò‚ÂıÛ\n";
+				cout << "6 - –∞—Ç–∞–∫–∞ —é–Ω–∏—Ç–∞ —Å–≤–µ—Ä—Ö—É\n";
 			}
 		}
 		if (coordy != size - 1) {
 			if (cell[coordx][coordy + 1].getUnit().GetValue() == tmp) {
 				opportunity += '2';
-				cout << "2 - ‚Ô‡‚Ó\n";
+				cout << "2 - –≤–ø—Ä–∞–≤–æ\n";
 			}
 			else {
 				opportunity += '7';
-				cout << "7 - ‡Ú‡Í‡ ˛ÌËÚ‡ ÒÔ‡‚‡\n";
+				cout << "7 - –∞—Ç–∞–∫–∞ —é–Ω–∏—Ç–∞ —Å–ø—Ä–∞–≤–∞\n";
 			}
 		}
 		if (coordy != 0) {
 			if (cell[coordx][coordy - 1].getUnit().GetValue() == tmp) {
 				opportunity += '3';
-				cout << "3 - ‚ÎÂ‚Ó\n";
+				cout << "3 - –≤–ª–µ–≤–æ\n";
 			}
 			else {
 				opportunity += '8';
-				cout << "8 - ‡Ú‡Í‡ ˛ÌËÚ‡ ÒÎÂ‚‡\n";
+				cout << "8 - –∞—Ç–∞–∫–∞ —é–Ω–∏—Ç–∞ —Å–ª–µ–≤–∞\n";
 			}
 		}
 		if (coordx != size - 1) {
 			if (cell[coordx + 1][coordy].getUnit().GetValue() == tmp) {
 				opportunity += '4';
-				cout << "4 - ‚ÌËÁ\n";
+				cout << "4 - –≤–Ω–∏–∑\n";
 			}
 			else {
 				opportunity += '9';
-				cout << "9 - ‡Ú‡Í‡ ˛ÌËÚ‡ ÒÌËÁÛ\n";
+				cout << "9 - –∞—Ç–∞–∫–∞ —é–Ω–∏—Ç–∞ —Å–Ω–∏–∑—É\n";
 			}
 		}
 
-		cout << "5 - ÌÂ ‰‚Ë„‡Ú¸Òˇ\n";
+		cout << "5 - –Ω–µ –¥–≤–∏–≥–∞—Ç—å—Å—è\n";
 	}
 
 	else {
 		Warrior w = cell[coordx][coordy].getUnit();
 		w.SetAbilityToWalk(w.GetAbilityToWalk() - 1);
 		cell[coordx][coordy].addUnit(w);
-		cout << "ﬁÌËÚ ÌÂ ÏÓÊÂÚ ıÓ‰ËÚ¸, Ú‡Í ˜ÚÓ Â‰ËÌÒÚ‚ÂÌÌ˚È ‚‡Ë‡ÌÚ: \n5 - ÌÂ ‰‚Ë„‡Ú¸Òˇ\n";
+		cout << "–Æ–Ω–∏—Ç –Ω–µ –º–æ–∂–µ—Ç —Ö–æ–¥–∏—Ç—å, —Ç–∞–∫ —á—Ç–æ –µ–¥–∏–Ω—Å—Ç–≤–µ–Ω–Ω—ã–π –≤–∞—Ä–∏–∞–Ω—Ç: \n5 - –Ω–µ –¥–≤–∏–≥–∞—Ç—å—Å—è\n";
 	}
 
 	return opportunity;
@@ -496,24 +496,24 @@ string Field::check(string& character) {
 Warrior Field::add(string& character, int coordx, int coordy) {
 	Warrior w;
 	if (coordx == -30) {
-		cout << "¬‚Â‰ËÚÂ ÍÓÓ‰ËÌ‡Ú˚ (ÒÌ‡˜‡Î‡ x, Á‡ÚÂÏ y ˜ÂÂÁ enter):\n";
+		cout << "–í–≤–µ–¥–∏—Ç–µ –∫–æ–æ—Ä–¥–∏–Ω–∞—Ç—ã (—Å–Ω–∞—á–∞–ª–∞ x, –∑–∞—Ç–µ–º y —á–µ—Ä–µ–∑ enter):\n";
 		cin >> coordx;
 		if (cin.fail() || coordx > size - 1 || coordx < 0) return w;
 		cin >> coordy;
 		if (cin.fail() || coordy > size - 1 || coordy < 0) return w;
 		if (cell[coordx][coordy].getUnit().GetValue() != "---") {
-			cout << "—˛‰‡ ÌÂÎ¸Áˇ ÔÓÒÚ‡‚ËÚ¸ ˛ÌËÚ!" << endl;
+			cout << "–°—é–¥–∞ –Ω–µ–ª—å–∑—è –ø–æ—Å—Ç–∞–≤–∏—Ç—å —é–Ω–∏—Ç!" << endl;
 			return w;
 		}
 	}
 
 	if (((character[0] == 'E' || character[0] == 'M') && current1stPlayerUnits > 10) || (character[0] == 'O' && current2ndPlayerUnits > 10)) {
-		cout << "ﬁÌËÚÓ‚ ÒÎË¯ÍÓÏ ÏÌÓ„Ó!" << endl;
+		cout << "–Æ–Ω–∏—Ç–æ–≤ —Å–ª–∏—à–∫–æ–º –º–Ω–æ–≥–æ!" << endl;
 		return w;
 	}
 
 	if (cell[coordx][coordy].getUnit().GetValue() != "---") {
-		cout << "—˛‰‡ ÌÂÎ¸Áˇ ÔÓÒÚ‡‚ËÚ¸ ˛ÌËÚ" << endl;
+		cout << "–°—é–¥–∞ –Ω–µ–ª—å–∑—è –ø–æ—Å—Ç–∞–≤–∏—Ç—å —é–Ω–∏—Ç" << endl;
 		return w;
 	}
 
@@ -583,7 +583,7 @@ void Field::del(string& character) {
 	}
 
 	if (check == 0) {
-		cout << "“‡ÍÓ„Ó ÔÂÒÓÌ‡Ê‡ Ì‡ ÔÓÎÂ ÌÂÚ!\n";
+		cout << "–¢–∞–∫–æ–≥–æ –ø–µ—Ä—Å–æ–Ω–∞–∂–∞ –Ω–∞ –ø–æ–ª–µ –Ω–µ—Ç!\n";
 		system("pause");
 		return;
 	}
@@ -639,7 +639,7 @@ int Field::howManyMoves(string character) {
 	}
 
 	if (check == 0) {
-		cout << "“‡ÍÓ„Ó ÔÂÒÓÌ‡Ê‡ Ì‡ ÔÓÎÂ ÌÂÚ!\n";
+		cout << "–¢–∞–∫–æ–≥–æ –ø–µ—Ä—Å–æ–Ω–∞–∂–∞ –Ω–∞ –ø–æ–ª–µ –Ω–µ—Ç!\n";
 		return -1;
 	}
 

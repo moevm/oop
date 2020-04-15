@@ -13,9 +13,9 @@ class Base : public IObserver{
 public:
 	Base(int size);
 	~Base();
-	void createOrcsBase(int G, Field& f1, int numOfUnits);   //по умолчанию спавнит орков разбойников
+	void createOrcsBase(int G, Field& f1, int numOfUnits);   //РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃРїР°РІРЅРёС‚ РѕСЂРєРѕРІ СЂР°Р·Р±РѕР№РЅРёРєРѕРІ
 	void addInOrcsBase(string& character, Field& f1, int G);
-	void createMEBase(int G, Field& f1, int numOfUnits); //по умолчанию спавнит эльфов лучников
+	void createMEBase(int G, Field& f1, int numOfUnits); //РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃРїР°РІРЅРёС‚ СЌР»СЊС„РѕРІ Р»СѓС‡РЅРёРєРѕРІ
 	void addInMEBase(string& character, Field& f1, int G);
 	void updateNotify(Subject* s) override;
 

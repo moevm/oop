@@ -26,7 +26,7 @@ public:
 	int GetArmor();
 	void SetAbilityToWalk(int atw);
 	int GetAbilityToWalk();
-	//void attack(Warrior& w2);  //атака на w2
+	//void attack(Warrior& w2);  //Р°С‚Р°РєР° РЅР° w2
 	UnitNum* un;
 
 private:
@@ -37,7 +37,7 @@ private:
 	int health;
 	int damage;
 	int armor;
-	int abilityToWalk;   //возможность произвести ход за юнита
+	int abilityToWalk;   //РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїСЂРѕРёР·РІРµСЃС‚Рё С…РѕРґ Р·Р° СЋРЅРёС‚Р°
 };
 
 #endif

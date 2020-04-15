@@ -9,13 +9,13 @@ public:
 	void SetBoost(int boost);
 
 private:
-	int boost;                   //умножает урон и броню на boost, здоровье делит на boost
+	int boost;                   //СѓРјРЅРѕР¶Р°РµС‚ СѓСЂРѕРЅ Рё Р±СЂРѕРЅСЋ РЅР° boost, Р·РґРѕСЂРѕРІСЊРµ РґРµР»РёС‚ РЅР° boost
 
 };
 
 //------------------------------------------------------
 
-class Spearman : public Men {        //копьеносец
+class Spearman : public Men {        //РєРѕРїСЊРµРЅРѕСЃРµС†
 public:
 	Spearman();
 	~Spearman();
@@ -23,13 +23,13 @@ public:
 	void SetCounter(int counter);
 
 private:
-	int barbecue;         //если за врагом сразу же стоит еще один враг, то урон наносится обоим
+	int barbecue;         //РµСЃР»Рё Р·Р° РІСЂР°РіРѕРј СЃСЂР°Р·Сѓ Р¶Рµ СЃС‚РѕРёС‚ РµС‰Рµ РѕРґРёРЅ РІСЂР°Рі, С‚Рѕ СѓСЂРѕРЅ РЅР°РЅРѕСЃРёС‚СЃСЏ РѕР±РѕРёРј
 	int counter;
 };
 
 //------------------------------------------------------
 
-class Wizard : public Men {        // маг
+class Wizard : public Men {        // РјР°Рі
 public:
 	Wizard();
 	~Wizard();
@@ -37,6 +37,6 @@ public:
 	void SetCounter(int counter);
 
 private:
-	int range;         //может нанести урон, поделенный на 3, врагу на любом расстоянии
+	int range;         //РјРѕР¶РµС‚ РЅР°РЅРµСЃС‚Рё СѓСЂРѕРЅ, РїРѕРґРµР»РµРЅРЅС‹Р№ РЅР° 3, РІСЂР°РіСѓ РЅР° Р»СЋР±РѕРј СЂР°СЃСЃС‚РѕСЏРЅРёРё
 	int counter;
 };

@@ -13,17 +13,17 @@ class Base : public IObserver{
 public:
 	Base(int size, char type);
 	~Base();
-	void createOrcsBase(int G, Field& f1);   //по умолчанию спавнит орков разбойников
+	void createOrcsBase(int G, Field& f1);   //РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃРїР°РІРЅРёС‚ РѕСЂРєРѕРІ СЂР°Р·Р±РѕР№РЅРёРєРѕРІ
 	void addInOrcsBase(string& character, Field& f1, int G);
-	void createMEBase(int G, Field& f1); //по умолчанию спавнит эльфов лучников
+	void createMEBase(int G, Field& f1); //РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃРїР°РІРЅРёС‚ СЌР»СЊС„РѕРІ Р»СѓС‡РЅРёРєРѕРІ
 	void addInMEBase(string& character, Field& f1, int G);
 	void updateNotify(Subject* s) override;
-	void printBaseCondition();      //печать состояния базы
+	void printBaseCondition();      //РїРµС‡Р°С‚СЊ СЃРѕСЃС‚РѕСЏРЅРёСЏ Р±Р°Р·С‹
 
 private:
 	std::vector <Warrior> vOrcs;
 	std::vector <Warrior> vME;
-	char typeOfBase;   // 'o' - база орков, 'm' - база людей и эльфов
+	char typeOfBase;   // 'o' - Р±Р°Р·Р° РѕСЂРєРѕРІ, 'm' - Р±Р°Р·Р° Р»СЋРґРµР№ Рё СЌР»СЊС„РѕРІ
 	int sizeOfField;
 	int baseHealth;
 	int max;
