@@ -6,7 +6,7 @@
 class Command{
 public:
     virtual ~Command(){};
-    virtual void execute(GameField *gameField) = 0;
+    virtual void execute(GameField *gameField, Base *base) = 0;
 private:
 
 };

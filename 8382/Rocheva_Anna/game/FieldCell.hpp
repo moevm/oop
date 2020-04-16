@@ -19,12 +19,13 @@
 #include "objects/neutralObjects/Shop.hpp"
 #include "objects/neutralObjects/TrainingBase.hpp"
 
+class CellMediator;
 
 class FieldCell {
 public:
     explicit FieldCell();
-    bool isEmpty() { if (unit == nullptr) return true; else return false;};
-    bool isObject() { if (object == nullptr) return false; else return true;};
+    bool isEmpty() { return unit == nullptr; };
+    bool isObject() { return object != nullptr; };
     void setUnit(Unit *unit1) {this->unit = unit1;};
     Unit *getUnit() {return unit;};
     void setBase() {base = true;};

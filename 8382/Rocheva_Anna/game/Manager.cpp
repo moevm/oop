@@ -24,44 +24,43 @@ void Manager::printMenu() {
 }
 
 void Manager::makeChoice() {
-
-    int choice;
+    int choice = 1;
     while (choice > 0){
         std::cin >> choice;
         switch (choice){
             case 1:
                 createUnitCommand = new CreateUnitCommand;
-                createUnitCommand->execute(gameField);
+                createUnitCommand->execute(gameField, bases.begin()->second);
                 break;
             case 2:
                 deleteUnitCommand = new DeleteUnitCommand;
-                deleteUnitCommand->execute(gameField);
+                deleteUnitCommand->execute(gameField, bases.begin()->second);
                 break;
             case 3:
                 moveUnitCommand = new MoveUnitCommand;
-                moveUnitCommand->execute(gameField);
+                moveUnitCommand->execute(gameField, bases.begin()->second);
                 break;
             case 4:
                 attackUnitCommand = new AttackUnitCommand;
-                attackUnitCommand->execute(gameField);
+                attackUnitCommand->execute(gameField, bases.begin()->second);
                 break;
             case 5:
                 actionWithObjectCommand = new ActionWithObjectCommand;
-                actionWithObjectCommand->execute(gameField);
+                actionWithObjectCommand->execute(gameField, bases.begin()->second);
                 break;
             case 6:
                 std::cout << "Base health:" << std::endl;
-                std::cout << gameField->getBase()->getHealth()->getValue() << std::endl;
+                std::cout << bases.begin()->second->getHealth()->getValue() << std::endl;
                 break;
             case 7:
-                gameField->getBase()->printUnits();
+                bases.begin()->second->printUnits();
                 break;
             case 8:
                 printField();
                 break;
             case 9:
                 unitsAttributesCommand = new UnitsAttributesCommand;
-                unitsAttributesCommand->execute(gameField);
+                unitsAttributesCommand->execute(gameField, bases.begin()->second);
                 break;
         }
         if (choice != 0)
@@ -129,3 +128,12 @@ void Manager::printField() {
     std::cout << std::endl << std::endl;
 
 }
+
+void Manager::createGamer() {
+    std::cout << "Enter gamer name:" << std::endl;
+    std::string name;
+    std::cin >> name;
+    auto gamer = new Gamer(name);
+    bases[gamer] = new Base;
+}
+

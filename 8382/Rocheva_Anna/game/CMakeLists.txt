@@ -24,4 +24,8 @@ add_executable(labOOP main.cpp GameField.cpp GameField.hpp FieldCell.cpp FieldCe
         objects/neutralObjects/TrainingBase.hpp objects/neutralObjects/Shop.cpp objects/neutralObjects/Shop.hpp
         objects/neutralObjects/Bar.cpp objects/neutralObjects/Bar.hpp objects/Subject.cpp objects/Subject.hpp
         objects/Observer.cpp objects/Observer.hpp objects/neutralObjects/Strategy.cpp objects/neutralObjects/Strategy.hpp
-        Facade.cpp Facade.hpp commands/Command.cpp commands/Command.hpp commands/CreateUnitCommand.cpp commands/CreateUnitCommand.hpp commands/DeleteUnitCommand.cpp commands/DeleteUnitCommand.hpp commands/MoveUnitCommand.cpp commands/MoveUnitCommand.hpp commands/AttackUnitCommand.cpp commands/AttackUnitCommand.hpp commands/UnitsAttributesCommand.cpp commands/UnitsAttributesCommand.hpp commands/ActionWithObjectCommand.cpp commands/ActionWithObjectCommand.hpp commands/StartGameCommand.cpp commands/StartGameCommand.hpp)
+        Facade.cpp Facade.hpp commands/Command.cpp commands/Command.hpp commands/CreateUnitCommand.cpp
+        commands/CreateUnitCommand.hpp commands/DeleteUnitCommand.cpp commands/DeleteUnitCommand.hpp commands/MoveUnitCommand.cpp
+        commands/MoveUnitCommand.hpp commands/AttackUnitCommand.cpp commands/AttackUnitCommand.hpp commands/UnitsAttributesCommand.cpp
+        commands/UnitsAttributesCommand.hpp commands/ActionWithObjectCommand.cpp commands/ActionWithObjectCommand.hpp
+        commands/StartGameCommand.cpp commands/StartGameCommand.hpp)

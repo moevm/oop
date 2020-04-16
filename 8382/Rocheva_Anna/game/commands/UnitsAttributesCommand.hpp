@@ -5,7 +5,7 @@
 
 class UnitsAttributesCommand : public Command{
 public:
-    void execute(GameField *gameField) final {
+    void execute(GameField *gameField, Base *base) final {
         int x, y;
         std::cout << "Units coordinates:\nx:";
         std::cin >> x;

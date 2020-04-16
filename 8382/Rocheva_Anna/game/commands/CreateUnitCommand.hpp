@@ -5,7 +5,7 @@
 
 class CreateUnitCommand : public Command{
 public:
-    void execute(GameField *gameField) final {
+    void execute(GameField *gameField, Base *base) final {
         std::cout << "1. Create Infantry." << std::endl;
         std::cout << "2. Create Guardsmen." << std::endl;
         std::cout << "3. Create Fighter." << std::endl;
@@ -27,22 +27,22 @@ public:
         }
         switch (choice){
             case 1:
-                gameField->createUnit(INFANTRY, x, y);
+                gameField->createUnit(INFANTRY, x, y, base);
                 break;
             case 2:
-                gameField->createUnit(GUARDSMEN, x, y);
+                gameField->createUnit(GUARDSMEN, x, y, base);
                 break;
             case 3:
-                gameField->createUnit(FIGHTER, x, y);
+                gameField->createUnit(FIGHTER, x, y, base);
                 break;
             case 4:
-                gameField->createUnit(TANK, x, y);
+                gameField->createUnit(TANK, x, y, base);
                 break;
             case 5:
-                gameField->createUnit(SCOUT, x, y);
+                gameField->createUnit(SCOUT, x, y, base);
                 break;
             case 6:
-                gameField->createUnit(CANNON, x, y);
+                gameField->createUnit(CANNON, x, y, base);
                 break;
         }
     }

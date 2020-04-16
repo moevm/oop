@@ -63,7 +63,8 @@ void Base::createUnit(FieldCell *cell, UnitName name) {
 void Base::deleteUnit(FieldCell *cell, int flag) {
     units->deleteUnit(cell->getUnit());
     cell->deleteUnit(flag);
-    std::cout << "Unit deleted" << std::endl;
+    if (flag == 0)
+        std::cout << "Unit deleted" << std::endl;
 }
 
 void Base::moveUnit(FieldCell *cellIn, FieldCell *cellOut) {

@@ -5,7 +5,7 @@
 
 class ActionWithObjectCommand : public Command{
 public:
-    void execute(GameField *gameField) final {
+    void execute(GameField *gameField, Base *base) final {
         std::cout << "Coordinates of cell:" << std::endl;
         int x, y;
         std::cout << "x:";

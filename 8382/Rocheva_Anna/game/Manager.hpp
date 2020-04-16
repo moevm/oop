@@ -1,6 +1,8 @@
 #ifndef LABOOP_MANAGER_HPP
 #define LABOOP_MANAGER_HPP
 
+#include <map>
+#include "Gamer.hpp"
 #include "GameField.hpp"
 #include "commands/StartGameCommand.hpp"
 #include "commands/CreateUnitCommand.hpp"
@@ -17,8 +19,10 @@ public:
     void printField();
     void printMenu();
     void makeChoice();
+    void createGamer();
 private:
     GameField *gameField;
+    std::map <Gamer*, Base*> bases;
     StartGameCommand *startCommand;
     CreateUnitCommand *createUnitCommand;
     DeleteUnitCommand *deleteUnitCommand;

@@ -8,6 +8,7 @@ public:
     explicit Facade(){manager = new Manager;};
     void startGame();
     void makeAction();
+    void createGamer();
     ~Facade() {delete manager;};
 protected:
     Manager *manager;

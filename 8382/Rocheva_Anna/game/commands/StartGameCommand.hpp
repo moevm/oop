@@ -5,7 +5,7 @@
 
 class StartGameCommand : public Command{
 public:
-    void execute(GameField *gameField) final{
+    void execute(GameField *gameField, Base *base = nullptr) final{
         int widht, height;
         std::cout << "Width:" << std::endl;
         std::cin >> widht;

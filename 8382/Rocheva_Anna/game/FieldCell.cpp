@@ -56,3 +56,5 @@ void FieldCell::setCoordinates(int x, int y) {
     coordinates->x = x;
     coordinates->y = y;
 }
+
+

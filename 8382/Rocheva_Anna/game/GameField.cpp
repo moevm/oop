@@ -5,7 +5,6 @@ GameField::GameField(int width, int height) : width(width), height(height) {
     for (int i = 0; i < height; i++)
         gameField[i] = new FieldCell [width];
     numUnits = 0;
-    base = new Base;
     for (int i = 0; i < height; i++)
         for (int j = 0; j < width; j++)
             gameField[i][j].setCoordinates(i, j);
@@ -20,7 +19,6 @@ GameField::GameField(const GameField &field) {
         gameField[i] = field.gameField[i];
     }
     numUnits = field.numUnits;
-    base = field.base;
 }
 
 GameField& GameField::operator=(const GameField &field) {
@@ -38,12 +36,11 @@ GameField& GameField::operator=(const GameField &field) {
         gameField[i] = field.gameField[i];
     }
     numUnits = field.numUnits;
-    base = field.base;
     return *this;
 }
 
 
-void GameField::createUnit(UnitName unitName, int x, int y){
+void GameField::createUnit(UnitName unitName, int x, int y, Base *base){
 
     if (numUnits >= MAX_UNITS){
         std::cout << "You can't create new unit. Too much units." << std::endl;
@@ -58,7 +55,7 @@ void GameField::createUnit(UnitName unitName, int x, int y){
     base->createUnit(&gameField[x][y], unitName);
 }
 
-void GameField::deleteUnit(int x, int y) {
+void GameField::deleteUnit(int x, int y, Base *base) {
 
     if (gameField[x][y].isEmpty()){
         std::cout << "This cell is empty." << std::endl;
@@ -67,10 +64,9 @@ void GameField::deleteUnit(int x, int y) {
 
     base->deleteUnit(&gameField[x][y]);
     gameField[x][y].deleteUnit();
-
 }
 
-void GameField::moveUnit(int x1, int y1, int x2, int y2) {
+void GameField::moveUnit(int x1, int y1, int x2, int y2, Base *base) {
 
     if (gameField[x1][y1].isEmpty()){
         std::cout << "This cell is empty." << std::endl;
@@ -91,7 +87,7 @@ void GameField::setBase(int x, int y) {
     gameField[x][y].setBase();
 }
 
-void GameField::attackUnit(int x1, int y1, int x2, int y2) {
+void GameField::attackUnit(int x1, int y1, int x2, int y2, Base *base) {
     if (gameField[x1][y1].isEmpty()){
         std::cout << "This cell is empty." << std::endl;
         return;
@@ -112,6 +108,7 @@ void GameField::makeActionWithObj(int x, int y) {
         std::cout << "No unit" << std::endl;
         return;
     }
+
     *(gameField[x][y].getUnit()) += *(gameField[x][y].getObject());
 
 }
