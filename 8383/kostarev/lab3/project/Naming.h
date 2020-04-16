@@ -1,0 +1,39 @@
+#pragma once
+enum Builds {
+	DACHA,
+	HRUSHCHOVKA,
+	FERMA,
+	OFFICE,
+	POWERHOUSE,
+	SCHOOL,
+	VODOKANAL,
+	CITY_HALL,
+	APARTMENT,
+	PRODUCTION,
+	SERVICES
+};
+
+enum Landscapes {
+	HILL,
+	PLAIN,
+	LAKE
+};
+
+enum Neutrals {
+	CHERNOZEM,
+	RELICS,
+	RADIATION,
+	GAS
+};
+
+enum Commands {
+	EXIT = 0,
+	CREATE_BOARD = 10,
+	ABOUT_BOARD = 11,
+	ABOUT_TREASURY = 12,
+	CREATE_CITY_HALL = 20,
+	ABOUT_CITY_HALL = 21,
+	CREATE_BUILD = 30,
+	ABOUT_BUILD = 31,
+	DEL_BUILD = 32
+};
