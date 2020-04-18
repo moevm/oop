@@ -45,8 +45,6 @@ bool LandscapeProxy::canGo()
 	return landscape->canGo();
 }
 
-#include <iostream>
-
 void LandscapeProxy::landscapeInfluence(IUnit* unit)
 {
 	if (landscape->getLandscapeType() == Landscapes::HILLS) {
