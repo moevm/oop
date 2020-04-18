@@ -1,0 +1,37 @@
+16:7:37 >> Created: GAME with FIELD | size: width=6 height=15 | item limit: 100
+16:7:44 >> USER | Request: create new base
+16:7:44 >> Created: BASE at coords: X=2 Y=1 | game bases number: 1
+		 | Update: field item counter: 1
+16:7:46 >> USER | Request: create unit
+16:7:46 >> Created: unit ATTACK SCIENTIST | coords: X=2 Y=0 | base: number=1
+16:7:46 >> USER | Request: base info
+16:7:46 >> Update: BASE | coords: X=2 Y=1 | unit counter: 1 | unit limit: 100
+		 | units: ATT_SC 
+16:7:48 >> USER | Request: create unit
+16:7:48 >> Created: unit SUPPORT BERSERK | coords: X=2 Y=2 | base: number=1
+16:7:48 >> USER | Request: base info
+16:7:48 >> Update: BASE | coords: X=2 Y=1 | unit counter: 2 | unit limit: 100
+		 | units: ATT_SC SUP_BS 
+16:7:53 >> USER | Request: create new base
+16:7:53 >> Created: BASE at coords: X=3 Y=7 | game bases number: 2
+		 | Update: field item counter: 4
+16:7:59 >> USER | Request: create unit
+16:7:59 >> USER | Request: base info
+16:7:59 >> Update: BASE | coords: X=2 Y=1 | unit counter: 2 | unit limit: 100
+		 | units: ATT_SC SUP_BS 
+16:8:1 >> USER | Request: create unit
+16:8:1 >> Created: unit ATTACK BERSERK | coords: X=3 Y=8 | base: number=2
+16:8:1 >> USER | Request: base info
+16:8:1 >> Update: BASE | coords: X=3 Y=7 | unit counter: 1 | unit limit: 100
+		 | units: ATT_BS 
+16:8:4 >> USER | Request: create neutral
+16:8:7 >> USER | Request: create neutral
+16:8:7 >> Created: neutral ANTIVIRUS | coords: X=2 Y=4
+		 | Update: field item counter: 6
+16:8:8 >> USER | Request: create neutral
+16:8:8 >> Created: neutral ANTIVIRUS | coords: X=2 Y=3
+		 | Update: field item counter: 7
+16:8:16 >> USER | Request: item by XY info
+16:8:22 >> USER | Request: move unit
+16:8:22 >> Moved: unit ATT_SC | FROM: X=2 Y= 0 | BY: X=2 Y= 0
+16:8:28 << Logger stopped
