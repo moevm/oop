@@ -1,13 +1,15 @@
 ﻿#ifndef GAMEWINDOW_H
 #define GAMEWINDOW_H
 
+#include "AuxiliaryFunctionality/qtDebugSwitch.h"
+
 #include <QObject>
 #include <QWidget>
 #include <QWindow>
 #include <QCloseEvent>
 #include <QTextEdit>
 #include <QLineEdit>
-#include <QComboBox >
+#include <QComboBox>
 #include <QSpinBox>
 #include <QHBoxLayout>
 #include <QVBoxLayout>

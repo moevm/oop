@@ -1,6 +1,8 @@
 ﻿#ifndef UIFACADE_H
 #define UIFACADE_H
 
+#include "AuxiliaryFunctionality/qtDebugSwitch.h"
+
 #include <QApplication>
 #include <QScreen>
 #include <QDebug>
@@ -27,7 +29,10 @@ private:
     std::shared_ptr<MainWindow> window;
     // Game
     std::shared_ptr<Game> game;
+
+    // Window show preparation
     void guiSetup();
+    [[nodiscard]] QByteArray readStyleSheetFile(const QString &filePath);
 
 public slots:
     void createFieldRequest(size_t fieldSize, size_t playersCount);

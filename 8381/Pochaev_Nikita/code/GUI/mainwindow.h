@@ -1,6 +1,8 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "AuxiliaryFunctionality/qtDebugSwitch.h"
+
 #include <QMainWindow>
 #include <QObject>
 #include <QDebug>
@@ -10,6 +12,8 @@
 #include <QLabel>
 #include <QAction>
 #include <QCloseEvent>
+#include <QComboBox>
+#include <QCheckBox>
 
 #include "GUI/gamewindow.h"
 
@@ -26,12 +30,18 @@ public:
 private:
     void setUpUI();
 
-    // NEW GAME SETUP
+    /*  NEW GAME SETUP  */
+
     QPushButton *startNewGameButton;
+    // game setup
     QLabel *playersCountLabel;
     QSpinBox *playersCountSpinBox;
     QLabel *fieldSizeLabel;
     QSpinBox *fieldSizeSpinBox;
+    // log
+    QLabel *logModeLabel;
+    QComboBox *logModeComboBox;
+    QCheckBox *logAdvancedModeCheckBox;
 
     // GAME WINDOW
     GameWindow *gameWindow;

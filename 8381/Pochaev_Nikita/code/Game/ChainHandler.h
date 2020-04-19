@@ -1,6 +1,8 @@
 ﻿#ifndef CHAINHANDLER_H
 #define CHAINHANDLER_H
 
+// FIXME: delete it
+
 #include <string>
 
 #include "Bases/GameBase.h"

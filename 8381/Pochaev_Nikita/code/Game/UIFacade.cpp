@@ -22,6 +22,23 @@ void UIFacade::start()
     QApplication::exec();
 }
 
+QByteArray UIFacade::readStyleSheetFile(const QString &filePath)
+{
+    QFile inputFile(filePath);
+    QByteArray inputData;
+
+    if(inputFile.open(QIODevice::Text | QIODevice::Unbuffered | QIODevice::ReadOnly))
+    {
+        inputData = inputFile.readAll();
+        inputFile.close();
+        return inputData;
+    }
+    else
+    {
+        return QByteArray();
+    }
+}
+
 void UIFacade::guiSetup()
 {
 #ifdef QT_DEBUG
@@ -36,6 +53,10 @@ void UIFacade::guiSetup()
     /*      MAIN WINDOW     */
     window->resize(static_cast<int>(0.25 * width), static_cast<int>(0.25 * height));
     window->setFixedSize(static_cast<int>(0.25 * width), static_cast<int>(0.25 * height));
+
+    /*     STYLE SHEET     */
+    QString styleSheet = readStyleSheetFile(":/stylesheets/style_sheet.qss");
+    application->setStyleSheet(styleSheet);
 
     window->show();
 #ifdef QT_DEBUG

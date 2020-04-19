@@ -18,6 +18,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # Disable unused parameter warnings
 QMAKE_CXXFLAGS_WARN_OFF -= -Wunused-parameter
 
+# Compiele flags
+QMAKE_CXXFLAGS += -lstdc++fs
+
 SOURCES += \
     AuxiliaryFunctionality/TextColoring.cpp \
     AuxiliaryFunctionality/UnitMediators.cpp \
@@ -33,6 +36,8 @@ SOURCES += \
     GUI/mainwindow.cpp \
     Game/ChainHandler.cpp \
     Game/FacadeMediator.cpp \
+    Game/Logging/Loggers/loggers.cpp \
+    Game/Logging/time.cpp \
     Game/UIFacade.cpp \
     Game/game.cpp \
     GameField/Cell.cpp \
@@ -71,6 +76,7 @@ HEADERS += \
     AuxiliaryFunctionality/UnitObserver.h \
     AuxiliaryFunctionality/UnitSubject.h \
     AuxiliaryFunctionality/Vector.h \
+    AuxiliaryFunctionality/qtDebugSwitch.h \
     Bases/BaseBuilder.h \
     Bases/BaseMaster.h \
     Bases/GameBase.h \
@@ -87,6 +93,10 @@ HEADERS += \
     Game/FacadeMediator.h \
     Game/IFacadeMediator.h \
     Game/IGame.h \
+    Game/Logging/ILogger.h \
+    Game/Logging/Loggers/loggers.h \
+    Game/Logging/logFunctionality.h \
+    Game/Logging/time.h \
     Game/UIFacade.h \
     Game/game.h \
     GameField/Cell.h \
@@ -132,3 +142,6 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

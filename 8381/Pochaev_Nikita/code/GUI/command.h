@@ -18,7 +18,6 @@ public:
     void exec() override;
 
 protected:
-
     std::shared_ptr<FacadeMediator> facadeMediator;
     eRequest request;
     std::vector<size_t> param;
