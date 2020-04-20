@@ -44,6 +44,7 @@ void LoggerProxy::setLoggingDirection(uint8_t loggingDirection) {
 
     delete logger;
     logger = nullptr;
+    this->loggingDirection = loggingDirection;
 
     if (loggingDirection == LOGGING_DIR_FILE) {
         try {
