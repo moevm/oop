@@ -42,6 +42,16 @@ Catapult::Catapult(Point point, Base* base) : SiegeEngine(point, base) {
     armor = Armor(5);
     health = Health(100, 100);
     movePoints = MovePoints(2, 2);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Catapult::~Catapult() {
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
+    }
 }
 
 uint8_t Catapult::getObjectType() {
@@ -71,6 +81,16 @@ Ram::Ram(Point point, Base* base) : SiegeEngine(point, base) {
     armor = Armor(15);
     health = Health(100, 100);
     movePoints = MovePoints(2, 2);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Ram::~Ram() {
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
+    }
 }
 
 uint8_t Ram::getObjectType() {

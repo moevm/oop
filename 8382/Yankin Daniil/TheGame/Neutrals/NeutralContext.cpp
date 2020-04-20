@@ -1,14 +1,21 @@
 #include "NeutralContext.h"
 #include "Player/NeutralPlayer.h"
+#include <Game/Game.h>
 
 
 NeutralContext::NeutralContext(Point point, NeutralPlayer* player) : point(point), player(player), strategy(nullptr) {
     player->addNeutralObject(this);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY()};
+    Game::getInstance().getLogAdapter().log(LOG_NEUTRAL_CREATED, logParameters);
 }
 
 NeutralContext::~NeutralContext() {
     delete strategy;
     player->removeNeutralObject(this);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY()};
+    Game::getInstance().getLogAdapter().log(LOG_NEUTRAL_DESTRUCTED, logParameters);
 }
 
 

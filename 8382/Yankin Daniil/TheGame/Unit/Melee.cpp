@@ -39,6 +39,16 @@ Swordsman::Swordsman(Point point, Base* base) : Melee(point, base) {
     armor = Armor(20);
     health = Health(100, 100);
     movePoints = MovePoints(2, 2);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Swordsman::~Swordsman() {
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
+    }
 }
 
 uint8_t Swordsman::getObjectType() {
@@ -67,6 +77,16 @@ Pikeman::Pikeman(Point point, Base* base) : Melee(point, base) {
     armor = Armor(16);
     health = Health(100, 100);
     movePoints = MovePoints(2, 2);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Pikeman::~Pikeman() {
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
+    }
 }
 
 uint8_t Pikeman::getObjectType() {
@@ -95,6 +115,16 @@ ShockCavalry::ShockCavalry(Point point, Base* base) : Melee(point, base) {
     armor = Armor(16);
     health = Health(100, 100);
     movePoints = MovePoints(4, 4);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+ShockCavalry::~ShockCavalry() {
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
+    }
 }
 
 uint8_t ShockCavalry::getObjectType() {

@@ -225,6 +225,11 @@ void VisualItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 
 
 void VisualItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    if (event->modifiers() & Qt::AltModifier) {
+        event->ignore();
+        return;
+    }
+
     if (event->button() == Qt::LeftButton) {
         UiCommand command(UI_SELECT_OBJECT, object);
         command.execute();

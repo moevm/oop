@@ -40,6 +40,16 @@ Archer::Archer(Point point, Base* base) : Ranged(point, base) {
     armor = Armor(8);
     health = Health(100, 100);
     movePoints = MovePoints(2, 2);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Archer::~Archer() {
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
+    }
 }
 
 uint8_t Archer::getObjectType() {
@@ -73,6 +83,16 @@ Crossbowman::Crossbowman(Point point, Base* base) : Ranged(point, base) {
     armor = Armor(8);
     health = Health(100, 100);
     movePoints = MovePoints(2, 2);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Crossbowman::~Crossbowman() {
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
+    }
 }
 
 uint8_t Crossbowman::getObjectType() {
@@ -102,6 +122,16 @@ ScoutCavalry::ScoutCavalry(Point point, Base* base) : Ranged(point, base) {
     armor = Armor(6);
     health = Health(100, 100);
     movePoints = MovePoints(6, 6);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+ScoutCavalry::~ScoutCavalry() {
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
+    }
 }
 
 uint8_t ScoutCavalry::getObjectType() {

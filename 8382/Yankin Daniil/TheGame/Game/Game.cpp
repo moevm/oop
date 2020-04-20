@@ -22,16 +22,23 @@ Game::Game() {
     gameMediator = new GameMediator(this);
     gameFacade = new GameFacade(this);
     field = nullptr;
+    logAdapter = new LogAdapter(LOGGING_DIR_FILE, LOGGING_MODE_DEFAULT);
 }
 
 Game::~Game() {
     delete gameMediator;
-    delete gameFacade;
-    delete field;
+    gameMediator = nullptr;
+
     for (auto player = playerVector.begin(); player != playerVector.end(); player++) {
         delete (*player);
     }
     delete neutralPlayer;
+    delete field;
+    delete gameFacade;
+
+    std::vector<int> logParameters;
+    logAdapter->log(LOG_GAME_DELETED, logParameters);
+    delete logAdapter;
 }
 
 
@@ -45,6 +52,9 @@ bool Game::initializeByFile(char* filename) {
     // Инициализация поля
     std::ifstream stream(filename);
     field = new Field(stream);
+
+    std::vector<int> logParameters = {field->getWidth(), field->getHeight()};
+    logAdapter->log(LOG_GAME_CREATED, logParameters);
 
     // Добавление игроков
     playerVector.push_back(new Player(PLAYER_BLUE));
@@ -186,4 +196,12 @@ void Game::turn() {
             (*unit)->renewMovePoints();
         }
     }
+    std::vector<int> parameters;
+    logAdapter->log(LOG_GAME_TURN, parameters);
+}
+
+
+
+LogAdapter& Game::getLogAdapter() {
+    return *logAdapter;
 }

@@ -7,11 +7,13 @@
 #include <vector>
 #include <map>
 #include <queue>
+#include <memory>
 
 #include "Field/Field.h"
 #include "Player/Player.h"
 #include "Player/NeutralPlayer.h"
 #include "Neutrals/NeutralContext.h"
+#include "Log/LogAdapter.h"
 
 class ModifiedScene;
 
@@ -34,6 +36,8 @@ public:
     void objectWasCreated(Object* object);
     void objectWasDestructed(Object* object);
     void unitWasMoved(IUnit* unit);
+
+    LogAdapter& getLogAdapter();
 
 private:
     Game();
@@ -58,4 +62,6 @@ private:
 
     std::vector <Player*> playerVector;
     NeutralPlayer* neutralPlayer;
+
+    LogAdapter* logAdapter;
 };

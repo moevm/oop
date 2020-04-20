@@ -40,6 +40,10 @@ SOURCES += main.cpp\
     Landscape/Mountain.cpp \
     Landscape/Plain.cpp \
     Landscape/Water.cpp \
+    Log/LogAdapter.cpp \
+    Log/Logger.cpp \
+    Log/LoggerProxy.cpp \
+    Log/Time.cpp \
     Neutrals/NeutralContext.cpp \
     Neutrals/NeutralObject.cpp \
     Player/NeutralPlayer.cpp \
@@ -48,8 +52,10 @@ SOURCES += main.cpp\
     Trivia/Point.cpp \
     UI/AttributeWidget.cpp \
     UI/BaseWidget.cpp \
+    UI/LoggingWindow.cpp \
     UI/MainWindow.cpp \
     UI/ModifiedScene.cpp \
+    UI/ModifiedView.cpp \
     UI/TurnButton.cpp \
     UI/VisualItem.cpp \
     Unit/IUnit.cpp \
@@ -89,6 +95,11 @@ HEADERS  += \
     Landscape/Mountain.h \
     Landscape/Plain.h \
     Landscape/Water.h \
+    Log/ILogger.h \
+    Log/LogAdapter.h \
+    Log/Logger.h \
+    Log/LoggerProxy.h \
+    Log/Time.h \
     Neutrals/NeutralContext.h \
     Neutrals/NeutralObject.h \
     Object/Object.h \
@@ -98,8 +109,10 @@ HEADERS  += \
     Trivia/Point.h \
     UI/AttributeWidget.h \
     UI/BaseWidget.h \
+    UI/LoggingWindow.h \
     UI/MainWindow.h \
     UI/ModifiedScene.h \
+    UI/ModifiedView.h \
     UI/TurnButton.h \
     UI/VisualItem.h \
     Unit/IUnit.h \
@@ -114,6 +127,7 @@ HEADERS  += \
 FORMS    += \
     UI/AttributeWidget.ui \
     UI/BaseWidget.ui \
+    UI/LoggingWindow.ui \
     UI/MainWindow.ui \
     UI/TurnButton.ui
 
