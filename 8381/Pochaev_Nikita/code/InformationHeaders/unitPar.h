@@ -5,6 +5,12 @@
            UNITS PARAMETERS
 --------------------------------------*/
 
+/**
+ * @brief The eUnitsType enum
+ * In case of adding a new type of units,
+ * it is necessary to reflect the changes
+ * in the converter "enum->std::string"
+ */
 enum eUnitsType
 {
     VALUES_FIRST = 0,

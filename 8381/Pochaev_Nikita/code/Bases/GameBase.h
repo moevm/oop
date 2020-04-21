@@ -6,6 +6,7 @@
 #include "Units/ObjectFactory.h"
 #include "InformationHeaders/constPar.h"
 #include "InformationHeaders/unitPar.h"
+#include "InformationHeaders/commandPar.h"
 #include "Units/CompositeUnit.h"
 #include "UnitStorekeeper.h"
 #include "AuxiliaryFunctionality/EnumToString.h"
@@ -38,6 +39,8 @@ public:
 
     size_t getHealth();
     std::string getUnitCountInf();
+
+    static std::string convertEnumBaseNameToStr(eBaseType type);
 };
 
 #endif //OOP_GAMEBASE_H

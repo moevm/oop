@@ -13,9 +13,14 @@ class Game;
 class Command : public ICommand, public AbstractHandler
 {
 public:
-    Command(std::shared_ptr<FacadeMediator> facadeMediator_, eRequest request_, std::vector<size_t> param_, eUnitsType unitType_ = NONE_UNIT, eBaseType baseType_ = NONE_BASE);
+    Command(eRequest request_, std::vector<size_t> param_, eUnitsType unitType_ = NONE_UNIT, eBaseType baseType_ = NONE_BASE);
+    Command(std::shared_ptr<FacadeMediator> facadeMediator_, eRequest request_, std::vector<size_t> param_, eUnitsType unitType_, eBaseType baseType_);
     Command() = default;
     void exec() override;
+
+    void setMediator(std::shared_ptr<FacadeMediator> mediator);
+
+    static std::string convertInfoRequestEnumToString(eRequest request);
 
 protected:
     std::shared_ptr<FacadeMediator> facadeMediator;

@@ -6,8 +6,19 @@
  * the corresponding command will be called
  */
 
+Command::Command(eRequest request_, std::vector<size_t> param_, eUnitsType unitType_, eBaseType baseType_) :
+    request(request_), param(param_), unitType(unitType_), baseType(baseType_) { };
+
 Command::Command(std::shared_ptr<FacadeMediator> facadeMediator_, eRequest request_, std::vector<size_t> param_, eUnitsType unitType_, eBaseType baseType_) :
-    facadeMediator(std::move(facadeMediator_)), request(request_), param(param_), unitType(unitType_), baseType(baseType_) { };
+    facadeMediator(std::move(facadeMediator_))
+{
+    Command(request_, param_, unitType_, baseType_);
+};
+
+void Command::setMediator(std::shared_ptr<FacadeMediator> mediator)
+{
+    facadeMediator = std::move(mediator);
+}
 
 GameCommand::GameCommand(std::shared_ptr<FacadeMediator> facadeMediator_, eRequest request_, std::vector<size_t> param_, eUnitsType unitType_, eBaseType baseType_) :
     Command(facadeMediator_, request_, param_, unitType_, baseType_) { };
@@ -20,6 +31,11 @@ FieldCommand::FieldCommand(std::shared_ptr<FacadeMediator> facadeMediator_, eReq
 
 void Command::exec()
 {
+    if(!facadeMediator)
+    {
+        throw std::runtime_error("Using a command without a mediator installed");
+    }
+
     BaseCommand baseCommand(facadeMediator, request, param, unitType, baseType);
     baseCommand.exec();
 }
@@ -65,4 +81,30 @@ void FieldCommand::exec()
         facadeMediator->sendInfoRequest(request, param[0], param[1]);
     }
     return;
+}
+
+std::string Command::convertInfoRequestEnumToString(eRequest request_)
+{
+    if(request_ == GAME_INFO)
+    {
+        return "game info";
+    }
+    else if(request_ == BASE_INFO)
+    {
+        return "base info";
+    }
+    else if(request_ == UNIT_INFO)
+    {
+        return "unit info";
+    }
+    else if(request_ == LAND_INFO)
+    {
+        return "land info";
+    }
+    else if(request_ == ITEM_INFO)
+    {
+        return "item info";
+    }
+
+    return "";
 }

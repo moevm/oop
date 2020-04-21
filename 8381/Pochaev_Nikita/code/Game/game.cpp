@@ -1,9 +1,15 @@
 ﻿#include "game.h"
 #include "FacadeMediator.h"
 
-Game::Game(size_t fieldHieght, size_t fieldWidth)
+Game::Game(size_t fieldHeight, size_t fieldWidth)
 {
-    field = std::make_shared<GameFieldProxy>(fieldHieght, fieldWidth);
+    field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth);
+}
+
+Game::Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_)
+{
+    playersCount = playersCount_;
+    field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth);
 }
 
 std::shared_ptr<GameFieldProxy> Game::getField() const
@@ -44,7 +50,6 @@ void Game::createBase(eBaseType type, size_t xCoord, size_t yCoord, QString srcB
     }
     field->addBase(base, xCoord, yCoord);
     bases.insert(std::make_pair(srcBaseName, BaseInf(std::move(base), xCoord, yCoord)));
-    std::cout << ANSIColor::coloredString(baseType + " was added at (" + std::to_string(xCoord) + ";" + std::to_string(yCoord) + ")", ANSIColor::FG_GREEN) << std::endl;
 }
 
 bool Game::getBaseCoordsByName(QString sourceBaseName, Coords &coords)
@@ -99,4 +104,9 @@ std::string Game::getItemInfo(size_t x, size_t y)
 std::string Game::getLandInfo(size_t x, size_t y)
 {
     return field->getInfAboutLand(x, y);
+}
+
+size_t Game::getPlayersCount()
+{
+    return playersCount;
 }

@@ -187,6 +187,11 @@ void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCoun
     showMaximized();
 }
 
+void GameWindow::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format)
+{
+    emit createLoggerInFacadeRequest(type, format);
+}
+
 void GameWindow::on_addBaseButton_clicked()
 {
 #ifdef QT_DEBUG

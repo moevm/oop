@@ -37,7 +37,8 @@ struct BaseInf
 class Game : public IGame
 {
 public:
-    Game(size_t fieldHieght, size_t fieldWidth);
+    Game(size_t fieldHeight, size_t fieldWidth);
+    Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_);
 
     // Getters
     std::shared_ptr<GameFieldProxy> getField() const;
@@ -52,6 +53,8 @@ public:
     std::string getItemInfo(size_t x, size_t y);
     std::string getLandInfo(size_t x, size_t y);
 
+    size_t getPlayersCount();
+
     // Setters
     void createBase(eBaseType type, size_t xCoord, size_t yCoord, QString name) override;
     void createUnit(eUnitsType, size_t xCoord, size_t yCoord) override;
@@ -59,6 +62,8 @@ public:
     void unitAttack(size_t xSource, size_t ySource, size_t xDest, size_t yDist) override;
 
 private:
+    size_t playersCount{};
+
     std::shared_ptr<GameFieldProxy> field;
     std::map<QString, BaseInf> bases;
     BaseMaster master;

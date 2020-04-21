@@ -6,7 +6,7 @@
 #include <string>
 #include <fstream>
 
-#include "logFunctionality.h"
+#include "logfunctionality.h"
 
 class Time;
 

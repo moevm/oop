@@ -104,3 +104,17 @@ std::string GameBase::getUnitCountInf()
 {
     return unitCount->getTotalInformation();
 }
+
+std::string GameBase::convertEnumBaseNameToStr(eBaseType type)
+{
+    if(type == HUMAN_BASE)
+    {
+        return "human base";
+    }
+    else if(type == HELL_BASE)
+    {
+        return "hell base";
+    }
+
+    return "";
+}

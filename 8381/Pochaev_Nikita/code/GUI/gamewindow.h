@@ -22,6 +22,7 @@
 
 #include "InformationHeaders/commandPar.h"
 #include "InformationHeaders/unitPar.h"
+#include "Game/Logging/logfunctionality.h"
 
 class GameWindow : public QWidget
 {
@@ -82,6 +83,7 @@ private:
 signals:
     void gameWindowClosed();
     void createFieldRequest(size_t heigt, size_t width);
+    void createLoggerInFacadeRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, QString name);
     void addUnitRequest(eUnitsType unitType, QString sourceBaseName);
     void moveUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist);
@@ -90,6 +92,7 @@ signals:
 
 public slots:
     void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_);
+    void createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void on_addBaseButton_clicked();
     void on_addUnitButton_clicked();
     void on_moveUnitButton_clicked();

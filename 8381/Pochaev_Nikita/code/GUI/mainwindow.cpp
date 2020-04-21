@@ -80,6 +80,7 @@ void MainWindow::setUpUI()
     connect(startNewGameButton, &QPushButton::pressed, this, &MainWindow::on_startNewGameButton_clicked);
     connect(gameWindow, &GameWindow::gameWindowClosed, this, &MainWindow::on_gameWindow_closeEvent);
     connect(this, &MainWindow::startNewGameWindow, gameWindow, &GameWindow::startNewPlayingWindow);
+    connect(this, &MainWindow::startLogging, gameWindow, &GameWindow::createLoggerRequest);
 
 #ifdef QT_DEBUG
     qDebug() << "Debug: UI setup finished" << endl;
@@ -88,9 +89,27 @@ void MainWindow::setUpUI()
 
 void MainWindow::on_startNewGameButton_clicked()
 {
+    // game field and players info
     gameFieldSize = fieldSizeSpinBox->value();
     playersCount = playersCountSpinBox->value();
+    // logger info
+    eLOGGER_TYPE loggerType = NO_LOG;
+    if(logModeComboBox->currentIndex() == 0)
+    {
+        loggerType = NO_LOG;
+    }
+    else if(logModeComboBox->currentIndex() == 1)
+    {
+        loggerType = FILE_LOG;
+    }
+    else if(logModeComboBox->currentIndex() == 2)
+    {
+        loggerType = TERMINAL_LOG;
+    }
+    eLOGGER_OUTPUT_FORMAT loggerFormat = logAdvancedModeCheckBox->isChecked() ? ADVANCED : STANDART;
+
     emit startNewGameWindow(gameFieldSize, playersCount);
+    emit startLogging(loggerType, loggerFormat);
     setDisabled(true);
 }
 

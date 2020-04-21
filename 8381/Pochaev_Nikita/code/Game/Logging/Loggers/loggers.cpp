@@ -2,7 +2,7 @@
 
 std::ostream& operator<< (std::ostream &out, ILogger &log)
 {
-    out << log.getTime() << " << " << log.getLogInf();
+    out << log.getLogInf();
     return out;
 }
 
@@ -16,7 +16,6 @@ TerminalLogger::TerminalLogger()
 
 TerminalLogger::~TerminalLogger()
 {
-    printProgWorkingTime();
     std::cout << ANSIColor::coloredString("Logger stopped working", ANSIColor::FG_GREEN) << std::endl;
 }
 
@@ -38,17 +37,19 @@ void TerminalLogger::printLog(std::string outInf)
 
 void TerminalLogger::print()
 {
-    std::cout << this << std::endl;
+    time->update();
+    std::cout << *time.get() << " << " << *this << std::endl;
 }
 
 void TerminalLogger::printCurrTime()
 {
-    std::cout << time << std::endl;
+    time->update();
+    std::cout << *time.get() << std::endl;
 }
 
 void TerminalLogger::printProgWorkingTime()
 {
-    std::cout << ANSIColor::coloredString("Program was working for " + time->getProgWorkTime() + " seconds.", ANSIColor::FG_GREEN) << std::endl;
+    std::cout << ANSIColor::coloredString(time->getProgWorkTime(), ANSIColor::FG_GREEN) << std::endl;
 }
 
 std::shared_ptr<Time>& TerminalLogger::getTime()
@@ -60,7 +61,6 @@ std::string TerminalLogger::getLogInf() const
 {
     return logInf;
 }
-
 
 /*      FILE LOGGER      */
 
@@ -81,6 +81,8 @@ FileLogger::FileLogger()
     }
 
     time = std::make_shared<Time>();
+
+    fout << "*** PROGRAM LOGS ***" << std::endl;;
 }
 
 eLOGGER_TYPE FileLogger::getType()
@@ -101,11 +103,13 @@ void FileLogger::printLog(std::string outInf)
 
 void FileLogger::print()
 {
-    fout << this << std::endl;
+    time->update();
+    fout << *time.get() << " << " << *this << std::endl;
 }
 
 void FileLogger::printCurrTime()
 {
+    time->update();
     fout << time << std::endl;
 }
 

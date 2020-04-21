@@ -1,7 +1,7 @@
 ﻿#ifndef CHAINHANDLER_H
 #define CHAINHANDLER_H
 
-// FIXME: delete it
+// FIXME: is it really necessary
 
 #include <string>
 

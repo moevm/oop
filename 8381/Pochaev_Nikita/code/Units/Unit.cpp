@@ -167,3 +167,33 @@ void Unit::setUnitMeleeAttackMediator(std::shared_ptr<UnitMeleeAttackMediator> m
 {
     meleeAttackMediator = std::move(mediator_);
 }
+
+std::string Unit::convertEnumUnitNameToStr(eUnitsType type)
+{
+    if(type == CANNON_FODDER)
+    {
+        return "cannon fodder";
+    }
+    else if(type == INFANTRY)
+    {
+        return "infantry";
+    }
+    else if(type == SHOOTER)
+    {
+        return "shooter";
+    }
+    else if(type == WIZARD)
+    {
+        return "wizard";
+    }
+    else if(type == CAVALRY)
+    {
+        return "cavalry";
+    }
+    else if(type == COMPOSITE_UNIT)
+    {
+        return "composite unit";
+    }
+
+    return "";
+}

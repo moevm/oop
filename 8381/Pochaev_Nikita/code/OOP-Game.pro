@@ -36,6 +36,7 @@ SOURCES += \
     GUI/mainwindow.cpp \
     Game/ChainHandler.cpp \
     Game/FacadeMediator.cpp \
+    Game/Logging/Loggers/logadapter.cpp \
     Game/Logging/Loggers/loggers.cpp \
     Game/Logging/time.cpp \
     Game/UIFacade.cpp \
@@ -94,8 +95,10 @@ HEADERS += \
     Game/IFacadeMediator.h \
     Game/IGame.h \
     Game/Logging/ILogger.h \
+    Game/Logging/Loggers/ILogAdapter.h \
+    Game/Logging/Loggers/logadapter.h \
     Game/Logging/Loggers/loggers.h \
-    Game/Logging/logFunctionality.h \
+    Game/Logging/logfunctionality.h \
     Game/Logging/time.h \
     Game/UIFacade.h \
     Game/game.h \

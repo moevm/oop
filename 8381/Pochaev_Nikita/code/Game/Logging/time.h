@@ -17,7 +17,7 @@ public:
     Time();
     void update();
     std::string getProgWorkTime();
-    friend std::ostream& operator<< (std::ostream &out, Time &time);
+    friend std::ostream& operator<< (std::ostream &out, const Time &time);
 
 private:
     TimePoint progStartTimePoint;

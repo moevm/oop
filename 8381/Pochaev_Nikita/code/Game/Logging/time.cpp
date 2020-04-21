@@ -3,6 +3,7 @@
 Time::Time()
 {
     progStartTimePoint = std::chrono::system_clock::now();
+    currTime = std::chrono::system_clock::to_time_t(progStartTimePoint);
 }
 
 void Time::update()
@@ -16,13 +17,12 @@ std::string Time::getProgWorkTime()
     update();
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(currentTimePoint - progStartTimePoint);
 
-    return "Program was working for " + std::to_string(duration.count()) + "seconds\n";
+    return std::to_string(duration.count());
 }
 
-std::ostream& operator<< (std::ostream &out, Time &time)
+std::ostream& operator<< (std::ostream &out, const Time &time)
 {
-    time.update();
-    out << std::put_time(std::localtime(&time.currTime), "%F %T");
-
+    struct std::tm ptm = *std::localtime(&time.currTime);
+    out << std::put_time(&ptm, "%Y-%m-%d %H:%M:%S");
     return out;
 }

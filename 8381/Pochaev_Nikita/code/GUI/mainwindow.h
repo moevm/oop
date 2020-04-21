@@ -16,6 +16,7 @@
 #include <QCheckBox>
 
 #include "GUI/gamewindow.h"
+#include "Game/Logging/logfunctionality.h"
 
 class MainWindow : public QMainWindow
 {
@@ -56,6 +57,7 @@ private slots:
 
 signals:
     void startNewGameWindow(size_t gameFieldSize, size_t playersCount);
+    void startLogging(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
 };
 
 #endif // MAINWINDOW_H

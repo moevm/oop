@@ -71,6 +71,9 @@ public:
     // Attack functionality
     void setUnitMeleeAttackMediator(std::shared_ptr<UnitMeleeAttackMediator> mediator_) override;
     void carryOutMeleeAttack(size_t x, size_t y) override;
+
+    // special functionality
+    static std::string convertEnumUnitNameToStr(eUnitsType type);
 };
 
 #endif //OOP_UNIT_H
