@@ -2,7 +2,7 @@
 #include "Field.h"
 
 
-
+Field::Field() {};
 
 Field::Field(int max, int _h, int  _w)
 {

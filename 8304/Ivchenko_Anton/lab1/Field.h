@@ -11,6 +11,7 @@ public:
 	int qmax;
 	Unit*** field;
 
+	Field();
 	Field(int max, int _h, int  _w);
 	Field(const Field& f);
 	Field(Field&& f);

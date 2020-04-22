@@ -4,14 +4,40 @@ class Unit {
 
 public:
 
+	int x, y;
 	char id;
-	int damage;
-	int armor;
-	int speed;
+	int damage, armor, speed;
+
+	Unit() {};
+
+	Unit(int _x, int _y) : x(_x), y(_y){};
+
+	void changePos(int dx, int dy) {
+
+		x = x + dx;
+		y = y + dy;
+	}
+
+	char getid() 
+	{
+		return id;
+	}
+	int getx()
+	{
+		return x;
+	};
+	int gety()
+	{
+		return y;
+	}
+
+	~Unit() {
+
+	};
 
 };
 
-class Warrior : public Unit {
+class Warrior : public  Unit {
 
 public:
 
@@ -22,18 +48,24 @@ public:
 		this->speed = 1;
 
 	};
+	~Warrior() {
+
+	};
 
 };
 
 class Swordman : public Warrior {
 
-
 public:
 
 	Swordman() {
+
 		this->damage = 5;
 		this->id = '1';
 	}
+	~Swordman() {
+
+	};
 };
 
 class Spearman : public Warrior {
@@ -46,6 +78,10 @@ public:
 		this->id = '2';
 
 	};
+	~Spearman() {
+
+	};
+
 };
 
 class Archer : public Unit {
@@ -55,6 +91,9 @@ public:
 	Archer() {
 
 		this->armor = 7;
+
+	}
+	~Archer() {
 
 	}
 };
@@ -70,6 +109,10 @@ public:
 		this->speed = 3;
 
 	};
+	~Slinger() {
+
+	};
+
 };
 
 class Bowman : public Archer {
@@ -84,13 +127,22 @@ public:
 
 
 	};
+	~Bowman() {
+
+	};
 };
 
 class Cavalry : public Unit {
 
 public:
 
-	Cavalry() {};
+	Cavalry() {
+	
+	};
+	~Cavalry() {
+
+	};
+
 };
 
 class LightCavalry : public Cavalry {
@@ -105,6 +157,11 @@ public:
 		this->damage = 12;
 
 	};
+	~LightCavalry() {
+
+	};
+
+
 };
 
 class HeavyCavalry : public Cavalry {
@@ -119,4 +176,9 @@ public:
 		this->damage = 15;
 
 	};
+	~HeavyCavalry() {
+
+	};
+
 };
+
