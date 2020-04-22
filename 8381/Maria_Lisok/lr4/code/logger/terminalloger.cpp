@@ -23,7 +23,7 @@ void TerminalLogger::prinLog(string log)
 
 void TerminalLogger::print()
 {
-   cout << this << endl;
+   cout << *this << endl;
 }
 
 string TerminalLogger::getLog() const
@@ -37,7 +37,7 @@ void TerminalLogger::setLog(string & log)
 }
 
 
-ostream& operator<<(ostream &ostr, Logger &l)
+ostream& operator<<(ostream &ostr, const Logger &l)
 {
     ostr << l.getLog();
     return ostr;

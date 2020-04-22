@@ -49,4 +49,5 @@ enum LogPlace{
     TOFILE,
     NOLOG
 };
+
 #endif // ENUMS_H

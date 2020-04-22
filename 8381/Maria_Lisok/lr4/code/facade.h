@@ -2,9 +2,11 @@
 #define FACADE_H
 #include "ui_mainwindow.h"
 
-#include "game/game.h"
 #include "command/gamecommand.h"
 
+#include "logger/adapter.h"
+
+#include "logger/proxylogger.h"
 class Facade
 {
 public:
@@ -19,10 +21,13 @@ public:
     void addBase(int x, int y, int, int);
     void addUnit(int base, int type);
     void addNeutral(int x, int y, int type);
-
+    Adapter *getLogger() const;
+    void setLogger(LogPlace logPlace);
+    ~Facade();
 private:
     Ui::MainWindow *ui;
     Game *game;
+    Adapter* logger;
 };
 
 #endif // FACADE_H

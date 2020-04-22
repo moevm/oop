@@ -41,6 +41,7 @@ SOURCES += \
     command/basecommand.cpp \
     command/fieldcommand.cpp \
     command/gamecommand.cpp \
+    convertEnum.cpp \
     createmediator.cpp \
     facade.cpp \
     game/game.cpp \

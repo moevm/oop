@@ -78,3 +78,20 @@ void MainWindow::on_neutralInfoButton_clicked()
     ui->infoWindow->clear();
     facade->getNeutralInfo(ui->posForInfoX->value(), ui->posForInfoY->value());
 }
+
+
+
+void MainWindow::on_logToFile_clicked()
+{
+    facade->setLogger(TOFILE);
+}
+
+void MainWindow::on_logToTerminal_clicked()
+{
+    facade->setLogger(TOTERMINAL);
+}
+
+void MainWindow::on_noLogs_clicked()
+{
+    facade->setLogger(NOLOG);
+}

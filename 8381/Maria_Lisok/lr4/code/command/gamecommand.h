@@ -1,7 +1,6 @@
 #ifndef GAMECOMMAND_H
 #define GAMECOMMAND_H
 
-#include "command.h"
 
 #include "game/game.h"
 

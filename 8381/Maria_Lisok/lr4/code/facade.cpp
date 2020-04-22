@@ -1,8 +1,9 @@
 #include "facade.h"
-#include "convertEnum.h"
 
 Facade::Facade(Ui::MainWindow *ui, Game *game): ui(ui), game(game)
-{}
+{
+    logger = new Adapter(new ProxyLogger(TOTERMINAL));
+}
 
 void Facade::getGameInfo()
 {
@@ -13,6 +14,7 @@ void Facade::getGameInfo()
          output+=it->first + to_string(it->second)+"\n";
    }
    ui->logWindow->append(QString::fromStdString(output));
+   logger->makeLog(GAME_INFO, answers);
 }
 
 void Facade::getBaseInfo(int number)
@@ -28,6 +30,7 @@ void Facade::getBaseInfo(int number)
           output+=it->first + to_string(it->second)+"\n";
     }
     ui->infoWindow->append(QString::fromStdString(output));
+    logger->makeLog(BASE_INFO, answers);
 }
 
 void Facade::getUnitInfo(int x, int y)
@@ -44,6 +47,7 @@ void Facade::getUnitInfo(int x, int y)
           output+=it->first + to_string(it->second)+"\n";
     }
     ui->infoWindow->append(QString::fromStdString(output));
+    logger->makeLog(UNIT_INFO, answers);
 }
 
 void Facade::getNeutralInfo(int x, int y)
@@ -61,7 +65,8 @@ void Facade::getNeutralInfo(int x, int y)
         if(it->second != 0)
             output+= convertFromEnumToNeutral(static_cast<NeutralType>(it->second))+"\n";
     }
-     ui->infoWindow->append(QString::fromStdString(output));
+    ui->infoWindow->append(QString::fromStdString(output));
+    logger->makeLog(NEUTRAL_INFO, answers);
 }
 
 void Facade::getLandscapeInfo(int x, int y)
@@ -80,6 +85,7 @@ void Facade::getLandscapeInfo(int x, int y)
             output+= convertFromEnumToLand(static_cast<LandscapeType>(it->second))+"\n";
     }
     ui->infoWindow->append(QString::fromStdString(output));
+    logger->makeLog(LAND_CELL, answers);
 }
 
 void Facade::moveUnit(int x, int y, int xDelta, int yDelta)
@@ -99,7 +105,8 @@ void Facade::moveUnit(int x, int y, int xDelta, int yDelta)
     for(auto it = answers.begin(); it != answers.end(); ++it) {
           output+=it->first + to_string(it->second)+"\n";
     }
-     ui->logWindow->append(QString::fromStdString(output));
+    ui->logWindow->append(QString::fromStdString(output));
+    logger->makeLog(MOVE, answers);
 }
 
 void Facade::attackUnit(int x, int y, int xDelta, int yDelta)
@@ -119,7 +126,8 @@ void Facade::attackUnit(int x, int y, int xDelta, int yDelta)
     for(auto it = answers.begin(); it != answers.end(); ++it) {
           output+=it->first + to_string(it->second)+"\n";
     }
-     ui->logWindow->append(QString::fromStdString(output));
+    ui->logWindow->append(QString::fromStdString(output));
+    logger->makeLog(ATTACK, answers);
 }
 
 void Facade::addBase(int x, int y, int maxUnitsCount, int health)
@@ -147,6 +155,7 @@ void Facade::addBase(int x, int y, int maxUnitsCount, int health)
           output+=it->first +"\n";
     }
     ui->logWindow->append(QString::fromStdString(output));
+    logger->makeLog(BASE_ADD, answers);
 }
 
 void Facade::addUnit(int base, int type)
@@ -163,6 +172,7 @@ void Facade::addUnit(int base, int type)
           output+=it->first+"\n";
     }
     ui->logWindow->append(QString::fromStdString(output));
+    logger->makeLog(UNIT_ADD, answers);
 }
 
 void Facade::addNeutral(int x, int y, int type)
@@ -180,5 +190,21 @@ void Facade::addNeutral(int x, int y, int type)
             output+=it->first+"\n";
       }
       ui->logWindow->append(QString::fromStdString(output));
+      logger->makeLog(NEUTRAL_ADD, answers);
+}
+
+Adapter *Facade::getLogger() const
+{
+    return logger;
+}
+
+void Facade::setLogger(LogPlace logPlace)
+{
+    logger->setLogger(new ProxyLogger(logPlace));
+}
+
+Facade::~Facade()
+{
+    delete logger;
 }
 

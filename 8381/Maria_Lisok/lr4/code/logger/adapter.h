@@ -4,7 +4,7 @@
 #include "logger.h"
 
 #include "enums.h"
-
+#include "convertEnum.h"
 class Adapter
 {
 public:
@@ -13,7 +13,6 @@ public:
     void setLogger(Logger *value);
     void makeLog(Actions act, map<string, int> data);
 private:
-    string userAction(map<string, int> data);
     string baseAddLog(map<string, int> data);
     string neutralAddLog(map<string, int> data);
     string unitAddLog(map<string, int> data);

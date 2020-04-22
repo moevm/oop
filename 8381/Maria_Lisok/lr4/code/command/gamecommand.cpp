@@ -22,11 +22,11 @@ map<string, int> GameCommand::baseInfo()
 map<string, int> GameCommand::gameInfo()
 {
     map<string, int> information;
-    information["field height"] = static_cast<int>(game->getField()->getHeight());
-    information["field width"] = static_cast<int>(game->getField()->getWidth());
-    information["field max items"] = static_cast<int>(game->getField()->getMaxItems());
-    information["count items on field"] = static_cast<int>(game->getField()->getCountOfItems());
-    information["count of bases"] = static_cast<int>(game->getBases().size());
+    information["field height: "] = static_cast<int>(game->getField()->getHeight());
+    information["field width: "] = static_cast<int>(game->getField()->getWidth());
+    information["field max items: "] = static_cast<int>(game->getField()->getMaxItems());
+    information["count items on field: "] = static_cast<int>(game->getField()->getCountOfItems());
+    information["count of bases: "] = static_cast<int>(game->getBases().size());
     return information;
 }
 
@@ -36,7 +36,7 @@ map<string, int> GameCommand::attack()
     FieldCommand com(game->getField(), action, params);
     Unit* u = com.findItem();
     if(!u){
-        information["no such unit"] = 0;
+        information["no such unit"] = -1;
         return information;
     }
     try {
@@ -45,14 +45,19 @@ map<string, int> GameCommand::attack()
         {
             if (i == u)
             {
-                i->attack(params.find("attack pos")->second.x, params.find("attack pos")->second.y);
-                information["attack was"] = 0;
+                int x = params.find("attack pos")->second.x;
+                int y = params.find("attack pos")->second.y;
+                i->attack(x, y);
+                information["attack was"] = -1;
+                information["attacker name: "+i->getName()] = -1;
+                information["pos x for attack: "]=x;
+                information["pos x for attack: "]=y;
                 return information;
             }
         }
     }
     catch (invalid_argument& e) {
-        information[e.what()]=0;
+        information[e.what()]=-1;
         return information;
     }
     information["not such attacker"] = -1;
@@ -79,7 +84,9 @@ map<string, int> GameCommand::addBase()
         }
         else{
             game->createBase(maxUnitsCount, health, x, y, baseNumb);
-            information["base was created"] = baseNumb;
+            information["base was created\n base num:"] = baseNumb;
+            information["base added on pos x:"] = x;
+            information["base added on pos y:"] = y;
         }
     } catch (out_of_range& e) {
         information[e.what()]=0;
@@ -93,10 +100,11 @@ map<string, int> GameCommand::addNeutral()
     unsigned x = static_cast<unsigned>(params.find("addParams")->second.x);
     unsigned y = static_cast<unsigned>(params.find("addParams")->second.y);
     try{
-        game->createNeutral(params.find("addParams")->second.neutralType, x, y);
-        information["neutral add"] = NEUTRAL_ADD;
+        NeutralType typeNet = params.find("addParams")->second.neutralType;
+        game->createNeutral(typeNet, x, y);
         information["pos x "] = static_cast<int>(x);
         information["pos y "] = static_cast<int>(y);
+        information["neutral type: "]= typeNet;
     }catch(out_of_range& e){
         information[e.what()]=0;
     }catch(invalid_argument& e){
@@ -113,7 +121,7 @@ map<string, int> GameCommand::addUnit()
         base = game->getBaseByNum(baseNum);
     } catch (invalid_argument& e) {
         map<string, int> info;
-        info[e.what()]=0;
+        info[e.what()]=-1;
         return info;
     }
     CreateMediator* createMed = new CreateMediator(game->getField(), base);

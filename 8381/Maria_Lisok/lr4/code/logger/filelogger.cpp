@@ -27,7 +27,7 @@ void FileLogger::prinLog(string value)
 
 void FileLogger::print()
 {
-   file << this << endl;
+   file << *this << endl;
 }
 
 string FileLogger::getLog() const
@@ -40,8 +40,3 @@ void FileLogger::setLog(string & log)
     this->log = log;
 }
 
-//ostream & operator<<(ostream &ostr, Logger &l)
-//{
-//    ostr << l.getLog();
-//    return ostr;
-//}

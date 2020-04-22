@@ -86,8 +86,8 @@
    <widget class="QPushButton" name="gameInfoButton">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>10</y>
+      <x>20</x>
+      <y>610</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -491,6 +491,45 @@
     </property>
     <property name="text">
      <string>From</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="logToFile">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>100</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>log to file</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="logToTerminal">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>20</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>log to terminal</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="noLogs">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>20</y>
+      <width>100</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>no log</string>
     </property>
    </widget>
   </widget>

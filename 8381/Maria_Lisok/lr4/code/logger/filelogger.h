@@ -15,7 +15,7 @@ public:
     void print();
     string getLog() const;
     void setLog(string &);
-    friend ostream& operator<<(std::ostream& os, Logger& l);
+    friend ostream& operator<<(std::ostream& os, const Logger& l);
 private:
     string log;
     ofstream file;

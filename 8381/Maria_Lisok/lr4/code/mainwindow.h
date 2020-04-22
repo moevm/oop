@@ -38,6 +38,12 @@ private slots:
 
     void on_neutralInfoButton_clicked();
 
+    void on_logToFile_clicked();
+
+    void on_logToTerminal_clicked();
+
+    void on_noLogs_clicked();
+
 private:
     Ui::MainWindow *ui;
     Facade *facade;

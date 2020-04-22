@@ -59,7 +59,9 @@ map<string, int> FieldCommand::neutrallInfo()
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
     NeutralObj* neutr = field->getCell(x, y)->getNeutral();
     if(neutr){
-       information["neutal type:"] = neutr->getTypeEnum();
+        information["neutal pos x"] = static_cast<int>(x);
+        information["neutal pos y"] = static_cast<int>(y);
+        information["neutal type:"] = neutr->getTypeEnum();
     }
     else{
         information["no neutral el on such cell"] = 0;
@@ -74,10 +76,12 @@ map<string, int> FieldCommand::unitlInfo()
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
     Unit* un = field->getCell(x, y)->getUnit();
     if(un){
-       information["unit characteristic:\n"+un->characteristic()] = 0;
+        information["unit pos x"] =  static_cast<int>(x);
+        information["unit pos y"] =  static_cast<int>(y);
+        information["unit characteristic:\n"+un->characteristic()] = -1;
     }
     else{
-        information["no unit on such cell"] = 0;
+        information["no unit on such cell"] = -1;
     }
     return information;
 }
@@ -89,7 +93,9 @@ map<string, int> FieldCommand::landCelllInfo()
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
     Landscape* land = field->getCell(x, y)->getLandscape();
     if(land){
-       information["landscape type:"] = field->getCell(x, y)->getLandscape()->getLandscapeTypeEnum();
+        information["land cell pos x"] =  static_cast<int>(x);
+        information["land cell pos y"] =  static_cast<int>(y);
+        information["landscape type:"] = field->getCell(x, y)->getLandscape()->getLandscapeTypeEnum();
     }
     else{
         information["error with land type"] = 0;
@@ -147,8 +153,12 @@ map<string, int> FieldCommand::unitMove()
     map<string, int> information;
     Unit* u = findItem();
     try{
-        u->move(params.find("move")->second.x, params.find("move")->second.y);
-        information["move unit"] = u->getTypeEnum();
+        int x = params.find("move")->second.x;
+        int y = params.find("move")->second.y;
+        u->move(x, y);
+        information["move unit name: "] = u->getTypeEnum();
+        information["for pos x: "] = x;
+        information["for pos y: "] = y;
     }catch(out_of_range& e){
         information[e.what()]=0;
     }catch(invalid_argument& e){

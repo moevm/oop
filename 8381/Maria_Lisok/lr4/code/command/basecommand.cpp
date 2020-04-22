@@ -4,12 +4,12 @@
 map<string, int> BaseCommand::baseInfo()
 {
     map<string, int> information;
-    information["base number"] = base->getBaseNumb();
-    information["x position base"] = base->getX();
-    information["y position base"] = base->getY();
-    information["unit count in base"] = base->getUnitCount();
-    information["max unit in base"] = base->getMaxCount();
-    information["base health"] = base->getHealth();
+    information["base number: "] = base->getBaseNumb();
+    information["x position base: "] = base->getX();
+    information["y position base: "] = base->getY();
+    information["unit count in base: "] = base->getUnitCount();
+    information["max unit in base: "] = base->getMaxCount();
+    information["base health: "] = base->getHealth();
     information["units in base:"  + base->getUnits()->getName()] = base->getUnitCount();
     return information;
 }
@@ -20,7 +20,11 @@ map<string, int> BaseCommand::unitAdd()
     Data data = params.find("addParams")->second;
     try {
         Unit* u = base->createUnit(data.unitType);
-        information["unit added. name:" + u->getName()]=1;
+        information["unit added on pos x: "]=data.x;
+        information["unit added on pos y: "]=data.y;
+        information["unit added in base num: "]=base->getBaseNumb();
+        information["unit added. name:" + u->getName()]=-1;
+
     }catch (out_of_range& e) {
         information[e.what()]=0;
     }catch(invalid_argument& e){
