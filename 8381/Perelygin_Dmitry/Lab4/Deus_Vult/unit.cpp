@@ -113,7 +113,7 @@
         }
     }
 
-    void Unit::move_unit(int x, int y)
+    void Unit::move_unit(int x, int y, loging* Log)
     {
         if((x<=field->get_size()) & (y<=field->get_size()))
         {
@@ -125,10 +125,11 @@
                 if (field->add_unit(this,x,y,0)==1)
                 {
                     field->set_unit_count(-1);
-                    std::cout << "unit pos" << x_position << y_position <<  std::endl;
+                    //std::cout << "unit pos" << x_position << y_position <<  std::endl;
                     field->delete_unit(x_position,y_position);
                     this->set_x(x);
                     this->set_y(y);
+                    Log->Move_message(this->get_name(),x,y);
                     std::cout << "move successfully" << std::endl;
                 }
                 else
@@ -140,7 +141,7 @@
 
     }
 
-    void Unit::attack_unit(class Unit** defender)
+    void Unit::attack_unit(class Unit** defender, loging* Log)
     {
         if (!((*defender)==nullptr))
         {
@@ -159,14 +160,16 @@
             armor = (*defender)->get_armor();
             damage = attack_with_debuff - armor;
             (*defender)->set_hp(damage);
-            std::cout << get_name() << " deals " <<  damage << " damage to " << (*defender)->get_name() << std::endl;
+            Log->Attack_message( get_name(), (*defender)->get_name(), damage );
+            //std::cout << get_name() << " deals " <<  damage << " damage to " << (*defender)->get_name() << std::endl;
 
             if ((*defender)->get_hp()<1)
             {
                 base->delete_unit((*defender)->get_name());
                 base->minus_unit();
                 field->delete_unit((*defender)->get_x(),(*defender)->get_y());
-                std::cout << "DIE DIE DYNAMITE" << std::endl;
+                Log->No_varible(7);
+                //std::cout << "DIE DIE DYNAMITE" << std::endl;
                 delete (*defender);
                 (*defender = nullptr);
             }

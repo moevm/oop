@@ -216,7 +216,7 @@
     {
         field[x][y]=nullptr;
         unit_count--;
-        std::cout << "delete unit" << x << y <<std::endl;
+        //std::cout << "delete unit" << x << y <<std::endl;
     }
 
 

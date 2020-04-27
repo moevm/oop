@@ -23,6 +23,7 @@ SOURCES += \
         interface.cpp \
         knight.cpp \
         landscapes.cpp \
+        loging.cpp \
         main.cpp \
         mountain.cpp \
         neturalobjects.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
     interface.h \
     knight.h \
     landscapes.h \
+    loging.h \
     mountain.h \
     neturalobjects.h \
     plain.h \

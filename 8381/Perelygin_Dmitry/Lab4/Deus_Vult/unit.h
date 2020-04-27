@@ -5,9 +5,11 @@
 #include "field.h"
 #include "attacker_unit.h"
 #include "base.h"
-
+#include "loging.h"
 class Base;
 class Field;
+//class loging;
+
 
 class Unit: public Attacker_Units{
     protected:
@@ -70,11 +72,11 @@ class Unit: public Attacker_Units{
 
     void set_d_move(int value);
 
-    void move_unit(int x, int y);
+    void move_unit(int x, int y, loging* Log);
 
     void show_debuffs();
 
-    void attack_unit(class Unit** defender)override;
+    void attack_unit(class Unit** defender,loging* Unit)override;
 
 
     Unit() = default;
