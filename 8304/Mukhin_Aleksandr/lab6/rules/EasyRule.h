@@ -5,7 +5,7 @@
 
 class EasyRule : public Rule {
 public:
-    EasyRule() : Rule(4, 4, 2, true, true, 1) {}
+    EasyRule() : Rule(4, 4, 2, true, true, 2) {}
 };
 
 
