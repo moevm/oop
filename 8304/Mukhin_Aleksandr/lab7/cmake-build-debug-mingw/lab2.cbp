@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="lab2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab2">
+				<Option output="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/lab2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/."/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/mediators"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/parameters"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/civilians"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/military"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/government"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/civiliansCreator"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/militaryCreator"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/governmentCreator"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/tests"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/proxy"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/abstraction"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/loggers"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/serialization"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/exceptions"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/rules"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 lab2"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab2/fast">
+				<Option output="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/lab2.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/."/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/mediators"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/parameters"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/civilians"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/military"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/government"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/civiliansCreator"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/militaryCreator"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/governmentCreator"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/tests"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/proxy"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/abstraction"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/loggers"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/serialization"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/exceptions"/>
+					<Add directory="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/rules"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 lab2/fast"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Base.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Base.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/BaseComponent.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/BaseComponent.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Boardfield.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Boardfield.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Cell.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Cell.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Facade.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Facade.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/Game.hpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/abstraction/AbstractionBase.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/abstraction/AbstractionBase.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/abstraction/AbstractionBoardfield.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/abstraction/AbstractionBoardfield.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands/BinaryInteractionCommand.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands/BinaryInteractionCommand.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands/Command.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands/Command.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands/Invoker.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands/Invoker.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands/UnaryInteractionCommand.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/commands/UnaryInteractionCommand.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/Creator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/Creator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/civiliansCreator/CiviliansCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/civiliansCreator/CiviliansCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/civiliansCreator/DoctorCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/civiliansCreator/DoctorCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/civiliansCreator/EngineerCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/civiliansCreator/EngineerCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/governmentCreator/AmbassadorCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/governmentCreator/AmbassadorCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/governmentCreator/GovernmentCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/governmentCreator/GovernmentCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/governmentCreator/MinistryCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/governmentCreator/MinistryCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/militaryCreator/AirborneCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/militaryCreator/AirborneCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/militaryCreator/MilitaryCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/militaryCreator/MilitaryCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/militaryCreator/SpecialForcesCreator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/creators/militaryCreator/SpecialForcesCreator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/exceptions/InteractionError.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/exceptions/InteractionError.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/exceptions/TypeError.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/exceptions/TypeError.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes/Champaign.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes/Champaign.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes/Fire.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes/Fire.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes/Landscape.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes/Landscape.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes/Mountains.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/landscapes/Mountains.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/loggers/AbstractLogger.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/loggers/AbstractLogger.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/loggers/ComplexLogger.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/loggers/ComplexLogger.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/loggers/SimpleLogger.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/loggers/SimpleLogger.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/mediators/BaseMediator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/mediators/Mediator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/mediators/Mediator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/FireExtinguisher.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/FireExtinguisher.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/NeutralObject.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/NeutralObject.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/Serum.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/Serum.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/SuperNeutralObject.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/SuperNeutralObject.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/Sword.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/neutralObject/Sword.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/parameters/Attack.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/parameters/Attack.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/parameters/HealthPoints.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/parameters/HealthPoints.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/proxy/ProxyBase.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/proxy/ProxyBase.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/proxy/ProxyBoardfield.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/proxy/ProxyBoardfield.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/rules/EasyRule.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/rules/EasyRule.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/rules/HardRule.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/rules/HardRule.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/rules/Rule.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/rules/Rule.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/serialization/File.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/serialization/File.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/serialization/Originator.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/serialization/Originator.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/serialization/Save.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/serialization/Save.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/tests/catch.hpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/tests/test.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/Unit.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/Unit.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/civilians/Civilians.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/civilians/Civilians.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/civilians/Doctor.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/civilians/Doctor.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/civilians/Engineer.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/civilians/Engineer.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/government/Ambassador.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/government/Ambassador.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/government/Government.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/government/Government.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/government/Ministry.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/government/Ministry.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/military/Airborne.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/military/Airborne.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/military/Military.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/military/Military.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/military/SpecialForces.cpp">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/units/military/SpecialForces.h">
+			<Option target="lab2"/>
+		</Unit>
+		<Unit filename="O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

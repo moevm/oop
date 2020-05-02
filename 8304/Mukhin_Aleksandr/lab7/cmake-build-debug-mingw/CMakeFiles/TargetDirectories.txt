@@ -1,0 +1,3 @@
+O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/CMakeFiles/lab2.dir
+O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/CMakeFiles/edit_cache.dir
+O:/ELTECH/OOP/oop/8304/Mukhin_Aleksandr/lab7/cmake-build-debug-mingw/CMakeFiles/rebuild_cache.dir
