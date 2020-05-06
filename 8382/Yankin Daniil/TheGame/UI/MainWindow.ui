@@ -20,18 +20,18 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pageMenu">
        <widget class="QFrame" name="frameMenu">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>60</y>
+          <x>720</x>
+          <y>180</y>
           <width>381</width>
           <height>371</height>
          </rect>
@@ -60,14 +60,14 @@
           </font>
          </property>
          <property name="text">
-          <string>Выйти</string>
+          <string>Exit</string>
          </property>
         </widget>
         <widget class="QPushButton" name="buttonEditor">
          <property name="geometry">
           <rect>
            <x>80</x>
-           <y>210</y>
+           <y>70</y>
            <width>211</width>
            <height>41</height>
           </rect>
@@ -78,31 +78,72 @@
           </font>
          </property>
          <property name="text">
-          <string>Карта</string>
+          <string>Map</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="loggingButton">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>140</y>
+           <width>211</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Logging</string>
          </property>
         </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="pageEditor">
-       <widget class="QGraphicsView" name="graphicsView">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>1521</width>
-          <height>911</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="resizeAnchor">
-         <enum>QGraphicsView::NoAnchor</enum>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="ModifiedView" name="graphicsView">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="mouseTracking">
+           <bool>false</bool>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="interactive">
+           <bool>true</bool>
+          </property>
+          <property name="renderHints">
+           <set>QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing</set>
+          </property>
+          <property name="dragMode">
+           <enum>QGraphicsView::ScrollHandDrag</enum>
+          </property>
+          <property name="transformationAnchor">
+           <enum>QGraphicsView::AnchorUnderMouse</enum>
+          </property>
+          <property name="resizeAnchor">
+           <enum>QGraphicsView::AnchorUnderMouse</enum>
+          </property>
+          <property name="viewportUpdateMode">
+           <enum>QGraphicsView::SmartViewportUpdate</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -129,6 +170,13 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>ModifiedView</class>
+   <extends>QGraphicsView</extends>
+   <header>UI/ModifiedView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

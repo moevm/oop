@@ -22,6 +22,7 @@ class ModifiedScene : public QGraphicsScene
 {
 public:
     ModifiedScene(QWidget *parent = nullptr);
+    ~ModifiedScene();
 
     void showAttributes(Object* object);
     void hideAttributes();
@@ -32,9 +33,7 @@ public:
     void showTurn();
     void hideTurn();
 
-private slots:
-    void wheelEvent(QGraphicsSceneWheelEvent *event);
-    void keyPressEvent(QKeyEvent *event);
+    void updateInterface();
 
 private:
     AttributeWidget* attributeWidget;

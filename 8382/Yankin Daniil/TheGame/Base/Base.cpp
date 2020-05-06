@@ -7,17 +7,23 @@
 Base::Base(Point point, Player* player) : point(point), player(player), health(Health(250, 250)),
     strength(Strength(30, 0)), armor(Armor(40)), maxUnitCount(4) {
     player->addBase(this);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
 }
 
 Base::~Base() {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
     player->removeBase(this);
 
     Game& game = Game::getInstance();
-    for (auto iter = unitSet.begin(); iter != unitSet.end(); iter++) {
-        game.objectWasDestructed(static_cast <Object*> (*iter));
-        delete *iter;
+    for (auto unit = unitSet.begin(); unit != unitSet.end(); unit = unitSet.begin()) {
+        game.objectWasDestructed(static_cast <Object*> (*unit));
+        delete *unit;
     }
     game.objectWasDestructed(static_cast <Object*> (this));
+
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
 }
 
 
@@ -83,6 +89,9 @@ bool Base::takeDamage(uint16_t damage) {
 void Base::produceUnit(uint8_t unitType) {
     if (!Game::getInstance().getGameMediator().baseProductionAccess(this))
         return;
+
+    std::vector<int> logParameters = {point.getX(), point.getY(), getPlayer()->getColor(), unitType};
+    Game::getInstance().getLogAdapter().log(LOG_PRODUCE, logParameters);
 
     UnitFactory factory;
     Unit* unit = factory.produce(unitType, point, this);

@@ -36,8 +36,16 @@ UnitGroup::UnitGroup(std::vector <Unit*> details) : maxGroupSize(4) {
 }
 
 UnitGroup::~UnitGroup() {
-    base->removeUnit(this);
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor()};
+
     Game::getInstance().objectWasDestructed(static_cast <Object*> (this));
+    for (auto unit = unitSet.begin(); unit != unitSet.end(); unit = unitSet.begin()) {
+        delete *unit;
+        unitSet.erase(unit);
+    }
+    base->removeUnit(this);
+
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_DESTRUCTED, logParameters);
 }
 
 
@@ -162,17 +170,23 @@ bool UnitGroup::takeDamage(uint16_t damage) {
     damage /= unitSet.size();
     std::vector <Unit*> diedUnits;
 
+    uint16_t initHealth = getHealth();
+
     for (auto unit = unitSet.begin(); unit != unitSet.end(); unit++) {
         bool alive = (*unit)->takeDamage(damage);
         if (!alive)
             diedUnits.push_back(*unit);
     }
 
-    for (uint8_t i = 0; i < diedUnits.size(); i++) {
+    uint16_t takenDamage = initHealth - getHealth();
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(), takenDamage};
+    Game::getInstance().getLogAdapter().log(LOG_TAKE_DAMAGE, logParameters);
+
+    for (uint8_t i = 0; i < diedUnits.size() && unitSet.size() > 1; i++) {
         unitSet.erase(diedUnits[i]);
     }
 
-    if (unitSet.size() == 0) {
+    if (unitSet.size() == 1 && getHealth() == 0) {
         delete this;
         return false;
     }
@@ -245,26 +259,42 @@ uint8_t UnitGroup::getGroupSize() {
 
 
 void UnitGroup::smallHeal(uint16_t healSize) {
+    int initHealth = getHealth();
     for (auto unit = unitSet.begin(); unit != unitSet.end(); unit++)
         (*unit)->smallHeal(healSize);
+
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(), getHealth() - initHealth};
+    Game::getInstance().getLogAdapter().log(LOG_NEUT_SMALL_HEAL, logParameters);
 }
 
 void UnitGroup::fullHeal() {
     for (auto unit = unitSet.begin(); unit != unitSet.end(); unit++)
         (*unit)->fullHeal();
+
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_NEUT_FULL_HEAL, logParameters);
 }
 
 void UnitGroup::attackModification(int16_t modSize) {
     for (auto unit = unitSet.begin(); unit != unitSet.end(); unit++)
         (*unit)->attackModification(modSize);
+
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(), modSize};
+    Game::getInstance().getLogAdapter().log(LOG_NEUT_ATT_MOD, logParameters);
 }
 
 void UnitGroup::armorModification(int16_t modSize) {
     for (auto unit = unitSet.begin(); unit != unitSet.end(); unit++)
         (*unit)->armorModification(modSize);
+
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(), modSize};
+    Game::getInstance().getLogAdapter().log(LOG_NEUT_ARM_MOD, logParameters);
 }
 
 void UnitGroup::renewMovePoints() {
     for (auto unit = unitSet.begin(); unit != unitSet.end(); unit++)
         (*unit)->renewMovePoints();
+
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_NEUT_REN_MOV, logParameters);
 }

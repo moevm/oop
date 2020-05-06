@@ -6,8 +6,10 @@
 Player::Player(uint8_t color) : color(color) {}
 
 Player::~Player() {
-    for (auto base = baseSet.begin(); base != baseSet.end(); base++) {
-        delete (*base);
+    for (auto base = baseSet.begin(); !baseSet.empty(); base = baseSet.begin()) {
+        auto temp = *base;
+        baseSet.erase(base);
+        delete temp;
     }
 }
 

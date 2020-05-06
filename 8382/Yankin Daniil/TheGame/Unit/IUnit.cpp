@@ -33,6 +33,9 @@ void IUnit::unite(IUnit* passive) {
     if (!Game::getInstance().getGameMediator().unitUnificationAccess(this, passive))
         return;
 
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), passive->getPoint().getX(), passive->getPoint().getY(),
+                                          getPlayer()->getColor()};
+
     if (typeid (*this) != typeid (UnitGroup) && typeid (*passive) != typeid (UnitGroup)) {
         setMovePoints(getMovePoints() - Game::getInstance().getGameMediator().getLandscape(getPoint())->getMovementCost());
 
@@ -41,6 +44,8 @@ void IUnit::unite(IUnit* passive) {
         details.push_back(static_cast <Unit*> (passive));
 
         new UnitGroup(details);
+
+        Game::getInstance().getLogAdapter().log(LOG_UNITE, logParameters);
     }
 
     else if (typeid (*this) == typeid (UnitGroup) && typeid (*passive) != typeid (UnitGroup)) {
@@ -72,4 +77,6 @@ void IUnit::unite(IUnit* passive) {
 
         activeGroup->join(passiveGroup, true);
     }
+
+    Game::getInstance().getLogAdapter().log(LOG_UNITE, logParameters);
 }

@@ -17,6 +17,7 @@ class Swordsman : public Melee
 {
 public:
     Swordsman(Point point, Base* base);
+    ~Swordsman();
     uint8_t getObjectType() override;
     double typeAttackModifier(Object* enemy) override;
 };
@@ -26,6 +27,7 @@ class Pikeman : public Melee
 {
 public:
     Pikeman(Point point, Base* base);
+    ~Pikeman();
     uint8_t getObjectType() override;
     double typeAttackModifier(Object* enemy) override;
 };
@@ -35,6 +37,7 @@ class ShockCavalry : public Melee
 {
 public:
     ShockCavalry(Point point, Base* base);
+    ~ShockCavalry();
     uint8_t getObjectType() override;
     double typeAttackModifier(Object* enemy) override;
 };

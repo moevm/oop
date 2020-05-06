@@ -23,6 +23,8 @@ GameCommand::GameCommand(uint8_t command) : command(command) {}
 
 void GameCommand::execute() {
     if (command == FACADE_TURN) {
+        std::vector<int> logParameters;
+        Game::getInstance().getLogAdapter().log(LOG_USER_TURN, logParameters);
         Game::getInstance().turn();
     }
 }

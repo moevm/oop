@@ -12,6 +12,7 @@ class VisualItem : public QObject, public QGraphicsPixmapItem
 
 public:
     VisualItem(Object *object, QGraphicsItem *parent = 0);
+    ~VisualItem() = default;
 
 private slots:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;

@@ -81,9 +81,17 @@ uint16_t Unit::giveDamage(Base* enemy) {
 }
 
 bool Unit::takeDamage(uint16_t damage) {
+    uint16_t initHealth = getHealth();
     damage = std::max(2, static_cast<int>(damage - armor.getArmor() * 0.2));
 
     health.setHealth(std::max(health.getHealth() - damage, 0));
+
+    if (!isGroup) {
+        uint16_t takenDamage = initHealth - health.getHealth();
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor(), takenDamage};
+        Game::getInstance().getLogAdapter().log(LOG_TAKE_DAMAGE, logParameters);
+    }
+
     if (health.getHealth() == 0) {
         if (!isGroup) {
             delete this;
@@ -100,29 +108,59 @@ bool Unit::takeDamage(uint16_t damage) {
 
 
 void Unit::smallHeal(uint16_t healSize) {
+    int initHealth = health.getHealth();
     health.setHealth(std::min(static_cast <uint16_t> (health.getHealth() + healSize), health.getMaxHealth()));
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor(), health.getHealth() - initHealth};
+        Game::getInstance().getLogAdapter().log(LOG_NEUT_SMALL_HEAL, logParameters);
+    }
 }
 
 void Unit::fullHeal() {
     health.setHealth(health.getMaxHealth());
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_NEUT_FULL_HEAL, logParameters);
+    }
 }
 
 void Unit::attackModification(int16_t modSize) {
     if (modSize < 0) {
         strength.setStrength(std::max(strength.getStrength() + modSize, 0));
+        if (!isGroup) {
+            std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor(), modSize};
+            Game::getInstance().getLogAdapter().log(LOG_NEUT_ATT_MOD, logParameters);
+        }
         return;
     }
     strength.setStrength(strength.getStrength() + modSize);
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor(), modSize};
+        Game::getInstance().getLogAdapter().log(LOG_NEUT_ATT_MOD, logParameters);
+    }
 }
 
 void Unit::armorModification(int16_t modSize) {
     if (modSize < 0) {
         armor.setArmor(std::max(armor.getArmor() + modSize, 0));
+        if (!isGroup) {
+            std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor(), modSize};
+            Game::getInstance().getLogAdapter().log(LOG_NEUT_ARM_MOD, logParameters);
+        }
         return;
     }
     armor.setArmor(armor.getArmor() + modSize);
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor(), modSize};
+        Game::getInstance().getLogAdapter().log(LOG_NEUT_ARM_MOD, logParameters);
+    }
 }
 
 void Unit::renewMovePoints() {
     movePoints.setMovePoints(movePoints.getMaxMovePoints());
+
+    if (!isGroup) {
+        std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+        Game::getInstance().getLogAdapter().log(LOG_NEUT_REN_MOV, logParameters);
+    }
 }

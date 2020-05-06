@@ -7,7 +7,7 @@ class Object
 {
 public:
     Object() = default;
-    ~Object() = default;
+    virtual ~Object() = default;
 
     virtual uint8_t getGroupType() = 0;  // Получение типа группы объекта (Unit, Land, etc.)
     virtual uint8_t getObjectType() = 0;  // Получение конкретного типа объекта
@@ -16,6 +16,8 @@ public:
 
 
 enum Objects {
+    OBJECT,
+
     LAND,
     LAND_WATER,
     LAND_MOUNTAIN,
@@ -36,7 +38,5 @@ enum Objects {
 
     BASE,
 
-    NEUT_OBJECT,
-
-    OBJECT
+    NEUT_OBJECT
 };

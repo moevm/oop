@@ -24,7 +24,7 @@ class GameFacade
 public:
     ~GameFacade();
 
-    void setScene(ModifiedScene* scene);
+    void setScene(std::shared_ptr<ModifiedScene> scene);
     void userCommand(uint8_t uiCommand, Object* object, uint8_t parameter = 0);
 
     static bool cellMovementComparator(std::pair <Cell*, std::pair<Cell*, uint8_t>>& one, std::pair <Cell*, std::pair<Cell*, uint8_t>>& two);
@@ -52,7 +52,7 @@ private:
 
 
     Game* game;
-    ModifiedScene* scene;
+    std::shared_ptr<ModifiedScene> scene;
 
     Object* selectedObject;
     std::map <Cell*, std::pair<Cell*, uint8_t>> cellMovementMap;

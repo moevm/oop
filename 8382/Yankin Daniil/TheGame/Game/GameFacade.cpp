@@ -23,7 +23,7 @@ GameFacade::~GameFacade() {
 
 
 
-void GameFacade::setScene(ModifiedScene* scene) {
+void GameFacade::setScene(std::shared_ptr<ModifiedScene> scene) {
     if (game->field != nullptr && scene != nullptr) {
         this->scene = scene;
     }
@@ -201,6 +201,8 @@ void GameFacade::userCommand(uint8_t uiCommand, Object* object, uint8_t paramete
         scene->hideBase();
 
         if (object->getGroupType() == BASE || object->getGroupType() == UNIT) {
+            std::vector<int> logParameters = {object->getObjectType(), object->getPoint().getX(), object->getPoint().getY()};
+
             scene->hideTurn();
             scene->hideBase();
 
@@ -209,11 +211,21 @@ void GameFacade::userCommand(uint8_t uiCommand, Object* object, uint8_t paramete
 
             if (object->getGroupType() == BASE) {
                 scene->showBase(static_cast <Base*> (object));
+
+                logParameters.push_back((static_cast <Base*> (object))->getPlayer()->getColor());
             }
 
             else if (object->getGroupType() == UNIT) {
                 setCellMovementMap(static_cast <Unit*> (object));
+
+                logParameters.push_back((static_cast <IUnit*> (object))->getPlayer()->getColor());
             }
+
+            Game::getInstance().getLogAdapter().log(LOG_USER_SELECT_OBJECT, logParameters);
+        }
+        else {
+            std::vector<int> logParameters;
+            Game::getInstance().getLogAdapter().log(LOG_USER_UNSELECT_OBJECT, logParameters);
         }
     }
 
@@ -228,6 +240,10 @@ void GameFacade::userCommand(uint8_t uiCommand, Object* object, uint8_t paramete
     // Создание юнитов базой
     else if (uiCommand == UI_PRODUCE) {
         Base* base = static_cast <Base*> (selectedObject);
+
+        std::vector<int> logParameters = {base->getPoint().getX(), base->getPoint().getY(), base->getPlayer()->getColor(), parameter};
+        Game::getInstance().getLogAdapter().log(LOG_USER_PRODUCE, logParameters);
+
         BaseProduceCommand command(base, parameter);
         command.execute();
         scene->showAttributes(selectedObject);
@@ -366,14 +382,12 @@ void GameFacade::unitWasDestructed(IUnit* unit) {
     if (scene == nullptr)
         return;
 
-    if (unit == selectedObject) {
+    if (unit == selectedObject && game->gameMediator != nullptr) {
         scene->hideAttributes();
         selectedObject = nullptr;
     }
 
-    VisualItem* unitItem = visualUnitMap[unit];
-    delete unitItem;
-
+    delete visualUnitMap[unit];
     visualUnitMap.erase(unit);
 }
 
@@ -381,7 +395,7 @@ void GameFacade::baseWasDestructed(Base* base) {
     if (scene == nullptr)
         return;
 
-    if (base == selectedObject) {
+    if (base == selectedObject && game->gameMediator != nullptr) {
         scene->hideAttributes();
         scene->hideBase();
         selectedObject = nullptr;

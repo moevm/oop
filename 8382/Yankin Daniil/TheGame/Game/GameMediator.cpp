@@ -27,10 +27,14 @@ bool GameMediator::unitMove(IUnit* unit, Point point) {
     if (unit->getMovePoints() < land->getMovementCost())
         return false;
 
+    Point oldPoint = unit->getPoint();
     game->field->removeUnit(unit->getPoint());
     game->field->setUnit(point, unit);
-
     game->getGameFacade().setVisualUnitPos(unit);
+
+    std::vector<int> logParameters = {unit->getObjectType(), oldPoint.getX(), oldPoint.getY(), unit->getPlayer()->getColor(),
+                                          point.getX(), point.getY()};
+    game->logAdapter->log(LOG_MOVE, logParameters);
 
     return true;
 }
@@ -68,14 +72,26 @@ void GameMediator::unitAttack(IUnit* attacker, IUnit* defender) {
         uint16_t attackerDamage = attacker->giveDamage(defender);
         uint16_t defenderDamage = defender->giveDamage(attacker);
 
+        std::vector<int> attLogParameters = {attacker->getObjectType(), attacker->getPoint().getX(), attacker->getPoint().getY(), attacker->getPlayer()->getColor(),
+                                               defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               attackerDamage};
+        std::vector<int> defLogParameters = {defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               attacker->getObjectType(), attacker->getPoint().getX(), attacker->getPoint().getY(), attacker->getPlayer()->getColor(),
+                                               defenderDamage};
+
+        game->logAdapter->log(LOG_ATTACK, attLogParameters);
         bool defenderALive = defender->takeDamage(attackerDamage);
+
+        game->logAdapter->log(LOG_DEFEND, defLogParameters);
         bool attackerALive = attacker->takeDamage(defenderDamage);
 
-        if (!defenderALive && attackerALive)
+        if (!defenderALive && attackerALive) {
             attacker->move(defenderPoint);
+        }
 
-        if (attackerALive)
+        if (attackerALive) {
             game->getGameFacade().setVisualUnitPos(attacker);
+        }
 
         return;
     }
@@ -84,8 +100,13 @@ void GameMediator::unitAttack(IUnit* attacker, IUnit* defender) {
             return;
 
         uint16_t attackerDamage = attacker->giveDamage(defender);
-        defender->takeDamage(attackerDamage);
 
+        std::vector<int> logParameters = {attacker->getObjectType(), attacker->getPoint().getX(), attacker->getPoint().getY(), attacker->getPlayer()->getColor(),
+                                               defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               attackerDamage};
+        game->logAdapter->log(LOG_ATTACK, logParameters);
+
+        defender->takeDamage(attackerDamage);
         return;
     }
 }
@@ -103,14 +124,26 @@ void GameMediator::unitAttack(IUnit* attacker, Base* defender) {
         uint16_t attackerDamage = attacker->giveDamage(defender);
         uint16_t defenderDamage = defender->giveDamage(attacker);
 
+        std::vector<int> attLogParameters = {attacker->getObjectType(), attacker->getPoint().getX(), attacker->getPoint().getY(), attacker->getPlayer()->getColor(),
+                                               defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               attackerDamage};
+        std::vector<int> defLogParameters = {defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               attacker->getObjectType(), attacker->getPoint().getX(), attacker->getPoint().getY(), attacker->getPlayer()->getColor(),
+                                               defenderDamage};
+
+        game->logAdapter->log(LOG_ATTACK, attLogParameters);
         bool defenderALive = defender->takeDamage(attackerDamage);
+
+        game->logAdapter->log(LOG_DEFEND, defLogParameters);
         bool attackerALive = attacker->takeDamage(defenderDamage);
 
-        if (!defenderALive && attackerALive)
+        if (!defenderALive && attackerALive) {
             attacker->move(defenderPoint);
+        }
 
-        if (attackerALive)
+        if (attackerALive) {
             game->getGameFacade().setVisualUnitPos(attacker);
+        }
 
         return;
     }
@@ -119,6 +152,12 @@ void GameMediator::unitAttack(IUnit* attacker, Base* defender) {
             return;
 
         uint16_t attackerDamage = attacker->giveDamage(defender);
+
+        std::vector<int> logParameters = {attacker->getObjectType(), attacker->getPoint().getX(), attacker->getPoint().getY(), attacker->getPlayer()->getColor(),
+                                          defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                          attackerDamage};
+        game->logAdapter->log(LOG_ATTACK, logParameters);
+
         defender->takeDamage(attackerDamage);
 
         return;

@@ -11,6 +11,8 @@ class NeutralPlayer
     friend class GameFacade;
 
 public:
+    ~NeutralPlayer();
+
     void addNeutralObject(NeutralContext* neutralObject);
     void removeNeutralObject(NeutralContext* neutralObject);
 
