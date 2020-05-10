@@ -1,19 +1,19 @@
 #pragma once
 
-#include "LoggerProxy.h"
 #include <vector>
+#include "LoggerProxy.h"
 
 
 class LogAdapter
 {
 public:
-    LogAdapter(uint8_t loggingDirection, uint8_t loggingMode);
+    LogAdapter(uint16_t loggingDirection, uint16_t loggingMode);
     ~LogAdapter();
 
-    void setLoggingMode(uint8_t loggingMode);
-    void setLoggingDirection(uint8_t loggingDirection);
+    void setLoggingMode(uint16_t loggingMode);
+    void setLoggingDirection(uint16_t loggingDirection);
 
-    void log(uint8_t logType, std::vector<int>& parameters);
+    void log(uint16_t logType, std::vector<int>& parameters);
 
 private:
     std::string gameCreatedMessage(std::vector<int>& parameters);
@@ -50,7 +50,7 @@ private:
     std::string userProduceMessage(std::vector<int>& parameters);
 
     LoggerProxy* logger;
-    uint8_t loggingMode;
+    uint16_t loggingMode;
 };
 
 

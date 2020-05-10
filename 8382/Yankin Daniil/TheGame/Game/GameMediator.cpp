@@ -1,10 +1,12 @@
+#include <math.h>
 #include "GameMediator.h"
 #include "Game.h"
 #include "Landscape/LandscapeHeader.h"
+#include "Player/Player.h"
+#include "Player/NeutralPlayer.h"
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
-#include <Neutrals/NeutralContext.h>
-#include <math.h>
+#include "Neutrals/NeutralContext.h"
 
 
 GameMediator::GameMediator(Game* game) {
@@ -45,7 +47,7 @@ bool GameMediator::unitNeutralInterraction(IUnit* unit) {
         return true;
 
     NeutralContext* context = game->field->getContext(point);
-    uint8_t type = unit->getObjectType();
+    uint16_t type = unit->getObjectType();
     if (type == UNIT_SWORDSMAN || type == UNIT_PIKEMAN)
         context->setStrategy(new HealOffice);
     else if (type == UNIT_SCOUT_CAVALRY || type == UNIT_SCOUT_CAVALRY)

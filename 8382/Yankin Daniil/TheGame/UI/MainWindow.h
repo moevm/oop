@@ -9,6 +9,7 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 #include <QSettings>
+#include <QFileDialog>
 #include "LoggingWindow.h"
 
 #include "AttributeWidget.h"
@@ -30,17 +31,20 @@ public:
 
 private slots:
     void keyPressEvent(QKeyEvent *event);
-    void on_buttonEditor_clicked();
-    void on_buttonClose_clicked();
-    void on_loggingButton_clicked();
+
+    void on_buttonMap_clicked();
+     void on_buttonSave_clicked();
+    void on_buttonLoad_clicked();
+    void on_buttonLogging_clicked();
+    void on_buttonExit_clicked();
 
 private:
     Ui::MainWindow* ui;
     std::shared_ptr<ModifiedScene> gameScene;
 
     LoggingWindow* loggingWindow;
-    uint8_t loggingDirection;
-    uint8_t loggingMode;
+    uint16_t loggingDirection;
+    uint16_t loggingMode;
 
     QSettings* settings;
 };

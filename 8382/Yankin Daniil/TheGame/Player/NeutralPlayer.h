@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <set>
+#include "Game/Game.h"
 
 class NeutralContext;
 
@@ -9,6 +10,7 @@ class NeutralContext;
 class NeutralPlayer
 {
     friend class GameFacade;
+    friend class Game::Saver;
 
 public:
     ~NeutralPlayer();
@@ -19,5 +21,5 @@ public:
 private:
     std::set <NeutralContext*>* getNeutralObjectSet();
 
-    std::set <NeutralContext*> neutralObjectSet;
+    std::set <NeutralContext*> neutralSet;
 };

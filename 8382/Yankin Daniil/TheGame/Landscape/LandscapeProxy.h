@@ -9,10 +9,10 @@ public:
     LandscapeProxy(Landscape* landscape);
     ~LandscapeProxy();
 
-    uint8_t getObjectType() override;
+    uint16_t getObjectType() override;
     Point getPoint() override;
     bool movementAccess() override;
-    int8_t getMovementCost() override;
+    int16_t getMovementCost() override;
 
 private:
     void log();

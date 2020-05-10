@@ -11,13 +11,13 @@ class Base;
 class UiCommand
 {
 public:
-    UiCommand(uint8_t command, Object* object = nullptr, uint8_t parameter = 0);
+    UiCommand(uint16_t command, Object* object = nullptr, uint16_t parameter = 0);
     void execute();
 
 private:
-    uint8_t command;
+    uint16_t command;
     Object* object;
-    uint8_t parameter;
+    uint16_t parameter;
 };
 
 
@@ -25,11 +25,11 @@ private:
 class GameCommand
 {
 public:
-    GameCommand(uint8_t command);
+    GameCommand(uint16_t command);
     void execute();
 
 private:
-    uint8_t command;
+    uint16_t command;
 };
 
 
@@ -50,12 +50,12 @@ private:
 class BaseProduceCommand
 {
 public:
-    BaseProduceCommand(Base* base, uint8_t unitType);
+    BaseProduceCommand(Base* base, uint16_t unitType);
     void execute();
 
 private:
     Base* base;
-    uint8_t unitType;
+    uint16_t unitType;
 };
 
 

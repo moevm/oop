@@ -1,5 +1,6 @@
 #include "UnitLandscapeHandler.h"
 #include "Landscape/ILandscape.h"
+#include "Player/Player.h"
 #include "Unit/UnitHeader.h"
 #include "RouteHandler.h"
 

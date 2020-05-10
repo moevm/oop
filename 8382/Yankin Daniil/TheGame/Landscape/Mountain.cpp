@@ -6,9 +6,9 @@ Mountain::Mountain(Point point) : Landscape(point) {
 }
 
 bool Mountain::movementAccess() {
-    return true;
+    return false;
 }
 
-uint8_t Mountain::getObjectType() {
+uint16_t Mountain::getObjectType() {
     return LAND_MOUNTAIN;
 }
