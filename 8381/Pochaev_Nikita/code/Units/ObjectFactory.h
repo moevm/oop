@@ -1,4 +1,4 @@
-#ifndef OOP_OBJECTFACTORY_H
+﻿#ifndef OOP_OBJECTFACTORY_H
 #define OOP_OBJECTFACTORY_H
 
 #include <map>
@@ -71,9 +71,9 @@ namespace cds
     class ObjectFactoryIgnoreErrorPolicy
     {
     public:
-        std::shared_ptr<Base> onCreateFailed(const Type& type) const { return 0; }
-        void onRemoveFailed(const Type& type) { }
-        void onDuplicateRegistered(const Type& type) { }
+        std::shared_ptr<Base> onCreateFailed([[maybe_unused]] const Type& type) const { return 0; }
+        void onRemoveFailed([[maybe_unused]] const Type& type) { }
+        void onDuplicateRegistered([[maybe_unused]] const Type& type) { }
     };
 
     template <class Base, class Type>

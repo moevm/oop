@@ -16,18 +16,18 @@ public:
 
     void setLogger(std::shared_ptr<ILogger> logger_) override;
     void setOutputFormat(eLOGGER_OUTPUT_FORMAT format_) override;
-    void sendLogInf(eLOG_SOURCE source, eLOG_EVENT event, std::vector<size_t> param = {}) override;
+    void sendLogInf(eLOG_SOURCE source, eLOG_EVENT event, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText) override;
 
 private:
     eLOGGER_OUTPUT_FORMAT format{STANDART};
     std::shared_ptr<ILogger> logger{};
 
-    std::string generateGameCreationLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param) override;
-    std::string generateUnitAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param) override;
-    std::string generateBaseAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param) override;
-    std::string generateUnitAttackLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param) override;
-    std::string generateUnitMoveLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param) override;
-    std::string generateInfAboutCellLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param) override;
+    std::string generateGameCreationLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText = {}) override;
+    std::string generateUnitAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText = {}) override;
+    std::string generateBaseAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText = {}) override;
+    std::string generateUnitAttackLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText = {}) override;
+    std::string generateUnitMoveLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText = {}) override;
+    std::string generateInfAboutCellLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText = {}) override;
 };
 
 #endif // LOGADAPTER_H

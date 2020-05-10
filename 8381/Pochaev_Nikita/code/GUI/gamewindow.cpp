@@ -95,6 +95,12 @@ void GameWindow::setupGameWindow()
     // set main widget of window
     this->setStyleSheet("QWidget { background: white; }");
 
+    // Set up logs
+    // blocl enter to log window
+    logs->setReadOnly(true);
+    logs->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    logs->viewport()->setCursor(Qt::ArrowCursor);
+
     // LAYOUTS
 
     // unit
@@ -170,9 +176,6 @@ void GameWindow::setupGameWindow()
 
 void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_)
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: was created MainWindow with field: size - " << gameFieldSize_ << " ; players count - " << playersCount_ << endl;
-#endif
     gameFieldSize = gameFieldSize_;
     playersCount = playersCount_;
 
@@ -194,14 +197,15 @@ void GameWindow::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT fo
 
 void GameWindow::on_addBaseButton_clicked()
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: request for " << (baseTypeComboBox->currentIndex() == 0 ? "Hell base" : "Human base") << " on position: (" << xCoordBasePos->value() << ";" << yCoordBasePos->value() << ") with name: " + baseNameText->text() << endl;
-#endif
     if(baseNameText->text().isEmpty())
     {
         QMessageBox::warning(this, tr("Empty base name"), tr("Base name can't be empty.\nPlease enter it."), QMessageBox::Ok);
+        return;
     }
-    unitSourceBaseComboBox->addItem(baseNameText->text());
+    if(unitSourceBaseComboBox->findText(baseNameText->text()) == -1)
+    {
+        unitSourceBaseComboBox->addItem(baseNameText->text());
+    }
     emit addBaseRequest(baseTypeComboBox->currentIndex() == 0 ? HELL_BASE : HUMAN_BASE, xCoordBasePos->value(), yCoordBasePos->value(), baseNameText->text());
 }
 
@@ -238,33 +242,21 @@ void GameWindow::on_addUnitButton_clicked()
             break;
     }
 
-#ifdef QT_DEBUG
-    qDebug() << "Debug: request for unit of type: " << unitTypeStr << (" type with source base: " + unitSourceBaseComboBox->currentText()) << endl;
-#endif
     emit addUnitRequest(unitType, unitSourceBaseComboBox->currentText());
 }
 
 void GameWindow::on_moveUnitButton_clicked()
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug:: request for unit move from: (" << xCoordUnitSourceAction->value() << ";" << yCoordUnitSourceAction->value() << ") to (" << xCoordUnitDestAction->value() << ";" << yCoordUnitDestAction->value() << ")" << endl;
-#endif
     emit moveUnitRequest(xCoordUnitSourceAction->value(), yCoordUnitSourceAction->value(), xCoordUnitDestAction->value(), yCoordUnitDestAction->value());
 }
 
 void GameWindow::on_attackUnitButton_clicked()
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug:: request for unit attack from: (" << xCoordUnitSourceAction->value() << ";" << yCoordUnitSourceAction->value() << ") to (" << xCoordUnitDestAction->value() << ";" << yCoordUnitDestAction->value() << ")" << endl;
-#endif
     emit moveUnitRequest(xCoordUnitSourceAction->value(), yCoordUnitSourceAction->value(), xCoordUnitDestAction->value(), yCoordUnitDestAction->value());
 }
 
 void GameWindow::on_cellInfromationButton_clicked()
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug:: request infrormation about " << cellInfromationWhoComboBox->currentText() << " on (" << xCoordLogPos->value() << ";" << yCoordLogPos->value() << ") coord" << endl;
-#endif
     eRequest infRequest;
     switch(cellInfromationWhoComboBox->currentIndex())
     {
@@ -290,5 +282,28 @@ void GameWindow::on_cellInfromationButton_clicked()
             infRequest = ITEM_INFO;
             break;
     }
+
     emit cellUnfromationRequest(xCoordLogPos->value(), yCoordLogPos->value(), infRequest);
+}
+
+void GameWindow::handleStatusReport(eREPORT_LEVEL level,
+                                    const QString& tag,
+                                    const QString& report)
+{
+    switch(level) {
+        case eREPORT_LEVEL::INFO:
+            logs->setTextColor(Qt::blue);
+            break;
+        case eREPORT_LEVEL::WARNING:
+            logs->setTextColor(QColor::fromRgb(255, 165, 0)); // Orange
+            break;
+        case eREPORT_LEVEL::ERROR:
+            logs->setTextColor(Qt::red);
+            break;
+    }
+
+    logs->insertPlainText(tag + "\t");
+    logs->setTextColor(Qt::black); // set color back to black
+    logs->insertPlainText(report + "\r\n");
+    logs->ensureCursorVisible();
 }

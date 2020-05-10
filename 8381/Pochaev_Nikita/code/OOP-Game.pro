@@ -22,6 +22,7 @@ QMAKE_CXXFLAGS_WARN_OFF -= -Wunused-parameter
 QMAKE_CXXFLAGS += -lstdc++fs
 
 SOURCES += \
+    AuxiliaryFunctionality/Exceptions/fieldexception.cpp \
     AuxiliaryFunctionality/TextColoring.cpp \
     AuxiliaryFunctionality/UnitMediators.cpp \
     Bases/BaseMaster.cpp \
@@ -71,13 +72,14 @@ SOURCES += \
 HEADERS += \
     AuxiliaryFunctionality/Array2D.h \
     AuxiliaryFunctionality/EnumToString.h \
+    AuxiliaryFunctionality/Exceptions/baseexception.h \
+    AuxiliaryFunctionality/Exceptions/fieldexception.h \
     AuxiliaryFunctionality/GameFieldIterator.h \
     AuxiliaryFunctionality/TextColoring.h \
     AuxiliaryFunctionality/UnitMediators.h \
     AuxiliaryFunctionality/UnitObserver.h \
     AuxiliaryFunctionality/UnitSubject.h \
     AuxiliaryFunctionality/Vector.h \
-    AuxiliaryFunctionality/qtDebugSwitch.h \
     Bases/BaseBuilder.h \
     Bases/BaseMaster.h \
     Bases/GameBase.h \
@@ -109,6 +111,7 @@ HEADERS += \
     GameField/IGameField.h \
     InformationHeaders/commandPar.h \
     InformationHeaders/constPar.h \
+    InformationHeaders/guiPar.h \
     InformationHeaders/unitPar.h \
     Landscape/Champaign.h \
     Landscape/Forest.h \

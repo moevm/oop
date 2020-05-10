@@ -1,8 +1,6 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "AuxiliaryFunctionality/qtDebugSwitch.h"
-
 #include <QMainWindow>
 #include <QObject>
 #include <QDebug>
@@ -43,6 +41,9 @@ private:
     QLabel *logModeLabel;
     QComboBox *logModeComboBox;
     QCheckBox *logAdvancedModeCheckBox;
+    // save / load
+    QPushButton *saveGameButton;
+    QPushButton *loadGameButton;
 
     // GAME WINDOW
     GameWindow *gameWindow;

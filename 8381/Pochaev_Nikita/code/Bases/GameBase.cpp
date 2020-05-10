@@ -67,7 +67,7 @@ void GameBase::initUnitCount()
     unitCount->addUnitType(eUnitsType::CAVALRY, CAVALRY_MAX_QUANTITY);
 }
 
-void GameBase::updateAfterDeath(std::shared_ptr<Unit> corpse, size_t x, size_t y)
+void GameBase::updateAfterDeath(std::shared_ptr<Unit> corpse, [[maybe_unused]] size_t x, [[maybe_unused]] size_t y)
 {
     // Write information about corpses into account
     if(corpse->isComposite())

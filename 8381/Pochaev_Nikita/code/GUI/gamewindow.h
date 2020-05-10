@@ -1,8 +1,6 @@
 ﻿#ifndef GAMEWINDOW_H
 #define GAMEWINDOW_H
 
-#include "AuxiliaryFunctionality/qtDebugSwitch.h"
-
 #include <QObject>
 #include <QWidget>
 #include <QWindow>
@@ -19,9 +17,11 @@
 #include <QDebug>
 #include <QString>
 #include <QMessageBox>
+#include <QTextCursor>
 
 #include "InformationHeaders/commandPar.h"
 #include "InformationHeaders/unitPar.h"
+#include "InformationHeaders/guiPar.h"
 #include "Game/Logging/logfunctionality.h"
 
 class GameWindow : public QWidget
@@ -98,6 +98,16 @@ public slots:
     void on_moveUnitButton_clicked();
     void on_attackUnitButton_clicked();
     void on_cellInfromationButton_clicked();
+    /**
+     * @brief handleStatusReport
+     * Log on a user screen some info
+     * @param level
+     * @param tag
+     * @param report
+     */
+    void handleStatusReport(eREPORT_LEVEL level,
+                                        const QString& tag,
+                                        const QString& report);
 };
 
 #endif // GAMEWINDOW_H

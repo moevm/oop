@@ -10,16 +10,15 @@ MainWindow::MainWindow(QWidget *parent) :
     fieldSizeSpinBox(new QSpinBox),
     logModeLabel(new QLabel),
     logModeComboBox(new QComboBox),
-    logAdvancedModeCheckBox(new QCheckBox)
+    logAdvancedModeCheckBox(new QCheckBox),
+    saveGameButton(new QPushButton),
+    loadGameButton(new QPushButton)
 {
     setUpUI();
 }
 
 void MainWindow::setUpUI()
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: UI setup started" << endl;
-#endif
     // working zone - main widget
     QWidget *canvas = new QWidget;
     QVBoxLayout *layout = new QVBoxLayout;
@@ -38,6 +37,8 @@ void MainWindow::setUpUI()
 
     // set up buttons
     startNewGameButton->setText("Start new game");
+    saveGameButton->setText("Save");
+    loadGameButton->setText("Load");
 
     // set up labels
     playersCountLabel->setAlignment(Qt::AlignCenter);
@@ -66,7 +67,14 @@ void MainWindow::setUpUI()
     logModeLayout->addWidget(logModeLabel);
     logModeLayout->addWidget(logModeComboBox);
     QGridLayout *mainGameSetupLayout = new QGridLayout;
-    mainGameSetupLayout->addWidget(startNewGameButton, 0, 0, 1, 1, Qt::AlignCenter);
+    QHBoxLayout *savingButtonsLayout = new QHBoxLayout;
+    savingButtonsLayout->addWidget(saveGameButton);
+    savingButtonsLayout->addWidget(loadGameButton);
+    QVBoxLayout *buttonsLayout = new QVBoxLayout;
+    buttonsLayout->addWidget(startNewGameButton);
+    buttonsLayout->addLayout(savingButtonsLayout);
+
+    mainGameSetupLayout->addLayout(buttonsLayout, 0, 0, 1, 1, Qt::AlignCenter);
     mainGameSetupLayout->addLayout(playersCountLayout, 1, 0, 1, 1, Qt::AlignCenter);
     mainGameSetupLayout->addLayout(fieldSizeLayout, 2, 0, 2, 1, Qt::AlignCenter);
     mainGameSetupLayout->addLayout(logModeLayout, 4, 0, 4, 1, Qt::AlignCenter);
@@ -81,10 +89,6 @@ void MainWindow::setUpUI()
     connect(gameWindow, &GameWindow::gameWindowClosed, this, &MainWindow::on_gameWindow_closeEvent);
     connect(this, &MainWindow::startNewGameWindow, gameWindow, &GameWindow::startNewPlayingWindow);
     connect(this, &MainWindow::startLogging, gameWindow, &GameWindow::createLoggerRequest);
-
-#ifdef QT_DEBUG
-    qDebug() << "Debug: UI setup finished" << endl;
-#endif
 }
 
 void MainWindow::on_startNewGameButton_clicked()

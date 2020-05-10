@@ -17,6 +17,7 @@ TerminalLogger::TerminalLogger()
 TerminalLogger::~TerminalLogger()
 {
     std::cout << ANSIColor::coloredString("Logger stopped working", ANSIColor::FG_GREEN) << std::endl;
+    printProgWorkingTime();
 }
 
 eLOGGER_TYPE TerminalLogger::getType()
@@ -49,7 +50,7 @@ void TerminalLogger::printCurrTime()
 
 void TerminalLogger::printProgWorkingTime()
 {
-    std::cout << ANSIColor::coloredString(time->getProgWorkTime(), ANSIColor::FG_GREEN) << std::endl;
+    std::cout << ANSIColor::coloredString("Working time: " + time->getProgWorkTime() + " s", ANSIColor::FG_GREEN) << std::endl;
 }
 
 std::shared_ptr<Time>& TerminalLogger::getTime()
@@ -205,20 +206,10 @@ void ProxyLogger::printProgWorkingTime()
 
 std::shared_ptr<Time>& ProxyLogger::getTime()
 {
-    if(logger)
-    {
-        return logger->getTime();
-    }
+    return logger->getTime();
 }
 
 std::string ProxyLogger::getLogInf() const
 {
-    if(logger)
-    {
-        return logger->getLogInf();
-    }
-    else
-    {
-        return nullptr;
-    }
+    return logger->getLogInf();
 }

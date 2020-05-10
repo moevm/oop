@@ -63,11 +63,11 @@ void GameField::addUnit(const std::shared_ptr<Unit>& unit, size_t x, size_t y)
 {
     if(unitsCount + unit->getUnitQuantity() > maxUnitsCount)
     {
-        throw std::length_error("Fields units limit reached");
+        throw SimpleFieldException("fields units limit reached");
     }
     else if(x > cellMatrix.getWidth() || y > cellMatrix.getHeight())
     {
-        throw std::out_of_range("Coords are not part of the field");
+        throw CoordsNotPartOfTheField(x, y, getWidth(), getHeight());
     }
     else if(cellMatrix[x][y]->isUnitFree())
     {
@@ -86,7 +86,7 @@ void GameField::addUnit(const std::shared_ptr<Unit>& unit, size_t x, size_t y)
     }
     else
     {
-        throw std::invalid_argument("Field cell is already busy");
+        throw FieldBusyCellException(x, y);
     }
 }
 
@@ -102,11 +102,11 @@ void GameField::addBase(const std::shared_ptr<GameBase> &base, size_t x, size_t 
     // TODO: проверки на ландшафт
     if(baseCount >= maxBaseCount)
     {
-        throw std::length_error("Fields bases limit reached");
+        throw SimpleFieldException("fields bases limit reached");
     }
     else if(x > cellMatrix.getWidth() || y > cellMatrix.getHeight())
     {
-        throw std::out_of_range("Coords are not part of the field");
+        throw CoordsNotPartOfTheField(x, y, getWidth(), getHeight());
     }
     else if(cellMatrix[x][y]->isUnitFree() && cellMatrix[x][y]->isBaseFree())
     {
@@ -198,12 +198,12 @@ void GameField::moveUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y)
         }
         else
         {
-            throw std::invalid_argument("Field cell is busy");
+            throw FieldBusyCellException(x, y);
         }
     }
     else
     {
-        throw std::out_of_range("Coords are not in Game Field size");
+        throw CoordsNotPartOfTheField(x, y, getWidth(), getHeight());
     }
 }
 
@@ -254,7 +254,7 @@ void GameField::meleeAttackUnit(std::shared_ptr<Unit> &sender, size_t x, size_t 
     }
     else
     {
-        throw std::out_of_range("Coords are not in Game Field size");
+        throw CoordsNotPartOfTheField(x, y, getWidth(), getHeight());
     }
 }
 

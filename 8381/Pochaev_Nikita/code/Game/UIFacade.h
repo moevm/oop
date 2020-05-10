@@ -1,8 +1,6 @@
 ﻿#ifndef UIFACADE_H
 #define UIFACADE_H
 
-#include "AuxiliaryFunctionality/qtDebugSwitch.h"
-
 #include <QApplication>
 #include <QScreen>
 #include <QDebug>
@@ -51,6 +49,10 @@ public slots:
     void cellInformationReqiest(size_t xCoord, size_t yCoord, eRequest infRequest);
 
     void gameWindowCloseEvent();
+signals:
+    void reportStatusToGui(eREPORT_LEVEL level,
+                       const QString& tag,
+                       const QString& report);
 };
 
 #endif // UIFACADE_H

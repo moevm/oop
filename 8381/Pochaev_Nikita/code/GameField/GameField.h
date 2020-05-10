@@ -3,6 +3,7 @@
 
 #include "IGameField.h"
 #include "InformationHeaders/commandPar.h"
+#include "AuxiliaryFunctionality/Exceptions/fieldexception.h"
 
 class GameField : public UnitObserver, public IGameField, public std::enable_shared_from_this<GameField>
 {

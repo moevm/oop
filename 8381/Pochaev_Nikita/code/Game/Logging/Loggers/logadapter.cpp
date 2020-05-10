@@ -25,7 +25,7 @@ void LogAdapter::setOutputFormat(eLOGGER_OUTPUT_FORMAT format_)
  * 2nd - field size
  * @return
  */
-std::string LogAdapter::generateGameCreationLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param)
+std::string LogAdapter::generateGameCreationLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText)
 {
     if(param.size() < 2 && format == ADVANCED)
     {
@@ -47,14 +47,32 @@ std::string LogAdapter::generateGameCreationLog(eLOG_SOURCE source, eLOGGER_OUTP
         res += " with " + std::to_string(param[0]) + " players on " + std::to_string(param[1]) + "*" + std::to_string(param[1]) + " field";
     }
 
-    // If it recevie log request -> prog doesn't have any exceptions before
     if(logger->getType() == TERMINAL_LOG)
     {
-        res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        if(suc == SUCCESS)
+        {
+            res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        }
+        else if(suc == WRONG)
+        {
+            res += " | " + ANSIColor::coloredString("WRONG", ANSIColor::FG_RED);
+        }
     }
     else
     {
-        res += " | SUCCESS";
+        if(suc == SUCCESS)
+        {
+            res += " | SUCCESS";
+        }
+        else if(suc == WRONG)
+        {
+            res += " | WRONG";
+        }
+    }
+
+    if(format == ADVANCED && errorText.length() != 0)
+    {
+       res += (" => " + errorText);
     }
 
     return res;
@@ -70,7 +88,7 @@ std::string LogAdapter::generateGameCreationLog(eLOG_SOURCE source, eLOGGER_OUTP
  * 3d - unit type
  * @return
  */
-std::string LogAdapter::generateUnitAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param)
+std::string LogAdapter::generateUnitAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText)
 {
     if(param.size() < 3 && format == ADVANCED)
     {
@@ -92,14 +110,32 @@ std::string LogAdapter::generateUnitAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FO
         res += " at (" + std::to_string(param[0]) + ";" + std::to_string(param[1]) + ") with type: " + Unit::convertEnumUnitNameToStr(static_cast<eUnitsType>(param[2]));
     }
 
-    // If it recevie log request -> prog doesn't have any exceptions before
     if(logger->getType() == TERMINAL_LOG)
     {
-        res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        if(suc == SUCCESS)
+        {
+            res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        }
+        else if(suc == WRONG)
+        {
+            res += " | " + ANSIColor::coloredString("WRONG", ANSIColor::FG_RED);
+        }
     }
     else
     {
-        res += " | SUCCESS";
+        if(suc == SUCCESS)
+        {
+            res += " | SUCCESS";
+        }
+        else if(suc == WRONG)
+        {
+            res += " | WRONG";
+        }
+    }
+
+    if(format == ADVANCED && errorText.length() != 0)
+    {
+        res += (" => " + errorText);
     }
 
     return res;
@@ -115,7 +151,7 @@ std::string LogAdapter::generateUnitAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FO
  * 3d - base type
  * @return
  */
-std::string LogAdapter::generateBaseAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param)
+std::string LogAdapter::generateBaseAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText)
 {
     if(param.size() < 3 && format == ADVANCED)
     {
@@ -137,14 +173,33 @@ std::string LogAdapter::generateBaseAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FO
         res += " at (" + std::to_string(param[0]) + ";" + std::to_string(param[1]) + ") with type: " + GameBase::convertEnumBaseNameToStr(static_cast<eBaseType>(param[2]));
     }
 
-    // If it recevie log request -> prog doesn't have any exceptions before
     if(logger->getType() == TERMINAL_LOG)
     {
-        res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        if(suc == SUCCESS)
+        {
+            res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        }
+        else if(suc == WRONG)
+        {
+            res += " | " + ANSIColor::coloredString("WRONG", ANSIColor::FG_RED);
+        }
     }
     else
     {
-        res += " | SUCCESS";
+        if(suc == SUCCESS)
+        {
+            res += " | SUCCESS";
+        }
+        else if(suc == WRONG)
+        {
+            res += " | WRONG";
+        }
+    }
+
+
+    if(format == ADVANCED && errorText.length() != 0)
+    {
+        res += (" => " + errorText);
     }
 
     return res;
@@ -161,7 +216,7 @@ std::string LogAdapter::generateBaseAddLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FO
  * 4th - Y coord dest
  * @return
  */
-std::string LogAdapter::generateUnitAttackLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param)
+std::string LogAdapter::generateUnitAttackLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText)
 {
     if(param.size() < 4 && format == ADVANCED)
     {
@@ -183,14 +238,32 @@ std::string LogAdapter::generateUnitAttackLog(eLOG_SOURCE source, eLOGGER_OUTPUT
         res += " from (" + std::to_string(param[0]) + ";" + std::to_string(param[1]) + ") to (" + std::to_string(param[2]) + ";" + std::to_string(param[3]) + ")";
     }
 
-    // If it recevie log request -> prog doesn't have any exceptions before
     if(logger->getType() == TERMINAL_LOG)
     {
-        res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        if(suc == SUCCESS)
+        {
+            res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        }
+        else if(suc == WRONG)
+        {
+            res += " | " + ANSIColor::coloredString("WRONG", ANSIColor::FG_RED);
+        }
     }
     else
     {
-        res += " | SUCCESS";
+        if(suc == SUCCESS)
+        {
+            res += " | SUCCESS";
+        }
+        else if(suc == WRONG)
+        {
+            res += " | WRONG";
+        }
+    }
+
+    if(format == ADVANCED && errorText.length() != 0)
+    {
+        res += (" => " + errorText);
     }
 
     return res;
@@ -207,7 +280,7 @@ std::string LogAdapter::generateUnitAttackLog(eLOG_SOURCE source, eLOGGER_OUTPUT
  * 4th - Y coord dest
  * @return
  */
-std::string LogAdapter::generateUnitMoveLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param)
+std::string LogAdapter::generateUnitMoveLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText)
 {
     if(param.size() < 4 && format == ADVANCED)
     {
@@ -229,14 +302,32 @@ std::string LogAdapter::generateUnitMoveLog(eLOG_SOURCE source, eLOGGER_OUTPUT_F
         res += " from (" + std::to_string(param[0]) + ";" + std::to_string(param[1]) + ") to (" + std::to_string(param[2]) + ";" + std::to_string(param[3]) + ")";
     }
 
-    // If it recevie log request -> prog doesn't have any exceptions before
     if(logger->getType() == TERMINAL_LOG)
     {
-        res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        if(suc == SUCCESS)
+        {
+            res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        }
+        else if(suc == WRONG)
+        {
+            res += " | " + ANSIColor::coloredString("WRONG", ANSIColor::FG_RED);
+        }
     }
     else
     {
-        res += " | SUCCESS";
+        if(suc == SUCCESS)
+        {
+            res += " | SUCCESS";
+        }
+        else if(suc == WRONG)
+        {
+            res += " | WRONG";
+        }
+    }
+
+    if(format == ADVANCED && errorText.length() != 0)
+    {
+        res += (" => " + errorText);
     }
 
     return res;
@@ -252,7 +343,7 @@ std::string LogAdapter::generateUnitMoveLog(eLOG_SOURCE source, eLOGGER_OUTPUT_F
  * 3d - about whom information is requested (type)
  * @return
  */
-std::string LogAdapter::generateInfAboutCellLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param)
+std::string LogAdapter::generateInfAboutCellLog(eLOG_SOURCE source, eLOGGER_OUTPUT_FORMAT format, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText)
 {
     if(param.size() < 3 && format == ADVANCED)
     {
@@ -275,14 +366,32 @@ std::string LogAdapter::generateInfAboutCellLog(eLOG_SOURCE source, eLOGGER_OUTP
         res += " by coords: (" + std::to_string(param[0]) + ";" + std::to_string(param[1]) + ") for " + Command::convertInfoRequestEnumToString(static_cast<eRequest>(param[3]));
     }
 
-    // If it recevie log request -> prog doesn't have any exceptions before
     if(logger->getType() == TERMINAL_LOG)
     {
-        res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        if(suc == SUCCESS)
+        {
+            res += " | " + ANSIColor::coloredString("SUCCESS", ANSIColor::FG_GREEN);
+        }
+        else if(suc == WRONG)
+        {
+            res += " | " + ANSIColor::coloredString("WRONG", ANSIColor::FG_RED);
+        }
     }
     else
     {
-        res += " | SUCCESS";
+        if(suc == SUCCESS)
+        {
+            res += " | SUCCESS";
+        }
+        else if(suc == WRONG)
+        {
+            res += " | WRONG";
+        }
+    }
+
+    if(format == ADVANCED && errorText.length() != 0)
+    {
+        res += (" => " + errorText);
     }
 
     return res;
@@ -294,7 +403,7 @@ std::string LogAdapter::generateInfAboutCellLog(eLOG_SOURCE source, eLOGGER_OUTP
  * @param event
  * @param param
  */
-void LogAdapter::sendLogInf(eLOG_SOURCE source, eLOG_EVENT event, std::vector<size_t> param)
+void LogAdapter::sendLogInf(eLOG_SOURCE source, eLOG_EVENT event, std::vector<size_t> param, eSUCCESSFULNESS suc, std::string errorText)
 {
     if(!logger)
     {
@@ -307,26 +416,26 @@ void LogAdapter::sendLogInf(eLOG_SOURCE source, eLOG_EVENT event, std::vector<si
 
     if(event == USER_GAME_CREATE || event == GAME_CREATE)
     {
-        logger->printLog(generateGameCreationLog(source, format, param));
+        logger->printLog(generateGameCreationLog(source, format, param, suc, errorText));
     }
     else if(event == USER_ADD_UNIT || event == GAME_ADD_UNIT)
     {
-        logger->printLog(generateUnitAddLog(source, format, param));
+        logger->printLog(generateUnitAddLog(source, format, param, suc, errorText));
     }
     else if(event == USER_ADD_BASE || event == GAME_ADD_BASE)
     {
-        logger->printLog(generateBaseAddLog(source, format, param));
+        logger->printLog(generateBaseAddLog(source, format, param, suc, errorText));
     }
     else if(event == USER_ATTACK_UNIT || event == GAME_ATTACK_UNIT)
     {
-        logger->printLog(generateUnitAttackLog(source, format, param));
+        logger->printLog(generateUnitAttackLog(source, format, param, suc, errorText));
     }
     else if(event == USER_MOVE_UNIT || event == GAME_MOVE_UNIT)
     {
-        logger->printLog(generateUnitMoveLog(source, format, param));
+        logger->printLog(generateUnitMoveLog(source, format, param, suc, errorText));
     }
     else if(event == USER_INF_ABOUT_CELL || event == GAME_INF_ABOUT_CELL)
     {
-        logger->printLog(generateInfAboutCellLog(source, format, param));
+        logger->printLog(generateInfAboutCellLog(source, format, param, suc, errorText));
     }
 }
