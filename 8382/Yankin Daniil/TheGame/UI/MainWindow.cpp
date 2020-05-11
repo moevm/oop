@@ -79,7 +79,7 @@ void MainWindow::on_buttonLoad_clicked() {
     Game& game = Game::getInstance();
     auto stdString = name.toStdString();
     if (game.load(stdString) != 0) {
-        QMessageBox::critical(this, "Error", "Жители Даларана! Поднимите глаза и взгляните на этот странный файл сохранения!");
+        QMessageBox::critical(this, "Error", "Очень странный файл сохранения. Отказываюсь работать.");
         return;
     }
     game.getGameFacade().setScene(gameScene);

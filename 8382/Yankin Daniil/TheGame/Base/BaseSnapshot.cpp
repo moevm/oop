@@ -19,6 +19,9 @@ Base::BaseSnapshot::BaseSnapshot(std::ifstream& stream) : point(Point(0, 0)) {
     if (!(stream >> maxHealthValue >> healthValue)) {
         return;
     }
+    if (maxHealthValue == 0 || healthValue == 0) {
+        return;
+    }
     health = Health(maxHealthValue, healthValue);
 
     uint16_t strengthValue;
