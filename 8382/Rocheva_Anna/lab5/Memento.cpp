@@ -22,11 +22,16 @@
 
 void Memento::loadGameFromDoc() {
     gameState = new GameState;
-    stateDoc >> (gameState->size).first >> (gameState->size).second;
+
+    if (!(stateDoc >> (gameState->size).first >> (gameState->size).second)){
+        correct = false;
+        return;
+    }
     if ((gameState->size).first < 1 || (gameState->size).second < 1){
         correct = false;
         return;
     }
+
 
     int count = (gameState->size).first * (gameState->size).second;
     while (count){
@@ -56,12 +61,18 @@ void Memento::loadGameFromDoc() {
     while (count){
         int objName;
         auto *objCoordinates = new Coordinates;
-        stateDoc >> objName;
+        if (!(stateDoc >> objName)){
+            correct = false;
+            return;
+        }
         if (objName < 0 || objName > MAXOBJNAME){
             correct = false;
             return;
         }
-        stateDoc >> objCoordinates->x >> objCoordinates->y;
+        if (!(stateDoc >> objCoordinates->x >> objCoordinates->y)){
+            correct = false;
+            return;
+        }
         if (objCoordinates->x < 0 || objCoordinates->x >= gameState->size.first){
             correct = false;
             return;
@@ -83,10 +94,16 @@ void Memento::loadGameFromDoc() {
 
     while (countBases){
         std::string name;
-        stateDoc >> name;
+        if (!(stateDoc >> name)){
+            correct = false;
+            return;
+        }
         auto *currentBase = new BaseState;
         auto *baseCoordinates = new Coordinates;
-        stateDoc >> baseCoordinates->x >> baseCoordinates->y;
+        if (!(stateDoc >> baseCoordinates->x >> baseCoordinates->y)){
+            correct = false;
+            return;
+        }
         if (baseCoordinates->x < 0 || baseCoordinates->x >= gameState->size.first){
             correct = false;
             return;
@@ -97,12 +114,18 @@ void Memento::loadGameFromDoc() {
         }
 
         currentBase->coordinates = baseCoordinates;
-        stateDoc >> currentBase->health;
+        if (!(stateDoc >> currentBase->health)){
+            correct = false;
+            return;
+        }
         if (currentBase->health < 0){
             correct = false;
             break;
         }
-        stateDoc >> currentBase->numUnits;
+        if (!(stateDoc >> currentBase->numUnits)){
+            correct = false;
+            return;
+        }
         if (currentBase->numUnits < 0){
             correct = false;
             return;
@@ -113,14 +136,20 @@ void Memento::loadGameFromDoc() {
         while (countUnit){
 
             auto* currentUnit = new UnitState;
-            stateDoc >> currentUnit->UnitName;
+            if (!(stateDoc >> currentUnit->UnitName)){
+                correct = false;
+                return;
+            }
             if (currentUnit->UnitName > MAXUNITNAME){
                 correct = false;
                 return;
             }
 
             auto unitCoordinate = new Coordinates;
-            stateDoc >> unitCoordinate->x >> unitCoordinate->y;
+            if (!(stateDoc >> unitCoordinate->x >> unitCoordinate->y)){
+                correct = false;
+                return;
+            }
             if (unitCoordinate->x < 0 || unitCoordinate->x >= gameState->size.first){
                 correct = false;
                 return;
@@ -131,7 +160,10 @@ void Memento::loadGameFromDoc() {
             }
 
             currentUnit->coordinates = unitCoordinate;
-            stateDoc >> currentUnit->attack >> currentUnit->defense >> currentUnit->health;
+            if (!(stateDoc >> currentUnit->attack >> currentUnit->defense >> currentUnit->health)){
+                correct = false;
+                return;
+            }
             currentBase->units.push_back(currentUnit);
             countUnit--;
         }

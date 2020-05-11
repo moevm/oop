@@ -5,23 +5,29 @@ void Manager::startGame() {
     int choice;
     std::cin >> choice;
     if (choice == 1){
-        std::cout << "Enter path for state doc:" << std::endl;
-        std::string statePath;
-        std::cin >> statePath;
-        auto memento = new Memento(statePath);
-        memento->loadGameFromDoc();
-        if (memento->getCorrectFlag()){
-            loadGame(memento, true);
-            std::cout << "Game is load." << std::endl;
+        while(true){
+            std::cout << "Enter path for state doc: (to create new game enter '+')" << std::endl;
+            std::string statePath;
+            std::cin >> statePath;
+            if (statePath == "+")
+                break;
+            auto memento = new Memento(statePath);
+            memento->loadGameFromDoc();
+            if (memento->getCorrectFlag()){
+                loadGame(memento, true);
+                std::cout << "Game is load." << std::endl;
+                return;
+            }
+            else {
+                std::cout << "Not right format." << std::endl;
+            }
         }
     }
-    else {
-        createGamer();
-        startCommand = new StartGameCommand;
-        setLogger();
-        startCommand->execute(gameField, nullptr, proxy);
-        printField();
-    }
+    createGamer();
+    startCommand = new StartGameCommand;
+    setLogger();
+    startCommand->execute(gameField, nullptr, proxy);
+    printField();
 }
 
 void Manager::setLogger(){
@@ -137,32 +143,41 @@ void Manager::makeChoice() {
                 proxy->print();
                 saveGame();
                 break;
-            case 12:
+            case 12: {
                 proxy->setLog("User loads the last game.");
                 proxy->print();
+                std::cout << "From doc or not?\n1 - from doc\nOther - not from doc" << std::endl;
+                int docChoice;
+                std::cin >> docChoice;
+                if (docChoice == 1) {
+                    while(true){
+                        std::cout << "Enter path for state doc: (to undo action enter '-')" << std::endl;
+                        std::string statePath;
+                        std::cin >> statePath;
+                        if (statePath == "-")
+                            break;
+                        auto memento = new Memento(statePath);
+                        memento->loadGameFromDoc();
+                        if (memento->getCorrectFlag()){
+                            loadGame(memento, true);
+                            std::cout << "Game is load." << std::endl;
+                            break;
+                        }
+                        else {
+                            std::cout << "Not right format." << std::endl;
+                        }
+                    }
+                    break;
+                }
                 if (mementos.empty()) {
                     proxy->setLog("No saved games.");
                     proxy->print();
                     break;
                 }
-                std::cout << "From doc or not?\n1 - from doc\nOther - not from doc" << std::endl;
-                int docChoice;
-                std::cin >> docChoice;
-                if (docChoice == 1){
-                    std::cout << "Enter path for state doc:" << std::endl;
-                    std::string statePath;
-                    std::cin >> statePath;
-                    auto memento = new Memento(statePath);
-                    memento->loadGameFromDoc();
-                    if (memento->getCorrectFlag()){
-                        loadGame(memento, false);
-                        std::cout << "Game is load." << std::endl;
-                    }
-                    break;
-                }
                 loadGame(mementos.back(), false);
                 mementos.pop_back();
                 break;
+            }
         }
         if (choice != 0)
             printMenu();
@@ -245,7 +260,8 @@ void Manager::saveGame() {
 
     auto memento = new Memento(path);
     memento->saveGame(gameField, bases);
-    mementos.push_back(memento);
+    if (path == "-")
+        mementos.push_back(memento);
 }
 
 void Manager::loadGame(Memento *memento, bool first) {
