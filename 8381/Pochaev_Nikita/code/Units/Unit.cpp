@@ -197,3 +197,40 @@ std::string Unit::convertEnumUnitNameToStr(eUnitsType type)
 
     return "";
 }
+
+std::shared_ptr<UnitParametersCaretaker> Unit::createMemento()
+{
+    std::shared_ptr<UnitParametersCaretaker> memento = std::make_shared<UnitParametersCaretaker>();
+    memento->name = name;
+    memento->health = health;
+    memento->armor = armor;
+    memento->meleeAttackStrength = meleeAttackStrength;
+    memento->movementRange = movementRange;
+    memento->actionTokens = actionTokens;
+    memento->position = position;
+    memento->creationBaseCoords = baseCreationPosition;
+
+    return memento;
+}
+
+void Unit::restoreMemento(std::shared_ptr<UnitParametersCaretaker> memento)
+{
+    name = memento->name;
+    health = memento->health;
+    armor = memento->armor;
+    meleeAttackStrength = memento->meleeAttackStrength;
+    movementRange = memento->movementRange;
+    actionTokens = memento->actionTokens;
+    position = memento->position;
+    baseCreationPosition = memento->creationBaseCoords;
+}
+
+void Unit::setBaseCreationCoords(Coords coords)
+{
+    baseCreationPosition = coords;
+}
+
+Coords Unit::getBaseCreationCoords()
+{
+    return baseCreationPosition;
+}

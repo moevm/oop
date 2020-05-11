@@ -1,15 +1,17 @@
 ﻿#include "game.h"
 #include "FacadeMediator.h"
 
-Game::Game(size_t fieldHeight, size_t fieldWidth)
+Game::Game(size_t fieldHeight, size_t fieldWidth, bool fill)
 {
     field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth);
+    if(fill) field->fillTerrainByRandom();
 }
 
-Game::Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_)
+Game::Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_, bool fill)
 {
     playersCount = playersCount_;
     field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth);
+    if(fill) field->fillTerrainByRandom();
 }
 
 std::shared_ptr<GameFieldProxy> Game::getField() const
@@ -68,6 +70,7 @@ void Game::createUnit(eUnitsType unitType, size_t xCoord, size_t yCoord)
     }
     std::shared_ptr<Unit> unit = field->getBaseByCoords(xCoord, yCoord)->getUnit(unitType);
     field->addUnit(unit, xCoord, yCoord);
+    field->getUnitByCoords(xCoord, yCoord)->setBaseCreationCoords(Coords(xCoord, yCoord));
 }
 
 void Game::moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDist)
@@ -109,4 +112,19 @@ std::string Game::getLandInfo(size_t x, size_t y)
 size_t Game::getPlayersCount()
 {
     return playersCount;
+}
+
+std::shared_ptr<GameParametersCaretaker> Game::createMemento()
+{
+    std::shared_ptr<GameParametersCaretaker> memento = std::make_shared<GameParametersCaretaker>();
+
+    memento->playersCount = playersCount;
+    memento->fieldParam = field->createMemento();
+
+    for(const auto& curr : bases)
+    {
+        memento->baseNames.insert(std::pair(curr.first.toStdString(), Coords(curr.second.xCoord, curr.second.yCoord)));
+    }
+
+    return memento;
 }

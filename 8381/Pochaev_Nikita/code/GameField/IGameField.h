@@ -22,6 +22,7 @@ public:
     virtual bool isCellFreeForBase(size_t x, size_t y) = 0;
     virtual void informationAboutCell(size_t x, size_t y) = 0;
     virtual std::shared_ptr<GameBase> getBaseByCoords(size_t x, size_t y) = 0;
+    virtual std::shared_ptr<Unit> getUnitByCoords(size_t x, size_t y) = 0;
 
     virtual void moveUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y) = 0;
     virtual void moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest) = 0;

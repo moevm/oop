@@ -4,6 +4,10 @@
 #include "IGameField.h"
 #include "InformationHeaders/commandPar.h"
 #include "AuxiliaryFunctionality/Exceptions/fieldexception.h"
+#include "Game/Saving/SaveStuctures.h"
+#include "Bases/BaseMaster.h"
+#include "Bases/HellBaseBuilder.h"
+#include "Bases/HumanBaseBuilder.h"
 
 class GameField : public UnitObserver, public IGameField, public std::enable_shared_from_this<GameField>
 {
@@ -38,6 +42,7 @@ public:
     bool isCellFreeForBase(size_t x, size_t y) override;
     void informationAboutCell(size_t x, size_t y) override;
     std::shared_ptr<GameBase> getBaseByCoords(size_t x, size_t y) override;
+    std::shared_ptr<Unit> getUnitByCoords(size_t x, size_t y) override;
     /**
      * @brief thatIsOnCell
      * @param x
@@ -56,6 +61,10 @@ public:
     void getTotalInformation() override;
     std::string getInfAboutBase(size_t xDest, size_t yDest) override;
     std::string getInfAboutUnit(size_t xDest, size_t yDest) override;
+
+    // memento pattern
+    std::shared_ptr<FieldParametersCaretaker> createMemento();
+    void restoreMemento(std::shared_ptr<FieldParametersCaretaker> memento);
 
 private:
     cds::Array2D<std::shared_ptr<Cell>> cellMatrix;

@@ -40,6 +40,8 @@ SOURCES += \
     Game/Logging/Loggers/logadapter.cpp \
     Game/Logging/Loggers/loggers.cpp \
     Game/Logging/time.cpp \
+    Game/Saving/gamememento.cpp \
+    Game/Saving/mementofiles.cpp \
     Game/UIFacade.cpp \
     Game/game.cpp \
     GameField/Cell.cpp \
@@ -102,6 +104,10 @@ HEADERS += \
     Game/Logging/Loggers/loggers.h \
     Game/Logging/logfunctionality.h \
     Game/Logging/time.h \
+    Game/Saving/IMemento.h \
+    Game/Saving/SaveStuctures.h \
+    Game/Saving/gamememento.h \
+    Game/Saving/mementofiles.h \
     Game/UIFacade.h \
     Game/game.h \
     GameField/Cell.h \

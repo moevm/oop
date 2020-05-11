@@ -9,7 +9,6 @@
 #include <QString>
 
 #include "AuxiliaryFunctionality/TextColoring.h"
-
 #include "GameField/GameFieldProxy.h"
 #include "GameField/Coords.h"
 #include "IGame.h"
@@ -28,6 +27,7 @@ struct BaseInf
     BaseInf() = default;
     BaseInf(std::shared_ptr<GameBase> base_, size_t xCoord_, size_t yCoord_) :
         base(std::move(base_)), xCoord(xCoord_), yCoord(yCoord_) { };
+
     std::shared_ptr<GameBase> base;
     size_t xCoord{}, yCoord{};
 };
@@ -37,8 +37,8 @@ struct BaseInf
 class Game : public IGame
 {
 public:
-    Game(size_t fieldHeight, size_t fieldWidth);
-    Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_);
+    Game(size_t fieldHeight, size_t fieldWidth, bool fill = false);
+    Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_, bool fill = false);
 
     // Getters
     std::shared_ptr<GameFieldProxy> getField() const;
@@ -60,6 +60,10 @@ public:
     void createUnit(eUnitsType, size_t xCoord, size_t yCoord) override;
     void moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDist) override;
     void unitAttack(size_t xSource, size_t ySource, size_t xDest, size_t yDist) override;
+
+    // Memento restore
+    std::shared_ptr<GameParametersCaretaker> createMemento();
+    void restoreMemento(std::shared_ptr<GameParametersCaretaker>);
 
 private:
     size_t playersCount{};

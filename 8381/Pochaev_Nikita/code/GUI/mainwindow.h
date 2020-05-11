@@ -41,8 +41,7 @@ private:
     QLabel *logModeLabel;
     QComboBox *logModeComboBox;
     QCheckBox *logAdvancedModeCheckBox;
-    // save / load
-    QPushButton *saveGameButton;
+    // load game
     QPushButton *loadGameButton;
 
     // GAME WINDOW
@@ -57,7 +56,7 @@ private slots:
     void on_gameWindow_closeEvent();
 
 signals:
-    void startNewGameWindow(size_t gameFieldSize, size_t playersCount);
+    void startNewGameWindow(size_t gameFieldSize, size_t playersCount, int screenWidth, int screenHeight);
     void startLogging(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
 };
 

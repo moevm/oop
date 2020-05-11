@@ -14,6 +14,8 @@
 #include "Game/Logging/Loggers/loggers.h"
 #include "Game/Logging/Loggers/logadapter.h"
 
+#include "Game/Saving/mementofiles.h"
+
 class UIFacade : public QObject, public std::enable_shared_from_this<UIFacade>
 {
     Q_OBJECT
@@ -49,6 +51,7 @@ public slots:
     void cellInformationReqiest(size_t xCoord, size_t yCoord, eRequest infRequest);
 
     void gameWindowCloseEvent();
+    void saveGameRequest(std::string fileName);
 signals:
     void reportStatusToGui(eREPORT_LEVEL level,
                        const QString& tag,

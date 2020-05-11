@@ -18,6 +18,9 @@
 #include <QString>
 #include <QMessageBox>
 #include <QTextCursor>
+#include <QMenuBar>
+#include <QFileDialog>
+#include <QDir>
 
 #include "InformationHeaders/commandPar.h"
 #include "InformationHeaders/unitPar.h"
@@ -75,6 +78,11 @@ private:
 
     // other
     QTextEdit *visualField;
+    QMenuBar *menuBar;
+
+    // save / load
+    QAction *saveMenuBarButton{};
+    QAction *loadMenuBarButton{};
 
     /*    PAR    */
     size_t gameFieldSize{};
@@ -89,9 +97,10 @@ signals:
     void moveUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist);
     void attackUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist);
     void cellUnfromationRequest(size_t xCoord, size_t yCoord, eRequest infRequest);
+    void saveGameFileRequest(std::string fileName);
 
 public slots:
-    void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_);
+    void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight);
     void createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void on_addBaseButton_clicked();
     void on_addUnitButton_clicked();
@@ -108,6 +117,7 @@ public slots:
     void handleStatusReport(eREPORT_LEVEL level,
                                         const QString& tag,
                                         const QString& report);
+    void on_saveButton_clicked();
 };
 
 #endif // GAMEWINDOW_H

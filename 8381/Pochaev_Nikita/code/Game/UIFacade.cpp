@@ -21,6 +21,7 @@ void UIFacade::start()
     connect(window->getGameWindow(), &GameWindow::cellUnfromationRequest, this, &UIFacade::cellInformationReqiest);
     connect(window->getGameWindow(), &GameWindow::gameWindowClosed, this, &UIFacade::gameWindowCloseEvent);
     connect(this, &UIFacade::reportStatusToGui, window->getGameWindow(), &GameWindow::handleStatusReport);
+    connect(window->getGameWindow(), &GameWindow::saveGameFileRequest, this, &UIFacade::saveGameRequest);
 
     QApplication::exec();
 }
@@ -63,7 +64,7 @@ void UIFacade::guiSetup()
 
 void UIFacade::createFieldRequest(size_t fieldSize, size_t playersCount_)
 {
-    game = std::make_shared<Game>(fieldSize, fieldSize, playersCount_);
+    game = std::make_shared<Game>(fieldSize, fieldSize, playersCount_, true);
 }
 
 void UIFacade::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format)
@@ -230,4 +231,11 @@ void UIFacade::receiveStrAnswer([[maybe_unused]] std::string answer)
 
 void UIFacade::gameWindowCloseEvent()
 {
+}
+
+void UIFacade::saveGameRequest(std::string fileName)
+{
+    MementoWriter writer(fileName);
+    std::shared_ptr<GameParametersCaretaker> memento = game->createMemento();
+    writer.write(memento);
 }

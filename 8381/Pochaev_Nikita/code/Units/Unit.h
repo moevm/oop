@@ -14,6 +14,7 @@
 #include "AuxiliaryFunctionality/UnitObserver.h"
 #include "AuxiliaryFunctionality/UnitMediators.h"
 #include "AuxiliaryFunctionality/UnitSubject.h"
+#include "Game/Saving/SaveStuctures.h"
 
 class CompositeUnit;
 
@@ -28,6 +29,7 @@ protected:
     size_t actionTokens{};
 
     Coords position;
+    Coords baseCreationPosition{};  // for restoring from memento
     std::shared_ptr<UnitMoveMediator> moveMediator;
     std::vector<std::shared_ptr<UnitObserver>> observers;
 
@@ -72,8 +74,16 @@ public:
     void setUnitMeleeAttackMediator(std::shared_ptr<UnitMeleeAttackMediator> mediator_) override;
     void carryOutMeleeAttack(size_t x, size_t y) override;
 
+    // Memento functionality
+    std::shared_ptr<UnitParametersCaretaker> createMemento();
+    void restoreMemento(std::shared_ptr<UnitParametersCaretaker> memento);
+
     // special functionality
     static std::string convertEnumUnitNameToStr(eUnitsType type);
+
+    // for restoring from memento
+    void setBaseCreationCoords(Coords coords);
+    Coords getBaseCreationCoords();
 };
 
 #endif //OOP_UNIT_H

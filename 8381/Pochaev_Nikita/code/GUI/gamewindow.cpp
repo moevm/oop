@@ -34,7 +34,8 @@ GameWindow::GameWindow() :
     cellInfromationWhoLabel(new QLabel),
     cellInfromationWhoComboBox(new QComboBox),
 
-    visualField(new QTextEdit)
+    visualField(new QTextEdit),
+    menuBar(new QMenuBar(this))
 {
     setupGameWindow();
 }
@@ -163,6 +164,13 @@ void GameWindow::setupGameWindow()
     logTotalLayout->addLayout(cellInfrormationWhoLayout);
     logTotalLayout->addWidget(cellInfromationButton);
 
+    // menu bar
+    QMenu *menu = menuBar->addMenu("File");
+    saveMenuBarButton = menu->addAction("Save");
+    loadMenuBarButton = menu->addAction("Load");
+
+    this->layout()->setMenuBar(menuBar);
+
     // total work bar layout
     QVBoxLayout *workBarLayout = new QVBoxLayout;
     workBarLayout->addLayout(unitTotalLayout);
@@ -174,7 +182,7 @@ void GameWindow::setupGameWindow()
     layout->addLayout(workBarLayout, 0, 4, 3, 4, Qt::AlignLeft);
 }
 
-void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_)
+void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight)
 {
     gameFieldSize = gameFieldSize_;
     playersCount = playersCount_;
@@ -185,9 +193,13 @@ void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCoun
     connect(moveUnitButton, &QPushButton::clicked, this, &GameWindow::on_moveUnitButton_clicked);
     connect(attackUnitButton, &QPushButton::clicked, this, &GameWindow::on_attackUnitButton_clicked);
     connect(cellInfromationButton, &QPushButton::clicked, this, &GameWindow::on_cellInfromationButton_clicked);
+    connect(saveMenuBarButton, &QAction::triggered, this, &GameWindow::on_saveButton_clicked);
     emit createFieldRequest(gameFieldSize_, playersCount_);
 
-    showMaximized();
+    this->resize(static_cast<int>(screenWidth * 1.2), static_cast<int>(screenHeight * 1.7));
+    this->setFixedSize(static_cast<int>(screenWidth * 1.2), static_cast<int>(screenHeight * 1.5));
+
+    show();
 }
 
 void GameWindow::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format)
@@ -306,4 +318,18 @@ void GameWindow::handleStatusReport(eREPORT_LEVEL level,
     logs->setTextColor(Qt::black); // set color back to black
     logs->insertPlainText(report + "\r\n");
     logs->ensureCursorVisible();
+}
+
+void GameWindow::on_saveButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+                tr("Open SGF File"),  QDir::homePath(),
+                tr("SGF file (*.sgf);;All Files (*)"));
+
+    if (fileName == nullptr)
+    {
+        QMessageBox::warning(this, "Warning","No file was selected for saving");
+        return;
+    }
+    emit saveGameFileRequest(fileName.toStdString());
 }

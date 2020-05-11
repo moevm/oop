@@ -226,11 +226,11 @@ std::string LogAdapter::generateUnitAttackLog(eLOG_SOURCE source, eLOGGER_OUTPUT
     std::string res = "";
     if(source == USER_LOG)
     {
-        res += "USER: request for unit attack";
+        res += "USER : request for unit attack";
     }
     else if(source == GAME_LOG)
     {
-        res += "GAME: unit attack";
+        res += "GAME : unit attack";
     }
 
     if(format == ADVANCED)

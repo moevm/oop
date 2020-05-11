@@ -25,7 +25,7 @@ typedef cds::ObjectFactory<NeutralObject, std::string> NeutralObjectFabric;
 class GameFieldProxy : public  IGameField, public std::enable_shared_from_this<IGameField>
 {
 public:
-    GameFieldProxy(size_t width_, size_t height_);
+    GameFieldProxy(size_t width_, size_t height_, bool fill = false);
     ~GameFieldProxy() = default;
 
     [[nodiscard]] size_t getWidth() const override;
@@ -50,18 +50,27 @@ public:
     std::string getInfAboutLand(size_t x, size_t y);
 
     std::shared_ptr<GameBase> getBaseByCoords(size_t x, size_t y) override;
+    std::shared_ptr<Unit> getUnitByCoords(size_t x, size_t y) override;
+
+    void fillTerrainByRandom();
+    void fillArtifactMapByRandom();
+
+    // memento pattern
+    std::shared_ptr<FieldProxyParametersCaretaker> createMemento();
+    void restoreMemento(std::shared_ptr<FieldProxyParametersCaretaker> memento);
+
 private:
     // The field for which this class is a protecting and caching proxy
     std::shared_ptr<GameField> field;
 
     // Landscape stuff
     LandscapeFabric landscapeFabric;
-    std::map<Coords, std::shared_ptr<Landscape>> terrain;
+    std::map<Coords, std::shared_ptr<Landscape>> terrain{};
     std::map<std::string, std::shared_ptr<Landscape>> landscapeTypes;
 
     // Neutral objects stuff
     NeutralObjectFabric neutralObjectFabric;
-    std::map<Coords, std::shared_ptr<NeutralObject>> artifactMap;
+    std::map<Coords, std::shared_ptr<NeutralObject>> artifactMap{};
     std::map<std::string, std::shared_ptr<NeutralObject>> neutralObjectTypes;
     std::unique_ptr<NeutralObjectContext> context;
 

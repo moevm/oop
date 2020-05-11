@@ -24,6 +24,7 @@ protected:
 
 public:
     virtual ~GameBase() = default;
+    virtual eBaseType getBaseType();
     void initUnitCount();
     template<class T>
     void registerNewUnitType(eUnitsType typeID)
@@ -39,6 +40,9 @@ public:
 
     size_t getHealth();
     std::string getUnitCountInf();
+
+    std::shared_ptr<BaseParametersCaretaker> createMemento();
+    void restoreMemento(std::shared_ptr<BaseParametersCaretaker> memento);
 
     static std::string convertEnumBaseNameToStr(eBaseType type);
 };

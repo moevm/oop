@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
     logModeLabel(new QLabel),
     logModeComboBox(new QComboBox),
     logAdvancedModeCheckBox(new QCheckBox),
-    saveGameButton(new QPushButton),
     loadGameButton(new QPushButton)
 {
     setUpUI();
@@ -37,7 +36,6 @@ void MainWindow::setUpUI()
 
     // set up buttons
     startNewGameButton->setText("Start new game");
-    saveGameButton->setText("Save");
     loadGameButton->setText("Load");
 
     // set up labels
@@ -67,12 +65,9 @@ void MainWindow::setUpUI()
     logModeLayout->addWidget(logModeLabel);
     logModeLayout->addWidget(logModeComboBox);
     QGridLayout *mainGameSetupLayout = new QGridLayout;
-    QHBoxLayout *savingButtonsLayout = new QHBoxLayout;
-    savingButtonsLayout->addWidget(saveGameButton);
-    savingButtonsLayout->addWidget(loadGameButton);
     QVBoxLayout *buttonsLayout = new QVBoxLayout;
     buttonsLayout->addWidget(startNewGameButton);
-    buttonsLayout->addLayout(savingButtonsLayout);
+    buttonsLayout->addWidget(loadGameButton);
 
     mainGameSetupLayout->addLayout(buttonsLayout, 0, 0, 1, 1, Qt::AlignCenter);
     mainGameSetupLayout->addLayout(playersCountLayout, 1, 0, 1, 1, Qt::AlignCenter);
@@ -112,7 +107,7 @@ void MainWindow::on_startNewGameButton_clicked()
     }
     eLOGGER_OUTPUT_FORMAT loggerFormat = logAdvancedModeCheckBox->isChecked() ? ADVANCED : STANDART;
 
-    emit startNewGameWindow(gameFieldSize, playersCount);
+    emit startNewGameWindow(gameFieldSize, playersCount, this->width(), this->height());
     emit startLogging(loggerType, loggerFormat);
     setDisabled(true);
 }

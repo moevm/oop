@@ -118,3 +118,25 @@ std::string GameBase::convertEnumBaseNameToStr(eBaseType type)
 
     return "";
 }
+
+std::shared_ptr<BaseParametersCaretaker> GameBase::createMemento()
+{
+    std::shared_ptr<BaseParametersCaretaker> memento = std::make_shared<BaseParametersCaretaker>();
+
+    memento->health = health;
+    memento->type = getBaseType();
+    memento->unitCountsData = unitCount->createMemento();
+
+    return memento;
+}
+
+void GameBase::restoreMemento(std::shared_ptr<BaseParametersCaretaker> memento)
+{
+    health = memento->health;
+    unitCount->restoreMemento(memento->unitCountsData);
+}
+
+eBaseType GameBase::getBaseType()
+{
+    return NONE_BASE;
+}
