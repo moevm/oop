@@ -57,7 +57,7 @@ std::ofstream& operator<<(std::ofstream& stream, const Unit::UnitSnapshot& snaps
     stream << snapshot.health.getMaxHealth() << " " << snapshot.health.getHealth() << " ";
     stream << snapshot.strength.getStrength() << " " << snapshot.strength.getRadius() << " ";
     stream << snapshot.armor.getArmor() << " ";
-    stream << snapshot.movePoints.getMaxMovePoints() << " " << snapshot.movePoints.getMaxMovePoints() << std::endl;
+    stream << snapshot.movePoints.getMaxMovePoints() << " " << snapshot.movePoints.getMovePoints() << std::endl;
     return stream;
 }
 

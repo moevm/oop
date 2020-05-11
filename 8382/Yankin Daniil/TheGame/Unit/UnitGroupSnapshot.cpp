@@ -47,36 +47,6 @@ UnitGroup::UnitGroupSnapshot::UnitGroupSnapshot(std::ifstream& stream) : point(P
         }
     }
     correct = true;
-/*
-    while (true) {
-        std::string input;
-        if (!(stream >> input)) {
-            return;
-        }
-
-        if (input == "UNIT_START") {
-            unitSnapVector.push_back(Unit::UnitSnapshot(stream));
-            if (!(stream >> input) || input != "UNIT_END") {
-                return;
-            }
-        }
-        else if (input == "UNIT_GROUP_END") {
-            if (unitSnapVector.size() == 0 || unitSnapVector.size() > MAX_GROUP_SIZE) {
-                return;
-            }
-            for (auto snapshot = unitSnapVector.begin(); snapshot != unitSnapVector.end(); snapshot++) {
-                if (snapshot->getObjectType() != this->objectType) {
-                    return;
-                }
-            }
-            correct = true;
-            return;
-        }
-        else {
-            return;
-        }
-    }
-    */
 }
 
 std::ofstream& operator<<(std::ofstream& stream, const UnitGroup::UnitGroupSnapshot& snapshot) {

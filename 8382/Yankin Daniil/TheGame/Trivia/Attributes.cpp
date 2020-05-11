@@ -73,8 +73,8 @@ uint16_t Armor::getArmor() const {
 
 
 MovePoints::MovePoints() {
-    this->maxMovePoints = 100;
-    this->movePoints = 100;
+    this->maxMovePoints = 2;
+    this->movePoints = 2;
 }
 
 MovePoints::MovePoints(uint16_t maxMovePoints, uint16_t movePoints) {
