@@ -36,7 +36,8 @@ void WriteToFile::write(GameParam* params)
         file << base->getUnits().size() << "\n";
         for(UnitParam* unit : base->getUnits()){
             file << unit->getName() << " " << unit->getBaseNumber() << " ";
-            file << unit->getAttributes()->getArmor()<<" " << unit->getAttributes()->getAttack()<<" " << unit->getAttributes()->getHealth() << "\n";
+            file << unit->getAttributes()->getArmor()<<" " << unit->getAttributes()->getAttack()<<" " << unit->getAttributes()->getHealth()<<" "<<
+                unit->getX()<<" " << unit->getY()<<" " << "\n";
         }
     }
 }

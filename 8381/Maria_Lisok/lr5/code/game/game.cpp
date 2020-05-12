@@ -121,13 +121,31 @@ void Game::restoreMemento(Memento *memento)
     }
     for(BaseParam* b: params->getBases()){
         createBase(b->getMaxCount(), b->getHealth(), b->getX(), b->getY(), b->getBaseNumb());
-        Base* base = getBaseByNum(b->getBaseNumb());
+        Base* base = nullptr;
+        try{
+            base = getBaseByNum(b->getBaseNumb());
+        }catch (invalid_argument& e) {
+            throw e;
+        }
         for(UnitParam* u : b->getUnits()){
-            Attributes* attributes = u->getAttributes();
-            Unit* unit = base->createUnit(u->getName());
-            unit->setAttributesArmor(attributes->getArmor());
-            unit->setAttributesAttack(attributes->getAttack());
-            unit->setAttributesHealth(attributes->getHealth());
+            try{
+                CreateMediator* createMed = new CreateMediator(field, base);
+                base->setCreateMediator(createMed);
+                field->setCreateMediator(createMed);
+                Attributes* attributes = u->getAttributes();
+                Unit* unit = base->createUnit(u->getName(), u->getX(), u->getY());
+                unit->setAttributesArmor(attributes->getArmor());
+                unit->setAttributesAttack(attributes->getAttack());
+                unit->setAttributesHealth(attributes->getHealth());
+                unit->setX(u->getX());
+                unit->setY(u->getY());
+                createMed->notify(unit, u->getX(), u->getX());
+            }catch (out_of_range& e) {
+                throw e;
+            }catch (invalid_argument& e) {
+                throw e;
+            }
+
         }
     }
 }
@@ -164,7 +182,7 @@ GameMemento *Game::readMemento(string name)
             string name = u->getName();
             int num = baseNumb;
             Attributes* attributes = u->getAttributes();
-            UnitParam* paramUnit = new UnitParam(name, num, attributes);
+            UnitParam* paramUnit = new UnitParam(name, num, attributes, u->getX(), u->getY());
             paramUnits.push_back(paramUnit);
         }
         BaseParam* paramBase = new BaseParam(baseNumb, unitCount, maxCount, health, x, y, unitCurr, paramUnits);

@@ -39,6 +39,14 @@ public:
     bool recieveAttack(Unit* u);
     int getBaseNumber() const;
 
+    unsigned getX() const;
+
+    unsigned getY() const;
+
+    void setX(const unsigned &value);
+
+    void setY(const unsigned &value);
+
 protected:
     std::string name;
     bool movable=true;
@@ -46,6 +54,8 @@ protected:
     MoveMediator* moveMediator;
     AttackMediator* attackMediator;
     int baseNumber;
+    unsigned x;
+    unsigned y;
 };
 
 

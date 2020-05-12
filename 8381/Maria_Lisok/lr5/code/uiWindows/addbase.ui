@@ -514,7 +514,7 @@
     <string>Position</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="posBaseX">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -524,7 +524,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_2">
+  <widget class="QSpinBox" name="posBaseY">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -553,7 +553,7 @@
     <string>Max items</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_3">
+  <widget class="QSpinBox" name="maxCountOfItems">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -582,7 +582,7 @@
     <string>Health</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_4">
+  <widget class="QSpinBox" name="health">
    <property name="geometry">
     <rect>
      <x>30</x>

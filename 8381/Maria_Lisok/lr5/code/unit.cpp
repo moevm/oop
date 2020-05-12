@@ -55,6 +55,26 @@ int Unit::getBaseNumber() const
 {
     return baseNumber;
 }
+
+unsigned Unit::getX() const
+{
+    return x;
+}
+
+unsigned Unit::getY() const
+{
+    return y;
+}
+
+void Unit::setX(const unsigned &value)
+{
+    x = value;
+}
+
+void Unit::setY(const unsigned &value)
+{
+    y = value;
+}
 void Unit::setMoveMediator(MoveMediator* value){
     moveMediator = value;
 }

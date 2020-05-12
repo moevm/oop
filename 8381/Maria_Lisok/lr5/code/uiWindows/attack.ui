@@ -953,7 +953,7 @@
     <string>From</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="fromX">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -963,7 +963,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_2">
+  <widget class="QSpinBox" name="fromY">
    <property name="geometry">
     <rect>
      <x>130</x>
@@ -992,7 +992,7 @@
     <string>Step</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_3">
+  <widget class="QSpinBox" name="stepY">
    <property name="geometry">
     <rect>
      <x>300</x>
@@ -1002,7 +1002,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_4">
+  <widget class="QSpinBox" name="stepX">
    <property name="geometry">
     <rect>
      <x>240</x>

@@ -77,40 +77,15 @@ Unit *Base::createUnit(UnitsType type)
 
 Unit *Base::createUnit(string type)
 {
-    AbstractArmy* humanityArmy = new HumanityArmy();
-    AbstractArmy* creaturesArmy = new CreaturesArmy();
-    Unit* unit = nullptr;
-    if (type == "archer"){
-        unit = humanityArmy->createArrow();
-    }
-    else if (type == "shaman"){
-        unit = creaturesArmy->createArrow();
-    }
-    else if (type == "knigth"){
-        unit = humanityArmy->createCavelry();
-    }
-    else if (type == "rider"){
-        unit = creaturesArmy->createCavelry();
-    }
-    else if (type == "swardman"){
-        unit = humanityArmy->createInfantry();
-    }
-    else if (type == "ork"){
-        unit = creaturesArmy->createInfantry();
-    }
-    try {
-        this->getCreateMediator()->notify(unit, x, y);
-        gameMediator->Notify(unit, true);
-    } catch (out_of_range& e) {
-        throw e;
-    }
-    catch (invalid_argument& e) {
-        throw e;
-    }
-    units->addUnit(unit);
-    unitCount++;
-    return unit;
+    return makeUnit(type, x, y);
+
 }
+
+Unit *Base::createUnit(string type, int posX, int posY)
+{
+    return makeUnit(type, posX, posY);
+}
+
 
 void Base::addUnit(Unit *u)
 {
@@ -169,6 +144,44 @@ CreateMediator *Base::getCreateMediator() const
 int Base::getUnitCurr() const
 {
     return unitCurr;
+}
+
+Unit *Base::makeUnit(string type, int x, int y)
+{
+    AbstractArmy* humanityArmy = new HumanityArmy();
+    AbstractArmy* creaturesArmy = new CreaturesArmy();
+    Unit* unit = nullptr;
+    if (type == "archer"){
+        unit = humanityArmy->createArrow();
+    }
+    else if (type == "shaman"){
+        unit = creaturesArmy->createArrow();
+    }
+    else if (type == "knigth"){
+        unit = humanityArmy->createCavelry();
+    }
+    else if (type == "rider"){
+        unit = creaturesArmy->createCavelry();
+    }
+    else if (type == "swardman"){
+        unit = humanityArmy->createInfantry();
+    }
+    else if (type == "ork"){
+        unit = creaturesArmy->createInfantry();
+    }
+    try {
+        CreateMediator * mediator=this->getCreateMediator();
+        mediator->notify(unit, x, y);
+        gameMediator->Notify(unit, true);
+    } catch (out_of_range& e) {
+        throw e;
+    }
+    catch (invalid_argument& e) {
+        throw e;
+    }
+    units->addUnit(unit);
+    unitCount++;
+    return unit;
 }
 
 

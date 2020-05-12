@@ -22,6 +22,7 @@ public:
 
     Unit* createUnit(UnitsType type);
     Unit* createUnit(string type);
+    Unit* createUnit(string type, int posX, int posY);
     void addUnit(Unit* u);
     void deleteUnit(Subject*);
     Unit* getCurrUnit();
@@ -37,6 +38,7 @@ public:
     int getUnitCurr() const;
 
 private:
+    Unit* makeUnit(string type, int x, int y);
     int baseNumb;
     int unitCount;
     const int maxCount;

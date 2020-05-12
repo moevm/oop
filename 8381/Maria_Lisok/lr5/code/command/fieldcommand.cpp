@@ -152,9 +152,9 @@ map<string, int> FieldCommand::unitMove()
 {
     map<string, int> information;
     Unit* u = findItem();
+    int x = params.find("move")->second.x;
+    int y = params.find("move")->second.y;
     try{
-        int x = params.find("move")->second.x;
-        int y = params.find("move")->second.y;
         u->move(x, y);
         information["move unit name: "] = u->getTypeEnum();
         information["for pos x: "] = x;
@@ -164,6 +164,8 @@ map<string, int> FieldCommand::unitMove()
     }catch(invalid_argument& e){
         information[e.what()]=0;
     }
+    u->setX(u->getX()+x);
+    u->setY(u->getY()+y);
     return information;
 }
 

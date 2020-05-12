@@ -20,6 +20,8 @@ map<string, int> BaseCommand::unitAdd()
     Data data = params.find("addParams")->second;
     try {
         Unit* u = base->createUnit(data.unitType);
+        u->setX(static_cast<unsigned>(base->getX()));
+        u->setY(static_cast<unsigned>(base->getY()));
         information["unit added on pos x: "]=base->getX();
         information["unit added on pos y: "]=base->getY();
         information["unit added in base num: "]=base->getBaseNumb();

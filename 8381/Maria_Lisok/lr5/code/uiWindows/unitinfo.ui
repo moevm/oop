@@ -471,7 +471,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="posForInfoX">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -500,7 +500,7 @@
     <string>Position</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_2">
+  <widget class="QSpinBox" name="posForInfoY">
    <property name="geometry">
     <rect>
      <x>100</x>

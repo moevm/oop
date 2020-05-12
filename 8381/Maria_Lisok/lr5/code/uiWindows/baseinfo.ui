@@ -471,7 +471,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="baseNum">
    <property name="geometry">
     <rect>
      <x>60</x>

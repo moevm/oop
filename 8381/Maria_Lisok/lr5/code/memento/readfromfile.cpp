@@ -16,7 +16,7 @@ ReadFromFile::~ReadFromFile()
 GameParam* ReadFromFile::read()
 {
     string buf;
-    int temp;
+    int temp, tempUnitSize;
     unsigned width = 0;
     unsigned height = 0;
     unsigned limit = 0;
@@ -66,18 +66,22 @@ GameParam* ReadFromFile::read()
         if (!(file >> baseNumb)|| !(file >> unitCount) || !(file >> maxCount) || !(file >> health) ||
                !(file >> x)|| !(file >> y) || !(file >> unitCurr))
             throw invalid_argument("Base parameters wrong");
-
-        for(unsigned j=0; j < static_cast<unsigned>(unitCurr); j++){
+        file >> tempUnitSize;
+        for(unsigned j=0; j < static_cast<unsigned>(tempUnitSize); j++){
             string name;
             int baseNumber;
             file >> name >> baseNumber;
             int armor;
             int attack;
-            int health;
+            int healthUnit;
+            unsigned posUnitX;
+            unsigned posUnitY;
             file >> armor;
             file >> attack;
-            file >> health;
-            units.push_back(new UnitParam(name, baseNumber, new Attributes(armor, health, attack)));
+            file >> healthUnit;
+            file >> posUnitX;
+            file >> posUnitY;
+            units.push_back(new UnitParam(name, baseNumber, new Attributes(armor, healthUnit, attack), posUnitX, posUnitY));
         }
         bases.push_back(new BaseParam(baseNumb, unitCount, maxCount, health,x, y, unitCurr, units));
     }
