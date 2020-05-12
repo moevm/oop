@@ -98,6 +98,7 @@ signals:
     void attackUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist);
     void cellUnfromationRequest(size_t xCoord, size_t yCoord, eRequest infRequest);
     void saveGameFileRequest(std::string fileName);
+    void loadGameFileRequest(std::string fileName);
 
 public slots:
     void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight);
@@ -118,6 +119,8 @@ public slots:
                                         const QString& tag,
                                         const QString& report);
     void on_saveButton_clicked();
+    void on_loadButton_clicked();
+    void restoreBaseName(QString name);
 };
 
 #endif // GAMEWINDOW_H

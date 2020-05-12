@@ -41,8 +41,6 @@ private:
     QLabel *logModeLabel;
     QComboBox *logModeComboBox;
     QCheckBox *logAdvancedModeCheckBox;
-    // load game
-    QPushButton *loadGameButton;
 
     // GAME WINDOW
     GameWindow *gameWindow;

@@ -63,7 +63,7 @@ CompositeUnit* Unit::isComposite()
     return nullptr;
 }
 
-void Unit::addUnit(std::shared_ptr<Unit> unit)
+void Unit::addUnit([[maybe_unused]] std::shared_ptr<Unit> unit)
 {
     throw std::invalid_argument("Unable to add new unit to single");
 }
@@ -198,9 +198,9 @@ std::string Unit::convertEnumUnitNameToStr(eUnitsType type)
     return "";
 }
 
-std::shared_ptr<UnitParametersCaretaker> Unit::createMemento()
+std::shared_ptr<UnitParametersMemento> Unit::createMemento()
 {
-    std::shared_ptr<UnitParametersCaretaker> memento = std::make_shared<UnitParametersCaretaker>();
+    std::shared_ptr<UnitParametersMemento> memento = std::make_shared<UnitParametersMemento>();
     memento->name = name;
     memento->health = health;
     memento->armor = armor;
@@ -209,11 +209,12 @@ std::shared_ptr<UnitParametersCaretaker> Unit::createMemento()
     memento->actionTokens = actionTokens;
     memento->position = position;
     memento->creationBaseCoords = baseCreationPosition;
+    memento->type = getType();
 
     return memento;
 }
 
-void Unit::restoreMemento(std::shared_ptr<UnitParametersCaretaker> memento)
+void Unit::restoreMemento(std::shared_ptr<UnitParametersMemento> memento)
 {
     name = memento->name;
     health = memento->health;

@@ -5,6 +5,7 @@ UIFacade::UIFacade(int argc, char *argv[])
 {
     application = new QApplication(argc, argv);
     window = std::make_shared<MainWindow>();
+    mementoCaretacker = std::make_shared<GameMementoCaretacker>();
 }
 
 void UIFacade::start()
@@ -22,6 +23,8 @@ void UIFacade::start()
     connect(window->getGameWindow(), &GameWindow::gameWindowClosed, this, &UIFacade::gameWindowCloseEvent);
     connect(this, &UIFacade::reportStatusToGui, window->getGameWindow(), &GameWindow::handleStatusReport);
     connect(window->getGameWindow(), &GameWindow::saveGameFileRequest, this, &UIFacade::saveGameRequest);
+    connect(window->getGameWindow(), &GameWindow::loadGameFileRequest, this, &UIFacade::loadGameRequest);
+    connect(this, &UIFacade::restoreBaseNameGui, window->getGameWindow(), &GameWindow::restoreBaseName);
 
     QApplication::exec();
 }
@@ -92,9 +95,11 @@ void UIFacade::addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, 
     } catch(const SimpleFieldException& ex) {
         emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Base limit", ex.what());
         logger->sendLogInf(GAME_LOG, GAME_ADD_BASE, param, WRONG, ex.what());
+        return;
     } catch(const CoordsNotPartOfTheField& ex) {
         emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Field size", ex.what());
         logger->sendLogInf(GAME_LOG, GAME_ADD_BASE, param, WRONG, ex.what());
+        return;
     }
 
     emit reportStatusToGui(eREPORT_LEVEL::INFO, "Base adding", "Base was added");
@@ -235,7 +240,28 @@ void UIFacade::gameWindowCloseEvent()
 
 void UIFacade::saveGameRequest(std::string fileName)
 {
-    MementoWriter writer(fileName);
-    std::shared_ptr<GameParametersCaretaker> memento = game->createMemento();
-    writer.write(memento);
+    mementoCaretacker->saveToFile(fileName, game);
+}
+
+void UIFacade::loadGameRequest(std::string fileName)
+{
+    std::shared_ptr<GameParametersMemento> memento;
+    try {
+        memento = mementoCaretacker->loadFromFile(fileName);
+    } catch (const std::runtime_error& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Game load", ex.what());
+        return;
+    } catch (const std::invalid_argument& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Game load", ex.what());
+        return;
+    }
+
+    game = std::make_shared<Game>(memento->fieldParam->fieldParam->width, memento->fieldParam->fieldParam->height, memento->playersCount, true);
+    game->restoreMemento(memento);
+    for(const auto& curr : memento->baseNames)
+    {
+        emit restoreBaseNameGui(QString::fromUtf8(curr.first.c_str()));
+    }
+
+    emit reportStatusToGui(eREPORT_LEVEL::INFO, "Game load", "was successful");
 }

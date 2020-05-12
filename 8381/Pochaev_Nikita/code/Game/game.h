@@ -25,6 +25,7 @@ class FacadeMediator;
 struct BaseInf
 {
     BaseInf() = default;
+    BaseInf(size_t xCoord_, size_t yCoord_) : xCoord(xCoord_), yCoord(yCoord_) { };
     BaseInf(std::shared_ptr<GameBase> base_, size_t xCoord_, size_t yCoord_) :
         base(std::move(base_)), xCoord(xCoord_), yCoord(yCoord_) { };
 
@@ -62,8 +63,8 @@ public:
     void unitAttack(size_t xSource, size_t ySource, size_t xDest, size_t yDist) override;
 
     // Memento restore
-    std::shared_ptr<GameParametersCaretaker> createMemento();
-    void restoreMemento(std::shared_ptr<GameParametersCaretaker>);
+    std::shared_ptr<GameParametersMemento> createMemento();
+    void restoreMemento(std::shared_ptr<GameParametersMemento> memento);
 
 private:
     size_t playersCount{};

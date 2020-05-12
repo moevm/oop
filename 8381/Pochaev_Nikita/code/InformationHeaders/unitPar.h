@@ -28,6 +28,8 @@ enum eUnitsType
     VALUES_END
 };
 
+#define TYPES_OF_UNIT 5
+
         /* MOVEMENT RANGE */
 #define PEASANT_MOVEMENT_RANGE 2
 #define SWORDSMAN_MOVEMENT_RANGE 1

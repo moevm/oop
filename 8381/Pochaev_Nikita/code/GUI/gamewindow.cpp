@@ -194,6 +194,7 @@ void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCoun
     connect(attackUnitButton, &QPushButton::clicked, this, &GameWindow::on_attackUnitButton_clicked);
     connect(cellInfromationButton, &QPushButton::clicked, this, &GameWindow::on_cellInfromationButton_clicked);
     connect(saveMenuBarButton, &QAction::triggered, this, &GameWindow::on_saveButton_clicked);
+    connect(loadMenuBarButton, &QAction::triggered, this, &GameWindow::on_loadButton_clicked);
     emit createFieldRequest(gameFieldSize_, playersCount_);
 
     this->resize(static_cast<int>(screenWidth * 1.2), static_cast<int>(screenHeight * 1.7));
@@ -332,4 +333,23 @@ void GameWindow::on_saveButton_clicked()
         return;
     }
     emit saveGameFileRequest(fileName.toStdString());
+}
+
+void GameWindow::on_loadButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+                tr("Open SGF File"),  QDir::homePath(),
+                tr("SGF file (*.sgf);;All Files (*)"));
+
+    if (fileName == nullptr)
+    {
+        QMessageBox::warning(this, "Warning","No file was selected for loading");
+        return;
+    }
+    emit loadGameFileRequest(fileName.toStdString());
+}
+
+void GameWindow::restoreBaseName(QString name)
+{
+    unitSourceBaseComboBox->addItem(name);
 }

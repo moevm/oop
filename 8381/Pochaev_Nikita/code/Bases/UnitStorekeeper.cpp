@@ -48,9 +48,9 @@ void UnitStorekeeper::decreaseOneElement(eUnitsType unitType)
     unitInfo[unitType].currCount--;
 }
 
-std::shared_ptr<UnitStorekeeperParametersCaretaker> UnitStorekeeper::createMemento()
+std::shared_ptr<UnitStorekeeperParametersMemento> UnitStorekeeper::createMemento()
 {
-    std::shared_ptr<UnitStorekeeperParametersCaretaker> memento = std::make_unique<UnitStorekeeperParametersCaretaker>();
+    std::shared_ptr<UnitStorekeeperParametersMemento> memento = std::make_unique<UnitStorekeeperParametersMemento>();
 
     std::map<eUnitsType, MaxCurrUnitQuantity>::iterator iter;
     for(iter = unitInfo.begin(); iter != unitInfo.end(); iter++)
@@ -61,7 +61,7 @@ std::shared_ptr<UnitStorekeeperParametersCaretaker> UnitStorekeeper::createMemen
     return memento;
 }
 
-void UnitStorekeeper::restoreMemento(std::shared_ptr<UnitStorekeeperParametersCaretaker> memento)
+void UnitStorekeeper::restoreMemento(std::shared_ptr<UnitStorekeeperParametersMemento> memento)
 {
     const std::regex pattern("(\\d)\\s:\\s(\\d*);(\\d*)");
 

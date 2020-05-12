@@ -63,8 +63,8 @@ public:
     std::string getInfAboutUnit(size_t xDest, size_t yDest) override;
 
     // memento pattern
-    std::shared_ptr<FieldParametersCaretaker> createMemento();
-    void restoreMemento(std::shared_ptr<FieldParametersCaretaker> memento);
+    std::shared_ptr<FieldParametersMemento> createMemento();
+    void restoreMemento(std::shared_ptr<FieldParametersMemento> memento);
 
 private:
     cds::Array2D<std::shared_ptr<Cell>> cellMatrix;

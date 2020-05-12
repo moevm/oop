@@ -1,16 +1,17 @@
 ﻿#ifndef COMMAND_H
 #define COMMAND_H
 
+#include <memory>
+
 #include "Bases/GameBase.h"
 #include "GameField/GameFieldProxy.h"
 #include "ICommand.h"
 #include "InformationHeaders/commandPar.h"
-#include "Game/ChainHandler.h"
 
 class FacadeMediator;
 class Game;
 
-class Command : public ICommand, public AbstractHandler
+class Command : public ICommand
 {
 public:
     Command(eRequest request_, std::vector<size_t> param_, eUnitsType unitType_ = NONE_UNIT, eBaseType baseType_ = NONE_BASE);

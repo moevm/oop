@@ -56,8 +56,8 @@ public:
     void fillArtifactMapByRandom();
 
     // memento pattern
-    std::shared_ptr<FieldProxyParametersCaretaker> createMemento();
-    void restoreMemento(std::shared_ptr<FieldProxyParametersCaretaker> memento);
+    std::shared_ptr<FieldProxyParametersMemento> createMemento();
+    void restoreMemento(std::shared_ptr<FieldProxyParametersMemento> memento);
 
 private:
     // The field for which this class is a protecting and caching proxy

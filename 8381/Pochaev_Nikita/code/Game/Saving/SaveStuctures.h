@@ -9,8 +9,9 @@
 #include "GameField/Coords.h"
 #include "InformationHeaders/unitPar.h"
 #include "InformationHeaders/commandPar.h"
+#include "InformationHeaders/unitPar.h"
 
-struct UnitParametersCaretaker
+struct UnitParametersMemento
 {
     eUnitsType type;
     std::string name;
@@ -24,7 +25,7 @@ struct UnitParametersCaretaker
     Coords creationBaseCoords;
 };
 
-struct UnitStorekeeperParametersCaretaker
+struct UnitStorekeeperParametersMemento
 {
     std::vector<std::string> unitAccountingInf;
 };
@@ -33,10 +34,10 @@ struct BaseParametersCaretaker
 {
     size_t health;
     eBaseType type;
-    std::shared_ptr<UnitStorekeeperParametersCaretaker> unitCountsData;
+    std::shared_ptr<UnitStorekeeperParametersMemento> unitCountsData;
 };
 
-struct FieldParametersCaretaker
+struct FieldParametersMemento
 {
     size_t unitsCount;
     size_t maxUnitsCount;
@@ -46,21 +47,21 @@ struct FieldParametersCaretaker
     size_t height;
     
     std::map<Coords, std::shared_ptr<BaseParametersCaretaker>> bases;
-    std::map<Coords, std::shared_ptr<UnitParametersCaretaker>> units;
+    std::map<Coords, std::shared_ptr<UnitParametersMemento>> units;
 };
 
-struct FieldProxyParametersCaretaker
+struct FieldProxyParametersMemento
 {
     std::map<Coords, std::string> landscape;
     std::map<Coords, std::string> neutralObjects;
-    std::shared_ptr<FieldParametersCaretaker> fieldParam;
+    std::shared_ptr<FieldParametersMemento> fieldParam;
 };
 
-struct GameParametersCaretaker
+struct GameParametersMemento
 {
     size_t playersCount;
     std::map<std::string, Coords> baseNames;
-    std::shared_ptr<FieldProxyParametersCaretaker> fieldParam;
+    std::shared_ptr<FieldProxyParametersMemento> fieldParam;
 };
 
 #endif // SAVESTUCTURES_H

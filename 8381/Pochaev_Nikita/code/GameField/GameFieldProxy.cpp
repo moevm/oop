@@ -245,24 +245,26 @@ std::string GameFieldProxy::getInfAboutUnit(size_t xDest, size_t yDest)
     return field->getInfAboutUnit(xDest, yDest);
 }
 
-std::shared_ptr<FieldProxyParametersCaretaker> GameFieldProxy::createMemento()
+std::shared_ptr<FieldProxyParametersMemento> GameFieldProxy::createMemento()
 {
-    std::shared_ptr<FieldProxyParametersCaretaker> memento = std::make_shared<FieldProxyParametersCaretaker>();
+    std::shared_ptr<FieldProxyParametersMemento> memento = std::make_shared<FieldProxyParametersMemento>();
 
     memento->fieldParam = field->createMemento();
+
     for(const auto& curr : terrain)
     {
         memento->landscape.insert(std::pair(Coords(curr.first.x, curr.first.y), curr.second->getNameOfLandscape()));
     }
     for(const auto& curr : artifactMap)
     {
+        if(curr.second == nullptr) continue;
         memento->neutralObjects.insert(std::pair(Coords(curr.first.x, curr.first.y), curr.second->getNameOfNeutralObject()));
     }
 
     return memento;
 }
 
-void GameFieldProxy::restoreMemento(std::shared_ptr<FieldProxyParametersCaretaker> memento)
+void GameFieldProxy::restoreMemento(std::shared_ptr<FieldProxyParametersMemento> memento)
 {
     field->restoreMemento(memento->fieldParam);
 

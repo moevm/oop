@@ -307,12 +307,12 @@ std::string GameField::getInfAboutUnit(size_t xDest, size_t yDest)
     return cellMatrix[xDest][yDest]->getUnitByCoords()->getUnitInf();
 }
 
-std::shared_ptr<FieldParametersCaretaker> GameField::createMemento()
+std::shared_ptr<FieldParametersMemento> GameField::createMemento()
 {
-    std::shared_ptr<FieldParametersCaretaker> memento = std::make_shared<FieldParametersCaretaker>();
+    std::shared_ptr<FieldParametersMemento> memento = std::make_shared<FieldParametersMemento>();
     memento->unitsCount = unitsCount;
     memento->maxUnitsCount = maxUnitsCount;
-    memento->maxUnitsCount = baseCount;
+    memento->baseCount = baseCount;
     memento->maxBaseCount = maxBaseCount;
     memento->width = width;
     memento->height = height;
@@ -335,7 +335,7 @@ std::shared_ptr<FieldParametersCaretaker> GameField::createMemento()
     return memento;
 }
 
-void GameField::restoreMemento(std::shared_ptr<FieldParametersCaretaker> memento)
+void GameField::restoreMemento(std::shared_ptr<FieldParametersMemento> memento)
 {
     unitsCount = memento->unitsCount;
     maxUnitsCount = memento->maxUnitsCount;
@@ -363,16 +363,17 @@ void GameField::restoreMemento(std::shared_ptr<FieldParametersCaretaker> memento
                 return;
         }
         master.constructBase();
-        cellMatrix[x][y]->getBaseByCoords() = master.getBase();
+        cellMatrix[x][y]->addBase(master.getBase());
         cellMatrix[x][y]->getBaseByCoords()->restoreMemento(basesIter->second);
     }
 
-    std::map<Coords, std::shared_ptr<UnitParametersCaretaker>>::iterator unitIter;
+    std::map<Coords, std::shared_ptr<UnitParametersMemento>>::iterator unitIter;
     for(unitIter = memento->units.begin(); unitIter != memento->units.end(); ++unitIter)
     {
         size_t x = unitIter->first.x;
         size_t y = unitIter->first.y;
-        std::shared_ptr<Unit> restUnit = cellMatrix[unitIter->second->creationBaseCoords.x][unitIter->second->creationBaseCoords.y]->getBaseByCoords()->getUnit(unitIter->second->type);
+        eUnitsType type = unitIter->second->type;
+        std::shared_ptr<Unit> restUnit = cellMatrix[unitIter->second->creationBaseCoords.x][unitIter->second->creationBaseCoords.y]->getBaseByCoords()->getUnit(type);
         restUnit->restoreMemento(unitIter->second);
         addUnit(restUnit, x, y);
     }

@@ -10,9 +10,9 @@ Command::Command(eRequest request_, std::vector<size_t> param_, eUnitsType unitT
     request(request_), param(param_), unitType(unitType_), baseType(baseType_) { };
 
 Command::Command(std::shared_ptr<FacadeMediator> facadeMediator_, eRequest request_, std::vector<size_t> param_, eUnitsType unitType_, eBaseType baseType_) :
-    facadeMediator(std::move(facadeMediator_))
+    Command(request_, param_, unitType_, baseType_)
 {
-    Command(request_, param_, unitType_, baseType_);
+    facadeMediator = std::move(facadeMediator_);
 };
 
 void Command::setMediator(std::shared_ptr<FacadeMediator> mediator)

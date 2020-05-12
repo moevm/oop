@@ -3,15 +3,13 @@
 
 Game::Game(size_t fieldHeight, size_t fieldWidth, bool fill)
 {
-    field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth);
-    if(fill) field->fillTerrainByRandom();
+    field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth, fill);
 }
 
 Game::Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_, bool fill)
 {
     playersCount = playersCount_;
-    field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth);
-    if(fill) field->fillTerrainByRandom();
+    field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth, fill);
 }
 
 std::shared_ptr<GameFieldProxy> Game::getField() const
@@ -114,9 +112,9 @@ size_t Game::getPlayersCount()
     return playersCount;
 }
 
-std::shared_ptr<GameParametersCaretaker> Game::createMemento()
+std::shared_ptr<GameParametersMemento> Game::createMemento()
 {
-    std::shared_ptr<GameParametersCaretaker> memento = std::make_shared<GameParametersCaretaker>();
+    std::shared_ptr<GameParametersMemento> memento = std::make_shared<GameParametersMemento>();
 
     memento->playersCount = playersCount;
     memento->fieldParam = field->createMemento();
@@ -127,4 +125,20 @@ std::shared_ptr<GameParametersCaretaker> Game::createMemento()
     }
 
     return memento;
+}
+
+void Game::restoreMemento(std::shared_ptr<GameParametersMemento> memento)
+{
+    playersCount = memento->playersCount;
+    for(const auto& curr : memento->baseNames)
+    {
+        bases.insert(std::pair(QString::fromUtf8(curr.first.c_str()), BaseInf(curr.second.x, curr.second.y)));
+    }
+
+    field->restoreMemento(memento->fieldParam);
+
+    for(const auto& curr : memento->baseNames)
+    {
+        bases[QString::fromUtf8(curr.first.c_str())].base = field->getBaseByCoords(curr.second.x, curr.second.y);
+    }
 }

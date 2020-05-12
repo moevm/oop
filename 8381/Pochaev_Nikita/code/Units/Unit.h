@@ -75,8 +75,8 @@ public:
     void carryOutMeleeAttack(size_t x, size_t y) override;
 
     // Memento functionality
-    std::shared_ptr<UnitParametersCaretaker> createMemento();
-    void restoreMemento(std::shared_ptr<UnitParametersCaretaker> memento);
+    std::shared_ptr<UnitParametersMemento> createMemento();
+    void restoreMemento(std::shared_ptr<UnitParametersMemento> memento);
 
     // special functionality
     static std::string convertEnumUnitNameToStr(eUnitsType type);

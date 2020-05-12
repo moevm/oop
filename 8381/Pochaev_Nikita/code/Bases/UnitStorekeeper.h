@@ -41,8 +41,8 @@ public:
     std::string getTotalInformation();
 
     // Memento functionality
-    std::shared_ptr<UnitStorekeeperParametersCaretaker> createMemento();
-    void restoreMemento(std::shared_ptr<UnitStorekeeperParametersCaretaker> memento);
+    std::shared_ptr<UnitStorekeeperParametersMemento> createMemento();
+    void restoreMemento(std::shared_ptr<UnitStorekeeperParametersMemento> memento);
 
 private:
     /*

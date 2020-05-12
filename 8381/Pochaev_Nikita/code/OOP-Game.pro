@@ -35,12 +35,11 @@ SOURCES += \
     GUI/command.cpp \
     GUI/gamewindow.cpp \
     GUI/mainwindow.cpp \
-    Game/ChainHandler.cpp \
     Game/FacadeMediator.cpp \
     Game/Logging/Loggers/logadapter.cpp \
     Game/Logging/Loggers/loggers.cpp \
     Game/Logging/time.cpp \
-    Game/Saving/gamememento.cpp \
+    Game/Saving/gamemementocaretacker.cpp \
     Game/Saving/mementofiles.cpp \
     Game/UIFacade.cpp \
     Game/game.cpp \
@@ -94,7 +93,6 @@ HEADERS += \
     GUI/command.h \
     GUI/gamewindow.h \
     GUI/mainwindow.h \
-    Game/ChainHandler.h \
     Game/FacadeMediator.h \
     Game/IFacadeMediator.h \
     Game/IGame.h \
@@ -104,9 +102,9 @@ HEADERS += \
     Game/Logging/Loggers/loggers.h \
     Game/Logging/logfunctionality.h \
     Game/Logging/time.h \
-    Game/Saving/IMemento.h \
+    Game/Saving/ICaretacker.h \
     Game/Saving/SaveStuctures.h \
-    Game/Saving/gamememento.h \
+    Game/Saving/gamemementocaretacker.h \
     Game/Saving/mementofiles.h \
     Game/UIFacade.h \
     Game/game.h \

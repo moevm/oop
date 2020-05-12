@@ -10,8 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     fieldSizeSpinBox(new QSpinBox),
     logModeLabel(new QLabel),
     logModeComboBox(new QComboBox),
-    logAdvancedModeCheckBox(new QCheckBox),
-    loadGameButton(new QPushButton)
+    logAdvancedModeCheckBox(new QCheckBox)
 {
     setUpUI();
 }
@@ -36,7 +35,6 @@ void MainWindow::setUpUI()
 
     // set up buttons
     startNewGameButton->setText("Start new game");
-    loadGameButton->setText("Load");
 
     // set up labels
     playersCountLabel->setAlignment(Qt::AlignCenter);
@@ -67,7 +65,6 @@ void MainWindow::setUpUI()
     QGridLayout *mainGameSetupLayout = new QGridLayout;
     QVBoxLayout *buttonsLayout = new QVBoxLayout;
     buttonsLayout->addWidget(startNewGameButton);
-    buttonsLayout->addWidget(loadGameButton);
 
     mainGameSetupLayout->addLayout(buttonsLayout, 0, 0, 1, 1, Qt::AlignCenter);
     mainGameSetupLayout->addLayout(playersCountLayout, 1, 0, 1, 1, Qt::AlignCenter);
