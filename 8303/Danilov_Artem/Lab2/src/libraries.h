@@ -5,6 +5,6 @@
 #ifndef LIBRARIES_H
 #define LIBRARIES_H
 
-#include <iostream>
+
 #include <string>
 #endif //GAMEOFTHEYEAR_LIBRARIES_H

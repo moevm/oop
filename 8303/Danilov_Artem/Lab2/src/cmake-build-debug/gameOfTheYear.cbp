@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="gameOfTheYear"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gameOfTheYear">
+				<Option output="/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/gameOfTheYear" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/."/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Base"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Field"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Landscape"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/NeutralObject"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units/Factory"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units/Melee"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units/Range"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units/Support"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 gameOfTheYear"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gameOfTheYear/fast">
+				<Option output="/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/gameOfTheYear" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/."/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Base"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Field"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Landscape"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/NeutralObject"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units/Factory"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units/Melee"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units/Range"/>
+					<Add directory="/home/kot/ETU/OOP/gameOfTheYear/Units/Support"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 gameOfTheYear/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Base/base.cpp">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Base/base.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Base/composite.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Field/field.cpp">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Field/field.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Field/fieldItem.cpp">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Field/fieldItem.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Landscape/landscape.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Landscape/proxy.cpp">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Landscape/proxy.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/NeutralObject/armor.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/NeutralObject/context.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/NeutralObject/curse.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/NeutralObject/elixir.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/NeutralObject/neutralObj.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/NeutralObject/weapon.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Factory/direFactory.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Factory/radiantFactory.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Factory/unitFactory.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Melee/knight.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Melee/melee.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Melee/ork.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Range/chimera.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Range/dragon.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Range/range.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Support/dryad.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Support/support.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/Support/witch.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/characteristics.cpp">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/characteristics.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/unit.cpp">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/Units/unit.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/libraries.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/main.cpp">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/moveMediator.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/observer.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/subject.cpp">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/subject.h">
+			<Option target="gameOfTheYear"/>
+		</Unit>
+		<Unit filename="/home/kot/ETU/OOP/gameOfTheYear/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

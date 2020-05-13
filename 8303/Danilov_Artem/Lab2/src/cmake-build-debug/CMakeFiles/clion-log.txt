@@ -1,0 +1,18 @@
+/snap/clion/112/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/usr/bin/make -G "CodeBlocks - Unix Makefiles" /home/kot/ETU/OOP/gameOfTheYear
+-- The C compiler identification is GNU 9.3.0
+-- The CXX compiler identification is GNU 9.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/kot/ETU/OOP/gameOfTheYear/cmake-build-debug
