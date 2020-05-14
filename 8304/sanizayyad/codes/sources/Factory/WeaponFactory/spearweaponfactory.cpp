@@ -1,8 +1,6 @@
 #include "spearweaponfactory.hpp"
 
-std::unique_ptr<Weapon> SpearWeaponFactory::createWeapon()
+std::shared_ptr<Weapon> SpearWeaponFactory::createWeapon() const
 {
-    std::unique_ptr<Weapon> weapon(new SpearWeapon);
-    
-    return weapon;
+      return std::make_shared<SpearWeapon>();
 }

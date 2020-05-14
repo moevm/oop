@@ -4,6 +4,8 @@
 FieldCell::FieldCell()
 {
     empty = true;
+    this->neutralObject = std::make_shared<NoObject>();
+    this->landscape = std::shared_ptr<ProxyLandscape>(new ProxyLandscape);
 }
 
 
@@ -86,3 +88,30 @@ bool FieldCell::isEmpty() const
     return empty;
 }
 
+void FieldCell::setNeutralObject(std::shared_ptr<NeutralObject> neutralObject)
+{
+    this->neutralObject = neutralObject;
+}
+
+
+std::shared_ptr<NeutralObject> FieldCell::getNeutralObject() const
+{
+    return neutralObject;
+}
+
+
+void FieldCell::deleteNeutralObject()
+{
+    this->neutralObject = std::make_shared<NoObject>();
+}
+
+void FieldCell::setLandscape(std::shared_ptr<Landscape> landscape)
+{
+    this->landscape = landscape;
+}
+
+
+std::shared_ptr<Landscape> FieldCell::getLandscape() const
+{
+    return landscape;
+}

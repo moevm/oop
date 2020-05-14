@@ -37,3 +37,9 @@ void NoObject::selectLogic(std::shared_ptr<Unit> unit)
 
     strategyPattern = std::unique_ptr<NoLogic>(new NoLogic);
 }
+
+
+char NoObject::draw() const
+{
+    return '.';
+}

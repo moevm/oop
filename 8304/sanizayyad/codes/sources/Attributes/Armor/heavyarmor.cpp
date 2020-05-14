@@ -25,10 +25,9 @@ HeavyArmor& HeavyArmor::operator=(const HeavyArmor& armor)
 }
 
 
-std::unique_ptr<Armor> HeavyArmor::clone()
+std::shared_ptr<Armor> HeavyArmor::clone() const
 {
-    std::unique_ptr<Armor> armor(new HeavyArmor(*this));
-    return armor;
+    return std::make_shared<HeavyArmor>(*this);
 }
 
 

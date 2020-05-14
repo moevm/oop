@@ -1,8 +1,7 @@
 #include "noarmorfactory.hpp"
 
-std::unique_ptr<Armor> NoArmorFactory::createArmor()
+std::shared_ptr<Armor> NoArmorFactory::createArmor() const
 {
-    std::unique_ptr<Armor> armor(new NoArmor);
+    return std::make_shared<NoArmor>();
 
-    return armor;
 }

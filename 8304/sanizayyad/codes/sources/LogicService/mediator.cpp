@@ -12,7 +12,7 @@ Mediator::Mediator(std::shared_ptr<BattleField> battleField)
 bool Mediator::notify(std::shared_ptr<Unit> unit,const std::string& action)
 {
     Position2D currentPosition = unit->getPosition();
-    FieldCell& currentCell = battleField->getFieldCell(currentPosition);
+    auto currentCell = battleField->getFieldCell(currentPosition);
     Position2D nextPoint = currentPosition;
 
     if(action == MOVE_TOP || action == MOVE_LEFT ||
@@ -42,20 +42,20 @@ bool Mediator::notify(std::shared_ptr<Unit> unit,const std::string& action)
             }
         }
         
-        FieldCell& nextCell = battleField->getFieldCell(nextPoint);
+        auto nextCell = battleField->getFieldCell(nextPoint);
                 
-        if (nextCell.isEmpty() && nextCell.getLandscape()->canMove(unit)) {
-            nextCell.addUnit(unit);
-            nextCell.getLandscape()->hurtUnit(unit);
-            currentCell.deleteUnit();
-            (*nextCell.getNeutralObject())[unit];
-            nextCell.deleteNeutralObject();
+        if (nextCell->isEmpty() && nextCell->getLandscape()->canMove(unit)) {
+            nextCell->addUnit(unit);
+            nextCell->getLandscape()->hurtUnit(unit);
+            currentCell->deleteUnit();
+            (*nextCell->getNeutralObject())[unit];
+            nextCell->deleteNeutralObject();
             return true;
         }
         
     }else if (action == CREATE_UNIT){
-        if (currentCell.isEmpty()) {
-            currentCell.addUnit(unit);
+        if (currentCell->isEmpty()) {
+            currentCell->addUnit(unit);
             return true;
         }
     }

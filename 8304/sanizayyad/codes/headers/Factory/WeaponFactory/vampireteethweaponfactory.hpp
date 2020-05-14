@@ -8,10 +8,8 @@
 class VampireTeethWeaponFactory : public WeaponFactory
 {
 public:
-    explicit VampireTeethWeaponFactory() = default;
-    virtual ~VampireTeethWeaponFactory() = default;
 
-    virtual std::unique_ptr<Weapon> createWeapon() override;
+    virtual std::shared_ptr<Weapon> createWeapon() const override;
 };
 
 

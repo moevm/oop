@@ -1,8 +1,7 @@
 #include "dragonfireweaponfactory.hpp"
 
-std::unique_ptr<Weapon> DragonFireWeaponFactory::createWeapon()
+std::shared_ptr<Weapon> DragonFireWeaponFactory::createWeapon() const
 {
-    std::unique_ptr<Weapon> weapon(new DragonFireWeapon);
-    
-    return weapon;
+    return std::make_shared<DragonFireWeapon>();
+
 }

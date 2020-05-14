@@ -8,10 +8,8 @@
 class SpearWeaponFactory : public WeaponFactory
 {
 public:
-    explicit SpearWeaponFactory() = default;
-    virtual ~SpearWeaponFactory() = default;
 
-    virtual std::unique_ptr<Weapon> createWeapon() override;
+    virtual std::shared_ptr<Weapon> createWeapon() const override;
 };
 
 #endif /* spearweaponfactory_hpp */

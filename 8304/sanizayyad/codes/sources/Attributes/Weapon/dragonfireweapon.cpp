@@ -3,7 +3,6 @@
 DragonFireWeapon::DragonFireWeapon()
 {
     weaponType = "Dragon Fire";
-    radius = DRAGON_FIRE_RADIUS;
     distance = DYNAMIC_RANGE_DISTANCE;
     damage = DRAGON_FIRE_DAMAGE;
 }
@@ -33,16 +32,10 @@ size_t DragonFireWeapon::getDamage() const
 }
 
 
-std::unique_ptr<Weapon> DragonFireWeapon::clone()
+std::shared_ptr<Weapon> DragonFireWeapon::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new DragonFireWeapon(*this));
-    return weapon;
-}
+    return std::make_shared<DragonFireWeapon>(*this);
 
-
-size_t DragonFireWeapon::getRadiusAttack() const
-{
-    return radius;
 }
 
 

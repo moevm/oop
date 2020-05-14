@@ -13,6 +13,7 @@ public:
     NoObject& operator=(const NoObject& object);
 
     virtual std::shared_ptr<NeutralObject> clone() const override;
+    virtual char draw() const override; 
 
 protected:
     virtual void selectLogic(std::shared_ptr<Unit> unit) override;

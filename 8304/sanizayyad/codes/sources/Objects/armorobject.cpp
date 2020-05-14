@@ -47,3 +47,8 @@ void ArmorObject::selectLogic(std::shared_ptr<Unit> unit)
         strategyPattern = std::unique_ptr<StrategyPattern>(new NoLogic);
     }
 }
+
+char ArmorObject::draw() const
+{
+    return 'a';
+}

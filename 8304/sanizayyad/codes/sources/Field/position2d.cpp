@@ -1,5 +1,14 @@
 #include "position2d.hpp"
 
+
+Position2D::Position2D()
+{
+    this->x = 0;
+    this->y = 0;
+}
+
+
+
 Position2D::Position2D(int x, int y)
 {
     this->x = x;
@@ -7,41 +16,23 @@ Position2D::Position2D(int x, int y)
 }
 
 
-Position2D::Position2D(const Position2D& point)
+Position2D::Position2D(const Position2D& position)
 {
-    this->x = point.x;
-    this->y = point.y;
+    this->x = position.x;
+    this->y = position.y;
 }
 
 
-Position2D::Position2D(Position2D&& point)
-{
-    this->x = point.x;
-    this->y = point.y;
-}
 
 
-Position2D& Position2D::operator=(Position2D&& point)
+Position2D& Position2D::operator=(const Position2D& position)
 {
-    if (this == &point) {
+    if (this == &position) {
         return *this;
     }
 
-    this->x = point.x;
-    this->y = point.y;
-
-    return *this;
-}
-
-
-Position2D& Position2D::operator=(const Position2D& point)
-{
-    if (this == &point) {
-        return *this;
-    }
-
-    this->x = point.x;
-    this->y = point.y;
+    this->x = position.x;
+    this->y = position.y;
 
     return *this;
 }

@@ -8,10 +8,9 @@
 class VampireFactory : public UnitFactory
 {
 public:
-    explicit VampireFactory() = default;
-    virtual ~VampireFactory() = default;
+  
 
-    virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) override;
+     virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) const override;
 
 };
 

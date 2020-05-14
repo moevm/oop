@@ -14,7 +14,7 @@ public:
     void first();
     friend const BattleFieldIterator& operator++(BattleFieldIterator& it);
     friend const BattleFieldIterator operator++(BattleFieldIterator& it, int);
-    FieldCell& operator*() const;
+    std::shared_ptr<FieldCell> operator*() const;
 
 private:
     size_t i;

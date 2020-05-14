@@ -10,6 +10,7 @@
 #include "spearManArmorUpdateLogic.hpp"
 #include "archerArmorUpdateLogic.hpp"
 #include "dragonArmorUpdateLogic.hpp"
+#include "drawingInterface.hpp"
 
 
 #include "healthupdatelogic.hpp"
@@ -18,7 +19,8 @@
 
 #include <stdio.h>
 
-class NeutralObject
+
+class NeutralObject: public DrawingInterface
 {
 public:
     explicit NeutralObject() = default;

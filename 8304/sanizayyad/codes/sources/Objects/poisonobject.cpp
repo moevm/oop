@@ -35,3 +35,8 @@ void PoisonObject::selectLogic(std::shared_ptr<Unit> unit)
 
     strategyPattern = std::unique_ptr<StrategyPattern>(new PoisonLogic);
 }
+
+char PoisonObject::draw() const
+{
+    return '!';
+}

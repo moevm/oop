@@ -1,9 +1,8 @@
 #include "archerfactory.hpp"
 
 std::shared_ptr<Unit> ArcherFactory::createUnit(const Position2D& position,
-                                                 std::shared_ptr<Mediator> mediator)
+                                                 std::shared_ptr<Mediator> mediator) const
 {
-    std::shared_ptr<Unit> unit(new Archer(position,mediator));
+     return std::make_shared<Archer>(position,mediator);
 
-    return unit;
 }

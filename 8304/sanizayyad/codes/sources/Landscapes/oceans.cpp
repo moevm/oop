@@ -2,14 +2,16 @@
 
 void OceansLandscape::hurtUnit(std::shared_ptr<Unit> unit) const
 {
-//    not used
+    if (unit) {
+        unit->makeDamage(5);
+    }
 }
 
 
 bool OceansLandscape::canMove(std::shared_ptr<Unit> unit) const
 {
 //    not used
-    return false;
+    return true;
 }
 
 
@@ -22,5 +24,5 @@ std::shared_ptr<Landscape> OceansLandscape::clone() const
 
 char OceansLandscape::draw() const
 {
-    return '~';
+    return 'O';
 }

@@ -15,7 +15,6 @@ class FieldCell
 {
 public:
     explicit FieldCell();
-    ~FieldCell() = default;
 
     FieldCell(const FieldCell& cell);
     FieldCell(FieldCell&& cell);
@@ -35,12 +34,18 @@ public:
     void setLandscape(std::shared_ptr<Landscape> landscape);
     std::shared_ptr<Landscape> getLandscape() const;
     
+    
+private:
+    void copy(const FieldCell& fieldCell);
+    void move(FieldCell& fieldCell);
+
 
 private:
     std::shared_ptr<Unit> unit;
     std::shared_ptr<NeutralObject> neutralObject;
     std::shared_ptr<Landscape> landscape;
     bool empty;
+    
 };
 
 

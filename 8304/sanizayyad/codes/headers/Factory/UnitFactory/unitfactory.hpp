@@ -16,10 +16,8 @@
 class UnitFactory
 {
 public:
-    explicit UnitFactory() = default;
-    virtual ~UnitFactory() = default;
 
-    virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) = 0;
+    virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) const = 0;
 
 };
 

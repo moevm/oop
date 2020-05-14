@@ -1,11 +1,12 @@
 #include "base.hpp"
 
-Base::Base(const Position2D& position, std::shared_ptr<Mediator> mediator) : Unit(position, mediator)
+Base::Base(const Position2D& position, std::shared_ptr<Mediator> mediator,PLAYER player) : Unit(position, mediator)
 {
     HeavyArmorFactory armorFactory;
     BallisticWeaponFactory weaponFactory;
 
     healthPoints = 300;
+    this->player = player;
     unitName = "Base";
     armor = armorFactory.createArmor();
     weapon = weaponFactory.createWeapon();
@@ -136,6 +137,7 @@ std::shared_ptr<Unit> Base::createUnit(std::shared_ptr<Unit> unit)
 {
     if (numberOfUnits < MAX_NUMBER_UNITS &&  mediator->notify(unit, CREATE_UNIT)) {
         unit->addObserver(shared_from_this());
+        unit->setPlayer(this->player);
         numberOfUnits++;
         return unit;
     }

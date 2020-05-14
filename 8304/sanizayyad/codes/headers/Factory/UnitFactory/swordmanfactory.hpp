@@ -8,10 +8,8 @@
 class SwordManFactory : public UnitFactory
 {
 public:
-    explicit SwordManFactory() = default;
-    virtual ~SwordManFactory() = default;
 
-    virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) override;
+    virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) const override;
 
 };
 

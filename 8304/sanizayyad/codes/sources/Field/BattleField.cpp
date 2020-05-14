@@ -1,66 +1,32 @@
 #include "BattleField.hpp"
 #include "battlefielditerator.hpp"
 
-BattleField::BattleField(size_t height, size_t width) :
+BattleField::BattleField(int height, int width) :
     height(height), width(width),
-    battleFieldArray(std::make_unique<std::unique_ptr<FieldCell[]>[]>(height))
+    battleFieldArray(height, std::vector<std::shared_ptr<FieldCell>>(width))
 
 {
-    this->numberOfUnits = 0;
-    this->maxUnit = width * height;
-
-    for (size_t i = 0; i < height; ++i) {
-        battleFieldArray[i] = std::make_unique<FieldCell[]>(width);
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            battleFieldArray[i][j] = std::make_shared<FieldCell>();
+        }
     }
 }
 
 
 BattleField::BattleField(const BattleField& battleField)
 {
-    battleFieldArray = std::make_unique<std::unique_ptr<FieldCell[]>[]>(battleField.height);
-
-    height = battleField.height;
-    width = battleField.width;
-    numberOfUnits = battleField.numberOfUnits;
-
-    for (size_t i = 0; i < height; ++i) {
-        battleFieldArray[i] = std::make_unique<FieldCell[]>(width);
-    }
-
-    for (size_t i = 0; i < height; ++i) {
-        for (size_t j = 0; j < width; ++j) {
-            battleFieldArray[i][j] = battleField.battleFieldArray[i][j];
-        }
-    }
+    copy(battleField);
 }
 
 
 BattleField& BattleField::operator=(const BattleField& battleField)
 {
-    if (this == &battleField) {
+   if (this == &battleField) {
         return *this;
     }
 
-    for (size_t i = 0; i < height; ++i) {
-        battleFieldArray[i].reset();
-    }
-    battleFieldArray.reset();
-
-    battleFieldArray = std::make_unique<std::unique_ptr<FieldCell[]>[]>(battleField.height);
-
-    height = battleField.height;
-    width = battleField.width;
-    numberOfUnits = battleField.numberOfUnits;
-
-    for (size_t i = 0; i < height; ++i) {
-        battleFieldArray[i] = std::make_unique<FieldCell[]>(width);
-    }
-
-    for (size_t i = 0; i < height; ++i) {
-        for (size_t j = 0; j < width; ++j) {
-            battleFieldArray[i][j] = battleField.battleFieldArray[i][j];
-        }
-    }
+    copy(battleField);
 
     return *this;
 }
@@ -68,15 +34,7 @@ BattleField& BattleField::operator=(const BattleField& battleField)
 
 BattleField::BattleField(BattleField&& battleField)
 {
-    height = battleField.height;
-    width = battleField.width;
-    numberOfUnits = battleField.numberOfUnits;
-
-    battleField.height = 0;
-    battleField.width = 0;
-    battleField.numberOfUnits = 0;
-
-    battleFieldArray = std::move(battleField.battleFieldArray);
+    move(battleField);
 }
 
 
@@ -86,68 +44,54 @@ BattleField& BattleField::operator=(BattleField&& battleField)
         return* this;
     }
 
-    for (size_t i = 0; i < height; ++i) {
-        battleFieldArray[i].reset();
-    }
-    battleFieldArray.reset();
-
-    height = battleField.height;
-    width = battleField.width;
-    numberOfUnits = battleField.numberOfUnits;
-
-    battleField.height = 0;
-    battleField.width = 0;
-    battleField.numberOfUnits = 0;
-
-    battleFieldArray = std::move(battleField.battleFieldArray);
+    move(battleField);
 
     return *this;
 }
 
 
-size_t BattleField::getWidth() const
+int BattleField::getWidth() const
 {
     return width;
 }
 
 
-size_t BattleField::getHeight() const
+int BattleField::getHeight() const
 {
     return height;
 }
 
 
-size_t BattleField::getNumberOfUnits() const
-{
-    return numberOfUnits;
-}
-
 
 bool BattleField::addUnit(std::shared_ptr<Unit> unit)
 {
-    Position2D position = unit->getPosition();
+    if (unit) {
+        Position2D position = unit->getPosition();
 
-    if (!battleFieldArray[position.y][position.x].isEmpty() && numberOfUnits < maxUnit) {
-        return false;
+        if (!battleFieldArray[position.y][position.x]->isEmpty()) {
+            return false;
+        }
+
+        battleFieldArray[position.y][position.x]->addUnit(unit);
+
+        return true;
     }
 
-    battleFieldArray[position.y][position.x].addUnit(unit);
-    numberOfUnits++;
-
-    return true;
+    return false;
+    
 }
 
 
-FieldCell& BattleField::getFieldCell(const Position2D &position)
+std::shared_ptr<FieldCell> BattleField::getFieldCell(const Position2D &position)
 {
     return battleFieldArray[position.y][position.x];
 }
 
 void BattleField::getFieldCellInfo(const Position2D &position)
 {
-   auto unit = getFieldCell(position).isEmpty();
+   auto unit = getFieldCell(position)->isEmpty();
    if(!unit)
-        getFieldCell(position).getUnit()->getUnitInfo();
+        getFieldCell(position)->getUnit()->getUnitInfo();
    else{
        std::cout<<"At position X=" << position.x << " Y="<< position.y<<" Cell is Empty :(\n";
     }
@@ -157,29 +101,54 @@ void BattleField::getFieldCellInfo(const Position2D &position)
 
 void BattleField::deleteUnit(std::shared_ptr<Unit> unit)
 {
-   ;
-    
-    auto it = std::unique_ptr<BattleFieldIterator>(new BattleFieldIterator(*this));
+    if (unit) {
+        auto pos = unit->getPosition();
+        battleFieldArray[pos.y][pos.x]->deleteUnit();
+    }}
 
-    for (it->first(); it->hasNext(); ++*it) {
-        if ((**it).getUnit() == unit) {
-            (**it).deleteUnit();
-        }
-    }
-    numberOfUnits--;
-    unit.reset();
-}
-
-void BattleField::deleteUnitCord(Position2D position)
+void BattleField::deleteUnitCord(Position2D pos)
 {
-    auto unit = getFieldCell(position).isEmpty();
+    auto unit = getFieldCell(pos)->isEmpty();
     
     if(!unit){
-           getFieldCell(position).getUnit().reset();
-           getFieldCell(position).deleteUnit();
-       }
+        battleFieldArray[pos.y][pos.x]->deleteUnit();
+     }
       else{
           std::cout<<"Empty!";
        }
-    numberOfUnits--;
+}
+
+std::shared_ptr<BattleFieldIterator> BattleField::getIterator() const
+{
+    return std::shared_ptr<BattleFieldIterator>(new BattleFieldIterator(*this));
+}
+
+void BattleField::copy(const BattleField& battleField)
+{
+    battleFieldArray.clear();
+    battleFieldArray.resize(battleField.height);
+    for (int i = 0; i < battleField.height; ++i) {
+        battleFieldArray[i].resize(battleField.width);
+    }
+
+    height = battleField.height;
+    width = battleField.width;
+
+    for (int i = 0; i < height; ++i) {
+        for (int j = 0; j < width; ++j) {
+            battleFieldArray[i][j] = std::make_shared<FieldCell>(*battleField.battleFieldArray[i][j]);
+        }
+    }
+}
+
+
+void BattleField::move(BattleField& battleField)
+{
+    height = battleField.height;
+    width = battleField.width;
+
+    battleField.height = 0;
+    battleField.width = 0;
+
+    battleFieldArray = std::move(battleField.battleFieldArray);
 }

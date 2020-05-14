@@ -8,10 +8,8 @@
 class MediumArmorFactory : public ArmorFactory
 {
 public:
-    explicit MediumArmorFactory() = default;
-    virtual ~MediumArmorFactory() = default;
 
-    virtual std::unique_ptr<Armor> createArmor() override;
+    virtual std::shared_ptr<Armor> createArmor() const override;
 };
 
 #endif /* mediumarmorfactory_hpp */

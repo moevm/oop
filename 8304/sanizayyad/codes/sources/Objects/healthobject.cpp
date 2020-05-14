@@ -36,3 +36,8 @@ void HealthObject::selectLogic(std::shared_ptr<Unit> unit)
 
     strategyPattern = std::unique_ptr<StrategyPattern>(new HealthUpdateLogic);
 }
+
+char HealthObject::draw() const
+{
+    return '+';
+}

@@ -3,7 +3,6 @@
 ArrowWeapon::ArrowWeapon()
 {
     weaponType = "Arrow";
-    radius = ARROW_RADIUS;
     distance = SHORT_RANGE_DISTANCE;
     damage = ARROW_DAMAGE;
 }
@@ -33,16 +32,9 @@ size_t ArrowWeapon::getDamage() const
 }
 
 
-std::unique_ptr<Weapon> ArrowWeapon::clone()
+std::shared_ptr<Weapon> ArrowWeapon::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new ArrowWeapon(*this));
-    return weapon;
-}
-
-
-size_t ArrowWeapon::getRadiusAttack() const
-{
-    return radius;
+     return std::make_shared<ArrowWeapon>(*this);
 }
 
 

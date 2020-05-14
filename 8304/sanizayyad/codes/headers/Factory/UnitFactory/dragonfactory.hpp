@@ -8,10 +8,9 @@
 class DragonFactory : public UnitFactory
 {
 public:
-    explicit DragonFactory() = default;
-    virtual ~DragonFactory() = default;
+  
+     virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) const override;
 
-    virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) override;
 
 };
 

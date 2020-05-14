@@ -6,6 +6,7 @@
 #include "weaponfactory.hpp"
 
 #include <stdio.h>
+#include <memory>
 
 class UnitBuilder
 {
@@ -14,19 +15,19 @@ public:
     void reset();
 
     void setMediator(std::shared_ptr<Mediator> mediator);
-    void setArmorFactory(std::unique_ptr<ArmorFactory> armorFactory);
-    void setWeaponFactory(std::unique_ptr<WeaponFactory> weaponFactory);
-    void setUnitFactory(std::unique_ptr<UnitFactory> unitFactory);
+    void setArmorFactory(std::shared_ptr<ArmorFactory> armorFactory);
+    void setWeaponFactory(std::shared_ptr<WeaponFactory> weaponFactory);
+    void setUnitFactory(std::shared_ptr<UnitFactory> unitFactory);
     void setPosition(const Position2D& position);
-
     std::shared_ptr<Unit> getUnit();
 
 private:
     std::shared_ptr<Mediator> mediator;
-    std::unique_ptr<UnitFactory> unitFactory;
-    std::unique_ptr<WeaponFactory> weaponFactory;
-    std::unique_ptr<ArmorFactory> armorFactory;
+    std::shared_ptr<UnitFactory> unitFactory;
+    std::shared_ptr<WeaponFactory> weaponFactory;
+    std::shared_ptr<ArmorFactory> armorFactory;
     Position2D position;
+
 };
 
 

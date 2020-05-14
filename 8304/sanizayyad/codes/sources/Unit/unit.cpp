@@ -10,7 +10,7 @@ Unit::Unit(const Unit& unit) : position(unit.position)
 }
 
 
-int Unit::getHealthPoints() const
+double Unit::getHealthPoints() const
 {
     return healthPoints;
 }
@@ -19,6 +19,12 @@ std::string Unit::getUnitName() const
 {
     return unitName;
 }
+
+PLAYER Unit::getPlayer() const
+{
+    return player;
+}
+
 
 void Unit::getUnitInfo()
 {
@@ -35,37 +41,42 @@ const Position2D& Unit::getPosition() const
 }
 
 
-const std::unique_ptr<Armor>& Unit::getArmor() const
+const std::shared_ptr<Armor>& Unit::getArmor() const
 {
     return armor;
 }
 
 
-const std::unique_ptr<Weapon>& Unit::getWeapon() const
+const std::shared_ptr<Weapon>& Unit::getWeapon() const
 {
     return weapon;
 }
 
 
-void Unit::setWeapon(std::unique_ptr<Weapon> weapon)
+void Unit::setWeapon(std::shared_ptr<Weapon> weapon)
 {
     if (weapon) {
-        this->weapon = std::move(weapon);
+        this->weapon = weapon;
     }
 }
 
 
-void Unit::setArmor(std::unique_ptr<Armor> armor)
+void Unit::setArmor(std::shared_ptr<Armor> armor)
 {
     if (armor) {
-        this->armor = std::move(armor);
+        this->armor = armor;
     }
 }
 
 
-void Unit::makeDamage(int damage)
+void Unit::makeDamage(double damage)
 {
     healthPoints -= damage;
+}
+
+void Unit::setPlayer(PLAYER player)
+{
+    this->player = player;
 }
 
 void Unit::doCopy(const Unit& unit)

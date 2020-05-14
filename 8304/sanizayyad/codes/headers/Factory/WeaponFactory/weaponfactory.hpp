@@ -15,10 +15,10 @@
 class WeaponFactory
 {
 public:
-    explicit WeaponFactory() = default;
     virtual ~WeaponFactory() = default;
-
-    virtual std::unique_ptr<Weapon> createWeapon() = 0;
+    
+    virtual std::shared_ptr<Weapon> createWeapon() const = 0;
 };
+
 
 #endif /* weaponfactory_hpp */

@@ -9,10 +9,8 @@
 class DragonFireWeaponFactory : public WeaponFactory
 {
 public:
-    explicit DragonFireWeaponFactory() = default;
-    virtual ~DragonFireWeaponFactory() = default;
 
-    virtual std::unique_ptr<Weapon> createWeapon() override;
+    virtual std::shared_ptr<Weapon> createWeapon() const override;
 };
 
 

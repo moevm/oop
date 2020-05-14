@@ -1,8 +1,7 @@
 #include "ballisticweaponfactory.hpp"
 
-std::unique_ptr<Weapon> BallisticWeaponFactory::createWeapon()
+std::shared_ptr<Weapon> BallisticWeaponFactory::createWeapon() const
 {
-    std::unique_ptr<Weapon> weapon(new BallisticWeapon);
-    
-    return weapon;
+       return std::make_shared<BallisticWeapon>();
+
 }

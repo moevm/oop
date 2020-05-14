@@ -3,7 +3,6 @@
 VampireTeethWeapon::VampireTeethWeapon()
 {
     weaponType = "Vampire teeth";
-    radius = VAMPIRE_RADIUS;
     distance = DYNAMIC_RANGE_DISTANCE;
     damage = VAMPIRE_DAMAGE;
 }
@@ -33,16 +32,10 @@ size_t VampireTeethWeapon::getDamage() const
 }
 
 
-std::unique_ptr<Weapon> VampireTeethWeapon::clone()
+std::shared_ptr<Weapon> VampireTeethWeapon::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new VampireTeethWeapon(*this));
-    return weapon;
-}
+    return std::make_shared<VampireTeethWeapon>(*this);
 
-
-size_t VampireTeethWeapon::getRadiusAttack() const
-{
-    return radius;
 }
 
 

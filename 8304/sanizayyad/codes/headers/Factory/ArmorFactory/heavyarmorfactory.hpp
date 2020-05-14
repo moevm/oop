@@ -8,10 +8,8 @@
 class HeavyArmorFactory : public ArmorFactory
 {
 public:
-    explicit HeavyArmorFactory() = default;
-    virtual ~HeavyArmorFactory() = default;
 
-    virtual std::unique_ptr<Armor> createArmor() override;
+    virtual std::shared_ptr<Armor> createArmor() const override;
 };
 
 #endif /* heavyarmorfactory_hpp */

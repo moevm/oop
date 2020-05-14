@@ -9,55 +9,37 @@ FieldCell::FieldCell()
 }
 
 
-FieldCell::FieldCell(const FieldCell& cell)
+FieldCell::FieldCell(const FieldCell& fieldCell)
 {
-
-    if (cell.unit) {
-        this->unit = cell.unit->clone();
-    }
-
-    this->empty = cell.empty;
+    copy(fieldCell);
 }
 
 
-FieldCell::FieldCell(FieldCell&& cell)
+FieldCell::FieldCell(FieldCell&& fieldCell)
 {
-    this->unit = std::move(cell.unit);
-    this->empty = cell.empty;
-
-    cell.empty = true;
+      move(fieldCell);
 }
 
 
-FieldCell& FieldCell::operator=(const FieldCell& cell)
+FieldCell& FieldCell::operator=(const FieldCell& fieldCell)
 {
-    if (this == &cell) {
+    if (this == &fieldCell) {
         return *this;
     }
 
-    this->unit.reset();
-    if (!cell.isEmpty()) {
-        this->unit = cell.unit->clone();
-    }
-
-    this->empty = cell.empty;
+    copy(fieldCell);
 
     return *this;
 }
 
 
-FieldCell& FieldCell::operator=(FieldCell&& cell)
+FieldCell& FieldCell::operator=(FieldCell&& fieldCell)
 {
-    if (this == &cell) {
+    if (this == &fieldCell) {
         return *this;
     }
 
-    this->unit.reset();
-
-    this->unit = std::move(cell.unit);
-    this->empty = false;
-
-    cell.empty = true;
+    move(fieldCell);
 
     return *this;
 }
@@ -66,7 +48,8 @@ FieldCell& FieldCell::operator=(FieldCell&& cell)
 void FieldCell::addUnit(std::shared_ptr<Unit> unit)
 {
     this->unit = unit;
-    this->empty = false;
+    if(unit)
+        this->empty = false;
 }
 
 
@@ -115,3 +98,31 @@ std::shared_ptr<Landscape> FieldCell::getLandscape() const
 {
     return landscape;
 }
+void FieldCell::copy(const FieldCell& fieldCell)
+{
+    if (fieldCell.landscape) {
+        this->landscape = fieldCell.landscape->clone();
+    }
+
+    if (fieldCell.neutralObject) {
+        this->neutralObject = fieldCell.neutralObject->clone();
+    }
+
+    this->unit = nullptr;
+    this->empty = fieldCell.empty;
+
+    if (!fieldCell.isEmpty()) {
+        this->unit = fieldCell.unit->clone();
+    }
+}
+
+void FieldCell::move(FieldCell& fieldCell)
+{
+    this->unit = nullptr;
+    this->landscape = std::move(fieldCell.landscape);
+    this->neutralObject = std::move(fieldCell.neutralObject);
+    this->unit = std::move(fieldCell.unit);
+    this->empty = fieldCell.empty;
+    fieldCell.empty = true;
+}
+

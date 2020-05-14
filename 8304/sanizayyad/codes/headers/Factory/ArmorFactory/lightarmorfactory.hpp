@@ -8,10 +8,8 @@
 class LightArmorFactory : public ArmorFactory
 {
 public:
-    explicit LightArmorFactory() = default;
-    virtual ~LightArmorFactory() = default;
 
-    virtual std::unique_ptr<Armor> createArmor() override;
+    virtual std::shared_ptr<Armor> createArmor() const override;
 };
 
 

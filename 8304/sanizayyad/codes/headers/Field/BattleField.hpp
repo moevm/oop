@@ -2,10 +2,16 @@
 #define BattleField_hpp
 
 #include "FieldCell.hpp"
+#include "healthobject.hpp"
+#include "poisonobject.hpp"
+#include "armorobject.hpp"
+#include "noobject.hpp"
 
 #include <stdio.h>
 #include <iostream>
 #include <memory>
+#include <vector>
+
 
 class BattleFieldIterator;
 
@@ -13,33 +19,35 @@ class BattleField
 {
     friend BattleFieldIterator;
 public:
-    explicit BattleField(size_t height, size_t width);
-    virtual ~BattleField() = default;
+    explicit BattleField(int height, int width);
 
     BattleField(const BattleField& BattleField);
     BattleField& operator=(const BattleField& BattleField);
     BattleField(BattleField&& BattleField);
     BattleField& operator=(BattleField&& BattleField);
 
-    size_t getWidth() const;
-    size_t getHeight() const;
-    size_t getNumberOfUnits() const;
+    int getWidth() const;
+    int getHeight() const;
 
     bool addUnit(std::shared_ptr<Unit> unit);
     void deleteUnit(std::shared_ptr<Unit> unit);
     void deleteUnitCord(Position2D position);
+    
+    std::shared_ptr<BattleFieldIterator> getIterator() const;
 
-    FieldCell& getFieldCell(const Position2D& position);
+    std::shared_ptr<FieldCell> getFieldCell(const Position2D& position);
     void getFieldCellInfo(const Position2D &position);
 
     
-
 private:
-    size_t numberOfUnits;
-    size_t maxUnit;
-    size_t height;
-    size_t width;
-    std::unique_ptr<std::unique_ptr<FieldCell[]>[]> battleFieldArray;
+    void copy(const BattleField& battleField);
+    void move(BattleField& battleField);
+    
+private:
+    int height;
+    int width;
+    std::vector<std::vector<std::shared_ptr<FieldCell>>> battleFieldArray;
+
 };
 
 #endif /* BattleField_hpp */

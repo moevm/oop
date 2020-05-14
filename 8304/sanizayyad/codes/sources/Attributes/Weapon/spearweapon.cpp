@@ -3,7 +3,6 @@
 SpearWeapon::SpearWeapon()
 {
     weaponType = "Spear";
-    radius = SWORD_SPEAR_RADIUS;
     distance = SHORT_RANGE_DISTANCE;
     damage = SWORD_SPEAR_DAMAGE;
 }
@@ -33,16 +32,9 @@ size_t SpearWeapon::getDamage() const
 }
 
 
-std::unique_ptr<Weapon> SpearWeapon::clone()
+std::shared_ptr<Weapon> SpearWeapon::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new SpearWeapon(*this));
-    return weapon;
-}
-
-
-size_t SpearWeapon::getRadiusAttack() const
-{
-    return radius;
+    return std::make_shared<SpearWeapon>(*this);
 }
 
 

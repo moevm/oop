@@ -3,6 +3,9 @@
 
 #include "landscape.hpp"
 #include "plains.hpp"
+#include "oceans.hpp"
+#include "desert.hpp"
+
 
 #include <stdio.h>
 

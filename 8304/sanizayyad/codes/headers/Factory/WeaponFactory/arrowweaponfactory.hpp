@@ -8,10 +8,8 @@
 class ArrowWeaponFactory : public WeaponFactory
 {
 public:
-    explicit ArrowWeaponFactory() = default;
-    virtual ~ArrowWeaponFactory() = default;
 
-    virtual std::unique_ptr<Weapon> createWeapon() override;
+    virtual std::shared_ptr<Weapon> createWeapon() const override;
 };
 
 

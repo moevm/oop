@@ -7,7 +7,7 @@ DynamicRangeUnit::DynamicRangeUnit(const Position2D& position, std::shared_ptr<M
 }
 
 
-DynamicRangeUnit::DynamicRangeUnit(const DynamicRangeUnit& unit) : Unit(unit)
+DynamicRangeUnit::DynamicRangeUnit(const DynamicRangeUnit& unit) : Unit(unit),std::enable_shared_from_this<Unit>(unit)
 {
 
 }

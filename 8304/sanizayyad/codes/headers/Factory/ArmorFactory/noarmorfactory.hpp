@@ -8,10 +8,8 @@
 class NoArmorFactory : public ArmorFactory
 {
 public:
-    explicit NoArmorFactory() = default;
-    virtual ~NoArmorFactory() = default;
 
-    virtual std::unique_ptr<Armor> createArmor() override;
+    virtual std::shared_ptr<Armor> createArmor() const override;
 };
 
 #endif /* noarmorfactory_hpp */

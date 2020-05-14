@@ -23,5 +23,5 @@ std::shared_ptr<Landscape> PlainsLandscape::clone() const
 
 char PlainsLandscape::draw() const
 {
-    return '.';
+    return '-';
 }

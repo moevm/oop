@@ -13,7 +13,7 @@ constexpr int MAX_NUMBER_UNITS = 10;
 class Base : public Unit, public ObserverInterface, public std::enable_shared_from_this<Base>
 {
 public:
-    explicit Base(const Position2D& position,std::shared_ptr<Mediator> mediator);
+    explicit Base(const Position2D& position,std::shared_ptr<Mediator> mediator, PLAYER player);
 
     virtual bool moveLeft() override;
     virtual bool moveTop() override;

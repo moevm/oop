@@ -48,8 +48,8 @@ const BattleFieldIterator operator++(BattleFieldIterator& it, int)
 }
 
 
-FieldCell& BattleFieldIterator::operator*() const
+std::shared_ptr<FieldCell> BattleFieldIterator::operator*() const
 {
-    
+
     return battleField.battleFieldArray[i][j];
 }

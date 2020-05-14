@@ -3,7 +3,6 @@
 BallisticWeapon::BallisticWeapon()
 {
     weaponType = "Ballistic";
-    radius = BALLISTIC_RADIUS;
     distance = LONG_RANGE_DISTANCE;
     damage = BALLISTIC_DAMAGE;
 }
@@ -33,18 +32,11 @@ size_t BallisticWeapon::getDamage() const
 }
 
 
-std::unique_ptr<Weapon> BallisticWeapon::clone()
+std::shared_ptr<Weapon> BallisticWeapon::clone() const
 {
-    std::unique_ptr<Weapon> weapon(new BallisticWeapon(*this));
-    return weapon;
+    return std::make_shared<BallisticWeapon>(*this);
+
 }
-
-
-size_t BallisticWeapon::getRadiusAttack() const
-{
-    return radius;
-}
-
 
 size_t BallisticWeapon::getDistanceAttack() const
 {

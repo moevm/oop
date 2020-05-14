@@ -17,6 +17,10 @@ constexpr double BALLISTICS_HEALTHPOINTS = 150;
 constexpr double VAMPIRE_HEALTHPOINTS = 180;
 constexpr double DRAGON_HEALTHPOINTS = 200;
 
+enum class PLAYER: int {
+    ONE,
+    TWO
+};
 
 class Unit: public MovingInterface, public ObserverSubject{
     public:
@@ -26,15 +30,18 @@ class Unit: public MovingInterface, public ObserverSubject{
         Unit(const Unit& unit);
     
         const Position2D& getPosition() const;
-        int getHealthPoints() const;
+        double getHealthPoints() const;
         std::string getUnitName() const;
-        const std::unique_ptr<Armor>& getArmor() const;
-        const std::unique_ptr<Weapon>& getWeapon() const;
+        const std::shared_ptr<Armor>& getArmor() const;
+        const std::shared_ptr<Weapon>& getWeapon() const;
+        PLAYER getPlayer() const;
 
-        void setWeapon(std::unique_ptr<Weapon> weapon);
-        void setArmor(std::unique_ptr<Armor> armor);
-        void makeDamage(int damage);
+
+        void setWeapon(std::shared_ptr<Weapon> weapon);
+        void setArmor(std::shared_ptr<Armor> armor);
+        void makeDamage(double damage);
         void getUnitInfo();
+        void setPlayer(PLAYER player);
 
     
         virtual std::shared_ptr<Unit> clone() = 0;  //prototype pattern
@@ -43,11 +50,12 @@ class Unit: public MovingInterface, public ObserverSubject{
         void doCopy(const Unit& unit);
 
     protected:
+        PLAYER player;
         Position2D position;
-        int healthPoints;
+        double healthPoints;
         std::string unitName;
-        std::unique_ptr<Armor> armor;
-        std::unique_ptr<Weapon> weapon;
+        std::shared_ptr<Armor> armor;
+        std::shared_ptr<Weapon> weapon;
         std::shared_ptr<Mediator> mediator;
     };
  

@@ -1,8 +1,7 @@
 #include "vampireteethweaponfactory.hpp"
 
-std::unique_ptr<Weapon> VampireTeethWeaponFactory::createWeapon()
+std::shared_ptr<Weapon> VampireTeethWeaponFactory::createWeapon() const
 {
-    std::unique_ptr<Weapon> weapon(new VampireTeethWeapon);
-    
-    return weapon;
+    return std::make_shared<VampireTeethWeapon>();
+
 }

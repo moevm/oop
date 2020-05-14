@@ -1,9 +1,8 @@
 
 #include "mediumarmorfactory.hpp"
 
-std::unique_ptr<Armor> MediumArmorFactory::createArmor()
+std::shared_ptr<Armor> MediumArmorFactory::createArmor() const
 {
-    std::unique_ptr<Armor> armor(new MediumArmor);
+    return std::make_shared<MediumArmor>();
 
-    return armor;
 }

@@ -7,7 +7,7 @@ LongRangeUnit::LongRangeUnit(const Position2D& position, std::shared_ptr<Mediato
 }
 
 
-LongRangeUnit::LongRangeUnit(const LongRangeUnit& unit) : Unit(unit)
+LongRangeUnit::LongRangeUnit(const LongRangeUnit& unit) : Unit(unit),std::enable_shared_from_this<Unit>(unit)
 {
 
 }

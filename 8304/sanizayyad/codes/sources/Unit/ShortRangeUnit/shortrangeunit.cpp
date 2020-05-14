@@ -6,7 +6,7 @@ ShortRangeUnit::ShortRangeUnit(const Position2D& position, std::shared_ptr<Media
 
 }
 
-ShortRangeUnit::ShortRangeUnit(const ShortRangeUnit& unit) : Unit(unit)
+ShortRangeUnit::ShortRangeUnit(const ShortRangeUnit& unit) : Unit(unit),std::enable_shared_from_this<Unit>(unit)
 {
 
 }
