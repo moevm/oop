@@ -2,10 +2,11 @@
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
 #include <fstream>
+#include "MainWindow.h"
 
 
 ModifiedScene::ModifiedScene(QWidget *parent) : QGraphicsScene(parent),
-    attributeWidget(nullptr), baseWidget(nullptr), overButton(nullptr), x(0), y(0), width(0), height(0) {}
+    attributeWidget(nullptr), baseWidget(nullptr), overButton(nullptr), playerWidget(nullptr), x(0), y(0), width(0), height(0) {}
 
 ModifiedScene::~ModifiedScene() {
     int a = 5;
@@ -70,6 +71,22 @@ void ModifiedScene::hideTurn() {
 }
 
 
+void ModifiedScene::showPlayer(uint16_t playerId) {
+    hidePlayer();
+
+    QGraphicsView* view = *(views().begin());
+    playerWidget = new PlayerWidget(view);
+    playerWidget->setPlayer(playerId);
+    playerWidget->move(view->width() - playerWidget->width(), 0);
+    playerWidget->show();
+}
+
+void ModifiedScene::hidePlayer() {
+    delete playerWidget;
+    playerWidget = nullptr;
+}
+
+
 
 void ModifiedScene::updateInterface() {
     QGraphicsView* view = *(views().begin());
@@ -83,4 +100,15 @@ void ModifiedScene::updateInterface() {
     if (attributeWidget != nullptr) {
         attributeWidget->move(view->width() - attributeWidget->width(), view->height() - attributeWidget->height());
     }
+    if (playerWidget != nullptr) {
+        playerWidget->move(view->width() - playerWidget->width(), 0);
+    }
+}
+
+
+
+void ModifiedScene::winnersMessage(std::vector<uint16_t>& winners) {
+    QGraphicsView* view = *(views().begin());
+    auto mainWindow = static_cast<MainWindow*>(view->parent()->parent()->parent()->parent());
+    mainWindow->showWinners(winners);
 }

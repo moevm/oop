@@ -1,32 +1,165 @@
+#include <typeinfo>
 #include "IUnit.h"
+#include "Landscape/LandscapeHeader.h"
+#include "Player/Player.h"
+#include "Base/Base.h"
 #include "UnitGroup.h"
 #include "Game/Game.h"
-#include "Landscape/LandscapeHeader.h"
-#include <typeinfo>
 
 
 IUnit::IUnit() {}
 
 
-uint8_t IUnit::getGroupType() {
+uint16_t IUnit::getGroupType() {
     return UNIT;
 }
 
 
 bool IUnit::move(Point point) {
-    if (Game::getInstance().getGameMediator().unitMove(this, point)) {
+    bool result = false;
+
+    Game& game = Game::getInstance();
+    if (game.getGameMediator().unitMove(this, point)) {
         setMovePoints(getMovePoints() - Game::getInstance().getGameMediator().getLandscape(point)->getMovementCost());
         setPoint(point);
-        bool alive = Game::getInstance().getGameMediator().unitNeutralInterraction(this);
+
+        bool alive = game.getGameMediator().unitNeutralInterraction(this);
+
         if (alive) {
-            Game::getInstance().unitWasMoved(this);
-            return true;
+            game.unitWasMoved(this);
+            result = true;
         }
         else {
-            return false;
+            result = false;
+        }
+
+        if (game.exist()) {
+            Game::getInstance().checkEndGame();
         }
     }
-    return false;
+    return result;
+}
+
+void IUnit::attack(IUnit* defender) {
+    if (checkAttacked()) {
+        return;
+    }
+
+    Game& game = Game::getInstance();
+    GameMediator& mediator = Game::getInstance().getGameMediator();
+
+    if (getAttackRadius() == 0) {
+        if (!mediator.checkNeighborPoint(getPoint(), defender->getPoint()))
+            return;
+
+        if (getMovePoints() < mediator.getLandscape(defender->getPoint())->getMovementCost())
+            return;
+
+        Point defenderPoint = defender->getPoint();
+
+        uint16_t attackerDamage = giveDamage(defender);
+        uint16_t defenderDamage = defender->giveDamage(this);
+
+        std::vector<int> attLogParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(),
+                                               defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               attackerDamage};
+        std::vector<int> defLogParameters = {defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(),
+                                               defenderDamage};
+
+        game.getLogAdapter().log(LOG_ATTACK, attLogParameters);
+        bool defenderALive = defender->takeDamage(attackerDamage);
+
+        game.getLogAdapter().log(LOG_DEFEND, defLogParameters);
+        bool attackerALive = takeDamage(defenderDamage);
+
+        if (!defenderALive && attackerALive) {
+            move(defenderPoint);
+        }
+
+        if (attackerALive && game.exist()) {
+            game.getGameFacade().setVisualUnitPos(this);
+        }
+    }
+    else {
+        if (getAttackRadius() < mediator.distance(getPoint(), defender->getPoint()))
+            return;
+
+        uint16_t attackerDamage = giveDamage(defender);
+
+        std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(),
+                                               defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               attackerDamage};
+        game.getLogAdapter().log(LOG_ATTACK, logParameters);
+
+        defender->takeDamage(attackerDamage);
+    }
+
+    if (game.exist()) {
+        setAttacked();
+        game.checkEndGame();
+    }
+}
+
+void IUnit::attack(Base* defender) {
+    if (checkAttacked()) {
+        return;
+    }
+
+    Game& game = Game::getInstance();
+    GameMediator& mediator = Game::getInstance().getGameMediator();
+
+    if (getAttackRadius() == 0) {
+        if (!mediator.checkNeighborPoint(getPoint(), defender->getPoint()))
+            return;
+
+        if (getMovePoints() < mediator.getLandscape(defender->getPoint())->getMovementCost())
+            return;
+
+        Point defenderPoint = defender->getPoint();
+
+        uint16_t attackerDamage = giveDamage(defender);
+        uint16_t defenderDamage = defender->giveDamage(this);
+
+        std::vector<int> attLogParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(),
+                                               defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               attackerDamage};
+        std::vector<int> defLogParameters = {defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                               getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(),
+                                               defenderDamage};
+
+        game.getLogAdapter().log(LOG_ATTACK, attLogParameters);
+        bool defenderALive = defender->takeDamage(attackerDamage);
+
+        game.getLogAdapter().log(LOG_DEFEND, defLogParameters);
+        bool attackerALive = takeDamage(defenderDamage);
+
+        if (!defenderALive && attackerALive) {
+            move(defenderPoint);
+        }
+
+        if (attackerALive && game.exist()) {
+            game.getGameFacade().setVisualUnitPos(this);
+        }
+    }
+    else {
+        if (getAttackRadius() < mediator.distance(getPoint(), defender->getPoint()))
+            return;
+
+        uint16_t attackerDamage = giveDamage(defender);
+
+        std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(),
+                                          defender->getObjectType(), defender->getPoint().getX(), defender->getPoint().getY(), defender->getPlayer()->getColor(),
+                                          attackerDamage};
+        game.getLogAdapter().log(LOG_ATTACK, logParameters);
+
+        defender->takeDamage(attackerDamage);
+    }
+
+    if (game.exist()) {
+        setAttacked();
+        game.checkEndGame();
+    }
 }
 
 void IUnit::unite(IUnit* passive) {

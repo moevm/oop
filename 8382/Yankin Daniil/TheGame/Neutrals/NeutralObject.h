@@ -5,6 +5,8 @@ class IUnit;
 
 class NeutralObject {
 public:
+    NeutralObject() = default;
+    virtual ~NeutralObject() = default;
     virtual bool operator>>(IUnit& unit) = 0;
 };
 

@@ -14,14 +14,20 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     Base/Base.cpp \
+    Base/BaseSnapshot.cpp \
     Command/Command.cpp \
     Field/Cell.cpp \
     Field/Field.cpp \
     Field/FieldIterator.cpp \
+    Field/FieldSnapshot.cpp \
+    Field/RoutePlotter.cpp \
     Game/Game.cpp \
     Game/GameDestroyer.cpp \
     Game/GameFacade.cpp \
     Game/GameMediator.cpp \
+    Game/Initializer.cpp \
+    Game/Loader.cpp \
+    Game/Saver.cpp \
     Handler/RouteHandler.cpp \
     Handler/UnitActionHandler.cpp \
     Handler/UnitBaseAttackHandler.cpp \
@@ -46,25 +52,37 @@ SOURCES += main.cpp\
     Log/Time.cpp \
     Neutrals/NeutralContext.cpp \
     Neutrals/NeutralObject.cpp \
+    Neutrals/NeutralSnapshot.cpp \
     Player/NeutralPlayer.cpp \
     Player/Player.cpp \
+    Player/PlayerSnapshot.cpp \
+    Player/PlayerState.cpp \
+    Rules/EliminationRule.cpp \
+    Rules/Rule.cpp \
+    Rules/SpeedRule.cpp \
     Trivia/Attributes.cpp \
     Trivia/Point.cpp \
+    Trivia/Snapshot.cpp \
     UI/AttributeWidget.cpp \
     UI/BaseWidget.cpp \
     UI/LoggingWindow.cpp \
     UI/MainWindow.cpp \
     UI/ModifiedScene.cpp \
     UI/ModifiedView.cpp \
+    UI/NewGameWindow.cpp \
+    UI/PlayerWidget.cpp \
     UI/TurnButton.cpp \
     UI/VisualItem.cpp \
+    UI/WinnerWindow.cpp \
     Unit/IUnit.cpp \
     Unit/Melee.cpp \
     Unit/Ranged.cpp \
     Unit/SiegeEngine.cpp \
     Unit/Unit.cpp \
     Unit/UnitFactory.cpp \
-    Unit/UnitGroup.cpp
+    Unit/UnitGroup.cpp \
+    Unit/UnitGroupSnapshot.cpp \
+    Unit/UnitSnapshot.cpp
 
 HEADERS  += \
     Base/Base.h \
@@ -72,9 +90,11 @@ HEADERS  += \
     Field/Cell.h \
     Field/Field.h \
     Field/FieldHeader.h \
+    Field/RoutePlotter.h \
     Game/Game.h \
     Game/GameDestroyer.h \
     Game/GameFacade.h \
+    Game/GameInfo.h \
     Game/GameMediator.h \
     Handler/RouteHandler.h \
     Handler/UnitActionHandler.h \
@@ -105,16 +125,24 @@ HEADERS  += \
     Object/Object.h \
     Player/NeutralPlayer.h \
     Player/Player.h \
+    Player/PlayerState.h \
+    Rules/EliminationRule.h \
+    Rules/Rule.h \
+    Rules/SpeedRule.h \
     Trivia/Attributes.h \
     Trivia/Point.h \
+    Trivia/Snapshot.h \
     UI/AttributeWidget.h \
     UI/BaseWidget.h \
     UI/LoggingWindow.h \
     UI/MainWindow.h \
     UI/ModifiedScene.h \
     UI/ModifiedView.h \
+    UI/NewGameWindow.h \
+    UI/PlayerWidget.h \
     UI/TurnButton.h \
     UI/VisualItem.h \
+    UI/WinnerWindow.h \
     Unit/IUnit.h \
     Unit/Melee.h \
     Unit/Ranged.h \
@@ -129,7 +157,10 @@ FORMS    += \
     UI/BaseWidget.ui \
     UI/LoggingWindow.ui \
     UI/MainWindow.ui \
-    UI/TurnButton.ui
+    UI/NewGameWindow.ui \
+    UI/PlayerWidget.ui \
+    UI/TurnButton.ui \
+    UI/WinnerWindow.ui
 
 RESOURCES += \
     imgs.qrc

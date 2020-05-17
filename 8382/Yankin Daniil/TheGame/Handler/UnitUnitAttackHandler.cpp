@@ -1,4 +1,5 @@
 #include "UnitUnitAttackHandler.h"
+#include "Player/Player.h"
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
 #include "Handler/RouteHandler.h"
@@ -15,5 +16,5 @@ void UnitUnitAttackHandler::handle(IUnit* attacker, IUnit* defender) {
         if (!success)
             return;
     }
-    Game::getInstance().getGameMediator().unitAttack(attacker, static_cast<IUnit*>(defender));
+    attacker->attack(defender);
 }

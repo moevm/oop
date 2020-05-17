@@ -11,7 +11,7 @@ LandscapeProxy::~LandscapeProxy() {
 }
 
 
-uint8_t LandscapeProxy::getObjectType() {
+uint16_t LandscapeProxy::getObjectType() {
     if (landscape != nullptr) {
         log();
         return landscape->getObjectType();
@@ -36,7 +36,7 @@ bool LandscapeProxy::movementAccess() {
     return false;
 }
 
-int8_t LandscapeProxy::getMovementCost() {
+int16_t LandscapeProxy::getMovementCost() {
     if (landscape != nullptr) {
         log();
         return landscape->getMovementCost();

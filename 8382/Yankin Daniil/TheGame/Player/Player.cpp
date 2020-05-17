@@ -3,7 +3,9 @@
 #include "Base/Base.h"
 
 
-Player::Player(uint8_t color) : color(color) {}
+Player::Player(uint16_t color) : color(color) {}
+
+Player::Player(PlayerSnapshot& snapshot) : color(snapshot.color) {}
 
 Player::~Player() {
     for (auto base = baseSet.begin(); !baseSet.empty(); base = baseSet.begin()) {
@@ -13,7 +15,7 @@ Player::~Player() {
     }
 }
 
-uint8_t Player::getColor() {
+uint16_t Player::getColor() {
     return color;
 }
 
@@ -42,4 +44,14 @@ void Player::removeBase(Base* base) {
 
 std::set <Base*>* Player::getBaseSet() {
     return &baseSet;
+}
+
+
+
+int Player::getBaseCount() {
+    return baseSet.size();
+}
+
+int Player::getUnitCount() {
+    return unitSet.size();
 }

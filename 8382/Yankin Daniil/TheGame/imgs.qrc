@@ -38,5 +38,14 @@
         <file>imgs/health_office.png</file>
         <file>imgs/movement_office.png</file>
         <file>imgs/strength_office.png</file>
+        <file>imgs/archer_orange.png</file>
+        <file>imgs/catapult_orange.png</file>
+        <file>imgs/crossbowman_orange.png</file>
+        <file>imgs/pikeman_orange.png</file>
+        <file>imgs/ram_orange.png</file>
+        <file>imgs/scout_cavalry_orange.png</file>
+        <file>imgs/shock_cavalry_orange.png</file>
+        <file>imgs/swordsman_orange.png</file>
+        <file>imgs/town_orange.png</file>
     </qresource>
 </RCC>

@@ -9,8 +9,8 @@ public:
     Object() = default;
     virtual ~Object() = default;
 
-    virtual uint8_t getGroupType() = 0;  // Получение типа группы объекта (Unit, Land, etc.)
-    virtual uint8_t getObjectType() = 0;  // Получение конкретного типа объекта
+    virtual uint16_t getGroupType() = 0;  // Получение типа группы объекта (Unit, Land, etc.)
+    virtual uint16_t getObjectType() = 0;  // Получение конкретного типа объекта
     virtual Point getPoint() = 0;
 };
 

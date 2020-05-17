@@ -9,6 +9,6 @@ bool ForestHill::movementAccess() {
     return true;
 }
 
-uint8_t ForestHill::getObjectType() {
+uint16_t ForestHill::getObjectType() {
     return LAND_FOREST_HILL;
 }

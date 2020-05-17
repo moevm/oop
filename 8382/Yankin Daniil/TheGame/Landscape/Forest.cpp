@@ -9,6 +9,6 @@ bool Forest::movementAccess() {
     return true;
 }
 
-uint8_t Forest::getObjectType() {
+uint16_t Forest::getObjectType() {
     return LAND_FOREST;
 }

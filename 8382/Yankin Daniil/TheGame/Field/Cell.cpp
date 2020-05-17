@@ -124,6 +124,6 @@ bool Cell::isBuildingFree() {
     return false;
 }
 
-uint8_t Cell::getBuildingGroupType() {
+uint16_t Cell::getBuildingGroupType() {
     return buildingType;
 }

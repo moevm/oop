@@ -1,8 +1,13 @@
 #include "Game.h"
+#include "GameInfo.h"
 #include "Field/Field.h"
+#include "Player/PlayerState.h"
+#include "Player/Player.h"
+#include "Player/NeutralPlayer.h"
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
 #include "Neutrals/NeutralContext.h"
+
 
 Game* Game::instance = nullptr;
 GameDestroyer Game::destroyer;
@@ -18,10 +23,10 @@ Game& Game::getInstance() {
 
 
 
-Game::Game() {
+Game::Game() : field(nullptr), neutralPlayer(nullptr) {
     gameMediator = new GameMediator(this);
     gameFacade = new GameFacade(this);
-    field = nullptr;
+    gameInfo = new GameInfo<EliminationRule, 2>;
     logAdapter = new LogAdapter(LOGGING_DIR_FILE, LOGGING_MODE_DEFAULT);
 }
 
@@ -35,97 +40,67 @@ Game::~Game() {
     delete neutralPlayer;
     delete field;
     delete gameFacade;
+    delete gameInfo;
 
     std::vector<int> logParameters;
     logAdapter->log(LOG_GAME_DELETED, logParameters);
     delete logAdapter;
 }
 
+void Game::clear() {
+    for (auto player = playerVector.begin(); player != playerVector.end(); player++) {
+        delete (*player);
+    }
+    playerVector.clear();
+    delete neutralPlayer;
+    neutralPlayer = nullptr;
+    delete field;
+    field = nullptr;
 
+    gameFacade->clear();
+    setGameInfo(2, RULE_ELIMINATION);
+}
 
-bool Game::initializeByFile(char* filename) {
-    // Для Game поле инициализируется лишь единожды
-    // Один Game - одно поле. А Game всегда один!
-    if (field != nullptr)
+bool Game::exist() {
+    if (field)
+        return true;
+    else
         return false;
+}
 
-    // Инициализация поля
-    std::ifstream stream(filename);
-    field = new Field(stream);
+void Game::newGame(uint16_t width, uint16_t height, uint16_t playerCount, uint16_t rule) {
+    clear();
+    setGameInfo(playerCount, rule);
 
-    std::vector<int> logParameters = {field->getWidth(), field->getHeight()};
-    logAdapter->log(LOG_GAME_CREATED, logParameters);
+    Game::Initializer initializer;
+    auto startInit = gameInfo->getStartInit(width, height);
+    initializer.initialize(playerCount, width, height, startInit);
+}
 
-    // Добавление игроков
-    playerVector.push_back(new Player(PLAYER_BLUE));
-    playerVector.push_back(new Player(PLAYER_RED));
-    neutralPlayer = new NeutralPlayer();
-
-    // Считывание объектов
-    std::vector <std::vector <Base*>> baseVector;
-    baseVector.resize(playerVector.size());
-
-    while (!stream.eof()) {
-        uint16_t objectType;
-        uint16_t x;
-        uint16_t y;
-
-        stream >> objectType >> x >> y;
-
-        // Это юниты
-        if (objectType >= UNIT_SWORDSMAN && objectType <= UNIT_RAM) {
-            uint16_t playerColor;
-            stream >> playerColor;
-
-            Player* player = getPlayerOfColor(playerColor);
-            Point point(x, y);
-
-            if (player != nullptr && field->isUnitFree(point)) {
-                uint16_t baseNumber;
-                stream >> baseNumber;
-
-                if (baseNumber < baseVector[playerColor].size()) {
-                    UnitFactory factory;
-                    Unit* unit = factory.produce(objectType, point, baseVector[playerColor][baseNumber]);
-                    field->setUnit(point, unit);
-                }
-            }
-        }
-
-        // А это базы
-        else if (objectType == BASE) {
-            uint16_t playerColor;
-            stream >> playerColor;
-
-            Player* player = getPlayerOfColor(playerColor);
-            Point point(x, y);
-
-            if (player != nullptr && field->isBuildingFree(point)) {
-                Base* base = new Base(point, player);
-                field->setBase(point, base);
-
-                baseVector[playerColor].push_back(base);
-            }
-        }
-
-        // А это нейтральные объекты
-        else if (objectType == NEUT_OBJECT) {
-            Point point(x, y);
-
-            if (field->isBuildingFree(point)) {
-                NeutralContext* context = new NeutralContext(Point(x, y), neutralPlayer);
-                field->setContext(point, context);
-            }
-        }
-
-        stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+int Game::save(std::string& fileName) {
+    if (field == nullptr) {
+        return 2;
     }
 
-    stream.close();
+    try {
+        Game::Saver saver(fileName);
+        return saver.save(*this);
+    }
+    catch(std::runtime_error error) {
+        return 3;
+    }
+}
 
-    // Конец считывания
+int Game::load(std::string& fileName) {
+    clear();
 
-    return true;
+    try {
+        Game::Loader loader(fileName);
+        return loader.load(*this);
+    }
+    catch(std::runtime_error error) {
+        return 3;
+    }
 }
 
 
@@ -138,9 +113,38 @@ GameFacade& Game::getGameFacade() {
     return *gameFacade;
 }
 
+LogAdapter& Game::getLogAdapter() {
+    return *logAdapter;
+}
 
 
-Player* Game::getPlayerOfColor(uint8_t color) {
+void Game::setGameInfo(uint16_t playerCount, uint16_t rule) {
+    delete gameInfo;
+    if (rule == RULE_ELIMINATION) {
+        if (playerCount == 2) {
+            gameInfo = new GameInfo<EliminationRule, 2>();
+        }
+        else if (playerCount == 3) {
+            gameInfo = new GameInfo<EliminationRule, 3>();
+        }
+        else if (playerCount == 4) {
+            gameInfo = new GameInfo<EliminationRule, 4>();
+        }
+    }
+    else if (rule == RULE_SPEED) {
+        if (playerCount == 2) {
+            gameInfo = new GameInfo<SpeedRule, 2>();
+        }
+        else if (playerCount == 3) {
+            gameInfo = new GameInfo<SpeedRule, 3>();
+        }
+        else if (playerCount == 4) {
+            gameInfo = new GameInfo<SpeedRule, 4>();
+        }
+    }
+}
+
+Player* Game::getPlayerOfColor(uint16_t color) {
     for (auto iter = playerVector.begin(); iter != playerVector.end(); iter++) {
         if ((*iter)->getColor() == color) {
             return *iter;
@@ -182,26 +186,34 @@ void Game::baseWasDestructed(Base* base) {
     gameFacade->baseWasDestructed(base);
 }
 
+
 void Game::unitWasMoved(IUnit* unit) {
     gameFacade->setVisualUnitPos(unit);
 }
 
 
-
 void Game::turn() {
-    for (auto player = playerVector.begin(); player != playerVector.end(); player++) {
-        std::set <IUnit*>* unitSet = (*player)->getUnitSet();
-        for (auto unit = unitSet->begin(); unit != unitSet->end(); unit++) {
-            (*unit)->smallHeal();
-            (*unit)->renewMovePoints();
-        }
+    auto player = getPlayerOfColor(gameInfo->getPlayerId());
+    std::set <IUnit*>* unitSet = player->getUnitSet();
+    for (auto unit = unitSet->begin(); unit != unitSet->end(); unit++) {
+        (*unit)->smallHeal();
+        (*unit)->renewMovePoints();
+        (*unit)->unsetAttacked();
     }
+
+    gameInfo->nextPlayerId();
+    gameFacade->updateInterface();
+
     std::vector<int> parameters;
     logAdapter->log(LOG_GAME_TURN, parameters);
 }
 
 
 
-LogAdapter& Game::getLogAdapter() {
-    return *logAdapter;
+void Game::checkEndGame() {
+    auto result = gameInfo->checkEndGame();
+    if (result.first) {
+        gameFacade->winnersMessage(result.second);
+        clear();
+    }
 }

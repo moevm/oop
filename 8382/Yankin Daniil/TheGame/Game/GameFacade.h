@@ -25,38 +25,36 @@ public:
     ~GameFacade();
 
     void setScene(std::shared_ptr<ModifiedScene> scene);
-    void userCommand(uint8_t uiCommand, Object* object, uint8_t parameter = 0);
-
-    static bool cellMovementComparator(std::pair <Cell*, std::pair<Cell*, uint8_t>>& one, std::pair <Cell*, std::pair<Cell*, uint8_t>>& two);
-
-private:
-    GameFacade(Game* game);
-
-    void addLandToScene();
-    void addUnitsToScene();
-    void addBasesToScene();
-    void addBuldingsToScene();
-
-    void addVisualItemToScene(VisualItem* item);
     void setVisualLandPos(ILandscape* landscape);
     void setVisualUnitPos(IUnit* unit);
     void setVisualBasePos(Base* base);
     void setVisualBuildingPos(NeutralContext* building);
 
-    void setCellMovementMap(IUnit* unit);
-    void cellMovementProcessing(uint8_t movePoints, Point oldPoint, Point newPoint, std::vector <std::pair<Cell*, std::pair<Cell*, uint8_t>>>& cellQueue);
-    void getRoute(Point start, Point finish, std::vector <Point>& routeVector);
+    void updateInterface();
+    void winnersMessage(std::vector<uint16_t>& winners);
 
+    void userCommand(uint16_t uiCommand, Object* object, uint16_t parameter = 0);
+
+private:
+    GameFacade(Game* game);
+    void clear();
+
+    void addVisualItemToScene(VisualItem* item);
+    void addLandToScene();
+    void addUnitsToScene();
+    void addBasesToScene();
+    void addBuldingsToScene();
     void unitWasDestructed(IUnit* unit);
     void baseWasDestructed(Base* base);
 
+    void getRoute(Point start, Point finish, std::vector <Point>& routeVector);
 
+private:
     Game* game;
-    std::shared_ptr<ModifiedScene> scene;
-
     Object* selectedObject;
-    std::map <Cell*, std::pair<Cell*, uint8_t>> cellMovementMap;
+    std::map <Cell*, std::pair<Cell*, uint16_t>> cellMovementMap;
 
+    std::shared_ptr<ModifiedScene> scene;
     std::vector <std::vector <VisualItem*>> visualLandVector;
     std::map <IUnit*, VisualItem*> visualUnitMap;
     std::map <Base*, VisualItem*> visualBaseMap;

@@ -1,7 +1,8 @@
-#include "VisualItem.h"
 #include <QGraphicsSceneMouseEvent>
+#include "VisualItem.h"
 #include "Game/Game.h"
 #include "Landscape/LandscapeHeader.h"
+#include "Player/Player.h"
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
 #include "Neutrals/NeutralContext.h"
@@ -11,7 +12,7 @@
 VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGraphicsPixmapItem(parent), object(object) {
     QPixmap pixmap;
 
-    uint8_t objectType = object->getObjectType();
+    uint16_t objectType = object->getObjectType();
 
     IUnit* unit;
     Base* base;
@@ -65,6 +66,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/swordsman_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/swordsman_orange.png");
+            break;
         }
         setPixmap(pixmap);
         setZValue(10);
@@ -81,6 +85,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
             break;
         case PLAYER_GREEN:
             pixmap.load("://imgs/pikeman_green.png");
+            break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/pikeman_orange.png");
             break;
         }
         setPixmap(pixmap);
@@ -99,6 +106,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/shock_cavalry_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/shock_cavalry_orange.png");
+            break;
         }
         setPixmap(pixmap);
         setZValue(10);
@@ -115,6 +125,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
             break;
         case PLAYER_GREEN:
             pixmap.load("://imgs/archer_green.png");
+            break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/archer_orange.png");
             break;
         }
         setPixmap(pixmap);
@@ -133,6 +146,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/crossbowman_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/crossbowman_orange.png");
+            break;
         }
         setPixmap(pixmap);
         setZValue(10);
@@ -149,6 +165,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
             break;
         case PLAYER_GREEN:
             pixmap.load("://imgs/scout_cavalry_green.png");
+            break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/scout_cavalry_orange.png");
             break;
         }
         setPixmap(pixmap);
@@ -167,6 +186,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/catapult_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/catapult_orange.png");
+            break;
         }
         setPixmap(pixmap);
         setZValue(10);
@@ -183,6 +205,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
             break;
         case PLAYER_GREEN:
             pixmap.load("://imgs/ram_green.png");
+            break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/ram_orange.png");
             break;
         }
         setPixmap(pixmap);
@@ -201,7 +226,11 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/town_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/town_orange.png");
+            break;
         }
+
         setPixmap(pixmap);
         setZValue(5);
         break;
@@ -219,12 +248,10 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
 }
 
 
-void VisualItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-
-}
+void VisualItem::mouseReleaseEvent(QGraphicsSceneMouseEvent*) {}
 
 
-void VisualItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+void VisualItem::mousePressEvent(QGraphicsSceneMouseEvent* event) {
     if (event->modifiers() & Qt::AltModifier) {
         event->ignore();
         return;

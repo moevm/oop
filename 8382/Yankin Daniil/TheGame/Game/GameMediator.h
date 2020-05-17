@@ -15,18 +15,17 @@ class GameMediator
 public:
     bool unitMove(IUnit* unit, Point point);
     bool unitNeutralInterraction(IUnit* unit);
-    void unitAttack(IUnit* attacker, IUnit* defender);
-    void unitAttack(IUnit* attacker, Base* defender);
     bool unitUnificationAccess(IUnit* active, IUnit* passive);
     bool baseProductionAccess(Base* base);
+
+    bool checkNeighborPoint(Point one, Point supposeNeighbor);
+    uint16_t distance(Point one, Point two);
 
     ILandscape* getLandscape(Point point);
 
 private:
     GameMediator(Game* game);
 
-    bool checkNeighborPoint(Point one, Point supposeNeighbor);
-    uint16_t distance(Point one, Point two);
-
+private:
     Game* game;
 };

@@ -4,7 +4,7 @@
 #include "Base/Base.h"
 
 
-UiCommand::UiCommand(uint8_t command, Object* object, uint8_t parameter)
+UiCommand::UiCommand(uint16_t command, Object* object, uint16_t parameter)
     : command(command), object(object), parameter(parameter) {}
 
 void UiCommand::execute() {
@@ -19,7 +19,7 @@ void UiCommand::execute() {
 
 
 
-GameCommand::GameCommand(uint8_t command) : command(command) {}
+GameCommand::GameCommand(uint16_t command) : command(command) {}
 
 void GameCommand::execute() {
     if (command == FACADE_TURN) {
@@ -37,6 +37,8 @@ UnitMoveCommand::UnitMoveCommand(IUnit* unit, std::vector <Point>* route)
 bool UnitMoveCommand::execute() {
     bool success = true;
     while (!route->empty() && success) {
+        if (!Game::getInstance().exist())
+            return false;
         success = unit->move(route->back());
         route->pop_back();
     }
@@ -45,7 +47,7 @@ bool UnitMoveCommand::execute() {
 
 
 
-BaseProduceCommand::BaseProduceCommand(Base* base, uint8_t unitType)
+BaseProduceCommand::BaseProduceCommand(Base* base, uint16_t unitType)
     : base(base), unitType(unitType) {}
 
 void BaseProduceCommand::execute() {

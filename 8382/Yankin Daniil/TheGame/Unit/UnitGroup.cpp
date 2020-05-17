@@ -1,16 +1,17 @@
 #include "UnitGroup.h"
 #include "Game/Game.h"
 #include "Landscape/LandscapeHeader.h"
+#include "Player/Player.h"
 #include "Base/Base.h"
 
 
-UnitGroup::UnitGroup(std::vector <Unit*> details) : maxGroupSize(4) {
+UnitGroup::UnitGroup(std::vector <Unit*> details) : maxGroupSize(MAX_GROUP_SIZE) {
     if (details.size() == 0)
         return;
 
     base = details.back()->getBase();
-    uint8_t unitType = details.back()->getObjectType();
-    uint8_t minMovePoints = details.back()->getMovePoints();
+    uint16_t unitType = details.back()->getObjectType();
+    uint16_t minMovePoints = details.back()->getMovePoints();
     Point point = details.back()->getPoint();
 
     while (unitSet.size() < maxGroupSize && details.size() > 0) {
@@ -35,6 +36,17 @@ UnitGroup::UnitGroup(std::vector <Unit*> details) : maxGroupSize(4) {
     Game::getInstance().objectWasCreated(static_cast <Object*> (this));
 }
 
+UnitGroup::UnitGroup(UnitGroupSnapshot& snapshot, Base* base) : maxGroupSize(MAX_GROUP_SIZE), base(base) {
+    for (auto unitSnapshot = snapshot.unitSnapVector.begin(); unitSnapshot != snapshot.unitSnapVector.end(); unitSnapshot++) {
+        UnitFactory factory;
+        auto unit = factory.produce(*unitSnapshot, this);
+        unitSet.insert(unit);
+    }
+    base->addUnit(this);
+    std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
 UnitGroup::~UnitGroup() {
     std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor()};
 
@@ -50,12 +62,12 @@ UnitGroup::~UnitGroup() {
 
 
 
-uint8_t UnitGroup::getUnitClass() {
+uint16_t UnitGroup::getUnitClass() {
     auto unit = unitSet.begin();
     return (*unit)->getUnitClass();
 }
 
-uint8_t UnitGroup::getObjectType() {
+uint16_t UnitGroup::getObjectType() {
     auto unit = unitSet.begin();
     return (*unit)->getObjectType();
 }
@@ -107,7 +119,7 @@ uint16_t UnitGroup::getAttack() {
     return strengthSum * 0.85;
 }
 
-uint8_t UnitGroup::getAttackRadius() {
+uint16_t UnitGroup::getAttackRadius() {
     auto unit = unitSet.begin();
     return (*unit)->getAttackRadius();
 }
@@ -120,7 +132,7 @@ uint16_t UnitGroup::getArmor() {
     return armorSum * 0.85;
 }
 
-uint8_t UnitGroup::getMaxMovePoints() {
+uint16_t UnitGroup::getMaxMovePoints() {
     uint16_t maxMovePoints = 0;
     for (auto unit = unitSet.begin(); unit != unitSet.end(); unit++) {
         if ((*unit)->getMaxMovePoints() < maxMovePoints || maxMovePoints == 0) {
@@ -130,7 +142,7 @@ uint8_t UnitGroup::getMaxMovePoints() {
     return maxMovePoints;
 }
 
-uint8_t UnitGroup::getMovePoints() {
+uint16_t UnitGroup::getMovePoints() {
     uint16_t maxMovePoints = getMaxMovePoints();
 
     uint16_t movePoints = 0;
@@ -142,7 +154,7 @@ uint8_t UnitGroup::getMovePoints() {
     return std::min(movePoints, maxMovePoints);
 }
 
-void UnitGroup::setMovePoints(uint8_t points) {
+void UnitGroup::setMovePoints(uint16_t points) {
     for (auto unit = unitSet.begin(); unit != unitSet.end(); unit++) {
         (*unit)->setMovePoints(points);
     }
@@ -182,7 +194,7 @@ bool UnitGroup::takeDamage(uint16_t damage) {
     std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor(), takenDamage};
     Game::getInstance().getLogAdapter().log(LOG_TAKE_DAMAGE, logParameters);
 
-    for (uint8_t i = 0; i < diedUnits.size() && unitSet.size() > 1; i++) {
+    for (uint16_t i = 0; i < diedUnits.size() && unitSet.size() > 1; i++) {
         unitSet.erase(diedUnits[i]);
     }
 
@@ -213,7 +225,7 @@ void UnitGroup::join(Unit* unit, bool moveTo) {
     unit->group = this;
     unit->point = getPoint();
 
-    uint8_t minMovePoints = std::min(getMovePoints(), unit->getMovePoints());
+    uint16_t minMovePoints = std::min(getMovePoints(), unit->getMovePoints());
 
     unitSet.insert(unit);
 
@@ -234,7 +246,7 @@ void UnitGroup::join(UnitGroup* group, bool moveTo) {
         group->setMovePoints(getMovePoints() - Game::getInstance().getGameMediator().getLandscape(getPoint())->getMovementCost());
     }
 
-    uint8_t minMovePoints = std::min(getMovePoints(), group->getMovePoints());
+    uint16_t minMovePoints = std::min(getMovePoints(), group->getMovePoints());
 
     for (auto unit = group->unitSet.begin(); unit != group->unitSet.end(); unit++) {
         (*unit)->group = this;
@@ -248,11 +260,11 @@ void UnitGroup::join(UnitGroup* group, bool moveTo) {
 
 
 
-uint8_t UnitGroup::getMaxGroupSize() {
+uint16_t UnitGroup::getMaxGroupSize() {
     return maxGroupSize;
 }
 
-uint8_t UnitGroup::getGroupSize() {
+uint16_t UnitGroup::getGroupSize() {
     return unitSet.size();
 }
 
@@ -297,4 +309,26 @@ void UnitGroup::renewMovePoints() {
 
     std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor()};
     Game::getInstance().getLogAdapter().log(LOG_NEUT_REN_MOV, logParameters);
+}
+
+
+void UnitGroup::setAttacked() {
+    for (auto unit : unitSet) {
+        unit->attacked = true;
+    }
+}
+
+void UnitGroup::unsetAttacked() {
+    for (auto unit : unitSet) {
+        unit->attacked = false;
+    }
+}
+
+bool UnitGroup::checkAttacked() {
+    for (auto unit : unitSet) {
+        if (unit->checkAttacked()) {
+            return true;
+        }
+    }
+    return false;
 }

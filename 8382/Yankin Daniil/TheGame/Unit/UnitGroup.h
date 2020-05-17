@@ -5,15 +5,19 @@
 #include <cmath>
 #include "Unit.h"
 
+#define MAX_GROUP_SIZE 4
 
 class UnitGroup : public IUnit
 {
 public:
+    class UnitGroupSnapshot;
+
     UnitGroup(std::vector <Unit*> details);
+    UnitGroup(UnitGroupSnapshot& snapshot, Base* base);
     ~UnitGroup();
 
-    uint8_t getUnitClass() override;
-    uint8_t getObjectType() override;
+    uint16_t getUnitClass() override;
+    uint16_t getObjectType() override;
 
     Point getPoint() override;
     void setPoint(Point point) override;
@@ -23,10 +27,10 @@ public:
     uint16_t getMaxHealth() override;
     uint16_t getHealth() override;
     uint16_t getAttack() override;
-    uint8_t getAttackRadius() override;
+    uint16_t getAttackRadius() override;
     uint16_t getArmor() override;
-    uint8_t getMaxMovePoints() override;
-    uint8_t getMovePoints() override;
+    uint16_t getMaxMovePoints() override;
+    uint16_t getMovePoints() override;
 
     uint16_t giveDamage(IUnit* enemy) override;
     uint16_t giveDamage(Base* enemy) override;
@@ -35,13 +39,15 @@ public:
     void join(Unit* unit, bool moveTo);
     void join(UnitGroup* group, bool moveTo);
 
-    uint8_t getMaxGroupSize();
-    uint8_t getGroupSize();
+    uint16_t getMaxGroupSize();
+    uint16_t getGroupSize();
 
-    //void unitWasDestructed(Unit* unit);
+    void setAttacked() override;
+    void unsetAttacked() override;
+    bool checkAttacked() override;
 
 private:
-    void setMovePoints(uint8_t points) override;
+    void setMovePoints(uint16_t points) override;
 
     void smallHeal(uint16_t healSize = 10) override;
     void fullHeal() override;
@@ -50,7 +56,23 @@ private:
     void renewMovePoints() override;
 
     std::set <Unit*> unitSet;
-    uint8_t maxGroupSize;
+    uint16_t maxGroupSize;
 
     Base* base;
+};
+
+
+class UnitGroup::UnitGroupSnapshot : public Snapshot {
+    friend class UnitGroup;
+
+public:
+    UnitGroupSnapshot(UnitGroup& group);
+    UnitGroupSnapshot(std::ifstream& stream);
+    friend std::ofstream& operator<<(std::ofstream& stream, const UnitGroup::UnitGroupSnapshot& snapshot);
+
+private:
+    uint16_t objectType;
+    Point point;
+    uint16_t unitCount;
+    std::vector<Unit::UnitSnapshot> unitSnapVector;
 };

@@ -1,16 +1,16 @@
 #pragma once
 
-#include "ILogger.h"
-#include "Time.h"
+#include <iostream>
 #include <ostream>
 #include <fstream>
-#include <iostream>
+#include "ILogger.h"
+#include "Time.h"
 
 
 class FileLogger : public ILogger
 {
 public:
-    FileLogger(char* logFileName);
+    FileLogger(std::string logFileName);
     ~FileLogger() override;
     void log(std::string& info) override;
     std::string getInfo() override;

@@ -6,10 +6,17 @@
 #include <math.h>
 
 
-Unit::Unit(Point point, Base* base) : point(point), base(base) {
+Unit::Unit(Point point, Base* base) : point(point), base(base), isGroup(false), attacked(false) {
     base->addUnit(this);
-    isGroup = false;
 }
+
+Unit::Unit(UnitSnapshot& snapshot, Base* base) : point(snapshot.point), base(base), isGroup(false), health(snapshot.health),
+    strength(snapshot.strength), armor(snapshot.armor), movePoints(snapshot.movePoints), attacked(snapshot.attacked) {
+    base->addUnit(this);
+}
+
+Unit::Unit(UnitSnapshot& snapshot, UnitGroup* group) : point(snapshot.point), group(group), isGroup(true), health(snapshot.health),
+    strength(snapshot.strength), armor(snapshot.armor), movePoints(snapshot.movePoints), attacked(snapshot.attacked) {}
 
 Unit::~Unit() {
     if (!isGroup) {
@@ -50,7 +57,7 @@ uint16_t Unit::getAttack() {
     return strength.getStrength();
 }
 
-uint8_t Unit::getAttackRadius() {
+uint16_t Unit::getAttackRadius() {
     return strength.getRadius();
 }
 
@@ -58,15 +65,15 @@ uint16_t Unit::getArmor() {
     return armor.getArmor();
 }
 
-uint8_t Unit::getMaxMovePoints() {
+uint16_t Unit::getMaxMovePoints() {
     return movePoints.getMaxMovePoints();
 }
 
-uint8_t Unit::getMovePoints() {
+uint16_t Unit::getMovePoints() {
     return movePoints.getMovePoints();
 }
 
-void Unit::setMovePoints(uint8_t points) {
+void Unit::setMovePoints(uint16_t points) {
     movePoints.setMovePoints(points);
 }
 
@@ -103,6 +110,18 @@ bool Unit::takeDamage(uint16_t damage) {
     // Выжил - true, помер - false
     // Если единичный, то при помирании самоуничтожается
     // Если в составе группы, то за уничтожение отвечает группа
+}
+
+void Unit::setAttacked() {
+    attacked = true;
+}
+
+void Unit::unsetAttacked() {
+    attacked = false;
+}
+
+bool Unit::checkAttacked() {
+    return attacked;
 }
 
 
@@ -163,4 +182,11 @@ void Unit::renewMovePoints() {
         std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
         Game::getInstance().getLogAdapter().log(LOG_NEUT_REN_MOV, logParameters);
     }
+}
+
+
+uint16_t Unit::generateUnitType() {
+    auto typeCount = UNIT_RAM - UNIT;
+    auto unitType = rand() % typeCount + UNIT_SWORDSMAN;
+    return unitType;
 }
