@@ -145,7 +145,6 @@ void Game::restoreMemento(Memento *memento)
                 unit->setAttributesHealth(attributes->getHealth());
                 unit->setX(u->getX());
                 unit->setY(u->getY());
-                createMed->notify(unit, u->getX(), u->getX());
             }catch (out_of_range& e) {
                 throw e;
             }catch (invalid_argument& e) {

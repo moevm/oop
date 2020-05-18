@@ -147,7 +147,7 @@ int Base::getUnitCurr() const
     return unitCurr;
 }
 
-Unit *Base::makeUnit(string type, int x, int y)
+Unit *Base::makeUnit(string type, int xUnit, int yUnit)
 {
     AbstractArmy* humanityArmy = new HumanityArmy();
     AbstractArmy* creaturesArmy = new CreaturesArmy();
@@ -172,7 +172,7 @@ Unit *Base::makeUnit(string type, int x, int y)
     }
     try {
         CreateMediator * mediator=this->getCreateMediator();
-        mediator->notify(unit, x, y);
+        mediator->notify(unit, xUnit, yUnit);
         gameMediator->Notify(unit, true);
     } catch (out_of_range& e) {
         throw e;
