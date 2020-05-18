@@ -91,6 +91,7 @@ Base* Cell::getBase() {
 
 void Cell::removeBase() {
     base = nullptr;
+    buildingType = OBJECT;
 }
 
 
