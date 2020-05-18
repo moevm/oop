@@ -56,12 +56,12 @@ void PlayerContext::setState(uint16_t playerId) {
     }
 }
 
-std::list<uint16_t> PlayerContext::getOrder() {
-    return playerList;
-}
-
 void PlayerContext::nextPlayerId() {
     state->nextPlayerId(this);
+}
+
+std::list<uint16_t> PlayerContext::getOrder() const {
+    return playerList;
 }
 
 uint16_t PlayerContext::getPlayerId() const {

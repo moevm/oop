@@ -216,4 +216,9 @@ void Game::checkEndGame() {
         gameFacade->winnersMessage(result.second);
         clear();
     }
+    for (auto player : playerVector) {
+        if (player->baseSet.size() == 0) {
+            gameInfo->removePlayerId(player->getColor());
+        }
+    }
 }

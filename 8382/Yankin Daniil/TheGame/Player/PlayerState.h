@@ -4,7 +4,6 @@
 #include <list>
 #include <algorithm>
 #include <fstream>
-#include "Trivia/Snapshot.h"
 
 
 class PlayerContext;
@@ -22,8 +21,8 @@ public:
 public:
     PlayerContext(std::list<uint16_t>& playerList, uint16_t playerId);
     ~PlayerContext();
-    std::list<uint16_t> getOrder();
     void nextPlayerId();
+    std::list<uint16_t> getOrder() const;
     uint16_t getPlayerId() const;
     void removePlayerId(uint16_t playerId);
 
