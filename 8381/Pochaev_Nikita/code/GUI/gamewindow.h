@@ -7,7 +7,7 @@
 #include <QCloseEvent>
 #include <QTextEdit>
 #include <QLineEdit>
-#include <QComboBox >
+#include <QComboBox>
 #include <QSpinBox>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -17,9 +17,15 @@
 #include <QDebug>
 #include <QString>
 #include <QMessageBox>
+#include <QTextCursor>
+#include <QMenuBar>
+#include <QFileDialog>
+#include <QDir>
 
 #include "InformationHeaders/commandPar.h"
 #include "InformationHeaders/unitPar.h"
+#include "InformationHeaders/guiPar.h"
+#include "Game/Logging/logfunctionality.h"
 
 class GameWindow : public QWidget
 {
@@ -72,6 +78,11 @@ private:
 
     // other
     QTextEdit *visualField;
+    QMenuBar *menuBar;
+
+    // save / load
+    QAction *saveMenuBarButton{};
+    QAction *loadMenuBarButton{};
 
     /*    PAR    */
     size_t gameFieldSize{};
@@ -80,19 +91,36 @@ private:
 signals:
     void gameWindowClosed();
     void createFieldRequest(size_t heigt, size_t width);
+    void createLoggerInFacadeRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, QString name);
     void addUnitRequest(eUnitsType unitType, QString sourceBaseName);
     void moveUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist);
     void attackUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist);
     void cellUnfromationRequest(size_t xCoord, size_t yCoord, eRequest infRequest);
+    void saveGameFileRequest(std::string fileName);
+    void loadGameFileRequest(std::string fileName);
 
 public slots:
-    void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_);
+    void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight);
+    void createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void on_addBaseButton_clicked();
     void on_addUnitButton_clicked();
     void on_moveUnitButton_clicked();
     void on_attackUnitButton_clicked();
     void on_cellInfromationButton_clicked();
+    /**
+     * @brief handleStatusReport
+     * Log on a user screen some info
+     * @param level
+     * @param tag
+     * @param report
+     */
+    void handleStatusReport(eREPORT_LEVEL level,
+                                        const QString& tag,
+                                        const QString& report);
+    void on_saveButton_clicked();
+    void on_loadButton_clicked();
+    void restoreBaseName(QString name);
 };
 
 #endif // GAMEWINDOW_H

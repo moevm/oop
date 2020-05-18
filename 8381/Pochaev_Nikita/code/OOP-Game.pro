@@ -18,7 +18,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # Disable unused parameter warnings
 QMAKE_CXXFLAGS_WARN_OFF -= -Wunused-parameter
 
+# Compiele flags
+QMAKE_CXXFLAGS += -lstdc++fs
+
 SOURCES += \
+    AuxiliaryFunctionality/Exceptions/fieldexception.cpp \
     AuxiliaryFunctionality/TextColoring.cpp \
     AuxiliaryFunctionality/UnitMediators.cpp \
     Bases/BaseMaster.cpp \
@@ -31,8 +35,14 @@ SOURCES += \
     GUI/command.cpp \
     GUI/gamewindow.cpp \
     GUI/mainwindow.cpp \
-    Game/ChainHandler.cpp \
     Game/FacadeMediator.cpp \
+    Game/GameProcess/GamersState.cpp \
+    Game/GameProcess/gameRules.cpp \
+    Game/Logging/Loggers/logadapter.cpp \
+    Game/Logging/Loggers/loggers.cpp \
+    Game/Logging/time.cpp \
+    Game/Saving/gamemementocaretacker.cpp \
+    Game/Saving/mementofiles.cpp \
     Game/UIFacade.cpp \
     Game/game.cpp \
     GameField/Cell.cpp \
@@ -65,6 +75,8 @@ SOURCES += \
 HEADERS += \
     AuxiliaryFunctionality/Array2D.h \
     AuxiliaryFunctionality/EnumToString.h \
+    AuxiliaryFunctionality/Exceptions/baseexception.h \
+    AuxiliaryFunctionality/Exceptions/fieldexception.h \
     AuxiliaryFunctionality/GameFieldIterator.h \
     AuxiliaryFunctionality/TextColoring.h \
     AuxiliaryFunctionality/UnitMediators.h \
@@ -83,10 +95,22 @@ HEADERS += \
     GUI/command.h \
     GUI/gamewindow.h \
     GUI/mainwindow.h \
-    Game/ChainHandler.h \
     Game/FacadeMediator.h \
+    Game/GameProcess/GameRules.h \
+    Game/GameProcess/GamersState.h \
+    Game/GameProcess/gameprocess.h \
     Game/IFacadeMediator.h \
     Game/IGame.h \
+    Game/Logging/ILogger.h \
+    Game/Logging/Loggers/ILogAdapter.h \
+    Game/Logging/Loggers/logadapter.h \
+    Game/Logging/Loggers/loggers.h \
+    Game/Logging/logfunctionality.h \
+    Game/Logging/time.h \
+    Game/Saving/ICaretacker.h \
+    Game/Saving/SaveStuctures.h \
+    Game/Saving/gamemementocaretacker.h \
+    Game/Saving/mementofiles.h \
     Game/UIFacade.h \
     Game/game.h \
     GameField/Cell.h \
@@ -96,6 +120,7 @@ HEADERS += \
     GameField/IGameField.h \
     InformationHeaders/commandPar.h \
     InformationHeaders/constPar.h \
+    InformationHeaders/guiPar.h \
     InformationHeaders/unitPar.h \
     Landscape/Champaign.h \
     Landscape/Forest.h \
@@ -132,3 +157,6 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

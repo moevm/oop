@@ -10,6 +10,7 @@ class HumanBase : public GameBase
 public:
     HumanBase() = default;
     ~HumanBase() override = default;
+    eBaseType getBaseType() override;
     void describeYourself() override;
     std::string getInformationAbout() override;
 };

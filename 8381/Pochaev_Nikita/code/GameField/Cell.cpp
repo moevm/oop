@@ -65,7 +65,7 @@ void Cell::makeUnitSpeak()
 {
     if(unit == nullptr)
     {
-        std::cout << ANSIColor::coloredString("Cell doesn't contain unit", ANSIColor::FG_RED) << std::endl;
+        throw CellException("Cell doesn't contain unit");
     }
     else
     {
@@ -77,7 +77,7 @@ void Cell::makeBaseSpeak()
 {
     if(base == nullptr)
     {
-        std::cout << ANSIColor::coloredString("Cell doesn't contain base", ANSIColor::FG_RED) << std::endl;
+        throw CellException("Cell doesn't contain base");
     }
     else
     {
@@ -104,7 +104,7 @@ void Cell::giveUnitDamage(size_t damage)
     }
     else
     {
-        throw std::out_of_range("Attempt to attack an empty cell");
+        throw CellException("Attempt to attack an empty cell");
     }
 }
 

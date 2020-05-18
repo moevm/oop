@@ -1,10 +1,13 @@
 ﻿#include "UIFacade.h"
 #include "GUI/command.h"
+#include "Game/GameProcess/GameRules.h"
+#include "Game/GameProcess/gameprocess.h"
 
 UIFacade::UIFacade(int argc, char *argv[])
 {
     application = new QApplication(argc, argv);
     window = std::make_shared<MainWindow>();
+    mementoCaretacker = std::make_shared<GameMementoCaretacker>();
 }
 
 void UIFacade::start()
@@ -13,112 +16,256 @@ void UIFacade::start()
 
     // CONNECTIONS FOR UI AND BUSINESS LOGIC
     connect(window->getGameWindow(), &GameWindow::createFieldRequest, this, &UIFacade::createFieldRequest);
+    connect(window->getGameWindow(), &GameWindow::createLoggerInFacadeRequest, this, &UIFacade::createLoggerRequest);
     connect(window->getGameWindow(), &GameWindow::addBaseRequest, this, &UIFacade::addBaseRequest);
     connect(window->getGameWindow(), &GameWindow::addUnitRequest, this, &UIFacade::addUnitRequest);
     connect(window->getGameWindow(), &GameWindow::moveUnitRequest, this, &UIFacade::moveUnitReguest);
     connect(window->getGameWindow(), &GameWindow::attackUnitRequest, this, &UIFacade::attackUnitRequest);
     connect(window->getGameWindow(), &GameWindow::cellUnfromationRequest, this, &UIFacade::cellInformationReqiest);
+    connect(window->getGameWindow(), &GameWindow::gameWindowClosed, this, &UIFacade::gameWindowCloseEvent);
+    connect(this, &UIFacade::reportStatusToGui, window->getGameWindow(), &GameWindow::handleStatusReport);
+    connect(window->getGameWindow(), &GameWindow::saveGameFileRequest, this, &UIFacade::saveGameRequest);
+    connect(window->getGameWindow(), &GameWindow::loadGameFileRequest, this, &UIFacade::loadGameRequest);
+    connect(this, &UIFacade::restoreBaseNameGui, window->getGameWindow(), &GameWindow::restoreBaseName);
 
     QApplication::exec();
 }
 
+QByteArray UIFacade::readStyleSheetFile(const QString &filePath)
+{
+    QFile inputFile(filePath);
+    QByteArray inputData;
+
+    if(inputFile.open(QIODevice::Text | QIODevice::Unbuffered | QIODevice::ReadOnly))
+    {
+        inputData = inputFile.readAll();
+        inputFile.close();
+        return inputData;
+    }
+    else
+    {
+        return QByteArray();
+    }
+}
+
 void UIFacade::guiSetup()
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: GUI setup of the game started" << endl;
-#endif
-    // set up full screen view
+    // set up screen view
     QScreen *screen = application->primaryScreen();
     QRect screenGeometry = screen->geometry();
     int height = screenGeometry.height();
     int width = screenGeometry.width();
 
     /*      MAIN WINDOW     */
-    window->resize(static_cast<int>(0.25 * width), static_cast<int>(0.25 * height));
-    window->setFixedSize(static_cast<int>(0.25 * width), static_cast<int>(0.25 * height));
+    window->resize(static_cast<int>(0.25 * width), static_cast<int>(0.15 * height));
+    window->setFixedSize(static_cast<int>(0.25 * width), static_cast<int>(0.15 * height));
+
+    /*     STYLE SHEET     */
+    QString styleSheet = readStyleSheetFile(":/stylesheets/style_sheet.qss");
+    application->setStyleSheet(styleSheet);
 
     window->show();
-#ifdef QT_DEBUG
-    qDebug() << "Debug: GUI setup of the game finished" << endl;
-#endif
 }
 
-void UIFacade::createFieldRequest(size_t fieldSize, size_t playersCount)
+void UIFacade::createFieldRequest(size_t fieldSize, size_t playersCount_)
 {
-    game = std::make_shared<Game>(fieldSize, fieldSize);
+    // FIXME: корректный ли upper cast?
+    game = std::make_shared<GameProcess<AbstractGameRule, size_t>>(fieldSize, fieldSize, playersCount_, true);
+}
+
+void UIFacade::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format)
+{
+    std::shared_ptr<ILogger> loggerProxy = std::make_shared<ProxyLogger>(type);
+    logger = std::make_shared<LogAdapter>(loggerProxy);
+    logger->setOutputFormat(format);
+
+    std::vector<size_t> param{game->getPlayersCount(), game->getField()->getWidth()};
+    logger->sendLogInf(USER_LOG, USER_GAME_CREATE, param, SUCCESS);
 }
 
 void UIFacade::addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, QString name)
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: request for base adding accepted in UIFacade" << endl;
-#endif
-    game->createBase(baseType, xCoord, yCoord, name);
+    // log request
+    std::vector<size_t> param{xCoord, yCoord, static_cast<size_t>(baseType)};
+    logger->sendLogInf(USER_LOG, USER_ADD_BASE, param, SUCCESS);
+
+    try {
+        game->createBase(baseType, xCoord, yCoord, name);
+    } catch (const std::invalid_argument& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::ERROR, "Base name", "Please, enter valid base name");
+        logger->sendLogInf(GAME_LOG, GAME_ADD_BASE, param, WRONG, "wrong base name");
+        return;
+    } catch(const SimpleFieldException& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Base limit", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_ADD_BASE, param, WRONG, ex.what());
+        return;
+    } catch(const CoordsNotPartOfTheField& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Field size", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_ADD_BASE, param, WRONG, ex.what());
+        return;
+    }
+
+    emit reportStatusToGui(eREPORT_LEVEL::INFO, "Base adding", "Base was added");
+    logger->sendLogInf(GAME_LOG, GAME_ADD_BASE, param, SUCCESS);
 }
 
 void UIFacade::addUnitRequest(eUnitsType unitType, QString sourceBaseName)
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: request for unit adding accepted in UIFacade" << endl;
-#endif
     Coords coords;
     game->getBaseCoordsByName(sourceBaseName, coords);
-    std::vector<size_t> param;
-    param.push_back(coords.x);
-    param.push_back(coords.y);
-    std::shared_ptr<FacadeMediator> mediator;
-    std::shared_ptr<Command> command = std::make_shared<Command>(mediator, ADD_UNIT, param, unitType);
-    mediator = std::make_shared<addUnitFacadeMediator>(game, command, shared_from_this());
-    command->exec();
+    std::vector<size_t> coordinates;
+    coordinates.push_back(coords.x);
+    coordinates.push_back(coords.y);
+
+    // log request
+    std::vector<size_t> param{coords.x, coords.y, static_cast<size_t>(unitType)};
+    logger->sendLogInf(USER_LOG, USER_ADD_UNIT, param, SUCCESS);
+
+    std::shared_ptr<Command> command = std::make_shared<Command>(ADD_UNIT, coordinates, unitType);
+    std::shared_ptr<FacadeMediator> mediator = std::make_shared<addUnitFacadeMediator>(game->getCurrGameInstance(), command, shared_from_this());;
+    command->setMediator(mediator);
+
+    try {
+         command->exec();
+    } catch (const std::invalid_argument& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Base existing", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_ADD_UNIT, param, WRONG, ex.what());
+        return;
+    } catch(const SimpleFieldException& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Unit limit", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_ADD_UNIT, param, WRONG, ex.what());
+        return;
+    } catch(const CoordsNotPartOfTheField& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Field size", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_ADD_UNIT, param, WRONG, ex.what());
+        return;
+    } catch(const FieldBusyCellException& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Cell", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_ADD_UNIT, param, WRONG, ex.what());
+        return;
+    }
+
+    emit reportStatusToGui(eREPORT_LEVEL::INFO, "Unid add", "Success");
+    logger->sendLogInf(GAME_LOG, GAME_ADD_UNIT, param, SUCCESS);
 }
 
 void UIFacade::moveUnitReguest(size_t xSource, size_t ySource, size_t xDest, size_t yDist)
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: request for unit move accepted in UIFacade" << endl;
-#endif
     std::vector<size_t> param;
     param.push_back(xSource);
     param.push_back(ySource);
     param.push_back(xDest);
     param.push_back(yDist);
-    std::shared_ptr<FacadeMediator> mediator;
-    std::shared_ptr<Command> command = std::make_shared<Command>(mediator, MOVE_UNIT, param);
-    mediator = std::make_shared<unitMoveFacadeMediator>(game, command, shared_from_this());
-    command->exec();
+
+    // log request
+    logger->sendLogInf(USER_LOG, USER_MOVE_UNIT, param);
+
+    std::shared_ptr<Command> command = std::make_shared<Command>(MOVE_UNIT, param);
+    std::shared_ptr<FacadeMediator> mediator = std::make_shared<unitMoveFacadeMediator>(game->getCurrGameInstance(), command, shared_from_this());
+    command->setMediator(mediator);
+
+    try {
+        command->exec();
+    } catch (const std::invalid_argument& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Unit move", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_MOVE_UNIT, param, WRONG, ex.what());
+        return;
+    } catch(const FieldBusyCellException& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Cell", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_MOVE_UNIT, param, WRONG, ex.what());
+        return;
+    } catch(const CoordsNotPartOfTheField& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Field size", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_MOVE_UNIT, param, WRONG, ex.what());
+        return;
+    }
+
+    emit reportStatusToGui(eREPORT_LEVEL::INFO, "Unid move", "Success");
+    logger->sendLogInf(GAME_LOG, GAME_MOVE_UNIT, param, SUCCESS);
 }
 
 void UIFacade::attackUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist)
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: request for unit attack accepted in UIFacade" << endl;
-#endif
     std::vector<size_t> param;
     param.push_back(xSource);
     param.push_back(ySource);
     param.push_back(xDest);
     param.push_back(yDist);
-    std::shared_ptr<FacadeMediator> mediator;
-    std::shared_ptr<Command> command = std::make_shared<Command>(mediator, ATTACK_UNIT, param);
-    mediator = std::make_shared<unitAttackFacadeMediator>(game, command, shared_from_this());
-    command->exec();
+
+    // log request
+    logger->sendLogInf(USER_LOG, USER_ATTACK_UNIT, param);
+
+    std::shared_ptr<Command> command = std::make_shared<Command>(ATTACK_UNIT, param);
+    std::shared_ptr<FacadeMediator> mediator = std::make_shared<unitAttackFacadeMediator>(game->getCurrGameInstance(), command, shared_from_this());
+    command->setMediator(mediator);
+
+    try {
+        command->exec();
+    } catch (const std::invalid_argument& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Unit attack", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_ATTACK_UNIT, param, WRONG, ex.what());
+        return;
+    } catch(const CoordsNotPartOfTheField& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Field size", ex.what());
+        logger->sendLogInf(GAME_LOG, GAME_ATTACK_UNIT, param, WRONG, ex.what());
+        return;
+    }
+
+    emit reportStatusToGui(eREPORT_LEVEL::INFO, "Unid attack", "Success");
+    logger->sendLogInf(GAME_LOG, GAME_ATTACK_UNIT, param, SUCCESS);
 }
 
 void UIFacade::cellInformationReqiest(size_t xCoord, size_t yCoord, eRequest infRequest)
 {
-#ifdef QT_DEBUG
-    qDebug() << "Debug: request for cell infromation accepted in UIFacade" << endl;
-#endif
-    std::vector<size_t> param;
-    param.push_back(xCoord);
-    param.push_back(yCoord);
-    std::shared_ptr<FacadeMediator> mediator;
-    std::shared_ptr<Command> command = std::make_shared<Command>(mediator, infRequest, param);
-    mediator = std::make_shared<FacadeMediator>(game, command, shared_from_this());
+    std::vector<size_t> coordinates;
+    coordinates.push_back(xCoord);
+    coordinates.push_back(yCoord);
+
+    // log request
+    std::vector<size_t> param{xCoord, yCoord, static_cast<size_t>(infRequest)};
+    logger->sendLogInf(USER_LOG, USER_ATTACK_UNIT, param);
+
+    std::shared_ptr<Command> command = std::make_shared<Command>(infRequest, coordinates);
+    std::shared_ptr<FacadeMediator> mediator = std::make_shared<FacadeMediator>(game->getCurrGameInstance(), command, shared_from_this());
+    command->setMediator(mediator);
+
     command->exec();
 }
 
-void UIFacade::receiveStrAnswer(std::string answer)
+void UIFacade::receiveStrAnswer([[maybe_unused]] std::string answer)
 {
     // TODO: output it to the UI
+}
+
+void UIFacade::gameWindowCloseEvent()
+{
+}
+
+void UIFacade::saveGameRequest(std::string fileName)
+{
+    mementoCaretacker->saveToFile(fileName, game->getCurrGameInstance());
+}
+
+void UIFacade::loadGameRequest(std::string fileName)
+{
+    std::shared_ptr<GameParametersMemento> memento;
+    try {
+        memento = mementoCaretacker->loadFromFile(fileName);
+    } catch (const std::runtime_error& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Game load", ex.what());
+        return;
+    } catch (const std::invalid_argument& ex) {
+        emit reportStatusToGui(eREPORT_LEVEL::WARNING, "Game load", ex.what());
+        return;
+    }
+
+    // FIXME: корректный ли upper cast?
+    game = std::make_shared<GameProcess<AbstractGameRule, size_t>>(memento->fieldParam->fieldParam->width, memento->fieldParam->fieldParam->height, memento->playersCount, true);
+    game->restoreMemento(memento);
+    for(const auto& curr : memento->baseNames)
+    {
+        emit restoreBaseNameGui(QString::fromUtf8(curr.first.c_str()));
+    }
+
+    emit reportStatusToGui(eREPORT_LEVEL::INFO, "Game load", "was successful");
 }

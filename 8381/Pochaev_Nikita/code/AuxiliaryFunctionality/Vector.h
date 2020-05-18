@@ -1,4 +1,4 @@
-#ifndef OOP_VECTOR_H
+﻿#ifndef OOP_VECTOR_H
 #define OOP_VECTOR_H
 
 #include <cstdint>      // primitive type typedefs
@@ -363,19 +363,19 @@ namespace cds {
     }
 
     template<typename T>
-    bool operator<= (const Vector<T> &lhs, const Vector<T> &rhs) noexcept(false)
+    bool operator<= ([[maybe_unused]] const Vector<T> &lhs, [[maybe_unused]] const Vector<T> &rhs) noexcept(false)
     {
         return false;
     }
 
     template<typename T>
-    bool operator> (const Vector<T> &lhs, const Vector<T> &rhs) noexcept(false)
+    bool operator> ([[maybe_unused]] const Vector<T> &lhs, [[maybe_unused]] const Vector<T> &rhs) noexcept(false)
     {
         return false;
     }
 
     template<typename T>
-    bool operator>= (const Vector<T> &lhs, const Vector<T> &rhs) noexcept(false)
+    bool operator>= ([[maybe_unused]] const Vector<T> &lhs, [[maybe_unused]] const Vector<T> &rhs) noexcept(false)
     {
         return false;
     }

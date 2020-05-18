@@ -63,7 +63,7 @@ CompositeUnit* Unit::isComposite()
     return nullptr;
 }
 
-void Unit::addUnit(std::shared_ptr<Unit> unit)
+void Unit::addUnit([[maybe_unused]] std::shared_ptr<Unit> unit)
 {
     throw std::invalid_argument("Unable to add new unit to single");
 }
@@ -166,4 +166,72 @@ void Unit::carryOutMeleeAttack(size_t x, size_t y)
 void Unit::setUnitMeleeAttackMediator(std::shared_ptr<UnitMeleeAttackMediator> mediator_)
 {
     meleeAttackMediator = std::move(mediator_);
+}
+
+std::string Unit::convertEnumUnitNameToStr(eUnitsType type)
+{
+    if(type == CANNON_FODDER)
+    {
+        return "cannon fodder";
+    }
+    else if(type == INFANTRY)
+    {
+        return "infantry";
+    }
+    else if(type == SHOOTER)
+    {
+        return "shooter";
+    }
+    else if(type == WIZARD)
+    {
+        return "wizard";
+    }
+    else if(type == CAVALRY)
+    {
+        return "cavalry";
+    }
+    else if(type == COMPOSITE_UNIT)
+    {
+        return "composite unit";
+    }
+
+    return "";
+}
+
+std::shared_ptr<UnitParametersMemento> Unit::createMemento()
+{
+    std::shared_ptr<UnitParametersMemento> memento = std::make_shared<UnitParametersMemento>();
+    memento->name = name;
+    memento->health = health;
+    memento->armor = armor;
+    memento->meleeAttackStrength = meleeAttackStrength;
+    memento->movementRange = movementRange;
+    memento->actionTokens = actionTokens;
+    memento->position = position;
+    memento->creationBaseCoords = baseCreationPosition;
+    memento->type = getType();
+
+    return memento;
+}
+
+void Unit::restoreMemento(std::shared_ptr<UnitParametersMemento> memento)
+{
+    name = memento->name;
+    health = memento->health;
+    armor = memento->armor;
+    meleeAttackStrength = memento->meleeAttackStrength;
+    movementRange = memento->movementRange;
+    actionTokens = memento->actionTokens;
+    position = memento->position;
+    baseCreationPosition = memento->creationBaseCoords;
+}
+
+void Unit::setBaseCreationCoords(Coords coords)
+{
+    baseCreationPosition = coords;
+}
+
+Coords Unit::getBaseCreationCoords()
+{
+    return baseCreationPosition;
 }

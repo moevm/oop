@@ -1,9 +1,15 @@
 ﻿#include "game.h"
 #include "FacadeMediator.h"
 
-Game::Game(size_t fieldHieght, size_t fieldWidth)
+Game::Game(size_t fieldHeight, size_t fieldWidth, bool fill)
 {
-    field = std::make_shared<GameFieldProxy>(fieldHieght, fieldWidth);
+    field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth, fill);
+}
+
+Game::Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_, bool fill)
+{
+    playersCount = playersCount_;
+    field = std::make_shared<GameFieldProxy>(fieldHeight, fieldWidth, fill);
 }
 
 std::shared_ptr<GameFieldProxy> Game::getField() const
@@ -44,7 +50,6 @@ void Game::createBase(eBaseType type, size_t xCoord, size_t yCoord, QString srcB
     }
     field->addBase(base, xCoord, yCoord);
     bases.insert(std::make_pair(srcBaseName, BaseInf(std::move(base), xCoord, yCoord)));
-    std::cout << ANSIColor::coloredString(baseType + " was added at (" + std::to_string(xCoord) + ";" + std::to_string(yCoord) + ")", ANSIColor::FG_GREEN) << std::endl;
 }
 
 bool Game::getBaseCoordsByName(QString sourceBaseName, Coords &coords)
@@ -63,6 +68,7 @@ void Game::createUnit(eUnitsType unitType, size_t xCoord, size_t yCoord)
     }
     std::shared_ptr<Unit> unit = field->getBaseByCoords(xCoord, yCoord)->getUnit(unitType);
     field->addUnit(unit, xCoord, yCoord);
+    field->getUnitByCoords(xCoord, yCoord)->setBaseCreationCoords(Coords(xCoord, yCoord));
 }
 
 void Game::moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDist)
@@ -99,4 +105,40 @@ std::string Game::getItemInfo(size_t x, size_t y)
 std::string Game::getLandInfo(size_t x, size_t y)
 {
     return field->getInfAboutLand(x, y);
+}
+
+size_t Game::getPlayersCount()
+{
+    return playersCount;
+}
+
+std::shared_ptr<GameParametersMemento> Game::createMemento()
+{
+    std::shared_ptr<GameParametersMemento> memento = std::make_shared<GameParametersMemento>();
+
+    memento->playersCount = playersCount;
+    memento->fieldParam = field->createMemento();
+
+    for(const auto& curr : bases)
+    {
+        memento->baseNames.insert(std::pair(curr.first.toStdString(), Coords(curr.second.xCoord, curr.second.yCoord)));
+    }
+
+    return memento;
+}
+
+void Game::restoreMemento(std::shared_ptr<GameParametersMemento> memento)
+{
+    playersCount = memento->playersCount;
+    for(const auto& curr : memento->baseNames)
+    {
+        bases.insert(std::pair(QString::fromUtf8(curr.first.c_str()), BaseInf(curr.second.x, curr.second.y)));
+    }
+
+    field->restoreMemento(memento->fieldParam);
+
+    for(const auto& curr : memento->baseNames)
+    {
+        bases[QString::fromUtf8(curr.first.c_str())].base = field->getBaseByCoords(curr.second.x, curr.second.y);
+    }
 }
