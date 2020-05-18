@@ -345,7 +345,10 @@ void PlayingField::addBase(Base* base)
         throw invalid_argument("width must be < curr width");
     if(posY > height)
         throw invalid_argument("height must be < curr height");
-
+    Proxy* p = new Proxy(items[posX][posY]->getLandscape());
+    if(!p->canStand()){
+        throw invalid_argument("base  can't add to this landscape");
+    }
     if(items[posX][posY]->getBase()){
         throw invalid_argument("there is base on"+to_string(posX)+","+to_string(posY));
     }

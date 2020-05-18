@@ -19,6 +19,9 @@ public:
     explicit NeutralInfo(QWidget *parent = nullptr);
     ~NeutralInfo();
     MainWindow* ptr;
+private slots:
+    void on_neutralInfoButton_clicked();
+
 private:
     Ui::NeutralInfo *ui;
 };

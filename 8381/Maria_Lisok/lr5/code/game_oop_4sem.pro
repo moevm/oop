@@ -69,6 +69,7 @@ SOURCES += \
     uiWindows/baseinfo.cpp \
     uiWindows/gameinfo.cpp \
     uiWindows/landinfo.cpp \
+    uiWindows/logsettings.cpp \
     uiWindows/move.cpp \
     uiWindows/neutralinfo.cpp \
     uiWindows/unitinfo.cpp \
@@ -138,6 +139,7 @@ HEADERS += \
     uiWindows/baseinfo.h \
     uiWindows/gameinfo.h \
     uiWindows/landinfo.h \
+    uiWindows/logsettings.h \
     uiWindows/move.h \
     uiWindows/neutralinfo.h \
     uiWindows/unitinfo.h \
@@ -152,6 +154,7 @@ FORMS += \
     uiWindows/baseinfo.ui \
     uiWindows/gameinfo.ui \
     uiWindows/landinfo.ui \
+    uiWindows/logsettings.ui \
     uiWindows/move.ui \
     uiWindows/neutralinfo.ui \
     uiWindows/unitinfo.ui

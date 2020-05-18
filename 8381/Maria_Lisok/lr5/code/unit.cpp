@@ -5,7 +5,7 @@ string Unit::characteristic(){
     chr.append("Main properties "+this->name
                +"\nHealth: "+to_string(attributes->getHealth())
                +"\nArmor: "+to_string(attributes->getArmor())
-               +"\nAttack: "+to_string(attributes->getArmor()));
+               +"\nAttack: "+to_string(attributes->getAttack()));
     return chr;
 }
 Unit::Unit(Unit& unit):name(unit.name), movable(unit.movable),
@@ -74,6 +74,11 @@ void Unit::setX(const unsigned &value)
 void Unit::setY(const unsigned &value)
 {
     y = value;
+}
+
+void Unit::setBaseNumber(int value)
+{
+    baseNumber = value;
 }
 void Unit::setMoveMediator(MoveMediator* value){
     moveMediator = value;

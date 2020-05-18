@@ -14,5 +14,7 @@ AddUnit::~AddUnit()
     delete ui;
 }
 
-
-
+void AddUnit::on_addUnit_accepted()
+{
+    ptr->facade->addUnit(ui->baseNum->value(), ui->typesOfUnit->currentIndex()+20);
+}

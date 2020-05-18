@@ -57,15 +57,21 @@ map<string, int> FieldCommand::neutrallInfo()
     map<string, int> information;
     unsigned x = static_cast<unsigned>(params.find("infoParams")->second.x);
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
-    NeutralObj* neutr = field->getCell(x, y)->getNeutral();
-    if(neutr){
-        information["neutal pos x"] = static_cast<int>(x);
-        information["neutal pos y"] = static_cast<int>(y);
-        information["neutal type:"] = neutr->getTypeEnum();
+    NeutralObj* neutr{};
+    try {
+        neutr = field->getCell(x, y)->getNeutral();
+        if(neutr){
+            information["neutal pos x"] = static_cast<int>(x);
+            information["neutal pos y"] = static_cast<int>(y);
+            information["neutal type:"] = neutr->getTypeEnum();
+        }
+        else{
+            information["no neutral el on such cell"] = -1;
+        }
+    } catch (out_of_range& e) {
+        information[e.what()]= -1;
     }
-    else{
-        information["no neutral el on such cell"] = -1;
-    }
+
     return information;
 }
 
@@ -74,15 +80,21 @@ map<string, int> FieldCommand::unitlInfo()
     map<string, int> information;
     unsigned x = static_cast<unsigned>(params.find("infoParams")->second.x);
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
-    Unit* un = field->getCell(x, y)->getUnit();
-    if(un){
-        information["unit pos x "] =  static_cast<int>(x);
-        information["unit pos y "] =  static_cast<int>(y);
-        information["unit characteristic:\n"+un->characteristic()] = -1;
+    Unit* un{};
+    try {
+        un = field->getCell(x, y)->getUnit();
+        if(un){
+            information["unit pos x "] =  static_cast<int>(x);
+            information["unit pos y "] =  static_cast<int>(y);
+            information["unit characteristic:\n"+un->characteristic()] = -1;
+        }
+        else{
+            information["no unit on such cell"] = -1;
+        }
+    } catch (out_of_range& e) {
+        information[e.what()]= -1;
     }
-    else{
-        information["no unit on such cell"] = -1;
-    }
+
     return information;
 }
 
@@ -91,15 +103,21 @@ map<string, int> FieldCommand::landCelllInfo()
     map<string, int> information;
     unsigned x = static_cast<unsigned>(params.find("infoParams")->second.x);
     unsigned y = static_cast<unsigned>(params.find("infoParams")->second.y);
-    Landscape* land = field->getCell(x, y)->getLandscape();
-    if(land){
-        information["land cell pos x"] =  static_cast<int>(x);
-        information["land cell pos y"] =  static_cast<int>(y);
-        information["landscape type:"] = field->getCell(x, y)->getLandscape()->getLandscapeTypeEnum();
+    Landscape* land{};
+    try {
+        land = field->getCell(x, y)->getLandscape();
+        if(land){
+            information["land cell pos x"] =  static_cast<int>(x);
+            information["land cell pos y"] =  static_cast<int>(y);
+            information["landscape type:"] =  land->getLandscapeTypeEnum();
+        }
+        else{
+            information["error with land type"] = -1;
+        }
+    } catch (out_of_range& e) {
+        information[e.what()]= -1;
     }
-    else{
-        information["error with land type"] = 0;
-    }
+
     return information;
 }
 
@@ -151,18 +169,23 @@ map<string, int> FieldCommand::unitFind()
 map<string, int> FieldCommand::unitMove()
 {
     map<string, int> information;
-    Unit* u = findItem();
+    Unit* u{};
     int x = params.find("move")->second.x;
     int y = params.find("move")->second.y;
     try{
+        u = findItem();
+        if(!u){
+            information["no unit on such cell"] = -1;
+            return information;
+        }
         u->move(x, y);
-        information["move unit name: "] = u->getTypeEnum();
-        information["for pos x: "] = x;
-        information["for pos y: "] = y;
+        information["\nmove unit name: "] = u->getTypeEnum();
+        information["step x: "] = x;
+        information["step y: "] = y;
     }catch(out_of_range& e){
-        information[e.what()]=0;
+        information[e.what()]=-1;
     }catch(invalid_argument& e){
-        information[e.what()]=0;
+        information[e.what()]=-1;
     }
     u->setX(u->getX()+x);
     u->setY(u->getY()+y);

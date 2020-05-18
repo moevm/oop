@@ -458,7 +458,7 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="addBase">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -596,7 +596,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>addBase</sender>
    <signal>accepted()</signal>
    <receiver>AddBase</receiver>
    <slot>accept()</slot>
@@ -612,7 +612,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>addBase</sender>
    <signal>rejected()</signal>
    <receiver>AddBase</receiver>
    <slot>reject()</slot>

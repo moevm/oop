@@ -13,7 +13,13 @@ AddNeutral::~AddNeutral()
     delete ui;
 }
 
-void AddNeutral::on_buttonBox_accepted()
+void AddNeutral::on_addNeutral_accepted()
 {
     ptr->facade->addNeutral(ui->posNeutralX->value(), ui->posNeutralY->value(), ui->typesOfNeutrals->currentIndex()+60);
+    close();
+}
+
+void AddNeutral::on_addNeutral_rejected()
+{
+    close();
 }

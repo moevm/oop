@@ -76,12 +76,12 @@ GameParam* ReadFromFile::read()
             int healthUnit;
             unsigned posUnitX;
             unsigned posUnitY;
+            file >> healthUnit;
             file >> armor;
             file >> attack;
-            file >> healthUnit;
             file >> posUnitX;
             file >> posUnitY;
-            units.push_back(new UnitParam(name, baseNumber, new Attributes(armor, healthUnit, attack), posUnitX, posUnitY));
+            units.push_back(new UnitParam(name, baseNumber, new Attributes(healthUnit, armor, attack), posUnitX, posUnitY));
         }
         bases.push_back(new BaseParam(baseNumb, unitCount, maxCount, health,x, y, unitCurr, units));
     }

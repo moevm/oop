@@ -6,6 +6,8 @@ GameInfo::GameInfo(QWidget *parent) :
     ui(new Ui::GameInfo)
 {
     ui->setupUi(this);
+    ui->gameInfoWindow->clear();
+    //ui->gameInfoWindow->append(QString::fromStdString(ptr->facade->getGameInfo()));
 }
 
 GameInfo::~GameInfo()

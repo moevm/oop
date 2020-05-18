@@ -455,7 +455,7 @@
   <property name="windowTitle">
    <string>Game Info</string>
   </property>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="gameInfoWindow">
    <property name="geometry">
     <rect>
      <x>50</x>

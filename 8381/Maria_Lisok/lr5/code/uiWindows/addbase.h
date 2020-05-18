@@ -19,6 +19,9 @@ public:
     explicit AddBase(QWidget *parent = nullptr);
     ~AddBase();
     MainWindow* ptr;
+private slots:
+    void on_addBase_accepted();
+
 private:
     Ui::AddBase *ui;
 };

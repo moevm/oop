@@ -19,6 +19,9 @@ public:
     explicit Move(QWidget *parent = nullptr);
     ~Move();
     MainWindow* ptr;
+private slots:
+    void on_moveButton_accepted();
+
 private:
     Ui::move *ui;
 };

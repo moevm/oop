@@ -2,10 +2,10 @@
 
 Facade::Facade(Ui::MainWindow *ui, Game *game): ui(ui), game(game)
 {
-    logger = new Adapter(new ProxyLogger(TOTERMINAL));
+    logger = new Adapter(new ProxyLogger(NOLOG));
 }
 
-void Facade::getGameInfo()
+string Facade::getGameInfo()
 {
    GameCommand com(game, GAME_INFO, map<string, Data>());
    map<string, int> answers = com.mainInfoAboutObj();
@@ -15,9 +15,10 @@ void Facade::getGameInfo()
    }
    ui->logWindow->append(QString::fromStdString(output));
    logger->makeLog(GAME_INFO, answers);
+   return output;
 }
 
-void Facade::getBaseInfo(int number)
+string Facade::getBaseInfo(int number)
 {
     map<string, Data> params;
     Data data;
@@ -27,13 +28,18 @@ void Facade::getBaseInfo(int number)
     map<string, int> answers = com.mainInfoAboutObj();
     string output{};
     for(auto it = answers.begin(); it != answers.end(); ++it) {
-          output+=it->first + to_string(it->second)+"\n";
+          output+=it->first;
+          if(it->second>=0)
+              output+= to_string(it->second)+"\n";
+          else
+              output+="\n";
     }
     ui->infoWindow->append(QString::fromStdString(output));
     logger->makeLog(BASE_INFO, answers);
+    return output;
 }
 
-void Facade::getUnitInfo(int x, int y)
+string Facade::getUnitInfo(int x, int y)
 {
     map<string, Data> params;
     Data data;
@@ -52,9 +58,10 @@ void Facade::getUnitInfo(int x, int y)
     }
     ui->infoWindow->append(QString::fromStdString(output));
     logger->makeLog(UNIT_INFO, answers);
+    return output;
 }
 
-void Facade::getNeutralInfo(int x, int y)
+string Facade::getNeutralInfo(int x, int y)
 {
     map<string, Data> params;
     Data data;
@@ -68,14 +75,18 @@ void Facade::getNeutralInfo(int x, int y)
         output+=it->first + " ";
         if(it->first == "neutal type:")
             output+= convertFromEnumToNeutral(static_cast<NeutralType>(it->second))+"\n";
-        else
+        else if(it->second>=0){
             output+= to_string(it->second)+"\n";
+        }
+        else
+            output+= "\n";
     }
     ui->infoWindow->append(QString::fromStdString(output));
     logger->makeLog(NEUTRAL_INFO, answers);
+    return output;
 }
 
-void Facade::getLandscapeInfo(int x, int y)
+string Facade::getLandscapeInfo(int x, int y)
 {
     map<string, Data> params;
     Data data;
@@ -89,11 +100,15 @@ void Facade::getLandscapeInfo(int x, int y)
         output+=it->first + " ";
         if(it->first == "landscape type:")
             output+= convertFromEnumToLand(static_cast<LandscapeType>(it->second))+"\n";
-        else
+        else if(it->second>=0){
             output+= to_string(it->second)+"\n";
+        }
+        else
+            output+= "\n";
     }
     ui->infoWindow->append(QString::fromStdString(output));
     logger->makeLog(LAND_CELL, answers);
+    return output;
 }
 
 void Facade::moveUnit(int x, int y, int xDelta, int yDelta)
@@ -111,7 +126,14 @@ void Facade::moveUnit(int x, int y, int xDelta, int yDelta)
     map<string, int> answers = com.mainInfoAboutObj();
     string output{};
     for(auto it = answers.begin(); it != answers.end(); ++it) {
-          output+=it->first + to_string(it->second)+"\n";
+         output+=it->first + " ";
+         if(it->first ==  "\nmove unit name: "){
+             output+= convertFromEnumToUnit(static_cast<UnitsType>(it->second))+"\n";
+         }
+         else if(it->second>=0){
+             output+= to_string(it->second)+"\n";
+         }else
+             output+= "\n";
     }
     ui->logWindow->append(QString::fromStdString(output));
     logger->makeLog(MOVE, answers);
@@ -132,7 +154,11 @@ void Facade::attackUnit(int x, int y, int xDelta, int yDelta)
     map<string, int> answers = com.mainInfoAboutObj();
     string output{};
     for(auto it = answers.begin(); it != answers.end(); ++it) {
-          output+=it->first + to_string(it->second)+"\n";
+          output+=it->first;
+          if(it->second>=0){
+              output+= to_string(it->second)+"\n";
+          }else
+              output+= "\n";
 
     }
     ui->logWindow->append(QString::fromStdString(output));
@@ -157,13 +183,15 @@ void Facade::addBase(int x, int y, int maxUnitsCount, int health)
     try{
         answers = com.mainInfoAboutObj();
     }catch(invalid_argument& e){
-        answers[e.what()]=0;
+        answers[e.what()]=-1;
     }
     string output{};
     for(auto it = answers.begin(); it != answers.end(); ++it) {
         output+=it->first + " ";
         if(it->second>=0)
             output+= to_string(it->second)+"\n";
+        else
+            output+= "\n";
     }
     ui->logWindow->append(QString::fromStdString(output));
     logger->makeLog(BASE_ADD, answers);
@@ -203,8 +231,11 @@ void Facade::addNeutral(int x, int y, int type)
           output+=it->first + " ";
           if(it->first == "neutral type: ")
               output+= convertFromEnumToNeutral(static_cast<NeutralType>(it->second))+"\n";
-          else
+          else if(it->second>=0){
               output+= to_string(it->second)+"\n";
+          }
+          else
+              output+= "\n";
 
       }
       ui->logWindow->append(QString::fromStdString(output));
@@ -218,15 +249,19 @@ Adapter *Facade::getLogger() const
 
 void Facade::setLogger(LogPlace logPlace)
 {
-    logger->setLogger(new ProxyLogger(logPlace));
+    try {
+        logger->setLogger(new ProxyLogger(logPlace));
+    } catch (runtime_error& e) {
+        ui->logWindow->append(QString::fromStdString(e.what()));
+    }
 }
 
 void Facade::saveGame(string name)
 {
     try {
         game->readMemento(name);
-    } catch (std::runtime_error a) {
-        std::string output;
+    } catch (runtime_error a) {
+        string output;
         output += "Error while loading game: ";
         output += a.what();
         ui->logWindow->append(QString::fromStdString(output));

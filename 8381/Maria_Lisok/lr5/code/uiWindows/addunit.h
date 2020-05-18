@@ -19,8 +19,8 @@ public:
     explicit AddUnit(QWidget *parent = nullptr);
     ~AddUnit();
     MainWindow* ptr;
-
-
+private slots:
+    void on_addUnit_accepted();
 
 private:
     Ui::AddUnit *ui;

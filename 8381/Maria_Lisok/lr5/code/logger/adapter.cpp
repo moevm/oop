@@ -48,9 +48,14 @@ void Adapter::makeLog(Actions act, map<string, int> data)
 string Adapter::baseAddLog(map<string, int> data)
 {
     string info{};
-    info += "Information about action add base:\n";
+    info += "\nInformation about action add base:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
-        info +=it->first + to_string(it->second)+"\n";
+        info+=it->first + " ";
+        if(it->second>=0)
+            info+= to_string(it->second)+"\n";
+        else
+            info+= "\n";
+
     }
     return info;
 }
@@ -58,11 +63,11 @@ string Adapter::baseAddLog(map<string, int> data)
 string Adapter::neutralAddLog(map<string, int> data)
 {
     string info{};
-    info += "Information about action add neutral:\n";
+    info += "\nInformation about action add neutral:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
         if(it->second <0){
-            info +=it->first;
-        }else if(it->first.compare("neutal type: ")==0){
+            info +=it->first + "\n";
+        }else if(it->first == "neutral type: "){
             info +=it->first;
             info += convertFromEnumToNeutral(static_cast<NeutralType>(it->second))+"\n";
         }else{
@@ -75,10 +80,10 @@ string Adapter::neutralAddLog(map<string, int> data)
 string Adapter::unitAddLog(map<string, int> data)
 {
     string info{};
-    info += "Information about action add unit:\n";
+    info += "\nInformation about action add unit:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
         if(it->second <0){
-            info +=it->first;
+            info +=it->first + "\n";
         } else{
             info +=it->first + to_string(it->second)+"\n";
         }
@@ -89,7 +94,7 @@ string Adapter::unitAddLog(map<string, int> data)
 string Adapter::attackLog(map<string, int> data)
 {
     string info{};
-    info += "Attack info:\n";
+    info += "\nAttack info:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
         if(it->second < 0)
             info +=it->first + "\n";
@@ -103,12 +108,14 @@ string Adapter::attackLog(map<string, int> data)
 string Adapter::moveLog(map<string, int> data)
 {
     string info{};
-    info += "Move info:\n";
+    info += "\nMove info:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
-        if(it->first.compare("move unit name: ")==0){
+        if(it->first == "\nmove unit name: "){
             info +=it->first;
-            info += convertFromEnumToUnit(static_cast<UnitsType>(it->second));
-        } else{
+            info += convertFromEnumToUnit(static_cast<UnitsType>(it->second))+"\n";
+        }else if(it->second < 0){
+            info +=it->first + "\n";
+        }else{
             info +=it->first + to_string(it->second)+"\n";
         }
     }
@@ -118,7 +125,7 @@ string Adapter::moveLog(map<string, int> data)
 string Adapter::gameInfoLog(map<string, int> data)
 {
     string info{};
-    info += "Game info:\n";
+    info += "\nGame info:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
           info +=it->first + to_string(it->second)+"\n";
     }
@@ -128,9 +135,13 @@ string Adapter::gameInfoLog(map<string, int> data)
 string Adapter::baseInfoLog(map<string, int> data)
 {
     string info{};
-    info += "Base info:\n";
+    info += "\nBase info:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
-        info +=it->first + to_string(it->second)+"\n";
+        info+=it->first + " ";
+        if(it->second>=0)
+            info+= to_string(it->second)+"\n";
+        else
+            info+= "\n";
     }
     return info;
 }
@@ -138,10 +149,10 @@ string Adapter::baseInfoLog(map<string, int> data)
 string Adapter::userInfoLog(map<string, int> data)
 {
     string info{};
-    info += "User info:\n";
+    info += "\nUser info:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
         if(it->second <0){
-            info +=it->first;
+            info +=it->first + "\n";
         } else{
             info +=it->first + to_string(it->second)+"\n";
         }
@@ -152,11 +163,11 @@ string Adapter::userInfoLog(map<string, int> data)
 string Adapter::neutralInfoLog(map<string, int> data)
 {
     string info{};
-    info += "Neutral info:\n";
+    info += "\nNeutral info:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
         if(it->second <0){
-            info +=it->first;
-        }else if(it->first.compare("neutal type:")==0){
+            info +=it->first + "\n";
+        }else if(it->first == "neutal type:"){
             info +=it->first;
             info += convertFromEnumToNeutral(static_cast<NeutralType>(it->second))+"\n";
         }else{
@@ -169,11 +180,11 @@ string Adapter::neutralInfoLog(map<string, int> data)
 string Adapter::landCellInfo(map<string, int> data)
 {
     string info{};
-    info += "Land cell info:\n";
+    info += "\nLand cell info:\n";
     for(auto it = data.begin(); it != data.end(); ++it) {
         if(it->second <0){
             info +=it->first;
-        }else if(it->first.compare("landscape type:")==0){
+        }else if(it->first == "landscape type:"){
             info +=it->first;
             info += convertFromEnumToLand(static_cast<LandscapeType>(it->second))+"\n";
         }else{

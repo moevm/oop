@@ -12,3 +12,10 @@ BaseInfo::~BaseInfo()
 {
     delete ui;
 }
+
+
+void BaseInfo::on_baseInfoButton_clicked()
+{
+    ui->infoBaseWindow->clear();
+    ui->infoBaseWindow->append(QString::fromStdString(ptr->facade->getBaseInfo(ui->baseNum->value())));
+}

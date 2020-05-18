@@ -61,6 +61,7 @@ Unit *Base::createUnit(UnitsType type)
     else if (type == ORK){
         unit = creaturesArmy->createInfantry();
     }
+    unit->setBaseNumber(baseNumb);
     try {
         this->getCreateMediator()->notify(unit, x, y);
         gameMediator->Notify(unit, true);

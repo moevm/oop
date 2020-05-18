@@ -31,6 +31,7 @@ void AttackMediator::attack(Unit *attaker, int x, int y)
                 attakerExist = true;
                 recivePosX = i;
                 recivePosY = j;
+                break;
             }
         }
     }

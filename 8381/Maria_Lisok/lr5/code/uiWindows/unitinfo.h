@@ -18,6 +18,9 @@ public:
     explicit UnitInfo(QWidget *parent = nullptr);
     ~UnitInfo();
     MainWindow* ptr;
+private slots:
+    void on_unitInfoButton_clicked();
+
 private:
     Ui::UnitInfo *ui;
 };

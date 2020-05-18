@@ -13,8 +13,7 @@ Attack::~Attack()
     delete ui;
 }
 
-
-void Attack::on_buttonBox_accepted()
+void Attack::on_attackButton_accepted()
 {
-
+    ptr->facade->attackUnit(ui->fromX->value(), ui->fromY->value(), ui->stepX->value(), ui->stepY->value());
 }

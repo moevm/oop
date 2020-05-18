@@ -12,3 +12,9 @@ NeutralInfo::~NeutralInfo()
 {
     delete ui;
 }
+
+void NeutralInfo::on_neutralInfoButton_clicked()
+{
+    ui->neutralInfoWindow->clear();
+    ui->neutralInfoWindow->append(QString::fromStdString(ptr->facade->getNeutralInfo(ui->posForInfoX->value(), ui->posForInfoY->value())));
+}

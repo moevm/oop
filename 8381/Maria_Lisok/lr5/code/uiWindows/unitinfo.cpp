@@ -12,3 +12,9 @@ UnitInfo::~UnitInfo()
 {
     delete ui;
 }
+
+void UnitInfo::on_unitInfoButton_clicked()
+{
+    ui->unitInfoWindow->clear();
+    ui->unitInfoWindow->append(QString::fromStdString(ptr->facade->getUnitInfo(ui->posForInfoX->value(), ui->posForInfoY->value())));
+}

@@ -12,3 +12,8 @@ Move::~Move()
 {
     delete ui;
 }
+
+void Move::on_moveButton_accepted()
+{
+    ptr->facade->moveUnit(ui->fromX->value(), ui->fromY->value(), ui->stepX->value(), ui->stepY->value());
+}

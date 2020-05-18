@@ -47,6 +47,8 @@ public:
 
     void setY(const unsigned &value);
 
+    void setBaseNumber(int value);
+
 protected:
     std::string name;
     bool movable=true;

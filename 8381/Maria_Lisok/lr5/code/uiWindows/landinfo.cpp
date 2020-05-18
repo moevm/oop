@@ -12,3 +12,9 @@ LandInfo::~LandInfo()
 {
     delete ui;
 }
+
+void LandInfo::on_landInfoButton_clicked()
+{
+    ui->landInfoWindow->clear();
+    ui->landInfoWindow->append(QString::fromStdString(ptr->facade->getLandscapeInfo(ui->posForInfoX->value(), ui->posForInfoY->value())));
+}

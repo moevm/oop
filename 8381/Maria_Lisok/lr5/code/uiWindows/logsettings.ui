@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UnitInfo</class>
- <widget class="QDialog" name="UnitInfo">
+ <class>LogSettings</class>
+ <widget class="QDialog" name="LogSettings">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>400</height>
+    <height>300</height>
    </rect>
   </property>
   <property name="palette">
@@ -25,9 +25,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>244</green>
-        <blue>191</blue>
+        <red>199</red>
+        <green>239</green>
+        <blue>208</blue>
        </color>
       </brush>
      </colorrole>
@@ -43,27 +43,27 @@
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>249</green>
-        <blue>223</blue>
+        <red>227</red>
+        <green>247</green>
+        <blue>231</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>127</red>
-        <green>122</green>
-        <blue>95</blue>
+        <red>99</red>
+        <green>119</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>170</red>
-        <green>162</green>
-        <blue>127</blue>
+        <red>132</red>
+        <green>159</green>
+        <blue>139</blue>
        </color>
       </brush>
      </colorrole>
@@ -106,9 +106,9 @@
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>244</green>
-        <blue>191</blue>
+        <red>199</red>
+        <green>239</green>
+        <blue>208</blue>
        </color>
       </brush>
      </colorrole>
@@ -124,9 +124,9 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>249</green>
-        <blue>223</blue>
+        <red>227</red>
+        <green>247</green>
+        <blue>231</blue>
        </color>
       </brush>
      </colorrole>
@@ -171,9 +171,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>244</green>
-        <blue>191</blue>
+        <red>199</red>
+        <green>239</green>
+        <blue>208</blue>
        </color>
       </brush>
      </colorrole>
@@ -189,27 +189,27 @@
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>249</green>
-        <blue>223</blue>
+        <red>227</red>
+        <green>247</green>
+        <blue>231</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>127</red>
-        <green>122</green>
-        <blue>95</blue>
+        <red>99</red>
+        <green>119</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>170</red>
-        <green>162</green>
-        <blue>127</blue>
+        <red>132</red>
+        <green>159</green>
+        <blue>139</blue>
        </color>
       </brush>
      </colorrole>
@@ -252,9 +252,9 @@
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>244</green>
-        <blue>191</blue>
+        <red>199</red>
+        <green>239</green>
+        <blue>208</blue>
        </color>
       </brush>
      </colorrole>
@@ -270,9 +270,9 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>249</green>
-        <blue>223</blue>
+        <red>227</red>
+        <green>247</green>
+        <blue>231</blue>
        </color>
       </brush>
      </colorrole>
@@ -308,18 +308,18 @@
      <colorrole role="WindowText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>127</red>
-        <green>122</green>
-        <blue>95</blue>
+        <red>99</red>
+        <green>119</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>244</green>
-        <blue>191</blue>
+        <red>199</red>
+        <green>239</green>
+        <blue>208</blue>
        </color>
       </brush>
      </colorrole>
@@ -335,36 +335,36 @@
      <colorrole role="Midlight">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>249</green>
-        <blue>223</blue>
+        <red>227</red>
+        <green>247</green>
+        <blue>231</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Dark">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>127</red>
-        <green>122</green>
-        <blue>95</blue>
+        <red>99</red>
+        <green>119</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>170</red>
-        <green>162</green>
-        <blue>127</blue>
+        <red>132</red>
+        <green>159</green>
+        <blue>139</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Text">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>127</red>
-        <green>122</green>
-        <blue>95</blue>
+        <red>99</red>
+        <green>119</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
@@ -380,27 +380,27 @@
      <colorrole role="ButtonText">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>127</red>
-        <green>122</green>
-        <blue>95</blue>
+        <red>99</red>
+        <green>119</green>
+        <blue>104</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>244</green>
-        <blue>191</blue>
+        <red>199</red>
+        <green>239</green>
+        <blue>208</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>244</green>
-        <blue>191</blue>
+        <red>199</red>
+        <green>239</green>
+        <blue>208</blue>
        </color>
       </brush>
      </colorrole>
@@ -416,9 +416,9 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>244</green>
-        <blue>191</blue>
+        <red>199</red>
+        <green>239</green>
+        <blue>208</blue>
        </color>
       </brush>
      </colorrole>
@@ -453,22 +453,75 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>Unit Info</string>
+   <string>Log_Settings</string>
   </property>
-  <widget class="QSpinBox" name="posForInfoX">
+  <widget class="QRadioButton" name="logToFile">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>80</y>
-     <width>42</width>
-     <height>22</height>
+     <x>40</x>
+     <y>90</y>
+     <width>100</width>
+     <height>20</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;file: /Users/marialisok/4sem_leti/oop/logs/log.txt&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="text">
+    <string> File</string>
+   </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QRadioButton" name="logToTerminal">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>40</x>
+     <y>130</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string> Terminal</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="noLogs">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>170</y>
+     <width>100</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="text">
+    <string> No logs</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
      <y>60</y>
      <width>59</width>
      <height>16</height>
@@ -477,84 +530,32 @@
    <property name="font">
     <font>
      <family>Times New Roman</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Position</string>
+    <string>Place</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="posForInfoY">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>80</y>
-     <width>42</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="unitInfoWindow">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>150</y>
-     <width>300</width>
-     <height>150</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
      <x>140</x>
      <y>20</y>
-     <width>111</width>
+     <width>121</width>
      <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Times New Roman</family>
-     <pointsize>18</pointsize>
+     <pointsize>16</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>Unit Info</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>120</y>
-     <width>59</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Times New Roman</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Info</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="unitInfoButton">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>80</y>
-     <width>113</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>find</string>
+    <string>LOG SETTINGS</string>
    </property>
   </widget>
  </widget>

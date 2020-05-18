@@ -455,7 +455,7 @@
   <property name="windowTitle">
    <string>Move</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="moveButton">
    <property name="geometry">
     <rect>
      <x>-50</x>
@@ -593,7 +593,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>moveButton</sender>
    <signal>accepted()</signal>
    <receiver>move</receiver>
    <slot>accept()</slot>
@@ -609,7 +609,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>moveButton</sender>
    <signal>rejected()</signal>
    <receiver>move</receiver>
    <slot>reject()</slot>

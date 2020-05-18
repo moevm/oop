@@ -14,6 +14,7 @@
 #include <uiWindows/attack.h>
 #include "uiWindows/AddUnit.h"
 #include <uiWindows/unitinfo.h>
+#include <uiWindows/logsettings.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,7 +22,15 @@ QT_END_NAMESPACE
 
 class AddUnit;
 class AddNeutral;
-
+class AddBase;
+class BaseInfo;
+class LandInfo;
+class NeutralInfo;
+class UnitInfo;
+class GameInfo;
+class Move;
+class Attack;
+class LogSettings;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -32,38 +41,21 @@ public:
 
    friend class AddUnit;
    friend class AddNeutral;
+   friend class AddBase;
+   friend class BaseInfo;
+   friend class LandInfo;
+   friend class UnitInfo;
+   friend class NeutralInfo;
+   friend class GameInfo;
+   friend class Move;
+   friend class Attack;
+   friend class LogSettings;
 private slots:
     void on_gameInfoButton_clicked();
-
-    void on_addNeutralButton_clicked();
-
-    void on_addUnitButton_clicked();
-
-    void on_baseInfoButton_clicked();
-
-    void on_addBaseButton_clicked();
-
-    void on_moveButton_clicked();
-
-    void on_attackButton_clicked();
-
-    void on_unitInfoButton_clicked();
-
-    void on_landInfoButton_clicked();
-
-    void on_neutralInfoButton_clicked();
-
-    void on_logToFile_clicked();
-
-    void on_logToTerminal_clicked();
-
-    void on_noLogs_clicked();
 
     void on_actionsave_game_triggered();
 
     void on_actionload_game_triggered();
-
-    void on_actionsettings_logs_triggered();
 
     void on_actiongame_info_triggered();
 
@@ -84,6 +76,8 @@ private slots:
     void on_actionsetting_for_adding_triggered();
 
     void on_actionInfo_triggered();
+
+    void on_action_logs_settings_triggered();
 
 private:
     Ui::MainWindow *ui;

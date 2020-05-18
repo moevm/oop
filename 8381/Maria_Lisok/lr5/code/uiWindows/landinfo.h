@@ -19,6 +19,9 @@ public:
     explicit LandInfo(QWidget *parent = nullptr);
     ~LandInfo();
     MainWindow* ptr;
+private slots:
+    void on_landInfoButton_clicked();
+
 private:
     Ui::LandInfo *ui;
 };

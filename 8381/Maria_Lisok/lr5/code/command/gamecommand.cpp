@@ -34,13 +34,12 @@ map<string, int> GameCommand::attack()
 {
     map<string, int> information;
     FieldCommand com(game->getField(), action, params);
-    Unit* u = com.findItem();
-    if(!u){
-        information["no such unit"] = -1;
-        return information;
-    }
     try {
-
+        Unit* u = com.findItem();
+        if(!u){
+            information["no such unit"] = -1;
+            return information;
+        }
         for (Unit* i : game->getUnits())
         {
             if (i == u)
@@ -50,13 +49,16 @@ map<string, int> GameCommand::attack()
                 i->attack(x, y);
                 information["attack was"] = -1;
                 information["attacker name: "+i->getName()] = -1;
-                information["pos x for attack: "]=x;
-                information["pos x for attack: "]=y;
+                information["step x for attack: "]=x;
+                information["step y for attack: "]=y;
                 return information;
             }
         }
     }
     catch (invalid_argument& e) {
+        information[e.what()]=-1;
+        return information;
+    }catch(out_of_range& e){
         information[e.what()]=-1;
         return information;
     }
@@ -84,12 +86,14 @@ map<string, int> GameCommand::addBase()
         }
         else{
             game->createBase(maxUnitsCount, health, x, y, baseNumb);
-            information["base was created\n base num:"] = baseNumb;
+            information["\nbase was created\nbase num:"] = baseNumb;
             information["base added on pos x:"] = x;
             information["base added on pos y:"] = y;
         }
     } catch (out_of_range& e) {
-        information[e.what()]=0;
+        information[e.what()]=-1;
+    }catch (invalid_argument& e) {
+        information[e.what()]=-1;
     }
     return information;
 }
@@ -106,9 +110,9 @@ map<string, int> GameCommand::addNeutral()
         information["pos y "] = static_cast<int>(y);
         information["neutral type: "]= typeNet;
     }catch(out_of_range& e){
-        information[e.what()]=0;
+        information[e.what()]=-1;
     }catch(invalid_argument& e){
-        information[e.what()]=0;
+        information[e.what()]=-1;
     }
     return information;
 }
@@ -116,11 +120,15 @@ map<string, int> GameCommand::addNeutral()
 map<string, int> GameCommand::addUnit()
 {
     int baseNum = params.find("addParams")->second.base;
+    map<string, int> info;
     Base* base{};
     try {
         base = game->getBaseByNum(baseNum);
+        if(base->getMaxCount() == base->getUnitCount()){
+            info["\ncan't add unit in such base!!!unit limit"] = -1;
+            return info;
+        }
     } catch (invalid_argument& e) {
-        map<string, int> info;
         info[e.what()]=-1;
         return info;
     }

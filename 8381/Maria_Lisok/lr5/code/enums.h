@@ -1,6 +1,6 @@
 #ifndef ENUMS_H
 #define ENUMS_H
-#define FILENAME "log.txt"
+#define FILENAME "/Users/marialisok/4sem_leti/oop/logs/log.txt"
 enum Actions{
     GAME_INFO=1,
     BASE_INFO,

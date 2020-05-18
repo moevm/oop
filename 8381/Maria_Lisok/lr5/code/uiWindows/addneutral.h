@@ -19,7 +19,9 @@ public:
     MainWindow* ptr;
 private slots:
 
-    void on_buttonBox_accepted();
+    void on_addNeutral_accepted();
+
+    void on_addNeutral_rejected();
 
 private:
     Ui::AddNeutral *ui;

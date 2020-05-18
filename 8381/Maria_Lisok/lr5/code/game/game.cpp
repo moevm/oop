@@ -11,9 +11,15 @@ Game::Game(unsigned x, unsigned y, unsigned limit)
 void Game::createBase(int maxUnitsCount, int health, int xx, int yy, int baseNumb)
 {
     Base* base =  new Base(maxUnitsCount, health, xx, yy, baseNumb);
-    gameMediator = new GameMediator(this, base);
-    base->setGameMediator(gameMediator);
-    bases.push_back(base);
+    try {
+
+        field->addBase(base);
+        gameMediator = new GameMediator(this, base);
+        base->setGameMediator(gameMediator);
+        bases.push_back(base);
+    } catch (invalid_argument& e) {
+        throw e;
+    }
 }
 
 void Game::createNeutral(NeutralType net, unsigned x, unsigned y)

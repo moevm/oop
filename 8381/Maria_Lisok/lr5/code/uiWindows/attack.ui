@@ -455,7 +455,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="attackButton">
    <property name="geometry">
     <rect>
      <x>-60</x>
@@ -1016,7 +1016,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>attackButton</sender>
    <signal>accepted()</signal>
    <receiver>Attack</receiver>
    <slot>accept()</slot>
@@ -1032,7 +1032,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>attackButton</sender>
    <signal>rejected()</signal>
    <receiver>Attack</receiver>
    <slot>reject()</slot>

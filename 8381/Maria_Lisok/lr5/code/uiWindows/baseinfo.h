@@ -19,6 +19,9 @@ public:
     explicit BaseInfo(QWidget *parent = nullptr);
     ~BaseInfo();
     MainWindow* ptr;
+private slots:
+    void on_baseInfoButton_clicked();
+
 private:
     Ui::BaseInfo *ui;
 };

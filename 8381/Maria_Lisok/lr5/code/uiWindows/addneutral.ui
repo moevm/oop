@@ -544,7 +544,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="addNeutral">
    <property name="geometry">
     <rect>
      <x>90</x>
