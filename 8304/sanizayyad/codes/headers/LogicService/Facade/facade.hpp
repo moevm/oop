@@ -5,6 +5,8 @@
 #include "mediator.hpp"
 #include "base.hpp"
 #include "BattleField.hpp"
+#include "log.hpp"
+#include "unitlog.hpp"
 
 #include <math.h>
 
@@ -17,7 +19,8 @@ public:
     Facade(std::shared_ptr<Mediator> mediator, std::shared_ptr<Base> homeBase,
            std::shared_ptr<std::set<std::shared_ptr<Unit>>> units,
            std::shared_ptr<Base> enemyBase,
-           std::shared_ptr<BattleField> battleField);
+           std::shared_ptr<BattleField> battleField,
+           std::shared_ptr<Log> log);
 
     void charge();
     void deffend();
@@ -39,6 +42,7 @@ private:
     std::shared_ptr<std::set<std::shared_ptr<Unit>>> units;
     std::shared_ptr<Mediator> mediator;
     std::shared_ptr<BattleField> battleField;
+    std::shared_ptr<Log> log;
 };
 
 

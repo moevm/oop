@@ -4,6 +4,12 @@
 #include "facade.hpp"
 #include "base.hpp"
 #include "BattleField.hpp"
+#include "log.hpp"
+#include "terminallog.hpp"
+#include "filelog.hpp"
+#include "unitlog.hpp"
+#include "playerlog.hpp"
+
 
 #include <math.h>
 #include <iostream>
@@ -48,6 +54,7 @@ private:
     std::shared_ptr<Base> enemyBase;
     std::shared_ptr<Facade> enemyFacade;
     std::shared_ptr<Facade> playerFacade;
+    std::shared_ptr<Log> log;
     bool isPlayerAttack;
     
     int numberOfEnemiesAllowed;

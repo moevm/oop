@@ -2,10 +2,13 @@
 #include "BattleField.hpp"
 #include "unit.hpp"
 #include "poisonobject.hpp"
+#include "log.hpp"
+#include "unitlog.hpp"
 
-Mediator::Mediator(std::shared_ptr<BattleField> battleField)
+Mediator::Mediator(std::shared_ptr<BattleField> battleField, std::shared_ptr<Log> log)
 {
     this->battleField = battleField;
+    this->log = log;
 }
 
 
@@ -20,24 +23,28 @@ bool Mediator::notify(std::shared_ptr<Unit> unit,const std::string& action)
         if (action == MOVE_TOP) {
             nextPoint.y--;
             if (nextPoint.y < 0) {
+                log->writeTo(UnitLog::moveMessage(unit, currentPosition,nextPoint), TYPE::ERR);
                 return false;
             }
         }
         else if (action == MOVE_LEFT) {
             nextPoint.x--;
             if (nextPoint.x < 0) {
+                log->writeTo(UnitLog::moveMessage(unit, currentPosition,nextPoint), TYPE::ERR);
                 return false;
             }
         }
         else if (action == MOVE_RIGHT) {
             nextPoint.x++;
             if (nextPoint.x >= static_cast<int>(battleField->getWidth())) {
+                log->writeTo(UnitLog::moveMessage(unit, currentPosition,nextPoint), TYPE::ERR);
                 return false;
             }
         }
         else if (action == MOVE_BOTTOM) {
             nextPoint.y++;
             if (nextPoint.y >= static_cast<int>(battleField->getHeight())) {
+                log->writeTo(UnitLog::moveMessage(unit, currentPosition,nextPoint), TYPE::ERR);
                 return false;
             }
         }
@@ -45,6 +52,7 @@ bool Mediator::notify(std::shared_ptr<Unit> unit,const std::string& action)
         auto nextCell = battleField->getFieldCell(nextPoint);
                 
         if (nextCell->isEmpty() && nextCell->getLandscape()->canMove(unit)) {
+            log->writeTo(UnitLog::moveMessage(unit, currentPosition,nextPoint));
             nextCell->addUnit(unit);
             nextCell->getLandscape()->hurtUnit(unit);
             currentCell->deleteUnit();
@@ -52,12 +60,16 @@ bool Mediator::notify(std::shared_ptr<Unit> unit,const std::string& action)
             nextCell->deleteNeutralObject();
             return true;
         }
+        log->writeTo(UnitLog::moveMessage(unit, currentPosition,nextPoint), TYPE::ERR);
+
         
     }else if (action == CREATE_UNIT){
         if (currentCell->isEmpty()) {
+            log->writeTo(UnitLog::createMessage(unit));
             currentCell->addUnit(unit);
             return true;
         }
+        log->writeTo(UnitLog::createMessage(unit), TYPE::ERR);
     }
     return false;
 }

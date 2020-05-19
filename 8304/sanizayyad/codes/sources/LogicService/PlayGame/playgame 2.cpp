@@ -5,9 +5,6 @@ PlayGame::PlayGame()
 {
     playerUnits = std::make_shared<std::set<std::shared_ptr<Unit>>>();
     enemyUnits = std::make_shared<std::set<std::shared_ptr<Unit>>>();
-    log = std::make_shared<FileLog>("/Users/sourcecode/Documents/LabFolder/log.txt");
-//    log = std::make_shared<TerminalLog>();
-    
     numberOfEnemiesAllowed = 0;
 }
 
@@ -21,12 +18,10 @@ void PlayGame::startGame(){
         enemyLogic();
         
         if (playerBase->getHealthPoints() <= 0) {
-            log->writeTo("GAME OVER. ENEMY WON!");
             std::cout << "ENEMY WON!\n";
             return;
         }
         else if (enemyBase->getHealthPoints() <= 0) {
-            log->writeTo("GAME OVER. You WON!");
             std::cout << "YOU WON!\n";
             return;
         }
@@ -39,7 +34,6 @@ void PlayGame::startGame(){
         }
 
         for (auto i : tmp) {
-            log->writeTo(UnitLog::dieMessage(i));
             playerUnits->erase(i);
             i->notifyObservers();
             battleField->deleteUnit(i);
@@ -53,7 +47,6 @@ void PlayGame::startGame(){
         }
 
         for (auto i : tmp) {
-            log->writeTo(UnitLog::dieMessage(i));
             enemyUnits->erase(i);
             i->notifyObservers();
             battleField->deleteUnit(i);
@@ -67,17 +60,11 @@ void PlayGame::startGame(){
 
 void PlayGame::initiliaze()
 {
-    log->writeTo("START GAME");
 
-    std::cout << "RULES:\na - armor\n. - plains\n+ - heal\n* - desert\nO - oceans\n"
-    "! - poison\nB- base\n";
-
-    playerUnits->clear();
-    enemyUnits->clear();
-    
     isPlayerAttack = false;
+
     createBattleField();
-    mediator = std::make_shared<Mediator>(battleField,log);
+    mediator = std::make_shared<Mediator>(battleField);
 
     playerBase =
     std::make_shared<Base>(Position2D(1,battleField->getHeight()/2),mediator,PLAYER::ONE);
@@ -87,18 +74,15 @@ void PlayGame::initiliaze()
 
     battleField->addUnit(playerBase);
     battleField->addUnit(enemyBase);
-    
-    log->writeTo(UnitLog::createMessage(playerBase));
-    log->writeTo(UnitLog::createMessage(enemyBase));
-    log->writeTo(PlayerLog::attack(PLAYER::TWO));
-    log->writeTo(PlayerLog::deffend(PLAYER::ONE));
 
     playerUnits->insert(playerBase);
     enemyUnits->insert(enemyBase);
 
-    playerFacade = std::make_shared<Facade>(mediator, playerBase, playerUnits,enemyBase, battleField,log);
-    enemyFacade = std::make_shared<Facade>(mediator, enemyBase, enemyUnits,playerBase, battleField,log);
+    playerFacade = std::make_shared<Facade>(mediator, playerBase, playerUnits,enemyBase, battleField);
+    enemyFacade = std::make_shared<Facade>(mediator, enemyBase, enemyUnits,playerBase, battleField);
     
+    std::cout << "a - armor\n. - plains\n+ - heal\n* - desert\nO - oceans\n"
+                 "! - poison\nB- base\n";
 }
 
 void PlayGame::createBattleField(){
@@ -186,27 +170,21 @@ void PlayGame::actionLogic(ACTION action)
     
     switch (action) {
     case ACTION::ATTACK:
-        log->writeTo(PlayerLog::attack(PLAYER::ONE));
         isPlayerAttack = true;
         break;
     case ACTION::DEFFEND:
-        log->writeTo(PlayerLog::attack(PLAYER::ONE));
         isPlayerAttack = false;
         break;
     case ACTION::CREATE_SHORTRANGE:
-        log->writeTo(PlayerLog::createUnit(true, PLAYER::ONE));
         playerFacade->createShortRangeUnit();
         break;
     case ACTION::CREATE_LONGRANGE:
-        log->writeTo(PlayerLog::createUnit(true, PLAYER::ONE));
         playerFacade->createLongRangeUnit();
         break;
     case ACTION::CREATE_DYNAMICRANGE:
-        log->writeTo(PlayerLog::createUnit(true, PLAYER::ONE));
         playerFacade->createDynamicRangeUnit();
         break;
     case ACTION::EXIT:
-        log->writeTo("GAME OVER");
         isRunning = false;
         break;
     default:
@@ -230,7 +208,7 @@ void PlayGame::enemyLogic()
     if(numberOfEnemiesAllowed < 4){
         numberOfEnemiesAllowed++;
         auto choose = rand() % 4;
-           log->writeTo(PlayerLog::createUnit(true, PLAYER::TWO));
+           
            switch (choose) {
            case 1:
                enemyFacade->createShortRangeUnit();
@@ -243,6 +221,7 @@ void PlayGame::enemyLogic()
                break;
            }
     }
+
     
 }
 
