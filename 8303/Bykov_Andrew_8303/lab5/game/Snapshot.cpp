@@ -61,7 +61,7 @@ void Snapshot::load()
 
 	Adapter * adapter = new Adapter();
 	stream >> x >> y;
-	if (stream.fail())
+	if (stream.fail() || x < 0 || y < 0)
 	{
 		adapter->loadFailField();
 		return;
