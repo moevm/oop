@@ -1,3 +1,4 @@
+#include "exception.h"
 #include "facade.h"
 
 Facade::Facade(Ui::MainWindow *ui, Game *game): ui(ui), game(game)
@@ -182,8 +183,18 @@ void Facade::addBase(int x, int y, int maxUnitsCount, int health)
     map<string, int> answers;
     try{
         answers = com.mainInfoAboutObj();
-    }catch(invalid_argument& e){
+    }catch (CoordsException& e) {
         answers[e.what()]=-1;
+        return;
+    }catch (CellBusyExpeption& e) {
+        answers[e.what()]=-1;
+        return;
+    }catch (SimpleFieldException& e) {
+        answers[e.what()]=-1;
+        return;
+    }catch (LandExeption& e) {
+        answers[e.what()]=-1;
+        return;
     }
     string output{};
     for(auto it = answers.begin(); it != answers.end(); ++it) {
@@ -251,7 +262,7 @@ void Facade::setLogger(LogPlace logPlace)
 {
     try {
         logger->setLogger(new ProxyLogger(logPlace));
-    } catch (runtime_error& e) {
+    } catch (SimpleFieldException& e) {
         ui->logWindow->append(QString::fromStdString(e.what()));
     }
 }
@@ -260,7 +271,22 @@ void Facade::saveGame(string name)
 {
     try {
         game->readMemento(name);
-    } catch (runtime_error a) {
+    } catch (LandExeption& a) {
+        string output;
+        output += "Error while loading game: ";
+        output += a.what();
+        ui->logWindow->append(QString::fromStdString(output));
+    }catch (SimpleFieldException& a) {
+        string output;
+        output += "Error while loading game: ";
+        output += a.what();
+        ui->logWindow->append(QString::fromStdString(output));
+    }catch (CellBusyExpeption& a) {
+        string output;
+        output += "Error while loading game: ";
+        output += a.what();
+        ui->logWindow->append(QString::fromStdString(output));
+    }catch (CoordsException& a) {
         string output;
         output += "Error while loading game: ";
         output += a.what();
@@ -280,13 +306,22 @@ void Facade::loadGame(string name)
               output+=it->first + to_string(it->second)+"\n";
         }
         ui->logWindow->append(QString::fromStdString(output));
-    } catch (std::runtime_error a) {
+    }catch (CoordsException& a) {
         std::string output;
         output += "Runtime error while loading game: ";
         output += a.what();
         ui->logWindow->append(QString::fromStdString(output));
-    }
-    catch (std::logic_error a) {
+    }catch (CellBusyExpeption& a) {
+        std::string output;
+        output += "Logic error while loading game: ";
+        output += a.what();
+        ui->logWindow->append(QString::fromStdString(output));
+    }catch (SimpleFieldException& a) {
+        std::string output;
+        output += "Logic error while loading game: ";
+        output += a.what();
+        ui->logWindow->append(QString::fromStdString(output));
+    }catch (LandExeption& a) {
         std::string output;
         output += "Logic error while loading game: ";
         output += a.what();

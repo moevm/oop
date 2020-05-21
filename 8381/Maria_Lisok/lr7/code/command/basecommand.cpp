@@ -1,5 +1,7 @@
 #include "basecommand.h"
 
+#include <exception.h>
+
 
 map<string, int> BaseCommand::baseInfo()
 {
@@ -27,9 +29,13 @@ map<string, int> BaseCommand::unitAdd()
         information["unit added in base num: "]=base->getBaseNumb();
         information["unit added with name:" + u->getName()]=-1;
 
-    }catch (out_of_range& e) {
+    }catch (CoordsException& e) {
         information[e.what()]=0;
-    }catch(invalid_argument& e){
+    }catch (CellBusyExpeption& e) {
+        information[e.what()]=0;
+    }catch (SimpleFieldException& e) {
+       information[e.what()]=0;
+    }catch (LandExeption& e) {
         information[e.what()]=0;
     }
     return information;

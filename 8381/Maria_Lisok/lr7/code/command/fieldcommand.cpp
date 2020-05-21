@@ -1,5 +1,7 @@
 #include "fieldcommand.h"
 
+#include <exception.h>
+
 map<string, int> FieldCommand::landscapeInfo()
 {
     map<string, int> information;
@@ -68,8 +70,14 @@ map<string, int> FieldCommand::neutrallInfo()
         else{
             information["no neutral el on such cell"] = -1;
         }
-    } catch (out_of_range& e) {
-        information[e.what()]= -1;
+    }catch (CoordsException& e) {
+        information[e.what()]=-1;
+    }catch (CellBusyExpeption& e) {
+        information[e.what()]=-1;
+    }catch (SimpleFieldException& e) {
+       information[e.what()]=-1;
+    }catch (LandExeption& e) {
+        information[e.what()]=-1;
     }
 
     return information;
@@ -91,8 +99,14 @@ map<string, int> FieldCommand::unitlInfo()
         else{
             information["no unit on such cell"] = -1;
         }
-    } catch (out_of_range& e) {
-        information[e.what()]= -1;
+    }catch (CoordsException& e) {
+        information[e.what()]=-1;
+    }catch (CellBusyExpeption& e) {
+        information[e.what()]=-1;
+    }catch (SimpleFieldException& e) {
+       information[e.what()]=-1;
+    }catch (LandExeption& e) {
+        information[e.what()]=-1;
     }
 
     return information;
@@ -114,8 +128,14 @@ map<string, int> FieldCommand::landCelllInfo()
         else{
             information["error with land type"] = -1;
         }
-    } catch (out_of_range& e) {
-        information[e.what()]= -1;
+    }catch (CoordsException& e) {
+        information[e.what()]=-1;
+    }catch (CellBusyExpeption& e) {
+        information[e.what()]=-1;
+    }catch (SimpleFieldException& e) {
+       information[e.what()]=-1;
+    }catch (LandExeption& e) {
+        information[e.what()]=-1;
     }
 
     return information;
@@ -182,10 +202,18 @@ map<string, int> FieldCommand::unitMove()
         information["\nmove unit name: "] = u->getTypeEnum();
         information["step x: "] = x;
         information["step y: "] = y;
-    }catch(out_of_range& e){
+    }catch (CoordsException& e) {
         information[e.what()]=-1;
-    }catch(invalid_argument& e){
+        return information;
+    }catch (CellBusyExpeption& e) {
         information[e.what()]=-1;
+        return information;
+    }catch (SimpleFieldException& e) {
+       information[e.what()]=-1;
+       return information;
+    }catch (LandExeption& e) {
+        information[e.what()]=-1;
+        return information;
     }
     u->setX(u->getX()+x);
     u->setY(u->getY()+y);

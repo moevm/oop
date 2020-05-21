@@ -1,11 +1,13 @@
 #include "writetofile.h"
 
+#include <exception.h>
+
 
 WriteToFile::WriteToFile(string name): nameFile(name)
 {
     file.open(name);
     if(!file.is_open())
-        throw std::runtime_error("File doesn't open");
+        throw SimpleFieldException("File doesn't open");
 }
 
 

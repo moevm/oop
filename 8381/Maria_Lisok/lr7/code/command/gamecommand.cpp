@@ -1,5 +1,7 @@
 #include "gamecommand.h"
 
+#include <exception.h>
+
 
 
 map<string, int> GameCommand::baseInfo()
@@ -54,11 +56,16 @@ map<string, int> GameCommand::attack()
                 return information;
             }
         }
-    }
-    catch (invalid_argument& e) {
+    }catch (CoordsException& e) {
         information[e.what()]=-1;
         return information;
-    }catch(out_of_range& e){
+    }catch (CellBusyExpeption& e) {
+        information[e.what()]=-1;
+        return information;
+    }catch (SimpleFieldException& e) {
+       information[e.what()]=-1;
+       return information;
+    }catch (LandExeption& e) {
         information[e.what()]=-1;
         return information;
     }
@@ -82,7 +89,7 @@ map<string, int> GameCommand::addBase()
     int baseNumb = params.find("addParams")->second.base;
     try {
         if(game->getField()->getCell(static_cast<unsigned>(x),static_cast<unsigned>(y))->getBase()){
-            throw invalid_argument("there is base on such cell "+to_string(x)+","+to_string(y));
+            throw CellBusyExpeption(x, y);
         }
         else{
             game->createBase(maxUnitsCount, health, x, y, baseNumb);
@@ -90,9 +97,13 @@ map<string, int> GameCommand::addBase()
             information["base added on pos x:"] = x;
             information["base added on pos y:"] = y;
         }
-    } catch (out_of_range& e) {
+    }catch (CoordsException& e) {
         information[e.what()]=-1;
-    }catch (invalid_argument& e) {
+    }catch (CellBusyExpeption& e) {
+        information[e.what()]=-1;
+    }catch (SimpleFieldException& e) {
+       information[e.what()]=-1;
+    }catch (LandExeption& e) {
         information[e.what()]=-1;
     }
     return information;
@@ -109,9 +120,13 @@ map<string, int> GameCommand::addNeutral()
         information["pos x "] = static_cast<int>(x);
         information["pos y "] = static_cast<int>(y);
         information["neutral type: "]= typeNet;
-    }catch(out_of_range& e){
+    }catch (CoordsException& e) {
         information[e.what()]=-1;
-    }catch(invalid_argument& e){
+    }catch (CellBusyExpeption& e) {
+        information[e.what()]=-1;
+    }catch (SimpleFieldException& e) {
+       information[e.what()]=-1;
+    }catch (LandExeption& e) {
         information[e.what()]=-1;
     }
     return information;
@@ -128,7 +143,16 @@ map<string, int> GameCommand::addUnit()
             info["\ncan't add unit in such base!!!unit limit"] = -1;
             return info;
         }
-    } catch (invalid_argument& e) {
+    }catch (CoordsException& e) {
+        info[e.what()]=-1;
+        return info;
+    }catch (CellBusyExpeption& e) {
+        info[e.what()]=-1;
+        return info;
+    }catch (SimpleFieldException& e) {
+       info[e.what()]=-1;
+       return info;
+    }catch (LandExeption& e) {
         info[e.what()]=-1;
         return info;
     }
@@ -137,7 +161,6 @@ map<string, int> GameCommand::addUnit()
     game->getField()->setCreateMediator(createMed);
     BaseCommand com(base,action, params);
     return com.mainInfoAboutObj();
-
 
 }
 

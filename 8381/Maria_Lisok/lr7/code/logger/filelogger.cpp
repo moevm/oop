@@ -1,10 +1,12 @@
 #include "filelogger.h"
 
+#include <exception.h>
+
 FileLogger::FileLogger(string fileName)
 {
     file.open(fileName);
     if(!file.is_open())
-        throw runtime_error("problem with opening file");
+        throw SimpleFieldException("problem with opening file");
     file << "Logger start" << endl;
 }
 

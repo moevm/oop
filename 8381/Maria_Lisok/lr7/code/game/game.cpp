@@ -1,5 +1,7 @@
 #include "game.h"
 
+#include <exception.h>
+
 
 
 Game::Game(unsigned x, unsigned y, unsigned limit)
@@ -17,7 +19,13 @@ void Game::createBase(int maxUnitsCount, int health, int xx, int yy, int baseNum
         gameMediator = new GameMediator(this, base);
         base->setGameMediator(gameMediator);
         bases.push_back(base);
-    } catch (invalid_argument& e) {
+    }catch (CoordsException& e) {
+        throw e;
+    }catch (CellBusyExpeption& e) {
+        throw e;
+    }catch (SimpleFieldException& e) {
+        throw e;
+    }catch (LandExeption& e) {
         throw e;
     }
 }
@@ -66,7 +74,7 @@ void Game::addUnit(Unit *unit, Base *base)
             return;
         }
     }
-    throw std::invalid_argument("Error! No such base in the game!!!");
+    throw SimpleFieldException("Error! No such base in the game!!!");
 }
 
 void Game::deleteUnit(Unit *unit, Base *base)
@@ -77,7 +85,7 @@ void Game::deleteUnit(Unit *unit, Base *base)
             return;
         }
     }
-    throw std::invalid_argument("Error! No such base in the game!!!");
+    throw SimpleFieldException("Error! No such base in the game!!!");
 }
 
 Base *Game::getBaseByNum(int num)
@@ -87,7 +95,7 @@ Base *Game::getBaseByNum(int num)
             return b;
         }
     }
-    throw invalid_argument("there is not such base number");
+    throw SimpleFieldException("there is not such base number");
 }
 
 std::vector<Base *> Game::getBases() const
@@ -130,7 +138,13 @@ void Game::restoreMemento(Memento *memento)
         Base* base = nullptr;
         try{
             base = getBaseByNum(b->getBaseNumb());
-        }catch (invalid_argument& e) {
+        }catch (CoordsException& e) {
+            throw e;
+        }catch (CellBusyExpeption& e) {
+            throw e;
+        }catch (SimpleFieldException& e) {
+            throw e;
+        }catch (LandExeption& e) {
             throw e;
         }
         for(UnitParam* u : b->getUnits()){
@@ -145,9 +159,13 @@ void Game::restoreMemento(Memento *memento)
                 unit->setAttributesHealth(attributes->getHealth());
                 unit->setX(u->getX());
                 unit->setY(u->getY());
-            }catch (out_of_range& e) {
+            }catch (CoordsException& e) {
                 throw e;
-            }catch (invalid_argument& e) {
+            }catch (CellBusyExpeption& e) {
+                throw e;
+            }catch (SimpleFieldException& e) {
+                throw e;
+            }catch (LandExeption& e) {
                 throw e;
             }
 

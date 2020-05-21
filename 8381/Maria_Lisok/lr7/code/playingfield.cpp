@@ -1,4 +1,5 @@
 #include "playingfield.h"
+#include "exception.h"
 
 PlayingField::~PlayingField(){}
 MoveMediator::MoveMediator(PlayingField* playingField, Unit* playingFieldItem)
@@ -25,21 +26,21 @@ bool PlayingField::isCellFreeForUnit(size_t x, size_t y)
 bool PlayingField::addUnit(Unit * item, unsigned x, unsigned y)
 {
     if(maxItems == countOfItems){
-        throw length_error("you can't add item!"
+        throw SimpleFieldException("you can't add item!"
                            "items limit full");
     }
     if(x >= width || y >= height){
-        throw out_of_range("check position coordinates of unit");
+        throw CoordsException(x, y, width, height);
     }
     if(!item){
-        throw invalid_argument("item can't be empty");
+        throw SimpleFieldException("item can't be empty");
     }
     if(!items[x][y]->isUnitFree()){
-        throw invalid_argument("this cell of field have unit");
+        throw CellBusyExpeption(x, y);
     }
     Proxy* p = new Proxy(items[x][y]->getLandscape());
     if(!p->canStand()){
-        throw invalid_argument("item  can't add to this landscape");
+        throw LandExeption(x, y);
     }
     items[x][y]->addUnit(item);
     items[x][y]->getUnit()->addObserver(this);
@@ -51,7 +52,7 @@ bool PlayingField::addUnit(Unit * item, unsigned x, unsigned y)
 bool PlayingField::deleteUnit(unsigned x, unsigned y)
 {
     if(x >= width || y >= height){
-        throw out_of_range("check coordinates for delete item");
+        throw CoordsException(x, y, width, height);
     }
     if(items[x][y]->isUnitFree()){
         return false;
@@ -65,13 +66,13 @@ bool PlayingField::deleteUnit(unsigned x, unsigned y)
 bool PlayingField::addNeutral(NeutralObj * item, unsigned x, unsigned y)
 {
     if(x >= width || y >= height){
-        throw out_of_range("check position coordinates of neutral");
+        throw CoordsException(x, y, width, height);
     }
     if(!item){
-        throw invalid_argument("item can't be empty");
+        throw SimpleFieldException("item can't be empty");
     }
     if(items[x][y]->getNeutral()){
-        throw invalid_argument("this cell of field have neutral");
+        throw CellBusyExpeption(x, y);
     }
     items[x][y]->addNeutral(item);
     return true;
@@ -80,7 +81,7 @@ bool PlayingField::addNeutral(NeutralObj * item, unsigned x, unsigned y)
 bool PlayingField::deleteNeutral(unsigned x, unsigned y)
 {
     if(x >= width || y >= height){
-        throw out_of_range("check coordinates for delete item");
+        throw CoordsException(x, y, width, height);
     }
     if(!items[x][y]->getNeutral()){
         return false;
@@ -256,17 +257,17 @@ bool PlayingField::moveUnit(Unit * item, int x , int y)
 
             if(items[i][j]->getUnit() == item){
                 if(x + i >= static_cast<int>(width) || y +j >= static_cast<int>(height) || x + i < 0 || y + j < 0){
-                    throw out_of_range("check position coordinates of item");
+                    throw CoordsException(x + i, y+j, width, height);
                 }
                 Proxy* p = new Proxy(items[x+i][y+j]->getLandscape());
                 if(!p->canStand()){
-                    throw invalid_argument("item  can't move to this landscape");
+                    throw LandExeption(x+i, y+j);
                 }
                 if(!item->isMovable()){
-                    throw invalid_argument("item  must be movable");
+                    throw SimpleFieldException("item  must be movable");
                 }
                 if(!items[x+i][y+j]->isUnitFree()){
-                    throw invalid_argument("there is other unit on this cell ");
+                    throw  CellBusyExpeption(x + i, y+j);
                 }
                 if(items[x+i][y+j]->getNeutral()){
                     *(items[x+i][y+j]->getNeutral()) += *(items[i][j]->getUnit());
@@ -298,7 +299,7 @@ string PlayingField::getAbout(unsigned x, unsigned y)
 Cell *PlayingField::getCell(unsigned x, unsigned y)
 {
     if (x >= width || y >= height)
-        throw out_of_range("coords are not on field");
+        throw CoordsException(x, y, width, height);
     return items[x][y];
 }
 
@@ -336,21 +337,19 @@ void PlayingField::deleteUnit(Subject * unit)
 void PlayingField::addBase(Base* base)
 {
     if(base->getMaxCount() <= 0)
-        throw invalid_argument("maxCount must be >0");
+        throw SimpleFieldException("maxCount must be >0");
     if(base->getHealth() <= 0)
-        throw invalid_argument("health must be >0");
+        throw SimpleFieldException("health must be >0");
     unsigned posX = static_cast<unsigned>(base->getX());
     unsigned posY = static_cast<unsigned>(base->getY());
-    if(posX > width)
-        throw invalid_argument("width must be < curr width");
-    if(posY > height)
-        throw invalid_argument("height must be < curr height");
+    if(posX > width || posY > height)
+        throw CoordsException(posX, posY, width, height);
     Proxy* p = new Proxy(items[posX][posY]->getLandscape());
     if(!p->canStand()){
-        throw invalid_argument("base  can't add to this landscape");
+        throw LandExeption(posX, posY);
     }
     if(items[posX][posY]->getBase()){
-        throw invalid_argument("there is base on"+to_string(posX)+","+to_string(posY));
+        throw CellBusyExpeption(posX, posY);
     }
     items[posX][posY]->setBase(base);
 }
@@ -368,7 +367,7 @@ void PlayingField::setCreateMediator(CreateMediator *value)
 bool PlayingField::addLandscape(Landscape * landscape, unsigned x, unsigned y)
 {
     if (x >= width || y >= height)
-        throw std::out_of_range("coords are not on field");
+        throw CoordsException(x, y, width, height);
     items[x][y]->setLandscape(landscape);
     return true;
 }

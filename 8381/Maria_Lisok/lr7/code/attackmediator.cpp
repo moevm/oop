@@ -1,6 +1,7 @@
 #include "attackmediator.h"
 #include "unit.h"
 #include "playingfield.h"
+#include "exception.h"
 AttackMediator::AttackMediator(PlayingField *f):field(f)
 {}
 
@@ -36,16 +37,16 @@ void AttackMediator::attack(Unit *attaker, int x, int y)
         }
     }
     if(!attakerExist){
-        throw std::invalid_argument("there is not such attack unit");
+        throw SimpleFieldException("there is not such attack unit");
     }
     Unit* reciver = field->getCell(recivePosX+static_cast<unsigned>(x), recivePosY+static_cast<unsigned>(y))->getUnit();
     if(!reciver){
-        throw std::invalid_argument("there is no unit on position "+to_string(x)+", "+to_string(y));
+        throw SimpleFieldException("there is no unit on position "+to_string(x)+", "+to_string(y));
     }
     for(Unit* u : units){
         if(u == reciver){
             if(u->getBaseNumber() == attaker->getBaseNumber()){
-                throw std::invalid_argument("units from one base");
+                throw SimpleFieldException("units from one base");
             }
             if(!u->recieveAttack(attaker)){
                 field->deleteUnit(recivePosX+static_cast<unsigned>(x), recivePosY+static_cast<unsigned>(y));

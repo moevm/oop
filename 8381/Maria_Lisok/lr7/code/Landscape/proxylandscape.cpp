@@ -1,4 +1,6 @@
 #include "proxylandscape.h"
+
+#include <exception.h>
 bool Proxy::checkAccess()
 {
     cout << "Proxy: Checking access prior to firing a real request.\n";
@@ -27,7 +29,7 @@ LandscapeType Proxy::getLandscapeTypeEnum()
         this->logAccess();
         return natureObj->getLandscapeTypeEnum();
     }
-    throw::invalid_argument("there are not such type of landscape");
+    throw SimpleFieldException("there are not such type of landscape");
 }
 bool Proxy::canStand()
 {

@@ -1,5 +1,7 @@
 #include "base.h"
 
+#include <exception.h>
+
 Base::Base(int maxUnitsCount, int health, int xx, int yy, int baseNumb) : baseNumb(baseNumb),
     unitCount(0), maxCount(maxUnitsCount),
     unitCurr(0),health(health), x(xx), y(yy)
@@ -65,12 +67,16 @@ Unit *Base::createUnit(UnitsType type)
     try {
         this->getCreateMediator()->notify(unit, x, y);
         gameMediator->Notify(unit, true);
-    } catch (out_of_range& e) {
+    }catch (CoordsException& e) {
+        throw e;
+    }catch (CellBusyExpeption& e) {
+        throw e;
+    }catch (SimpleFieldException& e) {
+        throw e;
+    }catch (LandExeption& e) {
         throw e;
     }
-    catch (invalid_argument& e) {
-        throw e;
-    }
+
     units->addUnit(unit);
     unitCount++;
     return unit;
@@ -174,10 +180,13 @@ Unit *Base::makeUnit(string type, int xUnit, int yUnit)
         CreateMediator * mediator=this->getCreateMediator();
         mediator->notify(unit, xUnit, yUnit);
         gameMediator->Notify(unit, true);
-    } catch (out_of_range& e) {
+    }catch (CoordsException& e) {
         throw e;
-    }
-    catch (invalid_argument& e) {
+    }catch (CellBusyExpeption& e) {
+        throw e;
+    }catch (SimpleFieldException& e) {
+        throw e;
+    }catch (LandExeption& e) {
         throw e;
     }
     units->addUnit(unit);

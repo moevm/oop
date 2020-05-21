@@ -1,10 +1,12 @@
 #include "readfromfile.h"
 
+#include <exception.h>
+
 ReadFromFile::ReadFromFile(string name): nameFile(name)
 {
     file.open(name);
     if(!file.is_open())
-        throw std::runtime_error("File doesn't open for read");
+        throw SimpleFieldException("File doesn't open for read");
 }
 
 ReadFromFile::~ReadFromFile()
@@ -25,35 +27,35 @@ GameParam* ReadFromFile::read()
     vector<LandscapeType> landscape;
     file >> buf;
     if(buf != "Field:"){
-        throw invalid_argument("Field header wrong");
+        throw SimpleFieldException("Field header wrong");
     }
     file >> width >> height >> limit;
 
     file >> buf;
     if (buf != "Land:")
-        throw invalid_argument("Landscape header wrong");
+        throw SimpleFieldException("Landscape header wrong");
     for(unsigned i=0; i< width*height; i++){
         if (!(file >> temp))
-            throw invalid_argument("Landscape parameters wrong");
+            throw SimpleFieldException("Landscape parameters wrong");
         landscape.push_back(static_cast<LandscapeType>(temp));
     }
 
     file >> buf;
     if (buf != "Neutrals:")
-        throw invalid_argument("Neutral header wrong");
+        throw SimpleFieldException("Neutral header wrong");
     file >> temp;
     for(unsigned i=0; i< static_cast<unsigned>(temp); i++){
         unsigned x;
         unsigned y;
         unsigned type;
         if (!(file >> x)|| !(file >> y) || !(file >> type))
-            throw invalid_argument("Neutrals parameters wrong");
+            throw SimpleFieldException("Neutrals parameters wrong");
         neutrals.push_back(new NeutralParam(static_cast<NeutralType>(type), x, y));
     }
 
     file >> buf;
     if (buf != "Bases:")
-        throw invalid_argument("Base header wrong");
+        throw SimpleFieldException("Base header wrong");
     file >> temp;
     for(unsigned i=0; i < static_cast<unsigned>(temp); i++){
         int baseNumb;
@@ -65,7 +67,7 @@ GameParam* ReadFromFile::read()
         vector<UnitParam*> units;
         if (!(file >> baseNumb)|| !(file >> unitCount) || !(file >> maxCount) || !(file >> health) ||
                !(file >> x)|| !(file >> y) || !(file >> unitCurr))
-            throw invalid_argument("Base parameters wrong");
+            throw SimpleFieldException("Base parameters wrong");
         file >> tempUnitSize;
         for(unsigned j=0; j < static_cast<unsigned>(tempUnitSize); j++){
             string name;
