@@ -16,6 +16,7 @@ class Unit: public Attacker_Units{
     Field *field;
     Base *base;
     int name;
+    int type;
     int hp;
     int attack;
     int armor;
@@ -51,6 +52,8 @@ class Unit: public Attacker_Units{
     int get_x();
 
     int get_y();
+
+    int get_type();
 
     void set_hp(int value);
 

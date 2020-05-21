@@ -50,7 +50,10 @@
     {
         return y_position;
     }
-
+    int Unit::get_type()
+    {
+        return type;
+    }
 
     void Unit::set_hp(int value)
     {

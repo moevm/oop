@@ -8,6 +8,7 @@ class CamelRider: public Cavalry{
         field = new_field;
         name = new_name;
         base = new_base;
+        type = 5;
         hp = 130;
         armor = 15;
         attack = 35;

@@ -1,15 +1,12 @@
 #include "field.h"
-
+#include <fstream>
 
     Field::Field(int size, unsigned int maximum_count)
     {
         int roll;
-        //Landscapes* plains = nullptr;
-        //Landscapes* mountains = nullptr;
-        //Landscapes* forests = nullptr;
-        Landscapes* plains = new Plain();
-        Landscapes* mountains = new Mountian();
-        Landscapes* forests = new Forest();
+        plains = new Plain();
+        mountains = new Mountian();
+        forests = new Forest();
         srand(time(0));
         this->size=size;
         field = new class Unit**[size];
@@ -28,17 +25,23 @@
         unit_count = 0;
         max_count = maximum_count;
         landscape = new Landscapes**[size];
+        obj_field = new class NeturalObjects**[size];
         landscape_view = new int*[size];
+        obj_view = new int*[size];
         for (int i= 0 ;i<size;i++)
         {
              landscape[i] = new Landscapes*[size];
             landscape_view[i] = new int[size];
+            obj_field[i] = new class NeturalObjects*[size];
+            obj_view[i] = new int[size];
         }
 
         for (int i = 0;i<size;i++)
         {
             for (int j = 0;j<size;j++)
             {
+                obj_view[i][j] = 0;
+                obj_field[i][j]= nullptr;
                 roll = rand() % 3 + 1;
                 landscape_view[i][j]= roll;
                 if (roll == 1)
@@ -80,6 +83,7 @@
          }
     }
 
+
     Field::Field(const class Field &input_field)
     {
         max_count=input_field.max_count;
@@ -118,12 +122,26 @@
         else return nullptr;
     }
 
-    void Field::add_netural_obj(class NeturalObjects* net_obj, int x, int y)
+    void Field::add_netural_obj(class NeturalObjects* net_obj, int x, int y,int num)
     {
         if(obj_field[x][y]== nullptr)
         {
             obj_field[x][y]=net_obj;
+            obj_view[x][y]=num;
         }
+    }
+
+    void Field::set_land(int x, int y, int type)
+    {
+
+                landscape_view[x][y]= type;
+                if (type == 1)
+                landscape[x][y]=plains;
+                if (type == 2)
+                landscape[x][y]=forests;
+                if (type == 3)
+                landscape[x][y]=mountains;
+
     }
 
     void Field::add_base(class Base* base, int x, int y)
@@ -134,7 +152,38 @@
         }
     }
 
+    int Field::get_obj_type(int x, int y)
+    {
+        return obj_view[x][y];
+    }
 
+    NeturalObjects* Field::get_obj(int x, int y)
+    {
+        return obj_field[x][y];
+    }
+
+    void Field::clear_unit()
+    {
+        for (int i = 0;i<size;i++)
+        {
+            for (int j = 0;j<size;j++)
+            {
+
+                field[i][j]= nullptr;
+            }
+        }
+    }
+    void Field::clear_obj()
+    {
+        for (int i = 0;i<size;i++)
+        {
+            for (int j = 0;j<size;j++)
+            {
+                obj_view[i][j] = 0;
+                obj_field[i][j]= nullptr;
+            }
+        }
+    }
     void  Field::set_unit_count(int value)
     {
         unit_count+=value;
@@ -262,4 +311,36 @@
      class Landscapes* Field::get_landscape(int x, int y)
      {
         return landscape[x][y];
+     }
+
+     void Field::save_land()
+     {
+         std::ofstream fout;
+         fout.open("Save.txt", std::ios::app);
+         for (int i = 0;i<size;i++)
+          {
+              for (int j = 0;j<size;j++)
+              {
+                  fout << landscape_view[i][j] <<"   ";
+
+              }
+              fout << std::endl;
+          }
+         fout.close();
+     }
+
+     void Field::save_obj()
+     {
+         std::ofstream fout;
+         fout.open("Save.txt", std::ios::app);
+         for (int i = 0;i<size;i++)
+          {
+              for (int j = 0;j<size;j++)
+              {
+                  fout << obj_view[i][j] <<"   ";
+
+              }
+              fout << std::endl;
+          }
+        fout.close();
      }

@@ -20,7 +20,21 @@ int Base::get_unit_now()
     return unit_now;
 }
 
+void Base::set_pos(int x_n, int y_n)
+{
+    x=x_n;
+    y=y_n;
+}
 
+int Base::get_x()
+{
+    return x;
+}
+
+int Base::get_y()
+{
+    return y;
+}
 
 int Base::createCrusaderUnit( Warrior_ID id, int new_name, class Field *new_field, Base* new_base)
 {
@@ -29,15 +43,15 @@ int Base::createCrusaderUnit( Warrior_ID id, int new_name, class Field *new_fiel
     if (unitMax>unit_now)
     {
     plus_unit();
-    Units_ID[num_id] = C_fabric->createWarrior(id, num_id, new_field, new_base);
-    ret_id = num_id++;
+    Units_ID[num_id] = C_fabric->createWarrior(id, unit_now, new_field, new_base);
+    //ret_id = num_id++;
     }
     else
     {
         std::cout << "Maximum unit count" << std::endl;
         Units_ID[num_id] = nullptr;
     }
-    return ret_id;
+    return unit_now;
 }
 
 Unit* Base::get_Unit(int id)
@@ -50,6 +64,16 @@ void Base::delete_unit(int id)
     Units_ID[id]=nullptr;
 }
 
+void Base::clear_base()
+{
+    for (int i=1;i<unit_now+1;i++)
+    {
+        Units_ID[i] = nullptr;
+    }
+    unit_now=0;
+
+}
+
 int Base::createArabUnit( Warrior_ID id, int new_name, class Field *new_field, Base* new_base)
 {
     int ret_id = 0;
@@ -57,15 +81,15 @@ int Base::createArabUnit( Warrior_ID id, int new_name, class Field *new_field, B
     if (unitMax>unit_now)
     {
     plus_unit();
-    Units_ID[num_id] = A_fabric->createWarrior(id, num_id, new_field, new_base);
-    ret_id = num_id++;
+    Units_ID[num_id] = A_fabric->createWarrior(id, unit_now, new_field, new_base);
+    //ret_id = num_id++;
     }
     else
     {
         std::cout << "Maximum unit count" << std::endl;
         Units_ID[num_id] = nullptr;
     }
-    return ret_id;
+    return unit_now;
 }
 
 

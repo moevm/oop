@@ -8,6 +8,7 @@ class Knight: public Cavalry{
          field = new_field;
          name = new_name;
          base = new_base;
+         type = 2;
          hp = 150;
          armor = 20;
          attack = 30;

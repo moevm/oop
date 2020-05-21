@@ -28,6 +28,7 @@ SOURCES += \
         mountain.cpp \
         neturalobjects.cpp \
         plain.cpp \
+        saver.cpp \
         shooter.cpp \
         stable.cpp \
         unit.cpp \
@@ -57,6 +58,7 @@ HEADERS += \
     mountain.h \
     neturalobjects.h \
     plain.h \
+    saver.h \
     shooter.h \
     stable.h \
     unit.h \

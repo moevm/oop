@@ -23,6 +23,7 @@
 #include "forge.h"
 #include "stable.h"
 #include "interface.h"
+#include "saver.h"
 
 using namespace std;
 
