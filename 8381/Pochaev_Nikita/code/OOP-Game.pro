@@ -38,6 +38,7 @@ SOURCES += \
     Game/FacadeMediator.cpp \
     Game/GameProcess/GamersState.cpp \
     Game/GameProcess/gameRules.cpp \
+    Game/GameProcess/gameprocess.cpp \
     Game/Logging/Loggers/logadapter.cpp \
     Game/Logging/Loggers/loggers.cpp \
     Game/Logging/time.cpp \

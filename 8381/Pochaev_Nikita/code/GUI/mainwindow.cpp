@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     fieldSizeSpinBox(new QSpinBox),
     gameRulesLabel(new QLabel),
     gameRulesComboBox(new QComboBox),
-    rulesInformation(new QTextEdit),
+    rulesInformationText(new QTextEdit),
     logModeLabel(new QLabel),
     logModeComboBox(new QComboBox),
     logAdvancedModeCheckBox(new QCheckBox)
@@ -69,6 +69,9 @@ void MainWindow::setUpUI()
     gameRulesComboBox->addItem("no rules");
     gameRulesComboBox->addItem("1 vs 1 (battle)");
     gameRulesComboBox->addItem("2 vs 2 (confrontation)");
+    rulesInformationText->setReadOnly(true);
+    rulesInformationText->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    rulesInformationText->viewport()->setCursor(Qt::ArrowCursor);
 
     // set up grids
     QHBoxLayout *mainGameSetupLayout = new QHBoxLayout;
@@ -99,7 +102,7 @@ void MainWindow::setUpUI()
 
     QVBoxLayout *rulesLayout = new QVBoxLayout;
     rulesLayout->addLayout(rulesChooseLayout);
-    rulesLayout->addWidget(rulesInformation);
+    rulesLayout->addWidget(rulesInformationText);
 
     QVBoxLayout *gameSetupLayout = new QVBoxLayout;
     gameSetupLayout->addLayout(playersCountLayout);
@@ -127,13 +130,32 @@ void MainWindow::setUpUI()
     connect(gameWindow, &GameWindow::gameWindowClosed, this, &MainWindow::on_gameWindow_closeEvent);
     connect(this, &MainWindow::startNewGameWindow, gameWindow, &GameWindow::startNewPlayingWindow);
     connect(this, &MainWindow::startLogging, gameWindow, &GameWindow::createLoggerRequest);
+    connect(gameRulesComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::on_RuleValue_changed);
 }
 
 void MainWindow::on_startNewGameButton_clicked()
 {
-    // game field and players info
-    gameFieldSize = fieldSizeSpinBox->value();
-    playersCount = playersCountSpinBox->value();
+    std::unique_ptr<AbstractGameRule> rules{};
+
+    if(gameRulesComboBox->currentIndex() == 0)
+    {
+        // game field and players info
+        gameFieldSize = fieldSizeSpinBox->value();
+        playersCount = playersCountSpinBox->value();
+    }
+    else if(gameRulesComboBox->currentIndex() == 1)
+    {
+        rules = std::make_unique<oneToOneRule>();
+        gameFieldSize = rules->getFieldSize();
+        playersCount = rules->getPlayersCount();
+    }
+    else if(gameRulesComboBox->currentIndex() == 2)
+    {
+        rules = std::make_unique<twoByTwoRule>();
+        gameFieldSize = rules->getFieldSize();
+        playersCount = rules->getPlayersCount();
+    }
+
     // logger info
     eLOGGER_TYPE loggerType = NO_LOG;
     if(logModeComboBox->currentIndex() == 0)
@@ -150,7 +172,7 @@ void MainWindow::on_startNewGameButton_clicked()
     }
     eLOGGER_OUTPUT_FORMAT loggerFormat = logAdvancedModeCheckBox->isChecked() ? ADVANCED : STANDART;
 
-    emit startNewGameWindow(gameFieldSize, playersCount, this->width(), this->height());
+    emit startNewGameWindow(gameFieldSize, playersCount, this->width(), this->height(), (rules) ? rules->getType() : NO_TYPE);
     emit startLogging(loggerType, loggerFormat);
     setDisabled(true);
 }
@@ -170,4 +192,20 @@ void MainWindow::on_gameWindow_closeEvent()
 GameWindow* MainWindow::getGameWindow() const
 {
     return gameWindow;
+}
+
+void MainWindow::on_RuleValue_changed(int index)
+{
+    if(index == 0)
+    {
+        rulesInformationText->clear();
+    }
+    else if(index == 1)
+    {
+        rulesInformationText->setText("- 1 player VS 1 player;\n- Field size: 8*8;\n- Time for step: 40 sec.;\n- Victory condition: superiority in bases.");
+    }
+    else if(index == 2)
+    {
+        rulesInformationText->setText("- 2 players VS 2 players;\n- Field size: 15*15;\nTime for step: 20 sec.;\n- Victory condition: destruction of enemy bases.");
+    }
 }

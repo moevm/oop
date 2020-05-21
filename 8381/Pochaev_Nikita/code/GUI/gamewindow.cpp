@@ -35,7 +35,12 @@ GameWindow::GameWindow() :
     cellInfromationWhoComboBox(new QComboBox),
 
     visualField(new QTextEdit),
-    menuBar(new QMenuBar(this))
+    menuBar(new QMenuBar(this)),
+
+    currentPlayerLabel(new QLabel),
+    passTheMovePushButton(new QPushButton),
+    currentTimeLabel(new QLabel),
+    timer(new QTimer)
 {
     setupGameWindow();
 }
@@ -54,6 +59,7 @@ void GameWindow::setupGameWindow()
     moveUnitButton->setText("Move unit");
     attackUnitButton->setText("Attack unit");
     cellInfromationButton->setText("Inf. about the cell");
+    passTheMovePushButton->setText("pass");
 
     // SETUP LABELS
     unitTypeLabel->setText("Unit type:");
@@ -66,6 +72,8 @@ void GameWindow::setupGameWindow()
     logCoordsLabel->setText("Cell coords:");
     baseNameLabel->setText("Set base name:");
     cellInfromationWhoLabel->setText("What to find out about:");
+    currentPlayerLabel->setText("no player");
+    currentTimeLabel->setText("00");
 
     // SETUP LISTS
     unitTypeComboBox->addItem("Cannon fodder");
@@ -97,7 +105,7 @@ void GameWindow::setupGameWindow()
     this->setStyleSheet("QWidget { background: white; }");
 
     // Set up logs
-    // blocl enter to log window
+    // block enter to log window
     logs->setReadOnly(true);
     logs->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     logs->viewport()->setCursor(Qt::ArrowCursor);
@@ -164,6 +172,13 @@ void GameWindow::setupGameWindow()
     logTotalLayout->addLayout(cellInfrormationWhoLayout);
     logTotalLayout->addWidget(cellInfromationButton);
 
+    // players steps
+    QHBoxLayout *playersStepLayout = new QHBoxLayout;
+    playersStepLayout->addWidget(currentPlayerLabel);
+    playersStepLayout->addWidget(passTheMovePushButton);
+    playersStepLayout->addWidget(currentTimeLabel);
+    playersStepLayout->setAlignment(Qt::AlignCenter);
+
     // menu bar
     QMenu *menu = menuBar->addMenu("File");
     saveMenuBarButton = menu->addAction("Save");
@@ -173,6 +188,7 @@ void GameWindow::setupGameWindow()
 
     // total work bar layout
     QVBoxLayout *workBarLayout = new QVBoxLayout;
+    workBarLayout->addLayout(playersStepLayout);
     workBarLayout->addLayout(unitTotalLayout);
     workBarLayout->addLayout(baseTotalLayout);
     workBarLayout->addLayout(unitActionTotalLayout);
@@ -182,10 +198,34 @@ void GameWindow::setupGameWindow()
     layout->addLayout(workBarLayout, 0, 4, 3, 4, Qt::AlignLeft);
 }
 
-void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight)
+void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight, GAME_RULES_TYPE type)
 {
     gameFieldSize = gameFieldSize_;
     playersCount = playersCount_;
+
+    ruleType = type;
+    std::unique_ptr<AbstractGameRule> rule;
+    if(type == ONE_TO_ONE)
+    {
+        rule = std::make_unique<oneToOneRule>();
+    }
+    else if(type == TWO_BY_TWO)
+    {
+        rule = std::make_unique<twoByTwoRule>();
+    }
+    else
+    {
+        rule = std::make_unique<AbstractGameRule>();
+    }
+
+    if(rule->getType() != NO_TYPE)
+    {
+        timeCount = rule->getStepTime();
+        currTimeCount = timeCount;
+        timer->setInterval(UPDATE_INTERVAL);
+        timer->start();
+        connect(timer, &QTimer::timeout, this, &GameWindow::updateTime);
+    }
 
     // SIGNALS AND SLOT CONNECTION
     connect(addBaseButton, &QPushButton::clicked, this, &GameWindow::on_addBaseButton_clicked);
@@ -195,7 +235,8 @@ void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCoun
     connect(cellInfromationButton, &QPushButton::clicked, this, &GameWindow::on_cellInfromationButton_clicked);
     connect(saveMenuBarButton, &QAction::triggered, this, &GameWindow::on_saveButton_clicked);
     connect(loadMenuBarButton, &QAction::triggered, this, &GameWindow::on_loadButton_clicked);
-    emit createFieldRequest(gameFieldSize_, playersCount_);
+    connect(passTheMovePushButton, &QPushButton::clicked, this, &GameWindow::on_passTheMove_button_clicked);
+    emit createFieldRequest(gameFieldSize_, playersCount_, type);
 
     this->resize(static_cast<int>(screenWidth * 1.2), static_cast<int>(screenHeight * 2.5));
     this->setFixedSize(static_cast<int>(screenWidth * 1.2), static_cast<int>(screenHeight * 2.5));
@@ -352,4 +393,32 @@ void GameWindow::on_loadButton_clicked()
 void GameWindow::restoreBaseName(QString name)
 {
     unitSourceBaseComboBox->addItem(name);
+}
+
+void GameWindow::updateTime()
+{
+    currentTimeLabel->setText(QString::fromUtf8((std::to_string(currTimeCount) + "/" + std::to_string(timeCount)).c_str()));
+    if(currTimeCount == 0)
+    {
+        timer->stop();
+    }
+    else
+    {
+        currTimeCount--;
+    }
+}
+
+void GameWindow::on_passTheMove_button_clicked()
+{
+    emit passTheMoveRequest();
+}
+
+void GameWindow::setCurrPlayerNumb(size_t numb)
+{
+    currentPlayerLabel->setText("player " + QString::number(numb));
+    if(ruleType != NO_TYPE)
+    {
+        currTimeCount = timeCount;
+        timer->start();
+    }
 }

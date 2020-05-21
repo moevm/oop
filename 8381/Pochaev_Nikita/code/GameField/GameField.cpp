@@ -158,7 +158,6 @@ GameField::iterator GameField::begin()
     return iterator(cellMatrix[0][0]);
 }
 
-// FIXME: нужен -1 или всё норм?
 GameField::iterator GameField::end()
 {
     return iterator(cellMatrix[cellMatrix.getWidth()][cellMatrix.getHeight()]);

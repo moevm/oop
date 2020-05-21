@@ -222,10 +222,6 @@ std::shared_ptr<FieldParametersMemento> MementoReader::readFieldPar()
         memento->bases.insert(std::pair(Coords(x, y), readBasePar()));
     }
 
-    // FIXME: delete it
-    // EMPTY LINE AFTER >>
-    // std::getline(file, checkStr);
-
     std::getline(file, checkStr);
     if(checkStr != "}") throw std::runtime_error("Ivalid bases block");
 
@@ -238,10 +234,6 @@ std::shared_ptr<FieldParametersMemento> MementoReader::readFieldPar()
         file >> x >> y;
         memento->units.insert(std::pair(Coords(x, y), readUnitPar()));
     }
-
-    // FIXME: delete it
-    // EMPTY LINE AFTER >>
-    // std::getline(file, checkStr);
 
     std::getline(file, checkStr);
     if(checkStr != "}") throw std::runtime_error("Ivalid units block");
@@ -279,10 +271,6 @@ std::shared_ptr<UnitStorekeeperParametersMemento> MementoReader::readUnitCountsD
     std::shared_ptr<UnitStorekeeperParametersMemento> memento = std::make_shared<UnitStorekeeperParametersMemento>();
 
     std::string checkStr;
-
-    // FIXME: delete it
-    // EMPTY LINE AFTER >>
-    // std::getline(file, checkStr);
 
     for(size_t i = 0; i < TYPES_OF_UNIT; ++i)
     {

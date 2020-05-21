@@ -15,6 +15,7 @@
 
 #include "GUI/gamewindow.h"
 #include "Game/Logging/logfunctionality.h"
+#include "Game/GameProcess/GameRules.h"
 
 class MainWindow : public QMainWindow
 {
@@ -43,7 +44,7 @@ private:
     // rules
     QLabel *gameRulesLabel;
     QComboBox *gameRulesComboBox;
-    QTextEdit *rulesInformation;
+    QTextEdit *rulesInformationText;
 
     // log
     QLabel *logModeLabel;
@@ -60,9 +61,10 @@ private:
 private slots:
     void on_startNewGameButton_clicked();
     void on_gameWindow_closeEvent();
+    void on_RuleValue_changed(int index);
 
 signals:
-    void startNewGameWindow(size_t gameFieldSize, size_t playersCount, int screenWidth, int screenHeight);
+    void startNewGameWindow(size_t gameFieldSize, size_t playersCount, int screenWidth, int screenHeight, GAME_RULES_TYPE type);
     void startLogging(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
 };
 

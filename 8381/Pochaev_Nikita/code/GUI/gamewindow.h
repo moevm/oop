@@ -21,11 +21,17 @@
 #include <QMenuBar>
 #include <QFileDialog>
 #include <QDir>
+#include <QTimer>
+#include <QTime>
 
 #include "InformationHeaders/commandPar.h"
 #include "InformationHeaders/unitPar.h"
 #include "InformationHeaders/guiPar.h"
 #include "Game/Logging/logfunctionality.h"
+#include "Game/GameProcess/GameRules.h"
+
+#define MSEC_TO_SEC_FACTOR 1000
+#define UPDATE_INTERVAL 1000
 
 class GameWindow : public QWidget
 {
@@ -84,13 +90,22 @@ private:
     QAction *saveMenuBarButton{};
     QAction *loadMenuBarButton{};
 
+    // step switch
+    QLabel *currentPlayerLabel;
+    QPushButton *passTheMovePushButton;
+    QLabel *currentTimeLabel;
+    QTimer *timer;
+    size_t timeCount{};
+    size_t currTimeCount{};
+    GAME_RULES_TYPE ruleType;
+
     /*    PAR    */
     size_t gameFieldSize{};
     size_t playersCount{};
 
 signals:
     void gameWindowClosed();
-    void createFieldRequest(size_t heigt, size_t width);
+    void createFieldRequest(size_t heigt, size_t width, GAME_RULES_TYPE type);
     void createLoggerInFacadeRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, QString name);
     void addUnitRequest(eUnitsType unitType, QString sourceBaseName);
@@ -99,9 +114,10 @@ signals:
     void cellUnfromationRequest(size_t xCoord, size_t yCoord, eRequest infRequest);
     void saveGameFileRequest(std::string fileName);
     void loadGameFileRequest(std::string fileName);
+    void passTheMoveRequest();
 
 public slots:
-    void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight);
+    void startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight, GAME_RULES_TYPE type);
     void createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void on_addBaseButton_clicked();
     void on_addUnitButton_clicked();
@@ -121,6 +137,10 @@ public slots:
     void on_saveButton_clicked();
     void on_loadButton_clicked();
     void restoreBaseName(QString name);
+    void on_passTheMove_button_clicked();
+
+    void updateTime();
+    void setCurrPlayerNumb(size_t numb);
 };
 
 #endif // GAMEWINDOW_H

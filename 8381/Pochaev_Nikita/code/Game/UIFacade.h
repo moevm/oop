@@ -33,7 +33,7 @@ private:
     // GUI
     std::shared_ptr<MainWindow> window;
     // Game
-    std::shared_ptr<IGameProcess> game;
+    std::weak_ptr<IGameProcess> game;
     // Logger
     std::shared_ptr<ILogAdapter> logger;
     eLOGGER_OUTPUT_FORMAT loggerFormat;
@@ -46,7 +46,7 @@ private:
     std::shared_ptr<GameMementoCaretacker> mementoCaretacker;
 
 public slots:
-    void createFieldRequest(size_t fieldSize, size_t playersCount);
+    void createFieldRequest(size_t fieldSize, size_t playersCount, GAME_RULES_TYPE type);
     void createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, QString name);
     void addUnitRequest(eUnitsType unitType, QString sourceBaseName);

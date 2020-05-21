@@ -67,10 +67,13 @@ void UIFacade::guiSetup()
     window->show();
 }
 
-void UIFacade::createFieldRequest(size_t fieldSize, size_t playersCount_)
+void UIFacade::createFieldRequest(size_t fieldSize, size_t playersCount_, GAME_RULES_TYPE type)
 {
-    // FIXME: корректный ли upper cast?
-    game = std::make_shared<GameProcess<AbstractGameRule, size_t>>(fieldSize, fieldSize, playersCount_, true);
+    game = GameProcess<AbstractGameRule, size_t>::getInstance<AbstractGameRule, size_t>(fieldSize, playersCount_, true, type);
+
+    connect(window->getGameWindow(), &GameWindow::passTheMoveRequest, std::dynamic_pointer_cast<SignalSlotGameProcess>(game.lock()).get(), &SignalSlotGameProcess::on_passMove_button_clicked);
+    connect(std::dynamic_pointer_cast<SignalSlotGameProcess>(game.lock()).get(), &SignalSlotGameProcess::setCurrentPlayerNumber, window->getGameWindow(), &GameWindow::setCurrPlayerNumb);
+    emit std::dynamic_pointer_cast<SignalSlotGameProcess>(game.lock()).get()->setCurrentPlayerNumber(0);
 }
 
 void UIFacade::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format)
@@ -79,7 +82,7 @@ void UIFacade::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT form
     logger = std::make_shared<LogAdapter>(loggerProxy);
     logger->setOutputFormat(format);
 
-    std::vector<size_t> param{game->getPlayersCount(), game->getField()->getWidth()};
+    std::vector<size_t> param{game.lock()->getPlayersCount(), game.lock()->getField()->getWidth()};
     logger->sendLogInf(USER_LOG, USER_GAME_CREATE, param, SUCCESS);
 }
 
@@ -90,7 +93,7 @@ void UIFacade::addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, 
     logger->sendLogInf(USER_LOG, USER_ADD_BASE, param, SUCCESS);
 
     try {
-        game->createBase(baseType, xCoord, yCoord, name);
+        game.lock()->createBase(baseType, xCoord, yCoord, name);
     } catch (const std::invalid_argument& ex) {
         emit reportStatusToGui(eREPORT_LEVEL::ERROR, "Base name", "Please, enter valid base name");
         logger->sendLogInf(GAME_LOG, GAME_ADD_BASE, param, WRONG, "wrong base name");
@@ -112,7 +115,7 @@ void UIFacade::addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, 
 void UIFacade::addUnitRequest(eUnitsType unitType, QString sourceBaseName)
 {
     Coords coords;
-    game->getBaseCoordsByName(sourceBaseName, coords);
+    game.lock()->getBaseCoordsByName(sourceBaseName, coords);
     std::vector<size_t> coordinates;
     coordinates.push_back(coords.x);
     coordinates.push_back(coords.y);
@@ -122,7 +125,7 @@ void UIFacade::addUnitRequest(eUnitsType unitType, QString sourceBaseName)
     logger->sendLogInf(USER_LOG, USER_ADD_UNIT, param, SUCCESS);
 
     std::shared_ptr<Command> command = std::make_shared<Command>(ADD_UNIT, coordinates, unitType);
-    std::shared_ptr<FacadeMediator> mediator = std::make_shared<addUnitFacadeMediator>(game->getCurrGameInstance(), command, shared_from_this());;
+    std::shared_ptr<FacadeMediator> mediator = std::make_shared<addUnitFacadeMediator>(game.lock()->getCurrGameInstance(), command, shared_from_this());;
     command->setMediator(mediator);
 
     try {
@@ -161,7 +164,7 @@ void UIFacade::moveUnitReguest(size_t xSource, size_t ySource, size_t xDest, siz
     logger->sendLogInf(USER_LOG, USER_MOVE_UNIT, param);
 
     std::shared_ptr<Command> command = std::make_shared<Command>(MOVE_UNIT, param);
-    std::shared_ptr<FacadeMediator> mediator = std::make_shared<unitMoveFacadeMediator>(game->getCurrGameInstance(), command, shared_from_this());
+    std::shared_ptr<FacadeMediator> mediator = std::make_shared<unitMoveFacadeMediator>(game.lock()->getCurrGameInstance(), command, shared_from_this());
     command->setMediator(mediator);
 
     try {
@@ -196,7 +199,7 @@ void UIFacade::attackUnitRequest(size_t xSource, size_t ySource, size_t xDest, s
     logger->sendLogInf(USER_LOG, USER_ATTACK_UNIT, param);
 
     std::shared_ptr<Command> command = std::make_shared<Command>(ATTACK_UNIT, param);
-    std::shared_ptr<FacadeMediator> mediator = std::make_shared<unitAttackFacadeMediator>(game->getCurrGameInstance(), command, shared_from_this());
+    std::shared_ptr<FacadeMediator> mediator = std::make_shared<unitAttackFacadeMediator>(game.lock()->getCurrGameInstance(), command, shared_from_this());
     command->setMediator(mediator);
 
     try {
@@ -226,7 +229,7 @@ void UIFacade::cellInformationReqiest(size_t xCoord, size_t yCoord, eRequest inf
     logger->sendLogInf(USER_LOG, USER_ATTACK_UNIT, param);
 
     std::shared_ptr<Command> command = std::make_shared<Command>(infRequest, coordinates);
-    std::shared_ptr<FacadeMediator> mediator = std::make_shared<FacadeMediator>(game->getCurrGameInstance(), command, shared_from_this());
+    std::shared_ptr<FacadeMediator> mediator = std::make_shared<FacadeMediator>(game.lock()->getCurrGameInstance(), command, shared_from_this());
     command->setMediator(mediator);
 
     command->exec();
@@ -243,7 +246,7 @@ void UIFacade::gameWindowCloseEvent()
 
 void UIFacade::saveGameRequest(std::string fileName)
 {
-    mementoCaretacker->saveToFile(fileName, game->getCurrGameInstance());
+    mementoCaretacker->saveToFile(fileName, game.lock()->getCurrGameInstance());
 }
 
 void UIFacade::loadGameRequest(std::string fileName)
@@ -259,9 +262,7 @@ void UIFacade::loadGameRequest(std::string fileName)
         return;
     }
 
-    // FIXME: корректный ли upper cast?
-    game = std::make_shared<GameProcess<AbstractGameRule, size_t>>(memento->fieldParam->fieldParam->width, memento->fieldParam->fieldParam->height, memento->playersCount, true);
-    game->restoreMemento(memento);
+    game.lock()->restoreMemento(memento);
     for(const auto& curr : memento->baseNames)
     {
         emit restoreBaseNameGui(QString::fromUtf8(curr.first.c_str()));
