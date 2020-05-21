@@ -2,6 +2,7 @@
 #include "GUI/command.h"
 #include "Game/GameProcess/GameRules.h"
 #include "Game/GameProcess/gameprocess.h"
+#include "GUI/visualizer.h"
 
 UIFacade::UIFacade(int argc, char *argv[])
 {
@@ -74,6 +75,9 @@ void UIFacade::createFieldRequest(size_t fieldSize, size_t playersCount_, GAME_R
     connect(window->getGameWindow(), &GameWindow::passTheMoveRequest, std::dynamic_pointer_cast<SignalSlotGameProcess>(game.lock()).get(), &SignalSlotGameProcess::on_passMove_button_clicked);
     connect(std::dynamic_pointer_cast<SignalSlotGameProcess>(game.lock()).get(), &SignalSlotGameProcess::setCurrentPlayerNumber, window->getGameWindow(), &GameWindow::setCurrPlayerNumb);
     emit std::dynamic_pointer_cast<SignalSlotGameProcess>(game.lock()).get()->setCurrentPlayerNumber(0);
+
+    visualizer = std::make_shared<Visualizer>(window->getGameWindow(), shared_from_this());
+    visualizer->update();
 }
 
 void UIFacade::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format)
@@ -110,6 +114,8 @@ void UIFacade::addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, 
 
     emit reportStatusToGui(eREPORT_LEVEL::INFO, "Base adding", "Base was added");
     logger->sendLogInf(GAME_LOG, GAME_ADD_BASE, param, SUCCESS);
+
+    visualizer->update();
 }
 
 void UIFacade::addUnitRequest(eUnitsType unitType, QString sourceBaseName)
@@ -150,6 +156,8 @@ void UIFacade::addUnitRequest(eUnitsType unitType, QString sourceBaseName)
 
     emit reportStatusToGui(eREPORT_LEVEL::INFO, "Unid add", "Success");
     logger->sendLogInf(GAME_LOG, GAME_ADD_UNIT, param, SUCCESS);
+
+    visualizer->update();
 }
 
 void UIFacade::moveUnitReguest(size_t xSource, size_t ySource, size_t xDest, size_t yDist)
@@ -185,6 +193,8 @@ void UIFacade::moveUnitReguest(size_t xSource, size_t ySource, size_t xDest, siz
 
     emit reportStatusToGui(eREPORT_LEVEL::INFO, "Unid move", "Success");
     logger->sendLogInf(GAME_LOG, GAME_MOVE_UNIT, param, SUCCESS);
+
+    visualizer->update();
 }
 
 void UIFacade::attackUnitRequest(size_t xSource, size_t ySource, size_t xDest, size_t yDist)
@@ -216,6 +226,8 @@ void UIFacade::attackUnitRequest(size_t xSource, size_t ySource, size_t xDest, s
 
     emit reportStatusToGui(eREPORT_LEVEL::INFO, "Unid attack", "Success");
     logger->sendLogInf(GAME_LOG, GAME_ATTACK_UNIT, param, SUCCESS);
+
+    visualizer->update();
 }
 
 void UIFacade::cellInformationReqiest(size_t xCoord, size_t yCoord, eRequest infRequest)
@@ -247,6 +259,7 @@ void UIFacade::gameWindowCloseEvent()
 void UIFacade::saveGameRequest(std::string fileName)
 {
     mementoCaretacker->saveToFile(fileName, game.lock()->getCurrGameInstance());
+    visualizer->update();
 }
 
 void UIFacade::loadGameRequest(std::string fileName)
@@ -269,4 +282,6 @@ void UIFacade::loadGameRequest(std::string fileName)
     }
 
     emit reportStatusToGui(eREPORT_LEVEL::INFO, "Game load", "was successful");
+
+    visualizer->update();
 }

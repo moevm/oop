@@ -16,6 +16,7 @@
 #include "Game/Logging/Loggers/logadapter.h"
 
 #include "Game/Saving/gamemementocaretacker.h"
+#include "GUI/IVisualizer.h"
 
 class UIFacade : public QObject, public std::enable_shared_from_this<UIFacade>
 {
@@ -24,6 +25,8 @@ class UIFacade : public QObject, public std::enable_shared_from_this<UIFacade>
 public:
     UIFacade(int argc, char *argv[]);
     ~UIFacade() = default;
+
+    friend class Visualizer;
 
     void start();
     void receiveStrAnswer(std::string answer);
@@ -44,6 +47,9 @@ private:
 
     // Memento work
     std::shared_ptr<GameMementoCaretacker> mementoCaretacker;
+
+    // Visualization
+    std::shared_ptr<IVisualizer> visualizer;
 
 public slots:
     void createFieldRequest(size_t fieldSize, size_t playersCount, GAME_RULES_TYPE type);

@@ -40,6 +40,8 @@ public:
     GameWindow();
     virtual void closeEvent(QCloseEvent* event);
 
+    friend class Visualizer;
+
 private:
     void setupGameWindow();
 
@@ -82,8 +84,13 @@ private:
     QLabel *cellInfromationWhoLabel;
     QComboBox *cellInfromationWhoComboBox;
 
-    // other
+    // visualization
     QTextEdit *visualField;
+    QLabel *visualFieldLabel;
+    QTextEdit *RoadMap;
+    QLabel *roadMapLabel;
+
+    // other
     QMenuBar *menuBar;
 
     // save / load

@@ -35,6 +35,7 @@ SOURCES += \
     GUI/command.cpp \
     GUI/gamewindow.cpp \
     GUI/mainwindow.cpp \
+    GUI/visualizer.cpp \
     Game/FacadeMediator.cpp \
     Game/GameProcess/GamersState.cpp \
     Game/GameProcess/gameRules.cpp \
@@ -93,9 +94,11 @@ HEADERS += \
     Bases/HumanBaseBuilder.h \
     Bases/UnitStorekeeper.h \
     GUI/ICommand.h \
+    GUI/IVisualizer.h \
     GUI/command.h \
     GUI/gamewindow.h \
     GUI/mainwindow.h \
+    GUI/visualizer.h \
     Game/FacadeMediator.h \
     Game/GameProcess/GameRules.h \
     Game/GameProcess/GamersState.h \

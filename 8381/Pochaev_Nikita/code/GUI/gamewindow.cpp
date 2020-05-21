@@ -35,6 +35,9 @@ GameWindow::GameWindow() :
     cellInfromationWhoComboBox(new QComboBox),
 
     visualField(new QTextEdit),
+    visualFieldLabel(new QLabel),
+    RoadMap(new QTextEdit),
+    roadMapLabel(new QLabel),
     menuBar(new QMenuBar(this)),
 
     currentPlayerLabel(new QLabel),
@@ -75,6 +78,14 @@ void GameWindow::setupGameWindow()
     currentPlayerLabel->setText("no player");
     currentTimeLabel->setText("00");
 
+    QFont headerFont("Arial", 10, QFont::Bold);
+    visualFieldLabel->setText("Units");
+    visualFieldLabel->setFont(headerFont);
+    visualFieldLabel->setAlignment(Qt::AlignCenter);
+    roadMapLabel->setText("Bases, n.o.");
+    roadMapLabel->setFont(headerFont);
+    roadMapLabel->setAlignment(Qt::AlignCenter);
+
     // SETUP LISTS
     unitTypeComboBox->addItem("Cannon fodder");
     unitTypeComboBox->addItem("Infantry");
@@ -92,7 +103,7 @@ void GameWindow::setupGameWindow()
     cellInfromationWhoComboBox->addItem("Item");
 
     // working zone - main widget
-    QGridLayout *layout = new QGridLayout;
+    QHBoxLayout *layout = new QHBoxLayout;
 
     // set main vertical layout
     this->setLayout(layout);
@@ -109,6 +120,14 @@ void GameWindow::setupGameWindow()
     logs->setReadOnly(true);
     logs->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     logs->viewport()->setCursor(Qt::ArrowCursor);
+
+    // setup visual text edit widgets
+    visualField->setReadOnly(true);
+    visualField->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    visualField->viewport()->setCursor(Qt::ArrowCursor);
+    RoadMap->setReadOnly(true);
+    RoadMap->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    RoadMap->viewport()->setCursor(Qt::ArrowCursor);
 
     // LAYOUTS
 
@@ -194,8 +213,15 @@ void GameWindow::setupGameWindow()
     workBarLayout->addLayout(unitActionTotalLayout);
     workBarLayout->addLayout(logTotalLayout);
 
-    layout->addWidget(visualField, 0, 0, 3, 3, Qt::AlignCenter);
-    layout->addLayout(workBarLayout, 0, 4, 3, 4, Qt::AlignLeft);
+    QVBoxLayout *visualLayout = new QVBoxLayout;
+    visualLayout->addWidget(visualFieldLabel);
+    visualLayout->addWidget(visualField);
+    visualLayout->addWidget(roadMapLabel);
+    visualLayout->addWidget(RoadMap);
+    visualLayout->setAlignment(Qt::AlignCenter);
+
+    layout->addLayout(visualLayout);
+    layout->addLayout(workBarLayout);
 }
 
 void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCount_, int screenWidth, int screenHeight, GAME_RULES_TYPE type)
@@ -242,6 +268,8 @@ void GameWindow::startNewPlayingWindow(size_t gameFieldSize_, size_t playersCoun
     this->setFixedSize(static_cast<int>(screenWidth * 1.2), static_cast<int>(screenHeight * 2.5));
 
     show();
+
+    // TODO: setup visual
 }
 
 void GameWindow::createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format)
@@ -267,7 +295,8 @@ void GameWindow::on_addUnitButton_clicked()
 {
     if(unitSourceBaseComboBox->currentIndex() == -1)
     {
-        throw std::invalid_argument("No existing base for unit creation");
+        handleStatusReport(eREPORT_LEVEL::WARNING, "Base add", "No existing base for unit creation");
+        return;
     }
 
     QString unitTypeStr("NULL");

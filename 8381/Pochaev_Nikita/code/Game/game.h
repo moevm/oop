@@ -39,6 +39,8 @@ public:
     Game(size_t fieldHeight, size_t fieldWidth, bool fill = false);
     Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_, bool fill = false);
 
+    friend class Visualizer;
+
     // Getters
     std::shared_ptr<GameFieldProxy> getField() const;
     std::map<QString, BaseInf> getBases() const;
