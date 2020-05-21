@@ -72,8 +72,6 @@ namespace MyGame {
 
         Gamer *getCurrentGamer();
 
-        void checkEndGame();
-
     private:
         void loadNeutralObject();
 
@@ -88,6 +86,10 @@ namespace MyGame {
         void saveGamers();
 
         void initGame();
+
+        void checkAttack(int xPositionUnit1, int yPositionUnit1, int xPositionUnit2, int yPositionUnit2);
+
+        void checkAddUnit(int x,int y);
 
     };
 

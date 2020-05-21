@@ -5,6 +5,11 @@
 #include <iostream>
 #include "Field.h"
 #include "../Landscapes/ProxyLandscape.h"
+#include "../../Exceptions/UpdateUnitPositionExeption/UpdateUnitPositionException.h"
+#include "../../Exceptions/UpdateUnitPositionExeption/CellNotFreeException.h"
+#include "../../Exceptions/UpdateUnitPositionExeption/CellEmptyException.h"
+using namespace MyGameException;
+
 namespace MyGame {
     Field::Field(int width, int height, int maxCountUnits) : width(width), height(height),
                                                              maxCountUnits(maxCountUnits) {
@@ -132,10 +137,31 @@ namespace MyGame {
     }
 
     void Field::setUnit(int x, int y, Unit *unit) {
+        if (cells[x][y].getUnit()!= nullptr){
+            throw CellNotFreeException(x, y);
+        }
         cells[x][y].setUnit(unit);
     }
 
     void Field::updateUnitPosition(int lastX, int lastY, int newX, int newY) {
+        if (newX < 0 || newX >= width) {
+            throw UpdateUnitPositionException(newX, newY, width - 1, height - 1, 1);
+        }
+        if (newY < 0 || newY >= height) {
+            throw UpdateUnitPositionException(newX, newY, width - 1, height - 1, 1);
+        }
+        if (lastX < 0 || lastX >= width) {
+            throw UpdateUnitPositionException(lastX, lastY, width - 1, height - 1, 2);
+        }
+        if (lastY < 0 || lastY >= height) {
+            throw UpdateUnitPositionException(lastX, lastY, width - 1, height - 1, 2);
+        }
+
+
+        if (cells[lastX][lastY].getUnit()== nullptr){
+            throw CellEmptyException(lastX, lastY);
+        }
+
         setUnit(newX, newY, cells[lastX][lastY].getUnit());
         cells[lastX][lastY].deleteUnit();
 

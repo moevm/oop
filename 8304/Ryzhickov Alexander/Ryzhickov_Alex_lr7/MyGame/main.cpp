@@ -14,13 +14,16 @@ int main() {
     game.getCurrentGamer()->addArcher(1,1);
     game.getCurrentGamer()->addKing(2, 3);
     game.getCurrentGamer()->addKnight(3, 3);
+//    game.getCurrentGamer()->addSwordsmen(3,3);
 
-    game.updateUnitPosition(3, 3, 1, 3);
+    game.updateUnitPosition(3, 3, 3, 1);
 
     game.switchOrder();
     game.getCurrentGamer()->addKing(7, 4);
 
-    game.updateUnitPosition(7,4,1,1);
+    game.updateUnitPosition(7,4,1,2);
+
+    game.attackUnit(1,1,1,2);
 
     game.startNewGame();
 

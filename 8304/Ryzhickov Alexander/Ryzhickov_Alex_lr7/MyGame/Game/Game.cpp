@@ -2,6 +2,7 @@
 // Created by Alex on 22.03.2020.
 //
 
+#include <iostream>
 #include "Game.h"
 #include "../OtherClasses/Landscapes/ProxyLandscape.h"
 //#include "../OtherClasses/NeutralObjects/Client.h"
@@ -12,10 +13,13 @@
 #include "../OtherClasses/NeutralObjects/Village/Village.h"
 #include "../Rules/FirstRule.h"
 #include "../Rules/SecondRule.h"
+#include "../Exceptions/UpdateUnitPositionExeption/UpdateUnitPositionException.h"
+#include "../Exceptions/UpdateUnitPositionExeption/CellNotFreeException.h"
+#include "../Exceptions/UpdateUnitPositionExeption/CellEmptyException.h"
 
 using namespace Logging;
 using namespace GameUnit;
-
+using namespace MyGameException;
 //#include "../OtherClasses/NeutralObjects/Client.h"
 namespace MyGame {
     Game::Game() {
@@ -144,58 +148,79 @@ namespace MyGame {
     }
 
     void Game::updateUnitPosition(int lastX, int lastY, int newX, int newY) {
-        field->updateUnitPosition(lastX, lastY, newX, newY);
-        logger.logUpdatePosition(lastX, lastY, newX, newY);
+        try {
+            field->updateUnitPosition(lastX, lastY, newX, newY);
+            logger.logUpdatePosition(lastX, lastY, newX, newY);
 
 
-        ProxyLandscape proxyLandscape(field->getCell(newX, newY)->getLanscape());
-        proxyLandscape.setBonus(field->getCell(newX, newY)->getUnit());
+            ProxyLandscape proxyLandscape(field->getCell(newX, newY)->getLanscape());
+            proxyLandscape.setBonus(field->getCell(newX, newY)->getUnit());
 
-        Client client;
-        client.setStrategy(field->getCell(newX, newY)->getNeutralObject());
-        client.useStrategy(field->getCell(newX, newY)->getUnit());
-        field->getCell(newX, newY)->getUnit()->setX(newX);
-        field->getCell(newX, newY)->getUnit()->setY(newY);
+            Client client;
+            client.setStrategy(field->getCell(newX, newY)->getNeutralObject());
+            client.useStrategy(field->getCell(newX, newY)->getUnit());
+            field->getCell(newX, newY)->getUnit()->setX(newX);
+            field->getCell(newX, newY)->getUnit()->setY(newY);
 
-        if (dynamic_cast<FirstRule *>(rule) != nullptr) {
-            if (newX == 1 && newY == 1) {
-                if (dynamic_cast<FirstRule *>(rule)->checkEndGame(field->getCell(1, 1)->getUnit()->getMoney(),
-                                                                  gamer2->getMoneyAdress())) {
-                    logger.logSecondGamerWin();
+            if (dynamic_cast<FirstRule *>(rule) != nullptr) {
+                if (newX == 1 && newY == 1) {
+                    if (dynamic_cast<FirstRule *>(rule)->checkEndGame(field->getCell(1, 1)->getUnit()->getMoney(),
+                                                                      gamer2->getMoneyAdress())) {
+                        logger.logSecondGamerWin();
+                    }
+                }
+                if (newX == 8 && newY == 3) {
+                    if (dynamic_cast<FirstRule *>(rule)->checkEndGame(field->getCell(8, 3)->getUnit()->getMoney(),
+                                                                      gamer1->getMoneyAdress())) {
+                        logger.logFirstGamerWin();
+                    }
                 }
             }
-            if (newX == 8 && newY == 3) {
-                if (dynamic_cast<FirstRule *>(rule)->checkEndGame(field->getCell(8, 3)->getUnit()->getMoney(),
-                                                                  gamer1->getMoneyAdress())) {
-                    logger.logFirstGamerWin();
-                }
-            }
+        } catch (UpdateUnitPositionException &ex) {
+            std::cout << ex.what();
+        } catch (CellNotFreeException &ex) {
+            std::cout << ex.what();
+        } catch (CellEmptyException &ex) {
+            std::cout << ex.what();
         }
     }
 
     bool Game::attackUnit(int xPositionUnit1, int yPositionUnit1, int xPositionUnit2, int yPositionUnit2) {
         bool isAlive = true;
 
-        GameUnit::Unit *unit1 = field->getCell(xPositionUnit1, yPositionUnit1)->getUnit();
-        GameUnit::Unit *unit2 = field->getCell(xPositionUnit2, yPositionUnit2)->getUnit();
+        try {
+
+            checkAttack(xPositionUnit1, yPositionUnit1, xPositionUnit2, yPositionUnit2);
+            GameUnit::Unit *unit1 = field->getCell(xPositionUnit1, yPositionUnit1)->getUnit();
+            GameUnit::Unit *unit2 = field->getCell(xPositionUnit2, yPositionUnit2)->getUnit();
 
 
-        unit1->attack(unit2);
-        logger.logAttackUnit(xPositionUnit1, yPositionUnit1, xPositionUnit2, yPositionUnit2);
+            unit1->attack(unit2);
+            logger.logAttackUnit(xPositionUnit1, yPositionUnit1, xPositionUnit2, yPositionUnit2);
 
-        if (unit2->getHealth() <= 0) {
-            logger.logUnitDie(xPositionUnit2, yPositionUnit2);
-            if (dynamic_cast<SecondRule *>(rule) != nullptr) {
-                if (dynamic_cast<SecondRule *>(rule)->checkEndGame(unit2, gamer1->getMoneyAdress())) {
-                    logger.logSecondGamerWin();
+            if (unit2->getHealth() <= 0) {
+                logger.logUnitDie(xPositionUnit2, yPositionUnit2);
+                if (dynamic_cast<SecondRule *>(rule) != nullptr) {
+                    if (dynamic_cast<SecondRule *>(rule)->checkEndGame(unit2, gamer1->getMoneyAdress())) {
+                        logger.logSecondGamerWin();
+                    }
+                    if (dynamic_cast<SecondRule *>(rule)->checkEndGame(unit2, gamer2->getMoneyAdress())) {
+                        logger.logFirstGamerWin();
+                    }
                 }
-                if (dynamic_cast<SecondRule *>(rule)->checkEndGame(unit2, gamer2->getMoneyAdress())) {
-                    logger.logFirstGamerWin();
-                }
+                delete unit2;
+                field->getCell(xPositionUnit2, yPositionUnit2)->setUnit(nullptr);
+                isAlive = false;
             }
-            delete unit2;
-            field->getCell(xPositionUnit2, yPositionUnit2)->setUnit(nullptr);
-            isAlive = false;
+        } catch (UpdateUnitPositionException &ex) {
+            std::cout << "Error input data in attack method!\n";
+            std::cout << ex.what();
+        } catch (CellNotFreeException &ex) {
+            std::cout << "Error input data in attack method!\n";
+            std::cout << ex.what();
+        } catch (CellEmptyException &ex) {
+            std::cout << "Error input data in attack method!\n";
+            std::cout << ex.what();
         }
 
         return isAlive;
@@ -342,9 +367,36 @@ namespace MyGame {
         }
     }
 
-    void Game::checkEndGame() {
+    void Game::checkAttack(int xPositionUnit1, int yPositionUnit1, int xPositionUnit2, int yPositionUnit2) {
+        if (xPositionUnit1 < 0 || xPositionUnit1 >= widthField) {
+            throw UpdateUnitPositionException(xPositionUnit1, yPositionUnit1, widthField - 1, heightField - 1, 1);
+        }
+        if (yPositionUnit1 < 0 || yPositionUnit1 >= heightField) {
+            throw UpdateUnitPositionException(xPositionUnit1, yPositionUnit1, widthField - 1, heightField - 1, 1);
+        }
+        if (xPositionUnit2 < 0 || xPositionUnit2 >= widthField) {
+            throw UpdateUnitPositionException(xPositionUnit2, yPositionUnit2, widthField - 1, heightField - 1, 2);
+        }
+        if (yPositionUnit2 < 0 || yPositionUnit2 >= heightField) {
+            throw UpdateUnitPositionException(xPositionUnit2, yPositionUnit2, widthField - 1, heightField - 1, 2);
+        }
 
+        if (field->getCell(xPositionUnit1, yPositionUnit1)->getUnit() == nullptr) {
+            throw CellEmptyException(xPositionUnit1, yPositionUnit1);
+        }
 
+        if (field->getCell(xPositionUnit2, yPositionUnit2)->getUnit() == nullptr) {
+            throw CellEmptyException(xPositionUnit2, yPositionUnit2);
+        }
+    }
+
+    void Game::checkAddUnit(int x, int y) {
+        if (x < 0 || x >= widthField) {
+            throw UpdateUnitPositionException(x, y, widthField - 1, heightField - 1, 1);
+        }
+        if (y < 0 || y >= heightField) {
+            throw UpdateUnitPositionException(x, y, widthField - 1, heightField - 1, 1);
+        }
     }
 
 }

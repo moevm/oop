@@ -2,8 +2,13 @@
 // Created by Alex on 01.05.2020.
 //
 
+#include <iostream>
 #include "Gamer.h"
+#include "../Exceptions/UpdateUnitPositionExeption/CellNotFreeException.h"
+
 using namespace Logging;
+using namespace MyGameException;
+
 namespace MyGame {
     Gamer::Gamer(Field *field, Logger *logger, int xPositionBase, int yPositionBase, GameSaver *gameSaver,
                  GameLoader *gameLoader, int number, int startMoney) {
@@ -42,44 +47,86 @@ namespace MyGame {
     }
 
     void Gamer::addSwordsmen(int x, int y) {
-        if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
-            base->addSwordsmen(x, y);
-            logger->logAddSwordsmen(x, y);
+        try {
+            if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
+                base->addSwordsmen(x, y);
+                logger->logAddSwordsmen(x, y);
+            } else {
+                std::cout << "x or y is incorrect !\n";
+            }
+        } catch (CellNotFreeException &ex) {
+            std::cout << "Exception in addUnit method\n";
+            std::cout << ex.what();
         }
     }
 
     void Gamer::addSpearmen(int x, int y) {
-        if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
-            base->addSpearmen(x, y);
-            logger->logAddSpearmen(x, y);
+        try {
+            if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
+                base->addSpearmen(x, y);
+                logger->logAddSpearmen(x, y);
+            } else {
+                std::cout << "x or y is incorrect !\n";
+            }
+        } catch (CellNotFreeException &ex) {
+            std::cout << "Exception in addUnit method\n";
+            std::cout << ex.what();
         }
     }
 
     void Gamer::addArcher(int x, int y) {
-        if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
-            base->addArcher(x, y);
-            logger->logAddArcher(x, y);
+        try {
+            if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
+                base->addArcher(x, y);
+                logger->logAddArcher(x, y);
+            } else {
+                std::cout << "x or y is incorrect !\n";
+            }
+        } catch (CellNotFreeException &ex) {
+            std::cout << "Exception in addUnit method\n";
+            std::cout << ex.what();
         }
     }
 
     void Gamer::addMagician(int x, int y) {
-        if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
-            base->addMagician(x, y);
-            logger->logAddMagician(x, y);
+        try {
+            if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
+                base->addMagician(x, y);
+                logger->logAddMagician(x, y);
+            } else {
+                std::cout << "x or y is incorrect !\n";
+            }
+        } catch (CellNotFreeException &ex) {
+            std::cout << "Exception in addUnit method\n";
+            std::cout << ex.what();
         }
     }
 
     void Gamer::addKing(int x, int y) {
-        if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
-            base->addKing(x, y);
-            logger->logAddKing(x, y);
+        try {
+            if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
+                base->addKing(x, y);
+                logger->logAddKing(x, y);
+            } else {
+                std::cout << "x or y is incorrect !\n";
+            }
+        } catch (CellNotFreeException &ex) {
+            std::cout << "Exception in addUnit method\n";
+            std::cout << ex.what();
         }
     }
 
     void Gamer::addKnight(int x, int y) {
-        if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
-            base->addKnight(x, y);
-            logger->logAddKnight(x, y);
+        try {
+            if (x >= 0 && x < widthField && y >= 0 && y < heightField) {
+                base->addKnight(x, y);
+                logger->logAddKnight(x, y);
+            } else {
+                std::cout << "x or y is incorrect !\n";
+            }
+        } catch (CellNotFreeException &ex) {
+            std::cout << "Exception in addUnit method\n";
+            std::cout << ex.what();
         }
     }
 

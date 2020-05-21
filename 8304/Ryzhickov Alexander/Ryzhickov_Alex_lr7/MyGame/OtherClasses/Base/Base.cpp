@@ -3,8 +3,11 @@
 //
 
 #include <iostream>
+//#include <ntgdi.h>
 #include "Base.h"
 #include "../Field/Field.h"
+#include "../../Exceptions/UpdateUnitPositionExeption/CellNotFreeException.h"
+using namespace MyGameException;
 namespace MyGame {
     Base::Base(Unit **units, int x, int y, int maxCountUnitsInGame, Field *field, int health, int money) : yPosition(y),
                                                                                                            xPosition(x),
@@ -39,6 +42,9 @@ namespace MyGame {
     }
 
     void Base::addUnit(int x, int y, Unit *unit) {
+        if(field->getCell(x,y)->getUnit()!= nullptr){
+            throw CellNotFreeException(x, y);
+        }
         if (field->getCell(x, y)->getUnit() == nullptr) {
             if (vectorDeleteUnits.empty()) {
                 units[countUnitsOnBase] = unit;
