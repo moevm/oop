@@ -14,10 +14,10 @@ public:
     explicit LoggingWindow(QWidget *parent = nullptr);
     ~LoggingWindow();
 
-    uint8_t getLoggingDirection();
-    uint8_t getLoggingMode();
-    void setLoggingDirection(uint8_t);
-    void setLoggingMode(uint8_t);
+    uint16_t getLoggingDirection();
+    uint16_t getLoggingMode();
+    void setLoggingDirection(uint16_t);
+    void setLoggingMode(uint16_t);
     bool checkAccept();
 
 private slots:
@@ -26,7 +26,7 @@ private slots:
 
 private:
     Ui::LoggingWindow *ui;
-    uint8_t loggingDirection;
-    uint8_t loggingMode;
+    uint16_t loggingDirection;
+    uint16_t loggingMode;
     bool accept;
 };

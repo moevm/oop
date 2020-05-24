@@ -65,6 +65,10 @@ void UIFacade::guiSetup()
     QString styleSheet = readStyleSheetFile(":/stylesheets/style_sheet.qss");
     application->setStyleSheet(styleSheet);
 
+    /*     STYLE SHEET     */
+    QString styleSheet = readStyleSheetFile(":/stylesheets/style_sheet.qss");
+    application->setStyleSheet(styleSheet);
+
     window->show();
 }
 
@@ -121,6 +125,7 @@ void UIFacade::addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, 
 void UIFacade::addUnitRequest(eUnitsType unitType, QString sourceBaseName)
 {
     Coords coords;
+  
     game.lock()->getBaseCoordsByName(sourceBaseName, coords);
     std::vector<size_t> coordinates;
     coordinates.push_back(coords.x);

@@ -6,9 +6,9 @@ Water::Water(Point point) : Landscape(point) {
 }
 
 bool Water::movementAccess() {
-    return true;
+    return false;
 }
 
-uint8_t Water::getObjectType() {
+uint16_t Water::getObjectType() {
     return LAND_WATER;
 }

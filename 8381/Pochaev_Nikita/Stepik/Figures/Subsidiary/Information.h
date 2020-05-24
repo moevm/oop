@@ -1,0 +1,15 @@
+#ifndef STEPIC_INFORMATION_H
+#define STEPIC_INFORMATION_H
+
+#define PRECISION 0.001
+
+enum eFIGURE
+{
+    BASIC_SHAPE,
+    POINT,
+    CIRCLE,
+    TRAPEZE,
+    RHOMBUS
+};
+
+#endif //STEPIC_INFORMATION_H

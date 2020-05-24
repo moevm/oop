@@ -5,7 +5,15 @@
 
 
 Base::Base(Point point, Player* player) : point(point), player(player), health(Health(250, 250)),
-    strength(Strength(30, 0)), armor(Armor(40)), maxUnitCount(4) {
+    strength(Strength(30, 0)), armor(Armor(40)), maxUnitCount(MAX_UNIT_COUNT_AT_BASE) {
+    player->addBase(this);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Base::Base(BaseSnapshot& snapshot, Player* player) : point(snapshot.point), player(player), health(snapshot.health),
+    strength(snapshot.strength), armor(snapshot.armor), maxUnitCount(MAX_UNIT_COUNT_AT_BASE) {
     player->addBase(this);
 
     std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
@@ -28,11 +36,11 @@ Base::~Base() {
 
 
 
-uint8_t Base::getGroupType() {
+uint16_t Base::getGroupType() {
     return BASE;
 }
 
-uint8_t Base::getObjectType() {
+uint16_t Base::getObjectType() {
     return BASE;
 }
 
@@ -86,7 +94,7 @@ bool Base::takeDamage(uint16_t damage) {
 
 
 
-void Base::produceUnit(uint8_t unitType) {
+void Base::produceUnit(uint16_t unitType) {
     if (!Game::getInstance().getGameMediator().baseProductionAccess(this))
         return;
 
@@ -120,10 +128,10 @@ void Base::removeUnit(IUnit* unit) {
 
 
 
-uint8_t Base::getUnitCount() {
+uint16_t Base::getUnitCount() {
     return unitSet.size();
 }
 
-uint8_t Base::getMaxUnitCount() {
+uint16_t Base::getMaxUnitCount() {
     return maxUnitCount;
 }

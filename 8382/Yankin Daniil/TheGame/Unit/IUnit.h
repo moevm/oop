@@ -18,8 +18,8 @@ class IUnit : public Object
 public:
     IUnit();
 
-    uint8_t getGroupType() override;
-    virtual uint8_t getUnitClass() = 0;
+    uint16_t getGroupType() override;
+    virtual uint16_t getUnitClass() = 0;
 
     virtual Player* getPlayer() = 0;
     virtual Base* getBase() = 0;
@@ -27,10 +27,10 @@ public:
     virtual uint16_t getMaxHealth() = 0;
     virtual uint16_t getHealth() = 0;
     virtual uint16_t getAttack() = 0;
-    virtual uint8_t getAttackRadius() = 0;
+    virtual uint16_t getAttackRadius() = 0;
     virtual uint16_t getArmor() = 0;
-    virtual uint8_t getMaxMovePoints() = 0;
-    virtual uint8_t getMovePoints() = 0;
+    virtual uint16_t getMaxMovePoints() = 0;
+    virtual uint16_t getMovePoints() = 0;
 
     virtual uint16_t giveDamage(IUnit* enemy) = 0;
     virtual uint16_t giveDamage(Base* enemy) = 0;
@@ -41,7 +41,7 @@ public:
 
 protected:
     virtual void setPoint(Point point) = 0;
-    virtual void setMovePoints(uint8_t points) = 0;
+    virtual void setMovePoints(uint16_t points) = 0;
 
     virtual void smallHeal(uint16_t healSize = 10) = 0;
     virtual void fullHeal() = 0;

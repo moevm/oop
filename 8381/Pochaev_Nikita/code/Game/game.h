@@ -56,6 +56,8 @@ public:
 
     size_t getPlayersCount() override;
 
+    size_t getPlayersCount();
+
     // Setters
     void createBase(eBaseType type, size_t xCoord, size_t yCoord, QString name) override;
     void createUnit(eUnitsType, size_t xCoord, size_t yCoord) override;

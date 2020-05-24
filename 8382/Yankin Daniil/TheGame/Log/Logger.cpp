@@ -4,7 +4,7 @@
 FileLogger::FileLogger(char* logFileName) {
     fileStream.open(logFileName);
     if (!fileStream.is_open())
-        throw std::runtime_error("Open LogFile error") ;
+        throw std::runtime_error("Open logFile error") ;
 }
 
 FileLogger::~FileLogger() {

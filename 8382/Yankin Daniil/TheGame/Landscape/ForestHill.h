@@ -8,5 +8,5 @@ class ForestHill : public Landscape
 public:
     ForestHill(Point point);
     bool movementAccess() override;
-    uint8_t getObjectType() override;
+    uint16_t getObjectType() override;
 };

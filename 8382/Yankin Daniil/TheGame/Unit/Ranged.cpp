@@ -1,12 +1,15 @@
 #include "Ranged.h"
 #include "Game/Game.h"
+#include "Player/Player.h"
+#include "Base/Base.h"
+#include "Unit/UnitGroup.h"
 
 
-Ranged::Ranged(Point point, Base* base) : Unit(point, base) {
+Ranged::Ranged(Point point, Base* base) : Unit(point, base) {}
+Ranged::Ranged(UnitSnapshot& snapshot, Base* base) : Unit(snapshot, base) {}
+Ranged::Ranged(UnitSnapshot& snapshot, UnitGroup* group) : Unit(snapshot, group) {}
 
-}
-
-uint8_t Ranged::getUnitClass() {
+uint16_t Ranged::getUnitClass() {
     return UNIT_RANGED;
 }
 
@@ -45,6 +48,16 @@ Archer::Archer(Point point, Base* base) : Ranged(point, base) {
     Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
 }
 
+Archer::Archer(UnitSnapshot& snapshot, Base* base) : Ranged(snapshot, base) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Archer::Archer(UnitSnapshot& snapshot, UnitGroup* group) : Ranged(snapshot, group) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
 Archer::~Archer() {
     if (!isGroup) {
         std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
@@ -52,7 +65,7 @@ Archer::~Archer() {
     }
 }
 
-uint8_t Archer::getObjectType() {
+uint16_t Archer::getObjectType() {
     return UNIT_ARCHER;
 }
 
@@ -61,7 +74,7 @@ double Archer::typeAttackModifier(Object* enemy) {
         return 1;
 
     if (enemy->getGroupType() == UNIT) {
-        uint8_t enemyType = enemy->getObjectType();
+        uint16_t enemyType = enemy->getObjectType();
         if (enemyType == UNIT_SWORDSMAN || enemyType == UNIT_CROSSBOWMAN)
             return 1.2;
 
@@ -88,6 +101,16 @@ Crossbowman::Crossbowman(Point point, Base* base) : Ranged(point, base) {
     Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
 }
 
+Crossbowman::Crossbowman(UnitSnapshot& snapshot, Base* base) : Ranged(snapshot, base) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Crossbowman::Crossbowman(UnitSnapshot& snapshot, UnitGroup* group) : Ranged(snapshot, group) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
 Crossbowman::~Crossbowman() {
     if (!isGroup) {
         std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
@@ -95,7 +118,7 @@ Crossbowman::~Crossbowman() {
     }
 }
 
-uint8_t Crossbowman::getObjectType() {
+uint16_t Crossbowman::getObjectType() {
     return UNIT_CROSSBOWMAN;
 }
 
@@ -104,7 +127,7 @@ double Crossbowman::typeAttackModifier(Object* enemy) {
         return 1;
 
     if (enemy->getGroupType() == UNIT) {
-        uint8_t enemyType = enemy->getObjectType();
+        uint16_t enemyType = enemy->getObjectType();
         if (enemyType == UNIT_SWORDSMAN || enemyType == UNIT_PIKEMAN)
             return 1.2;
 
@@ -127,6 +150,16 @@ ScoutCavalry::ScoutCavalry(Point point, Base* base) : Ranged(point, base) {
     Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
 }
 
+ScoutCavalry::ScoutCavalry(UnitSnapshot& snapshot, Base* base) : Ranged(snapshot, base) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+ScoutCavalry::ScoutCavalry(UnitSnapshot& snapshot, UnitGroup* group) : Ranged(snapshot, group) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
 ScoutCavalry::~ScoutCavalry() {
     if (!isGroup) {
         std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
@@ -134,7 +167,7 @@ ScoutCavalry::~ScoutCavalry() {
     }
 }
 
-uint8_t ScoutCavalry::getObjectType() {
+uint16_t ScoutCavalry::getObjectType() {
     return UNIT_SCOUT_CAVALRY;
 }
 
@@ -143,7 +176,7 @@ double ScoutCavalry::typeAttackModifier(Object* enemy) {
         return 1;
 
     if (enemy->getGroupType() == UNIT) {
-        uint8_t enemyType = enemy->getObjectType();
+        uint16_t enemyType = enemy->getObjectType();
         if (enemyType == UNIT_ARCHER || enemyType == UNIT_CROSSBOWMAN)
             return 1.2;
 

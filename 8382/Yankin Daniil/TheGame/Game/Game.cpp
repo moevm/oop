@@ -1,8 +1,11 @@
 #include "Game.h"
 #include "Field/Field.h"
+#include "Player/Player.h"
+#include "Player/NeutralPlayer.h"
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
 #include "Neutrals/NeutralContext.h"
+
 
 Game* Game::instance = nullptr;
 GameDestroyer Game::destroyer;
@@ -18,7 +21,7 @@ Game& Game::getInstance() {
 
 
 
-Game::Game() {
+Game::Game() : field(nullptr), neutralPlayer(nullptr) {
     gameMediator = new GameMediator(this);
     gameFacade = new GameFacade(this);
     field = nullptr;
@@ -41,93 +44,49 @@ Game::~Game() {
     delete logAdapter;
 }
 
-
-
-bool Game::initializeByFile(char* filename) {
-    // Для Game поле инициализируется лишь единожды
-    // Один Game - одно поле. А Game всегда один!
-    if (field != nullptr)
-        return false;
-
-    // Инициализация поля
-    std::ifstream stream(filename);
-    field = new Field(stream);
-
-    std::vector<int> logParameters = {field->getWidth(), field->getHeight()};
-    logAdapter->log(LOG_GAME_CREATED, logParameters);
-
-    // Добавление игроков
-    playerVector.push_back(new Player(PLAYER_BLUE));
-    playerVector.push_back(new Player(PLAYER_RED));
-    neutralPlayer = new NeutralPlayer();
-
-    // Считывание объектов
-    std::vector <std::vector <Base*>> baseVector;
-    baseVector.resize(playerVector.size());
-
-    while (!stream.eof()) {
-        uint16_t objectType;
-        uint16_t x;
-        uint16_t y;
-
-        stream >> objectType >> x >> y;
-
-        // Это юниты
-        if (objectType >= UNIT_SWORDSMAN && objectType <= UNIT_RAM) {
-            uint16_t playerColor;
-            stream >> playerColor;
-
-            Player* player = getPlayerOfColor(playerColor);
-            Point point(x, y);
-
-            if (player != nullptr && field->isUnitFree(point)) {
-                uint16_t baseNumber;
-                stream >> baseNumber;
-
-                if (baseNumber < baseVector[playerColor].size()) {
-                    UnitFactory factory;
-                    Unit* unit = factory.produce(objectType, point, baseVector[playerColor][baseNumber]);
-                    field->setUnit(point, unit);
-                }
-            }
-        }
-
-        // А это базы
-        else if (objectType == BASE) {
-            uint16_t playerColor;
-            stream >> playerColor;
-
-            Player* player = getPlayerOfColor(playerColor);
-            Point point(x, y);
-
-            if (player != nullptr && field->isBuildingFree(point)) {
-                Base* base = new Base(point, player);
-                field->setBase(point, base);
-
-                baseVector[playerColor].push_back(base);
-            }
-        }
-
-        // А это нейтральные объекты
-        else if (objectType == NEUT_OBJECT) {
-            Point point(x, y);
-
-            if (field->isBuildingFree(point)) {
-                NeutralContext* context = new NeutralContext(Point(x, y), neutralPlayer);
-                field->setContext(point, context);
-            }
-        }
-
-        stream.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+int Game::save(std::string& fileName) {
+    if (field == nullptr) {
+        return 2;
     }
 
-    stream.close();
-
-    // Конец считывания
-
-    return true;
+    try {
+        Game::Saver saver(fileName);
+        return saver.save(*this);
+    }
+    catch(std::runtime_error error) {
+        return 3;
+    }
 }
 
+int Game::load(std::string& fileName) {
+    gameFacade->clear();
+
+    for (auto player = playerVector.begin(); player != playerVector.end(); player++) {
+        delete (*player);
+    }
+    playerVector.clear();
+
+    delete neutralPlayer;
+    neutralPlayer = nullptr;
+
+    delete field;
+    field = nullptr;
+
+    try {
+        Game::Loader loader(fileName);
+        return loader.load(*this);
+    }
+    catch(std::runtime_error error) {
+        return 3;
+    }
+}
+
+bool Game::exist() {
+    if (field)
+        return true;
+    else
+        return false;
+}
 
 
 GameMediator& Game::getGameMediator() {
@@ -140,7 +99,7 @@ GameFacade& Game::getGameFacade() {
 
 
 
-Player* Game::getPlayerOfColor(uint8_t color) {
+Player* Game::getPlayerOfColor(uint16_t color) {
     for (auto iter = playerVector.begin(); iter != playerVector.end(); iter++) {
         if ((*iter)->getColor() == color) {
             return *iter;

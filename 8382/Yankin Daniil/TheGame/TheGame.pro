@@ -14,14 +14,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     Base/Base.cpp \
+    Base/BaseSnapshot.cpp \
     Command/Command.cpp \
     Field/Cell.cpp \
     Field/Field.cpp \
     Field/FieldIterator.cpp \
+    Field/FieldSnapshot.cpp \
     Game/Game.cpp \
     Game/GameDestroyer.cpp \
     Game/GameFacade.cpp \
     Game/GameMediator.cpp \
+    Game/Loader.cpp \
+    Game/Saver.cpp \
     Handler/RouteHandler.cpp \
     Handler/UnitActionHandler.cpp \
     Handler/UnitBaseAttackHandler.cpp \
@@ -46,10 +50,13 @@ SOURCES += main.cpp\
     Log/Time.cpp \
     Neutrals/NeutralContext.cpp \
     Neutrals/NeutralObject.cpp \
+    Neutrals/NeutralSnapshot.cpp \
     Player/NeutralPlayer.cpp \
     Player/Player.cpp \
+    Player/PlayerSnapshot.cpp \
     Trivia/Attributes.cpp \
     Trivia/Point.cpp \
+    Trivia/Snapshot.cpp \
     UI/AttributeWidget.cpp \
     UI/BaseWidget.cpp \
     UI/LoggingWindow.cpp \
@@ -64,7 +71,9 @@ SOURCES += main.cpp\
     Unit/SiegeEngine.cpp \
     Unit/Unit.cpp \
     Unit/UnitFactory.cpp \
-    Unit/UnitGroup.cpp
+    Unit/UnitGroup.cpp \
+    Unit/UnitGroupSnapshot.cpp \
+    Unit/UnitSnapshot.cpp
 
 HEADERS  += \
     Base/Base.h \
@@ -107,6 +116,7 @@ HEADERS  += \
     Player/Player.h \
     Trivia/Attributes.h \
     Trivia/Point.h \
+    Trivia/Snapshot.h \
     UI/AttributeWidget.h \
     UI/BaseWidget.h \
     UI/LoggingWindow.h \

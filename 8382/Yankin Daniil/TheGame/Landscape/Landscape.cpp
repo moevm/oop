@@ -7,6 +7,6 @@ Point Landscape::getPoint() {
     return point;
 }
 
-int8_t Landscape::getMovementCost() {
+int16_t Landscape::getMovementCost() {
     return movementCost;
 }

@@ -1,14 +1,15 @@
 #include "SiegeEngine.h"
 #include "Game/Game.h"
+#include "Player/Player.h"
+#include "Base/Base.h"
+#include "Unit/UnitGroup.h"
 
 
-/* SIEGE SIEGE SIEGE SIEGE SIEGE SIEGE SIEGE SIEGE SIEGE SIEGE */
+SiegeEngine::SiegeEngine(Point point, Base* base) : Unit(point, base) {}
+SiegeEngine::SiegeEngine(UnitSnapshot& snapshot, Base* base) : Unit(snapshot, base) {}
+SiegeEngine::SiegeEngine(UnitSnapshot& snapshot, UnitGroup* group) : Unit(snapshot, group) {}
 
-SiegeEngine::SiegeEngine(Point point, Base* base) : Unit(point, base) {
-
-}
-
-uint8_t SiegeEngine::getUnitClass() {
+uint16_t SiegeEngine::getUnitClass() {
     return UNIT_SIEGE_ENGINE;
 }
 
@@ -47,6 +48,16 @@ Catapult::Catapult(Point point, Base* base) : SiegeEngine(point, base) {
     Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
 }
 
+Catapult::Catapult(UnitSnapshot& snapshot, Base* base) : SiegeEngine(snapshot, base) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Catapult::Catapult(UnitSnapshot& snapshot, UnitGroup* group) : SiegeEngine(snapshot, group) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
 Catapult::~Catapult() {
     if (!isGroup) {
         std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
@@ -54,7 +65,7 @@ Catapult::~Catapult() {
     }
 }
 
-uint8_t Catapult::getObjectType() {
+uint16_t Catapult::getObjectType() {
     return UNIT_CATAPULT;
 }
 
@@ -63,7 +74,7 @@ double Catapult::typeAttackModifier(Object* enemy) {
         return 1;
 
     if (enemy->getGroupType() == UNIT) {
-        uint8_t enemyType = enemy->getObjectType();
+        uint16_t enemyType = enemy->getObjectType();
         if (enemyType == UNIT_SWORDSMAN || enemyType == UNIT_PIKEMAN || enemyType == UNIT_CATAPULT || enemyType == UNIT_RAM)
             return 1.2;
 
@@ -86,6 +97,16 @@ Ram::Ram(Point point, Base* base) : SiegeEngine(point, base) {
     Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
 }
 
+Ram::Ram(UnitSnapshot& snapshot, Base* base) : SiegeEngine(snapshot, base) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
+Ram::Ram(UnitSnapshot& snapshot, UnitGroup* group) : SiegeEngine(snapshot, group) {
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
+    Game::getInstance().getLogAdapter().log(LOG_PLOBJECT_CREATED, logParameters);
+}
+
 Ram::~Ram() {
     if (!isGroup) {
         std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
@@ -93,7 +114,7 @@ Ram::~Ram() {
     }
 }
 
-uint8_t Ram::getObjectType() {
+uint16_t Ram::getObjectType() {
     return UNIT_RAM;
 }
 
@@ -102,7 +123,7 @@ double Ram::typeAttackModifier(Object* enemy) {
         return 1;
 
     if (enemy->getGroupType() == UNIT) {
-        uint8_t enemyType = enemy->getObjectType();
+        uint16_t enemyType = enemy->getObjectType();
         if (enemyType == UNIT_CATAPULT || enemyType == UNIT_RAM)
             return 2;
 

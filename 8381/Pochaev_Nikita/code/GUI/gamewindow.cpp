@@ -128,7 +128,7 @@ void GameWindow::setupGameWindow()
     RoadMap->setReadOnly(true);
     RoadMap->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     RoadMap->viewport()->setCursor(Qt::ArrowCursor);
-
+  
     // LAYOUTS
 
     // unit
@@ -197,7 +197,6 @@ void GameWindow::setupGameWindow()
     playersStepLayout->addWidget(passTheMovePushButton);
     playersStepLayout->addWidget(currentTimeLabel);
     playersStepLayout->setAlignment(Qt::AlignCenter);
-
     // menu bar
     QMenu *menu = menuBar->addMenu("File");
     saveMenuBarButton = menu->addAction("Save");

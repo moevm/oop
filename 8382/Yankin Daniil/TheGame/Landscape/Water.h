@@ -8,5 +8,5 @@ class Water : public Landscape
 public:
     Water(Point point);
     bool movementAccess() override;
-    uint8_t getObjectType() override;
+    uint16_t getObjectType() override;
 };

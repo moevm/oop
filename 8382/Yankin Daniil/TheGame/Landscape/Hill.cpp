@@ -9,6 +9,6 @@ bool Hill::movementAccess() {
     return true;
 }
 
-uint8_t Hill::getObjectType() {
+uint16_t Hill::getObjectType() {
     return LAND_HILL;
 }

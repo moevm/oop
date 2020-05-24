@@ -65,7 +65,6 @@ private slots:
 
 signals:
     void startNewGameWindow(size_t gameFieldSize, size_t playersCount, int screenWidth, int screenHeight, GAME_RULES_TYPE type);
-    void startLogging(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
 };
 
 #endif // MAINWINDOW_H
