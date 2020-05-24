@@ -12,33 +12,33 @@ unitAttackFacadeMediator::unitAttackFacadeMediator(std::shared_ptr<Game> game_, 
 unitMoveFacadeMediator::unitMoveFacadeMediator(std::shared_ptr<Game> game_, std::shared_ptr<Command> command_, std::shared_ptr<UIFacade> facade_) :
     FacadeMediator(game_, command_, facade_) { }
 
-std::string FacadeMediator::sendRequest(std::vector<size_t> param, eUnitsType unitType, eBaseType baseType)
+std::string FacadeMediator::sendRequest([[maybe_unused]] std::vector<size_t> param, [[maybe_unused]] eUnitsType unitType, [[maybe_unused]] eBaseType baseType)
 {
     return "Nothing was done!";
 }
 
-std::string addUnitFacadeMediator::sendRequest(std::vector<size_t> param, eUnitsType unitType, eBaseType baseType)
+std::string addUnitFacadeMediator::sendRequest(std::vector<size_t> param, eUnitsType unitType, [[maybe_unused]] eBaseType baseType)
 {
     game->createUnit(unitType, param[0], param[1]);
     facade->receiveStrAnswer("Unit was successfully created!");
     return "Unit was successfully created!";
 }
 
-std::string unitAttackFacadeMediator::sendRequest(std::vector<size_t> param, eUnitsType unitType, eBaseType baseType)
+std::string unitAttackFacadeMediator::sendRequest(std::vector<size_t> param, [[maybe_unused]] eUnitsType unitType, [[maybe_unused]] eBaseType baseType)
 {
     game->unitAttack(param[0], param[1], param[2], param[3]);
     facade->receiveStrAnswer("Unit was successfully created!");
     return "Unit attack has been successful";
 }
 
-std::string unitMoveFacadeMediator::sendRequest(std::vector<size_t> param, eUnitsType unitType, eBaseType baseType)
+std::string unitMoveFacadeMediator::sendRequest(std::vector<size_t> param, [[maybe_unused]] eUnitsType unitType, [[maybe_unused]] eBaseType baseType)
 {
     game->moveUnit(param[0], param[1], param[2], param[3]);
     facade->receiveStrAnswer("Unit was successfully created!");
     return "Unit movement was successfully completed";
 }
 
-std::string FacadeMediator::sendInfoRequest(eRequest request, size_t x, size_t y)
+std::string FacadeMediator::sendInfoRequest([[maybe_unused]] eRequest request, size_t x, size_t y)
 {
     if(GAME_INFO)
     {

@@ -2,6 +2,8 @@
 #define OOP_CELL_H
 
 #include <memory>
+#include "AuxiliaryFunctionality/Exceptions/fieldexception.h"
+
 #include "Units/Unit.h"
 #include "Landscape/Landscape.h"
 #include "Bases/GameBase.h"

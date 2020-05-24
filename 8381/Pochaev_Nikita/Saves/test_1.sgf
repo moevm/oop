@@ -1,0 +1,312 @@
+!--GAME SAVE--!
+1
+2
+test 3 1
+test2 0 5
+!--FIELD_PROXY--!
+225
+0 0 Champaign
+0 1 Champaign
+0 2 Champaign
+0 3 Champaign
+0 4 Champaign
+0 5 Mountains
+0 6 Champaign
+0 7 Champaign
+0 8 Champaign
+0 9 Forest
+0 10 Mountains
+0 11 Champaign
+0 12 Forest
+0 13 Champaign
+0 14 Champaign
+1 0 Champaign
+1 1 Champaign
+1 2 Champaign
+1 3 Champaign
+1 4 Champaign
+1 5 Mountains
+1 6 Champaign
+1 7 Champaign
+1 8 Champaign
+1 9 Forest
+1 10 Mountains
+1 11 Champaign
+1 12 Forest
+1 13 Champaign
+1 14 Champaign
+2 0 Champaign
+2 1 Champaign
+2 2 Champaign
+2 3 Forest
+2 4 Champaign
+2 5 Champaign
+2 6 Champaign
+2 7 Champaign
+2 8 Champaign
+2 9 Forest
+2 10 Champaign
+2 11 Champaign
+2 12 Champaign
+2 13 Champaign
+2 14 Champaign
+3 0 Champaign
+3 1 Champaign
+3 2 Champaign
+3 3 Forest
+3 4 Champaign
+3 5 Champaign
+3 6 Forest
+3 7 Champaign
+3 8 Champaign
+3 9 Forest
+3 10 Champaign
+3 11 Champaign
+3 12 Champaign
+3 13 Champaign
+3 14 Champaign
+4 0 Champaign
+4 1 Champaign
+4 2 Champaign
+4 3 Champaign
+4 4 Champaign
+4 5 Champaign
+4 6 Forest
+4 7 Champaign
+4 8 Champaign
+4 9 Forest
+4 10 Champaign
+4 11 Champaign
+4 12 Forest
+4 13 Champaign
+4 14 Champaign
+5 0 Champaign
+5 1 Champaign
+5 2 Champaign
+5 3 Forest
+5 4 Champaign
+5 5 Champaign
+5 6 Forest
+5 7 Champaign
+5 8 Champaign
+5 9 Champaign
+5 10 Mountains
+5 11 Champaign
+5 12 Forest
+5 13 Champaign
+5 14 Champaign
+6 0 Champaign
+6 1 Champaign
+6 2 Champaign
+6 3 Champaign
+6 4 Champaign
+6 5 Champaign
+6 6 Champaign
+6 7 Champaign
+6 8 Champaign
+6 9 Champaign
+6 10 Mountains
+6 11 Champaign
+6 12 Forest
+6 13 Champaign
+6 14 Champaign
+7 0 Champaign
+7 1 Champaign
+7 2 Champaign
+7 3 Forest
+7 4 Champaign
+7 5 Mountains
+7 6 Forest
+7 7 Champaign
+7 8 Champaign
+7 9 Champaign
+7 10 Mountains
+7 11 Champaign
+7 12 Forest
+7 13 Champaign
+7 14 Champaign
+8 0 Champaign
+8 1 Champaign
+8 2 Champaign
+8 3 Champaign
+8 4 Champaign
+8 5 Champaign
+8 6 Forest
+8 7 Champaign
+8 8 Champaign
+8 9 Forest
+8 10 Mountains
+8 11 Champaign
+8 12 Forest
+8 13 Champaign
+8 14 Champaign
+9 0 Champaign
+9 1 Champaign
+9 2 Champaign
+9 3 Forest
+9 4 Champaign
+9 5 Champaign
+9 6 Champaign
+9 7 Champaign
+9 8 Champaign
+9 9 Champaign
+9 10 Champaign
+9 11 Champaign
+9 12 Champaign
+9 13 Champaign
+9 14 Champaign
+10 0 Champaign
+10 1 Champaign
+10 2 Champaign
+10 3 Forest
+10 4 Champaign
+10 5 Mountains
+10 6 Forest
+10 7 Champaign
+10 8 Champaign
+10 9 Forest
+10 10 Mountains
+10 11 Champaign
+10 12 Champaign
+10 13 Champaign
+10 14 Champaign
+11 0 Champaign
+11 1 Champaign
+11 2 Champaign
+11 3 Forest
+11 4 Champaign
+11 5 Mountains
+11 6 Forest
+11 7 Champaign
+11 8 Champaign
+11 9 Forest
+11 10 Champaign
+11 11 Champaign
+11 12 Champaign
+11 13 Champaign
+11 14 Champaign
+12 0 Champaign
+12 1 Champaign
+12 2 Champaign
+12 3 Champaign
+12 4 Champaign
+12 5 Mountains
+12 6 Forest
+12 7 Champaign
+12 8 Champaign
+12 9 Forest
+12 10 Champaign
+12 11 Champaign
+12 12 Champaign
+12 13 Champaign
+12 14 Champaign
+13 0 Champaign
+13 1 Champaign
+13 2 Champaign
+13 3 Champaign
+13 4 Champaign
+13 5 Champaign
+13 6 Champaign
+13 7 Champaign
+13 8 Champaign
+13 9 Forest
+13 10 Mountains
+13 11 Champaign
+13 12 Forest
+13 13 Champaign
+13 14 Champaign
+14 0 Champaign
+14 1 Champaign
+14 2 Champaign
+14 3 Forest
+14 4 Champaign
+14 5 Champaign
+14 6 Champaign
+14 7 Champaign
+14 8 Champaign
+14 9 Forest
+14 10 Mountains
+14 11 Champaign
+14 12 Champaign
+14 13 Champaign
+14 14 Champaign
+30
+0 7 Legendary weapon
+0 14 Legendary weapon
+1 7 Energy potion
+1 14 Poison
+2 7 Enchanted robe
+2 14 Legendary weapon
+3 7 Poison
+3 14 Legendary weapon
+4 7 Poison
+4 14 Poison
+5 7 Enchanted robe
+5 14 Legendary weapon
+6 7 Energy potion
+6 14 Legendary weapon
+7 7 Legendary weapon
+7 14 Poison
+8 7 Energy potion
+8 14 Enchanted robe
+9 7 Legendary weapon
+9 14 Energy potion
+10 7 Energy potion
+10 14 Legendary weapon
+11 7 Enchanted robe
+11 14 Enchanted robe
+12 7 Enchanted robe
+12 14 Poison
+13 7 Poison
+13 14 Enchanted robe
+14 7 Legendary weapon
+14 14 Poison
+!--FIELD--!
+2
+225
+2
+2
+15
+15
+!--BASES--!
+{
+0 5
+20
+2
+2 : 25;0
+3 : 15;1
+4 : 15;0
+5 : 7;0
+6 : 5;0
+3 1
+20
+2
+2 : 25;0
+3 : 15;0
+4 : 15;0
+5 : 7;1
+6 : 5;0
+}
+!--UNITS--!
+{
+1 5
+3
+
+10
+15
+7
+2
+2
+1 5
+0 5
+3 1
+5
+
+15
+5
+1
+1
+2
+3 1
+3 1
+}

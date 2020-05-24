@@ -58,27 +58,7 @@ Field::Field(uint16_t width, uint16_t height, std::vector<std::vector<uint16_t>>
     for (auto i = 0; i < height; i++) {
         cellArray[i] = new Cell[width];
     }
-/*
-    // Боковые клетки устанавливаются водой
-    for (auto i = 0; i < height; i++) {
-        if (i < WATER_FRAME_SIZE || i > height - WATER_FRAME_SIZE) {
-            for (auto j = 0; j < width; j++) {
-                LandscapeFactory factory;
-                cellArray[i][j] = Cell(Point(j, i), factory.produce(LAND_WATER, Point(j, i)));
-            }
-        }
-        else {
-            for (auto j = 0; j < WATER_FRAME_SIZE; j++) {
-                LandscapeFactory factory;
-                cellArray[i][j] = Cell(Point(j, i), factory.produce(LAND_WATER, Point(j, i)));
-            }
-            for (auto j = width - WATER_FRAME_SIZE; j < width; j++) {
-                LandscapeFactory factory;
-                cellArray[i][j] = Cell(Point(j, i), factory.produce(LAND_WATER, Point(j, i)));
-            }
-        }
-    }
-*/
+  
     // Остальные генератором псевдослучайных чисел
     // 0 - любое
     // 1 - проходимые

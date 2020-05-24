@@ -1,4 +1,4 @@
-﻿#include "GameFacade.h"
+#include "GameFacade.h"
 #include "Game.h"
 #include "GameInfo.h"
 #include "Command/Command.h"

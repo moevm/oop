@@ -63,11 +63,11 @@ void GameField::addUnit(const std::shared_ptr<Unit>& unit, size_t x, size_t y)
 {
     if(unitsCount + unit->getUnitQuantity() > maxUnitsCount)
     {
-        throw std::length_error("Fields units limit reached");
+        throw SimpleFieldException("fields units limit reached");
     }
     else if(x > cellMatrix.getWidth() || y > cellMatrix.getHeight())
     {
-        throw std::out_of_range("Coords are not part of the field");
+        throw CoordsNotPartOfTheField(x, y, getWidth(), getHeight());
     }
     else if(cellMatrix[x][y]->isUnitFree())
     {
@@ -86,7 +86,7 @@ void GameField::addUnit(const std::shared_ptr<Unit>& unit, size_t x, size_t y)
     }
     else
     {
-        throw std::invalid_argument("Field cell is already busy");
+        throw FieldBusyCellException(x, y);
     }
 }
 
@@ -102,11 +102,11 @@ void GameField::addBase(const std::shared_ptr<GameBase> &base, size_t x, size_t 
     // TODO: проверки на ландшафт
     if(baseCount >= maxBaseCount)
     {
-        throw std::length_error("Fields bases limit reached");
+        throw SimpleFieldException("fields bases limit reached");
     }
-    else if(x > cellMatrix.getWidth() || y > cellMatrix.getHeight())
+    else if(x + 1 > cellMatrix.getWidth() || y + 1 > cellMatrix.getHeight())
     {
-        throw std::out_of_range("Coords are not part of the field");
+        throw CoordsNotPartOfTheField(x, y, getWidth(), getHeight());
     }
     else if(cellMatrix[x][y]->isUnitFree() && cellMatrix[x][y]->isBaseFree())
     {
@@ -198,12 +198,12 @@ void GameField::moveUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y)
         }
         else
         {
-            throw std::invalid_argument("Field cell is busy");
+            throw FieldBusyCellException(x, y);
         }
     }
     else
     {
-        throw std::out_of_range("Coords are not in Game Field size");
+        throw CoordsNotPartOfTheField(x, y, getWidth(), getHeight());
     }
 }
 
@@ -254,7 +254,7 @@ void GameField::meleeAttackUnit(std::shared_ptr<Unit> &sender, size_t x, size_t 
     }
     else
     {
-        throw std::out_of_range("Coords are not in Game Field size");
+        throw CoordsNotPartOfTheField(x, y, getWidth(), getHeight());
     }
 }
 
@@ -286,6 +286,11 @@ std::shared_ptr<GameBase> GameField::getBaseByCoords(size_t x, size_t y)
     return cellMatrix[x][y]->getBaseByCoords();
 }
 
+std::shared_ptr<Unit> GameField::getUnitByCoords(size_t x, size_t y)
+{
+    return cellMatrix[x][y]->getUnitByCoords();
+}
+
 void GameField::moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest)
 {
     std::shared_ptr<Unit> tempUnit = cellMatrix[xSource][ySource]->getUnitByCoords();
@@ -300,4 +305,76 @@ std::string GameField::getInfAboutBase(size_t xDest, size_t yDest)
 std::string GameField::getInfAboutUnit(size_t xDest, size_t yDest)
 {
     return cellMatrix[xDest][yDest]->getUnitByCoords()->getUnitInf();
+}
+
+std::shared_ptr<FieldParametersMemento> GameField::createMemento()
+{
+    std::shared_ptr<FieldParametersMemento> memento = std::make_shared<FieldParametersMemento>();
+    memento->unitsCount = unitsCount;
+    memento->maxUnitsCount = maxUnitsCount;
+    memento->baseCount = baseCount;
+    memento->maxBaseCount = maxBaseCount;
+    memento->width = width;
+    memento->height = height;
+
+    for(size_t i = 0; i < cellMatrix.getWidth(); ++i)
+    {
+        for(size_t j = 0; j < cellMatrix.getHeight(); ++j)
+        {
+            if(!cellMatrix[i][j]->isBaseFree())
+            {
+                memento->bases.insert(std::pair(Coords(i, j), cellMatrix[i][j]->getBaseByCoords()->createMemento()));
+            }
+            if(!cellMatrix[i][j]->isUnitFree())
+            {
+                memento->units.insert(std::pair(Coords(i, j), cellMatrix[i][j]->getUnitByCoords()->createMemento()));
+            }
+        }
+    }
+
+    return memento;
+}
+
+void GameField::restoreMemento(std::shared_ptr<FieldParametersMemento> memento)
+{
+    unitsCount = memento->unitsCount;
+    maxUnitsCount = memento->maxUnitsCount;
+    baseCount = memento->maxUnitsCount;
+    maxBaseCount = memento->maxBaseCount;
+    width = memento->width;
+    height = memento->height;
+
+    BaseMaster master;
+    HellBaseBuilder hellBaseBuilder;
+    HumanBaseBuilder humanBaseBuilder;
+    std::map<Coords, std::shared_ptr<BaseParametersCaretaker>>::iterator basesIter;
+    for(basesIter = memento->bases.begin(); basesIter != memento->bases.end(); ++basesIter)
+    {
+        size_t x = basesIter->first.x;
+        size_t y = basesIter->first.y;
+        switch(basesIter->second->type)
+        {
+            case HELL_BASE:
+                master.setBaseBuilder(&hellBaseBuilder);
+                break;
+            case HUMAN_BASE:
+                master.setBaseBuilder(&humanBaseBuilder);
+            case NONE_BASE:
+                return;
+        }
+        master.constructBase();
+        cellMatrix[x][y]->addBase(master.getBase());
+        cellMatrix[x][y]->getBaseByCoords()->restoreMemento(basesIter->second);
+    }
+
+    std::map<Coords, std::shared_ptr<UnitParametersMemento>>::iterator unitIter;
+    for(unitIter = memento->units.begin(); unitIter != memento->units.end(); ++unitIter)
+    {
+        size_t x = unitIter->first.x;
+        size_t y = unitIter->first.y;
+        eUnitsType type = unitIter->second->type;
+        std::shared_ptr<Unit> restUnit = cellMatrix[unitIter->second->creationBaseCoords.x][unitIter->second->creationBaseCoords.y]->getBaseByCoords()->getUnit(type);
+        restUnit->restoreMemento(unitIter->second);
+        addUnit(restUnit, x, y);
+    }
 }

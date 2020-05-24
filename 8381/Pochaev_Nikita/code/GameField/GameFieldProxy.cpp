@@ -1,6 +1,6 @@
 ﻿#include "GameFieldProxy.h"
 
-GameFieldProxy::GameFieldProxy(size_t width_, size_t height_)
+GameFieldProxy::GameFieldProxy(size_t width_, size_t height_, bool fill)
 {
     field = std::make_shared<GameField>(width_, height_);
 
@@ -9,6 +9,12 @@ GameFieldProxy::GameFieldProxy(size_t width_, size_t height_)
 
     initNeutralObjectFabric();
     initArtifactMap();
+
+    if(fill)
+    {
+        fillTerrainByRandom();
+        fillArtifactMapByRandom();
+    }
 
     context = std::make_unique<NeutralObjectContext>();
 }
@@ -100,7 +106,10 @@ void GameFieldProxy::initTerrain()
             ("Forest", landscapeFabric.create("Forest")));
     landscapeTypes.insert(std::make_pair<std::string, std::shared_ptr<Landscape>>
             ("Mountains", landscapeFabric.create("Mountains")));
+}
 
+void GameFieldProxy::fillTerrainByRandom()
+{
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(0, LANDSCAPE_GENERATION_RAND);
@@ -108,13 +117,6 @@ void GameFieldProxy::initTerrain()
     {
         for(size_t j = 0; j < field->getWidth(); j++)
         {
-            // FIXME: DELETE IT - JUST FOR TEST!!!
-            if(i == 2 && j == 1)
-            {
-                terrain.insert(std::make_pair(Coords(i, j), landscapeTypes["Mountains"]));
-                continue;
-            }
-
             if(j % 3 == 0 && dist(mt) == 1 && j != 0)
             {
                 terrain.insert(std::make_pair(Coords(i, j), landscapeTypes["Forest"]));
@@ -131,25 +133,8 @@ void GameFieldProxy::initTerrain()
     }
 }
 
-void GameFieldProxy::initNeutralObjectFabric()
+void GameFieldProxy::fillArtifactMapByRandom()
 {
-    neutralObjectFabric.add<EnchantedRobe>("Enchanted Robe");
-    neutralObjectFabric.add<EnergyPotion>("Energy Potion");
-    neutralObjectFabric.add<LegendaryWeapon>("Legendary Weapon");
-    neutralObjectFabric.add<Poison>("Poison");
-}
-
-void GameFieldProxy::initArtifactMap()
-{
-    neutralObjectTypes.insert(std::make_pair<std::string, std::shared_ptr<NeutralObject>>
-            ("Enchanted Robe", neutralObjectFabric.create("Enchanted Robe")));
-    neutralObjectTypes.insert(std::make_pair<std::string, std::shared_ptr<NeutralObject>>
-            ("Energy Potion", neutralObjectFabric.create("Energy Potion")));
-    neutralObjectTypes.insert(std::make_pair<std::string, std::shared_ptr<NeutralObject>>
-                                      ("Legendary Weapon", neutralObjectFabric.create("Legendary Weapon")));
-    neutralObjectTypes.insert(std::make_pair<std::string, std::shared_ptr<NeutralObject>>
-                                      ("Poison", neutralObjectFabric.create("Poison")));
-
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(1, NEUTRAL_OBJECT_GENERATION_RAND);
@@ -157,12 +142,6 @@ void GameFieldProxy::initArtifactMap()
     {
         for (size_t j = 0; j < field->getWidth(); j++)
         {
-            // FIXME: DELETE IT - JUST FOR TEST!!!
-            if(i == 2 && j == 2)
-            {
-                artifactMap.insert(std::make_pair(Coords(i, j), neutralObjectTypes["Legendary Weapon"]));
-            }
-
             if(j % 7 == 0 && j != 0)
             {
                 switch (dist(mt))
@@ -187,6 +166,26 @@ void GameFieldProxy::initArtifactMap()
             }
         }
     }
+}
+
+void GameFieldProxy::initNeutralObjectFabric()
+{
+    neutralObjectFabric.add<EnchantedRobe>("Enchanted Robe");
+    neutralObjectFabric.add<EnergyPotion>("Energy Potion");
+    neutralObjectFabric.add<LegendaryWeapon>("Legendary Weapon");
+    neutralObjectFabric.add<Poison>("Poison");
+}
+
+void GameFieldProxy::initArtifactMap()
+{
+    neutralObjectTypes.insert(std::make_pair<std::string, std::shared_ptr<NeutralObject>>
+            ("Enchanted Robe", neutralObjectFabric.create("Enchanted Robe")));
+    neutralObjectTypes.insert(std::make_pair<std::string, std::shared_ptr<NeutralObject>>
+            ("Energy Potion", neutralObjectFabric.create("Energy Potion")));
+    neutralObjectTypes.insert(std::make_pair<std::string, std::shared_ptr<NeutralObject>>
+                                      ("Legendary Weapon", neutralObjectFabric.create("Legendary Weapon")));
+    neutralObjectTypes.insert(std::make_pair<std::string, std::shared_ptr<NeutralObject>>
+                                      ("Poison", neutralObjectFabric.create("Poison")));
 }
 
 void GameFieldProxy::meleeAttackUnit(std::shared_ptr<Unit> &sender, size_t x, size_t y)
@@ -221,6 +220,11 @@ std::shared_ptr<GameBase> GameFieldProxy::getBaseByCoords(size_t x, size_t y)
     return field->getBaseByCoords(x, y);
 }
 
+std::shared_ptr<Unit> GameFieldProxy::getUnitByCoords(size_t x, size_t y)
+{
+    return field->getUnitByCoords(x, y);
+}
+
 void GameFieldProxy::moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDest)
 {
     field->moveUnit(xSource, ySource, xDest, yDest);
@@ -239,4 +243,37 @@ std::string GameFieldProxy::getInfAboutBase(size_t xDest, size_t yDest)
 std::string GameFieldProxy::getInfAboutUnit(size_t xDest, size_t yDest)
 {
     return field->getInfAboutUnit(xDest, yDest);
+}
+
+std::shared_ptr<FieldProxyParametersMemento> GameFieldProxy::createMemento()
+{
+    std::shared_ptr<FieldProxyParametersMemento> memento = std::make_shared<FieldProxyParametersMemento>();
+
+    memento->fieldParam = field->createMemento();
+
+    for(const auto& curr : terrain)
+    {
+        memento->landscape.insert(std::pair(Coords(curr.first.x, curr.first.y), curr.second->getNameOfLandscape()));
+    }
+    for(const auto& curr : artifactMap)
+    {
+        if(curr.second == nullptr) continue;
+        memento->neutralObjects.insert(std::pair(Coords(curr.first.x, curr.first.y), curr.second->getNameOfNeutralObject()));
+    }
+
+    return memento;
+}
+
+void GameFieldProxy::restoreMemento(std::shared_ptr<FieldProxyParametersMemento> memento)
+{
+    field->restoreMemento(memento->fieldParam);
+
+    for(const auto& curr : memento->landscape)
+    {
+        terrain.insert(std::pair(curr.first, landscapeTypes[curr.second]));
+    }
+    for(const auto& curr : memento->neutralObjects)
+    {
+        artifactMap.insert(std::pair(curr.first, neutralObjectTypes[curr.second]));
+    }
 }

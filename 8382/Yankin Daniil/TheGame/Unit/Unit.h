@@ -93,6 +93,25 @@ private:
 };
 
 
+class Unit::UnitSnapshot : public Snapshot {
+    friend class Unit;
+
+public:
+    UnitSnapshot(Unit& unit);
+    UnitSnapshot(std::ifstream& stream);
+    friend std::ofstream& operator<<(std::ofstream& stream, const Unit::UnitSnapshot& snapshot);
+    uint16_t getObjectType() const;
+
+private:
+    uint16_t objectType;
+    Point point;
+    Health health;
+    Strength strength;
+    Armor armor;
+    MovePoints movePoints;
+};
+
+
 enum UnitClasses {
     UNIT_MELEE,
     UNIT_RANGED,

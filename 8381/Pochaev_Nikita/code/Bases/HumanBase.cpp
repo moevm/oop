@@ -12,3 +12,8 @@ std::string HumanBase::getInformationAbout()
 {
     return "I'm Human Base!\nCurrent Health is: " + std::to_string(health) + "\n" + unitCount->getTotalInformation();
 }
+
+eBaseType HumanBase::getBaseType()
+{
+    return HUMAN_BASE;
+}

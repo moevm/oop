@@ -10,6 +10,7 @@ class HellBase : public GameBase
 public:
     HellBase() = default;
     ~HellBase() override = default;
+    eBaseType getBaseType() override;
     void describeYourself() override;
     std::string getInformationAbout() override;
 };
