@@ -1,0 +1,121 @@
+Field:
+9
+Units:
+EI0 50 12 10
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+OR0 100 8 10
+
+--- 50 25 5
+EA0 50 12 10
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+OD0 100 8 10
+--- 50 25 5
+
+EA1 50 12 10
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+OD1 100 8 10
+
+--- 50 25 5
+MS0 25 50 10
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+OD2 100 8 10
+--- 50 25 5
+
+MW0 25 50 3
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+OR1 100 8 10
+
+### 50 25 5
+### 50 25 5
+### 50 25 5
+### 50 25 5
+OR2 100 8 10
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+### 50 0 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+
+--- 50 0 10
+EA3 50 0 10
+--- 50 25 5
+### 50 0 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+
+EA2 50 0 10
+--- 50 25 5
+--- 50 25 5
+### 50 0 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+--- 50 25 5
+
+Landscape:
+forest forest forest forest burningE burningE burningE burningE burningE 
+forest forest forest forest burningE burningE burningE burningE burningE 
+forest forest forest forest burningE burningE burningE burningE burningE 
+forest forest forest forest burningE burningE burningE burningE burningE 
+forest forest forest forest burningE burningE burningE burningE burningE 
+forest forest forest forest burningE burningE burningE burningE burningE 
+UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL 
+UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL 
+UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL UnknownL 
+NeutObjects:
+0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 
+0 0 Killer 0 0 0 0 ArmorR 0 
+0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 
+0 0 HealthR 0 0 0 0 Freezer 0 
+0 0 0 0 0 0 0 0 0 
+Bases:
+2
+m 60 0 2
+2
+EA2 50 12 10 8 0 
+EA3 50 12 10 7 0 
+o 0 0 0
+0
