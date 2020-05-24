@@ -12,3 +12,8 @@ std::string HellBase::getInformationAbout()
 {
     return "I'm Hell Base!\n Current Health is: " + std::to_string(health) + "\n" + unitCount->getTotalInformation();
 }
+
+eBaseType HellBase::getBaseType()
+{
+    return HELL_BASE;
+}

@@ -9,7 +9,6 @@
 #include <QString>
 
 #include "AuxiliaryFunctionality/TextColoring.h"
-
 #include "GameField/GameFieldProxy.h"
 #include "GameField/Coords.h"
 #include "IGame.h"
@@ -26,8 +25,10 @@ class FacadeMediator;
 struct BaseInf
 {
     BaseInf() = default;
+    BaseInf(size_t xCoord_, size_t yCoord_) : xCoord(xCoord_), yCoord(yCoord_) { };
     BaseInf(std::shared_ptr<GameBase> base_, size_t xCoord_, size_t yCoord_) :
         base(std::move(base_)), xCoord(xCoord_), yCoord(yCoord_) { };
+
     std::shared_ptr<GameBase> base;
     size_t xCoord{}, yCoord{};
 };
@@ -37,7 +38,8 @@ struct BaseInf
 class Game : public IGame
 {
 public:
-    Game(size_t fieldHieght, size_t fieldWidth);
+    Game(size_t fieldHeight, size_t fieldWidth, bool fill = false);
+    Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_, bool fill = false);
 
     // Getters
     std::shared_ptr<GameFieldProxy> getField() const;
@@ -52,13 +54,21 @@ public:
     std::string getItemInfo(size_t x, size_t y);
     std::string getLandInfo(size_t x, size_t y);
 
+    size_t getPlayersCount();
+
     // Setters
     void createBase(eBaseType type, size_t xCoord, size_t yCoord, QString name) override;
     void createUnit(eUnitsType, size_t xCoord, size_t yCoord) override;
     void moveUnit(size_t xSource, size_t ySource, size_t xDest, size_t yDist) override;
     void unitAttack(size_t xSource, size_t ySource, size_t xDest, size_t yDist) override;
 
+    // Memento restore
+    std::shared_ptr<GameParametersMemento> createMemento();
+    void restoreMemento(std::shared_ptr<GameParametersMemento> memento);
+
 private:
+    size_t playersCount{};
+
     std::shared_ptr<GameFieldProxy> field;
     std::map<QString, BaseInf> bases;
     BaseMaster master;

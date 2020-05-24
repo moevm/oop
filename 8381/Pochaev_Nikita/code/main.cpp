@@ -11,7 +11,7 @@
 
 int main(int argc, char *argv[])
 {
-    UIFacade *game = new UIFacade(argc, argv);
+    std::shared_ptr<UIFacade> game = std::make_shared<UIFacade>(argc, argv);
     game->start();
 
     return 0;

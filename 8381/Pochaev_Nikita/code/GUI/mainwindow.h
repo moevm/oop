@@ -10,8 +10,11 @@
 #include <QLabel>
 #include <QAction>
 #include <QCloseEvent>
+#include <QComboBox>
+#include <QCheckBox>
 
 #include "GUI/gamewindow.h"
+#include "Game/Logging/logfunctionality.h"
 
 class MainWindow : public QMainWindow
 {
@@ -26,12 +29,18 @@ public:
 private:
     void setUpUI();
 
-    // NEW GAME SETUP
+    /*  NEW GAME SETUP  */
+
     QPushButton *startNewGameButton;
+    // game setup
     QLabel *playersCountLabel;
     QSpinBox *playersCountSpinBox;
     QLabel *fieldSizeLabel;
     QSpinBox *fieldSizeSpinBox;
+    // log
+    QLabel *logModeLabel;
+    QComboBox *logModeComboBox;
+    QCheckBox *logAdvancedModeCheckBox;
 
     // GAME WINDOW
     GameWindow *gameWindow;
@@ -45,7 +54,8 @@ private slots:
     void on_gameWindow_closeEvent();
 
 signals:
-    void startNewGameWindow(size_t gameFieldSize, size_t playersCount);
+    void startNewGameWindow(size_t gameFieldSize, size_t playersCount, int screenWidth, int screenHeight);
+    void startLogging(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
 };
 
 #endif // MAINWINDOW_H

@@ -6,6 +6,7 @@
 #include "Units/ObjectFactory.h"
 #include "InformationHeaders/constPar.h"
 #include "InformationHeaders/unitPar.h"
+#include "InformationHeaders/commandPar.h"
 #include "Units/CompositeUnit.h"
 #include "UnitStorekeeper.h"
 #include "AuxiliaryFunctionality/EnumToString.h"
@@ -23,6 +24,7 @@ protected:
 
 public:
     virtual ~GameBase() = default;
+    virtual eBaseType getBaseType();
     void initUnitCount();
     template<class T>
     void registerNewUnitType(eUnitsType typeID)
@@ -38,6 +40,11 @@ public:
 
     size_t getHealth();
     std::string getUnitCountInf();
+
+    std::shared_ptr<BaseParametersCaretaker> createMemento();
+    void restoreMemento(std::shared_ptr<BaseParametersCaretaker> memento);
+
+    static std::string convertEnumBaseNameToStr(eBaseType type);
 };
 
 #endif //OOP_GAMEBASE_H
