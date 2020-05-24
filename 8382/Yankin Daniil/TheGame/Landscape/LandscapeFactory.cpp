@@ -1,7 +1,7 @@
 #include "LandscapeHeader.h"
 
 
-Landscape* LandscapeFactory::produce(uint8_t landscapeType, Point point) {
+Landscape* LandscapeFactory::produce(uint16_t landscapeType, Point point) {
     Landscape* landscape = nullptr;
     switch(landscapeType) {
     case LAND_WATER:

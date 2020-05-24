@@ -1,7 +1,9 @@
 #pragma once
 
+#include <vector>
 #include <fstream>
 #include "Cell.h"
+#include "Trivia/Snapshot.h"
 
 
 class Field
@@ -9,8 +11,12 @@ class Field
     friend class GameFacade;
 
 public:
-    Field(uint16_t width, uint16_t height, uint8_t landscapeType);
+    class FieldSnapshot;
+    FieldSnapshot getSnapshot();
+
+    Field(uint16_t width, uint16_t height, uint16_t landscapeType);
     Field(std::ifstream& stream);
+    Field(FieldSnapshot& snapshot);
     ~Field();
 
     Field(const Field& field);
@@ -24,28 +30,26 @@ public:
 
     ILandscape* getLandscape(Point point);
 
-    void setUnit(Point point, IUnit* unit);
+    int setUnit(Point point, IUnit* unit);
     IUnit* getUnit(Point point);
     void removeUnit(Point point);
 
-    void setBase(Point point, Base* base);
+    int setBase(Point point, Base* base);
     Base* getBase(Point point);
     void removeBase(Point point);
 
-    void setContext(Point point, NeutralContext* context);
+    int setContext(Point point, NeutralContext* context);
     NeutralContext* getContext(Point point);
 
     bool isUnitFree(Point point);
     bool isBuildingFree(Point point);
-    uint8_t getBuildingGroupType(Point point);
+    uint16_t getBuildingGroupType(Point point);
 
 
     bool isBelowMaxUnitCount();
 
 
     class Iterator;
-    friend class Iterator;
-
     Iterator begin();
     Iterator end();
 
@@ -57,8 +61,8 @@ private:
     uint16_t height;
     Cell** cellArray;
 
-    uint16_t unitCount;
     uint16_t maxUnitCoint;
+    uint16_t unitCount;
 };
 
 
@@ -87,4 +91,19 @@ public:
 private:
     Field* field;
     Cell* cell;
+};
+
+
+class Field::FieldSnapshot : public Snapshot {
+    friend class Field;
+
+public:
+    FieldSnapshot(Field& field);
+    FieldSnapshot(std::ifstream& stream);
+    friend std::ofstream& operator<<(std::ofstream& stream, const Field::FieldSnapshot& snapshot);
+
+private:
+    uint16_t width;
+    uint16_t height;
+    std::vector<std::vector<uint16_t>> landscapes;
 };

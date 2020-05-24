@@ -2,21 +2,22 @@
 #include "Neutrals/NeutralContext.h"
 
 NeutralPlayer::~NeutralPlayer() {
-    for (auto object = neutralObjectSet.begin(); object != neutralObjectSet.end(); object = neutralObjectSet.begin()) {
-        auto temp = *object;
-        neutralObjectSet.erase(object);
-        delete temp;
+    for (auto neutral = neutralSet.begin(); neutral != neutralSet.end(); neutral = neutralSet.begin()) {
+        delete *neutral;
+        //auto temp = *neutral;
+        //neutralSet.erase(neutral);
+        //delete temp;
     }
 }
 
 void NeutralPlayer::addNeutralObject(NeutralContext* neutralObject) {
-    neutralObjectSet.insert(neutralObject) ;
+    neutralSet.insert(neutralObject) ;
 }
 
 void NeutralPlayer::removeNeutralObject(NeutralContext* neutralObject) {
-    neutralObjectSet.erase(neutralObject) ;
+    neutralSet.erase(neutralObject);
 }
 
 std::set <NeutralContext*>* NeutralPlayer::getNeutralObjectSet() {
-    return &neutralObjectSet;
+    return &neutralSet;
 }

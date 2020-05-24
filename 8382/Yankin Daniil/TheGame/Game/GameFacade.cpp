@@ -2,13 +2,15 @@
 #include "Game.h"
 #include "Command/Command.h"
 #include "Landscape/LandscapeHeader.h"
+#include "Player/Player.h"
+#include "Player/NeutralPlayer.h"
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
 #include "Neutrals/NeutralContext.h"
 #include "Handler/UnitActionHandler.h"
 
 
-GameFacade::GameFacade(Game* game) {
+GameFacade::GameFacade(Game* game) : scene(nullptr) {
     this->game = game;
     scene = nullptr;
 }
@@ -21,6 +23,21 @@ GameFacade::~GameFacade() {
     visualBuildingMap.clear();
 }
 
+void GameFacade::clear() {
+    cellMovementMap.clear();
+    visualLandVector.clear();
+    visualUnitMap.clear();
+    visualBaseMap.clear();
+    visualBuildingMap.clear();
+    selectedObject = nullptr;
+
+    if (scene != nullptr) {
+        scene->hideAttributes();
+        scene->hideBase();
+        scene->hideTurn();
+        scene->clear();
+    }
+}
 
 
 void GameFacade::setScene(std::shared_ptr<ModifiedScene> scene) {
@@ -193,7 +210,7 @@ void GameFacade::setVisualBuildingPos(NeutralContext* building) {
 
 
 
-void GameFacade::userCommand(uint8_t uiCommand, Object* object, uint8_t parameter) {
+void GameFacade::userCommand(uint16_t uiCommand, Object* object, uint16_t parameter) {
     // Выделение оъекта
     if (uiCommand == UI_SELECT_OBJECT) {
         scene->showTurn();
@@ -257,11 +274,11 @@ void GameFacade::setCellMovementMap(IUnit* unit) {
 
     Cell* cell = field->getCell(unit->getPoint());
     Cell* prevCell = nullptr;
-    uint8_t balance = unit->getMovePoints();
+    uint16_t balance = unit->getMovePoints();
 
     cellMovementMap.clear();
 
-    std::vector <std::pair<Cell*, std::pair<Cell*, uint8_t>>> cellQueue;
+    std::vector <std::pair<Cell*, std::pair<Cell*, uint16_t>>> cellQueue;
     cellQueue.push_back(std::make_pair(cell, std::make_pair(prevCell, balance)));
 
     while (!cellQueue.empty()) {
@@ -332,9 +349,9 @@ void GameFacade::setCellMovementMap(IUnit* unit) {
     }
 }
 
-void GameFacade::cellMovementProcessing(uint8_t balance, Point oldPoint, Point newPoint, std::vector <std::pair<Cell*, std::pair<Cell*, uint8_t>>>& cellQueue) {
+void GameFacade::cellMovementProcessing(uint16_t balance, Point oldPoint, Point newPoint, std::vector <std::pair<Cell*, std::pair<Cell*, uint16_t>>>& cellQueue) {
     Field* field = game->field;
-    uint8_t movementCost = field->getLandscape(newPoint)->getMovementCost();
+    uint16_t movementCost = field->getLandscape(newPoint)->getMovementCost();
 
     Cell* oldCell = field->getCell(oldPoint);
     Cell* newCell = field->getCell(newPoint);
@@ -354,7 +371,7 @@ void GameFacade::cellMovementProcessing(uint8_t balance, Point oldPoint, Point n
     cellQueue.push_back(std::make_pair(newCell, std::make_pair(oldCell, std::max(balance - movementCost, 0))));
 }
 
-bool GameFacade::cellMovementComparator(std::pair <Cell*, std::pair<Cell*, uint8_t>>& one, std::pair <Cell*, std::pair<Cell*, uint8_t>>& two) {
+bool GameFacade::cellMovementComparator(std::pair <Cell*, std::pair<Cell*, uint16_t>>& one, std::pair <Cell*, std::pair<Cell*, uint16_t>>& two) {
     if (one.second.second < two.second.second)
         return true;
     return false;

@@ -6,7 +6,7 @@
 class ILandscape : public Object
 {
 public:
-    uint8_t getGroupType() override;
+    uint16_t getGroupType() override;
     virtual bool movementAccess() = 0;
-    virtual int8_t getMovementCost() = 0;
+    virtual int16_t getMovementCost() = 0;
 };

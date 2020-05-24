@@ -1,7 +1,8 @@
-#include "VisualItem.h"
 #include <QGraphicsSceneMouseEvent>
+#include "VisualItem.h"
 #include "Game/Game.h"
 #include "Landscape/LandscapeHeader.h"
+#include "Player/Player.h"
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
 #include "Neutrals/NeutralContext.h"
@@ -11,7 +12,7 @@
 VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGraphicsPixmapItem(parent), object(object) {
     QPixmap pixmap;
 
-    uint8_t objectType = object->getObjectType();
+    uint16_t objectType = object->getObjectType();
 
     IUnit* unit;
     Base* base;
@@ -219,12 +220,10 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
 }
 
 
-void VisualItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-
-}
+void VisualItem::mouseReleaseEvent(QGraphicsSceneMouseEvent*) {}
 
 
-void VisualItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+void VisualItem::mousePressEvent(QGraphicsSceneMouseEvent* event) {
     if (event->modifiers() & Qt::AltModifier) {
         event->ignore();
         return;

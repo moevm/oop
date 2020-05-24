@@ -1,6 +1,6 @@
 #include "ILandscape.h"
 
 
-uint8_t ILandscape::getGroupType() {
+uint16_t ILandscape::getGroupType() {
     return LAND;
 }

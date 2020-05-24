@@ -1,6 +1,6 @@
 #include "LoggerProxy.h"
 
-LoggerProxy::LoggerProxy(uint8_t loggingDirection) : logger(nullptr), loggingDirection(loggingDirection) {
+LoggerProxy::LoggerProxy(uint16_t loggingDirection) : logger(nullptr), loggingDirection(loggingDirection) {
     if (loggingDirection == LOGGING_DIR_FILE) {
         try {
             logger = new FileLogger("GameLog.txt");
@@ -37,7 +37,7 @@ std::string LoggerProxy::getInfo() {
     return std::string();
 }
 
-void LoggerProxy::setLoggingDirection(uint8_t loggingDirection) {
+void LoggerProxy::setLoggingDirection(uint16_t loggingDirection) {
     if (this->loggingDirection == loggingDirection) {
         return;
     }

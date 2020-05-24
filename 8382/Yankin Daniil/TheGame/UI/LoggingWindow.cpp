@@ -20,15 +20,15 @@ LoggingWindow::~LoggingWindow() {
     delete ui;
 }
 
-uint8_t LoggingWindow::getLoggingDirection() {
+uint16_t LoggingWindow::getLoggingDirection() {
     return loggingDirection;
 }
 
-uint8_t LoggingWindow::getLoggingMode() {
+uint16_t LoggingWindow::getLoggingMode() {
     return loggingMode;
 }
 
-void LoggingWindow::setLoggingDirection(uint8_t value) {
+void LoggingWindow::setLoggingDirection(uint16_t value) {
     loggingDirection = value;
 
     if (value == LOGGING_DIR_NO)
@@ -39,7 +39,7 @@ void LoggingWindow::setLoggingDirection(uint8_t value) {
         ui->directionBox->setCurrentIndex(2);
 }
 
-void LoggingWindow::setLoggingMode(uint8_t value) {
+void LoggingWindow::setLoggingMode(uint16_t value) {
     loggingMode = value;
 
     if (value == LOGGING_MODE_DEFAULT)

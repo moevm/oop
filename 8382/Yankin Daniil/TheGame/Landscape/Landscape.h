@@ -8,9 +8,9 @@ class Landscape : public ILandscape
 public:
     Landscape(Point point);
     Point getPoint() override;
-    int8_t getMovementCost() override;
+    int16_t getMovementCost() override;
 
 protected:
     Point point;
-    int8_t movementCost;
+    int16_t movementCost;
 };

@@ -38,7 +38,7 @@ public:
 
     bool isUnitFree();
     bool isBuildingFree();
-    uint8_t getBuildingGroupType();
+    uint16_t getBuildingGroupType();
 
 private:
     Point point;
@@ -49,6 +49,6 @@ private:
         Base* base;
         NeutralContext* context;
     };
-    uint8_t buildingType; // 0 - base, 1 - context
+    uint16_t buildingType; // 0 - base, 1 - context
 };
 

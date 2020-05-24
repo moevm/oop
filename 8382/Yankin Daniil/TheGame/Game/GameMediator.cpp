@@ -1,10 +1,12 @@
+#include <math.h>
 #include "GameMediator.h"
 #include "Game.h"
 #include "Landscape/LandscapeHeader.h"
+#include "Player/Player.h"
+#include "Player/NeutralPlayer.h"
 #include "Unit/UnitHeader.h"
 #include "Base/Base.h"
-#include <Neutrals/NeutralContext.h>
-#include <math.h>
+#include "Neutrals/NeutralContext.h"
 
 
 GameMediator::GameMediator(Game* game) {
@@ -45,7 +47,7 @@ bool GameMediator::unitNeutralInterraction(IUnit* unit) {
         return true;
 
     NeutralContext* context = game->field->getContext(point);
-    uint8_t type = unit->getObjectType();
+    uint16_t type = unit->getObjectType();
     if (type == UNIT_SWORDSMAN || type == UNIT_PIKEMAN)
         context->setStrategy(new HealOffice);
     else if (type == UNIT_SCOUT_CAVALRY || type == UNIT_SCOUT_CAVALRY)
@@ -148,6 +150,7 @@ void GameMediator::unitAttack(IUnit* attacker, Base* defender) {
         return;
     }
     else {
+        auto test = distance(attacker->getPoint(), defender->getPoint());
         if (attacker->getAttackRadius() < distance(attacker->getPoint(), defender->getPoint()))
             return;
 
@@ -201,25 +204,27 @@ uint16_t GameMediator::distance(Point one, Point two) {
     uint16_t xDiff = std::abs(one.getX() - two.getX());
     uint16_t yDiff = std::abs(one.getY() - two.getY());
 
+    double xCopy = static_cast<double>(xDiff);
+    double yCopy = static_cast<double>(yDiff);
 
     if (static_cast<int>(one.getX()) - static_cast<int>(two.getX()) >= 0) {
         if (one.getY() % 2 == 0) {
-            yDiff = std::max(yDiff - static_cast<int>(std::floor(xDiff / 2)), 0);
+            yCopy = std::fmax(yCopy - static_cast<int>(std::ceil(xCopy / 2)), 0);
         }
         else {
-            yDiff = std::max(yDiff - static_cast<int>(std::ceil(xDiff / 2)), 0);
+            yCopy = std::fmax(yCopy - static_cast<int>(std::floor(xCopy / 2)), 0);
         }
     }
     else if (static_cast<int>(one.getX()) - static_cast<int>(two.getX()) < 0) {
         if (one.getY() % 2 == 0) {
-            yDiff = std::max(yDiff - static_cast<int>(std::floor(xDiff / 2)), 0);
+            yCopy = std::fmax(yCopy - static_cast<int>(std::ceil(xCopy / 2)), 0);
         }
         else {
-            yDiff = std::max(yDiff - static_cast<int>(std::ceil(xDiff / 2)), 0);
+            yCopy = std::fmax(yCopy - static_cast<int>(std::floor(xCopy / 2)), 0);
         }
     }
 
-    return xDiff+yDiff;
+    return static_cast<uint16_t>(xCopy) + static_cast<uint16_t>(yCopy);
 }
 
 ILandscape* GameMediator::getLandscape(Point point) {

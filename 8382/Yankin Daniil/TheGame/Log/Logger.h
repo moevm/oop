@@ -1,10 +1,10 @@
 #pragma once
 
-#include "ILogger.h"
-#include "Time.h"
+#include <iostream>
 #include <ostream>
 #include <fstream>
-#include <iostream>
+#include "ILogger.h"
+#include "Time.h"
 
 
 class FileLogger : public ILogger

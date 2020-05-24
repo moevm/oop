@@ -1,14 +1,15 @@
+#include <typeinfo>
 #include "IUnit.h"
+#include "Landscape/LandscapeHeader.h"
+#include "Player/Player.h"
 #include "UnitGroup.h"
 #include "Game/Game.h"
-#include "Landscape/LandscapeHeader.h"
-#include <typeinfo>
 
 
 IUnit::IUnit() {}
 
 
-uint8_t IUnit::getGroupType() {
+uint16_t IUnit::getGroupType() {
     return UNIT;
 }
 

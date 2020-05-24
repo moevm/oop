@@ -2,7 +2,7 @@
 #include "Object/Object.h"
 #include <string>
 
-LogAdapter::LogAdapter(uint8_t loggingDirection, uint8_t loggingMode) : logger(new LoggerProxy(loggingDirection)), loggingMode(loggingMode) {}
+LogAdapter::LogAdapter(uint16_t loggingDirection, uint16_t loggingMode) : logger(new LoggerProxy(loggingDirection)), loggingMode(loggingMode) {}
 
 LogAdapter::~LogAdapter() {
     delete logger;
@@ -10,7 +10,7 @@ LogAdapter::~LogAdapter() {
 
 
 
-void LogAdapter::log(uint8_t logType, std::vector<int>& parameters) {
+void LogAdapter::log(uint16_t logType, std::vector<int>& parameters) {
     std::string info;
     if (logType == LOG_GAME_CREATED) {
         info = gameCreatedMessage(parameters);
@@ -90,11 +90,11 @@ void LogAdapter::log(uint8_t logType, std::vector<int>& parameters) {
     logger->log(info);
 }
 
-void LogAdapter::setLoggingMode(uint8_t loggingMode) {
+void LogAdapter::setLoggingMode(uint16_t loggingMode) {
     this->loggingMode = loggingMode;
 }
 
-void LogAdapter::setLoggingDirection(uint8_t loggingDirection) {
+void LogAdapter::setLoggingDirection(uint16_t loggingDirection) {
     logger->setLoggingDirection(loggingDirection);
 }
 

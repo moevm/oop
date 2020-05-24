@@ -8,5 +8,5 @@ class Landscape;
 
 class LandscapeFactory {
 public:
-    Landscape* produce(uint8_t landscapeType, Point point);
+    Landscape* produce(uint16_t landscapeType, Point point);
 };

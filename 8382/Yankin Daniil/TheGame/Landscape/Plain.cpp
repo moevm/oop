@@ -9,6 +9,6 @@ bool Plain::movementAccess() {
     return true;
 }
 
-uint8_t Plain::getObjectType() {
+uint16_t Plain::getObjectType() {
     return LAND_PLAIN;
 }

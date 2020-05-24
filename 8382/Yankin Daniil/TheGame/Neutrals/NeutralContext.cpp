@@ -10,6 +10,13 @@ NeutralContext::NeutralContext(Point point, NeutralPlayer* player) : point(point
     Game::getInstance().getLogAdapter().log(LOG_NEUTRAL_CREATED, logParameters);
 }
 
+NeutralContext::NeutralContext(NeutralSnapshot& snapshot, NeutralPlayer* player) : point(snapshot.point), player(player), strategy(nullptr) {
+    player->addNeutralObject(this);
+
+    std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY()};
+    Game::getInstance().getLogAdapter().log(LOG_NEUTRAL_CREATED, logParameters);
+}
+
 NeutralContext::~NeutralContext() {
     delete strategy;
     player->removeNeutralObject(this);
@@ -19,11 +26,11 @@ NeutralContext::~NeutralContext() {
 }
 
 
-uint8_t NeutralContext::getGroupType() {
+uint16_t NeutralContext::getGroupType() {
     return NEUT_OBJECT;
 }
 
-uint8_t NeutralContext::getObjectType() {
+uint16_t NeutralContext::getObjectType() {
     return NEUT_OBJECT;
 }
 

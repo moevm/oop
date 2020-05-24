@@ -10,12 +10,12 @@
 #include <memory>
 
 #include "Field/Field.h"
-#include "Player/Player.h"
-#include "Player/NeutralPlayer.h"
 #include "Neutrals/NeutralContext.h"
 #include "Log/LogAdapter.h"
 
 class ModifiedScene;
+class Player;
+class NeutralPlayer;
 
 
 class Game
@@ -26,9 +26,15 @@ class Game
     friend class GameCommand;
 
 public:
+    class Saver;
+    class Loader;
+
     static Game& getInstance();
 
-    bool initializeByFile(char* filename);
+    int save(std::string& fileName);
+    int load(std::string& fileName);
+
+    bool exist();
 
     GameMediator& getGameMediator();
     GameFacade& getGameFacade();
@@ -41,9 +47,11 @@ public:
 
 private:
     Game();
+    Game(const Game& game) = delete;
+    Game(Game&& game) = delete;
     ~Game();
 
-    Player* getPlayerOfColor(uint8_t color);
+    Player* getPlayerOfColor(uint16_t color);
 
     void unitWasCreated(IUnit* unit);
     void unitWasDestructed(IUnit* unit);
@@ -64,4 +72,32 @@ private:
     NeutralPlayer* neutralPlayer;
 
     LogAdapter* logAdapter;
+};
+
+
+class Game::Saver {
+public:
+    Saver(std::string& fileName);
+    Saver(const Saver& saver) = delete;
+    Saver(Saver&& saver) = delete;
+    ~Saver();
+    int save(Game& game);
+
+private:
+    std::ofstream stream;
+};
+
+
+class Game::Loader {
+public:
+    Loader(std::string& fileName);
+    Loader(const Loader& loader) = delete;
+    Loader(Loader&& loader) = delete;
+    ~Loader();
+    int load(Game& game);
+
+private:
+    void clearAfterError(Game& game);
+
+    std::ifstream stream;
 };
