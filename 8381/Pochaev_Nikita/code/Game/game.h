@@ -33,13 +33,13 @@ struct BaseInf
     size_t xCoord{}, yCoord{};
 };
 
-// TODO: вектор игроков, кнопка передачи хода с вызовом соответствующих параметров
-
-class Game : public IGame
+class Game : public IGame, public IGameInfo, public IGameMemento
 {
 public:
     Game(size_t fieldHeight, size_t fieldWidth, bool fill = false);
     Game(size_t fieldHeight, size_t fieldWidth, size_t playersCount_, bool fill = false);
+
+    friend class Visualizer;
 
     // Getters
     std::shared_ptr<GameFieldProxy> getField() const;
@@ -48,11 +48,13 @@ public:
     bool getBaseCoordsByName(QString sourceBaseName, Coords &coords);
 
     // Information getters
-    std::string getGameInf();
-    std::string getBaseInfo(size_t x, size_t y);
-    std::string getUnitInfo(size_t x, size_t y);
-    std::string getItemInfo(size_t x, size_t y);
-    std::string getLandInfo(size_t x, size_t y);
+    std::string getGameInf() override;
+    std::string getBaseInfo(size_t x, size_t y) override;
+    std::string getUnitInfo(size_t x, size_t y) override;
+    std::string getItemInfo(size_t x, size_t y) override;
+    std::string getLandInfo(size_t x, size_t y) override;
+
+    size_t getPlayersCount() override;
 
     size_t getPlayersCount();
 
@@ -63,8 +65,8 @@ public:
     void unitAttack(size_t xSource, size_t ySource, size_t xDest, size_t yDist) override;
 
     // Memento restore
-    std::shared_ptr<GameParametersMemento> createMemento();
-    void restoreMemento(std::shared_ptr<GameParametersMemento> memento);
+    std::shared_ptr<GameParametersMemento> createMemento() override;
+    void restoreMemento(std::shared_ptr<GameParametersMemento> memento) override;
 
 private:
     size_t playersCount{};

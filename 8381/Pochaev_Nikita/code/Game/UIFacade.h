@@ -7,7 +7,7 @@
 
 #include "GUI/mainwindow.h"
 #include "InformationHeaders/commandPar.h"
-#include "game.h"
+#include "Game/GameProcess/gameprocess.h"
 #include "GameField/Coords.h"
 
 #include "FacadeMediator.h"
@@ -16,6 +16,7 @@
 #include "Game/Logging/Loggers/logadapter.h"
 
 #include "Game/Saving/gamemementocaretacker.h"
+#include "GUI/IVisualizer.h"
 
 class UIFacade : public QObject, public std::enable_shared_from_this<UIFacade>
 {
@@ -25,6 +26,8 @@ public:
     UIFacade(int argc, char *argv[]);
     ~UIFacade() = default;
 
+    friend class Visualizer;
+
     void start();
     void receiveStrAnswer(std::string answer);
 
@@ -33,7 +36,7 @@ private:
     // GUI
     std::shared_ptr<MainWindow> window;
     // Game
-    std::shared_ptr<Game> game;
+    std::weak_ptr<IGameProcess> game;
     // Logger
     std::shared_ptr<ILogAdapter> logger;
     eLOGGER_OUTPUT_FORMAT loggerFormat;
@@ -45,8 +48,11 @@ private:
     // Memento work
     std::shared_ptr<GameMementoCaretacker> mementoCaretacker;
 
+    // Visualization
+    std::shared_ptr<IVisualizer> visualizer;
+
 public slots:
-    void createFieldRequest(size_t fieldSize, size_t playersCount);
+    void createFieldRequest(size_t fieldSize, size_t playersCount, GAME_RULES_TYPE type);
     void createLoggerRequest(eLOGGER_TYPE type, eLOGGER_OUTPUT_FORMAT format);
     void addBaseRequest(eBaseType baseType, size_t xCoord, size_t yCoord, QString name);
     void addUnitRequest(eUnitsType unitType, QString sourceBaseName);

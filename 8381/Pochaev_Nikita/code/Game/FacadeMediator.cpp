@@ -40,33 +40,31 @@ std::string unitMoveFacadeMediator::sendRequest(std::vector<size_t> param, [[may
 
 std::string FacadeMediator::sendInfoRequest([[maybe_unused]] eRequest request, size_t x, size_t y)
 {
-    if(GAME_INFO)
+    if(request == GAME_INFO)
     {
         // TODO: game info
         facade->receiveStrAnswer("Game Info");
         return "Game Info";
     }
-    else if(BASE_INFO)
+    else if(request == BASE_INFO)
     {
         facade->receiveStrAnswer(game->getBaseInfo(x, y));
         return game->getBaseInfo(x, y);
     }
-    else if(UNIT_INFO)
+    else if(request == UNIT_INFO)
     {
         facade->receiveStrAnswer(game->getUnitInfo(x, y));
         return game->getUnitInfo(x, y);
     }
-    else if(LAND_INFO)
+    else if(request == LAND_INFO)
     {
         facade->receiveStrAnswer(game->getLandInfo(x, y));
         return game->getLandInfo(x, y);
     }
-    else if(ITEM_INFO)
+    else if(request == ITEM_INFO)
     {
         facade->receiveStrAnswer(game->getItemInfo(x, y));
     }
-    else
-    {
-        return "Information about nothing";
-    }
+
+    return "Information about nothing";
 }

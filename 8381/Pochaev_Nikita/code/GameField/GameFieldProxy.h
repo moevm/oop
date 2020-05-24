@@ -28,6 +28,8 @@ public:
     GameFieldProxy(size_t width_, size_t height_, bool fill = false);
     ~GameFieldProxy() = default;
 
+    friend class Visualizer;
+
     [[nodiscard]] size_t getWidth() const override;
     [[nodiscard]] size_t getHeight() const override;
 
