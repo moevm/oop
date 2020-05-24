@@ -7,7 +7,11 @@ std::map <int,std::string> no_var{  {1,"Log: Base created"},
                                     {5,"Log: Armory created"},
                                     {6,"Log: Stable created"},
                                     {7,"Log: Forge created"},
-                                    {8,"Log: Unit die"},};
+                                    {8,"Log: Unit die"},
+                                    {9,"Log: Unit use Well"},
+                                    {10,"Log: Unit use Forge"},
+                                    {11,"Log: Unit use Armory"},
+                                    {12,"Log: Unit use Stable"},};
 
 
 void loging::initialization(int flag)
@@ -19,9 +23,9 @@ void loging::initialization(int flag)
     if (flag == 2)
     {
         in_file = true;
-        std::ofstream fout;
-        fout.open("Log.txt", std::ios::trunc);
-        fout.close();
+        std::ofstream foutr;
+        foutr.open("Log.txt", std::ios::trunc);
+        foutr.close();
     }
 }
 
@@ -34,10 +38,10 @@ void loging::No_varible(int identifier)
   }
   if (in_file)
   {
-      std::ofstream fout;
-      fout.open("Log.txt", std::ios::app);
-      fout << no_var[identifier] << std::endl;
-      fout.close();
+      std::ofstream foutr;
+      foutr.open("Log.txt", std::ios::app);
+      foutr << no_var[identifier] << std::endl;
+      foutr.close();
   }
 }
 
@@ -49,10 +53,10 @@ void loging::Move_message(int unit, int x, int y)
     }
     if (in_file)
     {
-        std::ofstream fout;
-        fout.open("Log.txt", std::ios::app);
-        fout << "Log: Unit " << unit << " move at " << x << " " << y <<" position" << std::endl;
-        fout.close();
+        std::ofstream foutr;
+        foutr.open("Log.txt", std::ios::app);
+        foutr << "Log: Unit " << unit << " move at " << x << " " << y <<" position" << std::endl;
+        foutr.close();
     }
 }
 
@@ -64,10 +68,9 @@ void loging::Attack_message(int attacker, int defender, int damage)
     }
     if (in_file)
     {
-        std::ofstream fout;
-        fout.open("Log.txt", std::ios::app);
-        fout << "Log: Unit " << attacker << " deals " << damage << " damage for unit " << defender<< std::endl;
-        fout.close();
+        std::ofstream foutr;
+        foutr.open("Log.txt", std::ios::app);
+        foutr << "Log: Unit " << attacker << " deals " << damage << " damage for unit " << defender<< std::endl;
+        foutr.close();
     }
 }
-

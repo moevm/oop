@@ -23,14 +23,42 @@
 #include "forge.h"
 #include "stable.h"
 #include "interface.h"
+#include "saver.h"
+#include "game.h"
+#include "ruleone.h"
+#include "ruletwo.h"
 
 using namespace std;
 
 int main()
 {
-
+    /*int resume = 0;
     Interface* interface = new Interface();
-    interface->Game();
+    resume = interface->Game();
+    while (resume == 1)
+    {
+        resume = interface->Game();
+    }*/
+    int choice = 0;
+    int resume = 1;
+
+    while (resume)
+    {
+        cout << "Choose rule" << std::endl;
+        cout << "1.10 units" << std::endl;
+        cout << "2.20 units" << std::endl;
+    cin >> choice;
+    if (choice == 1)
+    {
+        Game<Ruleone>* S_game = new Game<Ruleone>();
+        resume = S_game->Start_Game();
+    }
+    if (choice == 2)
+    {
+        Game<RuleTwo>* S_game = new Game<RuleTwo>();
+        resume = S_game->Start_Game();
+    }
+    }
     return 0;
     /*Field Battlefield(10,5);//создание поля
     Base* Castle = new Base();

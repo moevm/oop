@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console c++11
+CONFIG += console c++17
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -10,6 +10,7 @@ SOURCES += \
         armory.cpp \
         attacker_unit.cpp \
         base.cpp \
+        baseexception.cpp \
         camelrider.cpp \
         cavalry.cpp \
         crusader.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
         field.cpp \
         forest.cpp \
         forge.cpp \
+        gamerule.cpp \
         infantry.cpp \
         interface.cpp \
         knight.cpp \
@@ -28,6 +30,8 @@ SOURCES += \
         mountain.cpp \
         neturalobjects.cpp \
         plain.cpp \
+        ruleone.cpp \
+        ruletwo.cpp \
         saver.cpp \
         shooter.cpp \
         stable.cpp \
@@ -41,6 +45,7 @@ HEADERS += \
     armory.h \
     attacker_unit.h \
     base.h \
+    baseexception.h \
     camelrider.h \
     cavalry.h \
     crusader.h \
@@ -50,6 +55,8 @@ HEADERS += \
     field.h \
     forest.h \
     forge.h \
+    game.h \
+    gamerule.h \
     infantry.h \
     interface.h \
     knight.h \
@@ -58,6 +65,8 @@ HEADERS += \
     mountain.h \
     neturalobjects.h \
     plain.h \
+    ruleone.h \
+    ruletwo.h \
     saver.h \
     shooter.h \
     stable.h \

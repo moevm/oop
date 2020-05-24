@@ -8,6 +8,7 @@ class Arab: public Infantry{
         field = new_field;
         name = new_name;
         base = new_base;
+        type = 4;
         hp = 80;
         armor = 10;
         attack = 35;

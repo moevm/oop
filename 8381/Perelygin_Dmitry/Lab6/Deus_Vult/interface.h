@@ -12,18 +12,20 @@ class Interface
         Field* field;
 
     public:
-        Interface( Unit* unit = nullptr,
+        Interface(
+                   Unit* unit = nullptr,
                    Base* base = nullptr,
-                   Field* field= nullptr)
+                   Field* field= nullptr
+                   )
         {
             this->unit = unit ?: new Unit;
-            this->base = base ?: new Base;
+            this->base = base ?: new Base();
             this->field = field?: new Field(10,10);
         }
 
         int x,y,type,unit_id,def_unit_id;
 
-        void Game();
+        int St_Game(int u_count);
 
 
 

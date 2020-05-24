@@ -8,6 +8,7 @@ class CrusaderArcher: public Shooter{
          field = new_field;
          name = new_name;
          base = new_base;
+         type = 3;
          hp = 70;
          armor = 10;
          attack = 20;

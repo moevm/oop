@@ -1,4 +1,6 @@
 #include "unit.h"
+#include "baseexception.h"
+#include <exception>
 
 
 
@@ -50,7 +52,10 @@
     {
         return y_position;
     }
-
+    int Unit::get_type()
+    {
+        return type;
+    }
 
     void Unit::set_hp(int value)
     {
@@ -115,6 +120,10 @@
 
     void Unit::move_unit(int x, int y, loging* Log)
     {
+        if ((x>field->get_size()-1) || (y>field->get_size()-1) || (x<0) || (y<0))
+        {
+            throw std::invalid_argument("x or y is invalid value\n");
+        }
         if((x<=field->get_size()) & (y<=field->get_size()))
         {
             int move = get_move() - debuff_move;

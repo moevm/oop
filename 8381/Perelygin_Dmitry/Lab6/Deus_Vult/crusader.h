@@ -8,6 +8,7 @@ class Crusader: public Infantry{
         field = new_field;
         name = new_name;
         base = new_base;
+        type = 1;
         hp = 100;
         armor = 15;
         attack = 40;
