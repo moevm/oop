@@ -11,6 +11,7 @@
 #include <QSettings>
 #include <QFileDialog>
 #include "LoggingWindow.h"
+#include "NewGameWindow.h"
 
 #include "AttributeWidget.h"
 #include "ModifiedScene.h"
@@ -28,12 +29,14 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget* parent = 0);
     ~MainWindow();
+    void showWinners(std::vector<uint16_t>& winners);
 
 private slots:
     void keyPressEvent(QKeyEvent *event);
 
+    void on_buttonNewGame_clicked();
     void on_buttonMap_clicked();
-     void on_buttonSave_clicked();
+    void on_buttonSave_clicked();
     void on_buttonLoad_clicked();
     void on_buttonLogging_clicked();
     void on_buttonExit_clicked();

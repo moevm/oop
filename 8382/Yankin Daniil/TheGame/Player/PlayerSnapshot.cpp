@@ -14,10 +14,14 @@ Player::PlayerSnapshot::PlayerSnapshot(std::ifstream& stream) {
     if (!(stream >> colorValue)) {
         return;
     }
-    if (colorValue == PLAYER_BLUE || colorValue == PLAYER_RED || colorValue == PLAYER_GREEN) {
+    if (colorValue == PLAYER_BLUE || colorValue == PLAYER_RED || colorValue == PLAYER_GREEN || colorValue == PLAYER_ORANGE) {
         color = static_cast<uint16_t>(colorValue);
         correct = true;
     }
+}
+
+uint16_t Player::PlayerSnapshot::getColor() const {
+    return color;
 }
 
 std::ofstream& operator<<(std::ofstream& stream, const Player::PlayerSnapshot& snapshot) {

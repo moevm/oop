@@ -45,3 +45,13 @@ void Player::removeBase(Base* base) {
 std::set <Base*>* Player::getBaseSet() {
     return &baseSet;
 }
+
+
+
+int Player::getBaseCount() {
+    return baseSet.size();
+}
+
+int Player::getUnitCount() {
+    return unitSet.size();
+}

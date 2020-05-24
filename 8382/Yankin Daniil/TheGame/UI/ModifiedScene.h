@@ -11,6 +11,7 @@
 #include "AttributeWidget.h"
 #include "BaseWidget.h"
 #include "TurnButton.h"
+#include "Ui/PlayerWidget.h"
 
 #define OFFSET_STEP 0.01
 
@@ -33,12 +34,18 @@ public:
     void showTurn();
     void hideTurn();
 
+    void showPlayer(uint16_t playerId);
+    void hidePlayer();
+
     void updateInterface();
+
+    void winnersMessage(std::vector<uint16_t>& winners);
 
 private:
     AttributeWidget* attributeWidget;
     BaseWidget* baseWidget;
     TurnButton* overButton;
+    PlayerWidget* playerWidget;
 
     qreal x;
     qreal y;

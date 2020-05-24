@@ -36,9 +36,14 @@ public:
     uint16_t giveDamage(Base* enemy) override;
     bool takeDamage(uint16_t damage) override;
 
+    void setAttacked() override;
+    void unsetAttacked() override;
+    bool checkAttacked() override;
 
     virtual double classAttackModifier(Object* enemy) = 0;
     virtual double typeAttackModifier(Object* enemy) = 0;
+
+    static uint16_t generateUnitType();
 
 protected:
     void setPoint(Point point) override;
@@ -63,6 +68,28 @@ protected:
     Strength strength;
     Armor armor;
     MovePoints movePoints;
+
+    bool attacked;
+};
+
+
+class Unit::UnitSnapshot : public Snapshot {
+    friend class Unit;
+
+public:
+    UnitSnapshot(Unit& unit);
+    UnitSnapshot(std::ifstream& stream);
+    friend std::ofstream& operator<<(std::ofstream& stream, const Unit::UnitSnapshot& snapshot);
+    uint16_t getObjectType() const;
+
+private:
+    uint16_t objectType;
+    Point point;
+    Health health;
+    Strength strength;
+    Armor armor;
+    MovePoints movePoints;
+    bool attacked;
 };
 
 

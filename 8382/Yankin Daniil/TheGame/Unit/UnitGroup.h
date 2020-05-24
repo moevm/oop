@@ -42,7 +42,9 @@ public:
     uint16_t getMaxGroupSize();
     uint16_t getGroupSize();
 
-    //void unitWasDestructed(Unit* unit);
+    void setAttacked() override;
+    void unsetAttacked() override;
+    bool checkAttacked() override;
 
 private:
     void setMovePoints(uint16_t points) override;

@@ -1,10 +1,10 @@
 #include "Logger.h"
 #include <stdexcept>
 
-FileLogger::FileLogger(char* logFileName) {
+FileLogger::FileLogger(std::string logFileName) {
     fileStream.open(logFileName);
     if (!fileStream.is_open())
-        throw std::runtime_error("Open logFile error") ;
+        throw std::runtime_error("Open log file error") ;
 }
 
 FileLogger::~FileLogger() {

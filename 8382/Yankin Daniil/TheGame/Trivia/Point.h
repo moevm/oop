@@ -18,4 +18,6 @@ public:
     friend bool operator==(const Point& one, const Point& two);
     friend bool operator!=(const Point& one, const Point& two);
     friend bool operator<(const Point& one, const Point& two);
+
+    static Point generatePoint(uint16_t minX, uint16_t maxX, uint16_t minY, uint16_t maxY);
 };

@@ -16,5 +16,5 @@ void UnitUnitAttackHandler::handle(IUnit* attacker, IUnit* defender) {
         if (!success)
             return;
     }
-    Game::getInstance().getGameMediator().unitAttack(attacker, static_cast<IUnit*>(defender));
+    attacker->attack(defender);
 }

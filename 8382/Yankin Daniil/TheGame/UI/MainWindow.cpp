@@ -1,8 +1,9 @@
-#include "MainWindow.h"
-#include "ui_MainWindow.h"
-#include "Game/Game.h"
 #include <QMessageBox>
 #include <QRegExp>
+#include "MainWindow.h"
+#include "ui_MainWindow.h"
+#include "WinnerWindow.h"
+#include "Game/Game.h"
 
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow), loggingWindow(nullptr) {
@@ -14,6 +15,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     gameScene = std::make_shared<ModifiedScene>();
     ui->graphicsView->setScene(gameScene.get());
+
+    auto viewParent = ui->graphicsView->parent()->parent()->parent()->parent();
+    auto main = static_cast<MainWindow*>(viewParent);
 
     settings = new QSettings("settings.conf", QSettings::IniFormat);
     loggingDirection = settings->value("settings/loggingDirection", LOGGING_DIR_FILE).toInt();
@@ -33,9 +37,31 @@ MainWindow::~MainWindow() {
 }
 
 
+void MainWindow::showWinners(std::vector<uint16_t>& winners) {
+    WinnerWindow window(winners);
+    window.exec();
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Escape)
         ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_buttonNewGame_clicked() {
+    auto newGameWindow = new NewGameWindow();
+    newGameWindow->exec();
+    if (!newGameWindow->checkAccept()) {
+        return;
+    }
+
+    Game& game = Game::getInstance();
+    game.newGame(newGameWindow->getWidth(), newGameWindow->getHeight(), newGameWindow->getPlayerCount(), newGameWindow->getRule());
+    game.getGameFacade().setScene(gameScene);
+
+    ui->stackedWidget->setCurrentIndex(1);
+    gameScene->updateInterface();
 }
 
 void MainWindow::on_buttonMap_clicked() {

@@ -37,6 +37,8 @@ UnitMoveCommand::UnitMoveCommand(IUnit* unit, std::vector <Point>* route)
 bool UnitMoveCommand::execute() {
     bool success = true;
     while (!route->empty() && success) {
+        if (!Game::getInstance().exist())
+            return false;
         success = unit->move(route->back());
         route->pop_back();
     }

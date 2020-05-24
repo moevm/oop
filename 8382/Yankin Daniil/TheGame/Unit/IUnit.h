@@ -37,7 +37,13 @@ public:
     virtual bool takeDamage(uint16_t damage) = 0;
 
     bool move(Point point);
+    void attack(IUnit* defender);
+    void attack(Base* defender);
     void unite(IUnit* passive);
+
+    virtual void setAttacked() = 0;
+    virtual void unsetAttacked() = 0;
+    virtual bool checkAttacked() = 0;
 
 protected:
     virtual void setPoint(Point point) = 0;

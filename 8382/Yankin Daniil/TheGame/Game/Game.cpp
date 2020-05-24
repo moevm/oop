@@ -1,5 +1,7 @@
 #include "Game.h"
+#include "GameInfo.h"
 #include "Field/Field.h"
+#include "Player/PlayerState.h"
 #include "Player/Player.h"
 #include "Player/NeutralPlayer.h"
 #include "Unit/UnitHeader.h"
@@ -24,7 +26,7 @@ Game& Game::getInstance() {
 Game::Game() : field(nullptr), neutralPlayer(nullptr) {
     gameMediator = new GameMediator(this);
     gameFacade = new GameFacade(this);
-    field = nullptr;
+    gameInfo = new GameInfo<EliminationRule, 2>;
     logAdapter = new LogAdapter(LOGGING_DIR_FILE, LOGGING_MODE_DEFAULT);
 }
 
@@ -38,10 +40,41 @@ Game::~Game() {
     delete neutralPlayer;
     delete field;
     delete gameFacade;
+    delete gameInfo;
 
     std::vector<int> logParameters;
     logAdapter->log(LOG_GAME_DELETED, logParameters);
     delete logAdapter;
+}
+
+void Game::clear() {
+    for (auto player = playerVector.begin(); player != playerVector.end(); player++) {
+        delete (*player);
+    }
+    playerVector.clear();
+    delete neutralPlayer;
+    neutralPlayer = nullptr;
+    delete field;
+    field = nullptr;
+
+    gameFacade->clear();
+    setGameInfo(2, RULE_ELIMINATION);
+}
+
+bool Game::exist() {
+    if (field)
+        return true;
+    else
+        return false;
+}
+
+void Game::newGame(uint16_t width, uint16_t height, uint16_t playerCount, uint16_t rule) {
+    clear();
+    setGameInfo(playerCount, rule);
+
+    Game::Initializer initializer;
+    auto startInit = gameInfo->getStartInit(width, height);
+    initializer.initialize(playerCount, width, height, startInit);
 }
 
 int Game::save(std::string& fileName) {
@@ -59,18 +92,7 @@ int Game::save(std::string& fileName) {
 }
 
 int Game::load(std::string& fileName) {
-    gameFacade->clear();
-
-    for (auto player = playerVector.begin(); player != playerVector.end(); player++) {
-        delete (*player);
-    }
-    playerVector.clear();
-
-    delete neutralPlayer;
-    neutralPlayer = nullptr;
-
-    delete field;
-    field = nullptr;
+    clear();
 
     try {
         Game::Loader loader(fileName);
@@ -81,12 +103,6 @@ int Game::load(std::string& fileName) {
     }
 }
 
-bool Game::exist() {
-    if (field)
-        return true;
-    else
-        return false;
-}
 
 
 GameMediator& Game::getGameMediator() {
@@ -97,7 +113,36 @@ GameFacade& Game::getGameFacade() {
     return *gameFacade;
 }
 
+LogAdapter& Game::getLogAdapter() {
+    return *logAdapter;
+}
 
+
+void Game::setGameInfo(uint16_t playerCount, uint16_t rule) {
+    delete gameInfo;
+    if (rule == RULE_ELIMINATION) {
+        if (playerCount == 2) {
+            gameInfo = new GameInfo<EliminationRule, 2>();
+        }
+        else if (playerCount == 3) {
+            gameInfo = new GameInfo<EliminationRule, 3>();
+        }
+        else if (playerCount == 4) {
+            gameInfo = new GameInfo<EliminationRule, 4>();
+        }
+    }
+    else if (rule == RULE_SPEED) {
+        if (playerCount == 2) {
+            gameInfo = new GameInfo<SpeedRule, 2>();
+        }
+        else if (playerCount == 3) {
+            gameInfo = new GameInfo<SpeedRule, 3>();
+        }
+        else if (playerCount == 4) {
+            gameInfo = new GameInfo<SpeedRule, 4>();
+        }
+    }
+}
 
 Player* Game::getPlayerOfColor(uint16_t color) {
     for (auto iter = playerVector.begin(); iter != playerVector.end(); iter++) {
@@ -141,26 +186,39 @@ void Game::baseWasDestructed(Base* base) {
     gameFacade->baseWasDestructed(base);
 }
 
+
 void Game::unitWasMoved(IUnit* unit) {
     gameFacade->setVisualUnitPos(unit);
 }
 
 
-
 void Game::turn() {
-    for (auto player = playerVector.begin(); player != playerVector.end(); player++) {
-        std::set <IUnit*>* unitSet = (*player)->getUnitSet();
-        for (auto unit = unitSet->begin(); unit != unitSet->end(); unit++) {
-            (*unit)->smallHeal();
-            (*unit)->renewMovePoints();
-        }
+    auto player = getPlayerOfColor(gameInfo->getPlayerId());
+    std::set <IUnit*>* unitSet = player->getUnitSet();
+    for (auto unit = unitSet->begin(); unit != unitSet->end(); unit++) {
+        (*unit)->smallHeal();
+        (*unit)->renewMovePoints();
+        (*unit)->unsetAttacked();
     }
+
+    gameInfo->nextPlayerId();
+    gameFacade->updateInterface();
+
     std::vector<int> parameters;
     logAdapter->log(LOG_GAME_TURN, parameters);
 }
 
 
 
-LogAdapter& Game::getLogAdapter() {
-    return *logAdapter;
+void Game::checkEndGame() {
+    auto result = gameInfo->checkEndGame();
+    if (result.first) {
+        gameFacade->winnersMessage(result.second);
+        clear();
+    }
+    for (auto player : playerVector) {
+        if (player->baseSet.size() == 0) {
+            gameInfo->removePlayerId(player->getColor());
+        }
+    }
 }

@@ -310,3 +310,25 @@ void UnitGroup::renewMovePoints() {
     std::vector<int> logParameters = {getObjectType(), getPoint().getX(), getPoint().getY(), getPlayer()->getColor()};
     Game::getInstance().getLogAdapter().log(LOG_NEUT_REN_MOV, logParameters);
 }
+
+
+void UnitGroup::setAttacked() {
+    for (auto unit : unitSet) {
+        unit->attacked = true;
+    }
+}
+
+void UnitGroup::unsetAttacked() {
+    for (auto unit : unitSet) {
+        unit->attacked = false;
+    }
+}
+
+bool UnitGroup::checkAttacked() {
+    for (auto unit : unitSet) {
+        if (unit->checkAttacked()) {
+            return true;
+        }
+    }
+    return false;
+}

@@ -3,7 +3,7 @@
 
 
 Unit::UnitSnapshot::UnitSnapshot(Unit& unit) : objectType(unit.getObjectType()), point(unit.point), health(unit.health), strength(unit.strength),
-    armor(unit.armor), movePoints(unit.movePoints) {
+    armor(unit.armor), movePoints(unit.movePoints), attacked(unit.attacked) {
     correct = true;
 }
 
@@ -48,6 +48,10 @@ Unit::UnitSnapshot::UnitSnapshot(std::ifstream& stream) : point(Point(0, 0)) {
     }
     movePoints = MovePoints(maxMovePointsValue, movePointsValue);
 
+    if (!(stream >> attacked)) {
+        return;
+    }
+
     correct = true;
 }
 
@@ -57,7 +61,8 @@ std::ofstream& operator<<(std::ofstream& stream, const Unit::UnitSnapshot& snaps
     stream << snapshot.health.getMaxHealth() << " " << snapshot.health.getHealth() << " ";
     stream << snapshot.strength.getStrength() << " " << snapshot.strength.getRadius() << " ";
     stream << snapshot.armor.getArmor() << " ";
-    stream << snapshot.movePoints.getMaxMovePoints() << " " << snapshot.movePoints.getMovePoints() << std::endl;
+    stream << snapshot.movePoints.getMaxMovePoints() << " " << snapshot.movePoints.getMovePoints() << " ";
+    stream << snapshot.attacked << std::endl;
     return stream;
 }
 

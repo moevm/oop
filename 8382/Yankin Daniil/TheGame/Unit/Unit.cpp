@@ -6,17 +6,17 @@
 #include <math.h>
 
 
-Unit::Unit(Point point, Base* base) : point(point), base(base), isGroup(false) {
+Unit::Unit(Point point, Base* base) : point(point), base(base), isGroup(false), attacked(false) {
     base->addUnit(this);
 }
 
 Unit::Unit(UnitSnapshot& snapshot, Base* base) : point(snapshot.point), base(base), isGroup(false), health(snapshot.health),
-    strength(snapshot.strength), armor(snapshot.armor), movePoints(snapshot.movePoints) {
+    strength(snapshot.strength), armor(snapshot.armor), movePoints(snapshot.movePoints), attacked(snapshot.attacked) {
     base->addUnit(this);
 }
 
 Unit::Unit(UnitSnapshot& snapshot, UnitGroup* group) : point(snapshot.point), group(group), isGroup(true), health(snapshot.health),
-    strength(snapshot.strength), armor(snapshot.armor), movePoints(snapshot.movePoints) {}
+    strength(snapshot.strength), armor(snapshot.armor), movePoints(snapshot.movePoints), attacked(snapshot.attacked) {}
 
 Unit::~Unit() {
     if (!isGroup) {
@@ -112,6 +112,18 @@ bool Unit::takeDamage(uint16_t damage) {
     // Если в составе группы, то за уничтожение отвечает группа
 }
 
+void Unit::setAttacked() {
+    attacked = true;
+}
+
+void Unit::unsetAttacked() {
+    attacked = false;
+}
+
+bool Unit::checkAttacked() {
+    return attacked;
+}
+
 
 
 void Unit::smallHeal(uint16_t healSize) {
@@ -170,4 +182,11 @@ void Unit::renewMovePoints() {
         std::vector<int> logParameters = {getObjectType(), point.getX(), point.getY(), getPlayer()->getColor()};
         Game::getInstance().getLogAdapter().log(LOG_NEUT_REN_MOV, logParameters);
     }
+}
+
+
+uint16_t Unit::generateUnitType() {
+    auto typeCount = UNIT_RAM - UNIT;
+    auto unitType = rand() % typeCount + UNIT_SWORDSMAN;
+    return unitType;
 }

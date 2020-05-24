@@ -5,17 +5,21 @@
 #include "Cell.h"
 #include "Trivia/Snapshot.h"
 
+#define MIN_FIELD_SIZE 20
+#define MAX_UNIT_COUNT_ON_FIELD 200
 
 class Field
 {
     friend class GameFacade;
+    friend class RoutePlotter;
 
 public:
     class FieldSnapshot;
     FieldSnapshot getSnapshot();
 
+    Field() = delete;
     Field(uint16_t width, uint16_t height, uint16_t landscapeType);
-    Field(std::ifstream& stream);
+    Field(uint16_t width, uint16_t height, std::vector<std::vector<uint16_t>> parameters);
     Field(FieldSnapshot& snapshot);
     ~Field();
 
@@ -26,7 +30,6 @@ public:
 
     uint16_t getWidth();
     uint16_t getHeight();
-
 
     ILandscape* getLandscape(Point point);
 
@@ -45,9 +48,7 @@ public:
     bool isBuildingFree(Point point);
     uint16_t getBuildingGroupType(Point point);
 
-
     bool isBelowMaxUnitCount();
-
 
     class Iterator;
     Iterator begin();
@@ -56,7 +57,7 @@ public:
 private:
     Cell* getCell(Point point);
 
-
+private:
     uint16_t width;
     uint16_t height;
     Cell** cellArray;

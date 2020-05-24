@@ -11,6 +11,7 @@ class NeutralPlayer
 {
     friend class GameFacade;
     friend class Game::Saver;
+    friend class SpeedRule;
 
 public:
     ~NeutralPlayer();
@@ -21,5 +22,6 @@ public:
 private:
     std::set <NeutralContext*>* getNeutralObjectSet();
 
+private:
     std::set <NeutralContext*> neutralSet;
 };

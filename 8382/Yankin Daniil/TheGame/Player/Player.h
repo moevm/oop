@@ -31,6 +31,9 @@ public:
     void addBase(Base* base);
     void removeBase(Base* base);
 
+    int getBaseCount();
+    int getUnitCount();
+
 private:
     std::set <IUnit*>* getUnitSet();
     std::set <Base*>* getBaseSet();
@@ -48,6 +51,7 @@ class Player::PlayerSnapshot : public Snapshot {
 public:
     PlayerSnapshot(Player& player);
     PlayerSnapshot(std::ifstream& stream);
+    uint16_t getColor() const;
     friend std::ofstream& operator<<(std::ofstream& stream, const Player::PlayerSnapshot& snapshot);
     friend bool operator==(Player::PlayerSnapshot& snapshot1, Player::PlayerSnapshot& snapshot2);
     friend bool operator!=(Player::PlayerSnapshot& snapshot1, Player::PlayerSnapshot& snapshot2);
@@ -58,7 +62,9 @@ private:
 
 
 enum PlayerColors {
+    PLAYER,
     PLAYER_BLUE,
     PLAYER_RED,
-    PLAYER_GREEN
+    PLAYER_GREEN,
+    PLAYER_ORANGE,
 };

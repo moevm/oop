@@ -1,5 +1,6 @@
-﻿#include "GameFacade.h"
+#include "GameFacade.h"
 #include "Game.h"
+#include "GameInfo.h"
 #include "Command/Command.h"
 #include "Landscape/LandscapeHeader.h"
 #include "Player/Player.h"
@@ -8,6 +9,7 @@
 #include "Base/Base.h"
 #include "Neutrals/NeutralContext.h"
 #include "Handler/UnitActionHandler.h"
+#include "Field/RoutePlotter.h"
 
 
 GameFacade::GameFacade(Game* game) : scene(nullptr) {
@@ -51,6 +53,7 @@ void GameFacade::setScene(std::shared_ptr<ModifiedScene> scene) {
     addBuldingsToScene();
 
     this->scene->showTurn();
+    this->scene->showPlayer(PLAYER_BLUE);
 }
 
 void GameFacade::addLandToScene() {
@@ -171,7 +174,8 @@ void GameFacade::setVisualUnitPos(IUnit* unit) {
     unitItem->setPos(landX + landWidth/2, landY + landHeight/3);
 
     if (unit == selectedObject) {
-        setCellMovementMap(unit);
+        RoutePlotter router;
+        cellMovementMap = router.getCellMovementMap(*Game::getInstance().field, unit);
         scene->showAttributes(selectedObject);
     }
 }
@@ -208,16 +212,85 @@ void GameFacade::setVisualBuildingPos(NeutralContext* building) {
     buildingItem->setPos(landX + landWidth/5 * 2, landY + landHeight/3 *2);
 }
 
+void GameFacade::unitWasDestructed(IUnit* unit) {
+    if (scene == nullptr)
+        return;
 
+    if (unit == selectedObject && game->gameMediator != nullptr) {
+        scene->hideAttributes();
+        selectedObject = nullptr;
+    }
+
+    delete visualUnitMap[unit];
+    visualUnitMap.erase(unit);
+}
+
+void GameFacade::baseWasDestructed(Base* base) {
+    if (scene == nullptr)
+        return;
+
+    if (base == selectedObject && game->gameMediator != nullptr) {
+        scene->hideAttributes();
+        scene->hideBase();
+        selectedObject = nullptr;
+    }
+
+    VisualItem* baseItem = visualBaseMap[base];
+    delete baseItem;
+
+    visualBaseMap.erase(base);
+}
+
+
+void GameFacade::updateInterface() {
+    if (selectedObject == nullptr) {
+        scene->hideAttributes();
+        scene->hideBase();
+        scene->showTurn();
+        scene->showPlayer(Game::getInstance().gameInfo->getPlayerId());
+    }
+    else {
+        scene->hideTurn();
+        scene->hidePlayer();
+        scene->showAttributes(selectedObject);
+        if (selectedObject->getGroupType() == BASE) {
+            scene->showBase(static_cast<Base*>(selectedObject));
+        }
+    }
+}
+
+void GameFacade::winnersMessage(std::vector<uint16_t>& winners) {
+    if (scene == nullptr) {
+        return;
+    }
+    scene->winnersMessage(winners);
+}
 
 void GameFacade::userCommand(uint16_t uiCommand, Object* object, uint16_t parameter) {
     // Выделение оъекта
     if (uiCommand == UI_SELECT_OBJECT) {
-        scene->showTurn();
+        selectedObject = nullptr;
         scene->hideAttributes();
         scene->hideBase();
+        scene->showTurn();
+        scene->showPlayer(Game::getInstance().gameInfo->getPlayerId());
 
         if (object->getGroupType() == BASE || object->getGroupType() == UNIT) {
+            auto base = dynamic_cast<Base*>(object);
+            auto unit = dynamic_cast<IUnit*>(object);
+
+            if (base) {
+                if (base->getPlayer()->getColor() != Game::getInstance().gameInfo->getPlayerId()) {
+                    return;
+                }
+            }
+            else if (unit) {
+                if (unit->getPlayer()->getColor() != Game::getInstance().gameInfo->getPlayerId()) {
+                    return;
+                }
+            }
+
+
             std::vector<int> logParameters = {object->getObjectType(), object->getPoint().getX(), object->getPoint().getY()};
 
             scene->hideTurn();
@@ -233,7 +306,8 @@ void GameFacade::userCommand(uint16_t uiCommand, Object* object, uint16_t parame
             }
 
             else if (object->getGroupType() == UNIT) {
-                setCellMovementMap(static_cast <Unit*> (object));
+                RoutePlotter router;
+                cellMovementMap = router.getCellMovementMap(*game->field, (static_cast <IUnit*> (object)));
 
                 logParameters.push_back((static_cast <IUnit*> (object))->getPlayer()->getColor());
             }
@@ -267,116 +341,6 @@ void GameFacade::userCommand(uint16_t uiCommand, Object* object, uint16_t parame
     }
 }
 
-
-
-void GameFacade::setCellMovementMap(IUnit* unit) {
-    Field* field = game->field;
-
-    Cell* cell = field->getCell(unit->getPoint());
-    Cell* prevCell = nullptr;
-    uint16_t balance = unit->getMovePoints();
-
-    cellMovementMap.clear();
-
-    std::vector <std::pair<Cell*, std::pair<Cell*, uint16_t>>> cellQueue;
-    cellQueue.push_back(std::make_pair(cell, std::make_pair(prevCell, balance)));
-
-    while (!cellQueue.empty()) {
-        cell = cellQueue.back().first;
-        std::tie(prevCell, balance) = cellQueue.back().second;
-        cellQueue.pop_back();
-
-        cellMovementMap.insert(std::make_pair(cell, std::make_pair(prevCell, balance)));
-
-
-        if (cell->getPoint() != unit->getPoint() && (!cell->isUnitFree() || (cell->getBuildingGroupType() == BASE && cell->getBase()->getPlayer() != unit->getPlayer()))) {
-            continue;
-        }
-
-
-        Point currentPoint = cell->getPoint();
-        uint16_t x = currentPoint.getX();
-        uint16_t y = currentPoint.getY();
-
-
-        Point newPoint(0, 0);
-        if (balance > 0) {
-            newPoint = Point(x - 1, y);
-            if (x > 0 && field->getLandscape(newPoint)->movementAccess()) {
-                cellMovementProcessing(balance, currentPoint, newPoint, cellQueue);
-            }
-
-            newPoint = Point(x + 1, y);
-            if (x < field->getWidth() - 1 && field->getLandscape(newPoint)->movementAccess()) {
-                cellMovementProcessing(balance, currentPoint, newPoint, cellQueue);
-            }
-
-            newPoint = Point(x, y - 1);
-            if (y > 0 && field->getLandscape(newPoint)->movementAccess()) {
-                cellMovementProcessing(balance, currentPoint, newPoint, cellQueue);
-            }
-
-            newPoint = Point(x, y + 1);
-            if (y < field->getHeight() - 1 && field->getLandscape(newPoint)->movementAccess()) {
-                cellMovementProcessing(balance, currentPoint, newPoint, cellQueue);
-            }
-
-
-            if (y % 2 == 0) {
-                newPoint = Point(x - 1, y - 1);
-                if (x > 0 && y > 0 && field->getLandscape(newPoint)->movementAccess()) {
-                    cellMovementProcessing(balance, currentPoint, newPoint, cellQueue);
-                }
-
-                newPoint = Point(x - 1, y + 1);
-                if (x > 0 && y < field->getHeight() - 1 && field->getLandscape(newPoint)->movementAccess()) {
-                    cellMovementProcessing(balance, currentPoint, newPoint, cellQueue);
-                }
-            }
-            else {
-                newPoint = Point(x + 1, y - 1);
-                if (x < field->getWidth() - 1 && y > 0 && field->getLandscape(newPoint)->movementAccess()) {
-                    cellMovementProcessing(balance, currentPoint, newPoint, cellQueue);
-                }
-
-                newPoint = Point(x + 1, y + 1);
-                if (x < field->getWidth() - 1 && y < field->getHeight() - 1 && field->getLandscape(newPoint)->movementAccess()) {
-                    cellMovementProcessing(balance, currentPoint, newPoint, cellQueue);
-                }
-            }
-        }
-        std::sort(cellQueue.begin(), cellQueue.end(), GameFacade::cellMovementComparator);
-    }
-}
-
-void GameFacade::cellMovementProcessing(uint16_t balance, Point oldPoint, Point newPoint, std::vector <std::pair<Cell*, std::pair<Cell*, uint16_t>>>& cellQueue) {
-    Field* field = game->field;
-    uint16_t movementCost = field->getLandscape(newPoint)->getMovementCost();
-
-    Cell* oldCell = field->getCell(oldPoint);
-    Cell* newCell = field->getCell(newPoint);
-
-    if (cellMovementMap.find(newCell) != cellMovementMap.end())
-        return;
-
-    for (auto elem = cellQueue.begin(); elem != cellQueue.end(); elem++) {
-        if (elem->first == newCell) {
-            if (elem->second.second < balance - movementCost) {
-                elem->second = std::make_pair(oldCell, std::max(balance - movementCost, 0));
-            }
-            return;
-        }
-    }
-
-    cellQueue.push_back(std::make_pair(newCell, std::make_pair(oldCell, std::max(balance - movementCost, 0))));
-}
-
-bool GameFacade::cellMovementComparator(std::pair <Cell*, std::pair<Cell*, uint16_t>>& one, std::pair <Cell*, std::pair<Cell*, uint16_t>>& two) {
-    if (one.second.second < two.second.second)
-        return true;
-    return false;
-}
-
 void GameFacade::getRoute(Point start, Point finish, std::vector <Point>& route) {
     Cell* finishCell = game->field->getCell(finish);
 
@@ -391,35 +355,4 @@ void GameFacade::getRoute(Point start, Point finish, std::vector <Point>& route)
         route.push_back(finish);
     }
     route.pop_back();
-}
-
-
-
-void GameFacade::unitWasDestructed(IUnit* unit) {
-    if (scene == nullptr)
-        return;
-
-    if (unit == selectedObject && game->gameMediator != nullptr) {
-        scene->hideAttributes();
-        selectedObject = nullptr;
-    }
-
-    delete visualUnitMap[unit];
-    visualUnitMap.erase(unit);
-}
-
-void GameFacade::baseWasDestructed(Base* base) {
-    if (scene == nullptr)
-        return;
-
-    if (base == selectedObject && game->gameMediator != nullptr) {
-        scene->hideAttributes();
-        scene->hideBase();
-        selectedObject = nullptr;
-    }
-
-    VisualItem* baseItem = visualBaseMap[base];
-    delete baseItem;
-
-    visualBaseMap.erase(base);
 }

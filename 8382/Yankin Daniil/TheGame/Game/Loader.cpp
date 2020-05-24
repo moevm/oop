@@ -1,9 +1,11 @@
 #include <memory>
 #include <typeinfo>
 #include "Game.h"
+#include "GameInfo.h"
 #include "Player/Player.h"
 #include "Player/NeutralPlayer.h"
 #include "Base/Base.h"
+#include "Rules/Rule.h"
 
 
 Game::Loader::Loader(std::string& fileName) {
@@ -20,6 +22,69 @@ int Game::Loader::load(Game& game) {
     // !!! Этап считывания файла !!!
 
     std::string input;
+    if (!(stream >> input) || input != "GAME_INFO_START") {
+        return 1;
+    }
+
+    uint16_t rule, playerCount;
+    if (!(stream >> rule >> playerCount)) {
+        return 1;
+    }
+    if (rule != RULE_ELIMINATION && rule != RULE_SPEED) {
+        return 1;
+    }
+    if (playerCount < 2 || playerCount > 4) {
+        return 1;
+    }
+
+    uint16_t playersAlive;
+    if (!(stream >> playersAlive)) {
+        return 1;
+    }
+    if (playersAlive < 2 || playersAlive > playerCount) {
+        return 1;
+    }
+
+    std::list<uint16_t> playerOrder;
+    for (auto i = 0; i < playersAlive; i++) {
+        uint16_t color;
+        if (!(stream >> color)) {
+            return 1;
+        }
+        if (color < PLAYER_BLUE || color > PLAYER_ORANGE) {
+            return 1;
+        }
+        for (auto elem : playerOrder) {
+            if (color == elem) {
+                return 1;
+            }
+        }
+        playerOrder.push_back(color);
+    }
+
+    uint16_t currentPlayerId;
+    if (!(stream >> currentPlayerId)) {
+        return 1;
+    }
+    else {
+        bool check = false;
+        for (auto elem : playerOrder) {
+            if (currentPlayerId == elem) {
+                check = true;
+                break;
+            }
+        }
+        if (!check) {
+            return 1;
+        }
+    }
+
+    if (!(stream >> input) || input != "GAME_INFO_END") {
+        return 1;
+    }
+
+
+
     if (!(stream >> input) || input != "FIELD_START") {
         return 1;
     }
@@ -32,6 +97,7 @@ int Game::Loader::load(Game& game) {
     if (!(stream >> input) || input != "FIELD_END") {
         return 1;
     }
+
 
     // Лично я вот от этой строчки просто в шоке, мне плохо, я даже не представляю как назвать переменную
     // Map. Ключ - игрок. Значение - пара векторов с инфой о базах и юнитах + номер базы игрока
@@ -62,6 +128,16 @@ int Game::Loader::load(Game& game) {
                 }
             }
 
+            bool checkPlayerExist = false;
+            for (auto listPlayer : playerOrder) {
+                if (playerSnaphot->getColor() == listPlayer) {
+                    checkPlayerExist = true;
+                }
+            }
+            if (!checkPlayerExist) {
+                return 1;
+            }
+
             std::pair<std::vector<std::shared_ptr<Base::BaseSnapshot>>, std::vector<std::pair<int,std::shared_ptr<Snapshot>>>> tempPair;
 
             int unitCountAtBase = 0;
@@ -85,7 +161,7 @@ int Game::Loader::load(Game& game) {
 
                 else if (input == "UNIT_START") {
                     if (tempPair.first.size() == 0 || unitCountAtBase >= MAX_UNIT_COUNT_AT_BASE) {
-                        return -1;
+                        return 1;
                     }
 
                     auto unitSnapshot = std::make_shared<Unit::UnitSnapshot>(stream);
@@ -138,8 +214,38 @@ int Game::Loader::load(Game& game) {
         }
     }
 
+    if (playersAlive != playerInfo.size()) {
+        return 1;
+    }
+
 
     // !!! Этап инициализации game !!!
+
+    if (rule == RULE_ELIMINATION) {
+        if (playerCount == 2) {
+            game.gameInfo = new GameInfo<EliminationRule, 2>();
+        }
+        else if (playerCount == 3) {
+            game.gameInfo = new GameInfo<EliminationRule, 3>();
+        }
+        else if (playerCount == 4) {
+            game.gameInfo = new GameInfo<EliminationRule, 4>();
+        }
+    }
+    else if (rule == RULE_SPEED) {
+        if (playerCount == 2) {
+            game.gameInfo = new GameInfo<SpeedRule, 2>();
+        }
+        else if (playerCount == 3) {
+            game.gameInfo = new GameInfo<SpeedRule, 3>();
+        }
+        else if (playerCount == 4) {
+            game.gameInfo = new GameInfo<SpeedRule, 4>();
+        }
+    }
+
+    game.gameInfo->setOrder(playerOrder, currentPlayerId);
+
 
     game.field = new Field(*FieldSnapshot);
 

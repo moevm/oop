@@ -66,6 +66,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/swordsman_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/swordsman_orange.png");
+            break;
         }
         setPixmap(pixmap);
         setZValue(10);
@@ -82,6 +85,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
             break;
         case PLAYER_GREEN:
             pixmap.load("://imgs/pikeman_green.png");
+            break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/pikeman_orange.png");
             break;
         }
         setPixmap(pixmap);
@@ -100,6 +106,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/shock_cavalry_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/shock_cavalry_orange.png");
+            break;
         }
         setPixmap(pixmap);
         setZValue(10);
@@ -116,6 +125,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
             break;
         case PLAYER_GREEN:
             pixmap.load("://imgs/archer_green.png");
+            break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/archer_orange.png");
             break;
         }
         setPixmap(pixmap);
@@ -134,6 +146,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/crossbowman_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/crossbowman_orange.png");
+            break;
         }
         setPixmap(pixmap);
         setZValue(10);
@@ -150,6 +165,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
             break;
         case PLAYER_GREEN:
             pixmap.load("://imgs/scout_cavalry_green.png");
+            break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/scout_cavalry_orange.png");
             break;
         }
         setPixmap(pixmap);
@@ -168,6 +186,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/catapult_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/catapult_orange.png");
+            break;
         }
         setPixmap(pixmap);
         setZValue(10);
@@ -184,6 +205,9 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
             break;
         case PLAYER_GREEN:
             pixmap.load("://imgs/ram_green.png");
+            break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/ram_orange.png");
             break;
         }
         setPixmap(pixmap);
@@ -202,7 +226,11 @@ VisualItem::VisualItem(Object* object, QGraphicsItem* parent) : QObject(), QGrap
         case PLAYER_GREEN:
             pixmap.load("://imgs/town_green.png");
             break;
+        case PLAYER_ORANGE:
+            pixmap.load("://imgs/town_orange.png");
+            break;
         }
+
         setPixmap(pixmap);
         setZValue(5);
         break;
