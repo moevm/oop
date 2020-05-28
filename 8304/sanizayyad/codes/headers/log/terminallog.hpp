@@ -1,14 +1,14 @@
 #ifndef terminallog_hpp
 #define terminallog_hpp
 
-#include "log.hpp"
+#include "adapter.hpp"
 
 
 #include <stdio.h>
 #include <iostream>
 
 
-class TerminalLog: public Log
+class TerminalLog: public Adapter
 {
 public:
     explicit TerminalLog() = default;

@@ -3,13 +3,16 @@
 Facade::Facade(std::shared_ptr<Mediator> mediator, std::shared_ptr<Base> homeBase,
                std::shared_ptr<std::set<std::shared_ptr<Unit>>> units,
                std::shared_ptr<Base> enemyBase,
-               std::shared_ptr<BattleField> battleField)
+               std::shared_ptr<BattleField> battleField,
+               std::shared_ptr<Log> log
+               )
 {
     this->homeBase = homeBase;
     this->mediator = mediator;
     this->units = units;
     this->enemyBase = enemyBase;
     this->battleField = battleField;
+    this->log = log;
 }
 
 
@@ -120,6 +123,9 @@ bool Facade::attack(std::shared_ptr<Unit> unit)
                     if (!cell->isEmpty()) {
                         auto enemy = cell->getUnit();
                         if (enemy->getPlayer() != player) {
+                            log->writeTo(UnitLog::attackMessage(unit, enemy));
+                            log->writeTo(UnitLog::healthMessage(enemy,weapon->getDamage() * enemy->getArmor()->getResistance()));
+
                             enemy->makeDamage(weapon->getDamage() *enemy->getArmor()->getResistance());
                             return true;
                         }

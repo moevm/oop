@@ -14,9 +14,9 @@ enum class TYPE : int
     ERR
 };
 
-class Log {
+class Adapter {
 public:
-   virtual ~Log() = default;
+   virtual ~Adapter() = default;
 
     virtual void writeTo(const std::string& msg, TYPE type = TYPE::INFO) = 0;
     

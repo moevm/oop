@@ -5,8 +5,10 @@ PlayGame::PlayGame()
 {
     playerUnits = std::make_shared<std::set<std::shared_ptr<Unit>>>();
     enemyUnits = std::make_shared<std::set<std::shared_ptr<Unit>>>();
-    log = std::make_shared<FileLog>("/Users/sourcecode/Documents/LabFolder/log.txt");
-//    log = std::make_shared<TerminalLog>();
+    proxyLog = std::make_shared<Proxy>(true,false);
+    originator = std::make_shared<Originator>("/Users/sourcecode/Documents/LabFolder/save1.txt");
+    
+    careTaker = std::make_shared<Caretaker>(originator);
     
     numberOfEnemiesAllowed = 0;
 }
@@ -16,17 +18,17 @@ void PlayGame::startGame(){
     isRunning = true;
     while (isRunning) {
         auto action = input();
-        actionLogic(action);
-        
-        enemyLogic();
+        bool commandCanContinue = actionLogic(action);
+       if(commandCanContinue)
+           enemyLogic();
         
         if (playerBase->getHealthPoints() <= 0) {
-            log->writeTo("GAME OVER. ENEMY WON!");
+            proxyLog->logMessage("GAME OVER. ENEMY WON!");
             std::cout << "ENEMY WON!\n";
             return;
         }
         else if (enemyBase->getHealthPoints() <= 0) {
-            log->writeTo("GAME OVER. You WON!");
+            proxyLog->logMessage("GAME OVER. You WON!");
             std::cout << "YOU WON!\n";
             return;
         }
@@ -39,7 +41,7 @@ void PlayGame::startGame(){
         }
 
         for (auto i : tmp) {
-            log->writeTo(UnitLog::dieMessage(i));
+            proxyLog->logMessage(UnitLog::dieMessage(i));
             playerUnits->erase(i);
             i->notifyObservers();
             battleField->deleteUnit(i);
@@ -53,7 +55,7 @@ void PlayGame::startGame(){
         }
 
         for (auto i : tmp) {
-            log->writeTo(UnitLog::dieMessage(i));
+            proxyLog->logMessage(UnitLog::dieMessage(i));
             enemyUnits->erase(i);
             i->notifyObservers();
             battleField->deleteUnit(i);
@@ -67,9 +69,9 @@ void PlayGame::startGame(){
 
 void PlayGame::initiliaze()
 {
-    log->writeTo("START GAME");
+    proxyLog->logMessage("START GAME");
 
-    std::cout << "RULES:\na - armor\n. - plains\n+ - heal\n* - desert\nO - oceans\n"
+    std::cout << "SYMBOLS:\na - armor\n. - plains\n+ - heal\n* - desert\nO - oceans\n"
     "! - poison\nB- base\n";
 
     playerUnits->clear();
@@ -77,7 +79,7 @@ void PlayGame::initiliaze()
     
     isPlayerAttack = false;
     createBattleField();
-    mediator = std::make_shared<Mediator>(battleField,log);
+    mediator = std::make_shared<Mediator>(battleField,proxyLog);
 
     playerBase =
     std::make_shared<Base>(Position2D(1,battleField->getHeight()/2),mediator,PLAYER::ONE);
@@ -88,16 +90,14 @@ void PlayGame::initiliaze()
     battleField->addUnit(playerBase);
     battleField->addUnit(enemyBase);
     
-    log->writeTo(UnitLog::createMessage(playerBase));
-    log->writeTo(UnitLog::createMessage(enemyBase));
-    log->writeTo(PlayerLog::attack(PLAYER::TWO));
-    log->writeTo(PlayerLog::deffend(PLAYER::ONE));
+    proxyLog->logMessage(UnitLog::createMessage(playerBase));
+    proxyLog->logMessage(UnitLog::createMessage(enemyBase));
+    proxyLog->logMessage(PlayerLog::attack(PLAYER::TWO));
+    proxyLog->logMessage(PlayerLog::deffend(PLAYER::ONE));
 
-    playerUnits->insert(playerBase);
-    enemyUnits->insert(enemyBase);
 
-    playerFacade = std::make_shared<Facade>(mediator, playerBase, playerUnits,enemyBase, battleField,log);
-    enemyFacade = std::make_shared<Facade>(mediator, enemyBase, enemyUnits,playerBase, battleField,log);
+    playerFacade = std::make_shared<Facade>(mediator, playerBase, playerUnits,enemyBase, battleField,proxyLog);
+    enemyFacade = std::make_shared<Facade>(mediator, enemyBase, enemyUnits,playerBase, battleField,proxyLog);
     
 }
 
@@ -122,20 +122,19 @@ void PlayGame::createBattleField(){
 
     proxy = std::make_shared<ProxyLandscape>(oceans);
     
-    for (int i = 0; static_cast<long long>(i) < battleField->getHeight(); ++i) {
-    if (abs(static_cast<long long>(i) -
-            static_cast<long long>(battleField->getHeight() / 4)) >= 2 &&
-            abs(static_cast<long long>(i) -
-                static_cast<long long>(3 * battleField->getHeight() / 4)) >= 2) {
-        battleField->getFieldCell(Position2D(battleField->getWidth()/2 - 2, i))->setLandscape(proxy);
-        battleField->getFieldCell(Position2D(battleField->getWidth()/2 + 2, i))->setLandscape(proxy);
-        battleField->getFieldCell(Position2D(battleField->getWidth()/2 - 1, i))->setLandscape(proxy);
-        battleField->getFieldCell(Position2D(battleField->getWidth()/2 + 1, i))->setLandscape(proxy);
-        battleField->getFieldCell(Position2D(battleField->getWidth()/2, i))->setLandscape(proxy);
-
-    }
-    }
-    
+//    for (int i = 0; static_cast<long long>(i) < battleField->getHeight(); ++i) {
+//    if (abs(static_cast<long long>(i) -
+//            static_cast<long long>(battleField->getHeight() / 4)) >= 2 &&
+//            abs(static_cast<long long>(i) -
+//                static_cast<long long>(3 * battleField->getHeight() / 4)) >= 2) {
+//        battleField->getFieldCell(Position2D(battleField->getWidth()/2 - 2, i))->setLandscape(proxy);
+//        battleField->getFieldCell(Position2D(battleField->getWidth()/2 + 2, i))->setLandscape(proxy);
+//        battleField->getFieldCell(Position2D(battleField->getWidth()/2 - 1, i))->setLandscape(proxy);
+//        battleField->getFieldCell(Position2D(battleField->getWidth()/2 + 1, i))->setLandscape(proxy);
+//        battleField->getFieldCell(Position2D(battleField->getWidth()/2, i))->setLandscape(proxy);
+//
+//    }
+//    }
     
 
     auto healthObject = std::make_shared<HealthObject>();
@@ -176,52 +175,10 @@ void PlayGame::printGame() const{
     res += "Enemey Base HP: " + std::to_string(enemyBase->getHealthPoints()) + "\n";
 
     res += "q - quit, 1 - short range, 2 - long range, 3 - dynamic range\n"
-           "a - attack, d - defense\n";
+           "a - attack, d - defense,s - save game, l - load game\n";
     
     std::cout << res;
 }
-
-void PlayGame::actionLogic(ACTION action)
-{
-    
-    switch (action) {
-    case ACTION::ATTACK:
-        log->writeTo(PlayerLog::attack(PLAYER::ONE));
-        isPlayerAttack = true;
-        break;
-    case ACTION::DEFFEND:
-        log->writeTo(PlayerLog::attack(PLAYER::ONE));
-        isPlayerAttack = false;
-        break;
-    case ACTION::CREATE_SHORTRANGE:
-        log->writeTo(PlayerLog::createUnit(true, PLAYER::ONE));
-        playerFacade->createShortRangeUnit();
-        break;
-    case ACTION::CREATE_LONGRANGE:
-        log->writeTo(PlayerLog::createUnit(true, PLAYER::ONE));
-        playerFacade->createLongRangeUnit();
-        break;
-    case ACTION::CREATE_DYNAMICRANGE:
-        log->writeTo(PlayerLog::createUnit(true, PLAYER::ONE));
-        playerFacade->createDynamicRangeUnit();
-        break;
-    case ACTION::EXIT:
-        log->writeTo("GAME OVER");
-        isRunning = false;
-        break;
-    default:
-        break;
-    }
-    
-    if (isPlayerAttack) {
-        playerFacade->charge();
-    }
-    else {
-        playerFacade->deffend();
-    }
-}
-
-
 
 void PlayGame::enemyLogic()
 {
@@ -230,7 +187,7 @@ void PlayGame::enemyLogic()
     if(numberOfEnemiesAllowed < 4){
         numberOfEnemiesAllowed++;
         auto choose = rand() % 4;
-           log->writeTo(PlayerLog::createUnit(true, PLAYER::TWO));
+           proxyLog->logMessage(PlayerLog::createUnit(true, PLAYER::TWO));
            switch (choose) {
            case 1:
                enemyFacade->createShortRangeUnit();
@@ -246,6 +203,70 @@ void PlayGame::enemyLogic()
     
 }
 
+bool PlayGame::actionLogic(ACTION action)
+{
+    
+    switch (action) {
+        case ACTION::ATTACK:{
+            proxyLog->logMessage(PlayerLog::attack(PLAYER::ONE));
+            isPlayerAttack = true;
+            break;
+        }
+        case ACTION::DEFFEND:{
+            proxyLog->logMessage(PlayerLog::attack(PLAYER::ONE));
+            isPlayerAttack = false;
+            break;
+        }
+        case ACTION::SAVE:{
+            std::cout << "Saving Game . . . . . . . .!\n";
+            std::cout << "GAME SAVED!\n";
+            careTaker->Backup(*this);
+            return false;
+            break;
+        }
+        case ACTION::LOAD:{
+            std::cout << "Loading Game . . . . . . . .!\n";
+            std::cout << "GAME LOADED SUCCESSFULLY!\n";
+            careTaker->Undo(*this);
+            return false;
+            break;
+        }
+        case ACTION::CREATE_SHORTRANGE:{
+            proxyLog->logMessage(PlayerLog::createUnit(true, PLAYER::ONE));
+            playerFacade->createShortRangeUnit();
+            break;
+        }
+        case ACTION::CREATE_LONGRANGE:{
+            proxyLog->logMessage(PlayerLog::createUnit(true, PLAYER::ONE));
+            playerFacade->createLongRangeUnit();
+            break;
+        }
+        case ACTION::CREATE_DYNAMICRANGE:{
+            proxyLog->logMessage(PlayerLog::createUnit(true, PLAYER::ONE));
+            playerFacade->createDynamicRangeUnit();
+            break;
+        }
+        case ACTION::EXIT:{
+            proxyLog->logMessage("GAME OVER");
+            isRunning = false;
+            return false;
+        }
+    default:
+        break;
+    }
+    
+    if (isPlayerAttack) {
+        playerFacade->charge();
+    }
+    else {
+        playerFacade->deffend();
+    }
+
+    return true;
+}
+
+
+
 ACTION PlayGame::input()
 {
     
@@ -253,18 +274,22 @@ ACTION PlayGame::input()
         char ac;
         std::cin>>ac;
         switch (ac) {
-        case 'a':
-            return ACTION::ATTACK;
-        case 'd':
-            return ACTION::DEFFEND;
-        case '1':
-            return ACTION::CREATE_SHORTRANGE;
-        case '2':
-            return ACTION::CREATE_LONGRANGE;
-        case '3':
-            return ACTION::CREATE_DYNAMICRANGE;
-        case 'q':
-            return ACTION::EXIT;
+            case 'a':
+                return ACTION::ATTACK;
+            case 'd':
+                return ACTION::DEFFEND;
+            case 's':
+                return ACTION::SAVE;
+            case 'l':
+                return ACTION::LOAD;
+            case '1':
+                return ACTION::CREATE_SHORTRANGE;
+            case '2':
+                return ACTION::CREATE_LONGRANGE;
+            case '3':
+                return ACTION::CREATE_DYNAMICRANGE;
+            case 'q':
+                return ACTION::EXIT;
         }
     }
     return ACTION::NO_ACTION;

@@ -31,12 +31,12 @@
 class UnitCreator
 {
 public:
-    std::shared_ptr<Unit> createSwordMan(const Position2D& Position,std::shared_ptr<Mediator> mediator);
-    std::shared_ptr<Unit> createSpearMan(const Position2D& Position,std::shared_ptr<Mediator> mediator);
-    std::shared_ptr<Unit> createArcher(const Position2D& Position,std::shared_ptr<Mediator> mediator);
-    std::shared_ptr<Unit> createBallistic(const Position2D& Position,std::shared_ptr<Mediator> mediator);
-    std::shared_ptr<Unit> createVampire(const Position2D& Position,std::shared_ptr<Mediator> mediator);
-    std::shared_ptr<Unit> createDragon(const Position2D& Position,std::shared_ptr<Mediator> mediator);
+    std::shared_ptr<Unit> createSwordMan(const Position2D& Position,std::shared_ptr<Mediator> mediator,double healthPoints = __DBL_MIN__);
+    std::shared_ptr<Unit> createSpearMan(const Position2D& Position,std::shared_ptr<Mediator> mediator,double healthPoints = __DBL_MIN__);
+    std::shared_ptr<Unit> createArcher(const Position2D& Position,std::shared_ptr<Mediator> mediator,double healthPoints = __DBL_MIN__);
+    std::shared_ptr<Unit> createBallistic(const Position2D& Position,std::shared_ptr<Mediator> mediator,double healthPoints = __DBL_MIN__);
+    std::shared_ptr<Unit> createVampire(const Position2D& Position,std::shared_ptr<Mediator> mediator,double healthPoints = __DBL_MIN__);
+    std::shared_ptr<Unit> createDragon(const Position2D& Position,std::shared_ptr<Mediator> mediator,double healthPoints = __DBL_MIN__);
 
 };
 

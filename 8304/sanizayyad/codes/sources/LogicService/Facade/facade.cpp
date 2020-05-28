@@ -1,10 +1,11 @@
 #include "facade.hpp"
 
+
 Facade::Facade(std::shared_ptr<Mediator> mediator, std::shared_ptr<Base> homeBase,
                std::shared_ptr<std::set<std::shared_ptr<Unit>>> units,
                std::shared_ptr<Base> enemyBase,
                std::shared_ptr<BattleField> battleField,
-               std::shared_ptr<Log> log
+               std::shared_ptr<Proxy> proxyLog
                )
 {
     this->homeBase = homeBase;
@@ -12,13 +13,26 @@ Facade::Facade(std::shared_ptr<Mediator> mediator, std::shared_ptr<Base> homeBas
     this->units = units;
     this->enemyBase = enemyBase;
     this->battleField = battleField;
-    this->log = log;
+    this->proxyLog = proxyLog;
+    
+//    attackHandler = std::make_shared<AttackHandler>();
+//    createUnitHandler = std::make_shared<CreateUnitHandler>();
+//    moveUnitHandler = std::make_shared<MoveUnitHandler>();
+
 }
 
 
 void Facade::charge()
 {
+    
+    
+//    handler->SetNext(attackHandler);
+
     for (auto unit : *units) {
+//    if(!handler->Attack(battleField,unit,log)){
+//        handler->SetNext(moveUnitHandler);
+//        handler->MoveUnit(enemyBase, unit);
+//    }
         if (!attack(unit)) {
             moveUnit(unit);
         }
@@ -28,7 +42,10 @@ void Facade::charge()
 
 void Facade::deffend()
 {
+    //    handler->SetNext(attackHandler);
+
     for (auto unit : *units) {
+//        !handler->Attack(battleField,unit,log)
         attack(unit);
     }
 }
@@ -73,8 +90,11 @@ std::shared_ptr<Unit> Facade::createUnit(std::string type){
 
 bool Facade::createShortRangeUnit()
 {
-
+//    handler->SetNext(createUnitHandler);
+//    auto unit  = handler->CreateUnit(homeBase, enemyBase, "short");
+    
     auto unit = createUnit("short");
+    
     if (unit) {
         units->insert(unit);
         battleField->addUnit(unit);
@@ -86,6 +106,8 @@ bool Facade::createShortRangeUnit()
 
 bool Facade::createLongRangeUnit()
 {
+//    andler->SetNext(createUnitHandler);
+    //    auto unit  = handler->CreateUnit(homeBase, enemyBase, "long");
      auto unit = createUnit("long");
         if (unit) {
             units->insert(unit);
@@ -98,6 +120,8 @@ bool Facade::createLongRangeUnit()
 
 bool Facade::createDynamicRangeUnit()
 {
+//    handler->SetNext(createUnitHandler);
+    //    auto unit  = handler->CreateUnit(homeBase, enemyBase, "dynamic");
      auto unit = createUnit("dynamic");
         if (unit) {
             units->insert(unit);
@@ -123,8 +147,8 @@ bool Facade::attack(std::shared_ptr<Unit> unit)
                     if (!cell->isEmpty()) {
                         auto enemy = cell->getUnit();
                         if (enemy->getPlayer() != player) {
-                            log->writeTo(UnitLog::attackMessage(unit, enemy));
-                            log->writeTo(UnitLog::healthMessage(enemy,weapon->getDamage() * enemy->getArmor()->getResistance()));
+                            proxyLog->logMessage(UnitLog::attackMessage(unit, enemy));
+                            proxyLog->logMessage(UnitLog::healthMessage(enemy,weapon->getDamage() * enemy->getArmor()->getResistance()));
 
                             enemy->makeDamage(weapon->getDamage() *enemy->getArmor()->getResistance());
                             return true;
@@ -137,7 +161,6 @@ bool Facade::attack(std::shared_ptr<Unit> unit)
 
     return false;
 }
-
 
 void Facade::moveUnit(std::shared_ptr<Unit> unit)
 {
@@ -158,5 +181,4 @@ void Facade::moveUnit(std::shared_ptr<Unit> unit)
     else if (unitPosition.y > enemyBasePosition.y) {
         unit->moveTop();
     }
-    
 }

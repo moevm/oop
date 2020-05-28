@@ -23,6 +23,7 @@ enum class PLAYER: int {
 };
 
 class Unit: public MovingInterface, public ObserverSubject{
+    friend class UnitBuilder;
     public:
         explicit Unit(const Position2D& position, std::shared_ptr<Mediator> mediator);
         virtual ~Unit() = default;

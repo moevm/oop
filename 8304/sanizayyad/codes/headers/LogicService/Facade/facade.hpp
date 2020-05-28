@@ -5,8 +5,12 @@
 #include "mediator.hpp"
 #include "base.hpp"
 #include "BattleField.hpp"
-#include "log.hpp"
-#include "unitlog.hpp"
+#include "abstracthandler.hpp"
+#include "attackhandler.hpp"
+#include "createunithandler.hpp"
+#include "movehandler.hpp"
+#include "proxy.hpp"
+
 
 #include <math.h>
 
@@ -15,12 +19,13 @@
 
 class Facade
 {
+    
 public:
     Facade(std::shared_ptr<Mediator> mediator, std::shared_ptr<Base> homeBase,
            std::shared_ptr<std::set<std::shared_ptr<Unit>>> units,
            std::shared_ptr<Base> enemyBase,
            std::shared_ptr<BattleField> battleField,
-           std::shared_ptr<Log> log);
+           std::shared_ptr<Proxy> proxyLog);
 
     void charge();
     void deffend();
@@ -42,7 +47,13 @@ private:
     std::shared_ptr<std::set<std::shared_ptr<Unit>>> units;
     std::shared_ptr<Mediator> mediator;
     std::shared_ptr<BattleField> battleField;
-    std::shared_ptr<Log> log;
+    std::shared_ptr<Proxy> proxyLog;
+    std::shared_ptr<AbstractHandler> handler;
+    std::shared_ptr<AttackHandler> attackHandler;
+    std::shared_ptr<CreateUnitHandler> createUnitHandler;
+    std::shared_ptr<MoveUnitHandler> moveUnitHandler;
+
+
 };
 
 

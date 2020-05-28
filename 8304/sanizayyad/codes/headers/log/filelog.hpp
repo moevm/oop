@@ -1,13 +1,13 @@
 #ifndef filelog_hpp
 #define filelog_hpp
 
-#include "log.hpp"
+#include "adapter.hpp"
 
 #include <fstream>
 #include <cstdio>
 #include <stdio.h>
 
-class FileLog : public Log
+class FileLog : public Adapter
 {
 public:
     explicit FileLog(const std::string& fileName);
