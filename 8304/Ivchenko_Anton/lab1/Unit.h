@@ -1,34 +1,98 @@
 #pragma once
 
+
+class Damage {
+
+private:
+	int damage;
+public:
+	Damage() {};
+	int getDamage() {
+		return damage;
+	}
+	void setDamage(int a) {
+		damage = a;
+	}
+	void raiseDamage(int value) {
+		damage = damage + value;
+	}
+	~Damage() {};
+};
+
+class Armor {
+private:
+	int armor;
+public:
+	Armor() {};
+	int getArmor() {
+		return armor;
+	}
+	void setArmor(int a) {
+		armor = a;
+	}
+	void reduceHealth(int d) {
+		armor = armor - d;
+
+	}
+	~Armor() {};
+
+};
+
 class Unit {
+
+private:
+
+	char id;
+	Damage *damage;
+	Armor *armor;
+	int speed;
 
 public:
 
-	int x, y;
-	char id;
-	int damage, armor, speed;
+	Unit() { id = '0'; damage = new Damage; armor = new Armor; speed = 0; };
 
-	Unit() {};
+	void SetCharacteristics(int a, int b, int c) {
+		setDamage(a);
+		setArmor(b);
+		this->speed = c;
 
-	Unit(int _x, int _y) : x(_x), y(_y){};
-
-	void changePos(int dx, int dy) {
-
-		x = x + dx;
-		y = y + dy;
 	}
-
-	char getid() 
-	{
+	void attack(Unit* a) {
+		a->get_hit(damage->getDamage());
+	}
+	void get_hit(int damage) {
+		armor->reduceHealth(damage);
+	}
+	void check_armor(Unit* a) {
+		if (a->getArmor() < 0)
+			a->~Unit();
+	}
+	void weapon_upgrade() {
+		damage->raiseDamage(5);
+	}
+	void setName(char a) {
+		this->id = a;
+	}
+	char getid() {
 		return id;
 	}
-	int getx()
-	{
-		return x;
-	};
-	int gety()
-	{
-		return y;
+	int getSpeed() {
+		return speed;
+	}
+	int getDamage() {
+		return damage->getDamage();;
+	}
+	int getArmor() {
+		return armor->getArmor();
+	}
+	void setDamage(int a) {
+		armor->setArmor(a);
+	}
+	void setArmor(int a) {
+		damage->setDamage(a);
+	} 
+	void setSpeed(int a) {
+		this->speed = a;
 	}
 
 	~Unit() {
@@ -37,20 +101,14 @@ public:
 
 };
 
-class Warrior : public  Unit {
+class Warrior : public Unit {
 
 public:
 
 	Warrior() {
-
-		this->armor = 10;
-		this->damage = 8;
-		this->speed = 1;
-
+		this->SetCharacteristics(10, 8, 2);
 	};
-	~Warrior() {
-
-	};
+	~Warrior() {};
 
 };
 
@@ -60,12 +118,9 @@ public:
 
 	Swordman() {
 
-		this->damage = 5;
-		this->id = '1';
+		this->setName('a');
 	}
-	~Swordman() {
-
-	};
+	~Swordman() {};
 };
 
 class Spearman : public Warrior {
@@ -74,13 +129,10 @@ public:
 
 	Spearman() {
 
-		this->damage = 7;
-		this->id = '2';
+		this->setName('b');
 
 	};
-	~Spearman() {
-
-	};
+	~Spearman() {};
 
 };
 
@@ -89,13 +141,11 @@ class Archer : public Unit {
 public:
 
 	Archer() {
+		this->SetCharacteristics(15, 5, 3);
 
-		this->armor = 7;
-
-	}
-	~Archer() {
 
 	}
+	~Archer() {};
 };
 
 class Slinger : public Archer {
@@ -104,14 +154,10 @@ public:
 
 	Slinger() {
 
-		this->id = '3';
-		this->damage = 10;
-		this->speed = 3;
+		this->setName('c');
 
 	};
-	~Slinger() {
-
-	};
+	~Slinger() {};
 
 };
 
@@ -121,15 +167,11 @@ public:
 
 	Bowman() {
 
-		this->id = '4';
-		this->damage = 12;
-		this->speed = 2;
+		this->setName('d');
 
 
 	};
-	~Bowman() {
-
-	};
+	~Bowman() {};
 };
 
 class Cavalry : public Unit {
@@ -137,11 +179,11 @@ class Cavalry : public Unit {
 public:
 
 	Cavalry() {
-	
-	};
-	~Cavalry() {
+
+		this->SetCharacteristics(15, 10, 5);
 
 	};
+	~Cavalry() {};
 
 };
 
@@ -151,15 +193,10 @@ public:
 
 	LightCavalry() {
 
-		this->id = '5';
-		this->speed = 5;
-		this->armor = 8;
-		this->damage = 12;
+		this->setName('e');
 
 	};
-	~LightCavalry() {
-
-	};
+	~LightCavalry() {};
 
 
 };
@@ -170,15 +207,10 @@ public:
 
 	HeavyCavalry() {
 
-		this->id = '6';
-		this->speed = 3;
-		this->armor = 10;
-		this->damage = 15;
+		this->setName('f');
 
 	};
-	~HeavyCavalry() {
-
-	};
+	~HeavyCavalry() {};
 
 };
 

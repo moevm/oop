@@ -131,7 +131,7 @@ void Field::RemObj(Unit *a, int x, int y) {
 void Field::Moving(Unit* a, int posx, int posy, int dx, int dy) {
 
 
-	if ((dx > a->speed) && (posx + dx > h) && (posy + dy > w))
+	if ((dx > a->getSpeed()) && (posx + dx > h) && (posy + dy > w))
 
 		std::cout << "Incorrect arguments";
 
@@ -168,6 +168,7 @@ void Field::SetUnit(Unit* a, int b, int c) {
 
 };
 
+
 void Field::PrintField() {
 
 	for (int i = 0; i < h; i++) {
@@ -178,13 +179,17 @@ void Field::PrintField() {
 
 			if (field[i][k] == nullptr)
 
-				std::cout << '0';
+				std::cout << "0 ";
 			else
-				std::cout << field[i][k]->id;
+				std::cout << field[i][k]->getid() << ' ';
 		}
 	};
 
 };
+
+Iterator* Field::getIterator() const {
+	return (new Iterator(*this));
+}
 
 Field::~Field() {
 

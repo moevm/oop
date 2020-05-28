@@ -1,5 +1,6 @@
 #pragma once
 #include "Unit.h"
+#include "Iterator.h"
 
 class Field {
 
@@ -23,6 +24,7 @@ public:
 	Field* CopyField(Field* a) ;
 	void SetUnit(Unit* a, int b, int c) ;
 	void PrintField();
+	Iterator* getIterator() const;
 	~Field();
-
+	
 };
