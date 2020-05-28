@@ -57,7 +57,16 @@ int main()
             std::cin >> action;
             int x(0), y(0);
             char unit(0);
+
+
+            auto tier1_factory = new Tier1Factory();
+            auto tier2_factory = new Tier2Factory();
+            auto tier3_factory = new Tier3Factory();
             Object *newUnit;
+
+
+
+
             int Ax(0), Ay(0);
             int Tx(0), Ty(0);
             int dx(0), dy(0);
@@ -85,29 +94,33 @@ int main()
 
                     std::cin >> unit;
 
+
+
+
+
                     switch (unit) {
                         case 'n':
-                            newUnit = new NoviceArcher;
+                            newUnit = tier2_factory->createType1();
                             break;
 
                         case 'm':
-                            newUnit = new MasterArcher;
-                            break;
-
-                        case 's':
-                            newUnit = new Shieldman;
+                            newUnit = tier2_factory->createType2();
                             break;
 
                         case 'w':
-                            newUnit = new Swordsman;
+                            newUnit = tier1_factory->createType1();
                             break;
 
-                        case 'c':
-                            newUnit = new Cavalier;
+                        case 's':
+                            newUnit = tier1_factory->createType2();
                             break;
 
                         case 'p':
-                            newUnit = new Paladin;
+                            newUnit = tier3_factory->createType1();
+                            break;
+
+                        case 'c':
+                            newUnit = tier3_factory->createType2();
                             break;
 
                         default:

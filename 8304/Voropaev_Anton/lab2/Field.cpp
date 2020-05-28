@@ -145,38 +145,12 @@ bool Field::moveUnit(int xPos, int yPos, int dX, int dY) {
 
 
 bool Field::addObj(Object* object, int x, int y) {
-    if(dynamic_cast<Base *>(field[0][0].unit)->create_unit(this, object, x, y)) {
+    if(dynamic_cast<Base*>(field[0][0].unit)->create_unit(this, object, x, y)) {
         ++currentQuantity;
         return  true;
     }
     else
         return false;
-   /* if(object == nullptr) {
-        std::cout << "If you want to delete an object use removeObject instead\n";
-        return;
-    }
-	if (currentQuantity + 1 <= maxQuantity) {
-        if (field[y - 1][x - 1].unit == nullptr) {
-
-            landscape_interaction(object, x -1 , y - 1);
-
-            if(field[y - 1][x - 1].neutral != nullptr)
-                field[y - 1][x - 1].neutral->interaction(dynamic_cast<Unit*>(object));
-
-
-            //field[y - 1][x - 1].unit = object;
-            ++currentQuantity;
-            object->setPosition(x, y);
-        }
-        else {
-            std::cout << "This position is already taken by another unit\n";
-            return;
-        }
-    }
-	else {
-	    std::cout << "Field contains maximum quantity of objects\n";
-	}
-*/
 }
 
 

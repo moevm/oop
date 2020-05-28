@@ -14,6 +14,7 @@
 #include "Neutral objects/TrainingCamp.h"
 #include "Neutral objects/MaradeursCamp.h"
 #include "FieldIterator.h"
+#include "UnitFactory.h"
 
 class Base;
 class Iterator;
