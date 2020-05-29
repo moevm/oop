@@ -6,25 +6,21 @@
 
 class Iterator
 {
-    Field field;
+    Field* field;
 public:
     int x, y;
     bool isfind = false;
-    Unit* cur;
+    Cell* cell;
 
-    Iterator(Field &field);
+    Iterator(Field* field);
 
-    Unit*& operator*() {
-        return cur;
+    Cell*& operator*() {
+        return cell;
     }
 
-     //Unit*& operator++ ();
-
      bool operator!= (const Iterator& iter);
-     //bool operator== (const Iterator& iter);
 
      bool goNext();
-     Iterator end();
 };
 
 #endif // ITERATOR_H

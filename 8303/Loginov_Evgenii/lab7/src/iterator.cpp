@@ -1,36 +1,29 @@
 #include "iterator.h"
 
-Iterator::Iterator(Field &field): field(field), cur(nullptr), x(-1), y(-1)
+Iterator::Iterator(Field *field): field(field), x(-1), y(0)
 {
-
+    cell = field->cell[0][0];
 }
 
 bool Iterator::operator!= (const Iterator& iter) {
-    return cur != iter.cur;
+    if(x != iter.x || y != iter.y)
+        return false;
+    return true;
 }
 
 bool Iterator::goNext()
 {
-    for(int i =0; i<field.x; i++){
-        for(int j=0; j<field.y; j++){
-            if(field.cell[i][j]->unit != nullptr){
-                cur = field.cell[i][j]->unit; // найденный юнит
+    if(x==field->x-1 && y==field->y-1)
+        return false;
 
-                if(i>y){
-                    x = j;
-                    y = i;
-                    isfind = true;
-                    return true;
-                }
-                else if ((i==y && j>x) || !isfind){
-                    x = j;
-                    y = i;
-                    isfind = true;
-                    return true;
-                }
-
-            }
-        }
+    if(x==field->x-1) {
+        x = 0;
+        y++;
     }
-    return false;
+    else {
+        x++;
+    }
+
+    cell = field->cell[y][x];
+    return true;
 }

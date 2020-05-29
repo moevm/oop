@@ -18,6 +18,7 @@ struct Cell{
     Landscape* landscape;
     NeutralObject* object;
 
+    Cell() {}
     Cell(int x,int y, Unit* unit, Landscape* landscape, NeutralObject* object) : 
         x(x), y(y), 
         unit(unit), 

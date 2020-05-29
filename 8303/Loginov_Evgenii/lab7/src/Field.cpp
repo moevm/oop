@@ -69,16 +69,12 @@
 
 //старое поле будет уничтожено
     Field::Field(Field &&field) : x(field.x), y(field.y), maxUnit(field.maxUnit), curUnit(field.curUnit){
-        cell = new Cell**[field.y];
         for (int i=0; i<field.y; i++) {
-            cell[i] = new Cell *[field.x];
             for (int j=0; j<field.x; j++) {
                 cell[i][j] = field.cell[i][j];
             }
-        }
-
-        for (int i = 0; i < field.y; ++i)
             delete[] field.cell[i];
+        }
         delete[] field.cell;
     }
 

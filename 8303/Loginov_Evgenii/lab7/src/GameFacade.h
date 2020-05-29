@@ -7,6 +7,7 @@
 #include "ChainOfCommand.h"
 #include "adapter.h"
 #include "Rules.h"
+#include <QDebug>
 
 template <typename T>
 class GameFacade
@@ -18,17 +19,36 @@ private:
     Adapter* adapter;
 
 public:
-    GameFacade() {
-        adapter = new Adapter();
-    }
+//    GameFacade() {
+//        adapter = new Adapter();
+//    }
 
     void createField();
     void play();
 
-    ~GameFacade() {
-        delete adapter;
+    Field* getField() {
+        return field;
     }
 
+//    static GameFacade<Rule2> *getInstance(){
+//        if(game == nullptr)
+//            game = new GameFacade<Rule2>;
+//        return game;
+//    }
+
+//    ~GameFacade() {
+//        delete adapter;
+//    }
+
+    static GameFacade& Instance(){
+        static GameFacade theSingleInstance;
+        return theSingleInstance;
+    }
+
+private: //синглтон
+    GameFacade() { adapter = new Adapter(); }
+    GameFacade(const GameFacade& root) = delete;
+    GameFacade &operator=(const GameFacade&) = delete;
 };
 
 template <typename T>
@@ -56,8 +76,8 @@ void GameFacade<T>::play()
     std::cout << "Game started" << std::endl;
     std::string commandStr;
     field->print();
-
     int res = -1;
+
     while (res < 0){
         rule.printState();
 
