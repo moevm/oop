@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.15)
+project(oop_lab2)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(oop_lab2 main.cpp game/game.cpp game/game.h field/field.cpp field/field.h units/unit.cpp units/unit.h vector/vector.cpp vector/vector.h units/infantry.cpp units/infantry.h units/swordman.cpp units/swordman.h units/spearman.cpp units/spearman.h units/archer.cpp units/archer.h units/firearcher.cpp units/firearcher.h units/wooden.cpp units/wooden.h units/rider.cpp units/rider.h units/horseman.cpp units/horseman.h units/elephantman.cpp units/elephantman.h factory/factory.cpp factory/factory.h vector/Iterator.cpp vector/Iterator.h atributes/health.cpp atributes/health.h atributes/damage.cpp atributes/damage.h atributes/armor.cpp atributes/armor.h base/base.cpp base/base.h landscape/landscape.cpp landscape/landscape.h landscape/ground.cpp landscape/ground.h landscape/wall.cpp landscape/wall.h landscape/liquid.cpp landscape/liquid.h neutral/neutral.cpp neutral/neutral.h neutral/weapon.cpp neutral/weapon.h neutral/clothes.cpp neutral/clothes.h neutral/potion.cpp neutral/potion.h units/mainUnit.cpp units/mainUnit.h neutral/kit.cpp neutral/kit.h cell/cell.cpp cell/cell.h userInterface/userInterface.cpp userInterface/userInterface.h)
