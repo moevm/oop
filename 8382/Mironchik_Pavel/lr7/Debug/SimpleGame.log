@@ -1,0 +1,72 @@
+﻿  GameController.cpp
+  PlayerState.cpp
+  Rules2.cpp
+  Rules3.cpp
+  Attachable.cpp
+  BaseUnitAttackBehaviour.cpp
+  BaseUnitClickBehaviour.cpp
+  BaseUnitMoveBehaviour.cpp
+  Cell.cpp
+  Effect.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\include\game\engine\units\chancel.hpp(15): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  ObjectsController.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\include\game\engine\units\chancel.hpp(15): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  GameObjectsSet.cpp
+  Neutral.cpp
+  NeutralEffect.cpp
+  Home.cpp
+  Info.cpp
+  RelativePositioned.cpp
+  GameBoard.cpp
+  GameObject.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\include\game\engine\units\chancel.hpp(15): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  Terrain.cpp
+  Создание кода...
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\engine\gameobject.cpp(66): warning C4715: GameObject::readObject: значение возвращается не при всех путях выполнения
+  Компиляция...
+  LavaTerrain.cpp
+  SeaTerrain.cpp
+  TerrainEffect.cpp
+  Unit.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\engine\unit.cpp(90): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\engine\unit.cpp(147): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\engine\unit.cpp(152): warning C4244: return: преобразование "float" в "int", возможна потеря данных
+  BoardView.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\graphics\boardview.cpp(108): warning C4244: аргумент: преобразование "long double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\graphics\boardview.cpp(107): warning C4244: аргумент: преобразование "long double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+  HealthDrawer.cpp
+  ShapeDrawer.cpp
+  Viewport.cpp
+  CellDrawer.cpp
+  ConsoleLogAdapter.cpp
+  FileLogAdapter.cpp
+  LogInfo.cpp
+  main.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\include\game\engine\units\chancel.hpp(15): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\main.cpp(101): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\main.cpp(110): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\main.cpp(114): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  FileSigner.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr7\src\serialize\filesigner.cpp(37): warning C4244: инициализация: преобразование "std::streamoff" в "int", возможна потеря данных
+  GameSerializer.cpp
+  InObjectsTable.cpp
+  Serializer.cpp
+  Fonts.cpp
+  List.cpp
+  Log.cpp
+  Создание кода...
+  Компиляция...
+  MouseTracker.cpp
+  PathSearcher.cpp
+  Textures.cpp
+  Создание кода...
+  GridDrawer.cpp
+  SimpleGame.vcxproj -> D:\University\3_course\OOP\repo\8382\Mironchik_Pavel\lr7\Debug\SimpleGame.exe
