@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="untitled"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/vlad/CLionProjects/untitled/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/vlad/CLionProjects/untitled/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/vlad/CLionProjects/untitled/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="untitled">
+				<Option output="/home/vlad/CLionProjects/untitled/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/vlad/CLionProjects/untitled/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="untitled/fast">
+				<Option output="/home/vlad/CLionProjects/untitled/cmake-build-debug/untitled" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/vlad/CLionProjects/untitled/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 untitled/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/vlad/CLionProjects/untitled/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Archers.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Archers.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/AwesomeCeil.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/AwesomeCeil.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/AwesomeItem.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/AwesomeItem.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/BigHeal.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/BigHeal.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Cavalry.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Cavalry.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/DarkArmy.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/DarkArmy.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/DarkBase.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/DarkBase.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/DeathItem.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/DeathItem.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Field.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Field.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Heal.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Heal.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Infantry.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Infantry.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Landshaft.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Landshaft.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/LightArmy.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/LightArmy.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/LightBase.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/LightBase.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/LogF.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/LogF.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Logg.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Logg.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Neutral.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Neutral.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Units.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/Units.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/deathCeil.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/deathCeil.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/defaultCeil.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/defaultCeil.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/game.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/game.h">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/main.cpp">
+			<Option target="untitled"/>
+		</Unit>
+		<Unit filename="/home/vlad/CLionProjects/untitled/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
