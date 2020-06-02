@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/">
+        <file>pictures/mountain.png</file>
+        <file>pictures/ground.jpg</file>
+        <file>pictures/water.png</file>
+        <file>pictures/red.jfif</file>
+        <file>pictures/mnt.jpg</file>
+        <file>pictures/banner.png</file>
+        <file>pictures/forge.png</file>
+        <file>pictures/temple.png</file>
+        <file>pictures/tower.png</file>
+        <file>pictures/base.png</file>
+        <file>pictures/abs_cavalry.png</file>
+        <file>pictures/crit_cavalry.png</file>
+        <file>pictures/abs_infantry.png</file>
+        <file>pictures/crit_infantry.png</file>
+        <file>pictures/abs_archer.png</file>
+        <file>pictures/crit_archer.png</file>
+        <file>pictures/background.jpg</file>
+    </qresource>
+</RCC>
