@@ -1,0 +1,47 @@
+﻿  Cell.cpp
+  Effect.cpp
+  GameBoard.cpp
+  GameController.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr4\include\game\engine\units\chancel.hpp(14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  GameObject.cpp
+  GameObjectsSet.cpp
+  Neutral.cpp
+  NeutralEffect.cpp
+  Terrain.cpp
+  Unit.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr4\src\engine\unit.cpp(75): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr4\src\engine\unit.cpp(132): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr4\src\engine\unit.cpp(137): warning C4244: return: преобразование "float" в "int", возможна потеря данных
+  BaseUnitAttackBehaviour.cpp
+  BaseUnitClickBehaviour.cpp
+  BaseUnitMoveBehaviour.cpp
+  LavaTerrain.cpp
+  SeaTerrain.cpp
+  TerrainEffect.cpp
+  Home.cpp
+  BoardView.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr4\src\graphics\boardview.cpp(64): warning C4244: аргумент: преобразование "long double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr4\src\graphics\boardview.cpp(63): warning C4244: аргумент: преобразование "long double" в "T", возможна потеря данных
+          with
+          [
+              T=int
+          ]
+  CellDrawer.cpp
+  HealthDrawer.cpp
+  Создание кода...
+  Компиляция...
+  ShapeDrawer.cpp
+  Viewport.cpp
+  Log.cpp
+  LogInfo.cpp
+  main.cpp
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr4\include\game\engine\units\chancel.hpp(14): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+d:\university\3_course\oop\repo\8382\mironchik_pavel\lr4\src\main.cpp(36): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  MouseTracker.cpp
+  Создание кода...
+  GridDrawer.cpp
+  SimpleGame.vcxproj -> D:\University\3_course\OOP\repo\8382\Mironchik_Pavel\lr4\Debug\SimpleGame.exe
