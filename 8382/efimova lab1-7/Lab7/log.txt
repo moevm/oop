@@ -1,0 +1,10 @@
+11:52:29 Game: Init
+11:52:29 Game: Initializing GUI
+11:52:45 Game: Finished initializing GUI
+11:52:45 Game: Game started
+11:53:9 GameRulesClassic: Changing turn from 0 to 1
+11:53:10 GameRulesClassic: Changing turn from 1 to 0
+11:53:11 GameRulesClassic: Changing turn from 0 to 1
+11:53:15 GameRulesClassic: Changing turn from 1 to 0
+11:53:16 PongoBaseBoardUnit: 0 HP, destroyed
+11:53:16 GameRulesClassic: Changing turn from 0 to 1

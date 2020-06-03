@@ -1,0 +1,847 @@
+{"boardArray": 
+  [
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": {}
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": {}
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": {
+          "subtype": "stone",
+          "type": "neutral"
+        }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": {
+          "subtype": "tree_log",
+          "type": "neutral"
+        }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": {}
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": {}
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      }
+    ],
+    [
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": {
+          "baseStats": {
+            "health": 0,
+            "level": 0,
+            "maxUnit": 0,
+            "maxUnitCreationPerTurn": 0,
+            "unitCount": 4
+          },
+          "type": "base",
+          "units": [
+            {
+              "base": {
+                "x": 4,
+                "y": 9
+              },
+              "class": "cavalry",
+              "snapshot": {
+                "class": "cavalry",
+                "stats": {
+                  "armor": 15,
+                  "attack": 20,
+                  "health": 30
+                },
+                "subtype": "heavy_cavalry",
+                "type": "playableUnit"
+              },
+              "stats": {
+                "armor": 15,
+                "attack": 20,
+                "health": 30
+              },
+              "subtype": "heavy_cavalry",
+              "type": "playableUnit",
+              "x": 4,
+              "y": 0
+            },
+            {
+              "base": {
+                "x": 4,
+                "y": 9
+              },
+              "class": "cavalry",
+              "snapshot": {
+                "class": "cavalry",
+                "stats": {
+                  "armor": 15,
+                  "attack": 20,
+                  "health": 30
+                },
+                "subtype": "heavy_cavalry",
+                "type": "playableUnit"
+              },
+              "stats": {
+                "armor": 15,
+                "attack": 20,
+                "health": 30
+              },
+              "subtype": "heavy_cavalry",
+              "type": "playableUnit",
+              "x": 6,
+              "y": 3
+            },
+            {
+              "base": {
+                "x": 4,
+                "y": 9
+              },
+              "class": "cavalry",
+              "snapshot": {
+                "class": "cavalry",
+                "stats": {
+                  "armor": 15,
+                  "attack": 20,
+                  "health": 30
+                },
+                "subtype": "heavy_cavalry",
+                "type": "playableUnit"
+              },
+              "stats": {
+                "armor": 15,
+                "attack": 20,
+                "health": 30
+              },
+              "subtype": "heavy_cavalry",
+              "type": "playableUnit",
+              "x": 3,
+              "y": 5
+            },
+            {
+              "base": {
+                "x": 4,
+                "y": 9
+              },
+              "class": "cavalry",
+              "snapshot": {
+                "class": "cavalry",
+                "stats": {
+                  "armor": 15,
+                  "attack": 20,
+                  "health": 30
+                },
+                "subtype": "heavy_cavalry",
+                "type": "playableUnit"
+              },
+              "stats": {
+                "armor": 15,
+                "attack": 20,
+                "health": 30
+              },
+              "subtype": "heavy_cavalry",
+              "type": "playableUnit",
+              "x": 8,
+              "y": 6
+            }
+          ]
+        }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "snow",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": { "type": "empty" }
+      },
+      {
+        "terrainUnit": {
+          "subtype": "grass",
+          "type": "terrain"
+        },
+        "unit": {
+          "subtype": "stone",
+          "type": "neutral"
+        }
+      }
+    ]
+  ],"boardProperties":{"maxAllowedUnits":10,"sizeX":10,"sizeY":10}}

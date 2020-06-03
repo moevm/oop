@@ -1,0 +1,4 @@
+11:32:27 Game: Init
+11:32:27 Game: Initializing GUI
+11:32:36 Game: Finished initializing GUI
+11:32:36 Game: Game started
