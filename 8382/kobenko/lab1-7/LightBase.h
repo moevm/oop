@@ -11,18 +11,17 @@
 class LightBase {
 public:
     LightBase();
-    int CreateUnits();
-    int ControlUnits(Field&);
-    LightArcher createLightArcher();
-    LightInfantry createLightInfantry();
-    LightCavalry createLightCavalry();
-    int checkBase();
+    static int CreateUnits();
+    static int ControlUnits(Field&);
+    static LightArcher createLightArcher();
+    static LightInfantry createLightInfantry();
+    static LightCavalry createLightCavalry();
+    int checkBase() const;
     void getDamage(int);
 public:
     char type;
     int y;
     int x;
-private:
     int health;
 };
 

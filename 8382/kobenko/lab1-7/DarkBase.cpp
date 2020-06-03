@@ -26,13 +26,14 @@ DarkInfantry DarkBase::createDarkInfantry(){
     return di;
 }
 
-int DarkBase::checkBase(){
+int DarkBase::checkBase() const{
     if (this->health <= 0)
         return 1;
 }
 
 void DarkBase::getDamage(int attack) {
-    this->health = this->health - attack;
+    this->type = '.';
+    this->health -= attack;
 }
 
 int DarkBase::ControlUnits(Field& field) {

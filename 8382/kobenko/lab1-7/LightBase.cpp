@@ -26,7 +26,7 @@ LightInfantry LightBase::createLightInfantry(){
     return li;
 }
 
-int LightBase::checkBase(){
+int LightBase::checkBase() const{
     if (this->health <= 0)
         return 1;
 }

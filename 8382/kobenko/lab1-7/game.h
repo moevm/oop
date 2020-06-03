@@ -7,12 +7,15 @@
 #include "Field.h"
 #include "DarkBase.h"
 #include "LightBase.h"
+#include "templates.cpp"
 
 class Game{
 public:
     void InfiniteCycle(Field& field);
-    int MovingUnits(char, int , int,  LightInfantry&, LightCavalry&, LightArcher&, DarkInfantry&, DarkCavalry&, DarkArcher&, Field&);
-    int AttackingUnits(char, char,  LightInfantry&, LightCavalry&, LightArcher&, DarkInfantry&, DarkCavalry&, DarkArcher&, DarkBase&, LightBase&);
+    static int MovingUnits(Field&);
+    static int AttackingUnits(Field&);
+    int checkRules(Field& );
+    void init(Field&);
 };
 
 #endif //UNTITLED_GAME_H

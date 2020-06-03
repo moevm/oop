@@ -20,7 +20,7 @@ void LogF::creatingLog(char **field) {
 void LogF::movementLog(char choose, int x , int y) {
     fout.open("/home/vlad/Clion/log.txt", ios::app);
     if(fout.is_open()) {
-        fout << "Unit " << choose << "moved to (" << x << ", " << y << ")" << endl;
+        fout << "Unit " << choose << " moved to (" << x << ", " << y << ")" << endl;
     }
     fout.close();
 }
@@ -28,7 +28,7 @@ void LogF::movementLog(char choose, int x , int y) {
 void LogF::attackLog(char choose, int attack, char enemy) {
     fout.open("/home/vlad/Clion/log.txt", ios::app);
     if(fout.is_open()) {
-        fout << "Unit " << choose << "attacked -" << attack << "unit " << enemy << endl;
+        fout << "Unit " << choose << " attacked -" << attack << " unit " << enemy << endl;
     }
     fout.close();
 }
@@ -36,7 +36,7 @@ void LogF::attackLog(char choose, int attack, char enemy) {
 void LogF::deathLog(char choose) {
     fout.open("/home/vlad/Clion/log.txt", ios::app);
     if (fout.is_open()) {
-        fout << "Unit " << choose << "is dead" << endl;
+        fout << "Unit " << choose << " is dead" << endl;
     }
     fout.close();
 }

@@ -30,10 +30,10 @@ public:
     Field& operator=(const Field& other);
     Field& operator=(Field &&other);
     void PrintField();
+    void PrintCpyField(int );
     void CreatingField(defaultCeil defC, deathCeil deaC, AwesomeCeil aweC, AwesomeItem aweI, DeathItem deaI, Heal h, BigHeal bh);
     void CreateAnything(char, int, int);
     int CheckField(char);
-    //pair<int,int> searchEnemy(int flag, char Enemy, Army* army);
     void SaveField(int );
     void LoadField(int );
     void newMem();

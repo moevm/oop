@@ -18,7 +18,7 @@ public:
 public:
     LightArcher();
     int MoveUnits(int, int);
-    int AttackUnits();
+    int AttackUnits(char** , char );
     void getDamage(int);
 private:
     int attack;
@@ -34,7 +34,7 @@ public:
 public:
     LightInfantry();
     int MoveUnits(int, int);
-    int AttackUnits();
+    int AttackUnits(char** , char );
     void getDamage(int);
 private:
     int attack;
@@ -50,7 +50,7 @@ public:
 public:
     LightCavalry();
     int MoveUnits(int, int);
-    int AttackUnits();
+    int AttackUnits(char** , char );
     void getDamage(int);
 private:
     int attack;

@@ -11,18 +11,17 @@
 class DarkBase {
 public:
     DarkBase();
-    int CreateUnits();
-    int ControlUnits(Field&);
-    DarkArcher createDarkArcher();
-    DarkInfantry createDarkInfantry();
-    DarkCavalry createDarkCavalry();
-    int checkBase();
+    static int CreateUnits();
+    static int ControlUnits(Field&);
+    static DarkArcher createDarkArcher();
+    static DarkInfantry createDarkInfantry();
+    static DarkCavalry createDarkCavalry();
+    int checkBase() const;
     void getDamage(int);
 public:
     int x;
     int y;
     char type;
-private:
     int health;
 };
 

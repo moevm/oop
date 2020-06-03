@@ -10,7 +10,7 @@ class Archers: Units {
 public:
     Archers() = default;
     virtual int MoveUnits(int , int ) = 0;
-    virtual int AttackUnits() = 0;
+    virtual int AttackUnits(char** , char ) = 0;
     virtual void getDamage(int) =0;
 public:
     int x;

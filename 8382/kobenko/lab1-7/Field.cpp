@@ -95,19 +95,19 @@ int Field::CheckField(char choose){
 
 void Field::SaveField(int counter) {
     for (int i = 0; i < 10; i++) {
+        //this->saveF[counter][i] = this->field[i];
         for (int j = 0; j < 10; j++) {
             this->saveF[counter][i][j] = this->field[i][j];
         }
-        this->saveF[counter][i] = this->field[i];
     }
 }
 
 void Field::LoadField(int turn) {
     for (int i = 0; i < 10; i++) {
+        this->field[i] = this->saveF[turn][i];
         for (int j = 0; j < 10; j++) {
             this->field[i][j] = this->saveF[turn][i][j];
         }
-        this->field[i] = this->saveF[turn][i];
     }
 }
 
@@ -117,6 +117,14 @@ void Field::newMem() {
         for (int j = 0; j < 10; j++){
             this->saveF[i][j] = new char [10];
         }
+    }
+}
+
+void Field::PrintCpyField(int count) {
+    for (int i = 0; i < 10; i++){
+        for (int j = 0; j < 10; j++)
+            cout << this->saveF[count][i][j];
+        cout << endl;
     }
 }
 

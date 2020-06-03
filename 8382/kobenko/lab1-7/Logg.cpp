@@ -14,15 +14,15 @@ void Logg::creatingLog(char **field) {
 }
 
 void Logg::movementLog(char choose, int x , int y) {
-    cout << "Unit " << choose << "moved to (" << x << ", " << y << ")" << endl;
+    cout << "Unit " << choose << " moved to (" << x << ", " << y << ")" << endl;
 }
 
 void Logg::attackLog(char choose, int attack, char enemy) {
-    cout << "Unit " << choose << "attacked -" << attack << "unit " << enemy << endl;
+    cout << "Unit " << choose << " attacked -" << attack << " unit " << enemy << endl;
 }
 
 void Logg::deathLog(char choose) {
-    cout << "Unit " << choose << "is dead" << endl;
+    cout << "Unit " << choose << " is dead" << endl;
 }
 
 void Logg::gameoverLog() {

@@ -31,12 +31,12 @@ DarkArcher::DarkArcher() {
     y = 8;
 }
 
-int DarkCavalry::MoveUnits(int x, int y) {
+int DarkCavalry::MoveUnits(int a, int b) {
     try {
-        if((this->x - x < 0 && this->x - x > 1) || (this->y - y < 0 && this->y - y > 1))
+        if((abs(this->x - a) > 2) || (abs(this->y - b) > 2))
             throw "You went too far";
-        this->x = x;
-        this->y = y;
+        this->x = a;
+        this->y = b;
     }
     catch (const char * exception) {
         std::cerr << "Error: " << exception << "\n";
@@ -45,12 +45,12 @@ int DarkCavalry::MoveUnits(int x, int y) {
     return 0;
 }
 
-int DarkInfantry::MoveUnits(int x, int y) {
+int DarkInfantry::MoveUnits(int a, int b) {
     try {
-        if((this->x - x < 0 && this->x - x > 1) || (this->y - y < 0 && this->y - y > 1))
+        if((abs(this->x - a) > 1) || (abs(this->y - b) > 1))
             throw "You went too far";
-        this->x = x;
-        this->y = y;
+        this->x = a;
+        this->y = b;
     }
     catch (const char * exception) {
         std::cerr << "Error: " << exception << "\n";
@@ -59,12 +59,12 @@ int DarkInfantry::MoveUnits(int x, int y) {
     return 0;
 }
 
-int DarkArcher::MoveUnits(int x, int y) {
+int DarkArcher::MoveUnits(int a, int b) {
     try {
-        if((this->x - x < 0 && this->x - x > 1) || (this->y - y < 0 && this->y - y > 1))
+        if((abs(this->x - a) > 1) || (abs(this->y - b) > 1))
             throw "You went too far";
-        this->x = x;
-        this->y = y;
+        this->x = a;
+        this->y = b;
     }
     catch (const char * exception) {
         std::cerr << "Error: " << exception << "\n";
@@ -73,36 +73,66 @@ int DarkArcher::MoveUnits(int x, int y) {
     return 0;
 }
 
-int DarkCavalry::AttackUnits(){
-    return this->attack;
+int DarkCavalry::AttackUnits(char** field, char choose){
+    for (int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            if (field[i][j] == choose){
+                if (1 >= abs(x - i)) {
+                    if (1 >= abs(y - j))
+                        return this->attack;
+                }
+            }
+        }
+    }
+    return -1;
 }
 
-int DarkInfantry::AttackUnits(){
-    return this->attack;
+int DarkInfantry::AttackUnits(char** field, char choose){
+    for (int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            if (field[i][j] == choose){
+                if (abs(x - i) <= 1) {
+                    if (abs(y - j) <= 1)
+                        return this->attack;
+                }
+            }
+        }
+    }
+    return -1;
 }
 
-int DarkArcher::AttackUnits(){
-    return this->attack;
+int DarkArcher::AttackUnits(char** field, char choose){
+    for (int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            if (field[i][j] == choose){
+                if (abs(x - i) <= 2) {
+                    if (abs(y - j) <= 2)
+                        return this->attack;
+                }
+            }
+        }
+    }
+    return -1;
 }
 
-void DarkCavalry::getDamage(int attack){
-    if (attack > this->armor)
-        this->health = this->health - (attack - this->armor);
-    if (this->health < 0)
+void DarkCavalry::getDamage(int att){
+    if (att > this->armor)
+        this->health = this->health - (att - this->armor);
+    if (this->health <= 0)
         this->type = '.';
 }
 
-void DarkInfantry::getDamage(int attack) {
-    if (attack > this->armor)
-        this->health = this->health - (attack - this->armor);
-    if (this->health < 0)
+void DarkInfantry::getDamage(int att) {
+    if (att > this->armor)
+        this->health = this->health - (att - this->armor);
+    if (this->health <= 0)
         this->type = '.';
 }
 
-void DarkArcher::getDamage(int attack) {
-    if (attack > this->armor)
-        this->health = this->health - (attack - this->armor);
-    if (this->health < 0)
+void DarkArcher::getDamage(int att) {
+    if (att > this->armor)
+        this->health = this->health - (att - this->armor);
+    if (this->health <= 0)
         this->type = '.';
 }
 

@@ -4,6 +4,7 @@
 
 #ifndef UNTITLED_UNITS_H
 #define UNTITLED_UNITS_H
+#include <cmath>
 
 class Units {
 public:
@@ -14,7 +15,7 @@ public:
 public:
     Units() = default;
     virtual int MoveUnits(int , int ) =0;
-    virtual int AttackUnits() = 0;
+    virtual int AttackUnits(char** , char ) = 0;
     virtual void getDamage(int) =0;
 private:
     int attack;
