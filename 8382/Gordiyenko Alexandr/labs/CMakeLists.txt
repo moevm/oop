@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(labs)
+
+set(CMAKE_CXX_STANDARD 14)
+
+add_executable(labs main.cpp Base.cpp Base.h extra3/Command.h extra3/ChainOfCommand.h Exceptions.h Field.cpp Field.h GameFacade.h Landscape/Ground.h Landscape/Landscape.h Landscape/Mountain.h Landscape/Water.h extra4/LogSwitch.h extra4/LoggerProxy.h extra2/Neutral/restoreArmour.h extra2/Neutral/restoreHealth.h extra2/Neutral/restoreMana.h extra2/Observer.h extra6/Rules.h extra2/SubjectObserver.h extra2/SubjectObserver.cpp Units/Unit.cpp Units/Priest.h Units/Melee.h Units/Yoyoist.h Units/Katanadude.h Units/Range.h Units/Slingerman.h Units/Crossbow.h Units/Necromancer.h Units/Magic.h Units/Unit.h extra1/UnitCreator.h extra4/adapter.cpp extra4/adapter.h extra3/facade.cpp extra3/facade.h extra1/iterator.cpp extra1/iterator.h extra5/snapshotbackup.cpp extra5/snapshotbackup.h extra1/unitfactory.cpp extra1/unitfactory.h extra2/unitsgroup.cpp extra2/unitsgroup.h extra2/Neutral/none.h extra2/Neutral/neutralObject.h extra2/Neutral/damage.h extra5/RAII.h extra6/State.h)
