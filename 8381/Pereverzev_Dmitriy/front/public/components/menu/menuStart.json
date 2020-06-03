@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "title": "Change User Name",
+        "href": "/userData"
+    },
+    {
+        "id": 1,
+        "title": "New Game",
+        "href": "/newRoom"
+    },
+    {
+        "id": 2,
+        "title": "Choose Room",
+        "href": "/rooms"
+    }
+]
