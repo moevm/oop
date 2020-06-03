@@ -1,0 +1,71 @@
+.landscape {
+    background-size: 100% 100% !important;
+
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
+.object {
+    background-size: 100% 100% !important;
+
+
+    width: 50%;
+    height: 50%;
+    position: relative;
+    z-index: 3;
+    transform: matrix(1, 0, 0, 1, 15, -50);
+    flex-basis: 20%;
+}
+/* 
+.object:hover {
+    transition: 0.5s;
+    box-shadow:
+        1px 1px #ead353,
+        2px 2px #ead353,
+        3px 3px #ead353,
+        4px 4px #ead353,
+        5px 5px #ead353,
+        6px 6px #ead353,
+        7px 7px #ead353;
+    transform: translate(-7px, -7px) !important;
+}
+
+.object:hover+.landscape:hover {
+    transition: 0.5s;
+    box-shadow:
+        1px 1px #ead353,
+        2px 2px #ead353,
+        3px 3px #ead353,
+        4px 4px #ead353,
+        5px 5px #ead353,
+        6px 6px #ead353,
+        7px 7px #ead353;
+    transform: translate(-7px, -7px) !important;
+}
+
+.landscape:hover+.object {
+    transition: 0.5s;
+    box-shadow:
+        1px 1px #ead353,
+        2px 2px #ead353,
+        3px 3px #ead353,
+        4px 4px #ead353,
+        5px 5px #ead353,
+        6px 6px #ead353,
+        7px 7px #ead353;
+    transform: translate(-7px, -7px);
+}
+
+.landscape:hover {
+    transition: 0.5s;
+    box-shadow:
+        1px 1px #ead353,
+        2px 2px #ead353,
+        3px 3px #ead353,
+        4px 4px #ead353,
+        5px 5px #ead353,
+        6px 6px #ead353,
+        7px 7px #ead353;
+    transform: translate(-7px, -7px);
+} */

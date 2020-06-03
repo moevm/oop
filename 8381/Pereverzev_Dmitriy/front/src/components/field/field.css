@@ -1,0 +1,113 @@
+.fieldBox {
+    width: 70vw;
+    height: 70vh;
+    /* height: auto; */
+    align-items: center;
+    overflow: scroll;
+    margin: 15vh auto;
+    border: 5px solid rgb(0, 23, 155);
+    /* transform: rotateX(50deg);*/
+
+}
+
+
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.field {
+
+
+
+
+    /* float: left; */
+    /* overflow: hidden; */
+    /* overflow: scroll; */
+    /* width: 80vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    flex-basis: 200px;
+    /* width: 500px;
+    height: 400px; */
+    align-content: space-between;
+    transition: 0.2s;
+
+}
+
+.cell {
+
+    width: 100px;
+    height: 100px;
+    /* border: 3px solid rgb(110, 101, 101); */
+    /* box-sizing: border-box; */
+}
+
+.cell:hover+.landscape {
+    /* transition: 0.5s; */
+    box-shadow:
+        1px 1px #ead353,
+        2px 2px #ead353,
+        3px 3px #ead353,
+        4px 4px #ead353,
+        5px 5px #ead353,
+        6px 6px #ead353,
+        7px 7px #ead353;
+    transform: translate(-7px, -7px);
+}
+
+.landscape {
+    background-size: 100% 100% !important;
+
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
+.landscape:hover {
+    transition: 0.5s;
+    box-shadow:
+        1px 1px #ead353,
+        2px 2px #ead353,
+        3px 3px #ead353,
+        4px 4px #ead353,
+        5px 5px #ead353,
+        6px 6px #ead353,
+        7px 7px #ead353;
+    transform: translate(-7px, -7px);
+}
+
+/* .object:hover .landscape {
+    transition: 0.5s;
+    box-shadow:
+        1px 1px #ead353,
+        2px 2px #ead353,
+        3px 3px #ead353,
+        4px 4px #ead353,
+        5px 5px #ead353,
+        6px 6px #ead353,
+        7px 7px #ead353;
+    transform: translate(-7px, -7px);
+
+} */
+
+
+.object {
+    background-size: 100% 100% !important;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    z-index: 3;
+    flex-basis: 20%;
+}
