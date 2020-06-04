@@ -1,5 +1,6 @@
 #include "oceans.hpp"
 
+using namespace unit;
 void OceansLandscape::hurtUnit(std::shared_ptr<Unit> unit) const
 {
     if (unit) {

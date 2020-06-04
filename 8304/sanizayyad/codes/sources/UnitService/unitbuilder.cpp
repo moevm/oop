@@ -1,5 +1,7 @@
 #include "unitbuilder.hpp"
 
+using namespace unit;
+
 UnitBuilder::UnitBuilder(const Position2D& position) : position(position)
 {
 
@@ -31,6 +33,10 @@ void UnitBuilder::setWeaponFactory(std::shared_ptr<WeaponFactory> weaponFactory)
     this->weaponFactory = weaponFactory;
 }
 
+void UnitBuilder::setHealthPoints(double healthPoints)
+{
+    this->healthPoints = healthPoints;
+}
 
 void UnitBuilder::setUnitFactory(std::shared_ptr<UnitFactory> unitFactory)
 {
@@ -48,6 +54,9 @@ std::shared_ptr<Unit> UnitBuilder::getUnit()
     std::shared_ptr<Unit> unit = unitFactory->createUnit(position,mediator);
     unit->setArmor(armorFactory->createArmor());
     unit->setWeapon(weaponFactory->createWeapon());
+    if (this->healthPoints != __DBL_MIN__) {
+        unit->healthPoints = this->healthPoints;
+    }
     
     return unit;
 }

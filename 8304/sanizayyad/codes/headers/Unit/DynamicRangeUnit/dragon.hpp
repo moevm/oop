@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class Dragon : public DynamicRangeUnit
 {
 public:
@@ -19,6 +20,7 @@ public:
 
 
     virtual std::shared_ptr<Unit> clone() override;
-};
+};}
+
 
 #endif /* dragon_hpp */

@@ -1,5 +1,8 @@
 #include "dragon.hpp"
 
+using namespace unit;
+
+
 
  Dragon::Dragon(const Position2D& position, std::shared_ptr<Mediator> mediator) :
      DynamicRangeUnit(position, mediator)

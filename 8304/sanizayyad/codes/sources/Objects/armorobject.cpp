@@ -1,5 +1,5 @@
 #include "armorobject.hpp"
-
+using namespace unit;
 ArmorObject::ArmorObject(const ArmorObject& object)
 {
     if (object.strategyPattern) {
@@ -29,18 +29,18 @@ std::shared_ptr<NeutralObject> ArmorObject::clone() const
 }
 
 
-void ArmorObject::selectLogic(std::shared_ptr<Unit> unit)
+void ArmorObject::selectLogic(std::shared_ptr<unit::Unit> unit)
 {
-    if (typeid (unit.get()) == typeid (SwordMan)) {
+    if (typeid (unit.get()) == typeid ( unit::SwordMan)) {
         strategyPattern = std::unique_ptr<StrategyPattern>(new SwordManArmorUpdateLogic);
     }
-    else if (typeid (unit.get()) == typeid (SpearMan)) {
+    else if (typeid (unit.get()) == typeid ( unit::SpearMan)) {
         strategyPattern = std::unique_ptr<StrategyPattern>(new SpearManArmorUpdateLogic);
     }
-    else if (typeid (unit.get()) == typeid (Archer)) {
+    else if (typeid (unit.get()) == typeid ( unit::Archer)) {
         strategyPattern = std::unique_ptr<StrategyPattern>(new ArcherArmorUpdateLogic);
     }
-    else if (typeid (unit.get()) == typeid (Dragon)) {
+    else if (typeid (unit.get()) == typeid ( unit::Dragon)) {
         strategyPattern = std::unique_ptr<StrategyPattern>(new DragonArmorUpdateLogic);
     }
     else {

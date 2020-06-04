@@ -1,7 +1,7 @@
 #include "archerArmorUpdateLogic.hpp"
 
-
-void ArcherArmorUpdateLogic::updateUnit(std::shared_ptr<Unit> unit) const
+using namespace unit;
+void ArcherArmorUpdateLogic::updateUnit(std::shared_ptr<unit::Unit> unit) const
 {
    LightArmorFactory factory;
    unit->setArmor(factory.createArmor());

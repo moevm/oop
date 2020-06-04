@@ -1,6 +1,8 @@
 #include "armorupdatelogic.hpp"
 
-void ArmorUpdateLogic::updateUnit(std::shared_ptr<Unit> unit) const
+using namespace unit;
+
+void ArmorUpdateLogic::updateUnit(std::shared_ptr<unit::Unit> unit) const
 {
     unit->setArmor(this->armor->clone());
 }

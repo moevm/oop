@@ -1,5 +1,6 @@
 #include "noobject.hpp"
 
+using namespace unit;
 
 NoObject::NoObject(const NoObject& object)
 {
@@ -31,7 +32,7 @@ std::shared_ptr<NeutralObject> NoObject::clone() const
 }
 
 
-void NoObject::selectLogic(std::shared_ptr<Unit> unit)
+void NoObject::selectLogic(std::shared_ptr<unit::Unit> unit)
 {
 //    Q_UNUSED(unit);
 

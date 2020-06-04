@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <memory>
 
+namespace unit {
 class UnitBuilder
 {
 public:
@@ -19,6 +20,7 @@ public:
     void setWeaponFactory(std::shared_ptr<WeaponFactory> weaponFactory);
     void setUnitFactory(std::shared_ptr<UnitFactory> unitFactory);
     void setPosition(const Position2D& position);
+    void setHealthPoints(double healthPoints);
     std::shared_ptr<Unit> getUnit();
 
 private:
@@ -26,9 +28,11 @@ private:
     std::shared_ptr<UnitFactory> unitFactory;
     std::shared_ptr<WeaponFactory> weaponFactory;
     std::shared_ptr<ArmorFactory> armorFactory;
+    double healthPoints;
     Position2D position;
 
-};
+};}
+
 
 
 #endif /* unitbuilder_hpp */

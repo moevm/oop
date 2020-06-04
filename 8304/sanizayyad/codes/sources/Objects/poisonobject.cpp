@@ -1,5 +1,6 @@
 #include "poisonobject.hpp"
 
+using namespace unit;
 PoisonObject::PoisonObject(const PoisonObject& object)
 {
     if (object.strategyPattern) {
@@ -29,7 +30,7 @@ std::shared_ptr<NeutralObject> PoisonObject::clone() const
 }
 
 
-void PoisonObject::selectLogic(std::shared_ptr<Unit> unit)
+void PoisonObject::selectLogic(std::shared_ptr<unit::Unit> unit)
 {
 //    Q_UNUSED(unit);
 

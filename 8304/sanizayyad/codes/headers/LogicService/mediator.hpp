@@ -2,9 +2,12 @@
 #define mediator_hpp
 
 
-class Unit;
+namespace unit {
+    class Unit;
+}
+
 class BattleField;
-class Log;
+class Proxy;
 
 #include <memory>
 
@@ -12,14 +15,14 @@ class Log;
 class Mediator
 {
 public:
-    explicit Mediator(std::shared_ptr<BattleField> battleField,std::shared_ptr<Log> log);
+    explicit Mediator(std::shared_ptr<BattleField> battleField,std::shared_ptr<Proxy> proxyLog);
     ~Mediator() = default;
 
-    bool notify(std::shared_ptr<Unit> unit, const std::string& action);
+    bool notify(std::shared_ptr<unit::Unit> unit, const std::string& action);
  
 private:
     std::shared_ptr<BattleField> battleField;
-    std::shared_ptr<Log> log;
+    std::shared_ptr<Proxy> proxyLog;
 };
 
 #endif /* mediator_hpp */

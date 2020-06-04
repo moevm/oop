@@ -1,14 +1,14 @@
 
-#include "log.hpp"
+#include "adapter.hpp"
 
-std::string Log::getCurrentTime() const
+std::string Adapter::getCurrentTime() const
 {
     auto currentTime = time(nullptr);
 
     return asctime(localtime(&currentTime));
 }
 
-std::string Log::getMessageType(TYPE type) const
+std::string Adapter::getMessageType(TYPE type) const
 {
     auto time = getCurrentTime();
     time.pop_back();

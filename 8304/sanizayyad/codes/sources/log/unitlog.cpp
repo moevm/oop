@@ -1,6 +1,9 @@
 #include "unitlog.hpp"
 
-std::string UnitLog::moveMessage(std::shared_ptr<Unit> unit,
+using namespace unit;
+
+
+std::string UnitLog::moveMessage(std::shared_ptr<unit::Unit> unit,
                                     const Position2D& from, const Position2D& to)
 {
     std::string result = "Unit: ";
@@ -18,7 +21,7 @@ std::string UnitLog::moveMessage(std::shared_ptr<Unit> unit,
 }
 
 
-std::string UnitLog::createMessage(std::shared_ptr<Unit> unit)
+std::string UnitLog::createMessage(std::shared_ptr<unit::Unit> unit)
 {
     std::string result = "Unit: ";
 
@@ -33,7 +36,7 @@ std::string UnitLog::createMessage(std::shared_ptr<Unit> unit)
 }
 
 
-std::string UnitLog::dieMessage(std::shared_ptr<Unit> unit)
+std::string UnitLog::dieMessage(std::shared_ptr<unit::Unit> unit)
 {
     std::string result = "Unit: ";
 
@@ -48,7 +51,7 @@ std::string UnitLog::dieMessage(std::shared_ptr<Unit> unit)
 }
 
 
-std::string UnitLog::healthMessage(std::shared_ptr<Unit> unit,
+std::string UnitLog::healthMessage(std::shared_ptr<unit::Unit> unit,
                                     double damage)
 {
     std::string result = "Unit: ";
@@ -63,8 +66,8 @@ std::string UnitLog::healthMessage(std::shared_ptr<Unit> unit,
 }
 
 
-std::string UnitLog::attackMessage(std::shared_ptr<Unit> unit,
-                                      std::shared_ptr<Unit> enemy)
+std::string UnitLog::attackMessage(std::shared_ptr<unit::Unit> unit,
+                                      std::shared_ptr<unit::Unit> enemy)
 {
     std::string result = "Unit: ";
 
@@ -84,7 +87,7 @@ std::string UnitLog::attackMessage(std::shared_ptr<Unit> unit,
 }
 
 
-std::string UnitLog::getPlayer(std::shared_ptr<Unit> unit)
+std::string UnitLog::getPlayer(std::shared_ptr<unit::Unit> unit)
 {
     if (unit->getPlayer() == PLAYER::ONE) {
         return "Player: 1.";

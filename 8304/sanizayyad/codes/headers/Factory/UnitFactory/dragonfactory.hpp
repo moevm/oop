@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class DragonFactory : public UnitFactory
 {
 public:
@@ -13,5 +14,8 @@ public:
 
 
 };
+
+}
+
 
 #endif /* dragonfactory_hpp */

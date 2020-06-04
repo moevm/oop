@@ -1,6 +1,6 @@
 #include "desert.hpp"
-
-void DesertLandscape::hurtUnit(std::shared_ptr<Unit> unit) const
+using namespace unit;
+void DesertLandscape::hurtUnit(std::shared_ptr<unit::Unit> unit) const
 {
     if (unit) {
            unit->makeDamage(10);
@@ -8,7 +8,7 @@ void DesertLandscape::hurtUnit(std::shared_ptr<Unit> unit) const
 }
 
 
-bool DesertLandscape::canMove(std::shared_ptr<Unit> unit) const
+bool DesertLandscape::canMove(std::shared_ptr<unit::Unit> unit) const
 {
 //    not used
     return true;

@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class Ballistic : public LongRangeUnit
 {
 public:
@@ -19,5 +20,6 @@ public:
 
     virtual std::shared_ptr<Unit> clone() override;
 };
+}
 
 #endif /* ballistic_hpp */

@@ -19,7 +19,7 @@ public:
     ArmorUpdateLogic& operator=(const ArmorUpdateLogic& logic) = delete;
     ArmorUpdateLogic& operator=(ArmorUpdateLogic&& logic) = delete;
 
-    virtual void updateUnit(std::shared_ptr<Unit> unit) const override;
+    virtual void updateUnit(std::shared_ptr<unit::Unit> unit) const override;
 
     
 protected:

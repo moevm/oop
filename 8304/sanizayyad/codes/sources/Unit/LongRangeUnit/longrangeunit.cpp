@@ -1,5 +1,8 @@
 #include "longrangeunit.hpp"
 
+using namespace unit;
+
+
 LongRangeUnit::LongRangeUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) :
     Unit(position, mediator)
 {

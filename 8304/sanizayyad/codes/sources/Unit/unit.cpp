@@ -1,5 +1,7 @@
 #include "unit.hpp"
 
+using namespace unit;
+
 Unit::Unit(const Position2D& position, std::shared_ptr<Mediator> mediator) : position(position), mediator(mediator)
 {
 }

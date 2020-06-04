@@ -29,8 +29,8 @@ public:
     int getWidth() const;
     int getHeight() const;
 
-    bool addUnit(std::shared_ptr<Unit> unit);
-    void deleteUnit(std::shared_ptr<Unit> unit);
+    bool addUnit(std::shared_ptr<unit::Unit> unit);
+    void deleteUnit(std::shared_ptr<unit::Unit> unit);
     void deleteUnitCord(Position2D position);
     
     std::shared_ptr<BattleFieldIterator> getIterator() const;

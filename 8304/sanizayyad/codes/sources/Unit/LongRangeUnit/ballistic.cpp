@@ -1,5 +1,7 @@
 #include "ballistic.hpp"
 
+using namespace unit;
+
 
  Ballistic::Ballistic(const Position2D& position, std::shared_ptr<Mediator> mediator) :
      LongRangeUnit(position, mediator)

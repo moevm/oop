@@ -1,5 +1,7 @@
 #include "spearman.hpp"
 
+using namespace unit;
+
  SpearMan::SpearMan(const Position2D& position, std::shared_ptr<Mediator> mediator) :
      ShortRangeUnit(position, mediator)
  {

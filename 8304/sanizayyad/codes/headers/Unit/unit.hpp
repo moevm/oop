@@ -17,12 +17,15 @@ constexpr double BALLISTICS_HEALTHPOINTS = 150;
 constexpr double VAMPIRE_HEALTHPOINTS = 180;
 constexpr double DRAGON_HEALTHPOINTS = 200;
 
+namespace unit {
+
 enum class PLAYER: int {
     ONE,
     TWO
 };
 
 class Unit: public MovingInterface, public ObserverSubject{
+    friend class UnitBuilder;
     public:
         explicit Unit(const Position2D& position, std::shared_ptr<Mediator> mediator);
         virtual ~Unit() = default;
@@ -58,5 +61,5 @@ class Unit: public MovingInterface, public ObserverSubject{
         std::shared_ptr<Weapon> weapon;
         std::shared_ptr<Mediator> mediator;
     };
- 
+ }
 #endif /* unit_hpp */

@@ -1,5 +1,6 @@
 #include "FieldCell.hpp"
 
+using namespace unit;
 
 FieldCell::FieldCell()
 {
@@ -45,7 +46,7 @@ FieldCell& FieldCell::operator=(FieldCell&& fieldCell)
 }
 
 
-void FieldCell::addUnit(std::shared_ptr<Unit> unit)
+void FieldCell::addUnit(std::shared_ptr<unit::Unit> unit)
 {
     this->unit = unit;
     if(unit)
@@ -61,7 +62,7 @@ void FieldCell::deleteUnit()
 }
 
 
-std::shared_ptr<Unit> FieldCell::getUnit()
+std::shared_ptr<unit::Unit> FieldCell::getUnit()
 {
     return unit;
 }

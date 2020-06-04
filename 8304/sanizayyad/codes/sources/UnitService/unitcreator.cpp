@@ -1,7 +1,9 @@
 #include "unitcreator.hpp"
 
+using namespace unit;
 
-std::shared_ptr<Unit> UnitCreator::createSwordMan(const Position2D& position,std::shared_ptr<Mediator> mediator)
+
+std::shared_ptr<Unit> UnitCreator::createSwordMan(const Position2D& position,std::shared_ptr<Mediator> mediator,double healthPoints)
 {
     UnitBuilder builder(position);
 
@@ -13,12 +15,13 @@ std::shared_ptr<Unit> UnitCreator::createSwordMan(const Position2D& position,std
     builder.setArmorFactory(std::move(armorFactory));
     builder.setWeaponFactory(std::move(weaponFactory));
     builder.setMediator(mediator);
+    builder.setHealthPoints(healthPoints);
 
     return  builder.getUnit();
 }
 
 
-std::shared_ptr<Unit> UnitCreator::createSpearMan(const Position2D& position,std::shared_ptr<Mediator> mediator)
+std::shared_ptr<Unit> UnitCreator::createSpearMan(const Position2D& position,std::shared_ptr<Mediator> mediator,double healthPoints)
 {
     UnitBuilder builder(position);
 
@@ -30,12 +33,13 @@ std::shared_ptr<Unit> UnitCreator::createSpearMan(const Position2D& position,std
     builder.setArmorFactory(std::move(armorFactory));
     builder.setWeaponFactory(std::move(weaponFactory));
     builder.setMediator(mediator);
+    builder.setHealthPoints(healthPoints);
 
     return  builder.getUnit();
 }
 
 
-std::shared_ptr<Unit> UnitCreator::createArcher(const Position2D& position,std::shared_ptr<Mediator> mediator)
+std::shared_ptr<Unit> UnitCreator::createArcher(const Position2D& position,std::shared_ptr<Mediator> mediator,double healthPoints)
 {
     UnitBuilder builder(position);
 
@@ -47,12 +51,13 @@ std::shared_ptr<Unit> UnitCreator::createArcher(const Position2D& position,std::
     builder.setArmorFactory(std::move(armorFactory));
     builder.setWeaponFactory(std::move(weaponFactory));
     builder.setMediator(mediator);
+    builder.setHealthPoints(healthPoints);
 
     return  builder.getUnit();
 }
 
 
-std::shared_ptr<Unit> UnitCreator:: createBallistic(const Position2D& position,std::shared_ptr<Mediator> mediator)
+std::shared_ptr<Unit> UnitCreator:: createBallistic(const Position2D& position,std::shared_ptr<Mediator> mediator,double healthPoints)
 {
     UnitBuilder builder(position);
 
@@ -64,12 +69,13 @@ std::shared_ptr<Unit> UnitCreator:: createBallistic(const Position2D& position,s
     builder.setArmorFactory(std::move(armorFactory));
     builder.setWeaponFactory(std::move(weaponFactory));
     builder.setMediator(mediator);
+    builder.setHealthPoints(healthPoints);
 
     return  builder.getUnit();
 }
 
 
-std::shared_ptr<Unit> UnitCreator::createVampire(const Position2D& position,std::shared_ptr<Mediator> mediator)
+std::shared_ptr<Unit> UnitCreator::createVampire(const Position2D& position,std::shared_ptr<Mediator> mediator,double healthPoints)
 {
     UnitBuilder builder(position);
 
@@ -81,12 +87,13 @@ std::shared_ptr<Unit> UnitCreator::createVampire(const Position2D& position,std:
     builder.setArmorFactory(std::move(armorFactory));
     builder.setWeaponFactory(std::move(weaponFactory));
     builder.setMediator(mediator);
+    builder.setHealthPoints(healthPoints);
 
     return  builder.getUnit();
 }
 
 
-std::shared_ptr<Unit> UnitCreator::createDragon(const Position2D& position,std::shared_ptr<Mediator> mediator)
+std::shared_ptr<Unit> UnitCreator::createDragon(const Position2D& position,std::shared_ptr<Mediator> mediator,double healthPoints)
 {
     UnitBuilder builder(position);
 
@@ -98,6 +105,7 @@ std::shared_ptr<Unit> UnitCreator::createDragon(const Position2D& position,std::
     builder.setArmorFactory(std::move(armorFactory));
     builder.setWeaponFactory(std::move(weaponFactory));
     builder.setMediator(mediator);
+    builder.setHealthPoints(healthPoints);
 
     return  builder.getUnit();
 }

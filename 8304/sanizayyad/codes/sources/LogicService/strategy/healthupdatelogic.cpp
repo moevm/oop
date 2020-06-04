@@ -1,6 +1,7 @@
 #include "healthupdatelogic.hpp"
 
-void HealthUpdateLogic::updateUnit(std::shared_ptr<Unit> unit) const
+using namespace unit;
+void HealthUpdateLogic::updateUnit(std::shared_ptr<unit::Unit> unit) const
 {
     unit->makeDamage(-100);
     //supposed to be addtion

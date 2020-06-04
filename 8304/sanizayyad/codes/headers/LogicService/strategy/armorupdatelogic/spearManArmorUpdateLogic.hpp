@@ -9,7 +9,7 @@ class SpearManArmorUpdateLogic : public ArmorUpdateLogic
 {
 public:
     
-    virtual void updateUnit(std::shared_ptr<Unit> unit) const override;
+    virtual void updateUnit(std::shared_ptr<unit::Unit> unit) const override;
     virtual std::shared_ptr<StrategyPattern> clone() const override;
 };
 #endif /* SpearManArmorUpdateLogic_hpp */

@@ -1,11 +1,15 @@
 #include "base.hpp"
+#include "originator.hpp"
 
-Base::Base(const Position2D& position, std::shared_ptr<Mediator> mediator,PLAYER player) : Unit(position, mediator)
+using namespace unit;
+
+
+Base::Base(const Position2D& position, std::shared_ptr<Mediator> mediator,PLAYER player,double healthPoints) : Unit(position, mediator)
 {
     HeavyArmorFactory armorFactory;
     BallisticWeaponFactory weaponFactory;
 
-    healthPoints = 300;
+    this->healthPoints = healthPoints;
     this->player = player;
     unitName = "Base";
     armor = armorFactory.createArmor();
@@ -36,6 +40,7 @@ bool Base::moveRight()
 {
     return false;
 }
+
 
 std::shared_ptr<Unit> Base::createShortRangeUnit(int dx, int dy)
 {
@@ -99,6 +104,27 @@ std::shared_ptr<Unit> Base::createDynamicRangeUnit(int dx, int dy)
     return createUnit(unit);
 }
 
+std::shared_ptr<Unit> Base::createUnitFromSnaphot(const UnitStateSnap& unitStateSnap)
+{
+    std::shared_ptr<Unit> unit;
+
+    if(unitStateSnap.unitName == "SwordMan"){
+        unit = creator.createSwordMan(unitStateSnap.position, mediator, unitStateSnap.healthPoints);
+    }else if (unitStateSnap.unitName == "SpearMan"){
+        unit = creator.createSwordMan(unitStateSnap.position, mediator, unitStateSnap.healthPoints);
+    }else if (unitStateSnap.unitName == "Archer"){
+        unit = creator.createArcher(unitStateSnap.position, mediator, unitStateSnap.healthPoints);
+    }else if (unitStateSnap.unitName == "Ballistic"){
+        unit = creator.createBallistic(unitStateSnap.position, mediator, unitStateSnap.healthPoints);
+    }else if (unitStateSnap.unitName == "Vampire"){
+        unit = creator.createVampire(unitStateSnap.position, mediator, unitStateSnap.healthPoints);
+    }else if (unitStateSnap.unitName == "Dragon"){
+        unit = creator.createDragon(unitStateSnap.position, mediator, unitStateSnap.healthPoints);
+    }
+    
+    return createUnit(unit);
+}
+
 
 std::shared_ptr<Unit> Base::clone()
 {
@@ -107,16 +133,17 @@ std::shared_ptr<Unit> Base::clone()
 }
 
 
-//char Base::draw() const
-//{
-//    return 'B';
-//}
-
 
 void Base::update()
 {
     --numberOfUnits;
 }
+
+size_t Base::getNumberOfUnits() const
+{
+    return numberOfUnits;
+}
+
 
 void Base::baseInfo(){
     std::cout<<"Base info: \n";
@@ -132,6 +159,10 @@ int Base::generateRandomNum(int end) const
     return rand() % end;
 }
 
+void Base::setHealthPoints(double healthPoints)
+{
+    this->healthPoints = healthPoints;
+}
 
 std::shared_ptr<Unit> Base::createUnit(std::shared_ptr<Unit> unit)
 {
