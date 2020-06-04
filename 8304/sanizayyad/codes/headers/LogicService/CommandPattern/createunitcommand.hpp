@@ -4,16 +4,17 @@
 
 #include "command.hpp"
 
+using namespace unit;
 class CreateUnitCommand : public Command
 {
     
 public:
-    CreateUnitCommand(std::shared_ptr<Base> homeBase,std::shared_ptr<Base> enemyBase,std::string type){
+    CreateUnitCommand(std::shared_ptr<unit::Base> homeBase,std::shared_ptr<unit::Base> enemyBase,std::string type){
         this->homeBase = homeBase;
         this->enemyBase = enemyBase;
         this->type = type;
     };
-    std::shared_ptr<Unit> createUnit() {
+    std::shared_ptr<unit::Unit> createUnit() {
         auto enemyBasePosition = enemyBase->getPosition();
         auto homeBasePosition = homeBase->getPosition();
         srand(time(0));
@@ -50,7 +51,7 @@ public:
         
         return NULL;
     }
-    std::shared_ptr<Unit> getUnit() {
+    std::shared_ptr<unit::Unit> getUnit() {
         unit = createUnit();
         return unit;
     }
@@ -58,10 +59,10 @@ public:
         getUnit();
     }
 private:
-    std::shared_ptr<Base> homeBase;
-    std::shared_ptr<Base> enemyBase;
+    std::shared_ptr<unit::Base> homeBase;
+    std::shared_ptr<unit::Base> enemyBase;
     std::string type;
-    std::shared_ptr<Unit> unit;
+    std::shared_ptr<unit::Unit> unit;
     
 };
 #endif /* createunitcommand_hpp */

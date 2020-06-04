@@ -7,7 +7,7 @@
 class MoveUnitCommand : public Command
 {
 public:
-    MoveUnitCommand(std::shared_ptr<Base> enemyBase,std::shared_ptr<Unit> unit){
+    MoveUnitCommand(std::shared_ptr<unit::Base> enemyBase,std::shared_ptr<unit::Unit> unit){
         this->enemyBase = enemyBase;
         this->unit = unit;
 
@@ -37,7 +37,7 @@ public:
         moveUnit();
     }
 private:
-    std::shared_ptr<Base> enemyBase;
-    std::shared_ptr<Unit> unit;
+    std::shared_ptr<unit::Base> enemyBase;
+    std::shared_ptr<unit::Unit> unit;
 };
 #endif /* moveunitcommand_hpp */

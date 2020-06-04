@@ -1,6 +1,8 @@
 #include "nologic.hpp"
 
-void NoLogic::updateUnit(std::shared_ptr<Unit> unit) const
+using namespace unit;
+
+void NoLogic::updateUnit(std::shared_ptr<unit::Unit> unit) const
 {
 //    Q_UNUSED(unit);
 }

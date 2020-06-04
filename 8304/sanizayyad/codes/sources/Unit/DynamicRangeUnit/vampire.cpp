@@ -1,5 +1,7 @@
 #include "vampire.hpp"
 
+using namespace unit;
+
  Vampire::Vampire(const Position2D& position, std::shared_ptr<Mediator> mediator) :
      DynamicRangeUnit(position, mediator)
  {

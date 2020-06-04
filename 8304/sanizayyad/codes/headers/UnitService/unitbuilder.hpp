@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <memory>
 
+namespace unit {
 class UnitBuilder
 {
 public:
@@ -30,7 +31,8 @@ private:
     double healthPoints;
     Position2D position;
 
-};
+};}
+
 
 
 #endif /* unitbuilder_hpp */

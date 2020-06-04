@@ -1,5 +1,8 @@
 #include "shortRangeUnit.hpp"
 
+using namespace unit;
+
+
 ShortRangeUnit::ShortRangeUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) :
     Unit(position, mediator)
 {

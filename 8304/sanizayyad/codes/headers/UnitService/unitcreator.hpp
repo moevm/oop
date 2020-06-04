@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <memory>
 
-
+namespace unit {
 class UnitCreator
 {
 public:
@@ -39,5 +39,7 @@ public:
     std::shared_ptr<Unit> createDragon(const Position2D& Position,std::shared_ptr<Mediator> mediator,double healthPoints = __DBL_MIN__);
 
 };
+}
+
 
 #endif /* unitcreator_hpp */

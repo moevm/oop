@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class SwordMan : public ShortRangeUnit
 {
 public:
@@ -18,6 +19,7 @@ public:
         
 
     virtual std::shared_ptr<Unit> clone() override;
-};
+};}
+
 
 #endif /* swordman_hpp */

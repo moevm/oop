@@ -17,7 +17,7 @@ public:
 
 
 protected:
-    virtual void selectLogic(std::shared_ptr<Unit> unit) override;
+    virtual void selectLogic(std::shared_ptr<unit::Unit> unit) override;
 };
 
 #endif /* armorobject_hpp */

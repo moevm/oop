@@ -1,6 +1,7 @@
 #include "poisonlogic.hpp"
 
-void PoisonLogic::updateUnit(std::shared_ptr<Unit> unit) const
+using namespace unit;
+void PoisonLogic::updateUnit(std::shared_ptr<unit::Unit> unit) const
 {
    unit->makeDamage(unit->getHealthPoints());
    //supposed to be addtion

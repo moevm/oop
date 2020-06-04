@@ -1,6 +1,8 @@
 #include "BattleField.hpp"
 #include "battlefielditerator.hpp"
 
+using namespace unit;
+
 BattleField::BattleField(int height, int width) :
     height(height), width(width),
     battleFieldArray(height, std::vector<std::shared_ptr<FieldCell>>(width))
@@ -63,7 +65,7 @@ int BattleField::getHeight() const
 
 
 
-bool BattleField::addUnit(std::shared_ptr<Unit> unit)
+bool BattleField::addUnit(std::shared_ptr<unit::Unit> unit)
 {
     if (unit) {
         Position2D position = unit->getPosition();
@@ -99,7 +101,7 @@ void BattleField::getFieldCellInfo(const Position2D &position)
 
 }
 
-void BattleField::deleteUnit(std::shared_ptr<Unit> unit)
+void BattleField::deleteUnit(std::shared_ptr<unit::Unit> unit)
 {
     if (unit) {
         auto pos = unit->getPosition();

@@ -1,4 +1,6 @@
 #include "dynamicrangeunit.hpp"
+using namespace unit;
+
 
 DynamicRangeUnit::DynamicRangeUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) :
     Unit(position, mediator)

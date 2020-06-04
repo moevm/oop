@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class DynamicRangeUnit : public Unit,public std::enable_shared_from_this<Unit>
 {
 public:
@@ -18,5 +19,8 @@ public:
     virtual bool moveTop() override;
     virtual bool moveBottom() override;
 };
+
+}
+
 
 #endif /* rare_hpp */

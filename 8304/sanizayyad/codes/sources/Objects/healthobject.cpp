@@ -1,5 +1,6 @@
 #include "healthobject.hpp"
 
+using namespace unit;
 
 HealthObject::HealthObject(const HealthObject& object)
 {
@@ -30,7 +31,7 @@ std::shared_ptr<NeutralObject> HealthObject::clone() const
 }
 
 
-void HealthObject::selectLogic(std::shared_ptr<Unit> unit)
+void HealthObject::selectLogic(std::shared_ptr<unit::Unit> unit)
 {
 //    Q_UNUSED(unit);
 

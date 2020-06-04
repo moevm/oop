@@ -1,7 +1,9 @@
 #include "SpearManArmorUpdateLogic.hpp"
 
+using namespace unit;
 
-void SpearManArmorUpdateLogic::updateUnit(std::shared_ptr<Unit> unit) const
+
+void SpearManArmorUpdateLogic::updateUnit(std::shared_ptr<unit::Unit> unit) const
 {
    LightArmorFactory factory;
    unit->setArmor(factory.createArmor());

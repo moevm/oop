@@ -8,9 +8,14 @@
 #include <time.h>
 #include <stdio.h>
 
-constexpr int MAX_NUMBER_UNITS = 10;
 
 class UnitStateSnap;
+
+
+namespace unit {
+
+constexpr int MAX_NUMBER_UNITS = 10;
+
 
 class Base : public Unit, public ObserverInterface, public std::enable_shared_from_this<Base>
 {
@@ -43,5 +48,11 @@ private:
     UnitCreator creator;
     size_t numberOfUnits;
 };
+
+
+}
+
+
+
 
 #endif /* base_hpp */

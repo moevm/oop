@@ -14,7 +14,9 @@ public:
         
             AttackCommand* command = new AttackCommand(battleField, unit,log);
             command->Execute();
-        return command->getExecution();
+        if( command->getExecution())
+            return true;
+        return false;
     }
     
 };

@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class Archer : public LongRangeUnit
 {
 public:
@@ -17,6 +18,7 @@ public:
     Archer& operator=(Archer&& unit) = delete;
 
 
-    virtual std::shared_ptr<Unit> clone() override;
-};
+    virtual std::shared_ptr<unit::Unit> clone() override;
+};}
+
 #endif /* Archer_hpp */

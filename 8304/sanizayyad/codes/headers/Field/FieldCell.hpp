@@ -21,9 +21,9 @@ public:
     FieldCell& operator=(const FieldCell& cell);
     FieldCell& operator=(FieldCell&& cell);
 
-    void addUnit(std::shared_ptr<Unit> unit);
+    void addUnit(std::shared_ptr<unit::Unit> unit);
     void deleteUnit();
-    std::shared_ptr<Unit> getUnit();
+    std::shared_ptr<unit::Unit> getUnit();
     bool isEmpty() const;
 //    getAbout
     
@@ -41,7 +41,7 @@ private:
 
 
 private:
-    std::shared_ptr<Unit> unit;
+    std::shared_ptr<unit::Unit> unit;
     std::shared_ptr<NeutralObject> neutralObject;
     std::shared_ptr<Landscape> landscape;
     bool empty;

@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class SpearManFactory : public UnitFactory
 {
 public:
@@ -13,5 +14,7 @@ public:
 
 
 };
+}
+
 
 #endif /* spearmanfactory_hpp */

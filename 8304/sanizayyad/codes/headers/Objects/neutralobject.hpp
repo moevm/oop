@@ -26,12 +26,12 @@ public:
     explicit NeutralObject() = default;
     virtual ~NeutralObject() = default;
 
-    virtual void operator[](std::shared_ptr<Unit> unit);
+    virtual void operator[](std::shared_ptr<unit::Unit> unit);
     
     virtual std::shared_ptr<NeutralObject> clone() const = 0;
 
 protected:
-    virtual void selectLogic(std::shared_ptr<Unit> unit) = 0;
+    virtual void selectLogic(std::shared_ptr<unit::Unit> unit) = 0;
 
 protected:
     std::shared_ptr<StrategyPattern> strategyPattern;

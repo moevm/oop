@@ -1,5 +1,7 @@
 #include "proxylandscape.hpp"
 
+using namespace unit;
+
  ProxyLandscape::ProxyLandscape()
  {
      this->landscape = std::make_shared<PlainsLandscape>();
@@ -12,7 +14,7 @@
  }
 
 
- void ProxyLandscape::hurtUnit(std::shared_ptr<Unit> unit) const
+ void ProxyLandscape::hurtUnit(std::shared_ptr<unit::Unit> unit) const
  {
      if (unit) {
          this->landscape->hurtUnit(unit);
@@ -20,7 +22,7 @@
  }
 
 
- bool ProxyLandscape::canMove(std::shared_ptr<Unit> unit) const
+ bool ProxyLandscape::canMove(std::shared_ptr<unit::Unit> unit) const
  {
      if (unit) {
          return this->landscape->canMove(unit);

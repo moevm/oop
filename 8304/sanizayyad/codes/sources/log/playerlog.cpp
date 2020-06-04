@@ -1,6 +1,8 @@
 #include "playerlog.hpp"
 
-std::string PlayerLog::createUnit(bool isCreate, PLAYER player)
+using namespace unit;
+
+std::string PlayerLog::createUnit(bool isCreate, unit::PLAYER player)
 {
     std::string result = getPlayer(player);
     if (!isCreate) {
@@ -14,7 +16,7 @@ std::string PlayerLog::createUnit(bool isCreate, PLAYER player)
 }
 
 
-std::string PlayerLog::attack(PLAYER player)
+std::string PlayerLog::attack(unit::PLAYER player)
 {
     std::string result = getPlayer(player);
     result += "Now is attacking.";
@@ -22,7 +24,7 @@ std::string PlayerLog::attack(PLAYER player)
 }
 
 
-std::string PlayerLog::deffend(PLAYER player)
+std::string PlayerLog::deffend(unit::PLAYER player)
 {
     std::string result = getPlayer(player);
     result += "Now is deffending.";
@@ -30,7 +32,7 @@ std::string PlayerLog::deffend(PLAYER player)
 }
 
 
-std::string PlayerLog::getPlayer(PLAYER player)
+std::string PlayerLog::getPlayer(unit::PLAYER player)
 {
     if (player == PLAYER::ONE) {
         return "Player: 1. ";

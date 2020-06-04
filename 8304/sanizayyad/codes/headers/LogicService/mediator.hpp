@@ -2,7 +2,10 @@
 #define mediator_hpp
 
 
-class Unit;
+namespace unit {
+    class Unit;
+}
+
 class BattleField;
 class Proxy;
 
@@ -15,7 +18,7 @@ public:
     explicit Mediator(std::shared_ptr<BattleField> battleField,std::shared_ptr<Proxy> proxyLog);
     ~Mediator() = default;
 
-    bool notify(std::shared_ptr<Unit> unit, const std::string& action);
+    bool notify(std::shared_ptr<unit::Unit> unit, const std::string& action);
  
 private:
     std::shared_ptr<BattleField> battleField;

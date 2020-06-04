@@ -1,7 +1,8 @@
  #include "SwordManArmorUpdateLogic.hpp"
 
+using namespace unit;
 
-void SwordManArmorUpdateLogic::updateUnit(std::shared_ptr<Unit> unit) const
+void SwordManArmorUpdateLogic::updateUnit(std::shared_ptr<unit::Unit> unit) const
 {
     LightArmorFactory factory;
     unit->setArmor(factory.createArmor());

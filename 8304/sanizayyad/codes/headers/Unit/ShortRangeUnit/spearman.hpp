@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class SpearMan : public ShortRangeUnit
 {
 public:
@@ -17,6 +18,7 @@ public:
     SpearMan& operator=(SpearMan&& unit) = delete;
 //
     virtual std::shared_ptr<Unit> clone() override;
-};
+};}
+
 
 #endif /* spearman_hpp */

@@ -1,5 +1,7 @@
 #include "unitbuilder.hpp"
 
+using namespace unit;
+
 UnitBuilder::UnitBuilder(const Position2D& position) : position(position)
 {
 

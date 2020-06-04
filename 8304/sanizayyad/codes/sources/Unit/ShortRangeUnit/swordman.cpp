@@ -1,5 +1,7 @@
 #include "swordman.hpp"
 
+using namespace unit;
+
 
  SwordMan::SwordMan(const Position2D& position, std::shared_ptr<Mediator> mediator) :
      ShortRangeUnit(position, mediator)

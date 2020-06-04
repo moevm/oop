@@ -3,6 +3,7 @@
 #include "unit.hpp"
 #include "poisonobject.hpp"
 #include "proxy.hpp"
+using namespace unit;
 
 Mediator::Mediator(std::shared_ptr<BattleField> battleField, std::shared_ptr<Proxy> proxyLog)
 {
@@ -11,7 +12,7 @@ Mediator::Mediator(std::shared_ptr<BattleField> battleField, std::shared_ptr<Pro
 }
 
 
-bool Mediator::notify(std::shared_ptr<Unit> unit,const std::string& action)
+bool Mediator::notify(std::shared_ptr<unit::Unit> unit,const std::string& action)
 {
     Position2D currentPosition = unit->getPosition();
     auto currentCell = battleField->getFieldCell(currentPosition);

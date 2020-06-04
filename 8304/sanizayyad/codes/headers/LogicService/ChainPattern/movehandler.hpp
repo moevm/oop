@@ -12,7 +12,7 @@ public:
     bool MoveUnit(std::shared_ptr<Base> enemyBase,std::shared_ptr<Unit> unit) override {
      MoveUnitCommand* command = new MoveUnitCommand(enemyBase, unit);
      command->Execute();
-        return true;
+    return true;
     }
 };
 

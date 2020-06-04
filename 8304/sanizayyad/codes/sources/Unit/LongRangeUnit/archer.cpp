@@ -1,5 +1,7 @@
 #include "archer.hpp"
 
+using namespace unit;
+
 
  Archer::Archer(const Position2D& position, std::shared_ptr<Mediator> mediator) :
      LongRangeUnit(position, mediator)

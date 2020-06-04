@@ -1,5 +1,7 @@
 #include "unitcreator.hpp"
 
+using namespace unit;
+
 
 std::shared_ptr<Unit> UnitCreator::createSwordMan(const Position2D& position,std::shared_ptr<Mediator> mediator,double healthPoints)
 {

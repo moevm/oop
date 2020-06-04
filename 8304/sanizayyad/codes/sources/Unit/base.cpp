@@ -1,6 +1,9 @@
 #include "base.hpp"
 #include "originator.hpp"
 
+using namespace unit;
+
+
 Base::Base(const Position2D& position, std::shared_ptr<Mediator> mediator,PLAYER player,double healthPoints) : Unit(position, mediator)
 {
     HeavyArmorFactory armorFactory;

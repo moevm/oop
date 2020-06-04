@@ -13,13 +13,16 @@
 #include <stdio.h>
 #include <memory>
 
+namespace unit {
 class UnitFactory
 {
 public:
 
     virtual std::shared_ptr<Unit> createUnit(const Position2D& position, std::shared_ptr<Mediator> mediator) const = 0;
 
-};
+};}
+
+
 
 
 #endif /* unitfactory_hpp */

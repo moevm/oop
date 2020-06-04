@@ -1,13 +1,13 @@
 #include "plains.hpp"
+using namespace unit;
 
-
-void PlainsLandscape::hurtUnit(std::shared_ptr<Unit> unit) const
+void PlainsLandscape::hurtUnit(std::shared_ptr<unit::Unit> unit) const
 {
 //    not used
 }
 
 
-bool PlainsLandscape::canMove(std::shared_ptr<Unit> unit) const
+bool PlainsLandscape::canMove(std::shared_ptr<unit::Unit> unit) const
 {
 //    not used
     return true;

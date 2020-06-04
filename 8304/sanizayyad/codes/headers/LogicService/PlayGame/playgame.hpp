@@ -7,44 +7,49 @@
 #include "originator.hpp"
 #include "caretaker.hpp"
 #include "proxy.hpp"
+#include "rule1.hpp"
+#include "rule2.hpp"
+#include "context.hpp"
+#include "action.hpp"
 
 #include <math.h>
 #include <iostream>
 #include <stdio.h>
 
-enum class ACTION : int
-{
-    NO_ACTION,
-    CREATE_SHORTRANGE,
-    CREATE_LONGRANGE,
-    CREATE_DYNAMICRANGE,
-    ATTACK,
-    DEFFEND,
-    SAVE,
-    LOAD,
-    EXIT,
-};
 
 
 class PlayGame
 {
     friend Originator;
 public:
-    explicit PlayGame();
+    
     void startGame();
+    //should not be cloneable
+    PlayGame(PlayGame &other) = delete;
+    //should not be assignable
+    void operator=(const PlayGame &) = delete;
+    
+    static PlayGame *GetInstance(std::shared_ptr<Rules> gameRules, int numPlayers);
+
+protected:
+    PlayGame(std::shared_ptr<Rules> gameRules, int numPlayers);
+    
 
 private:
     void initiliaze();
     void createBattleField();
     void printGame() const;
-    void farmEnemy();
-    void farmPlayer();
-    bool actionLogic(ACTION action = ACTION::NO_ACTION);
-    void enemyLogic();
+    bool actionLogic(ACTION action = ACTION::NO_ACTION, int playerQue = 1);
+    void computerLogic();
     ACTION input();
+    bool winCondition(int type);
 
 
 private:
+    static PlayGame* playGameSingleton;
+    std::shared_ptr<Rules> gameRules;
+    int numPlayers;
+    
     bool isRunning;
     std::shared_ptr<Mediator> mediator;
     std::shared_ptr<BattleField> battleField;
@@ -57,9 +62,12 @@ private:
     std::shared_ptr<Proxy> proxyLog;
     std::shared_ptr<Originator> originator;
     std::shared_ptr<Caretaker> careTaker;
-
+    Context* playerStateContext;
+    
     bool isPlayerAttack;
+    int numberOfUsersAllowed;
     int numberOfEnemiesAllowed;
+    int dead;
 };
 
 #endif /* playgame_hpp */

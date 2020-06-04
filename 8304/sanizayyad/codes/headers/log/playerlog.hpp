@@ -9,12 +9,12 @@
 class PlayerLog
 {
 public:
-    static std::string createUnit(bool isCreate, PLAYER player);
-    static std::string attack(PLAYER player);
-    static std::string deffend(PLAYER player);
+    static std::string createUnit(bool isCreate, unit::PLAYER player);
+    static std::string attack(unit::PLAYER player);
+    static std::string deffend(unit::PLAYER player);
 
 private:
-    static std::string getPlayer(PLAYER player);
+    static std::string getPlayer(unit::PLAYER player);
 };
 
 

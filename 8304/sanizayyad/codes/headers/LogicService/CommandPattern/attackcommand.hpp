@@ -8,7 +8,7 @@
 class AttackCommand : public Command
 {
 public:
-    AttackCommand(std::shared_ptr<BattleField> battleField,std::shared_ptr<Unit> unit, std::shared_ptr<Adapter> log){
+    AttackCommand(std::shared_ptr<BattleField> battleField,std::shared_ptr<unit::Unit> unit, std::shared_ptr<Adapter> log){
         this->battleField = battleField;
         this->log = log;
         this->unit = unit;
@@ -50,7 +50,7 @@ public:
     }
 private:
     std::shared_ptr<BattleField> battleField;
-    std::shared_ptr<Unit> unit;
+    std::shared_ptr<unit::Unit> unit;
     std::shared_ptr<Adapter> log;
     bool attacked;
 };

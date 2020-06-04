@@ -2,6 +2,8 @@
 
 #include "playgame.hpp"
 
+using namespace unit;
+
 Originator::Originator(std::string filePath) :filePath(filePath){
 }
 

@@ -12,7 +12,7 @@ public:
     std::shared_ptr<Unit> CreateUnit(std::shared_ptr<Base> homeBase,std::shared_ptr<Base> enemyBase,std::string type) override {
      CreateUnitCommand* command = new CreateUnitCommand(homeBase, enemyBase,type);
      command->Execute();
-        return command->getUnit();
+    return command->getUnit();
     }
 };
 

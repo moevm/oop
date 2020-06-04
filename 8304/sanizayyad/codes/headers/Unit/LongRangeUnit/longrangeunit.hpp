@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 
+namespace unit {
 class LongRangeUnit : public Unit,public std::enable_shared_from_this<Unit>
 {
 public:
@@ -17,6 +18,7 @@ public:
     virtual bool moveRight() override;
     virtual bool moveTop() override;
     virtual bool moveBottom() override;
-};
+};}
+
 
 #endif /* range_hpp */
