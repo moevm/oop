@@ -1,0 +1,59 @@
+{
+  "name": "ironsphere-server",
+  "version": "1.0.0",
+  "description": "Powerfull standalone [strategy/Ironsphere] authorization/game server",
+  "author": "caxapexac",
+  "contributors": [
+    "MilesArtemius <@gmail.com>",
+    "Dmitriy129 <@gmail.com>"
+  ],
+  "license": "ISC",
+  "repository": "https://github.com/caxapexac/IronsphereServer",
+  "homepage": "https://github.com/caxapexac/IronsphereServer#readme",
+  "bugs": {
+    "url": "https://github.com/caxapexac/IronsphereServer/issues"
+  },
+  "keywords": [
+    "server",
+    "native",
+    "backend"
+  ],
+  "engines": {
+    "node": "13.0.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "sh scripts/test.sh",
+    "build": "sh scripts/build.sh",
+    "build-debug": "sh scripts/build-debug.sh",
+    "build-prod": "sh scripts/build-prod.sh",
+    "rebuild": "sh scripts/rebuild.sh",
+    "start": "sh scripts/start.sh",
+    "start-prod": "sh scripts/start-prod.sh",
+    "start-logic": "sh scripts/start-logic.sh",
+    "build-logic": "sh scripts/build-logic.sh",
+    "ci-deploy": "sh scripts/ci-deploy.sh",
+    "gyp-config": "node-gyp configure",
+    "gyp-build": "node-gyp build",
+    "win-node-gyp-quick-fix": "sh scripts/win-gyp-quick-fix.sh",
+    "wp": "webpack"
+  },
+  "dependencies": {
+    "@types/node": "^13.9.0",
+    "@types/ws": "^7.2.3",
+    "bindings": "^1.5.0",
+    "cli-interact": "^0.1.9",
+    "express": "^4.17.1",
+    "mongodb": "^3.5.7",
+    "node-addon-api": "^2.0.0",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.6.2",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3",
+    "typescript-tslint-plugin": "^0.5.5",
+    "ws": "^7.2.3"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}

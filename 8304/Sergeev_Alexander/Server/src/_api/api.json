@@ -1,0 +1,85 @@
+{
+  "!start_argument": {
+    "player_count": 1234,
+    "win_rule": "kill/score/money/serialized_special_rule_class/ya_proigral",
+    "map_builder_type": "number or enum here",
+    "map_builder_arguments": {
+      "seed": 42,
+      "scale": {
+        "x": 64,
+        "y": 64
+      },
+      "piece_of arguments": "sv cheats 1",
+      "one_more_piece_of arguments": "generate pls"
+    },
+    "other_parameters_from_game_rules": "maybe"
+  },
+  "!start_return": {
+    "// this returns to every player after game start": "//",
+    "win_rule": "kill/score/money/serialized_special_rule_class/ya_proigral",
+    "serialized_tilemap": "serialized_tilemap_with_only_visual_data (no units data)",
+    "other_parameters_from_game_rules": "maybe",
+    "// server adds players' metadata such as profiles there (in js server part)": "//"
+  },
+  "!update_return": {
+    "game_state": "maybe",
+    "players_data": {
+      "8658765": {
+        "money": 100,
+        "// we also need to store player_id into unit": "//",
+        "units": [
+          {
+            "serialized_unit": "serialized_unit"
+          },
+          {
+            "serialized_unit": "serialized_unit"
+          },
+          {
+            "etc": "etc"
+          }
+        ],
+        "other_important_data_such_as_enemy's_score": "maybe"
+      },
+      "5476": {
+        "units": [
+          {
+            "serialized_unit": "serialized_unit"
+          },
+          {
+            "serialized_unit": "serialized_unit"
+          },
+          {
+            "etc": "etc"
+          }
+        ],
+        "other_important_data_such_as_enemy's_score": "maybe"
+      },
+      "7658": {
+        "etc": "etc"
+      }
+    }
+  },
+  "!destroy_return": {
+    "statistics": [
+      {
+        "status": "won",
+        "total_time": 20843,
+        "kills": 200,
+        "units_total": 5000,
+        "units_after_all": 100,
+        "etc": "etc"
+      },
+      {
+        "status": "lose",
+        "total_time": 20843,
+        "kills": 150,
+        "units_total": 4900,
+        "units_after_all": 4,
+        "etc": "etc"
+      },
+      {
+        "etc": "etc"
+      }
+    ]
+  }
+}
