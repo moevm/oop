@@ -1,0 +1,11 @@
+#ifndef BATTLEFORHONOUR_ARMORTYPE_H
+#define BATTLEFORHONOUR_ARMORTYPE_H
+
+enum class ArmorType{
+    LIGHT,
+    MEDIUM,
+    HEAVY,
+    MAGIC
+};
+
+#endif //BATTLEFORHONOUR_ARMORTYPE_H
