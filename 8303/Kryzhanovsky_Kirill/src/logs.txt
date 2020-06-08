@@ -1,0 +1,17 @@
+log changed to file stream
+set ┌──────────────────────────────
+│ This base: [health=1011, countUnits=0, maxCountUnits=3]
+│ UnitsType : 
+[ ]
+└──────────────────────────────
+[Elf]
+Armor: 5
+Speed: 3
+Damage: 18
+Health: 180
+Attack range: 3
+Current position: 
+X: 1
+Y: 1
+Id: 1
+

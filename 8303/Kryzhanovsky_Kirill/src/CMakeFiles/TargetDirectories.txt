@@ -1,0 +1,3 @@
+/home/therealyou/github/oop_lab/src/CMakeFiles/rebuild_cache.dir
+/home/therealyou/github/oop_lab/src/CMakeFiles/edit_cache.dir
+/home/therealyou/github/oop_lab/src/CMakeFiles/lab1.dir
