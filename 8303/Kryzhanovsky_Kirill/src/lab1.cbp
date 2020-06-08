@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="lab1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/therealyou/github/oop_lab/src"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/therealyou/github/oop_lab/src"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/therealyou/github/oop_lab/src"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab1">
+				<Option output="/home/therealyou/github/oop_lab/src/lab1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/therealyou/github/oop_lab/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 lab1"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lab1/fast">
+				<Option output="/home/therealyou/github/oop_lab/src/lab1" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/therealyou/github/oop_lab/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 lab1/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/therealyou/github/oop_lab/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Adapter.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Adapter.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Base.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Base.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/BaseHandler.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/BaseHandler.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Command.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Command.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Exception.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Facade.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Facade.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/Factories.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/FactoryOfAlliance.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/FactoryOfAlliance.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/FactoryOfMagicians.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/FactoryOfMagicians.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/FactoryOfOrcs.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/FactoryOfOrcs.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/FactoryOfUnits.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Factories/FactoryOfUnits.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/File.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Game.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/GameField.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/GameField.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/Desert.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/Desert.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/Landscape.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/Landscape.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/LandscapeProxy.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/LandscapeProxy.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/Mountain.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/Mountain.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/Wood.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Landscapes/Wood.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Logger.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Logger.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Armor.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Armor.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Medicine.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Medicine.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Object.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Object.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/ObjectsType.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Poison.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Poison.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Weapon.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/NeutralObjetcs/Weapon.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Observer.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Observer.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/ProfileUnit.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/ProfileUnit.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/ProxyLogger.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/ProxyLogger.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Rules.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Rules.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/SnapShot.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/SnapShot.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/State.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/SubjectObserve.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/SubjectObserve.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Alliance.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Alliance.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Elf.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Elf.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Goblin.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Goblin.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Magicians.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Magicians.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Orcs.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Orcs.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Peon.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Peon.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Shooter.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Shooter.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Troll.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Troll.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Unit.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Unit.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/UnitsType.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Witch.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/Units/Witch.h">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/main.cpp">
+			<Option target="lab1"/>
+		</Unit>
+		<Unit filename="/home/therealyou/github/oop_lab/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
