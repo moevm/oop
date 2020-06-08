@@ -1,0 +1,3 @@
+/home/osi/CLionProjects/oop/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/osi/CLionProjects/oop/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/osi/CLionProjects/oop/cmake-build-debug/CMakeFiles/oop.dir

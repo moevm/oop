@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="oop"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/osi/CLionProjects/oop/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/osi/CLionProjects/oop/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/osi/CLionProjects/oop/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="oop">
+				<Option output="/home/osi/CLionProjects/oop/cmake-build-debug/oop" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/osi/CLionProjects/oop/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 oop"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="oop/fast">
+				<Option output="/home/osi/CLionProjects/oop/cmake-build-debug/oop" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/osi/CLionProjects/oop/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 oop/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/osi/CLionProjects/oop/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/ActionWithObjectCommand.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/AttackBaseCommand.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/AttackUnitCommand.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/Command.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/CreateUnitCommand.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/DeleteUnitCommand.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/GameException.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/MoveUnitCommand.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/Rules.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/StartGameCommand.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Commands/UnitsAttributesCommand.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Facade.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Facade.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/FieldCell.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/FieldCell.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Game.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/GameField.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/GameField.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Gamer.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/Adapter.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/Adapter.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/FileLogger.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/FileLogger.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/LogProxy.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/LogProxy.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/Logger.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/NoLogger.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/TerminalLogger.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Loggers/TerminalLogger.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Manager.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Manager.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Memento.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Memento.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/Base.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/Base.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/Object.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/Observer.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/Subject.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/neutralObjects/Bar.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/neutralObjects/Hospital.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/neutralObjects/NeutralObject.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/neutralObjects/NeutralObject.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/neutralObjects/Shop.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/neutralObjects/Strategy.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/neutralObjects/TrainingBase.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/CompositeUnit.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/CompositeUnit.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FactoryMethod.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FlyingTroops/BoneDragon.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FlyingTroops/BoneDragon.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FlyingTroops/FlyingTroops.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FlyingTroops/Griffin.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FlyingTroops/Griffin.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FootTroops/FootTroops.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FootTroops/Halberdier.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FootTroops/Halberdier.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FootTroops/Skeleton.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/FootTroops/Skeleton.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/RangedTroops/Archer.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/RangedTroops/Archer.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/RangedTroops/Lich.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/RangedTroops/Lich.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/RangedTroops/RangedTroops.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/Unit.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/Unit.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/attributes/Attack.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/attributes/Attribute.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/attributes/Defense.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/Objects/units/attributes/Health.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/landscapes/Forest.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/landscapes/Grass.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/landscapes/Landscape.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/landscapes/Mountains.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/landscapes/Proxy.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/landscapes/Proxy.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/landscapes/Swamp.h">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/main.cpp">
+			<Option target="oop"/>
+		</Unit>
+		<Unit filename="/home/osi/CLionProjects/oop/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
