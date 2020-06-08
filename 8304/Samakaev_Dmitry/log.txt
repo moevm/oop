@@ -1,0 +1,3 @@
+Base was added to 0 0 
+Base was added to 1 1 
+Catapult was created in base with coordinates - 1 1 
