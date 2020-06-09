@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1591599239 source:c:\users\euronics\desktop\oop\lab\main.cpp
+	<iostream>
+	<memory>
+	"game.cpp"
+
+1591599210 source:c:\users\euronics\desktop\oop\lab\terrain.cpp
+	<iostream>
+	<windows.h>
+	"units.cpp"
+
+1591604910 c:\users\euronics\desktop\oop\lab\units.cpp
+	<string>
+	<cmath>
+	"log.cpp"
+
+1591604910 source:c:\users\euronics\desktop\oop\lab\units.cpp
+	<string>
+	<cmath>
+	"log.cpp"
+
+1591599210 c:\users\euronics\desktop\oop\lab\terrain.cpp
+	<iostream>
+	<windows.h>
+	"units.cpp"
+
+1591604910 c:\users\euronics\desktop\oop\lab\game.cpp
+	<typeinfo>
+	<string>
+	<iostream>
+	<cstdlib>
+	<ctime>
+	"log.cpp"
+	"terrain.cpp"
+	"player.cpp"
+
+1591589637 source:c:\users\euronics\desktop\oop\lab\dice.cpp
+	<cstdlib>
+	<ctime>
+
+1591589685 c:\users\euronics\desktop\oop\lab\dice.cpp
+	<cstdlib>
+	<ctime>
+
+1591597067 c:\users\euronics\desktop\oop\lab\player.cpp
+	<iostream>
+	"units.cpp"
+
+1591590425 c:\users\euronics\desktop\oop\lab\\units.cpp
+	<string>
+	<cmath>
+
+1591597067 source:c:\users\euronics\desktop\oop\lab\player.cpp
+	<iostream>
+	"units.cpp"
+
+1591604558 c:\users\euronics\desktop\oop\lab\log.cpp
+	<string>
+	<fstream>
+
+1591604558 source:c:\users\euronics\desktop\oop\lab\log.cpp
+	<string>
+	<fstream>
+
