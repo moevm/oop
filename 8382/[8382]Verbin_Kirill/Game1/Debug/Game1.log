@@ -1,0 +1,65 @@
+﻿  Game1.cpp
+C:\Users\frast\source\repos\Game1\Game1\surse.h(7,6): error C2086: int Load::x: переопределение
+C:\Users\frast\source\repos\Game1\Game1\surse.h(4): message : см. объявление "Load::x"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(8,6): error C2086: int Load::y: переопределение
+C:\Users\frast\source\repos\Game1\Game1\surse.h(4): message : см. объявление "Load::y"
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(3,27): error C2533: Load::{ctor}: конструкторы не разрешены для возвращаемого типа
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(6,21): error C2440: =: невозможно преобразовать "int *" в "int **"
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(6,7): message : Типы, на которые указывают указатели, не связаны; для преобразования требуется reinterpret_cast, приведение в стиле С или приведение в стиле функции
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(7,21): error C2440: =: невозможно преобразовать "int *" в "int **"
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(7,7): message : Типы, на которые указывают указатели, не связаны; для преобразования требуется reinterpret_cast, приведение в стиле С или приведение в стиле функции
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(8,2): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(11,8): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(11,22): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(11,36): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(14,13): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(14,27): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(14,41): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(20,8): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(20,22): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(20,36): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(23,13): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(23,27): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(23,41): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(26,13): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(32,4): error C2065: count: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(3,39): error C2248: Load::Load: невозможно обратиться к private член, объявленному в классе "Load"
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(3): message : см. объявление "Load::Load"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(3): message : см. объявление "Load"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(4,10): error C2248: Load::Load: невозможно обратиться к private член, объявленному в классе "Load"
+C:\Users\frast\source\repos\Game1\Game1\surse.cpp(3): message : см. объявление "Load::Load"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(3): message : см. объявление "Load"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(4,16): error C2264: Load::Load: ошибка в определении или объявлении функции; функция не вызвана
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(5,19): error C2248: Load::np: невозможно обратиться к private член, объявленному в классе "Load"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(5): message : см. объявление "Load::np"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(3): message : см. объявление "Load"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(5,25): error C2248: Load::tp: невозможно обратиться к private член, объявленному в классе "Load"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(6): message : см. объявление "Load::tp"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(3): message : см. объявление "Load"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(5,31): error C2248: Load::x: невозможно обратиться к private член, объявленному в классе "Load"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(4): message : см. объявление "Load::x"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(3): message : см. объявление "Load"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(5,36): error C2248: Load::y: невозможно обратиться к private член, объявленному в классе "Load"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(4): message : см. объявление "Load::y"
+C:\Users\frast\source\repos\Game1\Game1\surse.h(3): message : см. объявление "Load"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(61,8): error C2065: att_arr: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(61,27): error C2065: B2: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(61,108): error C2065: j: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(61,111): error C2065: k: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(61,113): error C2660: Unit::Attack: функция не принимает 1 аргументов
+C:\Users\frast\source\repos\Game1\Game1\unit.h(13,14): message : см. объявление "Unit::Attack"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(66,113): error C2065: k: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(66,115): error C2660: Unit::Attack: функция не принимает 1 аргументов
+C:\Users\frast\source\repos\Game1\Game1\unit.h(13,14): message : см. объявление "Unit::Attack"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(74,6): error C2374: l: переопределение; множественная инициализация
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(45): message : см. объявление "l"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(90,8): error C2065: att_arr: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(90,27): error C2065: B1: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(90,108): error C2065: j: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(90,111): error C2065: k: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(90,113): error C2660: Unit::Attack: функция не принимает 1 аргументов
+C:\Users\frast\source\repos\Game1\Game1\unit.h(13,14): message : см. объявление "Unit::Attack"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(94,157): error C2065: k: необъявленный идентификатор
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(94,159): error C2660: Unit::Attack: функция не принимает 1 аргументов
+C:\Users\frast\source\repos\Game1\Game1\unit.h(13,14): message : см. объявление "Unit::Attack"
+C:\Users\frast\source\repos\Game1\Game1\LogikScript.cpp(103,24): error C2653: GameObject: не является именем класса или пространства имен
