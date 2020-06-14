@@ -1,0 +1,36 @@
+Attempt to create tower in coordinates  (0 ; 0)
+Tower was created with coordinates  (0 ; 0)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create tower in coordinates  (1 ; 0)
+Tower was created with coordinates  (1 ; 0)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create tower in coordinates  (2 ; 0)
+Tower was created with coordinates  (2 ; 0)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create tower in coordinates  (3 ; 0)
+Tower was created with coordinates  (3 ; 0)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create tower in coordinates  (4 ; 0)
+Tower was created with coordinates  (4 ; 0)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create tower in coordinates  (5 ; 0)
+Tower was created with coordinates  (5 ; 0)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create tower in coordinates  (6 ; 0)
+Tower was created with coordinates  (6 ; 0)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create tower in coordinates  (7 ; 0)
+Tower was created with coordinates  (7 ; 0)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create tower in coordinates  (0 ; 5)
+Tower was created with coordinates  (0 ; 5)
+Tower state: hp = 500 level = 0damage = 200 size = 2
+Attempt to create a unit from a tower with coordinates (7 ; 0) in coordinates (7 ; 1)
+Unit was created with coordinates  (7 ; 1)
+Unit state: hp = 200 damage = 150 armor = 0
+Attempt to create a unit from a tower with coordinates (3 ; 0) in coordinates (6 ; 1)
+Unit was created with coordinates  (6 ; 1)
+Unit state: hp = 450 damage = 200 armor = 0
+Attempt to create a unit from a tower with coordinates (0 ; 5) in coordinates (0 ; 4)
+Unit was created with coordinates  (0 ; 4)
+Unit state: hp = 200 damage = 80 armor = 30
