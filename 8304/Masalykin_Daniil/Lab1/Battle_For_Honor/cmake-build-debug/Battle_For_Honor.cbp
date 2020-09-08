@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Battle_For_Honor"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Battle_For_Honor">
+				<Option output="C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Battle_For_Honor.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 Battle_For_Honor"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Battle_For_Honor/fast">
+				<Option output="C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Battle_For_Honor.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 Battle_For_Honor/fast"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~2/MINGW-~1/I686-8~1.0-P/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/danma/Desktop/Battle_For_Honor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Battle Field/Cell.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Battle Field/Cell.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Battle Field/Field.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Battle Field/Field.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Battle Field/FieldIterator.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Battle Field/FieldIterator.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Main Base/Base.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Main Base/Base.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Archer.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Archer.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Armour.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Armour.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Attributes.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Attributes.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Crossbows.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Crossbows.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Damage.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Damage.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Footman.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Footman.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/HorseArcher.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/HorseArcher.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Horseman.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Horseman.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/LongBowman.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/LongBowman.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/SpearHorse.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/SpearHorse.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Spearman.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Spearman.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Swordsman.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Swordsman.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Unit.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/Units/Unit.h">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/main.cpp">
+			<Option target="Battle_For_Honor"/>
+		</Unit>
+		<Unit filename="C:/Users/danma/Desktop/Battle_For_Honor/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
