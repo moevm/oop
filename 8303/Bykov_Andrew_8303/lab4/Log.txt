@@ -1,0 +1,172 @@
+log:Base Water: unit created
+log:Base Fire: unit created
+log:Create field,  Width - 20,  Height - 10
+log:Create Base Water: health - 999, gold - 500
+log:Create Base Fire: health - 999, gold - 500
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Swamp
+log:Unit 1: current stamina - 8
+log:Unit 1: current attack - 150
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Swamp
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: current stamina - 8
+log:Unit 1: current attack - 150
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Right
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Attack target 17,7
+log:Unit 1 has been killed
+log:Player Command - Move Up
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Up
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Create Cuirassiers
+log:Base Fire: unit created
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Attack target 17,7
+log:Unit 1 has been killed
+log:Player Command - Move Up
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Up
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Up
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Up
+log:Unit 1: intercat with Forest
+log:Unit 1: intercat with 
+log:Player Command - Move Up
+log:Unit 1: intercat with Forest
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with River
+log:Unit 1: current stamina - 8
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with River
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: current stamina - 8
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Swamp
+log:Unit 1: current stamina - 8
+log:Unit 1: current attack - 150
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Swamp
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: current stamina - 8
+log:Unit 1: current attack - 150
+log:Unit 1: intercat with 
+log:Player Command - Move Down
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with 
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with Gold
+log:Base Water: current gold - 712
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with Curse
+log:Unit 1: current armor - 50
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with Rune
+log:Unit 1: current armor - 50
+log:Player Command - Move Left
+log:Unit 1: intercat with Meadow
+log:Unit 1: intercat with Trap
+log:Unit 1: current number - 2
