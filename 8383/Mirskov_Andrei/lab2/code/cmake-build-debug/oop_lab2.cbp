@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="oop_lab2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="oop_lab2">
+				<Option output="/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/oop_lab2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 oop_lab2"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="oop_lab2/fast">
+				<Option output="/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/oop_lab2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 oop_lab2/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/andrei/CLionProjects/oop_lab2_3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/atributes/armor.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/atributes/armor.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/atributes/damage.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/atributes/damage.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/atributes/health.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/atributes/health.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/base/base.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/base/base.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/cell/cell.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/cell/cell.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/factory/factory.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/factory/factory.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/field/field.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/field/field.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/game/game.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/game/game.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/landscape/ground.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/landscape/ground.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/landscape/landscape.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/landscape/landscape.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/landscape/liquid.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/landscape/liquid.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/landscape/wall.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/landscape/wall.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/main.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/clothes.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/clothes.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/kit.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/kit.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/neutral.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/neutral.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/potion.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/potion.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/weapon.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/neutral/weapon.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/archer.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/archer.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/elephantman.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/elephantman.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/firearcher.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/firearcher.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/horseman.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/horseman.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/infantry.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/infantry.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/mainUnit.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/mainUnit.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/rider.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/rider.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/spearman.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/spearman.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/swordman.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/swordman.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/unit.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/unit.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/wooden.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/units/wooden.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/vector/Iterator.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/vector/Iterator.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/vector/vector.cpp">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/vector/vector.h">
+			<Option target="oop_lab2"/>
+		</Unit>
+		<Unit filename="/home/andrei/CLionProjects/oop_lab2_3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
