@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="OOP_lab1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="D:/lion/OOP_lab1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="D:/lion/OOP_lab1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="OOP_lab1">
+				<Option output="D:/lion/OOP_lab1/cmake-build-debug/OOP_lab1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/lion/OOP_lab1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 OOP_lab1"/>
+					<CompileFile command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="OOP_lab1/fast">
+				<Option output="D:/lion/OOP_lab1/cmake-build-debug/OOP_lab1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/lion/OOP_lab1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/mingw32"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include/c++/backward"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/../../../../include"/>
+					<Add directory="d:\lion\comp\mingw\bin\../lib/gcc/mingw32/8.2.0/include-fixed"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 OOP_lab1/fast"/>
+					<CompileFile command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="D:/lion/OOP_lab1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/lion/comp/MinGW/bin/mingw32-make.exe -f &quot;D:/lion/OOP_lab1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="D:/lion/OOP_lab1/Archer.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/ArcherFactory.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Armor.cpp">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Armor.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Axe.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Berserk.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Bow.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Cape.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/CrossBowMan.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/FireBall.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/FireMage.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/GameField.cpp">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/GameField.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/GameFieldIterator.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/IceMage.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/IceStorm.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/IronArmor.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/LaminarArmor.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/LeatherArmor.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Point.cpp">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Point.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Sniper.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Sword.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/SwordMan.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Unit.cpp">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Unit.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/UnitFactory.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Vikings.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/VikingsFactory.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Weapon.cpp">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/Weapon.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/WizardFactory.h">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/main.cpp">
+			<Option target="OOP_lab1"/>
+		</Unit>
+		<Unit filename="D:/lion/OOP_lab1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
